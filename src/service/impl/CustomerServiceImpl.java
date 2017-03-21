@@ -6,6 +6,8 @@ import model.customer.ShoppingCart;
 import model.customer.StandardCard;
 import model.restaurant.AlaCarteOrder;
 import model.restaurant.MealOrder;
+import model.restaurant.SpecialMealOrder;
+import model.restaurant.StandardMealOrder;
 import model.user.Customer;
 import model.user.Restaurant;
 import service.CustomerService;
@@ -17,6 +19,19 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerServiceImpl(Customer customer) {
 		super();
 		this.customer = customer;
+	}
+
+
+	public void addSpecialMealOrder(Restaurant r, String mealType, String mealName){
+		customer.getShoppingCart().addOrder(new SpecialMealOrder(customer, r,r.createMeal(mealType, mealName)));
+	}
+	
+	public void addStandardMealOrder(Restaurant r, String mealType, String mealName){
+		customer.getShoppingCart().addOrder(new StandardMealOrder(customer, r,r.createMeal(mealType, mealName)));
+	}
+
+	public void addAlaCarteOrder(Restaurant r, String dishName){
+		customer.getShoppingCart().addOrder(new AlaCarteOrder(customer,r,r.createDish(dishName)));
 	}
 
 

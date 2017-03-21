@@ -46,7 +46,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public User selectUser(String username) throws UserNotFoundException {
 		// TODO Auto-generated method stub
-		return manager.getMyfoodora().selectUser(username);
+		return manager.getMyfoodora().getMyFoodoraService().selectUser(username);
 	}
 	
 }

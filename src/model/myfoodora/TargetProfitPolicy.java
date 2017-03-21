@@ -1,4 +1,4 @@
-package system;
+package model.myfoodora;
 
 public interface TargetProfitPolicy {
 	//so the total profit = last month income * markup + last month order*(service fee - delivery cost)

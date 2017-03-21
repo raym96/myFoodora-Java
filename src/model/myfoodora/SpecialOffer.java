@@ -1,4 +1,4 @@
-package system;
+package model.myfoodora;
 
 import model.restaurant.*;
 import model.user.Restaurant;

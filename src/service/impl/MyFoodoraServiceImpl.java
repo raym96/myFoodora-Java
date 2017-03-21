@@ -6,74 +6,48 @@ import java.util.Date;
 
 import exceptions.UserNotFoundException;
 import model.customer.*;
+import model.myfoodora.DeliveryPolicy;
+import model.myfoodora.History;
+import model.myfoodora.MyFoodora;
+import model.myfoodora.SpecialOffer;
+import model.myfoodora.SpecialOfferBoard;
+import model.myfoodora.TargetProfitPolicy;
+import model.myfoodora.TargetProfit_DeliveryCost;
+import model.myfoodora.TargetProfit_Markup;
+import model.myfoodora.TargetProfit_ServiceFee;
 import model.restaurant.*;
 import model.user.*;
-import system.DeliveryPolicy;
-import system.History;
-import system.SpecialOffer;
-import system.SpecialOfferBoard;
-import system.TargetProfitPolicy;
-import system.TargetProfit_DeliveryCost;
-import system.TargetProfit_Markup;
-import system.TargetProfit_ServiceFee;
+import service.MyFoodoraService;
 
-public class MyFoodora{
-	
-	public ArrayList<User> users;
-	public ArrayList<User> activeUsers;
-	public ArrayList<Courier> activecouriers;
-	
-	public SpecialOfferBoard specialofferboard;
-	
-	private double service_fee;
-	private double markup_percentage;
-	private double delivery_cost;	
-	
-	private TargetProfitPolicy targetprofitpolicy;
-	private DeliveryPolicy deliverypolicy;
+public class MyFoodoraServiceImpl implements MyFoodoraService{
+	private MyFoodora myfoodora;
 
-	private History history;
-	
-	private double balance;
-	
 	//[[used by Manager]]
 	public void addUser(User user){
-		users.add(user);
+		myfoodora.getUsers().add(user);
 	}
 	
 	public void removeUser(User user){
-		users.remove(user);
+		myfoodora.getUsers().remove(user);
 	}
 	
 	public void activateUser(User user){
-		activeUsers.add(user);
+		myfoodora.getActiveUsers().add(user);
 	}
 	
 	public void disactivateUser(User user){
-		activeUsers.remove(user);
+		myfoodora.getActiveUsers().remove(user);
 	}
 	
-	public double getService_fee() {
-		return service_fee;
-	}
-	public void setService_fee(double service_fee) {
-		this.service_fee = service_fee;
-	}
-	public double getMarkup_percentage() {
-		return markup_percentage;
-	}
-	public void setMarkup_percentage(double markup_percentage) {
-		this.markup_percentage = markup_percentage;
-	}
-	public double getDelivery_cost() {
-		return delivery_cost;
-	}
-	public void setDelivery_cost(double delivery_cost) {
-		this.delivery_cost = delivery_cost;
-	}
 	
+	@Override
+	public User selectUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public double getTotalIncome(Date date1, Date date2){
-		ArrayList<Order> list = history.getOrderBetween(date1, date2);
+		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
 		double totalIncome = 0;
 		for (Order order:list){
@@ -83,17 +57,17 @@ public class MyFoodora{
 	}
 	
 	public double getTotalProfit(Date date1, Date date2){
-		ArrayList<Order> list = history.getOrderBetween(date1, date2);
+		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
 		double totalProfit = 0;
 		for (Order order:list){
-			totalProfit += order.accept(visitor)*markup_percentage+service_fee-delivery_cost;
+			totalProfit += order.accept(visitor)*myfoodora.getMarkup_percentage()+myfoodora.getService_fee()-myfoodora.getDelivery_cost();
 		}
 		return totalProfit;
 	}
 	
 	public double getAverageIncomePerCustomer(Date date1, Date date2){
-		ArrayList<Order> list = history.getOrderBetween(date1, date2);
+		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
 		ArrayList<Customer> customerlist = null;
 		double avgIncome = 0;
 		for (Order order:list){
@@ -117,60 +91,39 @@ public class MyFoodora{
 		cal.add(Calendar.MONTH, -1);
 		Date aMonthAgo = cal.getTime();
 		double lastIncome = getTotalIncome(aMonthAgo, new Date());
-		int number_of_orders = history.getOrderBetween(aMonthAgo, new Date()).size();
+		int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgo, new Date()).size();
 		
-		double newValue  = targetprofitpolicy.meetTargetProfit(targetProfit, lastIncome, getDelivery_cost(), getService_fee(), getMarkup_percentage(), number_of_orders);
+		double newValue  = myfoodora.getTargetprofitpolicy().meetTargetProfit(targetProfit, lastIncome, myfoodora.getDelivery_cost(), myfoodora.getService_fee(), myfoodora.getMarkup_percentage(), number_of_orders);
 		
-		if (targetprofitpolicy instanceof TargetProfit_DeliveryCost){
-			setDelivery_cost(newValue);
+		if (myfoodora.getTargetprofitpolicy() instanceof TargetProfit_DeliveryCost){
+			myfoodora.setDelivery_cost(newValue);
 		}
-		if (targetprofitpolicy instanceof TargetProfit_Markup){
-			setMarkup_percentage(newValue);
+		if (myfoodora.getTargetprofitpolicy() instanceof TargetProfit_Markup){
+			myfoodora.setMarkup_percentage(newValue);
 		}
-		if (targetprofitpolicy instanceof TargetProfit_ServiceFee){
-			setService_fee(newValue);
+		if (myfoodora.getTargetprofitpolicy() instanceof TargetProfit_ServiceFee){
+			myfoodora.setService_fee(newValue);
 		}
 	}
 	
-	public void setDeliveryPolicy(DeliveryPolicy d){
-		deliverypolicy = d;
-	}
 	
 	public Courier parse(Order order){
-		return deliverypolicy.parse(order, activecouriers);
+		return myfoodora.getDeliverypolicy().parse(order, myfoodora.getActivecouriers());
 	}
 	
-	public ArrayList<User> displayUsers(){
-		return users;
-	}
-	
-	public ArrayList<User> displayActiveUsers(){
-		return activeUsers;
-	}
-	
-	public User selectUser(String username) throws UserNotFoundException{
-		User target = null;
-		for(User user : users){
-			if(user.getUsername()==username){
-				target = user;
-				return target;
-			}
-		}
-		throw new UserNotFoundException(username);
-	}
 
 	//[[[Used by Customer]]]
 	public void addStandardMealOrder(Customer c,Restaurant r, String mealType, String mealName){
-		c.addStandardMealOrder(r,  mealType,  mealName);
+		c.getCustomerService().addStandardMealOrder(r,  mealType,  mealName);
 	}
 	
 	public void addSpecialMealOrder(Customer c,Restaurant r, String mealType, String mealName){
-		c.addSpecialMealOrder(r,  mealType,  mealName);
+		c.getCustomerService().addSpecialMealOrder(r,  mealType,  mealName);
 	}
 	
 	
 	public void addAlaCarteOrder(Customer c,Restaurant r, String dishName){
-		c.addAlaCarteOrder(r, dishName);
+		c.getCustomerService().addAlaCarteOrder(r, dishName);
 	}
 	
 	public double calculatePrice(Customer c){
@@ -180,18 +133,17 @@ public class MyFoodora{
 	//Important method, to be completed
 	public void pay(Customer c){
 		c.pay();
-		balance += c.calculatePrice();
 		//Send the orders into history before clearing the shopping cart
 		for (Order order:c.getShoppingCart().getOrders()){
 			order.getRestaurant().addToHistory(order);
 			addToHistory(order);
-			System.out.println(parse(order).getName() +" has been assigned to this order");
+			System.out.println("Courier" + parse(order).getName() +" has been assigned to this order");
 		}
 		c.clearShoppingCart();
 	}
 	
 	public void addToHistory(Order order){
-		history.addOrder(order);
+		myfoodora.getHistory().addOrder(order);
 	}
 	
 	
@@ -216,12 +168,12 @@ public class MyFoodora{
 	
 	public void turnOnNotification(Customer customer){
 		customer.turnOnNotification();
-		specialofferboard.register(customer);
+		myfoodora.getSpecialofferboard().register(customer);
 	}
 	
 	public void turnOffNotification(Customer customer){
 		customer.turnOffNotification();
-		specialofferboard.unregister(customer);
+		myfoodora.getSpecialofferboard().unregister(customer);
 	}
 
 	//[[[Used by Restaurant]]]
@@ -247,11 +199,11 @@ public class MyFoodora{
 	
 	public void addSpecialOffer(Restaurant restaurant, Meal meal){
 		restaurant.addSpecialMeal(meal.getName());
-		specialofferboard.addSpecialOffer(new SpecialOffer(restaurant, meal));
+		myfoodora.getSpecialofferboard().addSpecialOffer(new SpecialOffer(restaurant, meal));
 	}
 	public void removeSpecialOffer(Restaurant restaurant, Meal meal){
 		restaurant.removeSpecialMeal(meal.getName());
-		specialofferboard.removeSpecialOffer(new SpecialOffer(restaurant,meal));
+		myfoodora.getSpecialofferboard().removeSpecialOffer(new SpecialOffer(restaurant,meal));
 	}
 	
 	public void setGDF(Restaurant r, double gdf){
@@ -282,11 +234,19 @@ public class MyFoodora{
 	//to be completed
 	public void setOnDuty(Courier c){
 		c.turnOnDuty();
-		activecouriers.add(c);
+		myfoodora.getActivecouriers().add(c);
 	}
 	
 	public void setOffDuty(Courier c){
 		c.turnOffDuty();
-		activecouriers.remove(c);
+		myfoodora.getActivecouriers().remove(c);
+	}
+
+	public void displayUsers() {
+		// TODO Auto-generated method stub
+		myfoodora.displayUsers();
+	}
+	public void displayActiveUsers(){
+		myfoodora.displayActiveUsers();
 	}
 }

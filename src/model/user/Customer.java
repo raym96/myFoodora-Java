@@ -3,14 +3,14 @@ package model.user;
 import java.util.ArrayList;
 
 import model.customer.*;
+import model.myfoodora.SpecialOffer;
+import model.myfoodora.SpecialOfferBoard;
 import model.restaurant.AlaCarteOrder;
 import model.restaurant.MealOrder;
 import model.restaurant.Order;
 import model.restaurant.SpecialMealOrder;
 import model.restaurant.StandardMealOrder;
 import service.CustomerService;
-import system.SpecialOffer;
-import system.SpecialOfferBoard;
 
 public class Customer extends User implements Observer{
 	
@@ -49,18 +49,6 @@ public class Customer extends User implements Observer{
 	}
 
 
-	public void addSpecialMealOrder(Restaurant r, String mealType, String mealName){
-		this.shoppingcart.addOrder(new SpecialMealOrder(this, r,r.createMeal(mealType, mealName)));
-	}
-	
-	public void addStandardMealOrder(Restaurant r, String mealType, String mealName){
-		this.shoppingcart.addOrder(new StandardMealOrder(this, r,r.createMeal(mealType, mealName)));
-	}
-
-	public void addAlaCarteOrder(Restaurant r, String dishName){
-		this.shoppingcart.addOrder(new AlaCarteOrder(this,r,r.createDish(dishName)));
-	}
-	
 	public ShoppingCart getShoppingCart(){
 		return shoppingcart;
 	}

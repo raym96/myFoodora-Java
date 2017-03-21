@@ -2,7 +2,7 @@ package model.user;
 
 import java.util.ArrayList;
 
-import system.*;
+import model.myfoodora.*;
 
 public interface Observer {
 

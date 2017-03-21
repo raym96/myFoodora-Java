@@ -5,9 +5,9 @@ import java.util.*;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
+import model.myfoodora.History;
 import model.restaurant.*;
 import service.RestaurantService;
-import system.History;
 
 public class Restaurant extends User{
 
