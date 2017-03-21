@@ -228,13 +228,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void displayMealMenu() {
 		// TODO Auto-generated method stub
+		System.out.println("difference");
 		System.out.println("Meal menu:");
 		System.out.println("Half-Meals: " + restaurant.getMealMenu().getHalfMealMenu());
 		System.out.println("Full-Meals: " + restaurant.getMealMenu().getFullMealMenu());
 	}
 
 	@Override
-	public void displaySpecialMenu() {
+	public void displaySpecialMenu(){
 		// TODO Auto-generated method stub
 		System.out.println("Special-offers: " + restaurant.getSpecialmealmenu().getMeals() );
 	}
