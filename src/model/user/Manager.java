@@ -2,8 +2,8 @@ package model.user;
 
 import java.util.ArrayList;
 
-import model.myfoodora.MyFoodora;
 import service.ManagerService;
+import service.MyFoodoraService;
 import service.impl.ManagerServiceImpl;
 import service.impl.MyFoodoraServiceImpl;
 
@@ -11,15 +11,15 @@ public class Manager extends User {
 	
 	private String name;
 	private String surname;
-	private MyFoodora myfoodora;
+	private MyFoodoraService myFoodoraService;
 	
 	private ManagerService managerService;
 	
-	public Manager(String name, String surname, String username, MyFoodoraServiceImpl myfoodora) {
+	public Manager(String name, String surname, String username) {
 		super(username);
 		this.name = name;
 		this.surname = surname;
-		this.myfoodora=MyFoodora.getInstance();
+		this.myFoodoraService = new MyFoodoraServiceImpl();
 		managerService = new ManagerServiceImpl(this);
 	}
 
@@ -35,10 +35,8 @@ public class Manager extends User {
 		this.name = name;
 	}
 
-	
-	
-	public MyFoodora getMyfoodora() {
-		return myfoodora;
+	public MyFoodoraService getMyfoodoraService() {
+		return myFoodoraService;
 	}
 
 	public String getSurname() {

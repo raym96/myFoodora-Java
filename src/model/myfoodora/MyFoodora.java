@@ -21,10 +21,24 @@ import service.MyFoodoraService;
 public class MyFoodora{
 	
 	//Singleton Pattern
-	private static MyFoodora instance = new MyFoodora();
+	private static MyFoodora instance = null;
 	private MyFoodora(){}
 	
+	private static synchronized void syncInit(){
+		if(instance==null){
+			instance = new MyFoodora();
+		}
+	}
+	
 	public static MyFoodora getInstance(){
+
+		if(instance == null){
+			syncInit();
+		}
+		return instance;
+	}
+	
+	public Object readResolve(){
 		return instance;
 	}
 	
@@ -153,4 +167,3 @@ public class MyFoodora{
 	}
 	
 }
-
