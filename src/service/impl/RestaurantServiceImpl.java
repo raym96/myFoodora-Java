@@ -5,6 +5,7 @@ import java.util.Iterator;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
+import model.myfoodora.MyFoodora;
 import model.restaurant.Dish;
 import model.restaurant.FullMeal;
 import model.restaurant.HalfMeal;
@@ -278,13 +279,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void settingGenericDiscountFactor(double generic_discount_factor) {
 		// TODO Auto-generated method stub
-		restaurant.setGeneric_discount_factor(generic_discount_factor);
+		new MyFoodoraServiceImpl().setGDF(restaurant, generic_discount_factor);
 	}
 
 	@Override
 	public void settingSpecialDiscountFactor(double special_discount_factor) {
 		// TODO Auto-generated method stub
-		restaurant.setSpecial_discount_factor(special_discount_factor);
+		new MyFoodoraServiceImpl().setSDF(restaurant, special_discount_factor);
 	}
 
 	@Override
