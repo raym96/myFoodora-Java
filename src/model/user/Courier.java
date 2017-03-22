@@ -3,8 +3,10 @@ package model.user;
 import java.util.ArrayList;
 
 import model.restaurant.Order;
+import service.CourierService;
+import service.impl.CourierServiceImpl;
 
-public class Courier extends User{
+public class Courier extends User {
 
 	private String surname;
 	private String name;
@@ -15,24 +17,26 @@ public class Courier extends User{
 	
 	private ArrayList<Order> order;
 	
+	private CourierService courierService;
+	
 	public Courier(String name, String surname, String username, AddressPoint position, String phone) {
 		super(username);
 		this.name = name;
 		this.surname = surname;
 		this.position = position;
 		this.phone = phone;
-		this.turnOffDuty();
+		this.on_duty = false;
 		
 		count = 0;
+		this.courierService = new CourierServiceImpl(this);
 	}
 	
-	public void turnOnDuty(){
-		this.on_duty=true;
-	}
-	public void turnOffDuty(){
-		this.on_duty=false;
-	}
 	
+	public CourierService getCourierService() {
+		return courierService;
+	}
+
+
 	public AddressPoint getPosition(){
 		return position;
 	}
@@ -41,6 +45,10 @@ public class Courier extends User{
 		return count;
 	}
 	
+	public void setOn_duty(boolean on_duty) {
+		this.on_duty = on_duty;
+	}
+
 	public void setCount(int i){
 		count = i;
 	}

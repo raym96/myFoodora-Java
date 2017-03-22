@@ -132,19 +132,19 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 	public double calculatePrice(Customer c){
-		return c.calculatePrice();
+		return c.getCustomerService().calculatePrice();
 	}
 	
 	//Important method, to be completed
 	public void pay(Customer c){
-		c.pay();
+		c.getCustomerService().pay();
 		//Send the orders into history before clearing the shopping cart
 		for (Order order:c.getShoppingCart().getOrders()){
 			order.getRestaurant().addToHistory(order);
 			addToHistory(order);
 			System.out.println("Courier" + parse(order).getName() +" has been assigned to this order");
 		}
-		c.clearShoppingCart();
+		c.getCustomerService().clearShoppingCart();
 	}
 	
 	public void addToHistory(Order order){
@@ -153,11 +153,11 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	
 	
 	public void registerCard(Customer c, String cardType){
-		c.registerCard(cardType);
+		c.getCustomerService().registerCard(cardType);
 	}
 	
 	public void unregisterCard(Customer c){
-		c.unregisterCard();
+		c.getCustomerService().unregisterCard();
 	}
 	
 	public void getCardPoints(Customer c){
@@ -183,31 +183,31 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 
 	//[[[Used by Restaurant]]]
 	public void addDish(Restaurant restaurant, Dish dish){
-		restaurant.addDish(dish);
+		restaurant.getRestaurantService().addDish(dish);
 	}
 	public void removeDish(Restaurant restaurant, String dishName){
-		restaurant.removeDish(dishName);
+		restaurant.getRestaurantService().removeDish(dishName);
 	}
 	
 	//add halfmeal
 	public void addMeal(Restaurant restaurant, String mealname, String dishname1, String dishname2){
-		restaurant.addMeal(mealname, dishname1, dishname2);
+		restaurant.getRestaurantService().addMeal(mealname, dishname1, dishname2);
 	}
 	//add fullmeal
 	public void addMeal(Restaurant restaurant, String mealname, String dishname1, String dishname2, String dishname3){
-		restaurant.addMeal(mealname, dishname1, dishname2, dishname3);
+		restaurant.getRestaurantService().addMeal(mealname, dishname1, dishname2, dishname3);
 	}
 	
 	public void removeMeal(Restaurant restaurant, String mealname){
-		restaurant.removeMeal(mealname);
+		restaurant.getRestaurantService().removeMeal(mealname);
 	}
 	
 	public void addSpecialOffer(Restaurant restaurant, Meal meal){
-		restaurant.addSpecialMeal(meal.getName());
+		restaurant.getRestaurantService().addSpecialMeal(meal.getName());
 		myfoodora.getSpecialofferboard().addSpecialOffer(new SpecialOffer(restaurant, meal));
 	}
 	public void removeSpecialOffer(Restaurant restaurant, Meal meal){
-		restaurant.removeSpecialMeal(meal.getName());
+		restaurant.getRestaurantService().removeSpecialMeal(meal.getName());
 		myfoodora.getSpecialofferboard().removeSpecialOffer(new SpecialOffer(restaurant,meal));
 	}
 	
@@ -219,31 +219,31 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 	public void DisplayMostOrderedHalfMeal(Restaurant r){
-		r.DisplayMostOrderedHalfMeal();
+		r.getRestaurantService().DisplayMostOrderedHalfMeal();
 	}
 	
 	public void DisplayLeastOrderedHalfMeal(Restaurant r){
-		r.DisplayLeastOrderedHalfMeal();
+		r.getRestaurantService().DisplayLeastOrderedHalfMeal();
 	}
 	
 	public void DisplayMostOrderedAlaCarte(Restaurant r){
-		r.DisplayMostOrderedAlaCarte();
+		r.getRestaurantService().DisplayMostOrderedAlaCarte();
 	}
 	
 	public void DisplayLeastOrderedAlaCarte(Restaurant r){
-		r.DisplayLeastOrderedAlaCarte();
+		r.getRestaurantService().DisplayLeastOrderedAlaCarte();
 	}
 	
 	//[[[Used by Courier]]]
 	
 	//to be completed
 	public void setOnDuty(Courier c){
-		c.turnOnDuty();
+		c.getCourierService().turnOnDuty();
 		myfoodora.getActivecouriers().add(c);
 	}
 	
 	public void setOffDuty(Courier c){
-		c.turnOffDuty();
+		c.getCourierService().turnOffDuty();
 		myfoodora.getActivecouriers().remove(c);
 	}
 

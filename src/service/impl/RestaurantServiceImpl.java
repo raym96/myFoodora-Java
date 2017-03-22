@@ -117,6 +117,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	}
 
+	//create an instance of Meal
 	@Override
 	public Meal createMeal(String mealType, String mealName) {
 		// TODO Auto-generated method stub
@@ -132,6 +133,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return new HalfMeal("problem");
 	}
 
+	//Remove a meal from the meal menu
 	@Override
 	public void removeMeal(String mealName) {
 		// TODO Auto-generated method stub
@@ -140,6 +142,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		System.out.println(mealName + " successfully removed from the meal-menu");
 	}
 
+	//add/remove a dish to the menu
 	@Override
 	public void addDish(Dish dish) {
 		// TODO Auto-generated method stub
@@ -156,6 +159,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	}
 
+	//create an instance of Dish
 	@Override
 	public Dish createDish(String dishName) {
 		// TODO Auto-generated method stub
@@ -172,6 +176,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	}
 
+	//throw exception if meal name is not recognized
 	@Override
 	public void addSpecialMeal(String mealName) {
 		// TODO Auto-generated method stub
@@ -244,6 +249,48 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public boolean hasDish(String dishName) {
 		// TODO Auto-generated method stub
 		return restaurant.getMenu().hasDish(dishName);
+	}
+
+	@Override
+	public void DisplayMostOrderedHalfMeal() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayMostOrderedHalfMeal(restaurant);
+	}
+
+	@Override
+	public void DisplayLeastOrderedHalfMeal() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayLeastOrderedHalfMeal(restaurant);
+	}
+
+	@Override
+	public void DisplayMostOrderedAlaCarte() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayMostOrderedAlaCarte(restaurant);
+	}
+
+	@Override
+	public void DisplayLeastOrderedAlaCarte() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayLeastOrderedAlaCarte(restaurant);
+	}
+
+	@Override
+	public void settingGenericDiscountFactor(double generic_discount_factor) {
+		// TODO Auto-generated method stub
+		restaurant.setGeneric_discount_factor(generic_discount_factor);
+	}
+
+	@Override
+	public void settingSpecialDiscountFactor(double special_discount_factor) {
+		// TODO Auto-generated method stub
+		restaurant.setSpecial_discount_factor(special_discount_factor);
+	}
+
+	@Override
+	public void sortingShippedOrders() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

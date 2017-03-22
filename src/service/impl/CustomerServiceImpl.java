@@ -23,15 +23,15 @@ public class CustomerServiceImpl implements CustomerService {
 
 
 	public void addSpecialMealOrder(Restaurant r, String mealType, String mealName){
-		customer.getShoppingCart().addOrder(new SpecialMealOrder(customer, r,r.createMeal(mealType, mealName)));
+		customer.getShoppingCart().addOrder(new SpecialMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName)));
 	}
 	
 	public void addStandardMealOrder(Restaurant r, String mealType, String mealName){
-		customer.getShoppingCart().addOrder(new StandardMealOrder(customer, r,r.createMeal(mealType, mealName)));
+		customer.getShoppingCart().addOrder(new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName)));
 	}
 
 	public void addAlaCarteOrder(Restaurant r, String dishName){
-		customer.getShoppingCart().addOrder(new AlaCarteOrder(customer,r,r.createDish(dishName)));
+		customer.getShoppingCart().addOrder(new AlaCarteOrder(customer,r,r.getRestaurantService().createDish(dishName)));
 	}
 
 

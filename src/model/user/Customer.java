@@ -53,38 +53,6 @@ public class Customer extends User implements Observer{
 		return shoppingcart;
 	}
 	
-	public void clearShoppingCart(){
-		//clear the shopping cart
-		shoppingcart = new ShoppingCart();
-	}
-	
-	public double calculatePrice(){
-		return shoppingcart.calculatePrice();
-	}
-	
-	public void pay(){
-		balance -= calculatePrice();
-		//gets points for each 10 euros spent in the restaurant if client has PointCard
-		if (getCard() instanceof PointCard){
-			((PointCard)getCard()).addPoints(calculatePrice()/10);
-		}
-	}
-	
-	public void registerCard(String cardType){
-		if (cardType=="lottery"){
-			this.card=new LotteryCard();
-		}
-		if (cardType=="point"){
-			this.card=new PointCard();
-		}
-		else{
-			System.out.println("The fidelity card type "+cardType+" is not recognized");
-		}
-	}
-	
-	public void unregisterCard(){
-		this.card = new StandardCard();
-	}
 	
 	public FidelityCard getCard(){
 		return this.card;

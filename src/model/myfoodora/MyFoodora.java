@@ -20,6 +20,24 @@ import service.MyFoodoraService;
 
 public class MyFoodora{
 	
+	public ArrayList<User> users;
+	public ArrayList<User> activeUsers;
+	public ArrayList<Courier> activecouriers;
+	
+	public SpecialOfferBoard specialofferboard;
+	
+	private double service_fee;
+	private double markup_percentage;
+	private double delivery_cost;	
+	
+	private TargetProfitPolicy targetprofitpolicy;
+	private DeliveryPolicy deliverypolicy;
+
+	private History history;
+	
+	private double balance;
+
+	
 	//Singleton Pattern
 	private static MyFoodora instance = null;
 	private MyFoodora(){}
@@ -40,29 +58,6 @@ public class MyFoodora{
 	
 	public Object readResolve(){
 		return instance;
-	}
-	
-	public ArrayList<User> users;
-	public ArrayList<User> activeUsers;
-	public ArrayList<Courier> activecouriers;
-	
-	public SpecialOfferBoard specialofferboard;
-	
-	private double service_fee;
-	private double markup_percentage;
-	private double delivery_cost;	
-	
-	private TargetProfitPolicy targetprofitpolicy;
-	private DeliveryPolicy deliverypolicy;
-
-	private History history;
-	
-	private double balance;
-	
-	private MyFoodoraService myFoodoraService;
-
-	public MyFoodoraService getMyFoodoraService() {
-		return myFoodoraService;
 	}
 
 	public void setDeliveryPolicy(DeliveryPolicy d){
