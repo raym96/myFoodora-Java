@@ -17,6 +17,7 @@ import model.myfoodora.TargetProfit_ServiceFee;
 import model.restaurant.*;
 import model.user.*;
 import service.MyFoodoraService;
+import service.impl.MyFoodoraServiceImpl;
 
 public class MyFoodora{
 	
@@ -36,7 +37,6 @@ public class MyFoodora{
 	private History history;
 	
 	private double balance;
-
 	
 	//Singleton Pattern
 	private static MyFoodora instance = null;
