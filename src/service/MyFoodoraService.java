@@ -31,6 +31,9 @@ public interface MyFoodoraService {
 	public void displayUsers();
 	public void displayActiveUsers();
 	
+	// 3. computing the total income (i.e. the sum of all completed orders) as well as the total
+	// profit of the system, knowing that the the prot of a single order is given by:
+	// profit for one order = order_price * markup_percentage + service_fee - delivery cost
 	public double getTotalIncome(Date date1, Date date2);
 	public double getTotalProfit(Date date1, Date date2);
 	
@@ -60,6 +63,7 @@ public interface MyFoodoraService {
 	
 	public void turnOnNotification(Customer customer);
 	public void turnOffNotification(Customer customer);
+	
 	//[[[Used by Restaurant]]]
 	public void addDish(Restaurant restaurant, Dish dish);
 	public void removeDish(Restaurant restaurant, String dishName);
@@ -73,6 +77,8 @@ public interface MyFoodoraService {
 	public void addSpecialOffer(Restaurant restaurant, Meal meal);
 	public void removeSpecialOffer(Restaurant restaurant, Meal meal);
 	
+	// 1. setting of the service-fee, the markup percentage (\percentage de marge") and the
+	// delivery cost values
 	public void setGDF(Restaurant r, double gdf);
 	public void setSDF(Restaurant r, double sdf);
 	
@@ -90,4 +96,13 @@ public interface MyFoodoraService {
 	
 	public void setOffDuty(Courier c);
 	public User selectUser(String username);
+	
+	// 2. allocating of a courier to an order placed by a customer (by application of the current
+	// delivery policy, see below details of supported policies)
+
+	// 3. notifying users that gave consensus to receive special oers notications, of a new
+	// special offer set by a restaurant
+	
+	// 4. chose the target prot policy (see below) used to optimise the profit-related-
+	// parameters (service-fee, markup percentage, and the delivery cost)
 }
