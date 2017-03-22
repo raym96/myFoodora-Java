@@ -21,6 +21,11 @@ import service.MyFoodoraService;
 
 public class MyFoodoraServiceImpl implements MyFoodoraService{
 	private MyFoodora myfoodora;
+	
+	public MyFoodoraServiceImpl() {
+		super();
+		this.myfoodora = MyFoodora.getInstance();
+	}
 
 	//[[used by Manager]]
 	public void addUser(User user){

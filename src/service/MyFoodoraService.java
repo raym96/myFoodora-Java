@@ -8,6 +8,7 @@ import exceptions.UserNotFoundException;
 import model.customer.ConcreteShoppingCartVisitor;
 import model.customer.PointCard;
 import model.customer.ShoppingCartVisitor;
+import model.myfoodora.MyFoodora;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.TargetProfit_DeliveryCost;
 import model.myfoodora.TargetProfit_Markup;
@@ -21,9 +22,14 @@ import model.user.Restaurant;
 import model.user.User;
 
 public interface MyFoodoraService {
-	
+		
 	//[[used by Manager]]
-
+	public void addUser(User user);
+	public void removeUser(User user);
+	public void activateUser(User user) throws UserNotFoundException;
+	public void disactivateUser(User user);
+	public void displayUsers();
+	public void displayActiveUsers();
 	
 	public double getTotalIncome(Date date1, Date date2);
 	public double getTotalProfit(Date date1, Date date2);
