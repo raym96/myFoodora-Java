@@ -124,7 +124,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		//create an instance of Meal
 		try{
-			MealFactory mealFactory = null;
+			MealFactory mealFactory = restaurant.getMealFactory(mealType);
 			Meal meal = mealFactory.createMeal(mealName);	
 			System.out.println("Formula "+mealName + " successfully created");
 			return meal;	

@@ -19,6 +19,9 @@ public class MealMenu {
 		this.addMeal(new HalfMeal("Salade-poulet", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5)));
 		this.addMeal(new HalfMeal("Poulet-glace", new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
 		this.addMeal(new FullMeal("Salade-Poulet-glace", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
+		this.addMeal(new FullMeal("Salade-beef-glace", new Starter("salade","standard",1.5),new MainDish("beef","standard",1.5),new Dessert("glace","standard",1.5)));
+		this.addMeal(new FullMeal("Salade-pasta-cafe", new Starter("salade","standard",1.5),new MainDish("pasta","standard",1.5),new Dessert("cafe","standard",1.5)));
+		this.addMeal(new FullMeal("sausage-macaroni-glace", new Starter("sausage","standard",1.5),new MainDish("macaroni","standard",1.5),new Dessert("glace","standard",1.5)));
 	}
 	
 	public void addMeal(Meal meal){

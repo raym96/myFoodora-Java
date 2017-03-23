@@ -120,7 +120,7 @@ public class Courier extends User{
 	@Override
 	public void observe(Observable obv, Object o) {
 		// TODO Auto-generated method stub
-		
+		super.observe(obv, o);
 	}
 
 

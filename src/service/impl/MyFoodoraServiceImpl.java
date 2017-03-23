@@ -49,6 +49,12 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	@Override
 	public User selectUser(String username) {
 		// TODO Auto-generated method stub
+		for(User user : myfoodora.getUsers()){
+			if( username.equals(user.getUsername()) ){
+				return user;
+			}
+		}
+		
 		return null;
 	}
 
@@ -139,7 +145,14 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	@Override
 	public void askAgree2customers(String ask) {
 		// TODO Auto-generated method stub
-		myfoodora.notifyObservers(myfoodora.getCustomers(), (Object)ask);
+		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
+	}
+	
+	public void displayUsersOfAssignedType(String userType){
+		
+		ArrayList<User> users = myfoodora.getUsersOfAssignedType(userType);
+		System.out.println("--- " + userType + " ---");
+		System.out.println(users);
 	}
 	
 	//Important method, to be completed

@@ -121,6 +121,7 @@ public class Customer extends User{
 	@Override
 	public void observe(Observable obv, Object o) {
 		// TODO Auto-generated method stub
+		super.observe(obv, o);
 		if( obv instanceof MyFoodora ){
 			if( o instanceof Boolean && (Boolean)o==true ){
 				((MyFoodora) obv).getMessageBoard().addMessage(new Message(new Date(), "" + this.getUsername() + " agree to be notified of special offers."));

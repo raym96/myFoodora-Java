@@ -46,6 +46,15 @@ public class Restaurant extends User{
 	public DishFactory getDishFactory(){
 		return new DishFactory(this.menu);
 	}
+	
+	public MealFactory getMealFactory(String mealType){
+		if(mealType.equals("Full_meal")){
+			return new FullMealFactory(mealmenu);
+		}else if(mealType.equals("Half_meal")){
+			return new HalfMealFactory(mealmenu);
+		}
+		return null;
+	}
 
 	public Menu getMenu() {
 		return menu;
@@ -123,7 +132,7 @@ public class Restaurant extends User{
 	@Override
 	public void observe(Observable obv, Object o) {
 		// TODO Auto-generated method stub
-		
+		super.observe(obv, o);
 	}
 
 	

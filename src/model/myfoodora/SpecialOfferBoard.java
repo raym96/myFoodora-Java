@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import model.customer.Observable;
 import model.user.Customer;
 import model.user.Observer;
+import model.user.User;
 
 public class SpecialOfferBoard implements Observable{
 	private ArrayList<Observer> observers;
@@ -81,11 +82,11 @@ public class SpecialOfferBoard implements Observable{
 	}
 
 	@Override
-	public void notifyObservers(ArrayList<Customer> observers, Object o) {
+	public void notifyObservers(ArrayList<User> observers, Object o) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 	
 	
 }

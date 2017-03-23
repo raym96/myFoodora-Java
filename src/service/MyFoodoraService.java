@@ -55,6 +55,8 @@ public interface MyFoodoraService {
 	
 	public void askAgree2customers(String ask);
 	
+	public void displayUsersOfAssignedType(String userType);
+	
 	//Important method, to be completed
 	public void pay(Customer c);
 	

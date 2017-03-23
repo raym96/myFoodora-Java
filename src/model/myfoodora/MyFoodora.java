@@ -191,19 +191,46 @@ public class MyFoodora implements Observable{
 	public MessageBoard getMessageBoard() {
 		return messageBoard;
 	}
-
-	public ArrayList<Customer> getCustomers(){
-		ArrayList<Customer> customers = new ArrayList<Customer>();
-		for(User user : users){
-			if(user instanceof Customer){
-				customers.add((Customer)user);
+	
+	public ArrayList<User> getUsersOfAssignedType(String userType){
+		ArrayList<User> usersOfType = new ArrayList<User>();
+		
+		switch (userType) {
+		case "MANAGER":
+			for(User user : users){
+				if(user instanceof Manager){
+					usersOfType.add(user);
+				}
 			}
+			break;
+		case "RESTAURANT":
+			for(User user : users){
+				if(user instanceof Restaurant){
+					usersOfType.add(user);
+				}
+			}
+			break;
+		case "CUSTOMER":
+			for(User user : users){
+				if(user instanceof Customer){
+					usersOfType.add(user);
+				}
+			}
+			break;
+		case "COURIER":
+			for(User user : users){
+				if(user instanceof Courier){
+					usersOfType.add(user);
+				}
+			}
+			break;
+
+		default:
+			break;
 		}
-		return customers;
-	} 
-	
-	
-	
+		
+		return usersOfType;
+	}
 	
 	@Override
 	public void register(Observer obs) {
@@ -265,7 +292,7 @@ public class MyFoodora implements Observable{
 	}
 
 	@Override
-	public void notifyObservers(ArrayList<Customer> observers, Object o) {
+	public void notifyObservers(ArrayList<User> observers, Object o) {
 		// TODO Auto-generated method stub
 		for(Observer obs : observers){
 			obs.update(o);

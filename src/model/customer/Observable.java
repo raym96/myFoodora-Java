@@ -21,5 +21,5 @@ public interface Observable {
 	public void notifyObserver(Observer obs, Object o);
 	
 	public void notifyObservers(ArrayList<Observer> observers);	
-	public void notifyObservers(ArrayList<Customer> observers, Object o);
+	public void notifyObservers(ArrayList<User> observers, Object o);
 }
