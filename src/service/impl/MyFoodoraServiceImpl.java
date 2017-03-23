@@ -7,6 +7,7 @@ import java.util.Date;
 import exceptions.UserNotFoundException;
 import model.customer.*;
 import model.myfoodora.DeliveryPolicy;
+import model.myfoodora.DeliveryTask;
 import model.myfoodora.History;
 import model.myfoodora.MyFoodora;
 import model.myfoodora.SpecialOffer;
@@ -135,6 +136,12 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		return c.getCustomerService().calculatePrice();
 	}
 	
+	@Override
+	public void askAgree2customers(String ask) {
+		// TODO Auto-generated method stub
+		myfoodora.notifyObservers(myfoodora.getCustomers(), (Object)ask);
+	}
+	
 	//Important method, to be completed
 	public void pay(Customer c){
 		c.getCustomerService().pay();
@@ -235,15 +242,14 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 	//[[[Used by Courier]]]
-	
-	//to be completed
+
 	public void setOnDuty(Courier c){
-		c.getCourierService().turnOnDuty();
+		c.setOn_duty(true);
 		myfoodora.getActivecouriers().add(c);
 	}
 	
 	public void setOffDuty(Courier c){
-		c.getCourierService().turnOffDuty();
+		c.setOn_duty(false);
 		myfoodora.getActivecouriers().remove(c);
 	}
 
@@ -254,4 +260,18 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	public void displayActiveUsers(){
 		myfoodora.displayActiveUsers();
 	}
+
+	@Override
+	public void allocateDeliveryTask(Courier c) {
+		// TODO Auto-generated method stub
+		myfoodora.notifyObserver(c);
+	}
+
+	@Override
+	public synchronized void updateCurrentDeliveryTask(DeliveryTask task) {
+		// TODO Auto-generated method stub
+		myfoodora.setCurrentDeliveryTask(task);
+	}
+
+	
 }

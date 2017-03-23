@@ -2,12 +2,13 @@ package model.user;
 
 import java.util.ArrayList;
 
+import model.customer.Observable;
 import service.ManagerService;
 import service.MyFoodoraService;
 import service.impl.ManagerServiceImpl;
 import service.impl.MyFoodoraServiceImpl;
 
-public class Manager extends User {
+public class Manager extends User{
 	
 	private String name;
 	private String surname;
@@ -46,4 +47,29 @@ public class Manager extends User {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+
+	@Override
+	public void update(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void observe(Observable o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", <Manager> name=" + name + ", surname=" + surname + ".\n";
+	}
+
+	@Override
+	public void observe(Observable obv, Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

@@ -5,6 +5,7 @@ import java.util.*;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
+import model.customer.Observable;
 import model.myfoodora.History;
 import model.restaurant.*;
 import service.RestaurantService;
@@ -100,31 +101,32 @@ public class Restaurant extends User{
 		// TODO Auto-generated method stub
 		return history;
 	}
-//	public static void main(String[] args) {
-//		Restaurant r = new Restaurant("Bonheur d'Antony","bda", new AddressPoint(1,3));
-//		System.out.println(r.name);
-//		Starter nems = new Starter("nems","gluten-free",2);
-//		r.addDish(nems);
-//		r.DisplayMenu();
-//		r.DisplayMealMenu();
-//		r.DisplaySpecialMenu();
-//		r.addSpecialMeal("Salade-poulet");
-//		r.DisplayMealMenu();
-//		r.DisplaySpecialMenu();
-//		
-//		r.createMeal("half meal", "Salade-poulet");
-//		r.createDish("lolol");
-//		r.addMeal("foie gras-salade", "foie gras", "salade");
-//		//error because 2 main-dishes
-//		r.addMeal("poulet-poisson-glace", "poulet", "glace","glace");
-//		//no error
-//		r.addMeal("salade-poisson-glace", "salade", "poisson","glace");
-//		r.addMeal("salade-poisson-glace", "lololol", "poisson","glace");
-//		Date date = new GregorianCalendar(2014, Calendar.FEBRUARY, 11,23,11).getTime();
-//		System.out.println(date);
-//		}
 
 
+	@Override
+	public void update(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void observe(Observable o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", <Restaurant> name=" + name + ", address=" + address + ".\n";
+	}
+
+	@Override
+	public void observe(Observable obv, Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }
 
 

@@ -11,6 +11,7 @@ public interface ManagerService {
 
 	// manager can perform these operations
 	
+	
 	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
 	public void addUser(User user);
 	

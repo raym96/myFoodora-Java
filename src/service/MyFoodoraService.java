@@ -8,6 +8,7 @@ import exceptions.UserNotFoundException;
 import model.customer.ConcreteShoppingCartVisitor;
 import model.customer.PointCard;
 import model.customer.ShoppingCartVisitor;
+import model.myfoodora.DeliveryTask;
 import model.myfoodora.MyFoodora;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.TargetProfit_DeliveryCost;
@@ -52,6 +53,8 @@ public interface MyFoodoraService {
 	
 	public double calculatePrice(Customer c);
 	
+	public void askAgree2customers(String ask);
+	
 	//Important method, to be completed
 	public void pay(Customer c);
 	
@@ -90,19 +93,19 @@ public interface MyFoodoraService {
 	public void DisplayLeastOrderedAlaCarte(Restaurant r);
 	
 	//[[[Used by Courier]]]
-	
-	//to be completed
 	public void setOnDuty(Courier c);
-	
 	public void setOffDuty(Courier c);
-	public User selectUser(String username);
 	
 	// 2. allocating of a courier to an order placed by a customer (by application of the current
 	// delivery policy, see below details of supported policies)
+	public void allocateDeliveryTask(Courier c);
+	public void updateCurrentDeliveryTask(DeliveryTask task);
 
 	// 3. notifying users that gave consensus to receive special oers notications, of a new
 	// special offer set by a restaurant
 	
 	// 4. chose the target prot policy (see below) used to optimise the profit-related-
 	// parameters (service-fee, markup percentage, and the delivery cost)
+	
+	public User selectUser(String username);
 }

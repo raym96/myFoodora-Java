@@ -7,6 +7,8 @@ import model.user.Restaurant;
 
 public interface CustomerService {
 
+
+	
 	// 1. place orders: this includes choosing a selection of items a-la-carte or one or more
 	// meals offered by a given restaurant, and paying the total price for the composed
 	// order.
@@ -28,6 +30,8 @@ public interface CustomerService {
 	
 	// 4. give/remove consensus to be notified whenever a new special offer is set by any
 	// restaurant
+	public void giveConsensusBeNotifiedSpecialOffers();
+	public void removeConsensusBeNotifiedSpecialOffers();
 	
 	// to be completed
 }

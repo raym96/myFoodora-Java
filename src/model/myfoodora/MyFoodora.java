@@ -19,13 +19,19 @@ import model.user.*;
 import service.MyFoodoraService;
 import service.impl.MyFoodoraServiceImpl;
 
-public class MyFoodora{
+public class MyFoodora implements Observable{
 	
-	public ArrayList<User> users;
-	public ArrayList<User> activeUsers;
-	public ArrayList<Courier> activecouriers;
+	private ArrayList<User> users;
+	private ArrayList<User> activeUsers;
+	private ArrayList<Courier> couriers;
+	private ArrayList<Courier> activecouriers;
+
+	private boolean delivery_task_state;
+	private ArrayList<DeliveryTask> deliveryTasks;
+	private DeliveryTask currentDeliveryTask;
 	
-	public SpecialOfferBoard specialofferboard;
+	private SpecialOfferBoard specialofferboard;
+	private MessageBoard messageBoard;
 	
 	private double service_fee;
 	private double markup_percentage;
@@ -40,7 +46,15 @@ public class MyFoodora{
 	
 	//Singleton Pattern
 	private static MyFoodora instance = null;
-	private MyFoodora(){}
+	private MyFoodora(){
+		this.users = new ArrayList<User>();
+		this.activeUsers = new ArrayList<User>();
+		this.couriers = new ArrayList<Courier>();
+		this.activecouriers = new ArrayList<Courier>();
+		this.delivery_task_state = false;
+		this.messageBoard = new MessageBoard(this);
+		this.specialofferboard = new SpecialOfferBoard();
+	};
 	
 	private static synchronized void syncInit(){
 		if(instance==null){
@@ -105,6 +119,12 @@ public class MyFoodora{
 	public ArrayList<User> getActiveUsers() {
 		return activeUsers;
 	}
+	
+	
+
+	public ArrayList<Courier> getCouriers() {
+		return couriers;
+	}
 
 	public void setActiveUsers(ArrayList<User> activeUsers) {
 		this.activeUsers = activeUsers;
@@ -118,7 +138,6 @@ public class MyFoodora{
 		this.activecouriers = activecouriers;
 	}
 
-	
 	public TargetProfitPolicy getTargetprofitpolicy() {
 		return targetprofitpolicy;
 	}
@@ -131,17 +150,17 @@ public class MyFoodora{
 		return history;
 	}
 
-	
-	
 	public SpecialOfferBoard getSpecialofferboard() {
 		return specialofferboard;
 	}
 
 	public void displayUsers(){
+		System.out.println("users::");
 		System.out.println(users);
 	}
 	
 	public void displayActiveUsers(){
+		System.out.println("activeUsers::");
 		System.out.println(activeUsers);	
 	}
 
@@ -159,6 +178,98 @@ public class MyFoodora{
 	
 	public void disactivateUser(User user){
 		activeUsers.remove(user);
+	}
+
+	public DeliveryTask getCurrentDeliveryTask() {
+		return currentDeliveryTask;
+	}
+
+	public void setCurrentDeliveryTask(DeliveryTask currentDeliveryTask) {
+		this.currentDeliveryTask = currentDeliveryTask;
+	}
+	
+	public MessageBoard getMessageBoard() {
+		return messageBoard;
+	}
+
+	public ArrayList<Customer> getCustomers(){
+		ArrayList<Customer> customers = new ArrayList<Customer>();
+		for(User user : users){
+			if(user instanceof Customer){
+				customers.add((Customer)user);
+			}
+		}
+		return customers;
+	} 
+	
+	
+	
+	
+	@Override
+	public void register(Observer obs) {
+		// TODO Auto-generated method stub
+		users.add((User)obs);
+		if(obs instanceof Courier){
+			couriers.add((Courier)obs);
+		}
+		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
+	}
+
+	@Override
+	public void unregister(Observer obs) {
+		// TODO Auto-generated method stub
+		users.remove((User)obs);
+		if(obs instanceof Courier){
+			couriers.remove((Courier)obs);
+		}
+		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
+	}
+
+	@Override
+	public void notifyAllObservers() {
+		// TODO Auto-generated method stub
+		if (this.delivery_task_state){
+			for (Observer ob : couriers){
+				ob.update(this.deliveryTasks);
+			}
+			this.delivery_task_state=false;
+		}
+	}
+
+	@Override
+	public void notifyObserver(Observer obs) {
+		// TODO Auto-generated method stub
+		if( obs instanceof Courier ){
+			obs.update(this.currentDeliveryTask);
+		}
+	}
+
+	@Override
+	public void notifyAllObservers(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver(Observer obs, Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObservers(ArrayList<Observer> observers) {
+		// TODO Auto-generated method stub
+		if(observers.get(0) instanceof Customer){
+			
+		}
+	}
+
+	@Override
+	public void notifyObservers(ArrayList<Customer> observers, Object o) {
+		// TODO Auto-generated method stub
+		for(Observer obs : observers){
+			obs.update(o);
+		}
 	}
 	
 }

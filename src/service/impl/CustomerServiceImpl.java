@@ -4,6 +4,7 @@ import model.customer.LotteryCard;
 import model.customer.PointCard;
 import model.customer.ShoppingCart;
 import model.customer.StandardCard;
+import model.myfoodora.MyFoodora;
 import model.restaurant.AlaCarteOrder;
 import model.restaurant.MealOrder;
 import model.restaurant.SpecialMealOrder;
@@ -68,4 +69,22 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setCard(new StandardCard());
 		System.out.println("" + customer.getUsername() + " have unregisted!");
 	}
+
+
+	@Override
+	public void giveConsensusBeNotifiedSpecialOffers() {
+		// TODO Auto-generated method stub
+		customer.setAgreeBeNotifiedSpecialoffers(true);
+		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
+	}
+
+
+	@Override
+	public void removeConsensusBeNotifiedSpecialOffers() {
+		// TODO Auto-generated method stub
+		customer.setAgreeBeNotifiedSpecialoffers(false);
+		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
+	}
+
+
 }

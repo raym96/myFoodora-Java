@@ -5,8 +5,8 @@ import model.user.AddressPoint;
 public interface CourierService {
 	
 	// 1. register/unregister their account to the MyFoodora system.
-	public void register();
-	public void unregister();
+//	public void register();
+//	public void unregister();
 	
 	// 2. set their state as on-duty or off-duty
 	public void turnOnDuty();

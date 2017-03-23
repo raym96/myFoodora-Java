@@ -8,7 +8,7 @@ import model.restaurant.Order;
 public interface RestaurantService {
 
 	// restaurant can perform thest operations : 
-	
+
 	// 1. editing the restaurant menu (adding/removing items)
 	// add/remove a dish to the menu
 	public void addDish(Dish dish);

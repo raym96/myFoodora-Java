@@ -3,6 +3,7 @@ package model.myfoodora;
 import java.util.ArrayList;
 
 import model.customer.Observable;
+import model.user.Customer;
 import model.user.Observer;
 
 public class SpecialOfferBoard implements Observable{
@@ -19,13 +20,13 @@ public class SpecialOfferBoard implements Observable{
 	public void addSpecialOffer(SpecialOffer so){
 		specialoffers.add(so);
 		this.changed = true;
-		this.notifyObservers();
+		this.notifyAllObservers();
 	}
 	
 	public void removeSpecialOffer(SpecialOffer so){
 		specialoffers.remove(so);
 		this.changed = true;
-		this.notifyObservers();
+		this.notifyAllObservers();
 	}
 
 	@Override
@@ -40,8 +41,18 @@ public class SpecialOfferBoard implements Observable{
 		observers.remove(obs);
 	}
 
+	public ArrayList<SpecialOffer> getSpecialoffers() {
+		return specialoffers;
+	}
+
 	@Override
-	public void notifyObservers() {
+	public void notifyObserver(Observer obs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyAllObservers() {
 		// TODO Auto-generated method stub
 		if (this.changed){
 			for (Observer ob :observers){
@@ -51,8 +62,28 @@ public class SpecialOfferBoard implements Observable{
 		}
 	}
 
-	public ArrayList<SpecialOffer> getSpecialoffers() {
-		return specialoffers;
+	@Override
+	public void notifyAllObservers(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver(Observer obs, Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObservers(ArrayList<Observer> observers) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObservers(ArrayList<Customer> observers, Object o) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

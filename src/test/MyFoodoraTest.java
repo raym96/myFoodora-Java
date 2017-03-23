@@ -42,8 +42,8 @@ public class MyFoodoraTest {
 		
 		User restaurant_1 = new Restaurant("Beijing restaurant", "restaurant No 1", new AddressPoint(1.0, 1.0));
 		User restaurant_2 = new Restaurant("Nanjing restaurant", "restaurant No 2", new AddressPoint(3.0, 3.0));
-		User customer_1 = new Customer("Zhang", "San", "customer No 1", new AddressPoint(2.0, 2.0), "zhangsan@gmail.com", "+330101010101", false);
-		User customer_2 = new Customer("Li", "Si", "customer No 2", new AddressPoint(3.0, 3.0), "lisi@gmail.com", "+330101010102", false);
+		User customer_1 = new Customer("Zhang", "San", "customer No 1", new AddressPoint(2.0, 2.0), "zhangsan@gmail.com", "+330101010101");
+		User customer_2 = new Customer("Li", "Si", "customer No 2", new AddressPoint(3.0, 3.0), "lisi@gmail.com", "+330101010102");
 		User courier_1 = new Courier("Wang", "Wu", "courier No 1", new AddressPoint(4.0, 4.0), "+330101010103");
 		User courier_2 = new Courier("Zhao", "Liu", "courier No 2", new AddressPoint(5.0, 5.0), "+330101010104");
 	
@@ -87,8 +87,8 @@ public class MyFoodoraTest {
 		Restaurant restaurant = (Restaurant)managerService.selectUser("restaurant No 2");
 		MyFoodoraService myFoodora = manager.getMyfoodoraService();
 		
-		User customer_1 = new Customer("Zhang", "San", "customer No 1", new AddressPoint(2.0, 2.0), "zhangsan@gmail.com", "+330101010101", false);
-		User customer_2 = new Customer("Li", "Si", "customer No 2", new AddressPoint(3.0, 3.0), "lisi@gmail.com", "+330101010102", false);
+		User customer_1 = new Customer("Zhang", "San", "customer No 1", new AddressPoint(2.0, 2.0), "zhangsan@gmail.com", "+330101010101");
+		User customer_2 = new Customer("Li", "Si", "customer No 2", new AddressPoint(3.0, 3.0), "lisi@gmail.com", "+330101010102");
 		myFoodora.turnOnNotification((Customer)customer_1);
 		myFoodora.turnOnNotification((Customer)customer_2);
 		testValid();
@@ -134,8 +134,8 @@ public class MyFoodoraTest {
 		System.out.println("\n----------------------- Operations On Customer -----------------------");
 		
 		MyFoodoraService myFoodora = manager.getMyfoodoraService();
-		User customer_1 = new Customer("Zhang", "San", "customer No 1", new AddressPoint(2.0, 2.0), "zhangsan@gmail.com", "+330101010101", false);
-		User customer_2 = new Customer("Li", "Si", "customer No 2", new AddressPoint(3.0, 3.0), "lisi@gmail.com", "+330101010102", false);
+		User customer_1 = new Customer("Zhang", "San", "customer No 1", new AddressPoint(2.0, 2.0), "zhangsan@gmail.com", "+330101010101");
+		User customer_2 = new Customer("Li", "Si", "customer No 2", new AddressPoint(3.0, 3.0), "lisi@gmail.com", "+330101010102");
 
 		myFoodora.registerCard((Customer)customer_1, "lottery");
 		myFoodora.registerCard((Customer)customer_2, "point");
