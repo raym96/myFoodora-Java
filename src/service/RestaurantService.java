@@ -7,15 +7,13 @@ import model.restaurant.Order;
 
 public interface RestaurantService {
 
-	// restaurant can perform thest operations : 
-
 	// 1. editing the restaurant menu (adding/removing items)
 	// add/remove a dish to the menu
 	public void addDish(Dish dish);
 	public void removeDish(String dishName);
 	public boolean hasDish(String dishName);
 	
-	// 2. creating/removing dierent meals (half or full meal, vegetarian, gluten-free
+	// 2. creating/removing different meals (half or full meal, vegetarian, gluten-free
 	// and/or standard meals).
 	// Add  a meal to the meal menu.
 	// Error occurs when dish name is not recognized or when dish types don't match
@@ -35,30 +33,25 @@ public interface RestaurantService {
 
 	// 3. establishing the generic discount factor (default 5%) to apply when computing
 	// a meal price
-	public void settingGenericDiscountFactor(double generic_discount_factor);
+	public void setGenericDiscountFactor(double generic_discount_factor);
 	
 	// 4. establishing the special discount factor (default 10%) to apply to the meal-of-
 	// the-week special offer.
-	public void settingSpecialDiscountFactor(double special_discount_factor);
+	public void setSpecialDiscountFactor(double special_discount_factor);
 	
-	// 5. sorting of shipped orders with respect to dierent criteria (see below)
+	// 5. sorting of shipped orders with respect to different criteria (see below)
 	public void sortingShippedOrders();    // to be completed
-	
+	public void DisplayMostOrderedHalfMeal();
+	public void DisplayLeastOrderedHalfMeal();
+	public void DisplayMostOrderedAlaCarte();
+	public void DisplayLeastOrderedAlaCarte();
 	
 	// #. extra tool methods
 	public void addToHistory(Order order);
-	
 	public void displayMenu();
 	
 	public void displayMealMenu();
 	
 	public void displaySpecialMenu();
 	
-	public void DisplayMostOrderedHalfMeal();
-	
-	public void DisplayLeastOrderedHalfMeal();
-	
-	public void DisplayMostOrderedAlaCarte();
-	
-	public void DisplayLeastOrderedAlaCarte();
 }

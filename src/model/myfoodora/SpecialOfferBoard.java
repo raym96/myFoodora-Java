@@ -2,91 +2,25 @@ package model.myfoodora;
 
 import java.util.ArrayList;
 
-import model.customer.Observable;
-import model.user.Customer;
-import model.user.Observer;
-import model.user.User;
+import model.customer.SpecialOfferObserver;
+import model.user.*;
 
-public class SpecialOfferBoard implements Observable{
-	private ArrayList<Observer> observers;
-	private ArrayList<SpecialOffer> specialoffers;
-	private boolean changed;
+public interface SpecialOfferBoard {
+
+	// add a new observer to this observable
+	public void register(SpecialOfferObserver obs);
 	
-	public SpecialOfferBoard(){
-		observers = new ArrayList<Observer>();
-		specialoffers = new ArrayList<SpecialOffer>();
-		this.changed = false;
-	}
+	// remove an existing observer of this observable
+	public void unregister(SpecialOfferObserver obs);
 	
-	public void addSpecialOffer(SpecialOffer so){
-		specialoffers.add(so);
-		this.changed = true;
-		this.notifyAllObservers();
-	}
+	// notify all observers of a change of state of this observable
+	public void notifyAllObservers();
+	public void notifyAllObservers(Object o);
 	
-	public void removeSpecialOffer(SpecialOffer so){
-		specialoffers.remove(so);
-		this.changed = true;
-		this.notifyAllObservers();
-	}
-
-	@Override
-	public void register(Observer obs) {
-		// TODO Auto-generated method stub
-		observers.add(obs);
-	}
-
-	@Override
-	public void unregister(Observer obs) {
-		// TODO Auto-generated method stub
-		observers.remove(obs);
-	}
-
-	public ArrayList<SpecialOffer> getSpecialoffers() {
-		return specialoffers;
-	}
-
-	@Override
-	public void notifyObserver(Observer obs) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyAllObservers() {
-		// TODO Auto-generated method stub
-		if (this.changed){
-			for (Observer ob :observers){
-				ob.update(this.specialoffers);
-			}
-			this.changed=false;
-		}
-	}
-
-	@Override
-	public void notifyAllObservers(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObserver(Observer obs, Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObservers(ArrayList<Observer> observers) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObservers(ArrayList<User> observers, Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	// notify a appointed observer
+	public void notifyObserver(MessageBoardUser obs);
+	public void notifyObserver(MessageBoardUser obs, Object o);
 	
-	
+	public void notifyObservers(ArrayList<MessageBoardUser> observers);	
+	public void notifyObservers(ArrayList<User> observers, Object o);
 }

@@ -1,4 +1,4 @@
-package model.myfoodora;
+package model.user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,9 +7,11 @@ import java.util.Date;
 import exceptions.UserNotFoundException;
 import model.customer.*;
 import model.myfoodora.DeliveryPolicy;
+import model.myfoodora.DeliveryTask;
 import model.myfoodora.History;
+import model.myfoodora.Message;
 import model.myfoodora.SpecialOffer;
-import model.myfoodora.SpecialOfferBoard;
+import model.myfoodora.ConcreteSpecialOfferBoard;
 import model.myfoodora.TargetProfitPolicy;
 import model.myfoodora.TargetProfit_DeliveryCost;
 import model.myfoodora.TargetProfit_Markup;
@@ -19,19 +21,21 @@ import model.user.*;
 import service.MyFoodoraService;
 import service.impl.MyFoodoraServiceImpl;
 
-public class MyFoodora implements Observable{
+public class MyFoodora implements MessageBoardUser{
 	
 	private ArrayList<User> users;
 	private ArrayList<User> activeUsers;
 	private ArrayList<Courier> couriers;
 	private ArrayList<Courier> activecouriers;
+	private ArrayList<Customer> specialofferobservers;
 
 	private boolean delivery_task_state;
 	private ArrayList<DeliveryTask> deliveryTasks;
 	private DeliveryTask currentDeliveryTask;
 	
-	private SpecialOfferBoard specialofferboard;
-	private MessageBoard messageBoard;
+	private ConcreteSpecialOfferBoard specialofferboard;
+	
+	private MessageBoard messageBoard;//OBSERVABLE, public message board
 	
 	private double service_fee;
 	private double markup_percentage;
@@ -53,7 +57,7 @@ public class MyFoodora implements Observable{
 		this.activecouriers = new ArrayList<Courier>();
 		this.delivery_task_state = false;
 		this.messageBoard = new MessageBoard(this);
-		this.specialofferboard = new SpecialOfferBoard();
+		this.specialofferboard = new ConcreteSpecialOfferBoard();
 	};
 	
 	private static synchronized void syncInit(){
@@ -74,6 +78,18 @@ public class MyFoodora implements Observable{
 		return instance;
 	}
 
+	public void addSpecialOfferObserver(Customer c){
+		specialofferobservers.add(c);
+	}
+	
+	public void removeSpecialOfferObserver(Customer c){
+		specialofferobservers.remove(c);
+	}
+	
+	public ArrayList<Customer> getSpecialOfferObserver(){
+		return specialofferobservers;
+	}
+	
 	public void setDeliveryPolicy(DeliveryPolicy d){
 		deliverypolicy = d;
 	}
@@ -150,7 +166,7 @@ public class MyFoodora implements Observable{
 		return history;
 	}
 
-	public SpecialOfferBoard getSpecialofferboard() {
+	public ConcreteSpecialOfferBoard getSpecialofferboard() {
 		return specialofferboard;
 	}
 
@@ -232,71 +248,21 @@ public class MyFoodora implements Observable{
 		return usersOfType;
 	}
 	
+	public void setTargetprofitpolicy(TargetProfitPolicy tpp) {
+		this.targetprofitpolicy=tpp;
+	}
+
+	//the two following methods are the same because MyFoodora's msgboard = public msgboard
 	@Override
-	public void register(Observer obs) {
+	public void update(Message message) {
 		// TODO Auto-generated method stub
-		users.add((User)obs);
-		if(obs instanceof Courier){
-			couriers.add((Courier)obs);
-		}
-		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
+		this.messageBoard.addMessage(message);
 	}
 
 	@Override
-	public void unregister(Observer obs) {
+	public void updatePublic(Message message) {
 		// TODO Auto-generated method stub
-		users.remove((User)obs);
-		if(obs instanceof Courier){
-			couriers.remove((Courier)obs);
-		}
-		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
-	}
-
-	@Override
-	public void notifyAllObservers() {
-		// TODO Auto-generated method stub
-		if (this.delivery_task_state){
-			for (Observer ob : couriers){
-				ob.update(this.deliveryTasks);
-			}
-			this.delivery_task_state=false;
-		}
-	}
-
-	@Override
-	public void notifyObserver(Observer obs) {
-		// TODO Auto-generated method stub
-		if( obs instanceof Courier ){
-			obs.update(this.currentDeliveryTask);
-		}
-	}
-
-	@Override
-	public void notifyAllObservers(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObserver(Observer obs, Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObservers(ArrayList<Observer> observers) {
-		// TODO Auto-generated method stub
-		if(observers.get(0) instanceof Customer){
-			
-		}
-	}
-
-	@Override
-	public void notifyObservers(ArrayList<User> observers, Object o) {
-		// TODO Auto-generated method stub
-		for(Observer obs : observers){
-			obs.update(o);
-		}
+		this.messageBoard.addMessage(message);
 	}
 	
 }

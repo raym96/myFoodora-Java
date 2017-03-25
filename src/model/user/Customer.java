@@ -5,18 +5,12 @@ import java.util.Date;
 
 import model.customer.*;
 import model.myfoodora.Message;
-import model.myfoodora.MyFoodora;
 import model.myfoodora.SpecialOffer;
-import model.myfoodora.SpecialOfferBoard;
-import model.restaurant.AlaCarteOrder;
-import model.restaurant.MealOrder;
-import model.restaurant.Order;
-import model.restaurant.SpecialMealOrder;
-import model.restaurant.StandardMealOrder;
+import model.myfoodora.ConcreteSpecialOfferBoard;
 import service.CustomerService;
 import service.impl.CustomerServiceImpl;
 
-public class Customer extends User{
+public class Customer extends User implements SpecialOfferObserver{
 	
 	private String name;
 	private String surname;
@@ -24,7 +18,7 @@ public class Customer extends User{
 	private String email;
 	private String phone;
 	private FidelityCard card;
-	private Boolean agreeBeNotifiedSpecialoffers;
+	private Boolean agreeToBeNotifiedSpecialoffers;
 	
 	private ArrayList<SpecialOffer> specialoffers;
 	
@@ -43,7 +37,7 @@ public class Customer extends User{
 		this.phone = phone;
 		this.card = new StandardCard();
 		this.shoppingcart = new ShoppingCart();
-		this.agreeBeNotifiedSpecialoffers = false;
+		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
 	}
 
@@ -58,11 +52,11 @@ public class Customer extends User{
 	
 	
 	public boolean isAgreeBeNotifiedSpecialoffers() {
-		return agreeBeNotifiedSpecialoffers;
+		return agreeToBeNotifiedSpecialoffers;
 	}
 
 	public void setAgreeBeNotifiedSpecialoffers(boolean agreeBeNotifiedSpecialoffers) {
-		this.agreeBeNotifiedSpecialoffers = agreeBeNotifiedSpecialoffers;
+		this.agreeToBeNotifiedSpecialoffers = agreeBeNotifiedSpecialoffers;
 	}
 
 	public FidelityCard getCard(){
@@ -90,6 +84,11 @@ public class Customer extends User{
 	public void setShoppingcart(ShoppingCart shoppingcart) {
 		this.shoppingcart = shoppingcart;
 	}
+	
+
+	public AddressPoint getAddress() {
+		return address;
+	}
 
 	@Override
 	public String toString() {
@@ -97,39 +96,15 @@ public class Customer extends User{
 				+ ", phone=" + phone + ".\n";
 	}
 	
+	//update the special offers
+	@Override
+	public void updateSpecialOffer(ArrayList<SpecialOffer> specialoffers){
+	// TODO Auto-generated method stub
+		this.specialoffers = specialoffers;
+	}
 	
 	@Override
-	public void update(Object o) {
-		// TODO Auto-generated method stub
-		if(o instanceof ArrayList<?>){
-			this.specialoffers = (ArrayList<SpecialOffer>)o;
-		}
-		if(o instanceof String){
-			this.getMessageBoard().addMessage(new Message(new Date(), (String)o));
-			this.getMessageBoard().displayAllmsgs();
-		}
-	}
-
-	@Override
-	public void observe(Observable obv){
-	// TODO Auto-generated method stub
-		if( obv instanceof SpecialOfferBoard ){
-			((SpecialOfferBoard)obv).getSpecialoffers();
-		}
-	}
-
-	@Override
-	public void observe(Observable obv, Object o) {
-		// TODO Auto-generated method stub
-		super.observe(obv, o);
-		if( obv instanceof MyFoodora ){
-			if( o instanceof Boolean && (Boolean)o==true ){
-				((MyFoodora) obv).getMessageBoard().addMessage(new Message(new Date(), "" + this.getUsername() + " agree to be notified of special offers."));
-				((MyFoodora) obv).getMessageBoard().displayAllmsgs();
-			}else if( o instanceof Boolean && (Boolean)o==false ){
-				((MyFoodora) obv).getMessageBoard().addMessage(new Message(new Date(), "" + this.getUsername() + " refuse to be notified of special offers."));
-				((MyFoodora) obv).getMessageBoard().displayAllmsgs();
-			}
-		}
+	public void addSpecialOffer(SpecialOffer specialoffer) {
+		specialoffers.add(specialoffer);
 	}
 }

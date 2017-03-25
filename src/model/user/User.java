@@ -2,70 +2,59 @@ package model.user;
 import java.util.Date;
 import java.util.UUID;
 
-import model.customer.Observable;
 import model.myfoodora.Message;
-import model.myfoodora.MessageBoard;
-import model.myfoodora.MyFoodora;
+import model.myfoodora.SpecialOfferBoard;
 
-public abstract class User implements Observer{
+public abstract class User implements MessageBoardUser{
 
 	private String ID;
 	protected String username;
 	private String password = "password";
 	private boolean activated;
-	private boolean notified;
+
 	private MessageBoard messageBoard;
-	private boolean loginIn;
+	private boolean logStatus;
 	
 	public User() {
 		super();
 		this.ID = UUID.randomUUID().toString();
 		this.messageBoard = new MessageBoard(this);
-		this.notified = false;
 		this.activated = false;
-		this.loginIn = false;
+		this.logStatus = false;
 	}
 
 	public User(String username) {
 		super();
 		this.ID = UUID.randomUUID().toString();
 		this.username = username;
-		this.notified = false;
 		this.activated = false;
 		this.messageBoard = new MessageBoard(this);
-		this.loginIn = false;
+		this.logStatus = false;
 	}
 	
-	public void loginIn(){
-		this.loginIn = true;
-		this.observe(MyFoodora.getInstance(), " has login in the myFoodora");
+	public void logIn(){
+		this.logStatus = true;
+		this.updatePublic(new Message(this.getUsername()+" has logged in to the myFoodora system"));
 		
 	}
-	public void loginOut(){
-		this.loginIn = false;
-		this.observe(MyFoodora.getInstance(), " has login out the myFoodora");
+	public void logOut(){
+		this.logStatus = false;
+		this.updatePublic(new Message(this.getUsername()+" has logged out of the myFoodora system"));
 	}
 	
-	public void turnOnNotification(){
-		notified = true;
-	}
-	
-	public void turnOffNotification(){
-		notified = false;
-	}
-	
+
+	//setters & getters
 	public String getUsername() {
 		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public MessageBoard getMessageBoard() {
 		return messageBoard;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 
 
 	public String getPassword(){
@@ -73,37 +62,27 @@ public abstract class User implements Observer{
 	}
 
 
-
 	public void setActived(boolean b) {
 		activated = b;
-		
 	}
 
 	@Override
-	public abstract void update(Object o);
-
-
-	@Override
-	public abstract void observe(Observable o);
+	public void update(Message message){
+		this.messageBoard.addMessage(message);
+		System.out.println(message);
+	}
 	
 	@Override
-	public void observe(Observable obv, Object o) {
-		// TODO Auto-generated method stub
-		if( obv instanceof MyFoodora ){
-			if( o instanceof String ){
-				((MyFoodora) obv).getMessageBoard().addMessage(new Message(new Date(), "" + this.getUsername() + (String)o));
-				((MyFoodora) obv).getMessageBoard().displayAllmsgs();	
-			}
-		}
-	}
-
-	public void registerOnFoodora(){
-		MyFoodora.getInstance().register(this);
+	public void updatePublic(Message message) {
+		MyFoodora.getInstance().getMessageBoard().addMessage(message);
+		System.out.println(message);
 	}
 	
-	public void unregisterOnFoodora(){
-		MyFoodora.getInstance().unregister(this);
+	public void getMessage(){
+		this.messageBoard.displayAllmsgs();
 	}
+	
+
 
 	@Override
 	public String toString() {

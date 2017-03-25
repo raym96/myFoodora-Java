@@ -1,20 +1,22 @@
-package model.myfoodora;
+package model.user;
 
 import java.util.ArrayList;
 
-import model.user.User;
+import model.myfoodora.Message;
 
 public class MessageBoard {
 
 	private ArrayList<Message> messages;
 	private User owner = null;
 
+	//Case of a private message board, belonging to the user
 	public MessageBoard(User owner) {
 		super();
 		this.messages = new ArrayList<Message>();
 		this.owner = owner;
 	};
 	
+	//Case of the public message board of MyFoodora
 	public MessageBoard(MyFoodora myFoodora) {
 		super();
 		this.messages = new ArrayList<Message>();

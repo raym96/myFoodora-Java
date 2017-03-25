@@ -3,6 +3,7 @@ package service;
 import java.util.Date;
 
 import exceptions.UserNotFoundException;
+import model.myfoodora.DeliveryPolicy;
 import model.user.Courier;
 import model.user.Restaurant;
 import model.user.User;
@@ -14,12 +15,10 @@ public interface ManagerService {
 	
 	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
 	public void addUser(User user);
-	
 	public void removeUser(User user);
 	
 	// 2. activate/disactivate any kind of user (restaurant, customers and/or couriers) of the system
 	public void activateUser(User user) throws UserNotFoundException;
-	
 	public void disactivateUser(User user);
 	
 	// 3. changing the service-fee percentage and/or the markup percentage (\percentage de marge") and/or the delivery-cost
@@ -49,10 +48,12 @@ public interface ManagerService {
 	
 	// 9. setting the current delivery-policy used by MyFoodora to determine which courier
 	// is assigned to deliver an order placed by a customer
-	public void settingDeliveryPolicy(); // to be completed
+	public void setDeliveryPolicy(DeliveryPolicy deliverypolicy); 
 	
 	// ##. extra tool method
 	public void displayUsers();
 	public void displayActiveUsers();
 	public User selectUser(String username) throws UserNotFoundException;
+
+	
 }

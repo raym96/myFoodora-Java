@@ -2,11 +2,10 @@ package model.user;
 
 import java.util.ArrayList;
 
-import model.customer.Observable;
 import model.myfoodora.DeliveryTask;
-import model.myfoodora.MyFoodora;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.SpecialOfferBoard;
+import model.myfoodora.ConcreteSpecialOfferBoard;
 import model.restaurant.Order;
 import service.CourierService;
 import service.impl.CourierServiceImpl;
@@ -23,7 +22,7 @@ public class Courier extends User{
 	
 	private ArrayList<DeliveryTask> allDeliveryTasks;
 	private DeliveryTask currentDeliveryTask;
-	private boolean accepted;
+	
 	
 	private CourierService courierService;
 	
@@ -38,8 +37,8 @@ public class Courier extends User{
 		count = 0;
 		this.courierService = new CourierServiceImpl(this);
 	}
-	
-	
+
+	//Getters & Setters
 	public CourierService getCourierService() {
 		return courierService;
 	}
@@ -69,12 +68,6 @@ public class Courier extends User{
 		return name;
 	}
 
-	public void setAccepted(boolean accepted) {
-		this.accepted = accepted;
-	}
-	
-	
-
 
 	public DeliveryTask getCurrentDeliveryTask() {
 		return currentDeliveryTask;
@@ -85,31 +78,7 @@ public class Courier extends User{
 		this.currentDeliveryTask = currentDeliveryTask;
 	}
 
-
-	@Override
-	public void update(Object o) {
-		// TODO Auto-generated method stub
-		if(o instanceof ArrayList<?>){
-			this.allDeliveryTasks = (ArrayList<DeliveryTask>)o;
-		}else if(o instanceof DeliveryTask){
-			this.currentDeliveryTask = (DeliveryTask)o;
-		}
-	}
 	
-	
-	@Override
-	public void observe(Observable o) {
-		// TODO Auto-generated method stub
-		if( o instanceof MyFoodora){
-			if(this.accepted){
-				System.out.println("courier " + this.getUsername() + " accept the delivery task");
-			}else{
-				System.out.println("courier " + this.getUsername() + " refuse the delivery task");
-			}
-			new MyFoodoraServiceImpl().updateCurrentDeliveryTask(this.currentDeliveryTask);
-		}
-	}
-
 
 	@Override
 	public String toString() {
@@ -117,12 +86,6 @@ public class Courier extends User{
 	}
 
 
-	@Override
-	public void observe(Observable obv, Object o) {
-		// TODO Auto-generated method stub
-		super.observe(obv, o);
-	}
-
-
+	
 	
 }

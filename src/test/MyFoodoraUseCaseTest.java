@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.UserNotFoundException;
-import model.customer.Observable;
 import model.myfoodora.*;
 import model.user.*;
 import service.MyFoodoraService;
@@ -218,7 +217,7 @@ public class MyFoodoraUseCaseTest {
 		for(User user : myFoodora.getUsers()){
 			if( username.equals(user.getUsername()) && password.equals(user.getPassword()) ){
 				theUser = user;
-				user.loginIn();
+				user.logIn();
 				break;
 //				user.loginOut();
 			}

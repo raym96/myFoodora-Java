@@ -5,8 +5,8 @@ import java.util.*;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
-import model.customer.Observable;
 import model.myfoodora.History;
+import model.myfoodora.SpecialOfferBoard;
 import model.restaurant.*;
 import service.RestaurantService;
 import service.impl.RestaurantServiceImpl;
@@ -113,26 +113,19 @@ public class Restaurant extends User{
 
 
 	@Override
-	public void update(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void observe(Observable o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String toString() {
 		return super.toString() + ", <Restaurant> name=" + name + ", address=" + address + ".\n";
 	}
 
-	@Override
-	public void observe(Observable obv, Object o) {
+
+	public void setSDF(double sdf) {
 		// TODO Auto-generated method stub
-		super.observe(obv, o);
+		this.special_discount_factor = sdf;
+	}
+
+	public void setGDF(double gdf) {
+		// TODO Auto-generated method stub
+		this.generic_discount_factor = gdf;
 	}
 
 	

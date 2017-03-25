@@ -4,18 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import exceptions.UserNotFoundException;
 import model.customer.*;
-import model.myfoodora.DeliveryPolicy;
-import model.myfoodora.DeliveryTask;
-import model.myfoodora.History;
-import model.myfoodora.MyFoodora;
-import model.myfoodora.SpecialOffer;
-import model.myfoodora.SpecialOfferBoard;
-import model.myfoodora.TargetProfitPolicy;
-import model.myfoodora.TargetProfit_DeliveryCost;
-import model.myfoodora.TargetProfit_Markup;
-import model.myfoodora.TargetProfit_ServiceFee;
+import model.myfoodora.*;
 import model.restaurant.*;
 import model.user.*;
 import service.MyFoodoraService;
@@ -28,36 +18,67 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		this.myfoodora = MyFoodora.getInstance();
 	}
 
-	//[[used by Manager]]
-	public void addUser(User user){
-		myfoodora.getUsers().add(user);
-	}
-	
-	public void removeUser(User user){
-		myfoodora.getUsers().remove(user);
-	}
-	
-	public void activateUser(User user){
-		myfoodora.getActiveUsers().add(user);
-	}
-	
-	public void disactivateUser(User user){
-		myfoodora.getActiveUsers().remove(user);
-	}
-	
-	
+	// 1. setting of the service-fee, the markup percentage (\percentage de marge") and the
+	// delivery cost values
 	@Override
-	public User selectUser(String username) {
-		// TODO Auto-generated method stub
-		for(User user : myfoodora.getUsers()){
-			if( username.equals(user.getUsername()) ){
-				return user;
-			}
-		}
-		
-		return null;
+	public void setServiceFee(double service_fee) {
+		myfoodora.setService_fee(service_fee);
 	}
 
+	@Override
+	public void setMarkUpPercentage(double markup_percentage) {
+		// TODO Auto-generated method stub
+		myfoodora.setMarkup_percentage(markup_percentage);
+	}
+
+	@Override
+	public void setDeliveryCost(double delivery_cost) {
+		// TODO Auto-generated method stub
+		myfoodora.setDelivery_cost(delivery_cost);
+	}
+	
+	// 2. allocating of a courier to an order placed by a customer (by application of the current
+	// delivery policy, see below details of supported policies)/
+	
+	//IMPORTANT, TO BE COMPLETED
+	
+	//Assign a courier to an order, from a list of available couriers with respect to the delivery dtrategy
+	public void parse(Order order){
+		ArrayList<Courier> availablecouriers = myfoodora.getActivecouriers();
+		parse(order, availablecouriers);
+	}
+	
+	public void parse(Order order, ArrayList<Courier> availablecouriers){
+		if (availablecouriers.size()==0){
+			order.getCustomer().update(new Message("No courier available for the moment, sorry."));
+		}
+		DeliveryTask newdeliverytask = new DeliveryTask(order);
+		Courier courier = myfoodora.getDeliverypolicy().parse(order, availablecouriers);
+		courier.setCurrentDeliveryTask(newdeliverytask);; //allocate delivery task to the courier
+		order.getCustomer().update(new Message(courier.getUsername()+" has been assigned to the delivery task. Please wait for confirmation.")); //the courier must accept
+	}
+	
+	//if the courier accepts the order, a message will display and the operation is over.
+	//if the courier declines the order, a new parse(order, availablecouriers) will be launched.
+	//for more information check the code in CourierServiceImpl.java
+
+	// 3. notifying users that gave consensus to receive special others notifcations, of a new
+	// special offer set by a restaurant
+	
+	@Override
+	public void notifyAll(SpecialOffer specialoffer) {
+		// TODO Auto-generated method stub
+		for (Customer c : myfoodora.getSpecialOfferObserver()){
+			//add the new special offer to the special-offer list of the customer
+			c.addSpecialOffer(specialoffer);
+		}
+	}
+
+	
+	// 4. computing the total income (i.e. the sum of all completed orders) as well as the total
+	// profit of the system, knowing that the the prot of a single order is given by:
+	// profit for one order = order_price * markup_percentage + service_fee - delivery cost
+	
 	public double getTotalIncome(Date date1, Date date2){
 		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
@@ -97,7 +118,15 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		}
 	}
 	
+	
+	
+	// 5. choose the target profit policy (see below) used to optimise the profit-related-
+	// parameters (service-fee, markup percentage, and the delivery cost)
 	//Ugly code, to be completed
+	public void setTargetProfitPolicy(TargetProfitPolicy tpp){
+		myfoodora.setTargetprofitpolicy(tpp);
+	}
+	
 	public void applyTargetProfitPolicy(double targetProfit){
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
@@ -119,34 +148,14 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 	
-	public Courier parse(Order order){
-		return myfoodora.getDeliverypolicy().parse(order, myfoodora.getActivecouriers());
-	}
+// 6. Basic services that user's specific operations rely upon
 	
-
-	//[[[Used by Customer]]]
-	public void addStandardMealOrder(Customer c,Restaurant r, String mealType, String mealName){
-		c.getCustomerService().addStandardMealOrder(r,  mealType,  mealName);
-	}
-	
-	public void addSpecialMealOrder(Customer c,Restaurant r, String mealType, String mealName){
-		c.getCustomerService().addSpecialMealOrder(r,  mealType,  mealName);
-	}
-	
-	
-	public void addAlaCarteOrder(Customer c,Restaurant r, String dishName){
-		c.getCustomerService().addAlaCarteOrder(r, dishName);
-	}
-	
-	public double calculatePrice(Customer c){
-		return c.getCustomerService().calculatePrice();
-	}
-	
-	@Override
+/*	@Override
 	public void askAgree2customers(String ask) {
 		// TODO Auto-generated method stub
 		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
 	}
+*/
 	
 	public void displayUsersOfAssignedType(String userType){
 		
@@ -162,108 +171,12 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		for (Order order:c.getShoppingCart().getOrders()){
 			order.getRestaurant().addToHistory(order);
 			addToHistory(order);
-			System.out.println("Courier" + parse(order).getName() +" has been assigned to this order");
 		}
 		c.getCustomerService().clearShoppingCart();
 	}
 	
 	public void addToHistory(Order order){
 		myfoodora.getHistory().addOrder(order);
-	}
-	
-	
-	public void registerCard(Customer c, String cardType){
-		c.getCustomerService().registerCard(cardType);
-	}
-	
-	public void unregisterCard(Customer c){
-		c.getCustomerService().unregisterCard();
-	}
-	
-	public void getCardPoints(Customer c){
-		if (c.getCard() instanceof PointCard){
-			PointCard p = (PointCard) c.getCard();
-			System.out.println(p.getPoints());
-		}
-		else{
-			System.out.println("You don't have a Point Fidelity Card");
-		}
-	}
-	
-	
-	public void turnOnNotification(Customer customer){
-		customer.turnOnNotification();
-		myfoodora.getSpecialofferboard().register(customer);
-	}
-	
-	public void turnOffNotification(Customer customer){
-		customer.turnOffNotification();
-		myfoodora.getSpecialofferboard().unregister(customer);
-	}
-
-	//[[[Used by Restaurant]]]
-	public void addDish(Restaurant restaurant, Dish dish){
-		restaurant.getRestaurantService().addDish(dish);
-	}
-	public void removeDish(Restaurant restaurant, String dishName){
-		restaurant.getRestaurantService().removeDish(dishName);
-	}
-	
-	//add halfmeal
-	public void addMeal(Restaurant restaurant, String mealname, String dishname1, String dishname2){
-		restaurant.getRestaurantService().addMeal(mealname, dishname1, dishname2);
-	}
-	//add fullmeal
-	public void addMeal(Restaurant restaurant, String mealname, String dishname1, String dishname2, String dishname3){
-		restaurant.getRestaurantService().addMeal(mealname, dishname1, dishname2, dishname3);
-	}
-	
-	public void removeMeal(Restaurant restaurant, String mealname){
-		restaurant.getRestaurantService().removeMeal(mealname);
-	}
-	
-	public void addSpecialOffer(Restaurant restaurant, Meal meal){
-		restaurant.getRestaurantService().addSpecialMeal(meal.getName());
-		myfoodora.getSpecialofferboard().addSpecialOffer(new SpecialOffer(restaurant, meal));
-	}
-	public void removeSpecialOffer(Restaurant restaurant, Meal meal){
-		restaurant.getRestaurantService().removeSpecialMeal(meal.getName());
-		myfoodora.getSpecialofferboard().removeSpecialOffer(new SpecialOffer(restaurant,meal));
-	}
-	
-	public void setGDF(Restaurant r, double gdf){
-		r.setGeneric_discount_factor(gdf);
-	}
-	public void setSDF(Restaurant r, double sdf){
-		r.setSpecial_discount_factor(sdf);
-	}
-	
-	public void DisplayMostOrderedHalfMeal(Restaurant r){
-		r.getRestaurantService().DisplayMostOrderedHalfMeal();
-	}
-	
-	public void DisplayLeastOrderedHalfMeal(Restaurant r){
-		r.getRestaurantService().DisplayLeastOrderedHalfMeal();
-	}
-	
-	public void DisplayMostOrderedAlaCarte(Restaurant r){
-		r.getRestaurantService().DisplayMostOrderedAlaCarte();
-	}
-	
-	public void DisplayLeastOrderedAlaCarte(Restaurant r){
-		r.getRestaurantService().DisplayLeastOrderedAlaCarte();
-	}
-	
-	//[[[Used by Courier]]]
-
-	public void setOnDuty(Courier c){
-		c.setOn_duty(true);
-		myfoodora.getActivecouriers().add(c);
-	}
-	
-	public void setOffDuty(Courier c){
-		c.setOn_duty(false);
-		myfoodora.getActivecouriers().remove(c);
 	}
 
 	public void displayUsers() {
@@ -274,17 +187,14 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		myfoodora.displayActiveUsers();
 	}
 
-	@Override
-	public void allocateDeliveryTask(Courier c) {
-		// TODO Auto-generated method stub
-		myfoodora.notifyObserver(c);
-	}
 
 	@Override
-	public synchronized void updateCurrentDeliveryTask(DeliveryTask task) {
+	public User selectUser(String username) {
 		// TODO Auto-generated method stub
-		myfoodora.setCurrentDeliveryTask(task);
+		return null;
 	}
+
+
 
 	
 }

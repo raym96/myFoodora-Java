@@ -2,7 +2,7 @@ package model.user;
 
 import java.util.ArrayList;
 
-import model.customer.Observable;
+import model.myfoodora.SpecialOfferBoard;
 import service.ManagerService;
 import service.MyFoodoraService;
 import service.impl.ManagerServiceImpl;
@@ -49,27 +49,9 @@ public class Manager extends User{
 	}
 
 	@Override
-	public void update(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void observe(Observable o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String toString() {
 		return super.toString() + ", <Manager> name=" + name + ", surname=" + surname + ".\n";
 	}
 
-	@Override
-	public void observe(Observable obv, Object o) {
-		// TODO Auto-generated method stub
-		super.observe(obv, o);
-	}
-	
-	
+
 }

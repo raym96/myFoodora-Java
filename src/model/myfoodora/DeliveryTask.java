@@ -7,16 +7,13 @@ import model.user.Courier;
 public class DeliveryTask {
 
 	private Order order;
-	private AddressPoint destination;
 	private Courier courier;
 	private DeliveryPolicy deliveryPolicy;
 	private boolean assigned;
 	
-	public DeliveryTask(Order order, AddressPoint destination, DeliveryPolicy deliveryPolicy) {
+	public DeliveryTask(Order order) {
 		super();
 		this.order = order;
-		this.destination = destination;
-		this.deliveryPolicy = deliveryPolicy;
 		this.assigned = false;
 	}
 
@@ -43,11 +40,7 @@ public class DeliveryTask {
 	}
 
 	public AddressPoint getDestination() {
-		return destination;
-	}
-
-	public void setDestination(AddressPoint destination) {
-		this.destination = destination;
+		return this.order.getCustomer().getAddress();
 	}
 
 	public Courier getCourier() {

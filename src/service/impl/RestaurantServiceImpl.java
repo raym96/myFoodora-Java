@@ -5,7 +5,6 @@ import java.util.Iterator;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
-import model.myfoodora.MyFoodora;
 import model.restaurant.Dish;
 import model.restaurant.FullMeal;
 import model.restaurant.HalfMeal;
@@ -13,6 +12,7 @@ import model.restaurant.Meal;
 import model.restaurant.MealFactory;
 import model.restaurant.Order;
 import model.restaurant.Starter;
+import model.user.MyFoodora;
 import model.user.Restaurant;
 import service.RestaurantService;
 
@@ -24,7 +24,46 @@ public class RestaurantServiceImpl implements RestaurantService {
 		super();
 		this.restaurant = restaurant;
 	}
+	
+	// 1. editing the restaurant menu (adding/removing items)
+	// add/remove a dish to the menu
+	//add/remove a dish to the menu
+	
+		@Override
+		public void addDish(Dish dish) {
+			// TODO Auto-generated method stub
+			//add/remove a dish to the menu
+			restaurant.getMenu().addDish(dish);
+			System.out.println(dish.getDishName() + " successfully added to the menu");	
+		}
 
+		@Override
+		public void removeDish(String dishName) {
+			// TODO Auto-generated method stub
+			restaurant.getMenu().removeDish(dishName);
+			System.out.println(dishName + " successfully removed from the menu");
+
+		}
+
+		//create an instance of Dish
+		@Override
+		public Dish createDish(String dishName) {
+			// TODO Auto-generated method stub
+			//create an instance of Dish
+			try{ 
+				Dish dish = restaurant.getDishFactory().createDish(dishName);
+				System.out.println("Dish "+dishName + " successfully created");
+				return dish;	
+			}
+			catch (DishNotFoundException e){
+			}
+			return new Starter("","",0);
+			
+
+		}
+	
+	// 2. creating/removing different meals (half or full meal, vegetarian, gluten-free
+	// and/or standard meals).
 	@Override
 	public void addMeal(String mealname, String dishname1, String dishname2) {
 		// TODO Auto-generated method stub
@@ -143,39 +182,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		System.out.println(mealName + " successfully removed from the meal-menu");
 	}
 
-	//add/remove a dish to the menu
-	@Override
-	public void addDish(Dish dish) {
-		// TODO Auto-generated method stub
-		//add/remove a dish to the menu
-		restaurant.getMenu().addDish(dish);
-		System.out.println(dish.getDishName() + " successfully added to the menu");	
-	}
-
-	@Override
-	public void removeDish(String dishName) {
-		// TODO Auto-generated method stub
-		restaurant.getMenu().removeDish(dishName);
-		System.out.println(dishName + " successfully removed from the menu");
-
-	}
-
-	//create an instance of Dish
-	@Override
-	public Dish createDish(String dishName) {
-		// TODO Auto-generated method stub
-		//create an instance of Dish
-		try{ 
-			Dish dish = restaurant.getDishFactory().createDish(dishName);
-			System.out.println("Dish "+dishName + " successfully created");
-			return dish;	
-		}
-		catch (DishNotFoundException e){
-		}
-		return new Starter("","",0);
-		
-
-	}
+	
 
 	//throw exception if meal name is not recognized
 	@Override
@@ -219,6 +226,48 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 	}
 
+	// 3. establishing the generic discount factor (default 5%) to apply when computing
+	// a meal price
+	@Override
+	public void setGenericDiscountFactor(double generic_discount_factor) {
+		// TODO Auto-generated method stub
+		restaurant.setGDF(generic_discount_factor);
+	}
+
+	// 4. establishing the special discount factor (default 10%) to apply to the meal-of-
+	// the-week special offer.
+	@Override
+	public void setSpecialDiscountFactor(double special_discount_factor) {
+		// TODO Auto-generated method stub
+		restaurant.setSDF(special_discount_factor);
+	}
+
+	// 5. sorting of shipped orders with respect to different criteria (see below)
+	@Override
+	public void DisplayMostOrderedHalfMeal() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayMostOrderedHalfMeal(restaurant);
+	}
+
+	@Override
+	public void DisplayLeastOrderedHalfMeal() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayLeastOrderedHalfMeal(restaurant);
+	}
+
+	@Override
+	public void DisplayMostOrderedAlaCarte() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayMostOrderedAlaCarte(restaurant);
+	}
+
+	@Override
+	public void DisplayLeastOrderedAlaCarte() {
+		// TODO Auto-generated method stub
+		restaurant.getHistory().DisplayLeastOrderedAlaCarte(restaurant);
+	}
+	
+	// extra tools
 	@Override
 	public void addToHistory(Order order) {
 		// TODO Auto-generated method stub
@@ -253,44 +302,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public void DisplayMostOrderedHalfMeal() {
-		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayMostOrderedHalfMeal(restaurant);
-	}
-
-	@Override
-	public void DisplayLeastOrderedHalfMeal() {
-		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayLeastOrderedHalfMeal(restaurant);
-	}
-
-	@Override
-	public void DisplayMostOrderedAlaCarte() {
-		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayMostOrderedAlaCarte(restaurant);
-	}
-
-	@Override
-	public void DisplayLeastOrderedAlaCarte() {
-		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayLeastOrderedAlaCarte(restaurant);
-	}
-
-	@Override
-	public void settingGenericDiscountFactor(double generic_discount_factor) {
-		// TODO Auto-generated method stub
-		new MyFoodoraServiceImpl().setGDF(restaurant, generic_discount_factor);
-	}
-
-	@Override
-	public void settingSpecialDiscountFactor(double special_discount_factor) {
-		// TODO Auto-generated method stub
-		new MyFoodoraServiceImpl().setSDF(restaurant, special_discount_factor);
-	}
-
-	@Override
 	public void sortingShippedOrders() {
 		// TODO Auto-generated method stub
-		
 	}
 }
