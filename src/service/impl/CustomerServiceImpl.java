@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.util.ArrayList;
+
 import model.customer.LotteryCard;
 import model.customer.PointCard;
 import model.customer.ShoppingCart;
@@ -89,6 +91,25 @@ public class CustomerServiceImpl implements CustomerService {
 		// points acquired with a fidelity program
 
 	//to be completed
+	public ArrayList<Order> getHistory(){
+		ArrayList<Order> orders = new ArrayList<Order>();
+		for (Order order:MyFoodora.getInstance().getHistory().getOrders()){
+			if (order.getCustomer() == customer){
+				orders.add(order);
+			}
+		}
+		return orders;
+	}
+	
+	public double getPoints(){
+		if (customer.getCard() instanceof PointCard){
+			return ((PointCard)customer.getCard()).getPoints();
+		}
+		else{
+			System.out.println("the customer doesn't have a point fidelity card");
+			return 0;
+		}
+	}
 	
 	
 	// 4. give/remove consensus to be notified whenever a new special offer is set by any

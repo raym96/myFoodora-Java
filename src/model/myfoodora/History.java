@@ -27,8 +27,8 @@ public class History {
 		return list;
 	}
 	
-	public void DisplayHistory(){
-		System.out.println(orders);
+	public ArrayList<Order> getOrders(){
+		return orders;
 	}
 	
 	public void DisplayMostOrderedHalfMeal(Restaurant r){
