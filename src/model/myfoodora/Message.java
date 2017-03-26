@@ -2,7 +2,6 @@ package model.myfoodora;
 
 import java.util.Date;
 
-import model.user.MessageBoardUser;
 import model.user.User;
 
 public class Message {
@@ -28,7 +27,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return date + ", "+poster+": "+msgContent;
+		return date + ", "+poster+": "+msgContent + "\n";
 	}
 	
 	

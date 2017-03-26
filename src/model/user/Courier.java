@@ -3,6 +3,7 @@ package model.user;
 import java.util.ArrayList;
 
 import model.myfoodora.DeliveryTask;
+import model.myfoodora.Message;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.SpecialOfferBoard;
 import model.myfoodora.ConcreteSpecialOfferBoard;
@@ -85,7 +86,22 @@ public class Courier extends User{
 		return super.toString() + ", <Courier> surname=" + surname + ", name=" + name + ", phone=" + phone + ".\n";
 	}
 
+	@Override
+	public void update(Object o) {
+		// TODO Auto-generated method stub
+		super.update(o);
+	}
 
-	
-	
+	@Override
+	public void observe(Observable o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void observe(Observable obv, Object o) {
+		// TODO Auto-generated method stub
+		super.observe(obv, o);
+	}
+
 }

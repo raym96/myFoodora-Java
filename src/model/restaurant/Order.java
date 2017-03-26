@@ -72,9 +72,5 @@ public abstract class Order {
 		return "["+customer+" "+restaurant+" OrderID "+orderID+ " at "+date+"]";
 	}
 	
-	public static void main(String[] args) {
-		Date date = new GregorianCalendar(2014, 1, 11,23,11).getTime();
-		System.out.println(date);
-	}
 }
 

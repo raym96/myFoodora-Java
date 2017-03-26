@@ -18,6 +18,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		this.myfoodora = MyFoodora.getInstance();
 	}
 
+/** myfoodora's specific services **/
 	// 1. setting of the service-fee, the markup percentage (\percentage de marge") and the
 	// delivery cost values
 	@Override
@@ -148,7 +149,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 	
-// 6. Basic services that user's specific operations rely upon
+/** myfoodora's basic services provided to User's specific operations rely on **/
 	
 /*	@Override
 	public void askAgree2customers(String ask) {
@@ -191,10 +192,26 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	@Override
 	public User selectUser(String username) {
 		// TODO Auto-generated method stub
+		for(User user : myfoodora.getUsers()){
+			if( username.equals(user.getUsername()) ){
+				return user;
+			}
+		}
 		return null;
 	}
 
+	@Override
+	public void assignManager(Manager manager) {
+		// TODO Auto-generated method stub
+		myfoodora.addUser(manager);
+		myfoodora.activateUser(manager);
+	}
 
+	@Override
+	public void askAgree2customers(String ask) {
+		// TODO Auto-generated method stub
+		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
+	}
 
 	
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_v412IAsUEee7Pf9NBZ-mcQ" name="RootElement">
+  <packagedElement xmi:type="uml:Interface" xmi:id="_8o-gwAsUEee7Pf9NBZ-mcQ" name="Restaurant">
+    <nestedClassifier xmi:type="uml:Interface" xmi:id="_9CKc0AsUEee7Pf9NBZ-mcQ" name="Interface1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_BekWsAsVEee7Pf9NBZ-mcQ" name="Menu"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_L7sc4AsVEee7Pf9NBZ-mcQ" name="Item"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_TAZOsAsVEee7Pf9NBZ-mcQ" name="1" client="_BekWsAsVEee7Pf9NBZ-mcQ" supplier="_8o-gwAsUEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_dwetIAsVEee7Pf9NBZ-mcQ" name="n" client="_L7sc4AsVEee7Pf9NBZ-mcQ" supplier="_BekWsAsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_p87b4AsVEee7Pf9NBZ-mcQ" name="starter"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rt7fcAsVEee7Pf9NBZ-mcQ" name="main-dish"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_tF9pYAsVEee7Pf9NBZ-mcQ" name="dessert"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_wvnQoAsVEee7Pf9NBZ-mcQ" client="_p87b4AsVEee7Pf9NBZ-mcQ" supplier="_L7sc4AsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_zQD0IAsVEee7Pf9NBZ-mcQ" client="_tF9pYAsVEee7Pf9NBZ-mcQ" supplier="_L7sc4AsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_1CVqEAsVEee7Pf9NBZ-mcQ" client="_rt7fcAsVEee7Pf9NBZ-mcQ" supplier="_L7sc4AsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_2AR5AAsVEee7Pf9NBZ-mcQ" name="Meal"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_4f7LQAsVEee7Pf9NBZ-mcQ" name="3" client="_L7sc4AsVEee7Pf9NBZ-mcQ" supplier="_2AR5AAsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7RTGsAsVEee7Pf9NBZ-mcQ" name="pre-meal"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-8wr0AsVEee7Pf9NBZ-mcQ" name="comp-meal"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_Az07IAsWEee7Pf9NBZ-mcQ" client="_7RTGsAsVEee7Pf9NBZ-mcQ" supplier="_2AR5AAsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_CApTkAsWEee7Pf9NBZ-mcQ" client="_-8wr0AsVEee7Pf9NBZ-mcQ" supplier="_2AR5AAsVEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_GtoAEAsWEee7Pf9NBZ-mcQ" name="Price"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_HdLNsAsWEee7Pf9NBZ-mcQ" name="standard"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_I0Q8cAsWEee7Pf9NBZ-mcQ" name="vegetarian"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LbqcgAsWEee7Pf9NBZ-mcQ" name="gluton-free"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_SBSFoAsWEee7Pf9NBZ-mcQ" client="_LbqcgAsWEee7Pf9NBZ-mcQ" supplier="_GtoAEAsWEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_Spq7UAsWEee7Pf9NBZ-mcQ" client="_I0Q8cAsWEee7Pf9NBZ-mcQ" supplier="_GtoAEAsWEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_TOT5cAsWEee7Pf9NBZ-mcQ" client="_HdLNsAsWEee7Pf9NBZ-mcQ" supplier="_GtoAEAsWEee7Pf9NBZ-mcQ"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_Yp5_cAsWEee7Pf9NBZ-mcQ" name="1" client="_GtoAEAsWEee7Pf9NBZ-mcQ" supplier="_L7sc4AsVEee7Pf9NBZ-mcQ"/>
+</uml:Model>

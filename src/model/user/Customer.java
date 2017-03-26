@@ -5,6 +5,7 @@ import java.util.Date;
 
 import model.customer.*;
 import model.myfoodora.Message;
+import model.myfoodora.MessageBoard;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.ConcreteSpecialOfferBoard;
 import service.CustomerService;
@@ -35,12 +36,14 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.address = address;
 		this.email = email;
 		this.phone = phone;
+		this.balance = 0.0;
 		this.card = new StandardCard();
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
 	}
 
+	/** basic methods **/
 	public CustomerService getCustomerService() {
 		return customerService;
 	}
@@ -96,6 +99,7 @@ public class Customer extends User implements SpecialOfferObserver{
 				+ ", phone=" + phone + ".\n";
 	}
 	
+	/** observer/observable business methods **/
 	//update the special offers
 	@Override
 	public void updateSpecialOffer(ArrayList<SpecialOffer> specialoffers){
@@ -107,4 +111,30 @@ public class Customer extends User implements SpecialOfferObserver{
 	public void addSpecialOffer(SpecialOffer specialoffer) {
 		specialoffers.add(specialoffer);
 	}
+
+	@Override
+	public void update(Object o) {
+		super.update(o);
+	}
+
+	@Override
+	public void observe(Observable o) {
+
+		// complete when you need use it
+	}
+
+	@Override
+	public void observe(Observable obv, Object o) {
+		super.observe(obv, o);
+		if( obv instanceof MyFoodora ){
+			MessageBoard msgBoard = ((MyFoodora) obv).getMessageBoard();
+			if( o instanceof Boolean && (Boolean)o==true ){
+				msgBoard.addMessage(new Message("" + this.getUsername() + " agrees to be notified of special offers."));
+			}else if( o instanceof Boolean && (Boolean)o==false ){
+				msgBoard.addMessage(new Message("" + this.getUsername() + " refuses to be notified of special offers."));
+			}
+			System.out.println(msgBoard.getMessages().get(msgBoard.getMessages().size()-1));
+		}
+	}
+	
 }

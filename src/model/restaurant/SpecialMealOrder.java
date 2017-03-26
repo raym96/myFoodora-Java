@@ -12,7 +12,7 @@ public class SpecialMealOrder extends MealOrder{
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {
 		// TODO Auto-generated method stub
-		return 0;
+		return visitor.visit(this);
 	}
 	
 }

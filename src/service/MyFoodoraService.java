@@ -8,6 +8,7 @@ import model.user.*;
 
 public interface MyFoodoraService {
 		
+	/** myfoodora's specific services **/
 	// 1. setting of the service-fee, the markup percentage (\percentage de marge") and the
 	// delivery cost values
 	public void setServiceFee(double service_fee);
@@ -34,8 +35,13 @@ public interface MyFoodoraService {
 	public void applyTargetProfitPolicy(double targetProfit);
 	
 
-	// 6. Basic services that user's specific operations rely upon
 	
+	/** myfoodora's basic services provided to User's specific operations rely on **/
+
 	public User selectUser(String username);
 //	void askAgree2customers(String ask); <- what is this ?
+	
+	public void assignManager(Manager manager);
+	
+	public void askAgree2customers(String ask);
 }

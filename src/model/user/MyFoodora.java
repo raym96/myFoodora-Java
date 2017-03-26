@@ -10,6 +10,7 @@ import model.myfoodora.DeliveryPolicy;
 import model.myfoodora.DeliveryTask;
 import model.myfoodora.History;
 import model.myfoodora.Message;
+import model.myfoodora.MessageBoard;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.ConcreteSpecialOfferBoard;
 import model.myfoodora.TargetProfitPolicy;
@@ -21,7 +22,7 @@ import model.user.*;
 import service.MyFoodoraService;
 import service.impl.MyFoodoraServiceImpl;
 
-public class MyFoodora implements MessageBoardUser{
+public class MyFoodora implements Observable{
 	
 	private ArrayList<User> users;
 	private ArrayList<User> activeUsers;
@@ -55,6 +56,7 @@ public class MyFoodora implements MessageBoardUser{
 		this.activeUsers = new ArrayList<User>();
 		this.couriers = new ArrayList<Courier>();
 		this.activecouriers = new ArrayList<Courier>();
+		this.specialofferobservers = new ArrayList<Customer>();
 		this.delivery_task_state = false;
 		this.messageBoard = new MessageBoard(this);
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
@@ -208,6 +210,10 @@ public class MyFoodora implements MessageBoardUser{
 		return messageBoard;
 	}
 	
+	public void refreshMessageBoard(){
+		this.messageBoard.displayAllmsgs();
+	}
+	
 	public ArrayList<User> getUsersOfAssignedType(String userType){
 		ArrayList<User> usersOfType = new ArrayList<User>();
 		
@@ -252,17 +258,72 @@ public class MyFoodora implements MessageBoardUser{
 		this.targetprofitpolicy=tpp;
 	}
 
-	//the two following methods are the same because MyFoodora's msgboard = public msgboard
 	@Override
-	public void update(Message message) {
+	public synchronized void register(Observer obs) {
 		// TODO Auto-generated method stub
-		this.messageBoard.addMessage(message);
+		users.add((User)obs);
+		if(obs instanceof Courier){
+			couriers.add((Courier)obs);
+		}
+		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
 	}
 
 	@Override
-	public void updatePublic(Message message) {
+	public synchronized void unregister(Observer obs) {
 		// TODO Auto-generated method stub
-		this.messageBoard.addMessage(message);
+		users.remove((User)obs);
+		if(obs instanceof Courier){
+			couriers.remove((Courier)obs);
+		}
+		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
 	}
+
+	@Override
+	public void notifyAllObservers() {
+		// TODO Auto-generated method stub
+//		if (this.delivery_task_state){
+//			for (Observer ob : couriers){
+//				ob.update(this.deliveryTasks);
+//			}
+//			this.delivery_task_state=false;
+//		}
+	}
+
+	@Override
+	public void notifyAllObservers(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void notifyObserver(Observer obs) {
+		// TODO Auto-generated method stub
+//		if( obs instanceof Courier ){
+//			obs.update(this.currentDeliveryTask);
+//		}
+	}
+
+	@Override
+	public void notifyObserver(Observer obs, Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObservers(ArrayList<Observer> observers) {
+		// TODO Auto-generated method stub
+		if(observers.get(0) instanceof Customer){
+			
+		}
+	}
+
+	@Override
+	public void notifyObservers(ArrayList<User> observers, Object o) {
+		// TODO Auto-generated method stub
+		for(Observer obs : observers){
+			obs.update(o);
+		}
+	}
+	
 	
 }

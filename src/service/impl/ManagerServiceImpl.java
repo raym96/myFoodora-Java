@@ -149,5 +149,10 @@ public class ManagerServiceImpl implements ManagerService {
 		return manager.getMyfoodoraService().selectUser(username);
 	}
 
-
+	public void displayUsersOfAssignedType(String userType){
+		
+		ArrayList<User> users = MyFoodora.getInstance().getUsersOfAssignedType(userType);
+		System.out.println("--- " + userType + " ---");
+		System.out.println(users);
+	}
 }

@@ -54,6 +54,6 @@ public interface ManagerService {
 	public void displayUsers();
 	public void displayActiveUsers();
 	public User selectUser(String username) throws UserNotFoundException;
-
+	public void displayUsersOfAssignedType(String userType);
 	
 }

@@ -12,7 +12,7 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 			price += dish.getPrice();
 		}
 		double discount_factor = mealorder.getRestaurant().getSpecial_discount_factor();
-		return price*=discount_factor;
+		return price*=(1.0 - discount_factor);
 		
 	}
 	@Override
@@ -24,7 +24,7 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 			price += dish.getPrice();
 		}
 		discount_factor =  mealorder.getRestaurant().getGeneric_discount_factor();
-		return price*=discount_factor;
+		return price*=(1.0 - discount_factor);
 	}
 	
 

@@ -32,19 +32,19 @@ public class CustomerServiceImpl implements CustomerService {
 	public void addSpecialMealOrder(Restaurant r, String mealType, String mealName){
 		Order neworder = new SpecialMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName));
 		customer.getShoppingCart().addOrder(neworder);
-		customer.update(new Message(neworder+" has been added to your shopping cart !"));
+		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
 	
 	public void addStandardMealOrder(Restaurant r, String mealType, String mealName){
 		Order neworder = new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName));
 		customer.getShoppingCart().addOrder(neworder);
-		customer.update(new Message(neworder+" has been added to your shopping cart !"));
+		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
 
 	public void addAlaCarteOrder(Restaurant r, String dishName){
 		Order neworder = new AlaCarteOrder(customer,r,r.getRestaurantService().createDish(dishName));
 		customer.getShoppingCart().addOrder(neworder);
-		customer.update(new Message(neworder+" has been added to your shopping cart !"));
+		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 
 	}
 	
@@ -58,7 +58,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	public void pay(){
-		customer.setBalance(customer.getBalance() - calculatePrice());
+		double amount = calculatePrice();
+		customer.setBalance(customer.getBalance() - amount);
+		customer.update("paid for meal/dish = " + amount + ", balance = " + customer.getBalance());
+		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + amount);
 		//gets points for each 10 euros spent in the restaurant if client has PointCard
 		if (customer.getCard() instanceof PointCard){
 			((PointCard)customer.getCard()).addPoints(calculatePrice()/10);
@@ -120,7 +123,8 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		customer.setAgreeBeNotifiedSpecialoffers(true);
 		MyFoodora.getInstance().addSpecialOfferObserver(customer);
-		customer.updatePublic(new Message(customer.getUsername()+"agrees to be notified."));
+		customer.update("You agree to be notified.");
+		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
 	}
 
 
@@ -129,7 +133,8 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		customer.setAgreeBeNotifiedSpecialoffers(false);
 		MyFoodora.getInstance().removeSpecialOfferObserver(customer);
-		customer.updatePublic(new Message(customer.getUsername()+"refuses to be notified."));
+		customer.update("You refuse to be notified.");
+		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
 	}
 
 

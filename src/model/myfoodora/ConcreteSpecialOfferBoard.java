@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import model.customer.SpecialOfferObserver;
 import model.user.Customer;
-import model.user.MessageBoardUser;
+import model.user.Observer;
 import model.user.User;
 
 public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
@@ -47,7 +47,7 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	}
 
 	@Override
-	public void notifyObserver(MessageBoardUser obs) {
+	public void notifyObserver(Observer obs) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -70,13 +70,13 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	}
 
 	@Override
-	public void notifyObserver(MessageBoardUser obs, Object o) {
+	public void notifyObserver(Observer obs, Object o) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void notifyObservers(ArrayList<MessageBoardUser> observers) {
+	public void notifyObservers(ArrayList<Observer> observers) {
 		// TODO Auto-generated method stub
 		
 	}

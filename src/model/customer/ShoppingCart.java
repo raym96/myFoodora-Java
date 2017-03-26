@@ -7,6 +7,11 @@ import model.restaurant.Order;
 public class ShoppingCart {
 	private ArrayList<Order> orders;
 	
+	public ShoppingCart() {
+		super();
+		this.orders = new ArrayList<Order>();
+	}
+
 	public void addOrder(Order o){
 		orders.add(o);
 	}

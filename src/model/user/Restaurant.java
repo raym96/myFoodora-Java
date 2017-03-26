@@ -6,6 +6,7 @@ import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
 import model.myfoodora.History;
+import model.myfoodora.Message;
 import model.myfoodora.SpecialOfferBoard;
 import model.restaurant.*;
 import service.RestaurantService;
@@ -126,6 +127,24 @@ public class Restaurant extends User{
 	public void setGDF(double gdf) {
 		// TODO Auto-generated method stub
 		this.generic_discount_factor = gdf;
+	}
+
+	@Override
+	public void update(Object o) {
+		// TODO Auto-generated method stub
+		super.update(o);
+	}
+
+	@Override
+	public void observe(Observable o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void observe(Observable obv, Object o) {
+		// TODO Auto-generated method stub
+		super.observe(obv, o);
 	}
 
 	

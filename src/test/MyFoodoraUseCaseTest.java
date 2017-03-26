@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.util.Scanner;
 
 import org.junit.Before;
@@ -10,6 +8,7 @@ import org.junit.Test;
 import exceptions.UserNotFoundException;
 import model.myfoodora.*;
 import model.user.*;
+import service.ManagerService;
 import service.MyFoodoraService;
 import service.impl.MyFoodoraServiceImpl;
 
@@ -22,6 +21,7 @@ public class MyFoodoraUseCaseTest {
 	 **/
 	private MyFoodora myFoodora = MyFoodora.getInstance();
 	private MyFoodoraService commonMyFoodoraService = new MyFoodoraServiceImpl();
+	ManagerService managerService_director = null;
 	
 	
 	/*
@@ -57,42 +57,42 @@ public class MyFoodoraUseCaseTest {
 		Customer customer_7 = new Customer("Chu", "Jiu", "customer_7", new AddressPoint(106.0, 106.0), "chujiu@gmail.com", "+33 1 01 01 02 07");
 
 		// registering
-		ceo.registerOnFoodora();
-		director.registerOnFoodora();
-		restaurant_1.registerOnFoodora();
-		restaurant_2.registerOnFoodora();
-		restaurant_3.registerOnFoodora();
-		restaurant_4.registerOnFoodora();
-		restaurant_5.registerOnFoodora();
-		courier_1.registerOnFoodora();
-		courier_2.registerOnFoodora();
-		customer_1.registerOnFoodora();
-		customer_2.registerOnFoodora();
-		customer_3.registerOnFoodora();
-		customer_4.registerOnFoodora();
-		customer_5.registerOnFoodora();
-		customer_6.registerOnFoodora();
-		customer_7.registerOnFoodora();
-		// activiting
-		commonMyFoodoraService.activateUser(ceo);
-		commonMyFoodoraService.activateUser(director);
-		commonMyFoodoraService.activateUser(restaurant_1);
-		commonMyFoodoraService.activateUser(restaurant_2);
-		commonMyFoodoraService.activateUser(restaurant_3);
-		commonMyFoodoraService.activateUser(restaurant_4);
-		commonMyFoodoraService.activateUser(restaurant_5);
-		commonMyFoodoraService.activateUser(courier_1);
-		commonMyFoodoraService.activateUser(courier_2);
-		commonMyFoodoraService.activateUser(customer_1);
-		commonMyFoodoraService.activateUser(customer_2);
-		commonMyFoodoraService.activateUser(customer_3);
-		commonMyFoodoraService.activateUser(customer_4);
-		commonMyFoodoraService.activateUser(customer_5);
-		commonMyFoodoraService.activateUser(customer_6);
-		commonMyFoodoraService.activateUser(customer_7);
+		commonMyFoodoraService.assignManager(ceo);
+		commonMyFoodoraService.assignManager(director);
+		managerService_director = director.getManagerService();
+		managerService_director.addUser(restaurant_1);
+		managerService_director.addUser(restaurant_2);
+		managerService_director.addUser(restaurant_3);
+		managerService_director.addUser(restaurant_4);
+		managerService_director.addUser(restaurant_5);
+		managerService_director.addUser(courier_1);
+		managerService_director.addUser(courier_2);
+		managerService_director.addUser(customer_1);
+		managerService_director.addUser(customer_2);
+		managerService_director.addUser(customer_3);
+		managerService_director.addUser(customer_4);
+		managerService_director.addUser(customer_5);
+		managerService_director.addUser(customer_6);
+		managerService_director.addUser(customer_7);
 		
-		commonMyFoodoraService.displayUsers();
-		commonMyFoodoraService.displayActiveUsers();
+		// activiting
+		managerService_director.activateUser(restaurant_1);
+		managerService_director.activateUser(restaurant_2);
+		managerService_director.activateUser(restaurant_3);
+		managerService_director.activateUser(restaurant_4);
+		managerService_director.activateUser(restaurant_5);
+		managerService_director.activateUser(courier_1);
+		managerService_director.activateUser(courier_2);
+		managerService_director.activateUser(customer_1);
+		managerService_director.activateUser(customer_2);
+		managerService_director.activateUser(customer_3);
+		managerService_director.activateUser(customer_4);
+		managerService_director.activateUser(customer_5);
+		managerService_director.activateUser(customer_6);
+		managerService_director.activateUser(customer_7);
+
+		managerService_director.displayUsers();
+		managerService_director.displayActiveUsers();
 		
 		restaurant_1.getRestaurantService().displayMenu();
 		restaurant_1.getRestaurantService().displayMealMenu();
@@ -106,6 +106,10 @@ public class MyFoodoraUseCaseTest {
 		customer_5.getCustomerService().removeConsensusBeNotifiedSpecialOffers();
 		customer_6.getCustomerService().removeConsensusBeNotifiedSpecialOffers();
 		customer_7.getCustomerService().removeConsensusBeNotifiedSpecialOffers();
+		
+		myFoodora.refreshMessageBoard();
+		customer_1.refreshMessageBoard();
+		customer_7.refreshMessageBoard();
 	}
 
 	/*
@@ -114,7 +118,7 @@ public class MyFoodoraUseCaseTest {
 		2. the user inserts his first-name, his last-name, his username, his address, his birth-
 		date...
 		3. the user starts inserting a contact info with the type and the value (e.g. email, phone)
-		•	 the user repeats step 3 since he ends to inserts his contact info
+		鈥�	 the user repeats step 3 since he ends to inserts his contact info
 		4. if the user is a customer she sets the agreement about the special offer contact (by
 		default it is no)
 		5. the user is a customer selects the contact to be used to send the offers (by default it
@@ -170,7 +174,7 @@ public class MyFoodoraUseCaseTest {
 			break;
 		case 3:
 			user = new Courier(firstname, lastname, username, address_point, phone);
-			System.out.println("Please sets your current duty status. By default off-duty. Y:on-duty N；off-duty");
+			System.out.println("Please sets your current duty status. By default off-duty. Y:on-duty N锛沷ff-duty");
 			String status = s.nextLine();
 			if(status=="Y"){
 				((Courier)user).getCourierService().turnOnDuty();
@@ -185,21 +189,21 @@ public class MyFoodoraUseCaseTest {
 		System.out.println("Save ? Y/N");
 		String specify = s.nextLine();
 		if(specify=="Y"){
-			user.registerOnFoodora();
-			commonMyFoodoraService.activateUser(user);
-			commonMyFoodoraService.displayActiveUsers();
+			managerService_director.addUser(user);
+			managerService_director.activateUser(user);
+			managerService_director.displayActiveUsers();
 		}else if(specify=="N"){
 			
 		}
 	}
-	
-	/*
-	 * Login user
-		1. a user wants to login
-		2. the user inserts username and password
-		3. the system handles the login and presents to the user the available operations ac-
-		cording to his role
-	 */
+//	
+//	/*
+//	 * Login user
+//		1. a user wants to login
+//		2. the user inserts username and password
+//		3. the system handles the login and presents to the user the available operations ac-
+//		cording to his role
+//	 */
 //	@Test
 	public User testOfLoginUser(){
 		
@@ -209,9 +213,13 @@ public class MyFoodoraUseCaseTest {
 		System.out.println("--- Login in  ---");
 		Scanner s = new Scanner(System.in);
 		System.out.println("username = ");
-		String username = s.nextLine();
-		System.out.println("password = ");
-		String password = s.nextLine();
+//		String username = s.nextLine();
+		String username = "customer_1";
+		System.out.println(username);
+		System.out.println("password");
+//		String password = s.nextLine();
+		String password = "password";
+		System.out.println(password);
 			
 		User theUser = null;
 		for(User user : myFoodora.getUsers()){
@@ -219,25 +227,25 @@ public class MyFoodoraUseCaseTest {
 				theUser = user;
 				user.logIn();
 				break;
-//				user.loginOut();
+//				user.logOut();
 			}
 		}
 		
 		return theUser;
 	}
-	
-	/*
-	 * Ordering a meal
-		1. a client start using the system because she wants to order a meal
-		2. the client inserts his credentials (username and password)
-		3. the system recognizes the client and proposes the available restaurants
-		4. the client select a restaurant and compose an order either by selecting dishes a la
-		carte or by selecting meals from the restaurant menu. For each item in the order the
-		client specifies the quantity.
-		5. Once the order is completed the client selects the end
-		6. the system shows the summary of the ordered dishes and the total price of the order
-		taking into account the pricing rules
-	 */
+//	
+//	/*
+//	 * Ordering a meal
+//		1. a client start using the system because she wants to order a meal
+//		2. the client inserts his credentials (username and password)
+//		3. the system recognizes the client and proposes the available restaurants
+//		4. the client select a restaurant and compose an order either by selecting dishes a la
+//		carte or by selecting meals from the restaurant menu. For each item in the order the
+//		client specifies the quantity.
+//		5. Once the order is completed the client selects the end
+//		6. the system shows the summary of the ordered dishes and the total price of the order
+//		taking into account the pricing rules
+//	 */
 	@Test
 	public void testOfOrderingMeal(){
 		
@@ -245,10 +253,12 @@ public class MyFoodoraUseCaseTest {
 		
 		User user = testOfLoginUser();
 		if( user!=null && user instanceof Customer){
-			commonMyFoodoraService.displayUsersOfAssignedType("RESTAURANT");
+			managerService_director.displayUsersOfAssignedType("RESTAURANT");
 			System.out.println("Please select a restaurant by username.");
 			Scanner s = new Scanner(System.in);
-			String restaurant_username = s.nextLine();
+//			String restaurant_username = s.nextLine();
+			String restaurant_username = "restaurant_2";
+			System.out.println(restaurant_username);
 			Restaurant restaurant = null;
 			if( (restaurant=(Restaurant)commonMyFoodoraService.selectUser(restaurant_username)) != null ){
 				restaurant.getRestaurantService().displayMenu();
@@ -257,8 +267,9 @@ public class MyFoodoraUseCaseTest {
 				System.out.println("Please select meals/dishs by meal/dish name, end with '#' ");
 				// here we just test meal
 				String mealname = s.nextLine();
-				while(mealname!="#"){
+				while(!(mealname.equals("#"))){
 					((Customer)user).getCustomerService().addStandardMealOrder(restaurant, "Full_meal", mealname);
+					mealname = s.nextLine();
 				}
 				((Customer)user).getCustomerService().pay();
 				((Customer)user).getCustomerService().clearShoppingCart();
@@ -266,37 +277,37 @@ public class MyFoodoraUseCaseTest {
 		}
 	}
 	
-	/*
-	 * Inserting a meal or dish in a restaurant menu
-		1. a restaurant person start using the system because she wants to insert a new meal
-		2. she inserts the restaurant credentials (username and password)
-		3. the system recognizes the restaurant and shows the list of dishes and meals in the
-		menu
-		4. the restaurant selects the insert new meal (or dish) operations
-		5. the restaurant inserts the name of the new meal (or dish) to be added and specify
-		whether it is an half-meal or a full-meal or a meal-of-the-week
-		6. in case of a dish the restaurant specify the unit price and the category its category
-		(starter, main dish, dessert)
-		7. in case of meal
-		• the restaurant inserts the dishes of the meal
-		• the restaurant compute and save the price of the meal
-		8. the restaurant saves the new created meal (or dish) in the menu
-	 */
-	public void testOfInsertMealDish2menu(){
-		
-		System.out.println("----------------------- Insert a meal/dish in a restaurant menu -----------------------");
-	}
-	
-	/*
-	 * Adding a meal of the week special oer
-		1. a restaurant sta starts using the system and inserts the restaurant credentials
-		2. the system shows all restaurant's available meals
-		3. the restaurant selects the meal to be set as meal of the week
-		4. the system automatically updates the price of selected meal of the week, by application
-		of special discount factor
-		5. the system noties the users (that agreed to be notied of special oers) about the
-		new offer
-	 */
+//	/*
+//	 * Inserting a meal or dish in a restaurant menu
+//		1. a restaurant person start using the system because she wants to insert a new meal
+//		2. she inserts the restaurant credentials (username and password)
+//		3. the system recognizes the restaurant and shows the list of dishes and meals in the
+//		menu
+//		4. the restaurant selects the insert new meal (or dish) operations
+//		5. the restaurant inserts the name of the new meal (or dish) to be added and specify
+//		whether it is an half-meal or a full-meal or a meal-of-the-week
+//		6. in case of a dish the restaurant specify the unit price and the category its category
+//		(starter, main dish, dessert)
+//		7. in case of meal
+//		鈥� the restaurant inserts the dishes of the meal
+//		鈥� the restaurant compute and save the price of the meal
+//		8. the restaurant saves the new created meal (or dish) in the menu
+//	 */
+//	public void testOfInsertMealDish2menu(){
+//		
+//		System.out.println("----------------------- Insert a meal/dish in a restaurant menu -----------------------");
+//	}
+//	
+//	/*
+//	 * Adding a meal of the week special oer
+//		1. a restaurant sta starts using the system and inserts the restaurant credentials
+//		2. the system shows all restaurant's available meals
+//		3. the restaurant selects the meal to be set as meal of the week
+//		4. the system automatically updates the price of selected meal of the week, by application
+//		of special discount factor
+//		5. the system noties the users (that agreed to be notied of special oers) about the
+//		new offer
+//	 */
 	public void testOfAddMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Adding a meal of the week special offer -----------------------");
