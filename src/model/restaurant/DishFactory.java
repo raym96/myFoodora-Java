@@ -17,17 +17,17 @@ public class DishFactory {
 	public Dish createDish(String dishName) throws DishNotFoundException{
 		// TODO Auto-generated method stub
 		for (Starter st : this.menu.getStarters()){
-			if (st.getDishName()==dishName){
+			if (st.getDishName().equals(dishName)){
 				return st.makeCopy();
 			}
 		}
 		for (MainDish md : this.menu.getMaindishes()){
-			if (md.getDishName()==dishName){
+			if (md.getDishName().equals(dishName)){
 				return md.makeCopy();
 			}
 		}
 		for (Dessert ds : this.menu.getDesserts()){
-			if (ds.getDishName()==dishName){
+			if (ds.getDishName().equals(dishName)){
 				return ds.makeCopy();
 			}
 		}

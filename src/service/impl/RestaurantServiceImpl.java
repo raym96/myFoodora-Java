@@ -1,5 +1,6 @@
 package service.impl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import exceptions.DishNotFoundException;
@@ -34,14 +35,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 			// TODO Auto-generated method stub
 			//add/remove a dish to the menu
 			restaurant.getMenu().addDish(dish);
-			System.out.println(dish.getDishName() + " successfully added to the menu");	
+			System.out.println(dish + " added to the menu");	
 		}
 
 		@Override
 		public void removeDish(String dishName) {
 			// TODO Auto-generated method stub
 			restaurant.getMenu().removeDish(dishName);
-			System.out.println(dishName + " successfully removed from the menu");
+			System.out.println(dishName + " removed from the menu");
 
 		}
 
@@ -65,6 +66,20 @@ public class RestaurantServiceImpl implements RestaurantService {
 	// 2. creating/removing different meals (half or full meal, vegetarian, gluten-free
 	// and/or standard meals).
 	@Override
+	public void addMeal(Meal meal) {
+		// TODO Auto-generated method stub
+		if (meal instanceof HalfMeal){
+			restaurant.getHalfMealMenu().addMeal(meal);
+		}
+		if (meal instanceof FullMeal){
+			restaurant.getFullMealMenu().addMeal(meal);
+		}
+		System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu");
+	}
+		
+		
+		
+	@Override
 	public void addMeal(String mealname, String dishname1, String dishname2) {
 		// TODO Auto-generated method stub
 		//Add  a meal to the meal menu.
@@ -81,27 +96,27 @@ public class RestaurantServiceImpl implements RestaurantService {
 		double st_ds_count=0;
 		Meal meal = new HalfMeal(mealname);
 		for (Dish starter:restaurant.getMenu().getStarters()){
-			if (starter.getDishName()==dishname1 || starter.getDishName()==dishname2){
+			if (starter.getDishName().equals(dishname1) || starter.getDishName().equals(dishname2)){
 				meal.addDish(starter);
 				st_ds_count++;
 			}
 		}
 		for (Dish maindish:restaurant.getMenu().getMaindishes()){
-			if (maindish.getDishName()==dishname1 || maindish.getDishName()==dishname2){
+			if (maindish.getDishName().equals(dishname1) || maindish.getDishName().equals(dishname2)){
 				meal.addDish(maindish);
 				md_count++;
 			}
 		}
 		for (Dish dessert:restaurant.getMenu().getDesserts()){
-			if (dessert.getDishName()==dishname1 || dessert.getDishName()==dishname2){
+			if (dessert.getDishName().equals(dishname1) || dessert.getDishName().equals(dishname2)){
 				meal.addDish(dessert);
 				st_ds_count++;
 			}
 		}
 		if (md_count==1 && st_ds_count==1){
 			meal.refreshMealType();
-			restaurant.getMealMenu().addMeal(meal);
-			System.out.println("Formula " +mealname + " successfully added to the meal-menu");
+			restaurant.getHalfMealMenu().addMeal(meal);
+			System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu");
 		}
 		else{
 			throw new DishTypeErrorException("half meal");
@@ -129,24 +144,24 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 			Meal meal = new FullMeal(mealname);
 			for (Dish starter:restaurant.getMenu().getStarters()){
-				if (starter.getDishName()==startername){
+				if (starter.getDishName().contentEquals(startername)){
 					meal.addDish(starter);
 				}
 			}
 			for (Dish maindish:restaurant.getMenu().getMaindishes()){
-				if (maindish.getDishName()==maindishname){
+				if (maindish.getDishName().equals(maindishname)){
 					meal.addDish(maindish);
 				}
 			}
 			for (Dish dessert:restaurant.getMenu().getDesserts()){
-				if (dessert.getDishName()==dessertname){
+				if (dessert.getDishName().equals(dessertname)){
 					meal.addDish(dessert);
 				}
 			}
 			if (meal.getDishes().size()==3){
 				meal.refreshMealType();
-				this.restaurant.getMealMenu().addMeal(meal);
-				System.out.println("Formula " +meal.getMealType()+" "+mealname + " successfully added to the meal-menu");
+				this.restaurant.getFullMealMenu().addMeal(meal);
+				System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu");
 			}
 			else {
 				throw new DishTypeErrorException("full meal");
@@ -178,7 +193,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void removeMeal(String mealName) {
 		// TODO Auto-generated method stub
 		//Remove a meal from the meal menu
-		restaurant.getMealMenu().removeMeal(mealName);
+		ArrayList<Meal>halfmeals = restaurant.getHalfMealMenu().getMeals();
+		ArrayList<Meal>fullmeals = restaurant.getFullMealMenu().getMeals();
+		for(int i=0; i<halfmeals.size(); i++){
+			if( halfmeals.get(i).getName() == mealName ){
+				halfmeals.remove(i);
+			}
+		}
+		for(int i=0; i<fullmeals.size(); i++){
+			if( fullmeals.get(i).getName() == mealName ){
+				fullmeals.remove(i);
+			}
+		}
 		System.out.println(mealName + " successfully removed from the meal-menu");
 	}
 
@@ -191,17 +217,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 		//throw exception if meal name is not recognized
 		try{
 			int count=0;
-			for (Iterator<HalfMeal> iter = restaurant.getMealMenu().getHalfMealMenu().iterator();iter.hasNext();){
+			for (Iterator<Meal> iter = restaurant.getHalfMealMenu().getMeals().iterator();iter.hasNext();){
 				Meal hm = iter.next();
-				if (hm.getName()==mealName){
+				if (hm.getName().equals(mealName)){
+					iter.remove();
 					restaurant.getSpecialmealmenu().addMeal(hm);
 					System.out.println(mealName + " has been added to the special-offer menu");
 					count++;
 				}
 			}
-			for (Iterator<FullMeal> iter = restaurant.getMealMenu().getFullMealMenu().iterator();iter.hasNext();){
+			for (Iterator<Meal> iter = restaurant.getFullMealMenu().getMeals().iterator();iter.hasNext();){
 				Meal fm = iter.next();
-				if (fm.getName()==mealName){
+				if (fm.getName().equals(mealName)){
+					iter.remove();
 					restaurant.getSpecialmealmenu().addMeal(fm);
 					System.out.println(mealName + " has been added to the special-offer menu");
 					count++;
@@ -218,8 +246,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		for (Iterator<Meal> iter = restaurant.getSpecialmealmenu().getMeals().iterator();iter.hasNext();){
 			Meal sm = iter.next();
-			if (sm.getName()==mealName){
+			if (sm.getName().equals(mealName)){
 				iter.remove();
+				restaurant.getRestaurantService().addMeal(sm);
 				System.out.println(mealName+" has been removed from the special-offer menu");
 			}
 		
@@ -232,6 +261,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void setGenericDiscountFactor(double generic_discount_factor) {
 		// TODO Auto-generated method stub
 		restaurant.setGDF(generic_discount_factor);
+		restaurant.updatePrice();
 	}
 
 	// 4. establishing the special discount factor (default 10%) to apply to the meal-of-
@@ -240,6 +270,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void setSpecialDiscountFactor(double special_discount_factor) {
 		// TODO Auto-generated method stub
 		restaurant.setSDF(special_discount_factor);
+		restaurant.updatePrice();
 	}
 
 	// 5. sorting of shipped orders with respect to different criteria (see below)
@@ -267,7 +298,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.getHistory().DisplayLeastOrderedAlaCarte(restaurant);
 	}
 	
-	// extra tools
+	
+	// EXTRA TOOLS
 	@Override
 	public void addToHistory(Order order) {
 		// TODO Auto-generated method stub
@@ -283,16 +315,25 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void displayMealMenu() {
 		// TODO Auto-generated method stub
-		System.out.println("difference");
-		System.out.println("Meal menu:");
-		System.out.println("Half-Meals: " + restaurant.getMealMenu().getHalfMealMenu());
-		System.out.println("Full-Meals: " + restaurant.getMealMenu().getFullMealMenu());
+		System.out.println("\n"+"----- Meal menu -----");
+		System.out.println("\nHalf-Meals:");
+		restaurant.getHalfMealMenu().display();
+		System.out.println("\nFull-Meals:");
+		restaurant.getFullMealMenu().display();
 	}
 
 	@Override
 	public void displaySpecialMenu(){
 		// TODO Auto-generated method stub
-		System.out.println("Special-offers: " + restaurant.getSpecialmealmenu().getMeals() );
+		System.out.println("\n----- Special Offers -----\n");
+		restaurant.getSpecialmealmenu().display();
+	}
+	
+	@Override
+	public void displayAllMenu(){
+		displayMenu();
+		displayMealMenu();
+		displaySpecialMenu();
 	}
 
 	@Override
@@ -305,4 +346,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void sortingShippedOrders() {
 		// TODO Auto-generated method stub
 	}
+
+
 }

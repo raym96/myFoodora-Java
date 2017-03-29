@@ -80,7 +80,7 @@ public class Menu {
 	
 	public boolean hasDish(String dishName){
 		for (Dish dish : this.getDishes()) {
-			if (dish.getDishName()==dishName){
+			if (dish.getDishName().equals(dishName)){
 				return true;
 			}
 		}
@@ -88,10 +88,19 @@ public class Menu {
 	}
 	
 	public void display(){
-		System.out.println("\nMenu:");
-		System.out.println("Starters: " +this.getStarters());
-		System.out.println("Main-dishes: " +this.getMaindishes());
-		System.out.println("Desserts: " +this.getDesserts());
+		System.out.println("\n-----Menu-----");
+		System.out.println("\nStarters:");
+		for (Dish dish:this.getStarters()){
+			System.out.println(dish);
+		}
+		System.out.println("\nMain-dishes:");
+		for (Dish dish:this.getMaindishes()){
+			System.out.println(dish);
+		}
+		System.out.println("\nDesserts:");
+		for (Dish dish:this.getDesserts()){
+			System.out.println(dish);
+		}
 	}
 	
 }

@@ -2,6 +2,7 @@ package service;
 
 import model.restaurant.Dish;
 import model.restaurant.DishFactory;
+import model.restaurant.HalfMeal;
 import model.restaurant.Meal;
 import model.restaurant.Order;
 
@@ -17,7 +18,10 @@ public interface RestaurantService {
 	// and/or standard meals).
 	// Add  a meal to the meal menu.
 	// Error occurs when dish name is not recognized or when dish types don't match
-	// Half-meal
+	// 2 ways to add a meal : from a existing Meal object or create a new meal
+	// from a existing meal object:
+	public void addMeal(Meal meal);
+	//Half-meal
 	public void addMeal(String mealname, String dishname1, String dishname2);
 	//Full-meal
 	public void addMeal(String mealname, String startername, String maindishname,String dessertname);
@@ -49,9 +53,8 @@ public interface RestaurantService {
 	// #. extra tool methods
 	public void addToHistory(Order order);
 	public void displayMenu();
-	
 	public void displayMealMenu();
-	
 	public void displaySpecialMenu();
+	public void displayAllMenu();
 	
 }

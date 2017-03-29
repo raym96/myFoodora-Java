@@ -3,11 +3,14 @@ package model.restaurant;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import model.user.Restaurant;
+
 public abstract class Meal {
 
 	protected String name;
 	protected ArrayList<Dish> dishes;
-	protected double rawprice;
+	protected double rawprice; //sum of the prices of the dishes
+	protected double price; //rawprice adjusted by the discount factor. Undefined if the meal is not in a meal menu
 	
 	//standard,vegetarian,gluten-free
 	protected String mealType;
@@ -63,15 +66,23 @@ public abstract class Meal {
 	public String getType(){
 		return mealType;
 	}
-	public double getPrice() {
+	public double getRawprice() {
 		return rawprice;
+	}
+	
+	public double getPrice(){
+		return price;
+	}
+	
+	public void setPrice(double price){
+		this.price = price;
 	}
 
 	@Override
 	public String toString() {
 		String str;
 		//the stream.map.collector allows to collect only dishnames
-		str = "Formula type "+ getType()+" '" +getName() + "' " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList());
+		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+"€";
 		return str;
 	}
 }

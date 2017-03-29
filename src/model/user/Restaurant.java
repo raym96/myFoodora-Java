@@ -16,12 +16,17 @@ public class Restaurant extends User{
 
 	private String name;
 	private AddressPoint address;
+	
+	
 	private double generic_discount_factor = 0.05;
 	private double special_discount_factor = 0.1;
+	private boolean gdf_changed;
+	private boolean sdf_changed; //small observer pattern with mealmenus
 	
 	private Menu menu;
-	private MealMenu mealmenu;
-	private SpecialMealMenu specialmealmenu;
+	private MealMenu halfmealmenu;
+	private MealMenu fullmealmenu;
+	private MealMenu specialmealmenu;
 	
 	private History history;
 	
@@ -33,11 +38,28 @@ public class Restaurant extends User{
 		this.name = name;
 		this.address = address;
 		menu = new Menu();
-		mealmenu = new MealMenu();
-		specialmealmenu = new SpecialMealMenu();
+		halfmealmenu = new MealMenu(generic_discount_factor);
+		fullmealmenu = new MealMenu(generic_discount_factor);
+		specialmealmenu = new MealMenu(special_discount_factor);
 		history = new History();
 		
+		gdf_changed = false;
+		sdf_changed = false;
+		
 		restaurantService = new RestaurantServiceImpl(this);
+		
+		initMenu(); //for tests and make sure that there is at least 1 special meal
+	}
+	
+	public void initMenu(){
+		restaurantService.addMeal(new HalfMeal("Salade-poulet", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5)));
+		restaurantService.addMeal(new HalfMeal("Poulet-glace", new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addMeal(new HalfMeal("McThirst", new MainDish("Cheeseburger","standard",1.5),new Dessert("French Fries","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("Salade-poulet-glace", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("Salade-beef-glace", new Starter("salade","standard",1.5),new MainDish("beef","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("Salade-pasta-cafe", new Starter("salade","standard",1.5),new MainDish("pasta","standard",1.5),new Dessert("cafe","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("sausage-macaroni-glace", new Starter("sausage","standard",1.5),new MainDish("macaroni","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addSpecialMeal("Salade-poulet");
 	}
 	
 	public RestaurantService getRestaurantService() {
@@ -50,9 +72,9 @@ public class Restaurant extends User{
 	
 	public MealFactory getMealFactory(String mealType){
 		if(mealType.equals("Full_meal")){
-			return new FullMealFactory(mealmenu);
+			return new FullMealFactory(fullmealmenu);
 		}else if(mealType.equals("Half_meal")){
-			return new HalfMealFactory(mealmenu);
+			return new HalfMealFactory(halfmealmenu);
 		}
 		return null;
 	}
@@ -61,20 +83,25 @@ public class Restaurant extends User{
 		return menu;
 	}
 
-	public MealMenu getMealMenu() {
-		return mealmenu;
+	public MealMenu getHalfMealMenu() {
+		return halfmealmenu;
 	}
-	
+	public MealMenu getFullMealMenu(){
+		return fullmealmenu;
+	}
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
 
 
-	public void setMealmenu(MealMenu mealmenu) {
-		this.mealmenu = mealmenu;
+	public void setHalfMealmenu(MealMenu mealmenu) {
+		this.halfmealmenu = mealmenu;
 	}
-
+	
+	public void setFullMealmenu(MealMenu mealmenu){
+		this.fullmealmenu=mealmenu;
+	}
 
 	public double getGeneric_discount_factor() {
 		return generic_discount_factor;
@@ -99,7 +126,7 @@ public class Restaurant extends User{
 		return address;
 	}
 
-	public SpecialMealMenu getSpecialmealmenu() {
+	public MealMenu getSpecialmealmenu() {
 		return specialmealmenu;
 	}
 
@@ -122,13 +149,29 @@ public class Restaurant extends User{
 	public void setSDF(double sdf) {
 		// TODO Auto-generated method stub
 		this.special_discount_factor = sdf;
+		this.sdf_changed = true;
 	}
 
 	public void setGDF(double gdf) {
 		// TODO Auto-generated method stub
 		this.generic_discount_factor = gdf;
+		this.gdf_changed = true;
 	}
 
+	public void updatePrice(){ 
+		//Update the discount factor of the menus and therefore the price of the meals
+		if (gdf_changed){
+			this.fullmealmenu.setDiscountFactor(generic_discount_factor);
+			this.halfmealmenu.setDiscountFactor(generic_discount_factor);
+			gdf_changed = false;
+		}
+		if (sdf_changed){
+			this.specialmealmenu.setDiscountFactor(special_discount_factor);
+			sdf_changed = false;
+		}
+	}
+	
+	
 	@Override
 	public void update(Object o) {
 		// TODO Auto-generated method stub

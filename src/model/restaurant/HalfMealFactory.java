@@ -11,8 +11,8 @@ public class HalfMealFactory extends MealFactory {
 	@Override
 	public HalfMeal createMeal(String mealName) throws MealNotFoundException{
 		// TODO Auto-generated method stub
-		for (HalfMeal halfmeal : this.mealmenu.getHalfMealMenu()){
-			if (halfmeal.getName()==mealName){
+		for (Meal halfmeal : this.mealmenu.getMeals()){
+			if (halfmeal.getName().equals(mealName)){
 				return new HalfMeal(halfmeal);
 			}
 		}

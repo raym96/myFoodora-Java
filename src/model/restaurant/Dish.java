@@ -17,7 +17,8 @@ public abstract class Dish {
 		this.dishType = dishType;
 		this.price = price;
 	}
-
+	
+	
 	//Copy constructor
 	protected abstract Dish makeCopy();
 	
@@ -53,7 +54,7 @@ public abstract class Dish {
 	}
 	
 	public String toString() {
-		return dishName +" " + price + "€ " + dishType;
+		return "<"+ dishName +"> " + dishType+ " " + price + "€ ";
 	}
 	
 }

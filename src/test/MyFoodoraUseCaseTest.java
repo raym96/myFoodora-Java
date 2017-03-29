@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import exceptions.UserNotFoundException;
 import model.myfoodora.*;
+import model.restaurant.*;
 import model.user.*;
 import service.ManagerService;
 import service.MyFoodoraService;
@@ -205,16 +206,16 @@ public class MyFoodoraUseCaseTest {
 //		cording to his role
 //	 */
 //	@Test
-	public User testOfLoginUser(){
+	public User testOfLoginUser(String username){
 		
 		System.out.println("----------------------- Login User -----------------------");
 		
 		// the default password of all users is "password" now
 		System.out.println("--- Login in  ---");
 		Scanner s = new Scanner(System.in);
-		System.out.println("username = ");
+//		System.out.println("username = ");
 //		String username = s.nextLine();
-		String username = "customer_1";
+//		String username = "customer_1";
 		System.out.println(username);
 		System.out.println("password");
 //		String password = s.nextLine();
@@ -246,12 +247,12 @@ public class MyFoodoraUseCaseTest {
 //		6. the system shows the summary of the ordered dishes and the total price of the order
 //		taking into account the pricing rules
 //	 */
-	@Test
+//	@Test
 	public void testOfOrderingMeal(){
 		
 		System.out.println("----------------------- Ordering a meal -----------------------");
 		
-		User user = testOfLoginUser();
+		User user = testOfLoginUser("customer_1");
 		if( user!=null && user instanceof Customer){
 			managerService_director.displayUsersOfAssignedType("RESTAURANT");
 			System.out.println("Please select a restaurant by username.");
@@ -277,28 +278,85 @@ public class MyFoodoraUseCaseTest {
 		}
 	}
 	
-//	/*
-//	 * Inserting a meal or dish in a restaurant menu
-//		1. a restaurant person start using the system because she wants to insert a new meal
-//		2. she inserts the restaurant credentials (username and password)
-//		3. the system recognizes the restaurant and shows the list of dishes and meals in the
-//		menu
-//		4. the restaurant selects the insert new meal (or dish) operations
-//		5. the restaurant inserts the name of the new meal (or dish) to be added and specify
-//		whether it is an half-meal or a full-meal or a meal-of-the-week
-//		6. in case of a dish the restaurant specify the unit price and the category its category
-//		(starter, main dish, dessert)
-//		7. in case of meal
-//		鈥� the restaurant inserts the dishes of the meal
-//		鈥� the restaurant compute and save the price of the meal
-//		8. the restaurant saves the new created meal (or dish) in the menu
-//	 */
-//	public void testOfInsertMealDish2menu(){
-//		
-//		System.out.println("----------------------- Insert a meal/dish in a restaurant menu -----------------------");
-//	}
-//	
-//	/*
+	/*
+	 * Inserting a meal or dish in a restaurant menu
+		1. a restaurant person start using the system because she wants to insert a new meal
+		2. she inserts the restaurant credentials (username and password)
+		3. the system recognizes the restaurant and shows the list of dishes and meals in the
+		menu
+		4. the restaurant selects the insert new meal (or dish) operations
+		5. the restaurant inserts the name of the new meal (or dish) to be added and specify
+		whether it is an half-meal or a full-meal or a meal-of-the-week
+		6. in case of a dish the restaurant specify the unit price and the category its category
+		(starter, main dish, dessert)
+		7. in case of meal
+		鈥� the restaurant inserts the dishes of the meal
+		鈥� the restaurant compute and save the price of the meal
+		8. the restaurant saves the new created meal (or dish) in the menu
+	 */
+//	@Test
+	public void testOfInsertMealDish2menu(){
+		
+		System.out.println("----------------------- Insert a meal/dish in a restaurant menu -----------------------");
+		User user = testOfLoginUser("restaurant_1");
+		if (user!=null && user instanceof Restaurant){
+			Restaurant restaurant = (Restaurant)user;
+			restaurant.getRestaurantService().displayMenu();
+			restaurant.getRestaurantService().displayMealMenu();
+			
+			System.out.println("Please choose your operation: \n"+"1.add a dish 2.add a meal");
+			Scanner s = new Scanner(System.in);
+			int choice = s.nextInt();
+			s.nextLine();
+			if (choice==1){
+				System.out.println("Please enter the name of the dish you want to add.");
+				String dishName = s.nextLine();
+				System.out.println("Please enter the price of the dish");
+				Double price = s.nextDouble();
+				s.nextLine();
+				System.out.println("Please specify the type of the dish: \n" + "standard ; vegetarian ; gluten-free");
+				String dishType = s.nextLine();
+				System.out.println("Please specify the category of the dish by entering its number: \n"+"1. starter 2. main-dish  3. dessert");
+				int category = s.nextInt();
+				s.nextLine();
+				switch(category){
+				case 1: 
+					restaurant.getRestaurantService().addDish(new Starter(dishName,dishType,price));
+					break;
+				case 2:
+					restaurant.getRestaurantService().addDish(new MainDish(dishName,dishType,price));
+					break;
+				case 3:
+					restaurant.getRestaurantService().addDish(new Dessert(dishName,dishType,price));
+					break;
+				}
+				restaurant.getRestaurantService().displayMenu();
+			}
+			if (choice==2){
+				System.out.println("Please enter the name of the meal you want to add.");
+				String mealname = s.nextLine();
+				System.out.println("Please choose the type of the meal: \n"+"1.Half-meal 2.Full-meal");
+				int mealType = s.nextInt();
+				s.nextLine();
+				System.out.println("Please enter the names of the dishes of the meal. You may enter 2 or 3 meal names, for respectively a half-meal or a full-meal.");
+				String dishname1 = s.nextLine();
+				String dishname2 = s.nextLine();
+				if (mealType ==1){
+					restaurant.getRestaurantService().addMeal(mealname, dishname1, dishname2);
+				}
+				else{
+					String dishname3 = s.nextLine();
+					restaurant.getRestaurantService().addMeal(mealname,dishname1,dishname2,dishname3);
+				}
+				restaurant.getRestaurantService().displayMealMenu();
+			}
+		//lacks the price mechanism, to be completed...
+		}
+	}
+	
+
+	
+	/*
 //	 * Adding a meal of the week special oer
 //		1. a restaurant sta starts using the system and inserts the restaurant credentials
 //		2. the system shows all restaurant's available meals
@@ -308,9 +366,23 @@ public class MyFoodoraUseCaseTest {
 //		5. the system noties the users (that agreed to be notied of special oers) about the
 //		new offer
 //	 */
+	@Test
 	public void testOfAddMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Adding a meal of the week special offer -----------------------");
+		User user = testOfLoginUser("restaurant_1");
+		if (user!=null && user instanceof Restaurant){
+			Restaurant restaurant = (Restaurant)user;
+			restaurant.getRestaurantService().displayMenu();
+			restaurant.getRestaurantService().displayMealMenu();
+			Scanner s = new Scanner(System.in);
+			System.out.println("Please enter the name of the meal to be upgraded as meal-of-the-week");
+			String mealname = s.nextLine();
+			restaurant.getRestaurantService().addSpecialMeal(mealname);
+			//the price is automatically updated when adding the meal to the special menu
+//			restaurant.getRestaurantService().displayAllMenu();
+			restaurant.getRestaurantService().notifyAll();
+		}
 	}
 	
 	/*
@@ -320,8 +392,19 @@ public class MyFoodoraUseCaseTest {
 		3. the restaurant selects a meal in the meal of the week list and selects the remove from
 		its special offer state.
 	 */
+//	@Test
 	public void testOfRemoveMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Removing a meal of the week special offer -----------------------");
+		System.out.println("----------------------- Adding a meal of the week special offer -----------------------");
+		User user = testOfLoginUser("restaurant_1");
+		if (user!=null && user instanceof Restaurant){
+			Restaurant restaurant = (Restaurant)user;
+			restaurant.getRestaurantService().displaySpecialMenu();
+			Scanner s = new Scanner(System.in);
+			System.out.println("Please enter the name of the meal to be removed from the meal-of-the-week list");
+			String mealname = s.nextLine();
+			restaurant.getRestaurantService().removeSpecialMeal(mealname);
+	}
 	}
 }

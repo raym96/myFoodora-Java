@@ -7,24 +7,19 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	private Restaurant restaurant;
 	
 	public double visit(SpecialMealOrder mealorder){
-		double price = 0;
-		for (Dish dish:mealorder.getMeal().getDishes()){
-			price += dish.getPrice();
-		}
+		double price = mealorder.getMeal().getRawprice();
 		double discount_factor = mealorder.getRestaurant().getSpecial_discount_factor();
-		return price*=(1.0 - discount_factor);
+		price*=(1.0 - discount_factor);
+		return Math.floor(price*100)/100;
 		
 	}
 	@Override
 	public double visit(StandardMealOrder mealorder) {
 		// TODO Auto-generated method stub
-		double price = 0;
-		double discount_factor = 0;
-		for (Dish dish:mealorder.getMeal().getDishes()){
-			price += dish.getPrice();
-		}
-		discount_factor =  mealorder.getRestaurant().getGeneric_discount_factor();
-		return price*=(1.0 - discount_factor);
+		double price = mealorder.getMeal().getRawprice();
+		double discount_factor =  mealorder.getRestaurant().getGeneric_discount_factor();
+		price*=(1.0 - discount_factor);
+		return Math.floor(price*100)/100;
 	}
 	
 

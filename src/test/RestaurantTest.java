@@ -53,7 +53,7 @@ public class RestaurantTest {
 	 * 2. see whether the menu has a dish using his name : hasDish()
 	 * 3. copy dishes using dishFactory binded to the menu : createDish()
 	 */
-	@Test
+//	@Test
 	public void menuOperations(){
 		
 		System.out.println("\n----------------------- menuOperations -----------------------");
@@ -109,7 +109,7 @@ public class RestaurantTest {
 		
 		System.out.println("\n----------------------- mealOperations -----------------------");
 		
-//		initiateRestaurant();
+		initiateRestaurant();
 		
 		restaurantService.addMeal("new meal 1", "foie gras", "poulet");
 		restaurantService.addMeal("new meal 2", "cafe", "poisson");
@@ -150,7 +150,7 @@ public class RestaurantTest {
 		restaurantService.displaySpecialMenu();
 	}
 	
-	@Test
+	//@Test
 	public void orderHistory(){
 		System.out.println("\n----------------------- orderHistory -----------------------");
 	}

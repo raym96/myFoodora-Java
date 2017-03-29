@@ -1,56 +1,49 @@
 package model.restaurant;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import model.user.Restaurant;
 
 public class MealMenu {
 
-	private ArrayList<HalfMeal> halfmeals;
-	private ArrayList<FullMeal> fullmeals;
+	private ArrayList<Meal> meals;
+	private double discount_factor; //depends on whether it is a special meal menu or standard meal menu
+	//simple observer pattern on discount factor
 	
-	public MealMenu() {
+	public MealMenu(double discount_factor) {
 		super();
-		halfmeals = new ArrayList<HalfMeal>();
-		fullmeals = new ArrayList<FullMeal>();
-		initMenu();
+		meals = new ArrayList<Meal>();
+		this.discount_factor=discount_factor;
 	}
 	
-	//for tests
-	public void initMenu(){
-		this.addMeal(new HalfMeal("Salade-poulet", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5)));
-		this.addMeal(new HalfMeal("Poulet-glace", new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
-		this.addMeal(new FullMeal("Salade-Poulet-glace", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
-		this.addMeal(new FullMeal("Salade-beef-glace", new Starter("salade","standard",1.5),new MainDish("beef","standard",1.5),new Dessert("glace","standard",1.5)));
-		this.addMeal(new FullMeal("Salade-pasta-cafe", new Starter("salade","standard",1.5),new MainDish("pasta","standard",1.5),new Dessert("cafe","standard",1.5)));
-		this.addMeal(new FullMeal("sausage-macaroni-glace", new Starter("sausage","standard",1.5),new MainDish("macaroni","standard",1.5),new Dessert("glace","standard",1.5)));
-	}
 	
 	public void addMeal(Meal meal){
-		if (meal instanceof HalfMeal){
-			halfmeals.add((HalfMeal)meal);}
-		if (meal instanceof FullMeal){
-			fullmeals.add((FullMeal)meal);}
+		meals.add(meal);
 	}
 	
 	public void removeMeal(String mealName){
-		for(int i=0; i<halfmeals.size(); i++){
-			if( halfmeals.get(i).getName() == mealName ){
-				halfmeals.remove(i);
-			}
-		}
-		for(int i=0; i<fullmeals.size(); i++){
-			if( fullmeals.get(i).getName() == mealName ){
-				fullmeals.remove(i);
+		for(int i=0; i<meals.size(); i++){
+			if( meals.get(i).getName() == mealName ){
+				meals.remove(i);
 			}
 		}
 	}
 	
-	public ArrayList<HalfMeal> getHalfMealMenu(){
-		return halfmeals;
+	public ArrayList<Meal> getMeals(){
+		return meals;
 	}
 	
-	public ArrayList<FullMeal> getFullMealMenu(){
-		return fullmeals;
+	public void setDiscountFactor(double discount_factor){
+		this.discount_factor=discount_factor;
 	}
 
 	
+	public void display(){
+		for (Meal meal:meals){
+			double price = meal.getRawprice()*(1-discount_factor);
+			meal.setPrice(Math.floor(price*100)/100); //arrondi
+			System.out.println(meal);
+		}
+	}
 }
