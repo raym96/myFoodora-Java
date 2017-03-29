@@ -118,7 +118,7 @@ public abstract class User implements Observer{
 		if (ID == null) {
 			if (other.ID != null)
 				return false;
-		} else if (!ID.equals(other.ID))
+		} else if (!ID.equalsIgnoreCase(other.ID))
 			return false;
 		return true;
 	}

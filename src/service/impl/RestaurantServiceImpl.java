@@ -96,19 +96,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 		double st_ds_count=0;
 		Meal meal = new HalfMeal(mealname);
 		for (Dish starter:restaurant.getMenu().getStarters()){
-			if (starter.getDishName().equals(dishname1) || starter.getDishName().equals(dishname2)){
+			if (starter.getDishName().equalsIgnoreCase(dishname1) || starter.getDishName().equalsIgnoreCase(dishname2)){
 				meal.addDish(starter);
 				st_ds_count++;
 			}
 		}
 		for (Dish maindish:restaurant.getMenu().getMaindishes()){
-			if (maindish.getDishName().equals(dishname1) || maindish.getDishName().equals(dishname2)){
+			if (maindish.getDishName().equalsIgnoreCase(dishname1) || maindish.getDishName().equalsIgnoreCase(dishname2)){
 				meal.addDish(maindish);
 				md_count++;
 			}
 		}
 		for (Dish dessert:restaurant.getMenu().getDesserts()){
-			if (dessert.getDishName().equals(dishname1) || dessert.getDishName().equals(dishname2)){
+			if (dessert.getDishName().equalsIgnoreCase(dishname1) || dessert.getDishName().equalsIgnoreCase(dishname2)){
 				meal.addDish(dessert);
 				st_ds_count++;
 			}
@@ -144,17 +144,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 			Meal meal = new FullMeal(mealname);
 			for (Dish starter:restaurant.getMenu().getStarters()){
-				if (starter.getDishName().contentEquals(startername)){
+				if (starter.getDishName().contentequalsIgnoreCase(startername)){
 					meal.addDish(starter);
 				}
 			}
 			for (Dish maindish:restaurant.getMenu().getMaindishes()){
-				if (maindish.getDishName().equals(maindishname)){
+				if (maindish.getDishName().equalsIgnoreCase(maindishname)){
 					meal.addDish(maindish);
 				}
 			}
 			for (Dish dessert:restaurant.getMenu().getDesserts()){
-				if (dessert.getDishName().equals(dessertname)){
+				if (dessert.getDishName().equalsIgnoreCase(dessertname)){
 					meal.addDish(dessert);
 				}
 			}
@@ -217,26 +217,26 @@ public class RestaurantServiceImpl implements RestaurantService {
 		//throw exception if meal name is not recognized
 		try{
 			int count=0;
-			for (Iterator<Meal> iter = restaurant.getHalfMealMenu().getMeals().iterator();iter.hasNext();){
-				Meal hm = iter.next();
-				if (hm.getName().equals(mealName)){
-					iter.remove();
+			for (Iterator<Meal> iter1 = restaurant.getHalfMealMenu().getMeals().iterator();iter1.hasNext();){
+				Meal hm = iter1.next();
+				if (hm.getName().equalsIgnoreCase(mealName)){
+					iter1.remove();
 					restaurant.getSpecialmealmenu().addMeal(hm);
 					System.out.println(mealName + " has been added to the special-offer menu");
 					count++;
 				}
 			}
-			for (Iterator<Meal> iter = restaurant.getFullMealMenu().getMeals().iterator();iter.hasNext();){
-				Meal fm = iter.next();
-				if (fm.getName().equals(mealName)){
-					iter.remove();
+			for (Iterator<Meal> iter2 = restaurant.getFullMealMenu().getMeals().iterator();iter2.hasNext();){
+				Meal fm = iter2.next();
+				if (fm.getName().equalsIgnoreCase(mealName)){
+					iter2.remove();
 					restaurant.getSpecialmealmenu().addMeal(fm);
 					System.out.println(mealName + " has been added to the special-offer menu");
 					count++;
 				}
+			}
 			if (count==0){
 				throw new MealNotFoundException(mealName);
-			}
 			}
 		}catch (MealNotFoundException e){}
 	}
@@ -246,7 +246,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		for (Iterator<Meal> iter = restaurant.getSpecialmealmenu().getMeals().iterator();iter.hasNext();){
 			Meal sm = iter.next();
-			if (sm.getName().equals(mealName)){
+			if (sm.getName().equalsIgnoreCase(mealName)){
 				iter.remove();
 				restaurant.getRestaurantService().addMeal(sm);
 				System.out.println(mealName+" has been removed from the special-offer menu");

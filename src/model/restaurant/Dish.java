@@ -35,7 +35,7 @@ public abstract class Dish {
 		if (dishName == null) {
 			if (other.dishName != null)
 				return false;
-		} else if (!dishName.equals(other.dishName))
+		} else if (!dishName.equalsIgnoreCase(other.dishName))
 			return false;
 		return true;
 	}

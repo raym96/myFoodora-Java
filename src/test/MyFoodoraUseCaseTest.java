@@ -224,7 +224,7 @@ public class MyFoodoraUseCaseTest {
 			
 		User theUser = null;
 		for(User user : myFoodora.getUsers()){
-			if( username.equals(user.getUsername()) && password.equals(user.getPassword()) ){
+			if( username.equalsIgnoreCase(user.getUsername()) && password.equals(user.getPassword()) ){
 				theUser = user;
 				user.logIn();
 				break;
@@ -380,7 +380,8 @@ public class MyFoodoraUseCaseTest {
 			String mealname = s.nextLine();
 			restaurant.getRestaurantService().addSpecialMeal(mealname);
 			//the price is automatically updated when adding the meal to the special menu
-//			restaurant.getRestaurantService().displayAllMenu();
+			restaurant.getRestaurantService().displayMealMenu();
+			restaurant.getRestaurantService().displaySpecialMenu();
 			restaurant.getRestaurantService().notifyAll();
 		}
 	}

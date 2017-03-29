@@ -193,7 +193,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	public User selectUser(String username) {
 		// TODO Auto-generated method stub
 		for(User user : myfoodora.getUsers()){
-			if( username.equals(user.getUsername()) ){
+			if( username.equalsIgnoreCase(user.getUsername()) ){
 				return user;
 			}
 		}

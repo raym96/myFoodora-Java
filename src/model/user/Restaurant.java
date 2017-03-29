@@ -52,14 +52,16 @@ public class Restaurant extends User{
 	}
 	
 	public void initMenu(){
-		restaurantService.addMeal(new HalfMeal("Salade-poulet", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5)));
-		restaurantService.addMeal(new HalfMeal("Poulet-glace", new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addMeal(new HalfMeal("McThirst", new MainDish("Cheeseburger","standard",1.5),new Dessert("French Fries","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("Salade-poulet-glace", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("Salade-beef-glace", new Starter("salade","standard",1.5),new MainDish("beef","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("Salade-pasta-cafe", new Starter("salade","standard",1.5),new MainDish("pasta","standard",1.5),new Dessert("cafe","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("sausage-macaroni-glace", new Starter("sausage","standard",1.5),new MainDish("macaroni","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addSpecialMeal("Salade-poulet");
+		restaurantService.addMeal(new HalfMeal("hm1", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5)));
+		restaurantService.addMeal(new HalfMeal("hm2", new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addMeal(new HalfMeal("hm3", new MainDish("Cheeseburger","standard",1.5),new Dessert("French Fries","standard",1.5)));
+		restaurantService.addMeal(new HalfMeal("hm4", new Starter("Cheese","standard",1.5),new MainDish("fish","standard",1.5)));
+		restaurantService.addMeal(new HalfMeal("hm5", new MainDish("Ravioli","standard",1.5),new Dessert("lychees","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("fm1", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("fm2", new Starter("salade","standard",1.5),new MainDish("beef","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("fm3", new Starter("salade","standard",1.5),new MainDish("pasta","standard",1.5),new Dessert("cafe","standard",1.5)));
+		restaurantService.addMeal(new FullMeal("fm4", new Starter("sausage","standard",1.5),new MainDish("macaroni","standard",1.5),new Dessert("glace","standard",1.5)));
+		restaurantService.addSpecialMeal("hm5");
 	}
 	
 	public RestaurantService getRestaurantService() {
@@ -71,9 +73,9 @@ public class Restaurant extends User{
 	}
 	
 	public MealFactory getMealFactory(String mealType){
-		if(mealType.equals("Full_meal")){
+		if(mealType.equalsIgnoreCase("Full_meal")){
 			return new FullMealFactory(fullmealmenu);
-		}else if(mealType.equals("Half_meal")){
+		}else if(mealType.equalsIgnoreCase("Half_meal")){
 			return new HalfMealFactory(halfmealmenu);
 		}
 		return null;

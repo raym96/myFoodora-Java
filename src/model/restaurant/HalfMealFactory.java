@@ -12,7 +12,7 @@ public class HalfMealFactory extends MealFactory {
 	public HalfMeal createMeal(String mealName) throws MealNotFoundException{
 		// TODO Auto-generated method stub
 		for (Meal halfmeal : this.mealmenu.getMeals()){
-			if (halfmeal.getName().equals(mealName)){
+			if (halfmeal.getName().equalsIgnoreCase(mealName)){
 				return new HalfMeal(halfmeal);
 			}
 		}

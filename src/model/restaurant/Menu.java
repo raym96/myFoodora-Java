@@ -80,7 +80,7 @@ public class Menu {
 	
 	public boolean hasDish(String dishName){
 		for (Dish dish : this.getDishes()) {
-			if (dish.getDishName().equals(dishName)){
+			if (dish.getDishName().equalsIgnoreCase(dishName)){
 				return true;
 			}
 		}
