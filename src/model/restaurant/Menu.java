@@ -15,7 +15,7 @@ public class Menu {
 		starters = new ArrayList<Starter>();
 		maindishes = new ArrayList<MainDish>();
 		desserts = new ArrayList<Dessert>();
-		initMenu();
+//		initMenu();
 	}
 	
 	public ArrayList<Starter> getStarters() {

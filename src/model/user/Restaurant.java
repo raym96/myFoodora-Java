@@ -5,6 +5,8 @@ import java.util.*;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
+import initialization.InitDishMenu;
+import initialization.InitMealMenu;
 import model.myfoodora.History;
 import model.myfoodora.Message;
 import model.myfoodora.SpecialOfferBoard;
@@ -48,21 +50,11 @@ public class Restaurant extends User{
 		
 		restaurantService = new RestaurantServiceImpl(this);
 		
-		initMenu(); //for tests and make sure that there is at least 1 special meal
+		//INITIALIZE FOR TESTS
+		menu = InitDishMenu.init("src/txt files/menu.txt");
+		setMealMenu(InitMealMenu.init("src/txt files/mealmenu.txt"));
 	}
 	
-	public void initMenu(){
-		restaurantService.addMeal(new HalfMeal("hm1", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5)));
-		restaurantService.addMeal(new HalfMeal("hm2", new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addMeal(new HalfMeal("hm3", new MainDish("Cheeseburger","standard",1.5),new Dessert("French Fries","standard",1.5)));
-		restaurantService.addMeal(new HalfMeal("hm4", new Starter("Cheese","standard",1.5),new MainDish("fish","standard",1.5)));
-		restaurantService.addMeal(new HalfMeal("hm5", new MainDish("Ravioli","standard",1.5),new Dessert("lychees","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("fm1", new Starter("salade","standard",1.5),new MainDish("poulet","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("fm2", new Starter("salade","standard",1.5),new MainDish("beef","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("fm3", new Starter("salade","standard",1.5),new MainDish("pasta","standard",1.5),new Dessert("cafe","standard",1.5)));
-		restaurantService.addMeal(new FullMeal("fm4", new Starter("sausage","standard",1.5),new MainDish("macaroni","standard",1.5),new Dessert("glace","standard",1.5)));
-		restaurantService.addSpecialMeal("hm5");
-	}
 	
 	public RestaurantService getRestaurantService() {
 		return restaurantService;
@@ -96,6 +88,12 @@ public class Restaurant extends User{
 		this.menu = menu;
 	}
 
+	//USEFUL FOR TESTS
+	public void setMealMenu(ArrayList<MealMenu> mealmenus){
+		this.halfmealmenu = mealmenus.get(0);
+		this.fullmealmenu = mealmenus.get(1);
+		this.specialmealmenu = mealmenus.get(2);
+	}
 
 	public void setHalfMealmenu(MealMenu mealmenu) {
 		this.halfmealmenu = mealmenu;

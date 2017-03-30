@@ -13,8 +13,8 @@ public abstract class Dish {
 
 	public Dish(String dishName, String dishType, double price) {
 		super();
-		this.dishName = dishName;
-		this.dishType = dishType;
+		this.dishName = dishName.substring(0,1).toUpperCase() + dishName.substring(1).toLowerCase();
+		this.dishType = dishType.toLowerCase();
 		this.price = price;
 	}
 	

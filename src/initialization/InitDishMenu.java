@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 import model.restaurant.*;
 
-public class InitMenu {
-	public static Menu initMenu(String fileName){
+public class InitDishMenu {
+	
+	public static Menu init(String fileName){
 		Menu menu = new Menu();
 		
 		String dishCategory; //Starter, main-dish or dessert
@@ -31,13 +32,19 @@ public class InitMenu {
 					menu.addDish(new MainDish(dishName,dishType,price));
 				}
 				if (dishCategory.equals("Dessert")){
-					menu.addDish(new MainDish(dishName,dishType,price));
+					menu.addDish(new Dessert(dishName,dishType,price));
 				}
 			}
 			s.close();
 		} catch (IOException e){
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		return menu;
 	}
+	
+//	public static void main(String arg[]){
+//		Menu menu = init("src/txt files/menu.txt");
+//		menu.display();
+//	}
 }

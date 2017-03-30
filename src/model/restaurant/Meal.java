@@ -17,7 +17,7 @@ public abstract class Meal {
 	
 	public Meal(String name) {
 		super();
-		this.name = name;
+		this.name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
 		this.dishes = new ArrayList<Dish>();
 	}
 

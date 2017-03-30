@@ -19,6 +19,8 @@ public class MealMenu {
 	
 	
 	public void addMeal(Meal meal){
+		double price = meal.getRawprice()*(1-discount_factor);
+		meal.setPrice(Math.floor(price*100)/100);
 		meals.add(meal);
 	}
 	
