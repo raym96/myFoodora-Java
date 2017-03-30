@@ -393,7 +393,7 @@ public class MyFoodoraUseCaseTest {
 		3. the restaurant selects a meal in the meal of the week list and selects the remove from
 		its special offer state.
 	 */
-//	@Test
+	@Test
 	public void testOfRemoveMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Removing a meal of the week special offer -----------------------");

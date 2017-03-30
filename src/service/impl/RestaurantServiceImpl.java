@@ -144,7 +144,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 			Meal meal = new FullMeal(mealname);
 			for (Dish starter:restaurant.getMenu().getStarters()){
-				if (starter.getDishName().contentequalsIgnoreCase(startername)){
+				if (starter.getDishName().equalsIgnoreCase(startername)){
 					meal.addDish(starter);
 				}
 			}
