@@ -51,8 +51,8 @@ public class Restaurant extends User{
 		restaurantService = new RestaurantServiceImpl(this);
 		
 		//INITIALIZE FOR TESTS
-		menu = InitDishMenu.init("src/txt files/menu.txt");
-		setMealMenu(InitMealMenu.init("src/txt files/mealmenu.txt"));
+//		menu = InitDishMenu.init("src/txt files/menu.txt");
+//		setMealMenu(InitMealMenu.init("src/txt files/mealmenu.txt"));
 	}
 	
 	
@@ -142,7 +142,7 @@ public class Restaurant extends User{
 
 	@Override
 	public String toString() {
-		return super.toString() + ", <Restaurant> name=" + name + ", address=" + address + ".\n";
+		return  "<Restaurant> "+username+"; name = "+name+"; address="+address+"; activated = "+activated + "; User ID = "+ID;
 	}
 
 

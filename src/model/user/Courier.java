@@ -83,7 +83,7 @@ public class Courier extends User{
 
 	@Override
 	public String toString() {
-		return super.toString() + ", <Courier> surname=" + surname + ", name=" + name + ", phone=" + phone + ".\n";
+		return  "<Courier> "+username+"; fullname = "+surname+" "+name+"; position="+position+"; phone="+phone+"; activated = "+activated + "; User ID = "+ID;
 	}
 
 	@Override

@@ -8,11 +8,11 @@ import model.myfoodora.SpecialOfferBoard;
 
 public abstract class User implements Observer{
 
-	private String ID;
+	protected String ID;
 	protected String username;
 	private String password = "password";
 	private boolean notified;
-	private boolean activated;
+	protected boolean activated;
 
 	private MessageBoard messageBoard;
 	private boolean logStatus;

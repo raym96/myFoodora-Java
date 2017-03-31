@@ -9,10 +9,19 @@ public class SpecialMealOrder extends MealOrder{
 		super(customer, restaurant, meal);
 		}
 
+	
+	@Override
+	public String toString() {
+		return "<SpecialMealOrder> "+meal.getName()+"|"+customer.getUsername()+ "|" +restaurant.getUsername()+"|"+ date;
+
+	}
+
+
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {
 		// TODO Auto-generated method stub
-		return visitor.visit(this);
+		this.price = visitor.visit(this);
+		return price;
 	}
 	
 }

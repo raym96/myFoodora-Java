@@ -27,6 +27,12 @@ public class AddressPoint {
 		this.y = y;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "("+x+","+y+")";
+	}
+
 	public double calculateDistance(AddressPoint address){
 		return Math.sqrt(Math.pow(x - address.getX(),2) + Math.pow(y - address.getY(), 2));
 	}

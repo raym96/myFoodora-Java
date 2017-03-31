@@ -1,4 +1,4 @@
-package model.user;
+ package model.user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -173,13 +173,17 @@ public class MyFoodora implements Observable{
 	}
 
 	public void displayUsers(){
-		System.out.println("users::");
-		System.out.println(users);
+		System.out.println("users:");
+		for (User u:users){
+			System.out.println(u);
+		}
 	}
 	
 	public void displayActiveUsers(){
-		System.out.println("activeUsers::");
-		System.out.println(activeUsers);	
+		System.out.println("activeUsers:");
+		for (User u:activeUsers){
+			System.out.println(u);
+		}	
 	}
 
 	public void addUser(User user){
@@ -192,10 +196,12 @@ public class MyFoodora implements Observable{
 	
 	public void activateUser(User user){
 		activeUsers.add(user);
+		user.setActived(true);
 	}
 	
 	public void disactivateUser(User user){
 		activeUsers.remove(user);
+		user.setActived(false);
 	}
 
 	public DeliveryTask getCurrentDeliveryTask() {

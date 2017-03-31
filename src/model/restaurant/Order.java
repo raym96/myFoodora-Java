@@ -9,12 +9,14 @@ import model.customer.ShoppingCartVisitor;
 import model.user.Customer;
 import model.user.Restaurant;
 
-//An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor)
+//An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public abstract class Order {
-	private Date date;
-	private String orderID;
+	protected Date date;
+	protected String orderID;
 	protected Restaurant restaurant;
 	protected Customer customer;
+	
+	protected double price;
 	
 	public Order(Customer customer,Restaurant restaurant){
 		this.customer = customer;

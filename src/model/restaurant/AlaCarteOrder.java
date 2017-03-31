@@ -23,12 +23,19 @@ public class AlaCarteOrder extends Order {
 	public String getName() {
 		return this.dish.getDishName();
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "<AlaCarteOrder> "+dish.getDishName()+"; by Customer "+customer.getUsername()+ "; Restaurant " +restaurant.getUsername()+"; date = "+ date;
+	}
 
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {
 		// TODO Auto-generated method stub
-		return visitor.visit(this);
+		this.price = visitor.visit(this);
+		return price;
 	}
-	
 	
 }

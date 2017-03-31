@@ -30,13 +30,11 @@ public class InitMealMenu {
 			gdf = Double.parseDouble(s.nextLine());
 			s.nextLine();
 			sdf = Double.parseDouble(s.nextLine());
-			System.out.println(""+sdf+" "+gdf);
 			MealMenu halfmealmenu = new MealMenu(gdf);
 			MealMenu fullmealmenu = new MealMenu(gdf);
 			MealMenu specialmealmenu = new MealMenu(sdf);
 			
 			while (s.hasNextLine()&&s.nextLine().equals("----------")){
-				System.out.println("ok");
 				mealCategory = s.nextLine();
 				mealName = s.nextLine();
 				if (mealCategory.equals("Half-meal")){

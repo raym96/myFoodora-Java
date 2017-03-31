@@ -27,9 +27,20 @@ public class History {
 		return list;
 	}
 	
+	public void setOrders(ArrayList<Order> orders){
+		this.orders = orders;
+	}
+	
 	public ArrayList<Order> getOrders(){
 		return orders;
 	}
+	
+	public void displayAllOrders(){
+		for (Order order:orders){
+			System.out.println(order);
+		}
+	}
+	
 	
 	public void DisplayMostOrderedHalfMeal(Restaurant r){
 		Map<Meal, Integer> tm  = new TreeMap(); //key = meal, value = occurrence, can be sorted
