@@ -37,12 +37,11 @@ public class SortingByHalfMeal extends SortingByCriteria{
 	
 	@Override
 	public void displayAscending(ArrayList<Order> h) {
-		System.out.println("Displaying all menu items sorted w.r.t the number of shipped half-meals: ");
 		// TODO Auto-generated method stub
 		HashMap map = countOccurence(h);
 		Map<HalfMeal,Integer> newMap = sortByValues(map);
 	    for (Entry<HalfMeal, Integer> entry : newMap.entrySet()) {
-            System.out.println("Half-meal <" + entry.getKey()+">"
+            System.out.println("Half-meal <" + entry.getKey().getName()+">"
 				+ "; number of shipped half-meals: " + entry.getValue());
 	    }
 	}
@@ -51,11 +50,10 @@ public class SortingByHalfMeal extends SortingByCriteria{
 	@Override
 	public void displayDescending(ArrayList<Order> h) {
 		// TODO Auto-generated method stub
-		System.out.println("Displaying all menu items sorted w.r.t the number of shipped half-meals: ");
 		HashMap map = countOccurence(h);
 		Map<HalfMeal,Integer> newMap = sortByValuesReversed(map);
 	    for (Entry<HalfMeal, Integer> entry : newMap.entrySet()) {
-            System.out.println("Half-meal <" + entry.getKey()+">"
+            System.out.println("Half-meal <" + entry.getKey().getName()+">"
 				+ "; number of shipped half-meals: " + entry.getValue());
 	    }
 	}

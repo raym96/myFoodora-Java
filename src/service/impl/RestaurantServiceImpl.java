@@ -279,6 +279,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void DisplayMostOrderedHalfMeal() {
 		// TODO Auto-generated method stub
 		SortingByCriteria s = new SortingByHalfMeal();
+		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
 		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
@@ -286,6 +287,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void DisplayLeastOrderedHalfMeal() {
 		// TODO Auto-generated method stub
 		SortingByCriteria s = new SortingByHalfMeal();
+		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
 		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
@@ -293,6 +295,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void DisplayMostOrderedAlaCarte() {
 		// TODO Auto-generated method stub
 		SortingByCriteria s = new SortingByAlaCarte();
+		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
 		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 		
@@ -300,6 +303,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void DisplayLeastOrderedAlaCarte() {
 		// TODO Auto-generated method stub
 		SortingByCriteria s = new SortingByAlaCarte();
+		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
 		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 	

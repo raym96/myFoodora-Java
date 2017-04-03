@@ -103,27 +103,62 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public Restaurant getBestRestaurant() {
 		// TODO Auto-generated method stub
-		ArrayList<Order> history =  manager.getMyfoodoraService().getHistory().getOrders();
-		SortingByCriteria s = new SortingByRestaurant();
-		s.displayAscending(history);
-		HashMap<Restaurant, Integer> h = s.sortByValuesReversed(s.countOccurence(history));
-		Entry<Restaurant, Integer> entry = h.entrySet().iterator().next();
-		System.out.println("The best selling restaurant is:");
-		System.out.println(entry.getKey().getName());
-		return (entry.getKey());
+		int count = 0;
+		Restaurant restaurant = null;
+		ArrayList<User> restaurant_users =  manager.getMyfoodoraService().getUsersOfAssignedType("RESTAURANT");
+		for (User u : restaurant_users){
+			Restaurant r = (Restaurant)u;
+			int rcount = r.getHistory().getOrders().size(); //the number of commands passed at restaurant r is the length of its history
+			if (rcount>count){
+				count = rcount;
+				restaurant = r;
+			}
+		}
+		System.out.println("\nThe best selling restaurant is:");
+		System.out.println(restaurant.getName());
+		return restaurant;
+		
+
+		
+		//TOO COMPLICATED VERSION
+//		ArrayList<Order> history =  manager.getMyfoodoraService().getHistory().getOrders();
+//		SortingByCriteria s = new SortingByRestaurant();
+//		s.displayAscending(history);
+//		HashMap<Restaurant, Integer> h = s.sortByValuesReversed(s.countOccurence(history));
+//		Entry<Restaurant, Integer> entry = h.entrySet().iterator().next();
+//		System.out.println("The best selling restaurant is:");
+//		System.out.println(entry.getKey().getName());
+//		return (entry.getKey());
 	}
 
 	@Override
 	public Restaurant getWorstRestaurant() {
 		// TODO Auto-generated method stub
-		ArrayList<Order> history =  manager.getMyfoodoraService().getHistory().getOrders();
-		SortingByCriteria s = new SortingByRestaurant();
-		s.displayDescending(history);
-		HashMap<Restaurant, Integer> h = s.sortByValues(s.countOccurence(history));
-		Entry<Restaurant, Integer> entry = h.entrySet().iterator().next();
-		System.out.println("The worst selling restaurant is:");
-		System.out.println(entry.getKey().getName());
-		return (entry.getKey());
+		int count = Integer.MAX_VALUE;
+		Restaurant restaurant = null;
+		ArrayList<User> restaurant_users =  manager.getMyfoodoraService().getUsersOfAssignedType("RESTAURANT");
+		for (User u : restaurant_users){
+			Restaurant r = (Restaurant)u;
+			int rcount = r.getHistory().getOrders().size(); //the number of commands passed at restaurant r is the length of its history
+			if (rcount<count){
+				count = rcount;
+				restaurant = r;
+			}
+		}
+		System.out.println("\nThe worst selling restaurant is:");
+		System.out.println(restaurant.getName());
+		return restaurant;
+		
+
+		//TOO COMPLICATED VERSION
+//		ArrayList<Order> history =  manager.getMyfoodoraService().getHistory().getOrders();
+//		SortingByCriteria s = new SortingByRestaurant();
+//		s.displayDescending(history);
+//		HashMap<Restaurant, Integer> h = s.sortByValues(s.countOccurence(history));
+//		Entry<Restaurant, Integer> entry = h.entrySet().iterator().next();
+//		System.out.println("The worst selling restaurant is:");
+//		System.out.println(entry.getKey().getName());
+//		return (entry.getKey());
 	}
 
 
@@ -131,13 +166,39 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public Courier getBestCourier() {
 		// TODO Auto-generated method stub
-		return null;
+		int count = 0;
+		Courier courier = null;
+		ArrayList<User> courier_users =  manager.getMyfoodoraService().getUsersOfAssignedType("COURIER");
+		for (User u : courier_users){
+			Courier c = (Courier)u;
+			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
+			if (ccount>count){
+				count = ccount;
+				courier = c;
+			}
+		}
+		System.out.println("\nThe most active courier is:");
+		System.out.println(courier.getName());
+		return courier;
 	}
 
 	@Override
 	public Courier getWorstCourier() {
 		// TODO Auto-generated method stub
-		return null;
+		int count = Integer.MAX_VALUE;
+		Courier courier = null;
+		ArrayList<User> courier_users =  manager.getMyfoodoraService().getUsersOfAssignedType("COURIER");
+		for (User u : courier_users){
+			Courier c = (Courier)u;
+			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
+			if (ccount<count){
+				count = ccount;
+				courier = c;
+			}
+		}
+		System.out.println("\nThe least active courier is:");
+		System.out.println(courier.getName());
+		return courier;
 	}
 
 	// 9. setting the current delivery-policy used by MyFoodora to determine which courier

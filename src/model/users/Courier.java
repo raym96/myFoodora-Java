@@ -82,6 +82,7 @@ public class Courier extends User{
 	
 	public void addDeliveryTask(Order o){
 		allDeliveryTasks.add(o);
+		this.setCount(count+1);
 	}
 
 	public ArrayList<Order> getAllDeliveryTask(){

@@ -28,7 +28,6 @@ public class SortingByAlaCarte extends SortingByCriteria {
 	}
 	@Override
 	public void displayAscending(ArrayList<Order> h) {
-		System.out.println("Displaying all menu items sorted w.r.t the number of shipped half-meals: ");
 		HashMap map = countOccurence(h);
 		Map<Dish,Integer> newMap = sortByValues(map);
 	    for (Entry<Dish, Integer> entry : newMap.entrySet()) {
@@ -40,7 +39,6 @@ public class SortingByAlaCarte extends SortingByCriteria {
 
 	@Override
 	public void displayDescending(ArrayList<Order> h) {
-		System.out.println("Displaying all menu items sorted w.r.t the number of shipped half-meals: ");
 		HashMap map = countOccurence(h);
 		Map<Dish,Integer> newMap = sortByValuesReversed(map);
 	    for (Entry<Dish, Integer> entry : newMap.entrySet()) {

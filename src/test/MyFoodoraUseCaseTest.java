@@ -97,11 +97,21 @@ public class MyFoodoraUseCaseTest {
 		//history
 		User restaurant_1 = commonMyFoodoraService.selectUser("restaurant_1");
 		((Restaurant)restaurant_1).getHistory().displayAllOrders();
-//		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedAlaCarte();
-//		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedHalfMeal();
-//		managerService_director.getBestRestaurant();
+		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedAlaCarte();
+		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedHalfMeal();
+
+		ArrayList<Order> history =  commonMyFoodoraService.getHistory().getOrders();
+		SortingByCriteria s = new SortingByRestaurant();
+		s.displayAscending(history);
 		managerService_director.getBestRestaurant();
 		managerService_director.getWorstRestaurant();
+		
+		for (User u :commonMyFoodoraService.getUsersOfAssignedType("COURIER")){
+			Courier c = (Courier)u;
+			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
+		}
+		managerService_director.getBestCourier();
+		managerService_director.getWorstCourier();
 		//		SortingByCriteria s = new SortingByHalfMeal();
 //		s.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
 //		s = new SortingByAlaCarte();

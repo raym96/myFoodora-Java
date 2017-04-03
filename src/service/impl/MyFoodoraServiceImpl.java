@@ -157,6 +157,10 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		System.out.println(users);
 	}
 	
+	public ArrayList<User> getUsersOfAssignedType(String userType){
+		 return myfoodora.getUsersOfAssignedType(userType);
+	}
+	
 	//Important method, to be completed
 	public void pay(Customer c){
 		c.getCustomerService().pay();

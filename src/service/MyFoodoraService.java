@@ -42,6 +42,8 @@ public interface MyFoodoraService {
 	public User selectUser(String username);
 //	void askAgree2customers(String ask); <- what is this ?
 	
+	public ArrayList<User> getUsersOfAssignedType(String userType);
+
 	public void assignManager(Manager manager);
 	
 	public void askAgree2customers(String ask);

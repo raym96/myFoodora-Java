@@ -31,7 +31,7 @@ public class SortingByRestaurant extends SortingByCriteria {
 	
 	@Override
 	public void displayAscending(ArrayList<Order> h) {
-		System.out.println("Displaying restaurants sorted w.r.t the number of shipped orders ");
+		System.out.println("\nDisplaying restaurants sorted w.r.t the number of shipped orders ");
 		// TODO Auto-generated method stub
 		HashMap map = countOccurence(h);
 		Map<Restaurant,Integer> newMap = sortByValues(map);
@@ -45,7 +45,7 @@ public class SortingByRestaurant extends SortingByCriteria {
 	@Override
 	public void displayDescending(ArrayList<Order> h) {
 		// TODO Auto-generated method stub
-		System.out.println("Displaying restaurants sorted w.r.t the number of shipped orders ");
+		System.out.println("\nDisplaying restaurants sorted w.r.t the number of shipped orders ");
 		HashMap map = countOccurence(h);
 		Map<Restaurant,Integer> newMap = sortByValues(map);
 	    for (Entry<Restaurant, Integer> entry : newMap.entrySet()) {
