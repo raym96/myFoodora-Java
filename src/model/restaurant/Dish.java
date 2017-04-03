@@ -22,7 +22,12 @@ public abstract class Dish {
 	//Copy constructor
 	protected abstract Dish makeCopy();
 	
-	//Two dishes are equal if they have the same name
+	@Override
+	public int hashCode() {
+		return 31;
+	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -35,11 +40,19 @@ public abstract class Dish {
 		if (dishName == null) {
 			if (other.dishName != null)
 				return false;
-		} else if (!dishName.equalsIgnoreCase(other.dishName))
+		} else if (!dishName.equals(other.dishName))
+			return false;
+		if (dishType == null) {
+			if (other.dishType != null)
+				return false;
+		} else if (!dishType.equals(other.dishType))
+			return false;
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		return true;
 	}
-
+	
+	
 
 	public String getDishName() {
 		return dishName;

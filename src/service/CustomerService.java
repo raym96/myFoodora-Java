@@ -3,15 +3,15 @@ package service;
 import model.restaurant.AlaCarteOrder;
 import model.restaurant.SpecialMealOrder;
 import model.restaurant.StandardMealOrder;
-import model.user.Restaurant;
+import model.users.Restaurant;
 
 public interface CustomerService {
 
 	// 1. place orders: this includes choosing a selection of items a-la-carte or one or more
 	// meals offered by a given restaurant, and paying the total price for the composed
 	// order.
-	public void addSpecialMealOrder(Restaurant r, String mealType, String mealName);
-	public void addStandardMealOrder(Restaurant r, String mealType, String mealName);
+	public void addSpecialMealOrder(Restaurant r, String mealName);
+	public void addStandardMealOrder(Restaurant r, String mealName, String mealType);
 	public void addAlaCarteOrder(Restaurant r, String dishName);
 	public void clearShoppingCart();
 	public double calculatePrice();

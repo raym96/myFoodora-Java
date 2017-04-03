@@ -3,7 +3,7 @@ package model.myfoodora;
 import java.util.ArrayList;
 
 import model.restaurant.Order;
-import model.user.Courier;
+import model.users.Courier;
 
 //Strategy pattern
 public interface DeliveryPolicy {

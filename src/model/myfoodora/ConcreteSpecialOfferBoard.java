@@ -3,9 +3,9 @@ package model.myfoodora;
 import java.util.ArrayList;
 
 import model.customer.SpecialOfferObserver;
-import model.user.Customer;
-import model.user.Observer;
-import model.user.User;
+import model.users.Customer;
+import model.users.Observer;
+import model.users.User;
 
 public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	private ArrayList<SpecialOfferObserver> observers;

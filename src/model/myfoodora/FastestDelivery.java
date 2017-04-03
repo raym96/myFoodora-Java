@@ -3,8 +3,8 @@ package model.myfoodora;
 import java.util.ArrayList;
 
 import model.restaurant.Order;
-import model.user.AddressPoint;
-import model.user.Courier;
+import model.users.AddressPoint;
+import model.users.Courier;
 
 public class FastestDelivery implements DeliveryPolicy {
 	

@@ -1,8 +1,8 @@
 package model.restaurant;
 
 import model.customer.ShoppingCartVisitor;
-import model.user.Customer;
-import model.user.Restaurant;
+import model.users.Customer;
+import model.users.Restaurant;
 
 public abstract class MealOrder extends Order {
 	protected Meal meal;
@@ -34,6 +34,19 @@ public abstract class MealOrder extends Order {
 
 	public String getName() {
 		return meal.getName();
+	}
+	
+	@Override
+	public String toString(){
+		String str = "";
+		if (this instanceof SpecialMealOrder){
+		str+= "<SpecialMealOrder> ";
+		}
+		else if (this instanceof StandardMealOrder){
+			str+="<StandardMealOrder> ";
+		}
+		str+=this.meal.getName()+"|"+customer.getUsername()+ "|" +restaurant.getUsername()+"|"+ date;
+		return str;
 	}
 
 	@Override

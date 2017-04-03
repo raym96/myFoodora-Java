@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import model.user.AddressPoint;
-import model.user.Courier;
+import model.users.AddressPoint;
+import model.users.Courier;
 
 
 public class InitCourier {

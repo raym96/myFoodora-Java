@@ -12,9 +12,9 @@ import model.restaurant.MealOrder;
 import model.restaurant.Order;
 import model.restaurant.SpecialMealOrder;
 import model.restaurant.StandardMealOrder;
-import model.user.Customer;
-import model.user.MyFoodora;
-import model.user.Restaurant;
+import model.users.Customer;
+import model.users.MyFoodora;
+import model.users.Restaurant;
 import service.CustomerService;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -29,13 +29,13 @@ public class CustomerServiceImpl implements CustomerService {
 	// 1. place orders: this includes choosing a selection of items a-la-carte or one or more
 	// meals offered by a given restaurant, and paying the total price for the composed
 	// order.
-	public void addSpecialMealOrder(Restaurant r, String mealType, String mealName){
-		Order neworder = new SpecialMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName));
+	public void addSpecialMealOrder(Restaurant r, String mealName){
+		Order neworder = new SpecialMealOrder(customer, r,r.getRestaurantService().createMeal("Special-Meal", mealName));
 		customer.getShoppingCart().addOrder(neworder);
 		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
 	
-	public void addStandardMealOrder(Restaurant r, String mealType, String mealName){
+	public void addStandardMealOrder(Restaurant r, String mealName, String mealType){
 		Order neworder = new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName));
 		customer.getShoppingCart().addOrder(neworder);
 		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));

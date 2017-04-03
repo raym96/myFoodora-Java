@@ -4,7 +4,7 @@ import java.util.Date;
 
 import model.myfoodora.*;
 import model.restaurant.*;
-import model.user.*;
+import model.users.*;
 
 public interface MyFoodoraService {
 		
@@ -44,4 +44,7 @@ public interface MyFoodoraService {
 	public void assignManager(Manager manager);
 	
 	public void askAgree2customers(String ask);
+	
+	//returns history of myfoodora for manager-service
+	public History getHistory();
 }

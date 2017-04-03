@@ -13,7 +13,7 @@ import model.restaurant.MainDish;
 import model.restaurant.Meal;
 import model.restaurant.Menu;
 import model.restaurant.Starter;
-import model.user.*;
+import model.users.*;
 import service.RestaurantService;
 import service.impl.RestaurantServiceImpl;
 

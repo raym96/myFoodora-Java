@@ -1,8 +1,8 @@
 package model.myfoodora;
 
 import model.restaurant.Order;
-import model.user.AddressPoint;
-import model.user.Courier;
+import model.users.AddressPoint;
+import model.users.Courier;
 
 public class DeliveryTask {
 

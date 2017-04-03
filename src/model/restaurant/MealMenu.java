@@ -3,7 +3,7 @@ package model.restaurant;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import model.user.Restaurant;
+import model.users.Restaurant;
 
 public class MealMenu {
 

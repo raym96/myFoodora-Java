@@ -3,7 +3,7 @@ package model.myfoodora;
 import java.util.ArrayList;
 
 import model.customer.SpecialOfferObserver;
-import model.user.*;
+import model.users.*;
 
 public interface SpecialOfferBoard {
 

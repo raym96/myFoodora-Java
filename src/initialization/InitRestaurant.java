@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import model.user.AddressPoint;
-import model.user.Restaurant;
+import model.users.AddressPoint;
+import model.users.Restaurant;
 
 public class InitRestaurant {
 	public static ArrayList<Restaurant> init(String fileName){

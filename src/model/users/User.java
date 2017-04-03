@@ -1,4 +1,4 @@
-package model.user;
+package model.users;
 import java.util.Date;
 import java.util.UUID;
 

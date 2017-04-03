@@ -3,10 +3,10 @@ package service.impl;
 import java.util.ArrayList;
 
 import model.myfoodora.Message;
-import model.user.AddressPoint;
-import model.user.Courier;
-import model.user.Customer;
-import model.user.MyFoodora;
+import model.users.AddressPoint;
+import model.users.Courier;
+import model.users.Customer;
+import model.users.MyFoodora;
 import service.CourierService;
 import service.MyFoodoraService;
 

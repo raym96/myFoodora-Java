@@ -1,4 +1,4 @@
-package model.user;
+package model.users;
 
 import java.util.*;
 
@@ -65,10 +65,12 @@ public class Restaurant extends User{
 	}
 	
 	public MealFactory getMealFactory(String mealType){
-		if(mealType.equalsIgnoreCase("Full_meal")){
+		if(mealType.equalsIgnoreCase("Full-meal")){
 			return new FullMealFactory(fullmealmenu);
-		}else if(mealType.equalsIgnoreCase("Half_meal")){
+		}else if(mealType.equalsIgnoreCase("Half-meal")){
 			return new HalfMealFactory(halfmealmenu);
+		}else if(mealType.equalsIgnoreCase("Special-meal")){
+			return new HalfMealFactory(specialmealmenu);
 		}
 		return null;
 	}
@@ -188,6 +190,12 @@ public class Restaurant extends User{
 	public void observe(Observable obv, Object o) {
 		// TODO Auto-generated method stub
 		super.observe(obv, o);
+	}
+
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 
 	

@@ -1,6 +1,6 @@
 package exceptions;
 
-import model.user.User;
+import model.users.User;
 
 public class UserNotFoundException extends Exception{
 	

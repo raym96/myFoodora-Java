@@ -1,8 +1,8 @@
 package model.restaurant;
 
 import model.customer.ShoppingCartVisitor;
-import model.user.Customer;
-import model.user.Restaurant;
+import model.users.Customer;
+import model.users.Restaurant;
 
 public class AlaCarteOrder extends Order {
 	private Dish dish;
@@ -28,7 +28,7 @@ public class AlaCarteOrder extends Order {
 
 	@Override
 	public String toString() {
-		return "<AlaCarteOrder> "+dish.getDishName()+"; by Customer "+customer.getUsername()+ "; Restaurant " +restaurant.getUsername()+"; date = "+ date;
+		return "<AlaCarteOrder> "+dish.getDishName()+"|"+customer.getUsername()+ "|" +restaurant.getUsername()+"|"+ date;
 	}
 
 	@Override

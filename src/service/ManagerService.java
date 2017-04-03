@@ -4,9 +4,9 @@ import java.util.Date;
 
 import exceptions.UserNotFoundException;
 import model.myfoodora.DeliveryPolicy;
-import model.user.Courier;
-import model.user.Restaurant;
-import model.user.User;
+import model.users.Courier;
+import model.users.Restaurant;
+import model.users.User;
 
 public interface ManagerService {
 

@@ -3,7 +3,7 @@ package model.restaurant;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import model.user.Restaurant;
+import model.users.Restaurant;
 
 public abstract class Meal {
 
@@ -85,4 +85,32 @@ public abstract class Meal {
 		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+"€";
 		return str;
 	}
+
+	@Override
+	public int hashCode() {
+		return 31;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Meal))
+			return false;
+		Meal other = (Meal) obj;
+		if (dishes == null) {
+			if (other.dishes != null)
+				return false;
+		} else if (!dishes.equals(other.dishes))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
 }

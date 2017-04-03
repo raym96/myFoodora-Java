@@ -9,10 +9,11 @@ import org.junit.Test;
 import exceptions.UserNotFoundException;
 import initialization.InitCourier;
 import initialization.InitCustomer;
+import initialization.InitHistory;
 import initialization.InitRestaurant;
 import model.myfoodora.*;
 import model.restaurant.*;
-import model.user.*;
+import model.users.*;
 import service.ManagerService;
 import service.MyFoodoraService;
 import service.impl.MyFoodoraServiceImpl;
@@ -50,7 +51,7 @@ public class MyFoodoraUseCaseTest {
 		// import restaurants,customers and couriers from .txt file
 		ArrayList<Restaurant> restaurants = InitRestaurant.init("src/txt files/restaurant.txt");
 		ArrayList<Customer> customers = InitCustomer.init("src/txt files/customer.txt");
-		ArrayList<Courier> couriers = InitCourier.init("src/txt files/customer.txt");
+		ArrayList<Courier> couriers = InitCourier.init("src/txt files/courier.txt");
 
 		//Registering and activating
 		for (Restaurant r : restaurants){
@@ -65,7 +66,7 @@ public class MyFoodoraUseCaseTest {
 			managerService_director.addUser(co);
 			managerService_director.activateUser(co);
 		}
-
+		
 		managerService_director.displayUsers();
 		managerService_director.displayActiveUsers();
 		
@@ -85,6 +86,26 @@ public class MyFoodoraUseCaseTest {
 		myFoodora.refreshMessageBoard();
 		customers.get(0).refreshMessageBoard();
 		customers.get(6).refreshMessageBoard();
+		
+		//history
+		MyFoodora.getInstance().setHistory(InitHistory.init("src/txt files/history.txt"));
+		MyFoodora.getInstance().getHistory().displayAllOrders();
+	}
+	
+	@Test
+	public void historytest(){
+		//history
+		User restaurant_1 = commonMyFoodoraService.selectUser("restaurant_1");
+		((Restaurant)restaurant_1).getHistory().displayAllOrders();
+//		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedAlaCarte();
+//		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedHalfMeal();
+//		managerService_director.getBestRestaurant();
+		managerService_director.getBestRestaurant();
+		managerService_director.getWorstRestaurant();
+		//		SortingByCriteria s = new SortingByHalfMeal();
+//		s.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
+//		s = new SortingByAlaCarte();
+//		s.displayAscending(MyFoodora.getInstance().getHistory().getOrders());
 	}
 
 	/*
@@ -340,7 +361,7 @@ public class MyFoodoraUseCaseTest {
 //		5. the system noties the users (that agreed to be notied of special oers) about the
 //		new offer
 //	 */
-	@Test
+//	@Test
 	public void testOfAddMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Adding a meal of the week special offer -----------------------");
@@ -367,7 +388,7 @@ public class MyFoodoraUseCaseTest {
 		3. the restaurant selects a meal in the meal of the week list and selects the remove from
 		its special offer state.
 	 */
-	@Test
+//	@Test
 	public void testOfRemoveMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Removing a meal of the week special offer -----------------------");

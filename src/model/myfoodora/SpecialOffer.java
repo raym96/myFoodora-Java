@@ -1,7 +1,7 @@
 package model.myfoodora;
 
 import model.restaurant.*;
-import model.user.Restaurant;
+import model.users.Restaurant;
 
 public class SpecialOffer {
 	private Meal meal;

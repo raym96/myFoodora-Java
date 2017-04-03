@@ -1,6 +1,6 @@
 package model.customer;
 
-import model.user.User;
+import model.users.User;
 
 public abstract class FidelityCard {
 	private User user;

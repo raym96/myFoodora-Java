@@ -1,7 +1,7 @@
 package model.customer;
 
 import model.restaurant.*;
-import model.user.Restaurant;
+import model.users.Restaurant;
 
 public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	private Restaurant restaurant;

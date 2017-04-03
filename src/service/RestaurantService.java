@@ -44,7 +44,6 @@ public interface RestaurantService {
 	public void setSpecialDiscountFactor(double special_discount_factor);
 	
 	// 5. sorting of shipped orders with respect to different criteria (see below)
-	public void sortingShippedOrders();    // to be completed
 	public void DisplayMostOrderedHalfMeal();
 	public void DisplayLeastOrderedHalfMeal();
 	public void DisplayMostOrderedAlaCarte();

@@ -2,17 +2,21 @@ package service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import exceptions.UserNotFoundException;
 import model.customer.ConcreteShoppingCartVisitor;
 import model.customer.ShoppingCartVisitor;
 import model.myfoodora.DeliveryPolicy;
+import model.myfoodora.SortingByCriteria;
+import model.myfoodora.SortingByRestaurant;
 import model.restaurant.Order;
-import model.user.Courier;
-import model.user.Manager;
-import model.user.MyFoodora;
-import model.user.Restaurant;
-import model.user.User;
+import model.users.Courier;
+import model.users.Manager;
+import model.users.MyFoodora;
+import model.users.Restaurant;
+import model.users.User;
 import service.ManagerService;
 
 public class ManagerServiceImpl implements ManagerService {
@@ -99,14 +103,29 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public Restaurant getBestRestaurant() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Order> history =  manager.getMyfoodoraService().getHistory().getOrders();
+		SortingByCriteria s = new SortingByRestaurant();
+		s.displayAscending(history);
+		HashMap<Restaurant, Integer> h = s.sortByValuesReversed(s.countOccurence(history));
+		Entry<Restaurant, Integer> entry = h.entrySet().iterator().next();
+		System.out.println("The best selling restaurant is:");
+		System.out.println(entry.getKey().getName());
+		return (entry.getKey());
 	}
 
 	@Override
 	public Restaurant getWorstRestaurant() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Order> history =  manager.getMyfoodoraService().getHistory().getOrders();
+		SortingByCriteria s = new SortingByRestaurant();
+		s.displayDescending(history);
+		HashMap<Restaurant, Integer> h = s.sortByValues(s.countOccurence(history));
+		Entry<Restaurant, Integer> entry = h.entrySet().iterator().next();
+		System.out.println("The worst selling restaurant is:");
+		System.out.println(entry.getKey().getName());
+		return (entry.getKey());
 	}
+
 
 	// 8. determining the most/least active courier of the fleet
 	@Override

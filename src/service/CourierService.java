@@ -1,6 +1,6 @@
 package service;
 
-import model.user.AddressPoint;
+import model.users.AddressPoint;
 
 public interface CourierService {
 	

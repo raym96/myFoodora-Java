@@ -1,4 +1,4 @@
- package model.user;
+ package model.users;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +18,7 @@ import model.myfoodora.TargetProfit_DeliveryCost;
 import model.myfoodora.TargetProfit_Markup;
 import model.myfoodora.TargetProfit_ServiceFee;
 import model.restaurant.*;
-import model.user.*;
+import model.users.*;
 import service.MyFoodoraService;
 import service.impl.MyFoodoraServiceImpl;
 
@@ -164,6 +164,9 @@ public class MyFoodora implements Observable{
 		return deliverypolicy;
 	}
 
+	public void setHistory(History h){
+		history = h;
+	}
 	public History getHistory() {
 		return history;
 	}

@@ -5,12 +5,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import model.restaurant.*;
-import model.user.Restaurant;
+import model.users.Restaurant;
 
 public class History {
-	ArrayList<Order> orders;
+	ArrayList<Order> orders = new ArrayList<Order>();
 	
 	public void addOrder(Order order){
 		orders.add(order);
@@ -36,69 +37,19 @@ public class History {
 	}
 	
 	public void displayAllOrders(){
+		System.out.println("History:");
 		for (Order order:orders){
 			System.out.println(order);
 		}
 	}
 	
-	
-	public void DisplayMostOrderedHalfMeal(Restaurant r){
-		Map<Meal, Integer> tm  = new TreeMap(); //key = meal, value = occurrence, can be sorted
-		for (Order order: orders){
-			if  (order.getRestaurant()==r && order instanceof StandardMealOrder){
-				if (((StandardMealOrder)order).getMealType()=="half meal"){
-					int occurrences = Collections.frequency(orders, order);
-					tm.put(((MealOrder) order).getMeal(), occurrences);
-				}
+	public ArrayList<Order> getOrdersOf(String restaurant_username){
+		ArrayList<Order> ret = new ArrayList<Order>();
+		for (Order order:orders){
+			if (order.getRestaurant().getUsername().equals(restaurant_username)){
+				ret.add(order);
 			}
-       for (Map.Entry<Meal, Integer> entry : tm.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-				+ " Value : " + entry.getValue());
 		}
-		}
-	}
-	
-	public void DisplayLeastOrderedHalfMeal(Restaurant r){
-		Map<Meal, Integer> tm  = new TreeMap<Meal,Integer>(Collections.reverseOrder()); //key = meal, value = occurrence, can be sorted
-		for (Order order: orders){
-			if  (order.getRestaurant()==r && order instanceof StandardMealOrder){
-				if (((StandardMealOrder)order).getMealType()=="half meal"){
-					int occurrences = Collections.frequency(orders, order);
-					tm.put(((MealOrder) order).getMeal(), occurrences);
-				}
-			}
-       for (Map.Entry<Meal, Integer> entry : tm.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-				+ " Value : " + entry.getValue());
-		}
-		}
-	}
-	
-	public void DisplayMostOrderedAlaCarte(Restaurant r){
-		Map<Meal, Integer> tm  = new TreeMap(); //key = meal, value = occurrence, can be sorted
-		for (Order order: orders){
-			if  (order.getRestaurant()==r && order instanceof AlaCarteOrder){
-					int occurrences = Collections.frequency(orders, order);
-					tm.put(((MealOrder) order).getMeal(), occurrences);
-				}
-			}
-		for (Map.Entry<Meal, Integer> entry : tm.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-				+ " Value : " + entry.getValue());
-		}
-	}
-	
-	public void DisplayLeastOrderedAlaCarte(Restaurant r){
-		Map<Meal, Integer> tm  = new TreeMap<Meal,Integer>(Collections.reverseOrder()); //key = meal, value = occurrence, can be sorted
-		for (Order order: orders){
-			if  (order.getRestaurant()==r && order instanceof AlaCarteOrder){
-					int occurrences = Collections.frequency(orders, order);
-					tm.put(((MealOrder) order).getMeal(), occurrences);
-				}
-			}
-		for (Map.Entry<Meal, Integer> entry : tm.entrySet()) {
-            System.out.println("Key : " + entry.getKey()
-				+ " Value : " + entry.getValue());
-		}
+		return ret;
 	}
 }

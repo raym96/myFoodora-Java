@@ -7,7 +7,7 @@ import java.util.Date;
 import model.customer.*;
 import model.myfoodora.*;
 import model.restaurant.*;
-import model.user.*;
+import model.users.*;
 import service.MyFoodoraService;
 
 public class MyFoodoraServiceImpl implements MyFoodoraService{
@@ -213,5 +213,8 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
 	}
 
-	
+	@Override
+	public History getHistory(){
+		return myfoodora.getHistory();
+	}
 }

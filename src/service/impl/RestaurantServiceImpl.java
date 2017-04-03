@@ -6,6 +6,7 @@ import java.util.Iterator;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
+import model.myfoodora.*;
 import model.restaurant.Dish;
 import model.restaurant.FullMeal;
 import model.restaurant.HalfMeal;
@@ -13,8 +14,8 @@ import model.restaurant.Meal;
 import model.restaurant.MealFactory;
 import model.restaurant.Order;
 import model.restaurant.Starter;
-import model.user.MyFoodora;
-import model.user.Restaurant;
+import model.users.MyFoodora;
+import model.users.Restaurant;
 import service.RestaurantService;
 
 public class RestaurantServiceImpl implements RestaurantService {
@@ -277,27 +278,30 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void DisplayMostOrderedHalfMeal() {
 		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayMostOrderedHalfMeal(restaurant);
+		SortingByCriteria s = new SortingByHalfMeal();
+		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
 	@Override
 	public void DisplayLeastOrderedHalfMeal() {
 		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayLeastOrderedHalfMeal(restaurant);
+		SortingByCriteria s = new SortingByHalfMeal();
+		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
 	@Override
 	public void DisplayMostOrderedAlaCarte() {
 		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayMostOrderedAlaCarte(restaurant);
+		SortingByCriteria s = new SortingByAlaCarte();
+		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
-
+		
 	@Override
 	public void DisplayLeastOrderedAlaCarte() {
 		// TODO Auto-generated method stub
-		restaurant.getHistory().DisplayLeastOrderedAlaCarte(restaurant);
+		SortingByCriteria s = new SortingByAlaCarte();
+		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
-	
 	
 	// EXTRA TOOLS
 	@Override
@@ -340,11 +344,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public boolean hasDish(String dishName) {
 		// TODO Auto-generated method stub
 		return restaurant.getMenu().hasDish(dishName);
-	}
-
-	@Override
-	public void sortingShippedOrders() {
-		// TODO Auto-generated method stub
 	}
 
 

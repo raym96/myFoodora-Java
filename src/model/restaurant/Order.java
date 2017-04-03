@@ -6,8 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import model.customer.ShoppingCartVisitor;
-import model.user.Customer;
-import model.user.Restaurant;
+import model.users.Customer;
+import model.users.Restaurant;
 
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public abstract class Order {
@@ -65,13 +65,6 @@ public abstract class Order {
 		} else if (!orderID.equals(other.orderID))
 			return false;
 		return true;
-	}
-	
-	
-
-	@Override
-	public String toString() {
-		return "["+customer+" "+restaurant+" OrderID "+orderID+ " at "+date+"]";
 	}
 	
 }
