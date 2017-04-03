@@ -37,19 +37,6 @@ public abstract class MealOrder extends Order {
 	}
 	
 	@Override
-	public String toString(){
-		String str = "";
-		if (this instanceof SpecialMealOrder){
-		str+= "<SpecialMealOrder> ";
-		}
-		else if (this instanceof StandardMealOrder){
-			str+="<StandardMealOrder> ";
-		}
-		str+=this.meal.getName()+"|"+customer.getUsername()+ "|" +restaurant.getUsername()+"|"+ date;
-		return str;
-	}
-
-	@Override
 	public abstract double accept(ShoppingCartVisitor visitor);
 	
 }

@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import model.customer.ShoppingCartVisitor;
+import model.users.AddressPoint;
+import model.users.Courier;
 import model.users.Customer;
 import model.users.Restaurant;
 
@@ -16,6 +18,10 @@ public abstract class Order {
 	protected Restaurant restaurant;
 	protected Customer customer;
 	
+	//relative to delivery
+	private Courier courier;
+	private boolean assigned;
+	
 	protected double price;
 	
 	public Order(Customer customer,Restaurant restaurant){
@@ -23,16 +29,23 @@ public abstract class Order {
 		this.restaurant = restaurant;
 		date = new Date();
 		orderID = UUID.randomUUID().toString();
+		
+		//initialy no courier is assigned
+		courier = null;
+		assigned = false;
 	}
 	
-	public abstract String getName();
+	public abstract double accept(ShoppingCartVisitor visitor);	
 	
+	public abstract String getName(); //depends on whether it is a meal or a-la-carte
+	
+	//getters and setters
 	public Customer getCustomer(){
 		return customer;
 	}
-	public abstract Restaurant getRestaurant();
-	
-	public abstract double accept(ShoppingCartVisitor visitor);
+	public Restaurant getRestaurant(){
+		return restaurant;
+	}
 	
 	public String getOrderID(){
 		return orderID;
@@ -41,6 +54,47 @@ public abstract class Order {
 	public Date getDate(){
 		return date;
 	}
+	
+	//relative to delivery
+	public boolean isAssigned() {
+		return assigned;
+	}
+
+	public void setAssigned(boolean assigned) {
+		this.assigned = assigned;
+	}
+
+	public AddressPoint getDestination() {
+		return getCustomer().getAddress();
+	}
+
+	public Courier getCourier() {
+		return courier;
+	}
+
+	public void setCourier(Courier courier) {
+		this.courier = courier;
+	}
+	
+	@Override
+	public String toString(){
+		String str = "";
+		if (this instanceof SpecialMealOrder){
+			str+= "[Special-meal] <";
+			str+= ((SpecialMealOrder)this).getName();
+		}
+		else if (this instanceof StandardMealOrder){
+			str+="[Meal] <";
+			str+= ((StandardMealOrder)this).getName();
+		}
+		else if (this instanceof AlaCarteOrder){
+			str+="[A-la-carte] <";
+			str+= ((AlaCarteOrder)this).getName();
+		}
+		str+="> ORDERED BY <"+customer.getUsername()+ "> AT <" +restaurant.getUsername()+ "> DELIVERED BY <" + courier.getUsername()+"> ON <"+ date+">";
+		return str;
+	}
+
 	
 	@Override
 	public int hashCode() {

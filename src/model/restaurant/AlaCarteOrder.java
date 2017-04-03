@@ -24,12 +24,6 @@ public class AlaCarteOrder extends Order {
 		return this.dish.getDishName();
 	}
 	
-	
-
-	@Override
-	public String toString() {
-		return "<AlaCarteOrder> "+dish.getDishName()+"|"+customer.getUsername()+ "|" +restaurant.getUsername()+"|"+ date;
-	}
 
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {

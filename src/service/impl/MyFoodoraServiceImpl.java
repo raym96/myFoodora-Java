@@ -41,27 +41,19 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	// 2. allocating of a courier to an order placed by a customer (by application of the current
 	// delivery policy, see below details of supported policies)/
 	
-	//IMPORTANT, TO BE COMPLETED
-	
-	//Assign a courier to an order, from a list of available couriers with respect to the delivery dtrategy
-	public void parse(Order order){
-		ArrayList<Courier> availablecouriers = myfoodora.getActivecouriers();
-		parse(order, availablecouriers);
-	}
-	
+	//IMPORTANT, TO BE COMPLETED	
 	public void parse(Order order, ArrayList<Courier> availablecouriers){
 		if (availablecouriers.size()==0){
 			order.getCustomer().update(new Message("No courier available for the moment, sorry."));
 		}
-		DeliveryTask newdeliverytask = new DeliveryTask(order);
 		Courier courier = myfoodora.getDeliverypolicy().parse(order, availablecouriers);
-		courier.setCurrentDeliveryTask(newdeliverytask);; //allocate delivery task to the courier
+		courier.setCurrentDeliveryTask(order);; //allocate delivery task to the courier
 		order.getCustomer().update(new Message(courier.getUsername()+" has been assigned to the delivery task. Please wait for confirmation.")); //the courier must accept
 	}
 	
-	//if the courier accepts the order, a message will display and the operation is over.
+	/** if the courier accepts the order, a message will display and the operation is over.
 	//if the courier declines the order, a new parse(order, availablecouriers) will be launched.
-	//for more information check the code in CourierServiceImpl.java
+	//for more information check the code in CourierServiceImpl.java **/
 
 	// 3. notifying users that gave consensus to receive special others notifcations, of a new
 	// special offer set by a restaurant

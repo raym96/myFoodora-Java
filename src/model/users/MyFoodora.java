@@ -7,7 +7,6 @@ import java.util.Date;
 import exceptions.UserNotFoundException;
 import model.customer.*;
 import model.myfoodora.DeliveryPolicy;
-import model.myfoodora.DeliveryTask;
 import model.myfoodora.History;
 import model.myfoodora.Message;
 import model.myfoodora.MessageBoard;
@@ -31,8 +30,8 @@ public class MyFoodora implements Observable{
 	private ArrayList<Customer> specialofferobservers;
 
 	private boolean delivery_task_state;
-	private ArrayList<DeliveryTask> deliveryTasks;
-	private DeliveryTask currentDeliveryTask;
+	private ArrayList<Order> deliveryTasks;
+	private Order currentDeliveryTask;
 	
 	private ConcreteSpecialOfferBoard specialofferboard;
 	
@@ -60,6 +59,7 @@ public class MyFoodora implements Observable{
 		this.delivery_task_state = false;
 		this.messageBoard = new MessageBoard(this);
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
+		this.history = new History();
 	};
 	
 	private static synchronized void syncInit(){
@@ -207,11 +207,11 @@ public class MyFoodora implements Observable{
 		user.setActived(false);
 	}
 
-	public DeliveryTask getCurrentDeliveryTask() {
+	public Order getCurrentDeliveryTask() {
 		return currentDeliveryTask;
 	}
 
-	public void setCurrentDeliveryTask(DeliveryTask currentDeliveryTask) {
+	public void setCurrentDeliveryTask(Order currentDeliveryTask) {
 		this.currentDeliveryTask = currentDeliveryTask;
 	}
 	

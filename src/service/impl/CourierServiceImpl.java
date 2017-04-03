@@ -49,12 +49,13 @@ public class CourierServiceImpl implements CourierService {
 	@Override
 	public void acceptCall() {
 		// TODO Auto-generated method stub
-		courier.getCurrentDeliveryTask().setCourier(courier);
+		courier.getCurrentDeliveryTask().setCourier(courier); //the courier is assigned to the delivery-task
 		courier.getCurrentDeliveryTask().setAssigned(true);
-		courier.setCount(courier.getCount()+1);
+		courier.setCount(courier.getCount()+1); // +1 for the delivery count of the courier
 		System.out.println("courier "+courier.getName()+" accepts to take the order.");
+		
 		//new message appears on message board of customer
-		Customer c = courier.getCurrentDeliveryTask().getOrder().getCustomer();
+		Customer c = courier.getCurrentDeliveryTask().getCustomer();
 		c.update(new Message("courier "+courier.getName()+" accepts to take the order."));
 	}
 
@@ -62,14 +63,18 @@ public class CourierServiceImpl implements CourierService {
 	public void refuseCall() {
 		// TODO Auto-generated method stub
 		courier.setCurrentDeliveryTask(null);
+		
 		ArrayList<Courier>availablecouriers = MyFoodora.getInstance().getActivecouriers();
-		availablecouriers.remove(courier); //this courier doesn't want to take the order, so he won't be considered for the parsing algorithm
+		availablecouriers.remove(courier); //this courier doesn't want to take the order, so he won't be considered for the next parsing
+		
 		System.out.println("courier "+courier.getName()+" refuses to take the order. A new courier is being assigned.");
+		
 		// new message appears on message board of customer
-		Customer c = courier.getCurrentDeliveryTask().getOrder().getCustomer();
+		Customer c = courier.getCurrentDeliveryTask().getCustomer();
 		c.update(new Message("courier "+courier.getName()+" refused to take the order. Please wait for an other courier"));
 	
-		new MyFoodoraServiceImpl().parse(courier.getCurrentDeliveryTask().getOrder(), availablecouriers); //a new courier is assigned
+		//A new courier is assigned to the delivery-task
+		new MyFoodoraServiceImpl().parse(courier.getCurrentDeliveryTask(), availablecouriers); //a new courier is assigned
 
 	}
 }

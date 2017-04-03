@@ -2,7 +2,6 @@ package model.users;
 
 import java.util.ArrayList;
 
-import model.myfoodora.DeliveryTask;
 import model.myfoodora.Message;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.SpecialOfferBoard;
@@ -21,8 +20,8 @@ public class Courier extends User{
 	private int count;
 	private boolean on_duty;
 	
-	private ArrayList<DeliveryTask> allDeliveryTasks;
-	private DeliveryTask currentDeliveryTask;
+	private ArrayList<Order> allDeliveryTasks;
+	private Order currentDeliveryTask;
 	
 	
 	private CourierService courierService;
@@ -34,6 +33,8 @@ public class Courier extends User{
 		this.position = position;
 		this.phone = phone;
 		this.on_duty = false;
+		this.allDeliveryTasks = new ArrayList<Order>();
+		this.currentDeliveryTask = null;
 		
 		count = 0;
 		this.courierService = new CourierServiceImpl(this);
@@ -70,16 +71,23 @@ public class Courier extends User{
 	}
 
 
-	public DeliveryTask getCurrentDeliveryTask() {
+	public Order getCurrentDeliveryTask() {
 		return currentDeliveryTask;
 	}
-
-
-	public void setCurrentDeliveryTask(DeliveryTask currentDeliveryTask) {
-		this.currentDeliveryTask = currentDeliveryTask;
+	
+	public void setCurrentDeliveryTask(Order order) {
+		this.currentDeliveryTask = order;
 	}
 
 	
+	public void addDeliveryTask(Order o){
+		allDeliveryTasks.add(o);
+	}
+
+	public ArrayList<Order> getAllDeliveryTask(){
+		return allDeliveryTasks;
+	}
+
 
 	@Override
 	public String toString() {

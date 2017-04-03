@@ -14,16 +14,29 @@ import model.restaurant.Order;
 import model.restaurant.StandardMealOrder;
 import model.users.*;
 
+
+/**To be used after the initialization of restaurants, customers, and couriers
+ * 
+ * Add a list of orders (can be randomly generated) to the history of MyFoodora, the history
+ * of its restaurants as well as the history of delivered orders of the couriers
+ * 
+ * @author Ray
+ *
+ */
+
 public class InitHistory {
-	public static History init(String filename){		
+	public static void init(String filename){		
 		History history = new History();
 		
 		String customer_username;
 		String restaurant_username;
+		String courier_username;
 		String ordername;
 		String orderType;
 		Customer customer = null;
 		Restaurant restaurant = null;
+		Courier courier = null;
+		
 		Order order = null;
 		
 		File file = new File(filename);
@@ -34,6 +47,7 @@ public class InitHistory {
 				restaurant_username = s.nextLine();
 				orderType = s.nextLine();
 				ordername = s.nextLine();
+				courier_username = s.nextLine();
 				for (User u : MyFoodora.getInstance().getUsers()){
 					if (u.getUsername().equals(customer_username)){
 						customer = ((Customer)u); 
@@ -42,23 +56,28 @@ public class InitHistory {
 				for (User u : MyFoodora.getInstance().getUsers()){
 					if (u.getUsername().equals(restaurant_username)){
 						restaurant = ((Restaurant)u); 
-						}
+					}
+				}
+				for (User u : MyFoodora.getInstance().getUsers()){
+					if (u.getUsername().equals(courier_username)){
+						courier = ((Courier)u); 
+					}
 				}
 				if (orderType.equals("Special-meal")){
 					order = new SpecialMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
-					restaurant.getHistory().addOrder(order);
-					history.addOrder(order);
 				}
 				if (orderType.equals("A-la-carte")){
 					order = new AlaCarteOrder(customer, restaurant, restaurant.getDishFactory().createDish(ordername));
-					history.addOrder(order);
-					restaurant.getHistory().addOrder(order);
 				}
 				else{
 					order = new StandardMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
-					history.addOrder(order);
-					restaurant.getHistory().addOrder(order);
 				}
+				restaurant.getHistory().addOrder(order); //add the order to the restaurant's history
+				MyFoodora.getInstance().getHistory().addOrder(order); //add the order to MyFoodra's general history
+				
+				order.setAssigned(true);
+				order.setCourier(courier);
+				courier.addDeliveryTask(order); //add the order to courier's delivery history
 			}
 		}
 		catch(IOException e){
@@ -66,7 +85,6 @@ public class InitHistory {
 		}
 		catch (MealNotFoundException e){}
 		catch (DishNotFoundException e){}
-		return history;
 	}
 	//generate random history, to be copy-pasted in menu.txt
 	public static void main(String[] args) {
@@ -88,6 +106,7 @@ public class InitHistory {
 				System.out.println("A-la-carte");
 				System.out.println(menu.getDishes().get(random.nextInt(menu.getDishes().size())).getDishName());
 			}
+			System.out.println("courier_"+(random.nextInt(4)+1));
 		}
 	}
 }

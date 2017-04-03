@@ -88,7 +88,7 @@ public class MyFoodoraUseCaseTest {
 		customers.get(6).refreshMessageBoard();
 		
 		//history
-		MyFoodora.getInstance().setHistory(InitHistory.init("src/txt files/history.txt"));
+		InitHistory.init("src/txt files/history.txt");
 		MyFoodora.getInstance().getHistory().displayAllOrders();
 	}
 	

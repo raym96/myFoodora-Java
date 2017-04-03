@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import model.myfoodora.*;
@@ -17,7 +18,7 @@ public interface MyFoodoraService {
 	
 	// 2. allocating of a courier to an order placed by a customer (by application of the current
 	// delivery policy, see below details of supported policies)
-	public void parse(Order order);
+	public void parse(Order order, ArrayList<Courier> availablecouriers);
 
 	// 3. notifying users that gave consensus to receive special oers notications, of a new
 	// special offer set by a restaurant
