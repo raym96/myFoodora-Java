@@ -37,7 +37,7 @@ public class MyFoodoraUseCaseTest {
 			i.e. ajoint), 5 restaurants and 2 couriers, 7 customers, 4 full-meals per restaurant...
 		2. the system sends alerts to the customers that agreed to be notified of special offers
 	 */
-	@Before
+	@Test
 	public void testStartupScenario() throws UserNotFoundException {
 		
 		System.out.println("----------------------- Startup scenario -----------------------");
@@ -90,11 +90,11 @@ public class MyFoodoraUseCaseTest {
 //		customers.get(6).refreshMessageBoard();
 //		
 		//history
-		InitHistory.init("src/txt files/history.txt");
-		MyFoodora.getInstance().getHistory().displayAllOrders();
+//		InitHistory.init("src/txt files/history.txt");
+//		MyFoodora.getInstance().getHistory().displayAllOrders();
 	}
 	
-	@Test
+//	@Test
 	public void historytest(){
 		//history
 		User restaurant_1 = commonMyFoodoraService.selectUser("restaurant_1");

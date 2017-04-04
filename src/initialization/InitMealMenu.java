@@ -3,6 +3,7 @@ package initialization;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import model.restaurant.*;
@@ -67,11 +68,28 @@ public class InitMealMenu {
 		}
 		return mealmenus;
 }
-//	public static void main(String[] args) {
-//		ArrayList<MealMenu>mealmenus = InitMealMenu.init("src/txt files/mealmenu.txt");
-//		System.out.println(mealmenus);
-//		for (MealMenu mealmenu:mealmenus){
-//			mealmenu.display();
-//		}
-//	}
+	public static void main(String arg[]){
+		for (int i = 0; i<45; i++){
+			System.out.println("[Meal/"+(i+1)+"]");
+			if (i%9<4){
+				System.out.println("category=Full-meal");
+				System.out.println("dish1=");
+				System.out.println("dish2=");
+				System.out.println("dish3=");
+			}
+			if (i%9<8 && i%9>=4){
+				System.out.println("category=Half-meal");
+				System.out.println("dish1=");
+				System.out.println("dish2=");
+			}
+			if (i%9==8){
+				System.out.println("category=Special-offer");
+				System.out.println("dish1=");
+				System.out.println("dish2=");
+			}
+			Random random = new Random();
+			System.out.println("restaurant=restaurant_"+((i/9)+1));
+			System.out.println();
+		}
+	}
 }

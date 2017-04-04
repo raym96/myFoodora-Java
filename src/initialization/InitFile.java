@@ -183,7 +183,7 @@ public class InitFile {
 			}
 			if (mealCategory.equals("Special-offer")){
 				dishName1 = meal.get("dish1");
-				dishName2 = meal.get("dish1");
+				dishName2 = meal.get("dish2");
 				//add the meal and promotes it to special-meals
 				restaurant.getRestaurantService().addMeal(mealName, dishName1, dishName2);
 				restaurant.getRestaurantService().addSpecialMeal(mealName);

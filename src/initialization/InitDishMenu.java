@@ -3,6 +3,7 @@ package initialization;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import model.restaurant.*;
@@ -45,23 +46,22 @@ public class InitDishMenu {
 	
 	public static void main(String arg[]){
 		Menu menu = init("src/txt files/menu.txt");
-		int i =1;
-		for (Dish d:menu.getDishes()){
-			System.out.println("[Dish/"+i+"]");
-			i++;
-			if (d instanceof Starter){
+		for (int i = 0; i<30; i++){
+			System.out.println("[Dish/"+(i+1)+"]");
+			if (i%6<2){
 				System.out.println("category=Starter");
 			}
-			if (d instanceof MainDish){
+			if (i%6<4 && i%6>=2){
 				System.out.println("category=Main-dish");
 			}
-			if (d instanceof Dessert){
+			if (i%6>=4){
 				System.out.println("category=Dessert");
 			}
-			System.out.println("name="+d.getDishName());
-			System.out.println("type="+d.getDishType());
-			System.out.println("price="+d.getPrice());
-			System.out.println("restaurant=restaurant_1");
+			System.out.println("name=");
+			System.out.println("type=");
+			Random random = new Random();
+			System.out.println("price="+random.nextInt(10)+"."+random.nextInt(10));
+			System.out.println("restaurant=restaurant_"+((i/6)+1));
 			System.out.println();
 		}
 	}

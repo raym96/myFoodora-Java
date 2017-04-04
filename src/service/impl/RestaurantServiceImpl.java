@@ -75,7 +75,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		if (meal instanceof FullMeal){
 			restaurant.getFullMealMenu().addMeal(meal);
 		}
-		System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu");
+		System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu of "+restaurant.getName());
 	}
 		
 		
@@ -117,7 +117,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		if (md_count==1 && st_ds_count==1){
 			meal.refreshMealType();
 			restaurant.getHalfMealMenu().addMeal(meal);
-			System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu");
+			System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu of "+restaurant.getName());
 		}
 		else{
 			throw new DishTypeErrorException("half meal");
@@ -162,7 +162,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if (meal.getDishes().size()==3){
 				meal.refreshMealType();
 				this.restaurant.getFullMealMenu().addMeal(meal);
-				System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu");
+				System.out.println("Formula <"+meal.getName()+">" +" added to the meal-menu of "+restaurant.getName());
 			}
 			else {
 				throw new DishTypeErrorException("full meal");
