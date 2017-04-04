@@ -9,6 +9,7 @@ import org.junit.Test;
 import exceptions.UserNotFoundException;
 import initialization.InitCourier;
 import initialization.InitCustomer;
+import initialization.InitFile;
 import initialization.InitHistory;
 import initialization.InitRestaurant;
 import model.myfoodora.*;
@@ -48,45 +49,46 @@ public class MyFoodoraUseCaseTest {
 		commonMyFoodoraService.assignManager(director);
 		managerService_director = director.getManagerService();
 		
-		// import restaurants,customers and couriers from .txt file
-		ArrayList<Restaurant> restaurants = InitRestaurant.init("src/txt files/restaurant.txt");
-		ArrayList<Customer> customers = InitCustomer.init("src/txt files/customer.txt");
-		ArrayList<Courier> couriers = InitCourier.init("src/txt files/courier.txt");
-
-		//Registering and activating
-		for (Restaurant r : restaurants){
-			managerService_director.addUser(r);
-			managerService_director.activateUser(r);
-		}
-		for (Customer c: customers){
-			managerService_director.addUser(c);
-			managerService_director.activateUser(c);
-		}
-		for (Courier co:couriers){
-			managerService_director.addUser(co);
-			managerService_director.activateUser(co);
-		}
-		
+		InitFile.InitUser("init.ini");
+//		// import restaurants,customers and couriers from .txt file
+//		ArrayList<Restaurant> restaurants = InitRestaurant.init("src/txt files/restaurant.txt");
+//		ArrayList<Customer> customers = InitCustomer.init("src/txt files/customer.txt");
+//		ArrayList<Courier> couriers = InitCourier.init("src/txt files/courier.txt");
+//
+//		//Registering and activating
+//		for (Restaurant r : restaurants){
+//			managerService_director.addUser(r);
+//			managerService_director.activateUser(r);
+//		}
+//		for (Customer c: customers){
+//			managerService_director.addUser(c);
+//			managerService_director.activateUser(c);
+//		}
+//		for (Courier co:couriers){
+//			managerService_director.addUser(co);
+//			managerService_director.activateUser(co);
+//		}
+//		
 		managerService_director.displayUsers();
 		managerService_director.displayActiveUsers();
-		
-		restaurants.get(0).getRestaurantService().displayMenu();
-		restaurants.get(0).getRestaurantService().displayMealMenu();
-		
-		// send alerts to customers
-		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
-		customers.get(0).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-		customers.get(1).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-		customers.get(2).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-		customers.get(3).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-		customers.get(4).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
-		customers.get(5).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
-		customers.get(6).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
-		
-		myFoodora.refreshMessageBoard();
-		customers.get(0).refreshMessageBoard();
-		customers.get(6).refreshMessageBoard();
-		
+//		
+//		restaurants.get(0).getRestaurantService().displayMenu();
+//		restaurants.get(0).getRestaurantService().displayMealMenu();
+//		
+//		// send alerts to customers
+//		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
+//		customers.get(0).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+//		customers.get(1).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+//		customers.get(2).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+//		customers.get(3).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+//		customers.get(4).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
+//		customers.get(5).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
+//		customers.get(6).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
+//		
+//		myFoodora.refreshMessageBoard();
+//		customers.get(0).refreshMessageBoard();
+//		customers.get(6).refreshMessageBoard();
+//		
 		//history
 		InitHistory.init("src/txt files/history.txt");
 		MyFoodora.getInstance().getHistory().displayAllOrders();

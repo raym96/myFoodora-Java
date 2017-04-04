@@ -66,6 +66,23 @@ public class Customer extends User implements SpecialOfferObserver{
 		return this.card;
 	}
 
+	public String getName(){
+		return this.name;
+	}
+	
+	public String getSurname(){
+		return this.surname;
+	}
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return username;

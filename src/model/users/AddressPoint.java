@@ -10,6 +10,14 @@ public class AddressPoint {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public AddressPoint(String address){
+		super();
+		//String under the form of "x,y" x and y separated by "a" ,
+		String[] parts = address.split(",");
+		this.x = Double.parseDouble(parts[0]);
+		this.y = Double.parseDouble(parts[1]);
+	}
 
 	public double getX() {
 		return x;
@@ -30,7 +38,7 @@ public class AddressPoint {
 	
 	@Override
 	public String toString() {
-		return "("+x+","+y+")";
+		return x+","+y;
 	}
 
 	public double calculateDistance(AddressPoint address){

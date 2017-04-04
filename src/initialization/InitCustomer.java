@@ -40,7 +40,19 @@ public class InitCustomer {
 		}
 	return customers;
 	}
-//	public static void main(String[] args) {
-//		System.out.println(InitCustomer.init("src/txt files/customer.txt"));
-//	}
+	public static void main(String[] args) {
+		ArrayList<Customer> customers = InitCustomer.init("src/txt files/customer.txt");
+		int i =1;
+		for (Customer c : customers){
+			System.out.println("[Customer/"+i+"]");
+			i++;
+			System.out.println("name="+c.getName());
+			System.out.println("surname="+c.getSurname());
+			System.out.println("username="+c.getUsername());
+			System.out.println("address="+c.getAddress());
+			System.out.println("email="+c.getEmail());
+			System.out.println("phone="+c.getPhone());
+			System.out.println();
+		}
+	}
 }

@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import model.users.AddressPoint;
 import model.users.Courier;
+import model.users.Customer;
 
 
 public class InitCourier {
@@ -40,6 +41,17 @@ public class InitCourier {
 	return couriers;
 	}
 	public static void main(String[] args) {
-		System.out.println(InitCourier.init("src/txt files/courier.txt"));
+		ArrayList<Courier> couriers = InitCourier.init("src/txt files/courier.txt");
+		int i =1;
+		for (Courier c : couriers){
+			System.out.println("[Courier/"+i+"]");
+			i++;
+			System.out.println("name="+c.getName());
+			System.out.println("surname="+c.getSurname());
+			System.out.println("username="+c.getUsername());
+			System.out.println("position="+c.getPosition());
+			System.out.println("phone="+c.getPhone());
+			System.out.println();
+		}
 	}
 }

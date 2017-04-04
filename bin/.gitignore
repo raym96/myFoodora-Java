@@ -1,11 +1,9 @@
 /exceptions/
+/initialization/
 /model/
 /model.di
 /model.notation.xml
 /model.uml
 /service/
 /test/
-/uml/
-/parsers/
-/initialization/
 /txt files/

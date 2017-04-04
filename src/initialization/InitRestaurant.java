@@ -36,8 +36,14 @@ public class InitRestaurant {
 		}
 	return restaurants;
 	}
-//	public static void main(String[] args) {
-//		ArrayList<Restaurant> restaurants = InitRestaurant.init("src/txt files/restaurant.txt");
-//		for (Restaurant r:restaurants) System.out.println(r);
-//	}
+	public static void main(String[] args) {
+		ArrayList<Restaurant> restaurants = InitRestaurant.init("src/txt files/restaurant.txt");
+		for (Restaurant r:restaurants){
+			System.out.println("[Restaurant/"+r.getUsername()+"]");
+			System.out.println("name="+r.getName());
+			System.out.println("username="+r.getUsername());
+			System.out.println("address="+r.getAddress());
+			System.out.println();
+		}
+	}
 }

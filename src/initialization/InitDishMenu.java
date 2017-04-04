@@ -43,8 +43,26 @@ public class InitDishMenu {
 		return menu;
 	}
 	
-//	public static void main(String arg[]){
-//		Menu menu = init("src/txt files/menu.txt");
-//		menu.display();
-//	}
+	public static void main(String arg[]){
+		Menu menu = init("src/txt files/menu.txt");
+		int i =1;
+		for (Dish d:menu.getDishes()){
+			System.out.println("[Dish/"+i+"]");
+			i++;
+			if (d instanceof Starter){
+				System.out.println("category=Starter");
+			}
+			if (d instanceof MainDish){
+				System.out.println("category=Main-dish");
+			}
+			if (d instanceof Dessert){
+				System.out.println("category=Dessert");
+			}
+			System.out.println("name="+d.getDishName());
+			System.out.println("type="+d.getDishType());
+			System.out.println("price="+d.getPrice());
+			System.out.println("restaurant=restaurant_1");
+			System.out.println();
+		}
+	}
 }

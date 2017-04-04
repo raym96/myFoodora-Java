@@ -105,6 +105,10 @@ public class Restaurant extends User{
 		this.fullmealmenu=mealmenu;
 	}
 
+	public void setSpecialMealmenu(MealMenu mealmenu){
+		this.specialmealmenu = mealmenu;
+	}
+	
 	public double getGeneric_discount_factor() {
 		return generic_discount_factor;
 	}

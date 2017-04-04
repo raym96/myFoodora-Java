@@ -34,6 +34,8 @@ public class InitMealMenu {
 			MealMenu fullmealmenu = new MealMenu(gdf);
 			MealMenu specialmealmenu = new MealMenu(sdf);
 			
+			
+			
 			while (s.hasNextLine()&&s.nextLine().equals("----------")){
 				mealCategory = s.nextLine();
 				mealName = s.nextLine();

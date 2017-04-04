@@ -70,7 +70,6 @@ public class Courier extends User{
 		return name;
 	}
 
-
 	public Order getCurrentDeliveryTask() {
 		return currentDeliveryTask;
 	}
@@ -89,6 +88,14 @@ public class Courier extends User{
 		return allDeliveryTasks;
 	}
 
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
 
 	@Override
 	public String toString() {
