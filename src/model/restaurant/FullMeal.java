@@ -20,6 +20,7 @@ public class FullMeal extends Meal {
 	public FullMeal(Meal fullmeal){
 		super(fullmeal.getName());
 		this.dishes = fullmeal.getDishes();
+		this.mealType = fullmeal.getMealType();
 	}
 	
 	//ONLY FOR TESTS

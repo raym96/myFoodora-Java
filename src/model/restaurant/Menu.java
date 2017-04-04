@@ -35,6 +35,7 @@ public class Menu {
 		list.addAll(getStarters());
 		list.addAll(getMaindishes());
 		list.addAll(getDesserts());
+		
 		return list;
 	}
 	

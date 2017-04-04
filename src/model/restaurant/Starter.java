@@ -1,5 +1,9 @@
 package model.restaurant;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 public class Starter extends Dish {
 
 	public Starter(String itemName, String itemType, double price) {
@@ -8,6 +12,9 @@ public class Starter extends Dish {
 	}
 
 	public Starter makeCopy(){
-		return new Starter(this.dishName,this.dishType,this.price);
+		Starter s = new Starter(this.dishName,this.dishType,this.price);
+		
+		return s;
+		
 	}
 }

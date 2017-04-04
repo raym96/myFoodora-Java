@@ -1,6 +1,8 @@
 package model.users;
+
 import java.util.Date;
 import java.util.UUID;
+
 
 import model.myfoodora.Message;
 import model.myfoodora.MessageBoard;
@@ -45,7 +47,7 @@ public abstract class User implements Observer{
 		this.logStatus = false;
 		this.observe(MyFoodora.getInstance(), "" + this.getUsername() + " has logged out of the myFoodora system");
 	}
-	
+
 	public void turnOnNotification(){
 		notified = true;
 	}

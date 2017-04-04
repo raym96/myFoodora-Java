@@ -55,7 +55,7 @@ public class Restaurant extends User{
 //		setMealMenu(InitMealMenu.init("src/txt files/mealmenu.txt"));
 	}
 	
-	
+
 	public RestaurantService getRestaurantService() {
 		return restaurantService;
 	}

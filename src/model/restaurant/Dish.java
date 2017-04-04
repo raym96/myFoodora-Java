@@ -9,7 +9,12 @@ public abstract class Dish {
 	
 	protected double price;
 	
-	
+
+	public Dish() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public Dish(String dishName, String dishType, double price) {
 		super();
@@ -62,12 +67,19 @@ public abstract class Dish {
 		return dishType;
 	}
 
+	
+	
+	public void setDishType(String dishType) {
+		this.dishType = dishType;
+	}
+
+
 	public double getPrice() {
 		return price;
 	}
 	
 	public String toString() {
-		return "<"+ dishName +"> " + dishType+ " " + price + "€ ";
+		return "<"+ dishName +"> " + dishType+ " " + price + "ï¿½ ";
 	}
 	
 }

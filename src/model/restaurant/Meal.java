@@ -41,7 +41,7 @@ public abstract class Meal {
 	
 	public boolean sameMealType(){
 		for (int i = 0 ; i<this.getDishes().size()-1;i++){
-			if (this.getDishes().get(i)!=this.getDishes().get(i+1)){
+			if (this.getDishes().get(i).getDishType()!=this.getDishes().get(i+1).getDishType()){
 				return false;
 			}
 		}
@@ -82,7 +82,7 @@ public abstract class Meal {
 	public String toString() {
 		String str;
 		//the stream.map.collector allows to collect only dishnames
-		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+"€";
+		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+"ï¿½";
 		return str;
 	}
 
