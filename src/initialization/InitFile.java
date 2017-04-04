@@ -2,16 +2,61 @@ package initialization;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.ini4j.Ini;
 import org.ini4j.InvalidFileFormatException;
 
+import exceptions.DishNotFoundException;
+import exceptions.MealNotFoundException;
 import model.users.*;
+import model.myfoodora.History;
 import model.restaurant.*;
 
 public class InitFile {
+	
+	public static void InitUser(String filename) {
+		MyFoodora myfoodora = MyFoodora.getInstance();
+		ArrayList<User> users = new ArrayList<User>();
+		try{
+			users.addAll(initManager(filename));
+			users.addAll(initRestaurant(filename));
+			users.addAll(initCustomer(filename));	
+			users.addAll(initCourier(filename));
+			myfoodora.setUsers(users); //add them to myfoodora
+			myfoodora.setActiveUsers(users); //activating them
+		}catch(IOException e){}
+		System.out.println("\nThe initial file "+filename+" successfully loaded into the system.");
+		System.out.println("-------------------------------------------------------------\n");
+	}
 
+	public static ArrayList<Manager> initManager(String filename) throws IOException{
+		String name;
+		String surname;
+		String username;
+		
+		ArrayList<Manager> users = new ArrayList<Manager>();
+		Ini ini = new Ini(new File(filename));
+		
+		Ini.Section managers;
+		Ini.Section manager;
+		
+    	managers = ini.get("Manager");
+    	for (String id:managers.childrenNames()){
+    		manager = managers.getChild(id);
+    		name = manager.get("name");
+    		surname = manager.get("surname");
+    		username = manager.get("username");
+			Manager c = new Manager(name,surname,username);
+			users.add(c);
+    	}
+    	return users;
+	}
 	public static ArrayList<Customer> initCustomer(String filename) throws IOException {
 		String name;
 		String surname;
@@ -41,7 +86,6 @@ public class InitFile {
     	return users;
 	}
     	
-    	//COURIERS
 	public static ArrayList<Courier> initCourier(String filename) throws IOException {
 		String name;
 		String surname;
@@ -68,7 +112,6 @@ public class InitFile {
     	}
     	return users;
 	}
-	
 	//initialize restaurants and set up their menu & meal-menu
 	public static ArrayList<Restaurant> initRestaurant(String filename) throws IOException {
 		String name;
@@ -91,12 +134,13 @@ public class InitFile {
     		users.add(r);
     	}
     	
-    	initMenu(users, ini);
-    	initMealMenu(users, ini);
+    	System.out.println("Initializing the menus:");
+    	initMenu(users, ini); //SET THE DISH MENU
+    	initMealMenu(users, ini); //SET THE MEAL MENU
     	return users;
 	}
 	
-	//add dishes to the menus of predefined restaurants
+	//add dishes to the menu of predefined restaurants
 	public static void initMenu(ArrayList<Restaurant> restaurants, Ini ini) throws IOException {
 		
 		Ini.Section dishes;
@@ -141,7 +185,7 @@ public class InitFile {
 		}
 	}
 	
-	//Add meal menus to predefined restaurants
+	//Add meals to the meal-menu of predefined restaurants
 	public static void initMealMenu(ArrayList<Restaurant> restaurants, Ini ini) throws InvalidFileFormatException, IOException{	
 		String restaurant_username;
 		Restaurant restaurant = null;
@@ -192,15 +236,72 @@ public class InitFile {
 
 	}
 	
-	public static void InitUser(String filename) {
-		MyFoodora myfoodora = MyFoodora.getInstance();
-		ArrayList<User> users = new ArrayList<User>();
-		try{
-			users.addAll(initRestaurant(filename));
-			users.addAll(initCustomer(filename));	
-			users.addAll(initCourier(filename));
-		}catch(IOException e){}
-		myfoodora.setUsers(users); //add them to myfoodora
-		myfoodora.setActiveUsers(users); //activating them
+	//Initialize history by adding random orders to restaurants
+	public static History initHistory(String filename) throws IOException{
+		History history= new History();
+		Ini ini = new Ini(new File(filename));
+		
+		//relative to dates
+		Random random = new Random();
+
+		
+		Ini.Section orders;
+		Ini.Section order;
+		
+		String customer_username;
+		String restaurant_username;
+		String courier_username;
+		String ordername;
+		String orderType;
+		Customer customer = null;
+		Restaurant restaurant = null;
+		Courier courier = null;
+		Order neworder = null;
+		
+		orders = ini.get("Order");
+		for (String id:orders.childrenNames()){
+			try{
+				order = orders.getChild(id);
+				customer_username = order.get("customer");
+				restaurant_username = order.get("restaurant");
+				orderType = order.get("category");
+				ordername = order.get("name");
+				courier_username = order.get("courier");
+	
+				for (User u : MyFoodora.getInstance().getUsers()){
+					if (u.getUsername().equals(customer_username)){
+						customer = ((Customer)u); 
+					}
+				}
+				for (User u : MyFoodora.getInstance().getUsers()){
+					if (u.getUsername().equals(restaurant_username)){
+						restaurant = ((Restaurant)u); 
+					}
+				}
+				for (User u : MyFoodora.getInstance().getUsers()){
+					if (u.getUsername().equals(courier_username)){
+						courier = ((Courier)u); 
+					}
+				}
+				if (orderType.equals("Special-meal")){
+					neworder = new SpecialMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
+				}
+				if (orderType.equals("A-la-carte")){
+					neworder = new AlaCarteOrder(customer, restaurant, restaurant.getDishFactory().createDish(ordername));
+				}
+				else{
+					neworder = new StandardMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
+				}
+				String s = "2017."+random.nextInt(4)+"."+random.nextInt(28);
+				DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+				Date date;
+					date = format.parse(s);
+					neworder.setDate(date);		
+				history.addOrder(neworder);
+			}catch (ParseException e){
+			}catch (MealNotFoundException e){
+			}catch (DishNotFoundException e){}	
+		}
+		return history;
 	}
 }

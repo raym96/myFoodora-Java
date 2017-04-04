@@ -88,25 +88,32 @@ public class InitHistory {
 	}
 	//generate random history, to be copy-pasted in menu.txt
 	public static void main(String[] args) {
-		Menu menu = InitDishMenu.init("src/txt files/menu.txt");
 		Random random = new Random();
+		try{
+		ArrayList<Restaurant> restaurants = InitFile.initRestaurant("init.ini");
+		ArrayList<Customer> customers = InitFile.initCustomer("init.ini");
 		for (int i = 0;i<100;i++){
-			System.out.println("----------");
-			System.out.println("customer_"+(random.nextInt(7)+1));
-			System.out.println("restaurant_"+(random.nextInt(7)+1));
+			System.out.println("[Order/"+(i+1)+"]");
+			int c = random.nextInt(customers.size());
+			int r = random.nextInt(restaurants.size());
+			System.out.println("customer="+customers.get(c).getUsername());
+			System.out.println("restaurant="+restaurants.get(r).getUsername());
 			if (random.nextInt()%3==0){
-				System.out.println("Half-meal");
-				System.out.println("hm"+(random.nextInt(5)+1));
+				System.out.println("category=Half-meal");
+				System.out.println("name=hm"+(random.nextInt(4)+1));
 			}
 			else if (random.nextInt()%3==1){
-				System.out.println("Full-meal");
-				System.out.println("fm"+(random.nextInt(5)+1));
+				System.out.println("category=Full-meal");
+				System.out.println("name=fm"+(random.nextInt(4)+1));
 			}
 			else {
-				System.out.println("A-la-carte");
-				System.out.println(menu.getDishes().get(random.nextInt(menu.getDishes().size())).getDishName());
+				System.out.println("category=A-la-carte");
+				Menu menu = restaurants.get(r).getMenu();
+				System.out.println("name="+menu.getDishes().get(random.nextInt(menu.getDishes().size())).getDishName());
 			}
-			System.out.println("courier_"+(random.nextInt(4)+1));
+			System.out.println("courier=courier_"+(random.nextInt(4)+1));
+			System.out.println();
 		}
+		}catch(IOException e){}
 	}
 }

@@ -17,6 +17,7 @@ import model.restaurant.*;
 import model.users.*;
 import service.ManagerService;
 import service.MyFoodoraService;
+import service.impl.ManagerServiceImpl;
 import service.impl.MyFoodoraServiceImpl;
 
 public class MyFoodoraUseCaseTest {
@@ -28,7 +29,7 @@ public class MyFoodoraUseCaseTest {
 	 **/
 	private MyFoodora myFoodora = MyFoodora.getInstance();
 	private MyFoodoraService commonMyFoodoraService = new MyFoodoraServiceImpl();
-	ManagerService managerService_director = null;
+	ManagerService managerService_director = new ManagerServiceImpl();
 	
 	
 	/*
@@ -42,36 +43,15 @@ public class MyFoodoraUseCaseTest {
 		
 		System.out.println("----------------------- Startup scenario -----------------------");
 	
-		// managers 
-		Manager ceo = new Manager("Ji", "raym", "raym");
-		Manager director = new Manager("He", "xiaoan", "hxa");
-		commonMyFoodoraService.assignManager(ceo);
-		commonMyFoodoraService.assignManager(director);
-		managerService_director = director.getManagerService();
-		
 		InitFile.InitUser("init.ini");
-//		// import restaurants,customers and couriers from .txt file
-//		ArrayList<Restaurant> restaurants = InitRestaurant.init("src/txt files/restaurant.txt");
-//		ArrayList<Customer> customers = InitCustomer.init("src/txt files/customer.txt");
-//		ArrayList<Courier> couriers = InitCourier.init("src/txt files/courier.txt");
-//
-//		//Registering and activating
-//		for (Restaurant r : restaurants){
-//			managerService_director.addUser(r);
-//			managerService_director.activateUser(r);
-//		}
-//		for (Customer c: customers){
-//			managerService_director.addUser(c);
-//			managerService_director.activateUser(c);
-//		}
-//		for (Courier co:couriers){
-//			managerService_director.addUser(co);
-//			managerService_director.activateUser(co);
-//		}
-//		
-		managerService_director.displayUsers();
-		managerService_director.displayActiveUsers();
-//		
+//		managerService_director.displayUsers();
+//		managerService_director.displayActiveUsers();
+		ArrayList<User> restaurants = myFoodora.getUsersOfAssignedType("RESTAURANT");
+		for (User u:restaurants){
+			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
+			((Restaurant)u).getRestaurantService().displayMenu();
+			((Restaurant)u).getRestaurantService().displayMealMenu();
+		}
 //		restaurants.get(0).getRestaurantService().displayMenu();
 //		restaurants.get(0).getRestaurantService().displayMealMenu();
 //		

@@ -1,5 +1,8 @@
 package model.restaurant;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -35,6 +38,18 @@ public abstract class Order {
 		assigned = false;
 	}
 	
+	//Only for order generation with a date
+	public Order(Customer customer,Restaurant restaurant, Date date){
+		this.customer = customer;
+		this.restaurant = restaurant;
+		orderID = UUID.randomUUID().toString();
+		this.date = date;
+		
+		//initialy no courier is assigned
+		courier = null;
+		assigned = false;
+	}
+	
 	public abstract double accept(ShoppingCartVisitor visitor);	
 	
 	public abstract String getName(); //depends on whether it is a meal or a-la-carte
@@ -53,6 +68,10 @@ public abstract class Order {
 	
 	public Date getDate(){
 		return date;
+	}
+	
+	public void setDate(Date date){
+		this.date = date;
 	}
 	
 	//relative to delivery

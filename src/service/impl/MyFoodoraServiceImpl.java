@@ -196,7 +196,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		return null;
 	}
 
-	@Override
+	@Override //USELESS METHOD NOW
 	public void assignManager(Manager manager) {
 		// TODO Auto-generated method stub
 		myfoodora.addUser(manager);

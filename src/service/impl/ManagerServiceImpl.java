@@ -28,6 +28,10 @@ public class ManagerServiceImpl implements ManagerService {
 		this.manager = manager;
 	}
 
+	public ManagerServiceImpl(){
+		super();
+	}
+
 	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
 	public void addUser(User user){
 		MyFoodora.getInstance().addUser(user);
@@ -230,7 +234,6 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	public void displayUsersOfAssignedType(String userType){
-		
 		ArrayList<User> users = MyFoodora.getInstance().getUsersOfAssignedType(userType);
 		System.out.println("--- " + userType + " ---");
 		System.out.println(users);
