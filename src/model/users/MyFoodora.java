@@ -24,7 +24,7 @@ import service.impl.MyFoodoraServiceImpl;
 public class MyFoodora implements Observable{
 	
 	private ArrayList<User> users;
-	private ArrayList<User> activeUsers;
+
 	private ArrayList<Customer> specialofferobservers;
 
 	private boolean delivery_task_state;
@@ -50,7 +50,6 @@ public class MyFoodora implements Observable{
 	private static MyFoodora instance = null;
 	private MyFoodora(){
 		this.users = new ArrayList<User>();
-		this.activeUsers = new ArrayList<User>();
 		this.specialofferobservers = new ArrayList<Customer>();
 		this.delivery_task_state = false;
 		this.messageBoard = new MessageBoard(this);
@@ -140,6 +139,12 @@ public class MyFoodora implements Observable{
 	}
 
 	public ArrayList<User> getActiveUsers() {
+		ArrayList<User> activeUsers = new ArrayList<User>();
+		for(User user : users){
+			if(user.isActivated()){
+				activeUsers.add(user);
+			}
+		}
 		return activeUsers;
 	}
 	
@@ -147,10 +152,6 @@ public class MyFoodora implements Observable{
 	public ArrayList<User> getCouriers() {
 		
 		return getUsersOfAssignedType("COURIER");
-	}
-
-	public void setActiveUsers(ArrayList<User> activeUsers) {
-		this.activeUsers = activeUsers;
 	}
 
 	public ArrayList<Courier> getActivecouriers() {
@@ -195,7 +196,7 @@ public class MyFoodora implements Observable{
 	
 	public void displayActiveUsers(){
 		System.out.println("activeUsers:");
-		for (User u:activeUsers){
+		for (User u : getActiveUsers() ){
 			System.out.println(u);
 		}	
 	}
@@ -210,7 +211,7 @@ public class MyFoodora implements Observable{
 	
 	public void activateUser(User user) throws UserNotFoundException{
 		if(users.contains(user)){
-			activeUsers.add(user);
+			getActiveUsers().add(user);
 			user.setActived(true);
 		}else{
 			throw new UserNotFoundException(user.getUsername());
@@ -220,7 +221,7 @@ public class MyFoodora implements Observable{
 	
 	public void disactivateUser(User user) throws UserNotFoundException {
 		if(users.contains(user)){
-			activeUsers.remove(user);
+			getActiveUsers().remove(user);
 			user.setActived(false);
 		}else{
 			throw new UserNotFoundException(user.getUsername());
@@ -242,6 +243,16 @@ public class MyFoodora implements Observable{
 	
 	public void refreshMessageBoard(){
 		this.messageBoard.displayAllmsgs();
+	}
+	
+	public ArrayList<Courier> getAvailableCouriers() {
+		ArrayList<Courier> availablecouriers = new ArrayList<Courier>();
+		for (User c : getCouriers()){
+			if (((Courier)c).isOn_duty()){
+				availablecouriers.add((Courier) c);
+			}
+		}
+		return availablecouriers;
 	}
 	
 	public ArrayList<User> getUsersOfAssignedType(String userType){

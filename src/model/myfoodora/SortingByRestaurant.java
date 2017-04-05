@@ -15,6 +15,11 @@ import model.users.Restaurant;
 
 public class SortingByRestaurant extends SortingByCriteria {
 
+	public SortingByRestaurant() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public HashMap countOccurence(ArrayList<Order> h){
 		HashMap<Restaurant, Integer> map = new HashMap<Restaurant,Integer>();
@@ -47,7 +52,7 @@ public class SortingByRestaurant extends SortingByCriteria {
 		// TODO Auto-generated method stub
 		System.out.println("\nDisplaying restaurants sorted w.r.t the number of shipped orders ");
 		HashMap map = countOccurence(h);
-		Map<Restaurant,Integer> newMap = sortByValues(map);
+		Map<Restaurant,Integer> newMap = sortByValuesReversed(map);
 	    for (Entry<Restaurant, Integer> entry : newMap.entrySet()) {
             System.out.println("Restaurant <" + entry.getKey().getName()+">"
 				+ "; number of orders: " + entry.getValue());

@@ -17,6 +17,11 @@ import model.users.Restaurant;
 
 public class SortingByHalfMeal extends SortingByCriteria{
 
+	public SortingByHalfMeal() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public HashMap countOccurence(ArrayList<Order> h){
 		HashMap<HalfMeal, Integer> map = new HashMap<HalfMeal,Integer>();

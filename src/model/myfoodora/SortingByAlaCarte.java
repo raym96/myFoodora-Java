@@ -10,6 +10,11 @@ import java.util.Map.Entry;
 import model.restaurant.*;
 
 public class SortingByAlaCarte extends SortingByCriteria {
+
+	public SortingByAlaCarte() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Override
 	public HashMap countOccurence(ArrayList<Order> h){

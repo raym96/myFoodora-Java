@@ -7,6 +7,11 @@ import model.users.Courier;
 
 public class FairOccupationDelivery implements DeliveryPolicy {
 
+	public FairOccupationDelivery() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public Courier parse(Order order, ArrayList<Courier> activecouriers) {
 		int mincount = Integer.MAX_VALUE;

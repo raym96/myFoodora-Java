@@ -2,6 +2,7 @@ package model.users;
 
 import java.util.ArrayList;
 
+import exceptions.OrderNotFoundException;
 import model.myfoodora.Message;
 import model.myfoodora.SpecialOffer;
 import model.myfoodora.SpecialOfferBoard;
@@ -20,8 +21,8 @@ public class Courier extends User{
 	private int count;
 	private boolean on_duty;
 	
-	private ArrayList<Order> allDeliveryTasks;
-	private Order currentDeliveryTask;
+	private ArrayList<Order> deliveredOrders;
+	private ArrayList<Order> waitingOrders; //unanswered orders, must confirm/decline the mission
 	
 	
 	private CourierService courierService;
@@ -33,13 +34,45 @@ public class Courier extends User{
 		this.position = position;
 		this.phone = phone;
 		this.on_duty = false;
-		this.allDeliveryTasks = new ArrayList<Order>();
-		this.currentDeliveryTask = null;
+		this.deliveredOrders = new ArrayList<Order>();
+		this.waitingOrders = new ArrayList<Order>();
 		
 		count = 0;
 		this.courierService = new CourierServiceImpl(this);
 	}
 
+	
+	public void setWaitingOrders(ArrayList<Order> waitingOrders) {
+		this.waitingOrders = waitingOrders;
+	}
+	public ArrayList<Order> getWaitingOrders(){
+		return waitingOrders;
+	}
+	
+	public void addWaitingOrder(Order order) {
+		waitingOrders.add(order);
+	}
+
+	public void refuseWaitingOrder(Order order) throws OrderNotFoundException{
+		if (!(waitingOrders.contains(order))){
+			throw new OrderNotFoundException(order);
+		}
+		waitingOrders.remove(order);
+	}
+	
+	public void acceptWaitingOrder(Order order) throws OrderNotFoundException{
+		if (!(waitingOrders.contains(order))){
+			throw new OrderNotFoundException(order);
+		}
+		waitingOrders.remove(order);
+		deliveredOrders.add(order);
+		this.setCount(count+1);
+	}
+
+	public ArrayList<Order> getDeliveredOrders(){
+		return deliveredOrders;
+	}
+	
 	//Getters & Setters
 	public CourierService getCourierService() {
 		return courierService;
@@ -53,7 +86,12 @@ public class Courier extends User{
 	public int getCount(){
 		return count;
 	}
-	
+
+	public boolean isOn_duty() {
+		return on_duty;
+	}
+
+
 	public void setOn_duty(boolean on_duty) {
 		this.on_duty = on_duty;
 	}
@@ -69,25 +107,6 @@ public class Courier extends User{
 	public String getName() {
 		return name;
 	}
-
-	public Order getCurrentDeliveryTask() {
-		return currentDeliveryTask;
-	}
-	
-	public void setCurrentDeliveryTask(Order order) {
-		this.currentDeliveryTask = order;
-	}
-
-	
-	public void addDeliveryTask(Order o){
-		allDeliveryTasks.add(o);
-		this.setCount(count+1);
-	}
-
-	public ArrayList<Order> getAllDeliveryTask(){
-		return allDeliveryTasks;
-	}
-
 
 	public String getSurname() {
 		return surname;

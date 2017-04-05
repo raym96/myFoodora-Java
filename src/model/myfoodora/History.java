@@ -11,8 +11,13 @@ import model.restaurant.*;
 import model.users.Restaurant;
 
 public class History {
-	ArrayList<Order> orders = new ArrayList<Order>();
+	private ArrayList<Order> orders;
 	
+	public History() {
+		super();
+		orders = new ArrayList<Order>();
+	}
+
 	public void addOrder(Order order){
 		orders.add(order);
 	}
@@ -21,7 +26,7 @@ public class History {
 		//returns all orders made between date 1 and date 2
 		ArrayList<Order >list = new ArrayList<Order>();
 		for (Order order:orders){
-			if (order.getDate().compareTo(date1)>0 && order.getDate().compareTo(date2)<0){
+			if (order.getDate().compareTo(date1)>=0 && order.getDate().compareTo(date2)<=0){
 				list.add(order);
 			}
 		}
