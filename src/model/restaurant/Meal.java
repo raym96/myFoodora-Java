@@ -82,7 +82,7 @@ public abstract class Meal {
 	public String toString() {
 		String str;
 		//the stream.map.collector allows to collect only dishnames
-		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+"�";
+		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+" euros";
 		return str;
 	}
 

@@ -7,11 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.UserNotFoundException;
-import initialization.InitCourier;
-import initialization.InitCustomer;
-import initialization.InitFile;
-import initialization.InitHistory;
-import initialization.InitRestaurant;
+
+import initialization.InitialScenario;
+
 import model.myfoodora.*;
 import model.restaurant.*;
 import model.users.*;
@@ -27,34 +25,32 @@ public class MyFoodoraUseCaseTest {
 	 * The following use case scenario describe examples of how the MyFoodora should function.
 	 * @throws UserNotFoundException 
 	 **/
+	
 	private MyFoodora myFoodora = MyFoodora.getInstance();
 	private MyFoodoraService commonMyFoodoraService = new MyFoodoraServiceImpl();
-	ManagerService managerService_director = new ManagerServiceImpl();
+	ManagerService managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 	
 	/*
 	 * Startup scenario
 		1. the system loads all registered users: at least 2 manager (the CEO and his deputy
-			i.e. ajoint), 5 restaurants and 2 couriers, 7 customers, 4 full-meals per restaurant...
+			i.e. adjoint), 5 restaurants and 2 couriers, 7 customers, 4 full-meals per restaurant...
 		2. the system sends alerts to the customers that agreed to be notified of special offers
 	 */
-	@Test
+	@Before
 	public void testStartupScenario() throws UserNotFoundException {
 		
 		System.out.println("----------------------- Startup scenario -----------------------");
-	
-		InitFile.InitUser("init.ini");
-//		managerService_director.displayUsers();
-//		managerService_director.displayActiveUsers();
+		InitialScenario.load("init.ini");
+		
 		ArrayList<User> restaurants = myFoodora.getUsersOfAssignedType("RESTAURANT");
 		for (User u:restaurants){
 			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
 			((Restaurant)u).getRestaurantService().displayMenu();
 			((Restaurant)u).getRestaurantService().displayMealMenu();
 		}
-//		restaurants.get(0).getRestaurantService().displayMenu();
-//		restaurants.get(0).getRestaurantService().displayMealMenu();
-//		
+		commonMyFoodoraService.getHistory().displayAllOrders();
+
 //		// send alerts to customers
 //		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
 //		customers.get(0).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
@@ -69,12 +65,9 @@ public class MyFoodoraUseCaseTest {
 //		customers.get(0).refreshMessageBoard();
 //		customers.get(6).refreshMessageBoard();
 //		
-		//history
-//		InitHistory.init("src/txt files/history.txt");
-//		MyFoodora.getInstance().getHistory().displayAllOrders();
 	}
 	
-//	@Test
+	@Test
 	public void historytest(){
 		//history
 		User restaurant_1 = commonMyFoodoraService.selectUser("restaurant_1");

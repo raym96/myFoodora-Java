@@ -18,24 +18,28 @@ import model.users.*;
 import model.myfoodora.History;
 import model.restaurant.*;
 
-public class InitFile {
+public class InitialScenario {
 	
-	public static void InitUser(String filename) {
+	//Load .ini file data into the MyFoodora System
+	public static void load(String filename) {
 		MyFoodora myfoodora = MyFoodora.getInstance();
 		ArrayList<User> users = new ArrayList<User>();
 		try{
-			users.addAll(initManager(filename));
-			users.addAll(initRestaurant(filename));
-			users.addAll(initCustomer(filename));	
-			users.addAll(initCourier(filename));
+			users.addAll(loadManager(filename));
+			users.addAll(loadRestaurant(filename));
+			users.addAll(loadCustomer(filename));	
+			users.addAll(loadCourier(filename));
 			myfoodora.setUsers(users); //add them to myfoodora
-			myfoodora.setActiveUsers(users); //activating them
-		}catch(IOException e){}
+			myfoodora.setActiveUsers(users); //activate them
+			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
+		}catch(IOException e){
+			System.out.println(filename+" not found.");
+		}
 		System.out.println("\nThe initial file "+filename+" successfully loaded into the system.");
 		System.out.println("-------------------------------------------------------------\n");
 	}
 
-	public static ArrayList<Manager> initManager(String filename) throws IOException{
+	public static ArrayList<Manager> loadManager(String filename) throws IOException{
 		String name;
 		String surname;
 		String username;
@@ -57,7 +61,7 @@ public class InitFile {
     	}
     	return users;
 	}
-	public static ArrayList<Customer> initCustomer(String filename) throws IOException {
+	public static ArrayList<Customer> loadCustomer(String filename) throws IOException {
 		String name;
 		String surname;
 		String username;
@@ -86,7 +90,7 @@ public class InitFile {
     	return users;
 	}
     	
-	public static ArrayList<Courier> initCourier(String filename) throws IOException {
+	public static ArrayList<Courier> loadCourier(String filename) throws IOException {
 		String name;
 		String surname;
 		String username;
@@ -113,7 +117,7 @@ public class InitFile {
     	return users;
 	}
 	//initialize restaurants and set up their menu & meal-menu
-	public static ArrayList<Restaurant> initRestaurant(String filename) throws IOException {
+	public static ArrayList<Restaurant> loadRestaurant(String filename) throws IOException {
 		String name;
 		String username;
 		AddressPoint address;
@@ -135,13 +139,13 @@ public class InitFile {
     	}
     	
     	System.out.println("Initializing the menus:");
-    	initMenu(users, ini); //SET THE DISH MENU
-    	initMealMenu(users, ini); //SET THE MEAL MENU
+    	loadMenu(users, ini); //SET THE DISH MENU
+    	loadMealMenu(users, ini); //SET THE MEAL MENU
     	return users;
 	}
 	
 	//add dishes to the menu of predefined restaurants
-	public static void initMenu(ArrayList<Restaurant> restaurants, Ini ini) throws IOException {
+	public static void loadMenu(ArrayList<Restaurant> restaurants, Ini ini) throws IOException {
 		
 		Ini.Section dishes;
 		Ini.Section dish;
@@ -186,7 +190,7 @@ public class InitFile {
 	}
 	
 	//Add meals to the meal-menu of predefined restaurants
-	public static void initMealMenu(ArrayList<Restaurant> restaurants, Ini ini) throws InvalidFileFormatException, IOException{	
+	public static void loadMealMenu(ArrayList<Restaurant> restaurants, Ini ini) throws InvalidFileFormatException, IOException{	
 		String restaurant_username;
 		Restaurant restaurant = null;
 		
@@ -237,7 +241,7 @@ public class InitFile {
 	}
 	
 	//Initialize history by adding random orders to restaurants
-	public static History initHistory(String filename) throws IOException{
+	public static History loadHistory(String filename) throws IOException{
 		History history= new History();
 		Ini ini = new Ini(new File(filename));
 		
@@ -292,11 +296,19 @@ public class InitFile {
 				else{
 					neworder = new StandardMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
 				}
+				//Assign courier
+				neworder.setAssigned(true);
+				neworder.setCourier(courier);
+				courier.addDeliveryTask(neworder); //add the order to courier's delivery history
+				
+				//Set random date
 				String s = "2017."+random.nextInt(4)+"."+random.nextInt(28);
 				DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 				Date date;
-					date = format.parse(s);
-					neworder.setDate(date);		
+				date = format.parse(s);
+				neworder.setDate(date);
+				
+				restaurant.getHistory().addOrder(neworder);
 				history.addOrder(neworder);
 			}catch (ParseException e){
 			}catch (MealNotFoundException e){

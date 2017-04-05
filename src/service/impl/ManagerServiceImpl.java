@@ -28,10 +28,6 @@ public class ManagerServiceImpl implements ManagerService {
 		this.manager = manager;
 	}
 
-	public ManagerServiceImpl(){
-		super();
-	}
-
 	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
 	public void addUser(User user){
 		MyFoodora.getInstance().addUser(user);

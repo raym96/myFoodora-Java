@@ -79,7 +79,7 @@ public abstract class Dish {
 	}
 	
 	public String toString() {
-		return "<"+ dishName +"> " + dishType+ " " + price + "� ";
+		return "<"+ dishName +"> " + dishType+ " " + price + " euros ";
 	}
 	
 }
