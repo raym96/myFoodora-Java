@@ -15,6 +15,7 @@ import org.ini4j.InvalidFileFormatException;
 import exceptions.DishNotFoundException;
 import exceptions.MealNotFoundException;
 import exceptions.OrderNotFoundException;
+import exceptions.UserNotFoundException;
 import model.users.*;
 import model.myfoodora.History;
 import model.restaurant.*;
@@ -22,20 +23,23 @@ import model.restaurant.*;
 public class InitialScenario {
 	
 	//Load .ini file data into the MyFoodora System
-	public static void load(String filename) {
+	public static void load(String filename) throws UserNotFoundException {
 		MyFoodora myfoodora = MyFoodora.getInstance();
 		ArrayList<User> users = new ArrayList<User>();
 		try{
 			users.addAll(loadManager(filename));
 			users.addAll(loadRestaurant(filename));
 			users.addAll(loadCustomer(filename));	
-			users.addAll(loadCourier(filename));
+			for (Courier c:loadCourier(filename)){
+				//different treatment for couriers because they are add to the courier list as well
+				users.add(c);
+				myfoodora.getCouriers().add(c);
+			}
 			for (User u : users){
 				//activate them
-				u.activate();
+				myfoodora.activateUser(u);
 			}
 			myfoodora.setUsers(users); //add them to myfoodora
-			myfoodora.getCouriers().addAll(loadCourier(filename));
 			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
 		}catch(IOException e){
 			System.out.println(filename+" not found.");
