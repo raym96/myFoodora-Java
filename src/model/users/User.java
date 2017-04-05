@@ -47,19 +47,7 @@ public abstract class User implements Observer{
 		this.logStatus = false;
 		this.observe(MyFoodora.getInstance(), "" + this.getUsername() + " has logged out of the myFoodora system");
 	}
-	
-	public boolean isActivated(){
-		return activated;
-	}
-	
-	public void activate(){
-		activated = true;
-	}
 
-	public void disactivate(){
-		activated = false;
-	}
-	
 	public void turnOnNotification(){
 		notified = true;
 	}
@@ -110,6 +98,24 @@ public abstract class User implements Observer{
 	}
 	public void setActived(boolean b) {
 		activated = b;
+	}
+	public boolean isLogStatus() {
+		return logStatus;
+	}
+	public void setLogStatus(boolean logStatus) {
+		this.logStatus = logStatus;
+	}
+	public boolean isNotified() {
+		return notified;
+	}
+	public void setNotified(boolean notified) {
+		this.notified = notified;
+	}
+	public boolean isActivated() {
+		return activated;
+	}
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 
 	@Override

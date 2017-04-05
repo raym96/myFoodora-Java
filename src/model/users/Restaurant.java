@@ -130,6 +130,16 @@ public class Restaurant extends User{
 		return address;
 	}
 
+	public boolean isGdf_changed() {
+		return gdf_changed;
+	}
+
+
+	public boolean isSdf_changed() {
+		return sdf_changed;
+	}
+
+
 	public MealMenu getSpecialmealmenu() {
 		return specialmealmenu;
 	}

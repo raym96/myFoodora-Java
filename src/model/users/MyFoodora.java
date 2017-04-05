@@ -7,7 +7,6 @@ import java.util.Date;
 import exceptions.UserNotFoundException;
 import model.customer.*;
 import model.myfoodora.DeliveryPolicy;
-import model.myfoodora.FairOccupationDelivery;
 import model.myfoodora.History;
 import model.myfoodora.Message;
 import model.myfoodora.MessageBoard;
@@ -25,9 +24,7 @@ import service.impl.MyFoodoraServiceImpl;
 public class MyFoodora implements Observable{
 	
 	private ArrayList<User> users;
-		
-	private ArrayList<Courier> couriers;
-
+	private ArrayList<User> activeUsers;
 	private ArrayList<Customer> specialofferobservers;
 
 	private boolean delivery_task_state;
@@ -53,16 +50,13 @@ public class MyFoodora implements Observable{
 	private static MyFoodora instance = null;
 	private MyFoodora(){
 		this.users = new ArrayList<User>();
-		this.couriers = new ArrayList<Courier>();
+		this.activeUsers = new ArrayList<User>();
 		this.specialofferobservers = new ArrayList<Customer>();
 		this.delivery_task_state = false;
 		this.messageBoard = new MessageBoard(this);
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
+		this.deliveryTasks = new ArrayList<Order>();
 		this.history = new History();
-		
-		//default settings
-		this.deliverypolicy = new FairOccupationDelivery();
-		this.targetprofitpolicy = new TargetProfit_DeliveryCost();
 	};
 	
 	private static synchronized void syncInit(){
@@ -78,7 +72,6 @@ public class MyFoodora implements Observable{
 		}
 		return instance;
 	}
-	
 	
 	public Object readResolve(){
 		return instance;
@@ -101,13 +94,8 @@ public class MyFoodora implements Observable{
 	}
 	
 	public Courier parse(Order order){
-		ArrayList<Courier> activecouriers = new ArrayList<Courier>();
-		for (Courier c : couriers){
-			if (c.isOnDuty()){
-				activecouriers.add(c);
-			}
-		}
-		return deliverypolicy.parse(order, activecouriers);
+		
+		return deliverypolicy.parse(order, getActivecouriers());
 	}
 	
 	
@@ -134,8 +122,15 @@ public class MyFoodora implements Observable{
 	public void setDelivery_cost(double delivery_cost) {
 		this.delivery_cost = delivery_cost;
 	}
-
 	
+	public ArrayList<Order> getDeliveryTasks() {
+		return deliveryTasks;
+	}
+
+	public void setDeliveryTasks(ArrayList<Order> deliveryTasks) {
+		this.deliveryTasks = deliveryTasks;
+	}
+
 	public ArrayList<User> getUsers() {
 		return users;
 	}
@@ -143,23 +138,34 @@ public class MyFoodora implements Observable{
 	public void setUsers(ArrayList<User> users) {
 		this.users = users;
 	}
+
+	public ArrayList<User> getActiveUsers() {
+		return activeUsers;
+	}
 	
 
-	public ArrayList<Courier> getCouriers() {
-		return couriers;
+	public ArrayList<User> getCouriers() {
+		
+		return getUsersOfAssignedType("COURIER");
 	}
 
+	public void setActiveUsers(ArrayList<User> activeUsers) {
+		this.activeUsers = activeUsers;
+	}
 
-
-	public ArrayList<Courier> getAvailableCouriers() {
-		ArrayList<Courier> availablecouriers = new ArrayList<Courier>();
-		for (Courier c : couriers){
-			if (c.isOnDuty()){
-				availablecouriers.add(c);
+	public ArrayList<Courier> getActivecouriers() {
+		ArrayList<User> couriers = getUsersOfAssignedType("COURIER");
+		ArrayList<Courier> activecouriers = new ArrayList<Courier>();
+		
+		for(User courier : couriers){
+			if(courier.isActivated()){
+				activecouriers.add((Courier)courier);
 			}
 		}
-		return availablecouriers;
+		
+		return activecouriers;
 	}
+
 
 	public TargetProfitPolicy getTargetprofitpolicy() {
 		return targetprofitpolicy;
@@ -189,27 +195,37 @@ public class MyFoodora implements Observable{
 	
 	public void displayActiveUsers(){
 		System.out.println("activeUsers:");
-		for (User u:users){
-			if (u.isActivated()){
-				System.out.println(u);
-			}
+		for (User u:activeUsers){
+			System.out.println(u);
 		}	
 	}
 
-	private void addUser(User user){
+	public void addUser(User user){
 		users.add(user);
 	}
 	
-	private void removeUser(User user){
+	public void removeUser(User user){
 		users.remove(user);
 	}
 	
-	public void activateUser(User user){
-		user.activate();
+	public void activateUser(User user) throws UserNotFoundException{
+		if(users.contains(user)){
+			activeUsers.add(user);
+			user.setActived(true);
+		}else{
+			throw new UserNotFoundException(user.getUsername());
+		}
+		
 	}
 	
-	public void disactivateUser(User user){
-		user.disactivate();
+	public void disactivateUser(User user) throws UserNotFoundException {
+		if(users.contains(user)){
+			activeUsers.remove(user);
+			user.setActived(false);
+		}else{
+			throw new UserNotFoundException(user.getUsername());
+		}
+		
 	}
 
 	public Order getCurrentDeliveryTask() {
@@ -232,37 +248,37 @@ public class MyFoodora implements Observable{
 		ArrayList<User> usersOfType = new ArrayList<User>();
 		
 		switch (userType) {
-		case "MANAGER":
-			for(User user : users){
-				if(user instanceof Manager){
-					usersOfType.add(user);
+			case "MANAGER":
+				for(User user : users){
+					if(user instanceof Manager){
+						usersOfType.add(user);
+					}
 				}
-			}
-			break;
-		case "RESTAURANT":
-			for(User user : users){
-				if(user instanceof Restaurant){
-					usersOfType.add(user);
+				break;
+			case "RESTAURANT":
+				for(User user : users){
+					if(user instanceof Restaurant){
+						usersOfType.add(user);
+					}
 				}
-			}
-			break;
-		case "CUSTOMER":
-			for(User user : users){
-				if(user instanceof Customer){
-					usersOfType.add(user);
+				break;
+			case "CUSTOMER":
+				for(User user : users){
+					if(user instanceof Customer){
+						usersOfType.add(user);
+					}
 				}
-			}
-			break;
-		case "COURIER":
-			for(User user : users){
-				if(user instanceof Courier){
-					usersOfType.add(user);
+				break;
+			case "COURIER":
+				for(User user : users){
+					if(user instanceof Courier){
+						usersOfType.add(user);
+					}
 				}
-			}
-			break;
-
-		default:
-			break;
+				break;
+	
+			default:
+				break;
 		}
 		
 		return usersOfType;
@@ -276,20 +292,16 @@ public class MyFoodora implements Observable{
 	public synchronized void register(Observer obs) {
 		// TODO Auto-generated method stub
 		users.add((User)obs);
-		if(obs instanceof Courier){
-			couriers.add((Courier)obs);
-		}
-		System.out.println("User " + ((User)obs).getUsername() + " has registered on myFoodora.");
+	
+		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
 	}
 
 	@Override
 	public synchronized void unregister(Observer obs) {
 		// TODO Auto-generated method stub
 		users.remove((User)obs);
-		if(obs instanceof Courier){
-			couriers.remove((Courier)obs);
-		}
-		System.out.println("User " + ((User)obs).getUsername() + " has unregistered from myFoodora.");
+		
+		System.out.println("User " + ((User)obs).getUsername() + " has registed on myFoodora.");
 	}
 
 	@Override

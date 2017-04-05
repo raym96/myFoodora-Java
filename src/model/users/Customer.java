@@ -41,6 +41,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
+		this.specialoffers = new ArrayList<SpecialOffer>();
 	}
 
 	/** basic methods **/
@@ -75,6 +76,11 @@ public class Customer extends User implements SpecialOfferObserver{
 	}
 	
 	
+	
+	public ArrayList<SpecialOffer> getSpecialoffers() {
+		return specialoffers;
+	}
+
 	public String getEmail() {
 		return email;
 	}
