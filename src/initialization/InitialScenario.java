@@ -14,6 +14,7 @@ import org.ini4j.InvalidFileFormatException;
 
 import exceptions.DishNotFoundException;
 import exceptions.MealNotFoundException;
+import exceptions.OrderNotFoundException;
 import model.users.*;
 import model.myfoodora.History;
 import model.restaurant.*;
@@ -29,8 +30,12 @@ public class InitialScenario {
 			users.addAll(loadRestaurant(filename));
 			users.addAll(loadCustomer(filename));	
 			users.addAll(loadCourier(filename));
+			for (User u : users){
+				//activate them
+				u.activate();
+			}
 			myfoodora.setUsers(users); //add them to myfoodora
-			myfoodora.setActiveUsers(users); //activate them
+			myfoodora.getCouriers().addAll(loadCourier(filename));
 			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
 		}catch(IOException e){
 			System.out.println(filename+" not found.");
@@ -112,6 +117,7 @@ public class InitialScenario {
 			address = new AddressPoint(courier.get("position"));
 			phone = courier.get("phone");
 			Courier c = new Courier(name,surname,username,address,phone);
+			c.setOn_duty(true);
 			users.add(c);
     	}
     	return users;
@@ -299,7 +305,12 @@ public class InitialScenario {
 				//Assign courier
 				neworder.setAssigned(true);
 				neworder.setCourier(courier);
-				courier.addDeliveryTask(neworder); //add the order to courier's delivery history
+				courier.addWaitingOrder(neworder);
+				try {
+					courier.acceptWaitingOrder(neworder);
+				} catch (OrderNotFoundException e) {
+					e.printStackTrace();
+				} //add the order to courier's delivery history
 				
 				//Set random date
 				String s = "2017."+random.nextInt(4)+"."+random.nextInt(28);

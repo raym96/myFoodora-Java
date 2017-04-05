@@ -45,9 +45,11 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	public void parse(Order order, ArrayList<Courier> availablecouriers){
 		if (availablecouriers.size()==0){
 			order.getCustomer().update(new Message("No courier available for the moment, sorry."));
+			return;
 		}
 		Courier courier = myfoodora.getDeliverypolicy().parse(order, availablecouriers);
-		courier.setCurrentDeliveryTask(order);; //allocate delivery task to the courier
+		courier.addWaitingOrder(order); //allocate delivery task to the waiting list of courier
+		System.out.println(courier.getUsername()+" has been assigned to the delivery task. Please wait for confirmation.");
 		order.getCustomer().update(new Message(courier.getUsername()+" has been assigned to the delivery task. Please wait for confirmation.")); //the courier must accept
 	}
 	
@@ -196,13 +198,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		return null;
 	}
 
-	@Override //USELESS METHOD NOW
-	public void assignManager(Manager manager) {
-		// TODO Auto-generated method stub
-		myfoodora.addUser(manager);
-		myfoodora.activateUser(manager);
-	}
-
 	@Override
 	public void askAgree2customers(String ask) {
 		// TODO Auto-generated method stub
@@ -213,4 +208,5 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	public History getHistory(){
 		return myfoodora.getHistory();
 	}
+	
 }

@@ -1,12 +1,13 @@
 package service;
 
+import model.restaurant.Order;
 import model.users.AddressPoint;
 
 public interface CourierService {
 	
 	// 1. register/unregister their account to the MyFoodora system.
-//	public void register();
-//	public void unregister();
+	public void register();
+	public void unregister();
 	
 	// 2. set their state as on-duty or off-duty
 	public void turnOnDuty();
@@ -16,6 +17,6 @@ public interface CourierService {
 	public void changePosition(AddressPoint newPoint);
 	
 	// 4. accept/refuse to a delivery call (received by the MyFoodora system)
-	public void acceptCall();
-	public void refuseCall();
+	public void acceptCall(Order order);
+	public void refuseCall(Order order);
 }
