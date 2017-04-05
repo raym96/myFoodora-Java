@@ -19,7 +19,7 @@ public interface ManagerService {
 	
 	// 2. activate/disactivate any kind of user (restaurant, customers and/or couriers) of the system
 	public void activateUser(User user) throws UserNotFoundException;
-	public void disactivateUser(User user);
+	public void disactivateUser(User user) throws UserNotFoundException;
 	
 	// 3. changing the service-fee percentage and/or the markup percentage (\percentage de marge") and/or the delivery-cost
 	public void changeServicefee(double service_fee);

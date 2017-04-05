@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import exceptions.UserNotFoundException;
 import model.myfoodora.*;
 import model.restaurant.*;
 import model.users.*;
@@ -44,6 +45,7 @@ public interface MyFoodoraService {
 	
 	public ArrayList<User> getUsersOfAssignedType(String userType);
 
+	public void assignManager(Manager manager) throws UserNotFoundException;
 	
 	public void askAgree2customers(String ask);
 	
