@@ -23,6 +23,7 @@ public class FullMealTest {
 		
 		fm1 = new FullMeal("FM1");
 		assertNotNull(fm1);
+		assertNotNull(fm1.getDishes());
 	}
 
 	@BeforeClass
@@ -32,6 +33,7 @@ public class FullMealTest {
 		
 		fm2 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		assertNotNull(fm2);
+		assertNotNull(fm2.getDishes());
 	}
 
 	@Test
@@ -39,6 +41,7 @@ public class FullMealTest {
 		fm3 = new FullMeal(fm2);
 		assertNotNull(fm3);
 		assertEquals(fm2, fm3);
+		assertNotNull(fm3.getDishes());
 	}
 
 	@Test
@@ -48,6 +51,7 @@ public class FullMealTest {
 								menu.getMaindishes().get(0).getDishName(), 
 								menu.getDesserts().get(0).getDishName());
 		assertNotNull(fm4);
+		assertNotNull(fm4.getDishes());
 	}
 
 	@Test

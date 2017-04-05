@@ -20,34 +20,38 @@ public class HalfMealTest {
 	private static Menu menu = new Menu();
 	
 	@BeforeClass
-	public static void testFullMealString() {
+	public static void testHalfMealString() {
 		
 		hm1 = new HalfMeal("HM1");
 		assertNotNull(hm1);
+		assertNotNull(hm1.getDishes());
 	}
 
 	@BeforeClass
-	public static void testFullMealStringDishDishDish() {
+	public static void testHalfMealStringDishDish() {
 		menu.initMenu();
 		menu.display();
 		
 		hm2 = new HalfMeal("HM2", menu.getStarters().get(0), menu.getMaindishes().get(0));
 		assertNotNull(hm2);
+		assertNotNull(hm2.getDishes());
 	}
 
 	@Test
-	public void testFullMealMeal() {
+	public void testHalfMealMeal() {
 		hm3 = new HalfMeal(hm2);
 		assertNotNull(hm3);
 		assertEquals(hm2, hm3);
+		assertNotNull(hm3.getDishes());
 	}
 
 	@Test
-	public void testFullMealStringMenuStringStringString() {
+	public void testHalfMealStringMenuStringString() {
 		hm4 = new HalfMeal("HM4", menu,
 								menu.getStarters().get(0).getDishName(), 
 								menu.getMaindishes().get(0).getDishName());
 		assertNotNull(hm4);
+		assertNotNull(hm4.getDishes());
 	}
 
 	@Test
