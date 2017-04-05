@@ -38,7 +38,7 @@ public class CourierServiceImpl implements CourierService {
 	@Override
 	public void turnOnDuty() {
 		// TODO Auto-generated method stub
-		courier.setOn_duty(true);;
+		courier.setOn_duty(true);
 	}
 
 	@Override

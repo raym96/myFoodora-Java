@@ -42,7 +42,7 @@ public class ManagerServiceImpl implements ManagerService {
 		MyFoodora.getInstance().activateUser(user);
 	}
 	
-	public void disactivateUser(User user){
+	public void disactivateUser(User user) throws UserNotFoundException{
 		MyFoodora.getInstance().disactivateUser(user);
 		
 	}
