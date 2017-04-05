@@ -48,4 +48,16 @@ public class MealMenu {
 			System.out.println(meal);
 		}
 	}
+
+
+	public double getDiscount_factor() {
+		return discount_factor;
+	}
+
+
+	public void setDiscount_factor(double discount_factor) {
+		this.discount_factor = discount_factor;
+	}
+	
+	
 }
