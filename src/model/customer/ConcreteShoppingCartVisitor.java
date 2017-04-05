@@ -6,6 +6,10 @@ import model.users.Restaurant;
 public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	private Restaurant restaurant;
 	
+	public ConcreteShoppingCartVisitor() {
+		super();
+	}
+	
 	public double visit(SpecialMealOrder mealorder){
 		double price = mealorder.getMeal().getRawprice();
 		double discount_factor = mealorder.getRestaurant().getSpecial_discount_factor();
