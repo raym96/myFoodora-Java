@@ -26,7 +26,7 @@ public class MyFoodoraUseCaseTest {
 	 * @throws UserNotFoundException 
 	 **/
 	
-	private MyFoodora myfoodora = MyFoodora.getInstance();
+	private MyFoodora myFoodora = MyFoodora.getInstance();
 	private MyFoodoraService commonMyFoodoraService = new MyFoodoraServiceImpl();
 	ManagerService managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
@@ -43,13 +43,14 @@ public class MyFoodoraUseCaseTest {
 		System.out.println("----------------------- Startup scenario -----------------------");
 		InitialScenario.load("init.ini");
 		
-		ArrayList<User> restaurants = myfoodora.getUsersOfAssignedType("RESTAURANT");
+		ArrayList<User> restaurants = myFoodora.getUsersOfAssignedType("RESTAURANT");
 		for (User u:restaurants){
 			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
 			((Restaurant)u).getRestaurantService().displayMenu();
 			((Restaurant)u).getRestaurantService().displayMealMenu();
 		}
 		commonMyFoodoraService.getHistory().displayAllOrders();
+
 //		// send alerts to customers
 //		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
 //		customers.get(0).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
@@ -202,7 +203,7 @@ public class MyFoodoraUseCaseTest {
 		System.out.println(password);
 			
 		User theUser = null;
-		for(User user : myfoodora.getUsers()){
+		for(User user : myFoodora.getUsers()){
 			if( username.equalsIgnoreCase(user.getUsername()) && password.equals(user.getPassword()) ){
 				theUser = user;
 				user.logIn();
