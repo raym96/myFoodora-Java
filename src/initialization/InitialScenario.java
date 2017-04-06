@@ -24,27 +24,39 @@ public class InitialScenario {
 	
 	//Load .ini file data into the MyFoodora System
 	public static void load(String filename) throws UserNotFoundException {
+		System.out.println("-------Loading initial scenario <"+filename+"> -------");
 		MyFoodora myfoodora = MyFoodora.getInstance();
 		ArrayList<User> users = new ArrayList<User>();
 		try{
 			users.addAll(loadManager(filename));
-			users.addAll(loadRestaurant(filename));
-			users.addAll(loadCustomer(filename));	
+			users.addAll(loadCustomer(filename));
+			users.addAll(loadRestaurant(filename)); //loading the menus at the same time
 			for (Courier c:loadCourier(filename)){
 				//different treatment for couriers because they are add to the courier list as well
 				users.add(c);
 				myfoodora.getCouriers().add(c);
 			}
+			System.out.println("\nLoading users:");
+			myfoodora.setUsers(users); //add them to myfoodora
+			myfoodora.displayUsers();
+			System.out.println("Users loaded into the system");
 			for (User u : users){
 				//activate them
 				myfoodora.activateUser(u);
 			}
-			myfoodora.setUsers(users); //add them to myfoodora
 			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
 		}catch(IOException e){
 			System.out.println(filename+" not found.");
 		}
-		System.out.println("\nThe initial file "+filename+" successfully loaded into the system.");
+		
+		System.out.println("\n-------Displaying the menus-------");
+		for (User u:myfoodora.getUsersOfAssignedType("RESTAURANT")){
+			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
+			((Restaurant)u).getRestaurantService().displayMenu();
+			((Restaurant)u).getRestaurantService().displayMealMenu();
+		}
+		
+		System.out.println("\nThe initial file <"+filename+"> successfully loaded into the system.");
 		System.out.println("-------------------------------------------------------------\n");
 	}
 
@@ -148,9 +160,10 @@ public class InitialScenario {
     		users.add(r);
     	}
     	
-    	System.out.println("Initializing the menus:");
+    	System.out.println("Loading the menus:");
     	loadMenu(users, ini); //SET THE DISH MENU
     	loadMealMenu(users, ini); //SET THE MEAL MENU
+    	System.out.println("Loading completed.");
     	return users;
 	}
 	

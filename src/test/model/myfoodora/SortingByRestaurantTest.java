@@ -81,7 +81,9 @@ public class SortingByRestaurantTest {
 		history.add(alaCarteOrder2);
 		
 		System.out.println("orders = ");
-		System.out.println(history);
+		for (Order order : history){
+			System.out.println(order);
+		}
 	}
 	
 	

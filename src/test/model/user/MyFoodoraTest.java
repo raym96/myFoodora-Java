@@ -42,7 +42,6 @@ public class MyFoodoraTest {
 		assertNotNull(myFoodora.getActivecouriers());
 		assertNotNull(myFoodora.getSpecialOfferObserver());
 		assertNotNull(myFoodora.getMessageBoard());
-		assertNotNull(myFoodora.getDeliveryTasks());
 		assertNotNull(myFoodora.getSpecialofferboard());
 		assertNotNull(myFoodora.getHistory());
 		

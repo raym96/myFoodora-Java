@@ -96,6 +96,17 @@ public abstract class User implements Observer{
 	public String getPassword(){
 		return this.password;
 	}
+	
+	
+	
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
 	public void setActived(boolean b) {
 		activated = b;
 	}
@@ -118,11 +129,13 @@ public abstract class User implements Observer{
 		this.activated = activated;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -138,7 +151,12 @@ public abstract class User implements Observer{
 		if (ID == null) {
 			if (other.ID != null)
 				return false;
-		} else if (!ID.equalsIgnoreCase(other.ID))
+		} else if (!ID.equals(other.ID))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}

@@ -9,7 +9,6 @@ public abstract class Meal {
 
 	protected String name;
 	protected ArrayList<Dish> dishes;
-	protected double rawprice; //sum of the prices of the dishes
 	protected double price; //rawprice adjusted by the discount factor. Undefined if the meal is not in a meal menu
 	
 	//standard,vegetarian,gluten-free
@@ -24,7 +23,6 @@ public abstract class Meal {
 	public void addDish(Dish dish) {
 		// TODO Auto-generated method stub
 		getDishes().add(dish);
-		this.rawprice += dish.getPrice();
 	}
 	
 	
@@ -67,6 +65,10 @@ public abstract class Meal {
 		return mealType;
 	}
 	public double getRawprice() {
+		int rawprice = 0;
+		for (Dish d:dishes){
+			rawprice+=d.getPrice();
+		}
 		return rawprice;
 	}
 	

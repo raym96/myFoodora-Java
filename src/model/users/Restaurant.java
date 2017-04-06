@@ -156,7 +156,7 @@ public class Restaurant extends User{
 
 	@Override
 	public String toString() {
-		return  "<Restaurant> "+username+"; name = "+name+"; address="+address+"; activated = "+activated + "; User ID = "+ID;
+		return  "<Restaurant> "+username+"; name = "+name+"; address="+address;
 	}
 
 

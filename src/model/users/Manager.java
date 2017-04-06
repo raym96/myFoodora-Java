@@ -51,7 +51,7 @@ public class Manager extends User{
 
 	@Override
 	public String toString() {
-		return  "<Manager> "+username+"; fullname = "+surname+" "+name+"; activated = "+activated + "; User ID = "+ID;
+		return  "<Manager> "+username+"; fullname = "+surname+" "+name;
 	}
 
 	@Override

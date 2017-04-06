@@ -41,7 +41,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	// 2. allocating of a courier to an order placed by a customer (by application of the current
 	// delivery policy, see below details of supported policies)/
 	
-	//IMPORTANT, TO BE COMPLETED	
 	public void parse(Order order, ArrayList<Courier> availablecouriers){
 		if (availablecouriers.size()==0){
 			order.getCustomer().update(new Message("No courier available for the moment, sorry."));
@@ -96,7 +95,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	
 	public double getAverageIncomePerCustomer(Date date1, Date date2){
 		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
-		ArrayList<Customer> customerlist = null;
+		ArrayList<Customer> customerlist = new ArrayList<Customer>();
 		double avgIncome = 0;
 		for (Order order:list){
 			//count the number of different customers over the time period
@@ -104,6 +103,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 				customerlist.add(order.getCustomer());
 			}
 		}
+		
 		if (customerlist.size()==0){
 			//no order has been made by any customer over the time period
 			return 0;

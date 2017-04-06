@@ -118,7 +118,7 @@ public class Courier extends User{
 
 	@Override
 	public String toString() {
-		return  "<Courier> "+username+"; fullname = "+surname+" "+name+"; position="+position+"; phone="+phone+"; activated = "+activated + "; User ID = "+ID;
+		return  "<Courier> "+username+"; fullname = "+surname+" "+name+"; position="+position+"; "+phone;
 	}
 
 	@Override
@@ -138,5 +138,8 @@ public class Courier extends User{
 		// TODO Auto-generated method stub
 		super.observe(obv, o);
 	}
+
+
+	
 
 }

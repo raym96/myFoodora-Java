@@ -118,7 +118,7 @@ public class Customer extends User implements SpecialOfferObserver{
 
 	@Override
 	public String toString() {
-		return  "<Customer> "+username+"; fullname = "+surname+" "+name+"; address="+address+"; email="+email+"; phone="+phone+"; activated = "+activated + "; User ID = "+ID;
+		return  "<Customer> "+username+"; fullname = "+surname+" "+name+"; address="+address+"; "+email+"; "+phone;
 	}
 	
 	/** observer/observable business methods **/
