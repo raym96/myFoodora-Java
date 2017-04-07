@@ -25,7 +25,6 @@ public class Customer extends User implements SpecialOfferObserver{
 	
 	
 	private ShoppingCart shoppingcart;
-	private double balance;
 	
 	private CustomerService customerService;
 	
@@ -36,8 +35,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.address = address;
 		this.email = email;
 		this.phone = phone;
-		this.balance = 0.0;
-		this.card = new StandardCard();
+		this.card = new StandardCard(this);
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
@@ -97,14 +95,6 @@ public class Customer extends User implements SpecialOfferObserver{
 	public void setCard(FidelityCard card) {
 		// TODO Auto-generated method stub
 		this.card = card;
-	}
-
-	public double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(double balance) {
-		this.balance = balance;
 	}
 
 	public void setShoppingcart(ShoppingCart shoppingcart) {

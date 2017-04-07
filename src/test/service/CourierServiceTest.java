@@ -20,20 +20,32 @@ import service.impl.MyFoodoraServiceImpl;
 
 public class CourierServiceTest {
 	
-	static Courier courier_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
-	static CourierService courier_service = courier_test.getCourierService();
+	static Courier courier_test;
+	static CourierService courier_service;
 		
-	MyFoodora myfoodora = MyFoodora.getInstance();
-	MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
+	MyFoodora myfoodora;
+	MyFoodoraService myfoodora_service;
 
-	Customer customer = (Customer)myfoodora_service.selectUser("customer_1");
-	Restaurant restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
-	Meal m = restaurant.getHalfMealMenu().getMeals().get(0);
-	Order order = new StandardMealOrder(customer,restaurant,m);
+	Customer customer;
+	Restaurant restaurant;
+	Meal m;
+	Order order;
 	
-	@BeforeClass
-	public static void setUp() throws Exception {
-		InitialScenario.load("init.ini");		
+	@Before
+	public void setUp() throws Exception {
+		InitialScenario.load("scenario_test_services.ini");	
+		
+		courier_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
+		courier_service = courier_test.getCourierService();
+			
+		myfoodora = MyFoodora.getInstance();
+		myfoodora_service = new MyFoodoraServiceImpl();
+
+		customer = (Customer)myfoodora_service.selectUser("customer_1");
+		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
+		m = restaurant.getHalfMealMenu().getMeals().get(0);
+		order = new StandardMealOrder(customer,restaurant,m);
+		
 	}
 
 	@Test
@@ -42,7 +54,6 @@ public class CourierServiceTest {
 		courier_service.register();
 		//verify that courier_test is added to the end of the list of couriers
 		assertTrue(myfoodora.getCouriers().contains(courier_test));
-		courier_service.unregister();
 	}
 
 	@Test
@@ -96,10 +107,14 @@ public class CourierServiceTest {
 		courier_service.acceptCall(order);
 		//verify that the order is no more in the waiting list
 		assertFalse(courier_test.getWaitingOrders().contains(order));
-		//verity that the order is added to the list of delivered missions
+		//verify that the order is added to the list of delivered missions
 		assertTrue(courier_test.getDeliveredOrders().contains(order));
 		//very that the delivery count of the courier increased
 		assertEquals(courier_test.getCount(),delivery_count+1);
+		
+		//verify that the order has been added to the histories
+		System.out.println(myfoodora_service.getHistory());
+		System.out.println(order.getRestaurant().getHistory());
 	}
 
 	@Test

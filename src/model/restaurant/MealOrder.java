@@ -6,16 +6,16 @@ import model.users.Restaurant;
 
 public abstract class MealOrder extends Order {
 	protected Meal meal;
-	private String mealType;
+	private String mealCategory;
 	
 	public MealOrder(Customer customer, Restaurant restaurant, Meal meal) {
 		super(customer, restaurant);
 		this.meal = meal;
 		if (meal instanceof HalfMeal){
-			mealType = "half meal";
+			mealCategory = "Half-meal";
 		}
 		if (meal instanceof FullMeal){
-			mealType = "full meal";
+			mealCategory = "Full-meal";
 		}
 	}
 
@@ -29,7 +29,7 @@ public abstract class MealOrder extends Order {
 	
 	
 	public String getMealType() {
-		return mealType;
+		return mealCategory;
 	}
 
 	public String getName() {

@@ -103,9 +103,4 @@ public class HistoryTest {
 		System.out.println("testGetOrdersOf() --- " + theOrders);
 	}
 	
-	@AfterClass
-	public static void testDisplayAllOrders() {
-		history.displayAllOrders();
-	}
-
 }

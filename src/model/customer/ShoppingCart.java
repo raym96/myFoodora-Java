@@ -6,6 +6,7 @@ import model.restaurant.Order;
 
 public class ShoppingCart {
 	private ArrayList<Order> orders;
+	private double price;
 	
 	public ShoppingCart() {
 		super();
@@ -13,34 +14,50 @@ public class ShoppingCart {
 	}
 
 	public void addOrder(Order o){
+		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
+		price += o.accept(visitor);
 		orders.add(o);
+
 	}
 	
 	public void removeOrder(Order o){
+		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
+		price -= o.accept(visitor);
 		orders.remove(o);
 	}
+	
+	public ArrayList<Order> getOrders(){
+		return orders;
+	}
 
-	public double calculatePrice(){
-		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
-		double sum =0;
-		for (Order order:orders){
-			sum = sum + order.accept(visitor);
-		}
-		return sum;
+	public double getPrice(){
+		return price;
+	}
+	
+	public void setPrice(double price){
+		this.price = price;
+	}
+	
+	public boolean contains(Order order){
+		return orders.contains(order);
+	}
+	
+	public void clear(){
+		this.orders = new ArrayList<Order>();
 	}
 	
 	
-	public ArrayList<Order> getOrders() {
-		return orders;
+	public int size(){
+		return orders.size();
 	}
 
 	@Override
 	public String toString() {
 		String str = "";
 		for (Order order:orders){
-			str += order.getName() + ", " + order.getRestaurant()+"\n";
+			str += order+"\n";
 		}
-		return "ShoppingCart : \n" + orders;
+		return "ShoppingCart : \n" + str;
 	}
 	
 	

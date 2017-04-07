@@ -62,7 +62,7 @@ public class RestaurantTest {
 		
 		restaurant.addToHistory(standardMealOrder);
 		assertTrue(restaurant.getHistory().getOrders().size() > 0);
-		restaurant.getHistory().displayAllOrders();
+		System.out.println(restaurant.getHistory());
 	}
 
 	@Test

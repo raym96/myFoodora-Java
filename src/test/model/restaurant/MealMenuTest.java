@@ -6,6 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import exceptions.MealNotFoundException;
 import model.restaurant.FullMeal;
 import model.restaurant.HalfMeal;
 import model.restaurant.MealMenu;
@@ -46,7 +47,11 @@ public class MealMenuTest {
 		HalfMeal hm3 = new HalfMeal("HM3", menu.getStarters().get(1), menu.getMaindishes().get(1));
 		mealMenu.addMeal(hm3);
 		assertTrue(mealMenu.getMeals().contains(hm3));
-		mealMenu.removeMeal(hm3.getName());
+		try {
+			mealMenu.removeMeal(hm3.getName());
+		} catch (MealNotFoundException e) {
+			e.printStackTrace();
+		}
 		assertFalse(mealMenu.getMeals().contains(hm3));
 	}
 

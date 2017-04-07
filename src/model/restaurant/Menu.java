@@ -3,6 +3,8 @@ package model.restaurant;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import exceptions.DishNotFoundException;
+
 
 public class Menu {
 
@@ -61,21 +63,27 @@ public class Menu {
 		}
 	}
 	
-	public void removeDish(String dishName){
+	public void removeDish(String dishName) throws DishNotFoundException{
+		int count = 0;
 		for(int i=0; i<starters.size(); i++){
-			if( starters.get(i).getDishName() == dishName ){
+			if( starters.get(i).getDishName().equalsIgnoreCase(dishName) ){
 				starters.remove(i);
+				count++;
 			}
 		}
 		for(int i=0; i<maindishes.size(); i++){
-			if( maindishes.get(i).getDishName() == dishName ){
+			if( maindishes.get(i).getDishName().equalsIgnoreCase(dishName)){
 				maindishes.remove(i);
+				count++;
 			}
 		}
 		for(int i=0; i<desserts.size(); i++){
-			if( desserts.get(i).getDishName() == dishName ){
+			if( desserts.get(i).getDishName().equalsIgnoreCase(dishName) ){
 				desserts.remove(i);
 			}
+		}
+		if (count==0){
+			throw new DishNotFoundException(dishName);
 		}
 	}
 	

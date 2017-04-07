@@ -62,12 +62,12 @@ public class Restaurant extends User{
 		return new DishFactory(this.menu);
 	}
 	
-	public MealFactory getMealFactory(String mealType){
-		if(mealType.equalsIgnoreCase("Full-meal")){
+	public MealFactory getMealFactory(String mealCategory){
+		if(mealCategory.equalsIgnoreCase("Full-meal")){
 			return new FullMealFactory(fullmealmenu);
-		}else if(mealType.equalsIgnoreCase("Half-meal")){
+		}else if(mealCategory.equalsIgnoreCase("Half-meal")){
 			return new HalfMealFactory(halfmealmenu);
-		}else if(mealType.equalsIgnoreCase("Special-meal")){
+		}else if(mealCategory.equalsIgnoreCase("Special-meal")){
 			return new HalfMealFactory(specialmealmenu);
 		}
 		return null;

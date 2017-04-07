@@ -6,16 +6,19 @@ import model.customer.LotteryCard;
 import model.customer.PointCard;
 import model.customer.ShoppingCart;
 import model.customer.StandardCard;
+import model.myfoodora.History;
 import model.myfoodora.Message;
 import model.restaurant.AlaCarteOrder;
 import model.restaurant.MealOrder;
 import model.restaurant.Order;
 import model.restaurant.SpecialMealOrder;
 import model.restaurant.StandardMealOrder;
+import model.users.Courier;
 import model.users.Customer;
 import model.users.MyFoodora;
 import model.users.Restaurant;
 import service.CustomerService;
+import service.MyFoodoraService;
 
 public class CustomerServiceImpl implements CustomerService {
 
@@ -35,8 +38,8 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
 	
-	public void addStandardMealOrder(Restaurant r, String mealName, String mealType){
-		Order neworder = new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealType, mealName));
+	public void addStandardMealOrder(Restaurant r, String mealName, String mealCategory){
+		Order neworder = new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealCategory, mealName));
 		customer.getShoppingCart().addOrder(neworder);
 		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
@@ -48,36 +51,27 @@ public class CustomerServiceImpl implements CustomerService {
 
 	}
 	
-	public void clearShoppingCart(){
-		//clear the shopping cart
-		customer.setShoppingcart(new ShoppingCart());
-	}
-	
-	public double calculatePrice(){
-		return customer.getShoppingCart().calculatePrice();
-	}
-	
+
 	public void pay(){
-		double amount = calculatePrice();
-		customer.setBalance(customer.getBalance() - amount);
-		customer.update("paid for meal/dish = " + amount + ", balance = " + customer.getBalance());
-		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + amount);
-		//gets points for each 10 euros spent in the restaurant if client has PointCard
-		if (customer.getCard() instanceof PointCard){
-			((PointCard)customer.getCard()).addPoints(calculatePrice()/10);
+		MyFoodoraService m = new MyFoodoraServiceImpl();
+		customer.getCard().pay();
+		for (Order order:customer.getShoppingCart().getOrders()){
+			ArrayList<Courier> availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
+			m.parse(order, availablecouriers);
 		}
+		customer.getShoppingCart().clear();
 	}
 	
 
 	// 2. register/unregister to/from a fidelity card plan
 	@Override
 	public void registerCard(String cardType){
-		if (cardType=="lottery"){
-			customer.setCard(new LotteryCard());
-			System.out.println("" + customer.getUsername() + " have registed a lottery card !");
-		}else if (cardType=="point"){
-			customer.setCard(new PointCard());
-			System.out.println("" + customer.getUsername() + " have registed a point card !");
+		if (cardType.equalsIgnoreCase("lotterycard")){
+			customer.setCard(new LotteryCard(customer));
+			System.out.println("" + customer.getUsername() + " have registered a lottery card !");
+		}else if (cardType.equalsIgnoreCase("pointcard")){
+			customer.setCard(new PointCard(customer));
+			System.out.println("" + customer.getUsername() + " have registered a point card !");
 		}else{
 			System.out.println("The fidelity card type "+cardType+" is not recognized");
 		}
@@ -85,25 +79,26 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public void unregisterCard(){
-		customer.setCard(new StandardCard());
-		System.out.println("" + customer.getUsername() + " have unregisted!");
+		customer.setCard(new StandardCard(customer));
+		System.out.println("" + customer.getUsername() + " has unregistered his/her card.");
 	}
 
 
 	// 3. access the information related to their account: including history of orders, and
 		// points acquired with a fidelity program
 
-	//to be completed
-	public ArrayList<Order> getHistory(){
-		ArrayList<Order> orders = new ArrayList<Order>();
+	@Override
+	public History getHistory(){
+		History history = new History();
 		for (Order order:MyFoodora.getInstance().getHistory().getOrders()){
 			if (order.getCustomer() == customer){
-				orders.add(order);
+				history.addOrder(order);
 			}
 		}
-		return orders;
+		return history;
 	}
 	
+	@Override
 	public double getPoints(){
 		if (customer.getCard() instanceof PointCard){
 			return ((PointCard)customer.getCard()).getPoints();

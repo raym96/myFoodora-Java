@@ -41,11 +41,13 @@ public class History {
 		return orders;
 	}
 	
-	public void displayAllOrders(){
-		System.out.println("History:");
+	@Override
+	public String toString(){
+		String str = "";
 		for (Order order:orders){
-			System.out.println(order);
+			str+=order+"\n";
 		}
+		return str;
 	}
 	
 	public ArrayList<Order> getOrdersOf(String restaurant_username){

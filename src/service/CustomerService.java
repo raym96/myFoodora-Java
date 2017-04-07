@@ -1,5 +1,6 @@
 package service;
 
+import model.myfoodora.History;
 import model.restaurant.AlaCarteOrder;
 import model.restaurant.SpecialMealOrder;
 import model.restaurant.StandardMealOrder;
@@ -13,8 +14,6 @@ public interface CustomerService {
 	public void addSpecialMealOrder(Restaurant r, String mealName);
 	public void addStandardMealOrder(Restaurant r, String mealName, String mealType);
 	public void addAlaCarteOrder(Restaurant r, String dishName);
-	public void clearShoppingCart();
-	public double calculatePrice();
 	public void pay();	
 	
 	// 2. register/unregister to/from a fidelity card plan
@@ -24,12 +23,12 @@ public interface CustomerService {
 	// 3. access the information related to their account: including history of orders, and
 	// points acquired with a fidelity program
 	
-	// to be completed
+	History getHistory();
+	double getPoints();
 	
 	// 4. give/remove consensus to be notified whenever a new special offer is set by any
 	// restaurant
 	public void giveConsensusBeNotifiedSpecialOffers();
 	public void removeConsensusBeNotifiedSpecialOffers();
-	
-	// to be completed
+
 }

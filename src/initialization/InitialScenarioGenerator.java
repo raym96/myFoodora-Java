@@ -18,18 +18,19 @@ import model.users.Restaurant;
 
 public class InitialScenarioGenerator {
 	
-	int nCustomer = 7;
-	int nRestaurant = 5;
-	int nManager = 2;
-	int nCourier = 4;
-	final int nMenu = 6; //total number of dishes per restaurant: 2 ST + 2 MD + 2 DS
-	final int nMealMenu = 9; // 4 HM + 4 FM + 1SM per restaurant
-	int nOrder = 100;
+	static int nCustomer = 2;
+	static int nRestaurant = 2;
+	static int nManager = 1;
+	static int nCourier = 3;
+	static int nMenu = 6; //total number of dishes per restaurant: 2 ST + 2 MD + 2 DS
+	static int nMealMenu = 5; // 4 HM + 4 FM + 1SM per restaurant
+	static int nOrder = 30;
 	
 	public static void main(String[] args) {
+		outPrintOrders();
 	}
 	
-	public void outPrintCustomer(){
+	public static void outPrintCustomer(){
 		for (int i = 1;i<nCustomer+1;i++){
 			System.out.println("[Customer/"+i+"]");
 			System.out.println("name=");
@@ -42,7 +43,7 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
-	public void outPrintManager(){
+	public static void outPrintManager(){
 		for (int i = 1; i<nManager+1;i++){
 			System.out.println("[Manager/"+i+"]");
 			System.out.println("name=");
@@ -52,7 +53,7 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
-	public void outPrintRestaurant(){
+	public static void outPrintRestaurant(){
 		for (int i = 1; i<nRestaurant+1;i++){
 			System.out.println("[Restaurant/"+i+"]");
 			System.out.println("name=");
@@ -62,7 +63,7 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
-	public void outPrintCourier(){
+	public static void outPrintCourier(){
 		for (int i = 1; i<nCourier+1;i++){
 			System.out.println("[Courier/"+i+"]");
 			System.out.println("name=");
@@ -74,7 +75,7 @@ public class InitialScenarioGenerator {
 		}
 	}
 		
-	public void outPrintMenu(){
+	public static void outPrintMenu(){
 		for (int i = 0; i<nRestaurant*nMenu; i++){
 			System.out.println("[Dish/"+(i+1)+"]");
 			if (i%6<2){
@@ -94,7 +95,7 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
-	public void outPrintMealMenu(){
+	public static void outPrintMealMenu(){
 		for (int i = 0; i<nRestaurant*nMealMenu; i++){
 			System.out.println("[Meal/"+(i+1)+"]");
 			if (i%9<4){
@@ -118,12 +119,12 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
-	public void outPutOrders(){
+	public static void outPrintOrders(){
 		Random random = new Random();
 		try{
-		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant("init.ini");
-		ArrayList<Customer> customers = InitialScenario.loadCustomer("init.ini");
-		for (int i = 0;i<100;i++){
+		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant("initialScenarioForTests.ini");
+		ArrayList<Customer> customers = InitialScenario.loadCustomer("initialScenarioForTests.ini");
+		for (int i = 0;i<nOrder;i++){
 			System.out.println("[Order/"+(i+1)+"]");
 			int c = random.nextInt(customers.size());
 			int r = random.nextInt(restaurants.size());

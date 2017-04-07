@@ -29,19 +29,22 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
+	@Override
 	public void addUser(User user){
 		MyFoodora.getInstance().register(user);
 	}
-	
+	@Override
 	public void removeUser(User user){
 		MyFoodora.getInstance().unregister(user);
 	}
 	
 	// 2. activate/disactivate any kind of user (restaurant, customers and/or couriers) of the system
+	@Override
 	public void activateUser(User user) throws UserNotFoundException{
 		MyFoodora.getInstance().activateUser(user);
 	}
 	
+	@Override
 	public void disactivateUser(User user) throws UserNotFoundException{
 		MyFoodora.getInstance().disactivateUser(user);
 		
@@ -49,21 +52,21 @@ public class ManagerServiceImpl implements ManagerService {
 
 	// 3. changing the service-fee percentage and/or the markup percentage (\percentage de marge") and/or the delivery-cost
 	@Override
-	public synchronized void changeServicefee(double service_fee) {
+	public synchronized void setServiceFree(double service_fee) {
 		// TODO Auto-generated method stub
 		MyFoodora.getInstance().setService_fee(service_fee);
 	}
 
 	@Override
-	public synchronized void changeMarkupPercentage(double markup_percentage) {
+	public synchronized void setMarkUpPencentage(double markup_percentage) {
 		// TODO Auto-generated method stub
-		MyFoodora.getInstance().setService_fee(markup_percentage);
+		MyFoodora.getInstance().setMarkup_percentage(markup_percentage);
 	}
 
 	@Override
-	public synchronized void changeDeliverycost(double delivery_cost) {
+	public synchronized void setDeliveryCost(double delivery_cost) {
 		// TODO Auto-generated method stub
-		MyFoodora.getInstance().setService_fee(delivery_cost);
+		MyFoodora.getInstance().setDelivery_cost(delivery_cost);
 	}
 
 	
