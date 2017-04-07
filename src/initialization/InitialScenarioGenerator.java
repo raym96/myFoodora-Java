@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import model.restaurant.MealMenu;
-import model.restaurant.Menu;
-import model.users.Customer;
-import model.users.Restaurant;
+import restaurant.MealMenu;
+import restaurant.Menu;
+import user.Customer;
+import user.Restaurant;
 
 /** Provides methods to outprint initial scenarios, which can be copy-pasted
  *  to an .ini file, and once filled can be loaded by InitialScenario.load()
