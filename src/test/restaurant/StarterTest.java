@@ -1,11 +1,11 @@
-package test.model.restaurant;
+package test.restaurant;
 
 import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.restaurant.Starter;
+import restaurant.Starter;
 
 public class StarterTest {
 

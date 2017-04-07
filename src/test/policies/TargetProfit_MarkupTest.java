@@ -1,10 +1,10 @@
-package test.model.myfoodora;
+package test.policies;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.myfoodora.TargetProfit_DeliveryCost;
+import policies.TargetProfit_DeliveryCost;
 
 public class TargetProfit_MarkupTest {
 

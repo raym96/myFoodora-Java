@@ -1,7 +1,7 @@
-package service;
+package user;
 
-import model.restaurant.Order;
-import model.users.AddressPoint;
+import system.AddressPoint;
+import system.Order;
 
 public interface CourierService {
 	

@@ -1,16 +1,15 @@
-package model.users;
+package user;
 
 import java.util.ArrayList;
 
 import exceptions.OrderNotFoundException;
-import model.myfoodora.Message;
-import model.myfoodora.SpecialOffer;
-import model.myfoodora.SpecialOfferBoard;
-import model.myfoodora.ConcreteSpecialOfferBoard;
-import model.restaurant.Order;
-import service.CourierService;
-import service.impl.CourierServiceImpl;
-import service.impl.MyFoodoraServiceImpl;
+import system.AddressPoint;
+import system.ConcreteSpecialOfferBoard;
+import system.Message;
+import system.Observable;
+import system.Order;
+import system.SpecialOffer;
+import system.SpecialOfferBoard;
 
 public class Courier extends User{
 

@@ -16,9 +16,19 @@ import exceptions.DishNotFoundException;
 import exceptions.MealNotFoundException;
 import exceptions.OrderNotFoundException;
 import exceptions.UserNotFoundException;
-import model.users.*;
-import model.myfoodora.History;
-import model.restaurant.*;
+import restaurant.*;
+import system.AddressPoint;
+import system.AlaCarteOrder;
+import system.History;
+import system.Order;
+import system.SpecialMealOrder;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.Manager;
+import user.MyFoodora;
+import user.Restaurant;
+import user.User;
 
 public class InitialScenario {
 	

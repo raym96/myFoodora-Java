@@ -1,4 +1,4 @@
-package test.model.user;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
-import model.users.Manager;
-import model.users.MyFoodora;
-import service.ManagerService;
+import user.Manager;
+import user.ManagerService;
+import user.MyFoodora;
 
 public class ManagerTest {
 

@@ -1,9 +1,9 @@
-package model.myfoodora;
+package policies;
 
 import java.util.ArrayList;
 
-import model.restaurant.Order;
-import model.users.Courier;
+import system.Order;
+import user.Courier;
 
 //Strategy pattern
 public interface DeliveryPolicy {

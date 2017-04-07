@@ -1,10 +1,8 @@
-package service;
+package user;
 
-import model.restaurant.Dish;
-import model.restaurant.DishFactory;
-import model.restaurant.HalfMeal;
-import model.restaurant.Meal;
-import model.restaurant.Order;
+import restaurant.Dish;
+import restaurant.Meal;
+import system.Order;
 
 public interface RestaurantService {
 

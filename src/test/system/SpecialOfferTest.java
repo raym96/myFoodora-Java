@@ -1,15 +1,15 @@
-package test.model.myfoodora;
+package test.system;
 
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.Test;
 
-import model.myfoodora.SpecialOffer;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.users.AddressPoint;
-import model.users.Restaurant;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.SpecialOffer;
+import user.Restaurant;
 
 public class SpecialOfferTest {
 

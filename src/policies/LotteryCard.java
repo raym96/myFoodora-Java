@@ -1,9 +1,9 @@
-package model.customer;
+package policies;
 
 import java.util.Random;
 
-import model.users.Customer;
-import model.users.MyFoodora;
+import user.Customer;
+import user.MyFoodora;
 
 public class LotteryCard extends FidelityCard {
 	private static double probability = 0.01;

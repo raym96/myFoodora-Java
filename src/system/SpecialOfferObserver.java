@@ -1,9 +1,6 @@
-package model.customer;
+package system;
 
 import java.util.ArrayList;
-
-import model.myfoodora.SpecialOffer;
-import model.myfoodora.ConcreteSpecialOfferBoard;
 
 public interface SpecialOfferObserver {
 	public void addSpecialOffer(SpecialOffer specialoffer); //add a new special offer

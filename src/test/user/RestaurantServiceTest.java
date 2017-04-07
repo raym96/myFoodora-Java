@@ -1,4 +1,4 @@
-package test.service;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -7,10 +7,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import initialization.InitialScenario;
-import model.restaurant.*;
-import model.users.*;
-import service.RestaurantService;
-import service.impl.MyFoodoraServiceImpl;
+import restaurant.*;
+import user.MyFoodora;
+import user.MyFoodoraServiceImpl;
+import user.Restaurant;
+import user.RestaurantService;
 
 public class RestaurantServiceTest {
 	Restaurant restaurant;

@@ -1,4 +1,4 @@
-package model.myfoodora;
+package system;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import model.restaurant.*;
-import model.users.Restaurant;
+import restaurant.*;
 
 public class History {
 	private ArrayList<Order> orders;

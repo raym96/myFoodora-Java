@@ -1,12 +1,9 @@
-package service;
+package user;
 
 import java.util.Date;
 
 import exceptions.UserNotFoundException;
-import model.myfoodora.DeliveryPolicy;
-import model.users.Courier;
-import model.users.Restaurant;
-import model.users.User;
+import policies.DeliveryPolicy;
 
 public interface ManagerService {
 

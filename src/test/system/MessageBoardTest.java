@@ -1,4 +1,4 @@
-package test.model.myfoodora;
+package test.system;
 
 import static org.junit.Assert.*;
 
@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.myfoodora.Message;
-import model.myfoodora.MessageBoard;
-import model.users.AddressPoint;
-import model.users.Customer;
-import model.users.MyFoodora;
+import system.AddressPoint;
+import system.Message;
+import system.MessageBoard;
+import user.Customer;
+import user.MyFoodora;
 
 public class MessageBoardTest {
 

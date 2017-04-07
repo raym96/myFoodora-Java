@@ -1,8 +1,8 @@
-package model.myfoodora;
+package system;
 
 import java.util.Date;
 
-import model.users.User;
+import user.User;
 
 public class Message {
 

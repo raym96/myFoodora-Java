@@ -1,4 +1,4 @@
-package model.myfoodora;
+package policies;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,9 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
-import model.restaurant.*;
+import restaurant.*;
+import system.AlaCarteOrder;
+import system.Order;
 
 public class SortingByAlaCarte extends SortingByCriteria {
 

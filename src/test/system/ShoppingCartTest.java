@@ -1,4 +1,4 @@
-package test.model.customer;
+package test.system;
 
 import static org.junit.Assert.*;
 
@@ -6,17 +6,17 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.customer.ShoppingCart;
-import model.restaurant.AlaCarteOrder;
-import model.restaurant.Dish;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.restaurant.SpecialMealOrder;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.Restaurant;
+import restaurant.Dish;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.AlaCarteOrder;
+import system.ShoppingCart;
+import system.SpecialMealOrder;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.Restaurant;
 
 public class ShoppingCartTest {
 

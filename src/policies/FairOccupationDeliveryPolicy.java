@@ -1,13 +1,13 @@
-package model.myfoodora;
+package policies;
 
 import java.util.ArrayList;
 
-import model.restaurant.Order;
-import model.users.Courier;
+import system.Order;
+import user.Courier;
 
-public class FairOccupationDelivery implements DeliveryPolicy {
+public class FairOccupationDeliveryPolicy implements DeliveryPolicy {
 
-	public FairOccupationDelivery() {
+	public FairOccupationDeliveryPolicy() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

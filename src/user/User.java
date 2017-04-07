@@ -1,12 +1,12 @@
-package model.users;
+package user;
 
 import java.util.Date;
 import java.util.UUID;
 
-
-import model.myfoodora.Message;
-import model.myfoodora.MessageBoard;
-import model.myfoodora.SpecialOfferBoard;
+import system.Message;
+import system.MessageBoard;
+import system.Observable;
+import system.Observer;
 
 public abstract class User implements Observer{
 

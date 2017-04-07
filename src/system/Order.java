@@ -1,4 +1,4 @@
-package model.restaurant;
+package system;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -8,12 +8,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
-import model.customer.ShoppingCartVisitor;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.Restaurant;
-import model.users.User;
+import user.Courier;
+import user.Customer;
+import user.Restaurant;
+import user.User;
 
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public abstract class Order {

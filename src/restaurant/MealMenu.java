@@ -1,10 +1,9 @@
-package model.restaurant;
+package restaurant;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import exceptions.MealNotFoundException;
-import model.users.Restaurant;
 
 public class MealMenu {
 

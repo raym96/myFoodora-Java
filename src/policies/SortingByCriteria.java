@@ -1,8 +1,8 @@
-package model.myfoodora;
+package policies;
 
 import java.util.*;
 
-import model.restaurant.Order;
+import system.Order;
 
 public abstract class SortingByCriteria {
 	public abstract HashMap countOccurence(ArrayList<Order> history);

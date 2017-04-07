@@ -1,6 +1,8 @@
-package model.users;
+package system;
 
 import java.util.ArrayList;
+
+import user.User;
 
 public interface Observable {
 	// add a new observer to this observable

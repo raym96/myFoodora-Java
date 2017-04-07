@@ -1,7 +1,7 @@
-package model.customer;
+package policies;
 
-import model.users.Customer;
-import model.users.MyFoodora;
+import user.Customer;
+import user.MyFoodora;
 
 public class StandardCard extends FidelityCard {
 

@@ -1,4 +1,4 @@
-package test.model.user;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -10,16 +10,16 @@ import org.junit.Test;
 
 import exceptions.OrderNotFoundException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.restaurant.Order;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.Manager;
-import model.users.MyFoodora;
-import model.users.Restaurant;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.Order;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.Manager;
+import user.MyFoodora;
+import user.Restaurant;
 
 public class CourierTest {
 

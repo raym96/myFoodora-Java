@@ -1,16 +1,17 @@
-package model.users;
+package user;
 
 import java.util.*;
 
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
-import model.myfoodora.History;
-import model.myfoodora.Message;
-import model.myfoodora.SpecialOfferBoard;
-import model.restaurant.*;
-import service.RestaurantService;
-import service.impl.RestaurantServiceImpl;
+import restaurant.*;
+import system.AddressPoint;
+import system.History;
+import system.Message;
+import system.Observable;
+import system.Order;
+import system.SpecialOfferBoard;
 
 public class Restaurant extends User{
 

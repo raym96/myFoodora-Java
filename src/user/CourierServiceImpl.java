@@ -1,16 +1,11 @@
-package service.impl;
+package user;
 
 import java.util.ArrayList;
 
 import exceptions.OrderNotFoundException;
-import model.myfoodora.Message;
-import model.restaurant.Order;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.MyFoodora;
-import service.CourierService;
-import service.MyFoodoraService;
+import system.AddressPoint;
+import system.Message;
+import system.Order;
 
 public class CourierServiceImpl implements CourierService {
 

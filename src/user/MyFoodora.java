@@ -1,26 +1,23 @@
- package model.users;
+ package user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import exceptions.UserNotFoundException;
-import model.customer.*;
-import model.myfoodora.DeliveryPolicy;
-import model.myfoodora.FastestDelivery;
-import model.myfoodora.History;
-import model.myfoodora.Message;
-import model.myfoodora.MessageBoard;
-import model.myfoodora.SpecialOffer;
-import model.myfoodora.ConcreteSpecialOfferBoard;
-import model.myfoodora.TargetProfitPolicy;
-import model.myfoodora.TargetProfit_DeliveryCost;
-import model.myfoodora.TargetProfit_Markup;
-import model.myfoodora.TargetProfit_ServiceFee;
-import model.restaurant.*;
-import model.users.*;
-import service.MyFoodoraService;
-import service.impl.MyFoodoraServiceImpl;
+import policies.DeliveryPolicy;
+import policies.FastestDeliveryPolicy;
+import policies.TargetProfitPolicy;
+import policies.TargetProfit_DeliveryCost;
+import policies.TargetProfit_Markup;
+import policies.TargetProfit_ServiceFee;
+import restaurant.*;
+import system.ConcreteSpecialOfferBoard;
+import system.History;
+import system.MessageBoard;
+import system.Observable;
+import system.Observer;
+import system.Order;
 
 public class MyFoodora implements Observable{
 	
@@ -56,7 +53,7 @@ public class MyFoodora implements Observable{
 		this.history = new History();
 		
 		// default policies
-		this.deliverypolicy = new FastestDelivery();
+		this.deliverypolicy = new FastestDeliveryPolicy();
 		this.targetprofitpolicy = new TargetProfit_DeliveryCost();
 	};
 	

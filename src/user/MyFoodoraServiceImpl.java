@@ -1,14 +1,15 @@
-package service.impl;
+package user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import model.customer.*;
-import model.myfoodora.*;
-import model.restaurant.*;
-import model.users.*;
-import service.MyFoodoraService;
+import policies.TargetProfitPolicy;
+import policies.TargetProfit_DeliveryCost;
+import policies.TargetProfit_Markup;
+import policies.TargetProfit_ServiceFee;
+import restaurant.*;
+import system.*;
 
 public class MyFoodoraServiceImpl implements MyFoodoraService{
 	private MyFoodora myfoodora;

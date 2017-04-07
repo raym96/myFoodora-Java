@@ -1,24 +1,17 @@
-package service.impl;
+package user;
 
 import java.util.ArrayList;
 
-import model.customer.LotteryCard;
-import model.customer.PointCard;
-import model.customer.ShoppingCart;
-import model.customer.StandardCard;
-import model.myfoodora.History;
-import model.myfoodora.Message;
-import model.restaurant.AlaCarteOrder;
-import model.restaurant.MealOrder;
-import model.restaurant.Order;
-import model.restaurant.SpecialMealOrder;
-import model.restaurant.StandardMealOrder;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.MyFoodora;
-import model.users.Restaurant;
-import service.CustomerService;
-import service.MyFoodoraService;
+import policies.LotteryCard;
+import policies.PointCard;
+import policies.StandardCard;
+import system.AlaCarteOrder;
+import system.History;
+import system.MealOrder;
+import system.Message;
+import system.Order;
+import system.SpecialMealOrder;
+import system.StandardMealOrder;
 
 public class CustomerServiceImpl implements CustomerService {
 

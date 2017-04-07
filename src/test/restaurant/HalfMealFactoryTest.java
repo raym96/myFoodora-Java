@@ -1,4 +1,4 @@
-package test.model.restaurant;
+package test.restaurant;
 
 import static org.junit.Assert.*;
 
@@ -6,10 +6,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import exceptions.MealNotFoundException;
-import model.restaurant.HalfMeal;
-import model.restaurant.HalfMealFactory;
-import model.restaurant.MealMenu;
-import model.restaurant.Menu;
+import restaurant.HalfMeal;
+import restaurant.HalfMealFactory;
+import restaurant.MealMenu;
+import restaurant.Menu;
 
 public class HalfMealFactoryTest {
 

@@ -1,4 +1,4 @@
-package model.restaurant;
+package restaurant;
 
 public class HalfMeal extends Meal {
 	

@@ -1,4 +1,4 @@
-package service.impl;
+package user;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,18 +6,17 @@ import java.util.Iterator;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
-import model.myfoodora.*;
-import model.restaurant.Dish;
-import model.restaurant.FullMeal;
-import model.restaurant.HalfMeal;
-import model.restaurant.Meal;
-import model.restaurant.MealFactory;
-import model.restaurant.MealMenu;
-import model.restaurant.Order;
-import model.restaurant.Starter;
-import model.users.MyFoodora;
-import model.users.Restaurant;
-import service.RestaurantService;
+import policies.SortingByAlaCarte;
+import policies.SortingByCriteria;
+import policies.SortingByHalfMeal;
+import restaurant.Dish;
+import restaurant.FullMeal;
+import restaurant.HalfMeal;
+import restaurant.Meal;
+import restaurant.MealFactory;
+import restaurant.MealMenu;
+import restaurant.Starter;
+import system.*;
 
 public class RestaurantServiceImpl implements RestaurantService {
 

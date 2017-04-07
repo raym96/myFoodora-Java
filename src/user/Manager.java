@@ -1,13 +1,10 @@
-package model.users;
+package user;
 
 import java.util.ArrayList;
 
-import model.myfoodora.Message;
-import model.myfoodora.SpecialOfferBoard;
-import service.ManagerService;
-import service.MyFoodoraService;
-import service.impl.ManagerServiceImpl;
-import service.impl.MyFoodoraServiceImpl;
+import system.Message;
+import system.Observable;
+import system.SpecialOfferBoard;
 
 public class Manager extends User{
 	

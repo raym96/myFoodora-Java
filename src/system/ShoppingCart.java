@@ -1,8 +1,6 @@
-package model.customer;
+package system;
 
 import java.util.ArrayList;
-
-import model.restaurant.Order;
 
 public class ShoppingCart {
 	private ArrayList<Order> orders;

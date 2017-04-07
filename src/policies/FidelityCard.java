@@ -1,7 +1,7 @@
-package model.customer;
+package policies;
 
-import model.users.Customer;
-import model.users.User;
+import user.Customer;
+import user.User;
 
 public abstract class FidelityCard {
 	protected Customer customer;

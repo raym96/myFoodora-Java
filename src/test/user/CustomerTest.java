@@ -1,4 +1,4 @@
-package test.model.user;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -7,17 +7,17 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
-import model.myfoodora.SpecialOffer;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.restaurant.SpecialMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.Manager;
-import model.users.MyFoodora;
-import model.users.Restaurant;
-import service.CustomerService;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.SpecialMealOrder;
+import system.SpecialOffer;
+import user.Courier;
+import user.Customer;
+import user.CustomerService;
+import user.Manager;
+import user.MyFoodora;
+import user.Restaurant;
 
 public class CustomerTest {
 

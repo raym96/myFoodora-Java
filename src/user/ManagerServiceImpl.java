@@ -1,4 +1,4 @@
-package service.impl;
+package user;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,18 +6,12 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import exceptions.UserNotFoundException;
-import model.customer.ConcreteShoppingCartVisitor;
-import model.customer.ShoppingCartVisitor;
-import model.myfoodora.DeliveryPolicy;
-import model.myfoodora.SortingByCriteria;
-import model.myfoodora.SortingByRestaurant;
-import model.restaurant.Order;
-import model.users.Courier;
-import model.users.Manager;
-import model.users.MyFoodora;
-import model.users.Restaurant;
-import model.users.User;
-import service.ManagerService;
+import policies.DeliveryPolicy;
+import policies.SortingByCriteria;
+import policies.SortingByRestaurant;
+import system.ConcreteShoppingCartVisitor;
+import system.Order;
+import system.ShoppingCartVisitor;
 
 public class ManagerServiceImpl implements ManagerService {
 

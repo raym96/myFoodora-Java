@@ -1,4 +1,4 @@
-package test.service;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -9,14 +9,17 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import initialization.InitialScenario;
-import model.restaurant.Meal;
-import model.restaurant.Order;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.*;
-import service.CourierService;
-import service.MyFoodoraService;
-import service.impl.MyFoodoraServiceImpl;
+import restaurant.Meal;
+import system.AddressPoint;
+import system.Order;
+import system.StandardMealOrder;
+import user.Courier;
+import user.CourierService;
+import user.Customer;
+import user.MyFoodora;
+import user.MyFoodoraService;
+import user.MyFoodoraServiceImpl;
+import user.Restaurant;
 
 public class CourierServiceTest {
 	

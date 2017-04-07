@@ -1,9 +1,8 @@
-package model.myfoodora;
+package system;
 
 import java.util.ArrayList;
 
-import model.customer.SpecialOfferObserver;
-import model.users.*;
+import user.User;
 
 public interface SpecialOfferBoard {
 

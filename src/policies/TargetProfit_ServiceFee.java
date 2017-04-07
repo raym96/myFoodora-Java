@@ -1,4 +1,4 @@
-package model.myfoodora;
+package policies;
 
 public class TargetProfit_ServiceFee implements TargetProfitPolicy {
 	// target profit = last month income * markup + last month order*(service fee - delivery cost)

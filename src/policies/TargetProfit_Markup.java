@@ -1,4 +1,4 @@
-package model.myfoodora;
+package policies;
 
 import java.util.List;
 

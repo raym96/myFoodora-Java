@@ -1,6 +1,6 @@
 package exceptions;
 
-import model.restaurant.Order;
+import system.Order;
 
 public class OrderNotFoundException extends Exception {
 	

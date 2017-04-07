@@ -1,4 +1,4 @@
-package model.myfoodora;
+package policies;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,10 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
-import model.restaurant.*;
-import model.users.Restaurant;
+import restaurant.*;
+import system.Order;
+import system.StandardMealOrder;
+
+import java.util.TreeMap;
 
 public class SortingByHalfMeal extends SortingByCriteria{
 

@@ -1,4 +1,4 @@
-package model.restaurant;
+package restaurant;
 
 public abstract class Dish {
 

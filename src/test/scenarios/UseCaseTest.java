@@ -1,4 +1,4 @@
-package test.service;
+package test.scenarios;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,16 +9,22 @@ import org.junit.Test;
 import exceptions.UserNotFoundException;
 
 import initialization.InitialScenario;
+import policies.SortingByCriteria;
+import policies.SortingByRestaurant;
+import restaurant.*;
+import system.*;
+import user.Courier;
+import user.Customer;
+import user.Manager;
+import user.ManagerService;
+import user.ManagerServiceImpl;
+import user.MyFoodora;
+import user.MyFoodoraService;
+import user.MyFoodoraServiceImpl;
+import user.Restaurant;
+import user.User;
 
-import model.myfoodora.*;
-import model.restaurant.*;
-import model.users.*;
-import service.ManagerService;
-import service.MyFoodoraService;
-import service.impl.ManagerServiceImpl;
-import service.impl.MyFoodoraServiceImpl;
-
-public class MyFoodoraUseCaseTest {
+public class UseCaseTest {
 
 	/**
 	 * Use case scenario

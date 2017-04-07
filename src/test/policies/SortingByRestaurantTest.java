@@ -1,4 +1,4 @@
-package test.model.myfoodora;
+package test.policies;
 
 import static org.junit.Assert.*;
 
@@ -10,18 +10,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.myfoodora.SortingByRestaurant;
-import model.restaurant.AlaCarteOrder;
-import model.restaurant.Dish;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.restaurant.Order;
-import model.restaurant.SpecialMealOrder;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.Restaurant;
+import policies.SortingByRestaurant;
+import restaurant.Dish;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.AlaCarteOrder;
+import system.Order;
+import system.SpecialMealOrder;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.Restaurant;
 
 public class SortingByRestaurantTest {
 

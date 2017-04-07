@@ -1,9 +1,8 @@
-package model.restaurant;
+package system;
 
-import model.customer.ConcreteShoppingCartVisitor;
-import model.customer.ShoppingCartVisitor;
-import model.users.Customer;
-import model.users.Restaurant;
+import restaurant.Meal;
+import user.Customer;
+import user.Restaurant;
 
 public class StandardMealOrder extends MealOrder {
 	public StandardMealOrder(Customer customer, Restaurant restaurant, Meal meal) {

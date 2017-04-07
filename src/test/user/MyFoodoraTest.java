@@ -1,4 +1,4 @@
-package test.model.user;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -10,17 +10,17 @@ import org.junit.Test;
 
 import exceptions.UserNotFoundException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
-import model.myfoodora.FairOccupationDelivery;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.Manager;
-import model.users.MyFoodora;
-import model.users.Restaurant;
-import model.users.User;
+import policies.FairOccupationDeliveryPolicy;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.Manager;
+import user.MyFoodora;
+import user.Restaurant;
+import user.User;
 
 public class MyFoodoraTest {
 
@@ -78,7 +78,7 @@ public class MyFoodoraTest {
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		StandardMealOrder standardMealOrder = new StandardMealOrder(c, r, fm1);
 	
-		myFoodora.setDeliveryPolicy(new FairOccupationDelivery());
+		myFoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
 		Courier theCourier = myFoodora.parse(standardMealOrder);
 		System.out.println(theCourier);
 	} 

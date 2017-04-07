@@ -1,15 +1,18 @@
-package model.users;
+package user;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.customer.*;
-import model.myfoodora.Message;
-import model.myfoodora.MessageBoard;
-import model.myfoodora.SpecialOffer;
-import model.myfoodora.ConcreteSpecialOfferBoard;
-import service.CustomerService;
-import service.impl.CustomerServiceImpl;
+import policies.FidelityCard;
+import policies.StandardCard;
+import system.AddressPoint;
+import system.ConcreteSpecialOfferBoard;
+import system.Message;
+import system.MessageBoard;
+import system.Observable;
+import system.ShoppingCart;
+import system.SpecialOffer;
+import system.SpecialOfferObserver;
 
 public class Customer extends User implements SpecialOfferObserver{
 	

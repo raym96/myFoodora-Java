@@ -1,4 +1,4 @@
-package model.users;
+package system;
 
 public class AddressPoint {
 

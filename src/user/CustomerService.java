@@ -1,10 +1,9 @@
-package service;
+package user;
 
-import model.myfoodora.History;
-import model.restaurant.AlaCarteOrder;
-import model.restaurant.SpecialMealOrder;
-import model.restaurant.StandardMealOrder;
-import model.users.Restaurant;
+import system.AlaCarteOrder;
+import system.History;
+import system.SpecialMealOrder;
+import system.StandardMealOrder;
 
 public interface CustomerService {
 

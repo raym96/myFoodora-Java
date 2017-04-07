@@ -1,11 +1,10 @@
-package service;
+package user;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.myfoodora.*;
-import model.restaurant.*;
-import model.users.*;
+import restaurant.*;
+import system.*;
 
 public interface MyFoodoraService {
 		

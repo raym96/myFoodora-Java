@@ -1,12 +1,12 @@
-package model.myfoodora;
+package policies;
 
 import java.util.ArrayList;
 
-import model.restaurant.Order;
-import model.users.AddressPoint;
-import model.users.Courier;
+import system.AddressPoint;
+import system.Order;
+import user.Courier;
 
-public class FastestDelivery implements DeliveryPolicy {
+public class FastestDeliveryPolicy implements DeliveryPolicy {
 	
 	@Override
 	public Courier parse(Order order, ArrayList<Courier> activecouriers) {

@@ -1,8 +1,8 @@
-package model.users;
+package system;
 
 import java.util.ArrayList;
 
-import model.myfoodora.*;
+import system.*;
 
 public interface Observer {
 

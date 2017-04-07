@@ -1,6 +1,6 @@
-package model.customer;
+package system;
 
-import model.restaurant.*;
+import restaurant.*;
 
 public interface ShoppingCartVisitor {
 	double visit(SpecialMealOrder mealOrder);

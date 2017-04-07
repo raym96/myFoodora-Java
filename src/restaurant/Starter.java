@@ -1,4 +1,4 @@
-package model.restaurant;
+package restaurant;
 
 import static org.junit.Assert.*;
 

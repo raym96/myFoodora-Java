@@ -1,4 +1,4 @@
-package test.service;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -13,26 +13,26 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import initialization.InitialScenario;
-import model.myfoodora.DeliveryPolicy;
-import model.myfoodora.FairOccupationDelivery;
-import model.myfoodora.FastestDelivery;
-import model.myfoodora.SpecialOffer;
-import model.myfoodora.TargetProfit_DeliveryCost;
-import model.restaurant.AlaCarteOrder;
-import model.restaurant.Dish;
-import model.restaurant.Meal;
-import model.restaurant.Menu;
-import model.restaurant.Order;
-import model.restaurant.SpecialMeal;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.MyFoodora;
-import model.users.Restaurant;
-import model.users.User;
-import service.MyFoodoraService;
-import service.impl.MyFoodoraServiceImpl;
+import policies.DeliveryPolicy;
+import policies.FairOccupationDeliveryPolicy;
+import policies.FastestDeliveryPolicy;
+import policies.TargetProfit_DeliveryCost;
+import restaurant.Dish;
+import restaurant.Meal;
+import restaurant.Menu;
+import restaurant.SpecialMeal;
+import system.AddressPoint;
+import system.AlaCarteOrder;
+import system.Order;
+import system.SpecialOffer;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.MyFoodora;
+import user.MyFoodoraService;
+import user.MyFoodoraServiceImpl;
+import user.Restaurant;
+import user.User;
 
 public class MyFoodoraServiceTest {
 
@@ -93,20 +93,20 @@ public class MyFoodoraServiceTest {
 		
 		//Should give the order to courier_1
 		System.out.println("FastDeliveryPolicy:");
-		myfoodora.setDeliveryPolicy(new FastestDelivery());
+		myfoodora.setDeliveryPolicy(new FastestDeliveryPolicy());
 		m.parse(order, myfoodora.getAvailableCouriers());
 		
 		//verify that the courier given by the algorithm of delivery policy (tested in its own test file) received the order
-		Courier courier_1 = new FastestDelivery().parse(order, myfoodora.getAvailableCouriers());
+		Courier courier_1 = new FastestDeliveryPolicy().parse(order, myfoodora.getAvailableCouriers());
 		assertTrue(courier_1.getWaitingOrders().contains(order));
 		
 		//Should give the order to courier_2
 		System.out.println("FairOccupatioDelivery");
-		myfoodora.setDeliveryPolicy(new FairOccupationDelivery());
+		myfoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
 		m.parse(order, myfoodora.getAvailableCouriers());
 		
 		//verify that the courier given by the algorithm of delivery policy (tested in its own test file) received the order
-		Courier courier_2 = new FairOccupationDelivery().parse(order, myfoodora.getAvailableCouriers());
+		Courier courier_2 = new FairOccupationDeliveryPolicy().parse(order, myfoodora.getAvailableCouriers());
 		assertTrue(courier_2.getWaitingOrders().contains(order));
 		
 	}

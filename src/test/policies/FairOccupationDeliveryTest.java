@@ -1,4 +1,4 @@
-package test.model.myfoodora;
+package test.policies;
 
 import static org.junit.Assert.*;
 
@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import exceptions.UserNotFoundException;
-import model.myfoodora.FairOccupationDelivery;
-import model.restaurant.FullMeal;
-import model.restaurant.Menu;
-import model.restaurant.StandardMealOrder;
-import model.users.AddressPoint;
-import model.users.Courier;
-import model.users.Customer;
-import model.users.MyFoodora;
-import model.users.Restaurant;
+import policies.FairOccupationDeliveryPolicy;
+import restaurant.FullMeal;
+import restaurant.Menu;
+import system.AddressPoint;
+import system.StandardMealOrder;
+import user.Courier;
+import user.Customer;
+import user.MyFoodora;
+import user.Restaurant;
 
 public class FairOccupationDeliveryTest {
 
-	private FairOccupationDelivery fairOccupationDelivery = new FairOccupationDelivery();
+	private FairOccupationDeliveryPolicy fairOccupationDelivery = new FairOccupationDeliveryPolicy();
 	
 	@Test
 	public void testParse() throws UserNotFoundException {

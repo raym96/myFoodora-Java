@@ -1,4 +1,4 @@
-package test.service;
+package test.user;
 
 import static org.junit.Assert.*;
 
@@ -12,9 +12,13 @@ import org.junit.Test;
 
 import exceptions.UserNotFoundException;
 import initialization.InitialScenario;
-import model.myfoodora.FastestDelivery;
-import model.users.*;
-import service.ManagerService;
+import policies.FastestDeliveryPolicy;
+import system.AddressPoint;
+import user.Courier;
+import user.Manager;
+import user.ManagerService;
+import user.MyFoodora;
+import user.User;
 
 public class ManagerServiceTest {
 
@@ -181,9 +185,9 @@ public class ManagerServiceTest {
 	@Test
 	public void testSetDeliveryPolicy() {
 		System.out.println("-----testSetDeliveryPolicy-----");
-		m.setDeliveryPolicy(new FastestDelivery());
+		m.setDeliveryPolicy(new FastestDeliveryPolicy());
 		
-		assertTrue(MyFoodora.getInstance().getDeliverypolicy() instanceof FastestDelivery);
+		assertTrue(MyFoodora.getInstance().getDeliverypolicy() instanceof FastestDeliveryPolicy);
 	}
 
 	@Test
