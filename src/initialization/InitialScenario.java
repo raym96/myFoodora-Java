@@ -25,6 +25,7 @@ public class InitialScenario {
 	//Load .ini file data into the MyFoodora System
 	public static void load(String filename) throws UserNotFoundException {
 		System.out.println("-------Loading initial scenario <"+filename+"> -------");
+		MyFoodora.reset(); //reset the state of the system
 		MyFoodora myfoodora = MyFoodora.getInstance();
 		ArrayList<User> users = new ArrayList<User>();
 		try{
@@ -47,6 +48,7 @@ public class InitialScenario {
 			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
 		}catch(IOException e){
 			System.out.println(filename+" not found.");
+			e.printStackTrace();
 		}
 		
 		System.out.println("\n-------Displaying the menus-------");

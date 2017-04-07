@@ -13,6 +13,7 @@ import model.users.AddressPoint;
 import model.users.Courier;
 import model.users.Customer;
 import model.users.Restaurant;
+import model.users.User;
 
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public abstract class Order {
@@ -34,7 +35,7 @@ public abstract class Order {
 		orderID = UUID.randomUUID().toString();
 		
 		//initialy no courier is assigned
-		courier = null;
+		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
 		assigned = false;
 	}
 	
@@ -46,7 +47,7 @@ public abstract class Order {
 		this.date = date;
 		
 		//initialy no courier is assigned
-		courier = null;
+		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
 		assigned = false;
 	}
 	

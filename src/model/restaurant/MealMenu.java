@@ -3,6 +3,7 @@ package model.restaurant;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import exceptions.MealNotFoundException;
 import model.users.Restaurant;
 
 public class MealMenu {
@@ -24,12 +25,26 @@ public class MealMenu {
 		meals.add(meal);
 	}
 	
-	public void removeMeal(String mealName){
+	public void removeMeal(String mealName) throws MealNotFoundException{
+		int count = 0;
 		for(int i=0; i<meals.size(); i++){
-			if( meals.get(i).getName() == mealName ){
+			if( meals.get(i).getName().equalsIgnoreCase(mealName)){
 				meals.remove(i);
+				count++;
 			}
 		}
+		if (count==0){
+			throw new MealNotFoundException(mealName);
+		}
+	}
+	
+	public boolean hasMeal(String mealName){
+		for (Meal m:getMeals()){
+			if (m.getName().equalsIgnoreCase(mealName)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public ArrayList<Meal> getMeals(){

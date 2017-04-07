@@ -69,6 +69,9 @@ public class CourierServiceImpl implements CourierService {
 			Customer c = order.getCustomer();
 			c.update(new Message("courier "+courier.getName()+" accepts to take the order."));
 
+			//Update the history
+			order.getRestaurant().addToHistory(order);
+			MyFoodora.getInstance().addToHistory(order);
 		}catch (OrderNotFoundException e){}
 		
 	}

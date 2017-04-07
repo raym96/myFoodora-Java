@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,14 +36,24 @@ import service.impl.MyFoodoraServiceImpl;
 
 public class MyFoodoraServiceTest {
 
-	MyFoodora myfoodora = MyFoodora.getInstance();
-	MyFoodoraService m = new MyFoodoraServiceImpl();
+	MyFoodora myfoodora;
+	MyFoodoraService m;
 	
+
+	static Date startingdate = null;
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		InitialScenario.load("initMyFoodoraServiceTest.ini");
+	@Before
+	public void setUpBefore() throws Exception {
+		InitialScenario.load("scenario_test_services.ini");	
 		
+		myfoodora = MyFoodora.getInstance();
+		m = new MyFoodoraServiceImpl();
+		
+		//starting date for computing revenue between 2 dates
+		String s = "2016.01.01";
+		DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+		startingdate = format.parse(s);
+
 	}
 
 	@Test
@@ -120,36 +131,24 @@ public class MyFoodoraServiceTest {
 	@Test
 	public void testGetTotalIncome() throws ParseException {
 		//Starting date for calculating the income/profit
-		String s = "2016.01.01";
-		DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-		Date date = format.parse(s);
-		
 		System.out.println("-----testGetTotalIncome-----");
-		myfoodora.getHistory().displayAllOrders();
-		System.out.println(m.getTotalIncome(date, new Date()));
+		System.out.println(myfoodora.getHistory());
+		System.out.println(m.getTotalIncome(startingdate, new Date()));
 	}
 
 	@Test
 	public void testGetTotalProfit() throws ParseException {
 		//Starting date for calculating the income/profit
-		String s = "2016.01.01";
-		DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-		Date date = format.parse(s);
-		
 		System.out.println("-----testGetTotalProfit-----");
-		myfoodora.getHistory().displayAllOrders();
-		System.out.println(m.getTotalProfit(date, new Date()));
+		System.out.println(myfoodora.getHistory());
+		System.out.println(m.getTotalProfit(startingdate, new Date()));
 	}
 
 	@Test
 	public void testGetAverageIncomePerCustomer() throws ParseException {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
-		String s = "2016.01.01";
-		DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-		Date date = format.parse(s);
-		
-		myfoodora.getHistory().displayAllOrders();
-		System.out.println(m.getAverageIncomePerCustomer(date, new Date()));
+		System.out.println(myfoodora.getHistory());
+		System.out.println(m.getAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
 	@Test

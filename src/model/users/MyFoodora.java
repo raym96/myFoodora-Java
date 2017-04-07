@@ -47,6 +47,7 @@ public class MyFoodora implements Observable{
 	
 	//Singleton Pattern
 	private static MyFoodora instance = null;
+	
 	private MyFoodora(){
 		this.users = new ArrayList<User>();
 		this.specialofferobservers = new ArrayList<Customer>();
@@ -66,7 +67,7 @@ public class MyFoodora implements Observable{
 	}
 	
 	public static MyFoodora getInstance(){
-
+		//if no instance of myfoodora exists, returns a new myfoodora; otherwise returns the existing myfoodora
 		if(instance == null){
 			syncInit();
 		}
@@ -77,6 +78,11 @@ public class MyFoodora implements Observable{
 		return instance;
 	}
 
+	
+	public static synchronized void reset(){
+		instance = null;
+	}
+	
 	public void addSpecialOfferObserver(Customer c){
 		specialofferobservers.add(c);
 	}
@@ -174,6 +180,12 @@ public class MyFoodora implements Observable{
 		return history;
 	}
 
+	public void addToHistory(Order order) {
+		// TODO Auto-generated method stub
+		history.getOrders().add(order);
+	}
+	
+	
 	public ConcreteSpecialOfferBoard getSpecialofferboard() {
 		return specialofferboard;
 	}
@@ -252,7 +264,7 @@ public class MyFoodora implements Observable{
 	public ArrayList<User> getUsersOfAssignedType(String userType){
 		ArrayList<User> usersOfType = new ArrayList<User>();
 		
-		switch (userType) {
+		switch (userType.toUpperCase()) {
 			case "MANAGER":
 				for(User user : users){
 					if(user instanceof Manager){
@@ -353,6 +365,6 @@ public class MyFoodora implements Observable{
 			obs.update(o);
 		}
 	}
-	
+
 	
 }

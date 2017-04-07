@@ -22,9 +22,9 @@ public interface ManagerService {
 	public void disactivateUser(User user) throws UserNotFoundException;
 	
 	// 3. changing the service-fee percentage and/or the markup percentage (\percentage de marge") and/or the delivery-cost
-	public void changeServicefee(double service_fee);
-	public void changeMarkupPercentage(double markup_percentage);
-	public void changeDeliverycost(double delivery_cost);
+	public void setServiceFree(double service_fee);
+	public void setMarkUpPencentage(double markup_percentage);
+	public void setDeliveryCost(double delivery_cost);
 	
 	// 4. computing the total income and/or prot over a time period
 	public double getTotalIncome(Date date1, Date date2);

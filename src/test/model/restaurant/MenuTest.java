@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import exceptions.DishNotFoundException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import model.restaurant.Dessert;
 import model.restaurant.MainDish;
@@ -64,7 +65,11 @@ public class MenuTest {
 		MainDish m = new MainDish("Pork ribs 222222222", "standard", 9.1);
 		menu.addDish(m);
 		assertTrue(menu.hasDish(m.getDishName()));
-		menu.removeDish(m.getDishName());
+		try {
+			menu.removeDish(m.getDishName());
+		} catch (DishNotFoundException e) {
+			e.printStackTrace();
+		}
 		assertFalse(menu.hasDish(m.getDishName()));
 	}
 

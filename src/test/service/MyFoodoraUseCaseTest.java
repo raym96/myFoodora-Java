@@ -26,9 +26,9 @@ public class MyFoodoraUseCaseTest {
 	 * @throws UserNotFoundException 
 	 **/
 	
-	private MyFoodora myfoodora = MyFoodora.getInstance();
-	private MyFoodoraService commonMyFoodoraService = new MyFoodoraServiceImpl();
-	ManagerService managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
+	private MyFoodora myfoodora;
+	private MyFoodoraService commonMyFoodoraService;
+	ManagerService managerService_director;
 	
 	
 	/*
@@ -43,6 +43,11 @@ public class MyFoodoraUseCaseTest {
 		System.out.println("----------------------- Startup scenario -----------------------");
 		InitialScenario.load("init.ini");
 		
+		myfoodora = MyFoodora.getInstance();
+		commonMyFoodoraService = new MyFoodoraServiceImpl();
+		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
+		
+		
 		ArrayList<User> restaurants = myfoodora.getUsersOfAssignedType("RESTAURANT");
 		for (User u:restaurants){
 			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
@@ -50,7 +55,7 @@ public class MyFoodoraUseCaseTest {
 			((Restaurant)u).getRestaurantService().displayMealMenu();
 		}
 		myfoodora.displayUsers();
-		commonMyFoodoraService.getHistory().displayAllOrders();
+		System.out.println(commonMyFoodoraService.getHistory());
 //		// send alerts to customers
 //		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
 //		customers.get(0).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
@@ -71,7 +76,8 @@ public class MyFoodoraUseCaseTest {
 	public void historytest(){
 		//history
 		User restaurant_1 = commonMyFoodoraService.selectUser("restaurant_1");
-		((Restaurant)restaurant_1).getHistory().displayAllOrders();
+		System.out.println("History:");
+		System.out.println(((Restaurant)restaurant_1).getHistory());
 		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedAlaCarte();
 		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedHalfMeal();
 
@@ -253,7 +259,7 @@ public class MyFoodoraUseCaseTest {
 					mealname = s.nextLine();
 				}
 				((Customer)user).getCustomerService().pay();
-				((Customer)user).getCustomerService().clearShoppingCart();
+				((Customer)user).getShoppingCart().clear();
 			}
 		}
 	}

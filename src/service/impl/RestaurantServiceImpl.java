@@ -12,6 +12,7 @@ import model.restaurant.FullMeal;
 import model.restaurant.HalfMeal;
 import model.restaurant.Meal;
 import model.restaurant.MealFactory;
+import model.restaurant.MealMenu;
 import model.restaurant.Order;
 import model.restaurant.Starter;
 import model.users.MyFoodora;
@@ -42,9 +43,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 		@Override
 		public void removeDish(String dishName) {
 			// TODO Auto-generated method stub
-			restaurant.getMenu().removeDish(dishName);
-			System.out.println(dishName + " removed from the menu");
-
+			try {
+				restaurant.getMenu().removeDish(dishName);
+				System.out.println(dishName + " removed from the menu");
+			} catch (DishNotFoundException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		@Override
+		public boolean hasDish(String dishName) {
+			// TODO Auto-generated method stub
+			return restaurant.getMenu().hasDish(dishName);
 		}
 
 		//create an instance of Dish
@@ -175,11 +185,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	//create an instance of Meal
 	@Override
-	public Meal createMeal(String mealType, String mealName) {
+	public Meal createMeal(String mealCategory, String mealName) {
 		// TODO Auto-generated method stub
 		//create an instance of Meal
 		try{
-			MealFactory mealFactory = restaurant.getMealFactory(mealType);
+			MealFactory mealFactory = restaurant.getMealFactory(mealCategory);
 			Meal meal = mealFactory.createMeal(mealName);	
 			System.out.println("Formula "+mealName + " successfully created");
 			return meal;	
@@ -194,19 +204,23 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void removeMeal(String mealName) {
 		// TODO Auto-generated method stub
 		//Remove a meal from the meal menu
-		ArrayList<Meal>halfmeals = restaurant.getHalfMealMenu().getMeals();
-		ArrayList<Meal>fullmeals = restaurant.getFullMealMenu().getMeals();
-		for(int i=0; i<halfmeals.size(); i++){
-			if( halfmeals.get(i).getName() == mealName ){
-				halfmeals.remove(i);
+		MealMenu halfmeals = restaurant.getHalfMealMenu();
+		MealMenu fullmeals = restaurant.getFullMealMenu();
+		try{
+			if (halfmeals.hasMeal(mealName)){
+				halfmeals.removeMeal(mealName);
+				System.out.println(mealName + " successfully removed from the meal-menu");
 			}
-		}
-		for(int i=0; i<fullmeals.size(); i++){
-			if( fullmeals.get(i).getName() == mealName ){
-				fullmeals.remove(i);
+			if (fullmeals.hasMeal(mealName)){
+				fullmeals.removeMeal(mealName);
+				System.out.println(mealName + " successfully removed from the meal-menu");
 			}
+			else{
+				throw new MealNotFoundException(mealName);
+			}
+		} catch (MealNotFoundException e){
+			e.printStackTrace();
 		}
-		System.out.println(mealName + " successfully removed from the meal-menu");
 	}
 
 	
@@ -344,11 +358,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		displaySpecialMenu();
 	}
 
-	@Override
-	public boolean hasDish(String dishName) {
-		// TODO Auto-generated method stub
-		return restaurant.getMenu().hasDish(dishName);
-	}
+	
 
 
 }

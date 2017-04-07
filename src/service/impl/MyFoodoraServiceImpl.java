@@ -163,17 +163,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		 return myfoodora.getUsersOfAssignedType(userType);
 	}
 	
-	//Important method, to be completed
-	public void pay(Customer c){
-		c.getCustomerService().pay();
-		//Send the orders into history before clearing the shopping cart
-		for (Order order:c.getShoppingCart().getOrders()){
-			order.getRestaurant().addToHistory(order);
-			addToHistory(order);
-		}
-		c.getCustomerService().clearShoppingCart();
-	}
-	
+
 	public void addToHistory(Order order){
 		myfoodora.getHistory().addOrder(order);
 	}
