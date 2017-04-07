@@ -156,12 +156,19 @@ public class MyFoodoraServiceTest {
 		System.out.println("-----testApplyTargetProfitPolicy-----");
 		
 		System.out.println("TargetProfit_DeliveryCost:");
-		myfoodora.setTargetprofitpolicy(new TargetProfit_DeliveryCost());
-		m.applyTargetProfitPolicy(5);
+		myfoodora.setTargetprofitpolicy(new TargetProfit_DeliveryCost(myfoodora));
+		
 		System.out.println("Delivery_Cost=" + myfoodora.getDelivery_cost());
 		System.out.println("Service_fee="+myfoodora.getService_fee());
 		System.out.println("Markup_percentage="+myfoodora.getMarkup_percentage());
-		myfoodora.setDelivery_cost(0.5);
+
+		System.out.println("applying target profit policy");
+		m.applyTargetProfitPolicy(5);
+		
+		System.out.println("Delivery_Cost=" + myfoodora.getDelivery_cost());
+		System.out.println("Service_fee="+myfoodora.getService_fee());
+		System.out.println("Markup_percentage="+myfoodora.getMarkup_percentage());
+		
 	}
 
 	@Test

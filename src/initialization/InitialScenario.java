@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 
 import org.ini4j.Ini;
@@ -342,15 +343,14 @@ public class InitialScenario {
 				} //add the order to courier's delivery history
 				
 				//Set random date
-				String s = "2017."+random.nextInt(4)+"."+random.nextInt(28);
-				DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-				Date date;
-				date = format.parse(s);
+				Calendar cal = Calendar.getInstance();
+				cal.add(Calendar.DATE, -random.nextInt(31));
+				Date date = cal.getTime();
+				
 				neworder.setDate(date);
 				
 				restaurant.getHistory().addOrder(neworder);
 				history.addOrder(neworder);
-			}catch (ParseException e){
 			}catch (MealNotFoundException e){
 			}catch (DishNotFoundException e){}	
 		}

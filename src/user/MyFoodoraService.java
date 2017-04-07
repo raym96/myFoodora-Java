@@ -39,13 +39,8 @@ public interface MyFoodoraService {
 	/** myfoodora's basic services provided to User's specific operations rely on **/
 
 	public User selectUser(String username);
-//	void askAgree2customers(String ask); <- what is this ?
-	
 	public ArrayList<User> getUsersOfAssignedType(String userType);
-
-	
 	public void askAgree2customers(String ask);
-	
 	//returns history of myfoodora for manager-service
 	public History getHistory();
 }

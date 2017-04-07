@@ -1,16 +1,36 @@
 package policies;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import user.MyFoodora;
 
 public class TargetProfit_Markup implements TargetProfitPolicy {
 	// target profit = last month income * markup + last month order*(service fee - delivery cost)
+	MyFoodora myfoodora;
 
+	public TargetProfit_Markup(MyFoodora myfoodora) {
+		// TODO Auto-generated constructor stub
+		this.myfoodora = myfoodora;
+	}
+	
 	@Override
-	public double meetTargetProfit(double targetProfit, double lastIncome, double delivery_cost, double service_fee, double markup_percentage, int number_of_orders) {
+	public void meetTargetProfit(double targetProfit){
 		// TODO Auto-generated method stub
-		double ret = 0;
-		ret = (targetProfit - number_of_orders*(service_fee - delivery_cost))/lastIncome;
-		return ret;
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		Date aMonthAgo = cal.getTime();
+		
+		double lastIncome = myfoodora.getMyFoodoraService().getTotalIncome(aMonthAgo, new Date());
+		double delivery_cost = myfoodora.getDelivery_cost();
+		double service_fee = myfoodora.getService_fee();
+		int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgo, new Date()).size();
+
+		double markup_percentage = 0;
+		markup_percentage = (targetProfit - number_of_orders*(service_fee - delivery_cost))/lastIncome;
+		
+		myfoodora.setMarkup_percentage(markup_percentage);
 	}
 
 }

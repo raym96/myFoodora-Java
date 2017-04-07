@@ -1,16 +1,11 @@
-/model/
-/service/
-/test/
-/initialization/
-/customer/
-/user/
 /exceptions/
-/tools/
-/system/
-/system_myfoodora/
+/initialization/
+/model.di
+/model.notation.xml
+/model.uml
 /policies/
-/myfoodora/
 /restaurant/
-/courier/
-/manager/
-/utilities/
+/system/
+/test/
+/txt files/
+/user/

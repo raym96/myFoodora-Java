@@ -52,9 +52,14 @@ public class MyFoodora implements Observable{
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
 		this.history = new History();
 		
+		//default values
+		service_fee = 1;
+		markup_percentage=0.02;
+		delivery_cost = 1;
+		
 		// default policies
 		this.deliverypolicy = new FastestDeliveryPolicy();
-		this.targetprofitpolicy = new TargetProfit_DeliveryCost();
+		this.targetprofitpolicy = new TargetProfit_DeliveryCost(this);
 	};
 	
 	private static synchronized void syncInit(){
@@ -78,6 +83,10 @@ public class MyFoodora implements Observable{
 	
 	public static synchronized void reset(){
 		instance = null;
+	}
+	
+	public MyFoodoraService getMyFoodoraService(){
+		return new MyFoodoraServiceImpl();
 	}
 	
 	public void addSpecialOfferObserver(Customer c){

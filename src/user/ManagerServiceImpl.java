@@ -9,6 +9,7 @@ import exceptions.UserNotFoundException;
 import policies.DeliveryPolicy;
 import policies.SortingByCriteria;
 import policies.SortingByRestaurant;
+import policies.TargetProfitPolicy;
 import system.ConcreteShoppingCartVisitor;
 import system.Order;
 import system.ShoppingCartVisitor;
@@ -89,6 +90,11 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	// 6. determining either the service-fee and/or markup percentage and/or the delivery-
 		//cost so to meet a target-prot (see target prot policies below)
+	@Override
+	public void setTargetProfitPolicy(TargetProfitPolicy t){
+		MyFoodora.getInstance().setTargetprofitpolicy(t);
+	}
+
 	@Override
 	public void determineParam2MeetTargetProfit(double targetProfit) {
 		// TODO Auto-generated method stub

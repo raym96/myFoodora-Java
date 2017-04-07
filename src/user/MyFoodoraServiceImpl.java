@@ -118,29 +118,13 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	
 	// 5. choose the target profit policy (see below) used to optimise the profit-related-
 	// parameters (service-fee, markup percentage, and the delivery cost)
-	//Ugly code, to be completed
 	public void setTargetProfitPolicy(TargetProfitPolicy tpp){
 		myfoodora.setTargetprofitpolicy(tpp);
 	}
 	
 	public void applyTargetProfitPolicy(double targetProfit){
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.MONTH, -1);
-		Date aMonthAgo = cal.getTime();
-		double lastIncome = getTotalIncome(aMonthAgo, new Date());
-		int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgo, new Date()).size();
+		myfoodora.getTargetprofitpolicy().meetTargetProfit(targetProfit);
 		
-		double newValue  = myfoodora.getTargetprofitpolicy().meetTargetProfit(targetProfit, lastIncome, myfoodora.getDelivery_cost(), myfoodora.getService_fee(), myfoodora.getMarkup_percentage(), number_of_orders);
-		
-		if (myfoodora.getTargetprofitpolicy() instanceof TargetProfit_DeliveryCost){
-			myfoodora.setDelivery_cost(newValue);
-		}
-		if (myfoodora.getTargetprofitpolicy() instanceof TargetProfit_Markup){
-			myfoodora.setMarkup_percentage(newValue);
-		}
-		if (myfoodora.getTargetprofitpolicy() instanceof TargetProfit_ServiceFee){
-			myfoodora.setService_fee(newValue);
-		}
 	}
 	
 	

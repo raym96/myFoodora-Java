@@ -4,6 +4,7 @@ import java.util.Date;
 
 import exceptions.UserNotFoundException;
 import policies.DeliveryPolicy;
+import policies.TargetProfitPolicy;
 
 public interface ManagerService {
 
@@ -33,6 +34,7 @@ public interface ManagerService {
 	
 	// 6. determining either the service-fee and/or markup percentage and/or the delivery-
 	//cost so to meet a target-prot (see target prot policies below)
+	public void setTargetProfitPolicy(TargetProfitPolicy t);
 	public void determineParam2MeetTargetProfit(double targetProfit);
 	
 	// 7. determining the most/least selling restaurant
