@@ -9,20 +9,9 @@ import org.junit.Test;
 import exceptions.UserNotFoundException;
 
 import initialization.InitialScenario;
-import policies.SortingByCriteria;
-import policies.SortingByRestaurant;
 import restaurant.*;
 import system.*;
-import user.Courier;
-import user.Customer;
-import user.Manager;
-import user.ManagerService;
-import user.ManagerServiceImpl;
-import user.MyFoodora;
-import user.MyFoodoraService;
-import user.MyFoodoraServiceImpl;
-import user.Restaurant;
-import user.User;
+import user.*;
 
 public class UseCaseTest {
 
@@ -62,47 +51,8 @@ public class UseCaseTest {
 		}
 		myfoodora.displayUsers();
 		System.out.println(commonMyFoodoraService.getHistory());
-//		// send alerts to customers
-//		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
-//		customers.get(0).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-//		customers.get(1).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-//		customers.get(2).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-//		customers.get(3).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
-//		customers.get(4).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
-//		customers.get(5).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
-//		customers.get(6).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
-//		
-//		myFoodora.refreshMessageBoard();
-//		customers.get(0).refreshMessageBoard();
-//		customers.get(6).refreshMessageBoard();
-//		
-	}
-	
-	@Test
-	public void historytest(){
-		//history
-		User restaurant_1 = commonMyFoodoraService.selectUser("restaurant_1");
-		System.out.println("History:");
-		System.out.println(((Restaurant)restaurant_1).getHistory());
-		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedAlaCarte();
-		((Restaurant)restaurant_1).getRestaurantService().DisplayMostOrderedHalfMeal();
-
-		ArrayList<Order> history =  commonMyFoodoraService.getHistory().getOrders();
-		SortingByCriteria s = new SortingByRestaurant();
-		s.displayAscending(history);
-		managerService_director.getBestRestaurant();
-		managerService_director.getWorstRestaurant();
-		
-		for (User u :commonMyFoodoraService.getUsersOfAssignedType("COURIER")){
-			Courier c = (Courier)u;
-			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
-		}
-		managerService_director.getBestCourier();
-		managerService_director.getWorstCourier();
-		//		SortingByCriteria s = new SortingByHalfMeal();
-//		s.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
-//		s = new SortingByAlaCarte();
-//		s.displayAscending(MyFoodora.getInstance().getHistory().getOrders());
+		// send alerts to customers
+		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
 	}
 
 	/*
@@ -119,7 +69,8 @@ public class UseCaseTest {
 		6. if the user is a courier he sets his current duty status (default on-duty)
 		7. the user specify to save the account
 	 */
-//	@Test
+	
+	@Test
 	public void testOfRegisterUser() throws UserNotFoundException{
 		
 		System.out.println("----------------------- Register a User -----------------------");
@@ -189,7 +140,8 @@ public class UseCaseTest {
 			
 		}
 	}
-//	
+
+	
 //	/*
 //	 * Login user
 //		1. a user wants to login
@@ -223,7 +175,7 @@ public class UseCaseTest {
 //				user.logOut();
 			}
 		}
-		
+		s.close();
 		return theUser;
 	}
 //	
@@ -239,7 +191,7 @@ public class UseCaseTest {
 //		6. the system shows the summary of the ordered dishes and the total price of the order
 //		taking into account the pricing rules
 //	 */
-//	@Test
+	@Test
 	public void testOfOrderingMeal(){
 		
 		System.out.println("----------------------- Ordering a meal -----------------------");
@@ -267,6 +219,7 @@ public class UseCaseTest {
 				((Customer)user).getCustomerService().pay();
 				((Customer)user).getShoppingCart().clear();
 			}
+			s.close();
 		}
 	}
 	
@@ -286,7 +239,7 @@ public class UseCaseTest {
 		鈥� the restaurant compute and save the price of the meal
 		8. the restaurant saves the new created meal (or dish) in the menu
 	 */
-//	@Test
+	@Test
 	public void testOfInsertMealDish2menu(){
 		
 		System.out.println("----------------------- Insert a meal/dish in a restaurant menu -----------------------");
@@ -343,6 +296,7 @@ public class UseCaseTest {
 				restaurant.getRestaurantService().displayMealMenu();
 			}
 		//lacks the price mechanism, to be completed...
+		s.close();
 		}
 	}
 	
@@ -358,7 +312,7 @@ public class UseCaseTest {
 //		5. the system noties the users (that agreed to be notied of special oers) about the
 //		new offer
 //	 */
-//	@Test
+	@Test
 	public void testOfAddMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Adding a meal of the week special offer -----------------------");
@@ -375,6 +329,7 @@ public class UseCaseTest {
 			restaurant.getRestaurantService().displayMealMenu();
 			restaurant.getRestaurantService().displaySpecialMenu();
 			restaurant.getRestaurantService().notifyAll();
+			s.close();
 		}
 	}
 	
@@ -385,7 +340,7 @@ public class UseCaseTest {
 		3. the restaurant selects a meal in the meal of the week list and selects the remove from
 		its special offer state.
 	 */
-//	@Test
+	@Test
 	public void testOfRemoveMealOfWeekSpecialOffer(){
 		
 		System.out.println("----------------------- Removing a meal of the week special offer -----------------------");
@@ -398,6 +353,7 @@ public class UseCaseTest {
 			System.out.println("Please enter the name of the meal to be removed from the meal-of-the-week list");
 			String mealname = s.nextLine();
 			restaurant.getRestaurantService().removeSpecialMeal(mealname);
+			s.close();
 	}
 	}
 }

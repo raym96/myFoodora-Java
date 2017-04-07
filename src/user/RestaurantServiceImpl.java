@@ -352,6 +352,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	@Override
 	public void displayAllMenu(){
+		System.out.println("\n-----["+(restaurant.getName().toUpperCase()+"]-----"));
 		displayMenu();
 		displayMealMenu();
 		displaySpecialMenu();

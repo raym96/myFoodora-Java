@@ -1,7 +1,10 @@
 package initialization;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import restaurant.MealMenu;
@@ -122,8 +125,8 @@ public class InitialScenarioGenerator {
 	public static void outPrintOrders(){
 		Random random = new Random();
 		try{
-		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant("initialScenarioForTests.ini");
-		ArrayList<Customer> customers = InitialScenario.loadCustomer("initialScenarioForTests.ini");
+		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant("scenario_test_services.ini");
+		ArrayList<Customer> customers = InitialScenario.loadCustomer("scenario_test_services.ini");
 		for (int i = 0;i<nOrder;i++){
 			System.out.println("[Order/"+(i+1)+"]");
 			int c = random.nextInt(customers.size());
@@ -145,7 +148,15 @@ public class InitialScenarioGenerator {
 				Menu menu = restaurants.get(r).getMenu();
 				System.out.println("name="+menu.getDishes().get(random.nextInt(menu.getDishes().size())).getDishName());
 			}
-			System.out.println("courier=courier_"+(random.nextInt(4)+1));
+			System.out.println("courier=courier_"+(random.nextInt(nCourier)+1));
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, hh:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DATE, -random.nextInt(31)); 
+			cal.add(Calendar.MINUTE, +random.nextInt(1440));
+			String date = sdf.format(cal.getTime());
+			
+			System.out.println("date="+date);
 			System.out.println();
 		}
 		}catch(IOException e){}

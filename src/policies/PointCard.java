@@ -15,11 +15,11 @@ public class PointCard extends FidelityCard {
 	@Override
 	public void pay() {
 		// TODO Auto-generated method stub
-		double amount = customer.getShoppingCart().getPrice();
+		double amount = customer.getShoppingCart().getTotalPrice();
 		if (balance>=100){
 			System.out.println("Your point balance reached 100, you now receive a 10% discount on this order.");
 			balance-=100;
-			customer.getShoppingCart().setPrice(amount*0.9);
+			customer.getShoppingCart().setTotalPrice(amount*0.9);
 		}
 		
 		customer.update("paid for a total amount of = " + amount );

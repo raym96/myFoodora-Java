@@ -82,6 +82,8 @@ public class CustomerServiceTest {
 	@Test
 	public void testPay() {
 		System.out.println("------testPay------");
+		Dish dish = r.getMenu().getDishes().get(0);
+		c.addAlaCarteOrder(r, dish.getDishName());
 		c.pay();
 	}
 

@@ -18,8 +18,8 @@ public class LotteryCard extends FidelityCard {
 		if (Math.random()<probability){
 			System.out.println("Congratulations ! You got the meal for free !");
 		}
-		customer.update("paid for a total amount of = " + customer.getShoppingCart().getPrice() +" for FREE !");
-		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + customer.getShoppingCart().getPrice());
+		customer.update("paid for a total amount of = " + customer.getShoppingCart().getTotalPrice() +" for FREE !");
+		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + customer.getShoppingCart().getTotalPrice());
 		
 	}
 	

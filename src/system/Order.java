@@ -69,6 +69,10 @@ public abstract class Order {
 		return date;
 	}
 	
+	public void setPrice(double price){
+		this.price = price;
+	}
+	
 	public void setDate(Date date){
 		this.date = date;
 	}
@@ -109,7 +113,15 @@ public abstract class Order {
 			str+="[A-la-carte] <";
 			str+= ((AlaCarteOrder)this).getName();
 		}
-		str+="> ORDERED BY <"+customer.getUsername()+ "> AT <" +restaurant.getUsername()+ "> DELIVERED BY <" + courier.getUsername()+"> ON <"+ date+">";
+		str+= " "+price+"€";
+		str+="> ORDERED BY <"+customer.getUsername()+ "> AT <" +restaurant.getUsername();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		str+="> ON <"+ sdf.format(date);
+		
+		if (assigned){
+			str+= "> DELIVERED BY <" + courier.getUsername()+">";
+		}
 		return str;
 	}
 

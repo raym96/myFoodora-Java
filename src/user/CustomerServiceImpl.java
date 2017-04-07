@@ -6,6 +6,7 @@ import policies.LotteryCard;
 import policies.PointCard;
 import policies.StandardCard;
 import system.AlaCarteOrder;
+import system.ConcreteShoppingCartVisitor;
 import system.History;
 import system.MealOrder;
 import system.Message;

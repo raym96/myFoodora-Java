@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 	private ArrayList<Order> orders;
-	private double price;
+	
+	private double totalprice;
 	
 	public ShoppingCart() {
 		super();
@@ -13,27 +14,29 @@ public class ShoppingCart {
 
 	public void addOrder(Order o){
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
-		price += o.accept(visitor);
+		totalprice += o.accept(visitor);
+		o.setPrice(o.accept(visitor)); //the price of the order is updated
 		orders.add(o);
 
 	}
 	
 	public void removeOrder(Order o){
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
-		price -= o.accept(visitor);
+		totalprice -= o.accept(visitor);
 		orders.remove(o);
 	}
+	
 	
 	public ArrayList<Order> getOrders(){
 		return orders;
 	}
 
-	public double getPrice(){
-		return price;
+	public double getTotalPrice(){
+		return totalprice;
 	}
 	
-	public void setPrice(double price){
-		this.price = price;
+	public void setTotalPrice(double price){
+		this.totalprice = price;
 	}
 	
 	public boolean contains(Order order){
@@ -55,7 +58,7 @@ public class ShoppingCart {
 		for (Order order:orders){
 			str += order+"\n";
 		}
-		return "ShoppingCart : \n" + str;
+		return "ShoppingCart : \n" + str +"\nTotal price is: "+getTotalPrice();
 	}
 	
 	

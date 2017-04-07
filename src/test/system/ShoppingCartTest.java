@@ -136,7 +136,7 @@ public class ShoppingCartTest {
 		shoppingCart.addOrder(specialMealOrder);
 		shoppingCart.addOrder(alaCarteOrder);
 		
-		double price = shoppingCart.getPrice();
+		double price = shoppingCart.getTotalPrice();
 		System.out.println(price);
 	}
 

@@ -20,6 +20,7 @@ import exceptions.UserNotFoundException;
 import restaurant.*;
 import system.AddressPoint;
 import system.AlaCarteOrder;
+import system.ConcreteShoppingCartVisitor;
 import system.History;
 import system.Order;
 import system.SpecialMealOrder;
@@ -58,17 +59,16 @@ public class InitialScenario {
 			}
 			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
 		}catch(IOException e){
-			System.out.println(filename+" not found.");
 			e.printStackTrace();
 		}
 		
-		System.out.println("\n-------Displaying the menus-------");
+		System.out.println("\nDisplaying the menus:");
 		for (User u:myfoodora.getUsersOfAssignedType("RESTAURANT")){
-			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
-			((Restaurant)u).getRestaurantService().displayMenu();
-			((Restaurant)u).getRestaurantService().displayMealMenu();
+			((Restaurant)u).getRestaurantService().displayAllMenu();
 		}
 		
+		System.out.println("Command history:");
+		System.out.println(myfoodora.getHistory()+"\n");
 		System.out.println("\nThe initial file <"+filename+"> successfully loaded into the system.");
 		System.out.println("-------------------------------------------------------------\n");
 	}
@@ -293,6 +293,8 @@ public class InitialScenario {
 		String courier_username;
 		String ordername;
 		String orderType;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, hh:mm:ss");
+		Date date;
 		Customer customer = null;
 		Restaurant restaurant = null;
 		Courier courier = null;
@@ -307,6 +309,7 @@ public class InitialScenario {
 				orderType = order.get("category");
 				ordername = order.get("name");
 				courier_username = order.get("courier");
+				date = sdf.parse(order.get("date"));
 	
 				for (User u : MyFoodora.getInstance().getUsers()){
 					if (u.getUsername().equals(customer_username)){
@@ -342,17 +345,16 @@ public class InitialScenario {
 					e.printStackTrace();
 				} //add the order to courier's delivery history
 				
-				//Set random date
-				Calendar cal = Calendar.getInstance();
-				cal.add(Calendar.DATE, -random.nextInt(31));
-				Date date = cal.getTime();
-				
+				//Set date
 				neworder.setDate(date);
+				//Set price (current discount factors)
+				neworder.setPrice(neworder.accept(new ConcreteShoppingCartVisitor()));
 				
 				restaurant.getHistory().addOrder(neworder);
 				history.addOrder(neworder);
-			}catch (MealNotFoundException e){
-			}catch (DishNotFoundException e){}	
+			}catch (Exception e){
+				e.printStackTrace();
+			}
 		}
 		return history;
 	}
