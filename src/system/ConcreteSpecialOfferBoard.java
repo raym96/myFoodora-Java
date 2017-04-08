@@ -2,22 +2,23 @@ package system;
 
 import java.util.ArrayList;
 
+import restaurant.Meal;
 import user.Customer;
 import user.User;
 
 public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	private ArrayList<SpecialOfferObserver> observers;
-	private ArrayList<SpecialOffer> specialoffers;
+	private ArrayList<Meal> specialoffers;
 	private boolean changed;
 	
 	public ConcreteSpecialOfferBoard(){
 		observers = new ArrayList<SpecialOfferObserver>();
-		specialoffers = new ArrayList<SpecialOffer>();
+		specialoffers = new ArrayList<Meal>();
 		this.changed = false;
 	}
 	
-	public void addSpecialOffer(SpecialOffer so){
-		specialoffers.add(so);
+	public void addSpecialOffer(Meal specialmeal){
+		specialoffers.add(specialmeal);
 		this.changed = true;
 		this.notifyAllObservers();
 	}
@@ -40,7 +41,7 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 		observers.remove(obs);
 	}
 
-	public ArrayList<SpecialOffer> getSpecialoffers() {
+	public ArrayList<Meal> getSpecialoffers() {
 		return specialoffers;
 	}
 

@@ -24,7 +24,7 @@ import user.User;
 public class ManagerServiceTest {
 
 	Manager manager;
-	ManagerService m;
+	ManagerService manager_service;
 	
 	static Date startingdate;
 	
@@ -33,7 +33,7 @@ public class ManagerServiceTest {
 		InitialScenario.load("scenario_test_services.ini");
 		
 		manager = new Manager("test","test","test");
-		m = manager.getManagerService();
+		manager_service = manager.getManagerService();
 		
 		
 		String s = "2016.01.01";
@@ -46,7 +46,7 @@ public class ManagerServiceTest {
 	public void testAddUser() {
 		System.out.println("-----testAddUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
-		m.addUser(user_test);
+		manager_service.addUser(user_test);
 		
 		//verify that the user is in the user list of myfoodora
 		assertTrue(MyFoodora.getInstance().getUsers().contains(user_test));
@@ -57,11 +57,11 @@ public class ManagerServiceTest {
 		System.out.println("-----testRemoveUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 		
-		m.addUser(user_test);
+		manager_service.addUser(user_test);
 		assertTrue(MyFoodora.getInstance().getUsers().contains(user_test));
 
 		//verify that the user is no more in the user list of myfoodora
-		m.removeUser(user_test);
+		manager_service.removeUser(user_test);
 		assertFalse(MyFoodora.getInstance().getUsers().contains(user_test));
 	}
 
@@ -70,8 +70,8 @@ public class ManagerServiceTest {
 		System.out.println("-----testActivateUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 
-		m.addUser(user_test);
-		m.activateUser(user_test);
+		manager_service.addUser(user_test);
+		manager_service.activateUser(user_test);
 		//verify that the user is in the active user list of myfoodora
 		assertTrue(MyFoodora.getInstance().getActiveUsers().contains(user_test));
 		
@@ -83,12 +83,12 @@ public class ManagerServiceTest {
 		System.out.println("-----testDisactivateUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 
-		m.addUser(user_test);
-		m.activateUser(user_test);
+		manager_service.addUser(user_test);
+		manager_service.activateUser(user_test);
 		assertTrue(MyFoodora.getInstance().getActiveUsers().contains(user_test));
 
 		//verify that the user is no more in the active user list of myfoodora
-		m.disactivateUser(user_test);
+		manager_service.disactivateUser(user_test);
 		assertFalse(MyFoodora.getInstance().getActiveUsers().contains(user_test));
 	}
 	
@@ -96,7 +96,7 @@ public class ManagerServiceTest {
 	@Test
 	public void testSetServicefee() {
 		System.out.println("-----testSetServiceFee-----");
-		m.setServiceFree(1);
+		manager_service.setServiceFree(1);
 		
 		assertTrue(MyFoodora.getInstance().getService_fee()==1);
 	}
@@ -104,7 +104,7 @@ public class ManagerServiceTest {
 	@Test
 	public void testSetMarkupPercentage() {
 		System.out.println("-----testMarkUpPencentage-----");
-		m.setMarkUpPencentage(0.01);
+		manager_service.setMarkUpPencentage(0.01);
 		
 		assertTrue(MyFoodora.getInstance().getMarkup_percentage()==0.01);
 
@@ -113,7 +113,7 @@ public class ManagerServiceTest {
 	@Test
 	public void testSetDeliverycost() {
 		System.out.println("-----testSetServiceFee-----");
-		m.setDeliveryCost(1);
+		manager_service.setDeliveryCost(1);
 		
 		assertTrue(MyFoodora.getInstance().getDelivery_cost()==1);
 	}
@@ -122,7 +122,7 @@ public class ManagerServiceTest {
 	public void testGetTotalIncome() {
 		System.out.println("-----testGetTotalIncom-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(m.getTotalIncome(startingdate, new Date()));
+		System.out.println(manager_service.getTotalIncome(startingdate, new Date()));
 		
 	}
 
@@ -130,14 +130,14 @@ public class ManagerServiceTest {
 	public void testGetTotalProfit() {
 		System.out.println("-----testGetTotalProfit-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(m.getTotalProfit(startingdate, new Date()));
+		System.out.println(manager_service.getTotalProfit(startingdate, new Date()));
 	}
 
 	@Test
 	public void testGetAverageIncomePerCustomer() {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(m.getAverageIncomePerCustomer(startingdate, new Date()));
+		System.out.println(manager_service.getAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
 	@Test
@@ -154,7 +154,7 @@ public class ManagerServiceTest {
 			Restaurant r = (Restaurant)u;
 			System.out.println("The total income of restaurant <"+r.getName()+"> is "+r.getIncome());
 		}
-		m.getBestRestaurant();
+		manager_service.getBestRestaurant();
 	}
 
 	@Test
@@ -166,7 +166,7 @@ public class ManagerServiceTest {
 			Restaurant r = (Restaurant)u;
 			System.out.println("The total income of restaurant <"+r.getName()+"> is "+r.getIncome());
 		}
-		m.getWorstRestaurant();
+		manager_service.getWorstRestaurant();
 	}
 
 	@Test
@@ -177,7 +177,7 @@ public class ManagerServiceTest {
 			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
 		}
 		
-		m.getBestCourier();
+		manager_service.getBestCourier();
 	}
 
 	@Test
@@ -188,13 +188,13 @@ public class ManagerServiceTest {
 			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
 		}
 		
-		m.getWorstCourier();
+		manager_service.getWorstCourier();
 	}
 
 	@Test
 	public void testSetDeliveryPolicy() {
 		System.out.println("-----testSetDeliveryPolicy-----");
-		m.setDeliveryPolicy(new FastestDeliveryPolicy());
+		manager_service.setDeliveryPolicy(new FastestDeliveryPolicy());
 		
 		assertTrue(MyFoodora.getInstance().getDeliverypolicy() instanceof FastestDeliveryPolicy);
 	}
@@ -202,13 +202,13 @@ public class ManagerServiceTest {
 	@Test
 	public void testDisplayUsers() {
 		System.out.println("------testDisplayUsers-----");
-		m.displayUsers();
+		manager_service.displayUsers();
 	}
 
 	@Test
 	public void testDisplayActiveUsers() {
 		System.out.println("------testDisplayActiveUsers-----");
-		m.displayActiveUsers();
+		manager_service.displayActiveUsers();
 	}
 
 	@Test
@@ -216,9 +216,9 @@ public class ManagerServiceTest {
 		System.out.println("------testSelectUser-----");
 	
 		Courier user_test = new Courier("test","test","user_test", new AddressPoint(0,0),"+06 00 00 00 00");
-		m.addUser(user_test);
+		manager_service.addUser(user_test);
 		
-		User user = m.selectUser("user_test");
+		User user = manager_service.selectUser("user_test");
 		
 		assertEquals(user,user_test);
 	}
@@ -227,7 +227,7 @@ public class ManagerServiceTest {
 	public void testDisplayUsersOfAssignedType() {
 		System.out.println("-----DisplayUsersOfAssignedType-----");
 		System.out.println("example : m.displayUsersOfAssignedType(restaurant)");
-		m.displayUsersOfAssignedType("Restaurant");
+		manager_service.displayUsersOfAssignedType("Restaurant");
 	}
 
 }

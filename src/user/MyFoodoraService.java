@@ -21,7 +21,7 @@ public interface MyFoodoraService {
 
 	// 3. notifying users that gave consensus to receive special oers notications, of a new
 	// special offer set by a restaurant
-	public void notifyAll(SpecialOffer specialoffer);
+	public void notifyAll(Meal specialoffer);
 	
 	// 4. computing the total income (i.e. the sum of all completed orders) as well as the total
 	// profit of the system, knowing that the the prot of a single order is given by:

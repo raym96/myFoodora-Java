@@ -61,7 +61,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	// special offer set by a restaurant
 	
 	@Override
-	public void notifyAll(SpecialOffer specialoffer) {
+	public void notifyAll(Meal specialoffer) {
 		// TODO Auto-generated method stub
 		for (Customer c : myfoodora.getSpecialOfferObserver()){
 			//add the new special offer to the special-offer list of the customer

@@ -60,9 +60,10 @@ public class CustomerTest {
 		
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		
-		SpecialOffer specialoffer = new SpecialOffer(r, fm);
+		r.getRestaurantService().addMeal(fm);
+		r.getRestaurantService().addSpecialMeal("FM2");
 		
-		customer.addSpecialOffer(specialoffer);
+		customer.addSpecialOffer(fm);
 		
 		assertTrue(customer.getSpecialoffers().size() > 0);
 	}

@@ -11,7 +11,6 @@ import restaurant.HalfMeal;
 import restaurant.HalfMealFactory;
 import restaurant.MealMenu;
 import restaurant.Menu;
-import restaurant.SpecialMeal;
 import restaurant.SpecialMealFactory;
 
 public class SpecialMealFactoryTest {
@@ -24,8 +23,8 @@ public class SpecialMealFactoryTest {
 	public static void testSpecialMealFactory() {
 		
 		menu.initMenu();
-		SpecialMeal sm1 = new SpecialMeal("SM1", menu.getStarters().get(0), menu.getMaindishes().get(0));
-		SpecialMeal sm2 = new SpecialMeal("SM2", menu.getStarters().get(0), menu.getMaindishes().get(0));
+		HalfMeal sm1 = new HalfMeal("SM1", menu.getStarters().get(0), menu.getMaindishes().get(0));
+		HalfMeal sm2 = new HalfMeal("SM2", menu.getStarters().get(0), menu.getMaindishes().get(0));
 
 		try {
 			mealMenu.addMeal(sm1);
@@ -44,10 +43,10 @@ public class SpecialMealFactoryTest {
 	@Test
 	public void testCreateMealString() {
 		
-		SpecialMeal sm = (SpecialMeal) specialMealFactory.getMealmenu().getMeals().get(0);
+		HalfMeal sm = (HalfMeal) specialMealFactory.getMealmenu().getMeals().get(0);
 		
 		try {
-			SpecialMeal sm_create = (SpecialMeal) specialMealFactory.createMeal(sm.getName());
+			HalfMeal sm_create = (HalfMeal) specialMealFactory.createMeal(sm.getName());
 			assertEquals(sm, sm_create);
 			
 		} catch (MealNotFoundException e) {
@@ -61,7 +60,7 @@ public class SpecialMealFactoryTest {
 		
 		try {
 
-			SpecialMeal sm_not_exist = (SpecialMeal) specialMealFactory.createMeal("aaaaa");
+			HalfMeal sm_not_exist = (HalfMeal) specialMealFactory.createMeal("aaaaa");
 			assertNull(sm_not_exist);
 			
 		} catch (MealNotFoundException e) {

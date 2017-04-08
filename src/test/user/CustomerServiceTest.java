@@ -28,22 +28,22 @@ import user.Restaurant;
 public class CustomerServiceTest {
 
 	MyFoodora myfoodora;
-	MyFoodoraService m;
+	MyFoodoraService myfoodora_service;
 	
 	Customer customer;
-	CustomerService c;
+	CustomerService customer_service;
 	
-	Restaurant r;
+	Restaurant restaurant;
 	
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");
 		myfoodora = MyFoodora.getInstance();
-		m = new MyFoodoraServiceImpl();
+		myfoodora_service = new MyFoodoraServiceImpl();
 		
-		customer = (Customer)m.selectUser("customer_1");
-		c = customer.getCustomerService();
-		r = (Restaurant)m.selectUser("restaurant_1");
+		customer = (Customer)myfoodora_service.selectUser("customer_1");
+		customer_service = customer.getCustomerService();
+		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
 	}
 
 
@@ -51,8 +51,8 @@ public class CustomerServiceTest {
 	@Test
 	public void testAddSpecialMealOrder() {
 		System.out.println("-------testAddSpecialMealOrder------");
-		Meal meal = r.getSpecialmealmenu().getMeals().get(0);
-		c.addSpecialMealOrder(r, meal.getName());
+		Meal meal = restaurant.getSpecialmealmenu().getMeals().get(0);
+		customer_service.addSpecialMealOrder(restaurant, meal.getName());
 	
 		//verify that the last item in the shopping cart of the customer is the new meal
 		System.out.println(customer.getShoppingCart());
@@ -61,8 +61,8 @@ public class CustomerServiceTest {
 	@Test
 	public void testAddStandardMealOrder() {
 		System.out.println("------testAddStandardMealOrder------");
-		Meal meal = r.getHalfMealMenu().getMeals().get(0);
-		c.addStandardMealOrder(r, meal.getName(), "Half-meal");
+		Meal meal = restaurant.getHalfMealMenu().getMeals().get(0);
+		customer_service.addStandardMealOrder(restaurant, meal.getName(), "Half-meal");
 		
 		//verify that the last item in the shopping cart of the customer is the new meal
 		System.out.println(customer.getShoppingCart());
@@ -71,8 +71,8 @@ public class CustomerServiceTest {
 	@Test
 	public void testAddAlaCarteOrder() {
 		System.out.println("------testAddAlaCarteOrder------");
-		Dish dish = r.getMenu().getDishes().get(0);
-		c.addAlaCarteOrder(r, dish.getDishName());
+		Dish dish = restaurant.getMenu().getDishes().get(0);
+		customer_service.addAlaCarteOrder(restaurant, dish.getDishName());
 		
 		//verify that the last item in the shopping cart of the customer is the new meal
 		System.out.println(customer.getShoppingCart());
@@ -82,36 +82,36 @@ public class CustomerServiceTest {
 	@Test
 	public void testPay() {
 		System.out.println("------testPay------");
-		Dish dish = r.getMenu().getDishes().get(0);
-		c.addAlaCarteOrder(r, dish.getDishName());
-		c.pay();
+		Dish dish = restaurant.getMenu().getDishes().get(0);
+		customer_service.addAlaCarteOrder(restaurant, dish.getDishName());
+		customer_service.pay();
 	}
 
 	@Test
 	public void testRegisterCard() {
 		System.out.println("------testRegisterCard------");
-		c.registerCard("PointCard");
+		customer_service.registerCard("PointCard");
 		assertTrue(customer.getCard() instanceof PointCard);
-		c.registerCard("LotteryCard");
+		customer_service.registerCard("LotteryCard");
 		assertTrue(customer.getCard() instanceof LotteryCard);
 		
-		c.registerCard("UnexistantCard");
+		customer_service.registerCard("UnexistantCard");
 		
 	}
 
 	@Test
 	public void testUnregisterCard() {
 		System.out.println("------testUnregisterCard------");
-		c.registerCard("PointCard");
-		c.unregisterCard();
+		customer_service.registerCard("PointCard");
+		customer_service.unregisterCard();
 		assertTrue(customer.getCard() instanceof StandardCard);
 	}
 
 	@Test
 	public void testGetHistory() {
 		System.out.println("------testGetHistory------");
-		System.out.println(c.getHistory());
-		assertTrue(c.getHistory() instanceof History);
+		System.out.println(customer_service.getHistory());
+		assertTrue(customer_service.getHistory() instanceof History);
 	}
 
 	@Test
@@ -119,30 +119,30 @@ public class CustomerServiceTest {
 		System.out.println("------testGetPoints-------");
 		//clear shopping cart, add a new order
 		customer.getShoppingCart().clear();
-		Meal meal = r.getSpecialmealmenu().getMeals().get(0);
-		c.addSpecialMealOrder(r, meal.getName());
+		Meal meal = restaurant.getSpecialmealmenu().getMeals().get(0);
+		customer_service.addSpecialMealOrder(restaurant, meal.getName());
 		
 		//set the card to a point card
-		c.registerCard("PointCard");
+		customer_service.registerCard("PointCard");
 		
 		//pay
-		c.pay();
+		customer_service.pay();
 		
-		System.out.println(customer.getUsername() + " has "+c.getPoints()+" points.");
+		System.out.println(customer.getUsername() + " has "+customer_service.getPoints()+" points.");
 	}
 
 	@Test
 	public void testGiveConsensusBeNotifiedSpecialOffers() {
 		System.out.println("------testGiveConsensusBeNotifiedSpecialOffers------");
 		//verify that customer has been added to the list of special offer observers
-		c.giveConsensusBeNotifiedSpecialOffers();
+		customer_service.giveConsensusBeNotifiedSpecialOffers();
 		assertTrue(MyFoodora.getInstance().getSpecialOfferObserver().contains(customer));
 	}
 
 	@Test
 	public void testRemoveConsensusBeNotifiedSpecialOffers() {
 		System.out.println("------testRemoveConsensusBeNotifiedSpecialOffers------");
-		c.removeConsensusBeNotifiedSpecialOffers();
+		customer_service.removeConsensusBeNotifiedSpecialOffers();
 		assertFalse(MyFoodora.getInstance().getSpecialOfferObserver().contains(customer));
 	}
 

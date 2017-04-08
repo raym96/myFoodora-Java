@@ -18,9 +18,9 @@ import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
 import policies.TargetProfit_DeliveryCost;
 import restaurant.Dish;
+import restaurant.HalfMeal;
 import restaurant.Meal;
 import restaurant.Menu;
-import restaurant.SpecialMeal;
 import system.AddressPoint;
 import system.AlaCarteOrder;
 import system.Order;
@@ -37,7 +37,7 @@ import user.User;
 public class MyFoodoraServiceTest {
 
 	MyFoodora myfoodora;
-	MyFoodoraService m;
+	MyFoodoraService myfoodora_service;
 	
 
 	static Date startingdate = null;
@@ -47,7 +47,7 @@ public class MyFoodoraServiceTest {
 		InitialScenario.load("scenario_test_services.ini");	
 		
 		myfoodora = MyFoodora.getInstance();
-		m = new MyFoodoraServiceImpl();
+		myfoodora_service = new MyFoodoraServiceImpl();
 		
 		//starting date for computing revenue between 2 dates
 		String s = "2016.01.01";
@@ -59,7 +59,7 @@ public class MyFoodoraServiceTest {
 	@Test
 	public void testSetServiceFee() {
 		System.out.println("-----testSetServiceFee-----");
-		m.setServiceFee(1);
+		myfoodora_service.setServiceFee(1);
 		assertTrue(myfoodora.getService_fee()==1);
 		
 	}
@@ -67,22 +67,22 @@ public class MyFoodoraServiceTest {
 	@Test
 	public void testSetMarkUpPercentage() {
 		System.out.println("-----testSetMarkUpPercentage-----");
-		m.setMarkUpPercentage(0.01);
+		myfoodora_service.setMarkUpPercentage(0.01);
 		assertTrue(myfoodora.getMarkup_percentage()==0.01);
 	}
 
 	@Test
 	public void testSetDeliveryCost() {
 		System.out.println("-----testSetDeliveryCost-----");
-		m.setDeliveryCost(0.5);
+		myfoodora_service.setDeliveryCost(0.5);
 		assertTrue(myfoodora.getDelivery_cost()==0.5);
 	}
 
 	@Test
 	public void testParse() {
 		System.out.println("-----testParse-----");
-		Customer customer = (Customer)m.selectUser("customer_1");
-		Restaurant restaurant = (Restaurant)m.selectUser("restaurant_1");
+		Customer customer = (Customer)myfoodora_service.selectUser("customer_1");
+		Restaurant restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
 		Meal meal = restaurant.getFullMealMenu().getMeals().get(0);
 		Order order = new StandardMealOrder(customer,restaurant,meal);
 		
@@ -94,7 +94,7 @@ public class MyFoodoraServiceTest {
 		//Should give the order to courier_1
 		System.out.println("FastDeliveryPolicy:");
 		myfoodora.setDeliveryPolicy(new FastestDeliveryPolicy());
-		m.parse(order, myfoodora.getAvailableCouriers());
+		myfoodora_service.parse(order, myfoodora.getAvailableCouriers());
 		
 		//verify that the courier given by the algorithm of delivery policy (tested in its own test file) received the order
 		Courier courier_1 = new FastestDeliveryPolicy().parse(order, myfoodora.getAvailableCouriers());
@@ -103,7 +103,7 @@ public class MyFoodoraServiceTest {
 		//Should give the order to courier_2
 		System.out.println("FairOccupationDelivery");
 		myfoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
-		m.parse(order, myfoodora.getAvailableCouriers());
+		myfoodora_service.parse(order, myfoodora.getAvailableCouriers());
 		
 		//verify that the courier given by the algorithm of delivery policy (tested in its own test file) received the order
 		Courier courier_2 = new FairOccupationDeliveryPolicy().parse(order, myfoodora.getAvailableCouriers());
@@ -114,18 +114,17 @@ public class MyFoodoraServiceTest {
 	@Test
 	public void testNotifyAll() {
 		System.out.println("-----testNotifyAll-----");
-		Restaurant r = (Restaurant)m.selectUser("restaurant_1");
-		Meal supermeal = new SpecialMeal("supertest",r.getMenu().getStarters().get(0),r.getMenu().getMaindishes().get(0));
-		SpecialOffer specialoffer = new SpecialOffer(r,supermeal);
+		Restaurant r = (Restaurant)myfoodora_service.selectUser("restaurant_1");
+		Meal supermeal = new HalfMeal("supertest",r.getMenu().getStarters().get(0),r.getMenu().getMaindishes().get(0));
 		
 		//customer c agrees to be notified
-		Customer c = (Customer)m.selectUser("customer_1");
+		Customer c = (Customer)myfoodora_service.selectUser("customer_1");
 		c.getCustomerService().giveConsensusBeNotifiedSpecialOffers();
 		
-		m.notifyAll(specialoffer);
+		myfoodora_service.notifyAll(supermeal);
 		
 		//verify that the new special offer appears on the board of customer c
-		assertTrue(c.getSpecialoffers().contains(specialoffer));
+		assertTrue(c.getSpecialoffers().contains(supermeal));
 	}
 
 	@Test
@@ -133,7 +132,7 @@ public class MyFoodoraServiceTest {
 		//Starting date for calculating the income/profit
 		System.out.println("-----testGetTotalIncome-----");
 		System.out.println(myfoodora.getHistory());
-		System.out.println(m.getTotalIncome(startingdate, new Date()));
+		System.out.println(myfoodora_service.getTotalIncome(startingdate, new Date()));
 	}
 
 	@Test
@@ -141,14 +140,14 @@ public class MyFoodoraServiceTest {
 		//Starting date for calculating the income/profit
 		System.out.println("-----testGetTotalProfit-----");
 		System.out.println(myfoodora.getHistory());
-		System.out.println(m.getTotalProfit(startingdate, new Date()));
+		System.out.println(myfoodora_service.getTotalProfit(startingdate, new Date()));
 	}
 
 	@Test
 	public void testGetAverageIncomePerCustomer() throws ParseException {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
 		System.out.println(myfoodora.getHistory());
-		System.out.println(m.getAverageIncomePerCustomer(startingdate, new Date()));
+		System.out.println(myfoodora_service.getAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
 	@Test
@@ -163,7 +162,7 @@ public class MyFoodoraServiceTest {
 		System.out.println("Markup_percentage="+myfoodora.getMarkup_percentage());
 
 		System.out.println("applying target profit policy");
-		m.applyTargetProfitPolicy(5);
+		myfoodora_service.applyTargetProfitPolicy(5);
 		
 		System.out.println("Delivery_Cost=" + myfoodora.getDelivery_cost());
 		System.out.println("Service_fee="+myfoodora.getService_fee());
@@ -176,14 +175,14 @@ public class MyFoodoraServiceTest {
 		System.out.println("-----testSelectUser-----");
 		Customer c = new Customer("","","test",new AddressPoint(0,0),"","");
 		myfoodora.addUser(c);
-		User user = m.selectUser("test");
+		User user = myfoodora_service.selectUser("test");
 		assertEquals(c,user);
 	}
 
 	@Test
 	public void testGetUsersOfAssignedType() {
 		System.out.println("-----testGetUsersOfAssignedType-----");
-		for (User u:m.getUsersOfAssignedType("Restaurant")){
+		for (User u:myfoodora_service.getUsersOfAssignedType("Restaurant")){
 			if (!(u instanceof Restaurant)){
 				fail();
 			}
@@ -193,13 +192,13 @@ public class MyFoodoraServiceTest {
 	@Test
 	public void testAskAgree2customers() {
 		System.out.println("-----testAskAgree2customers-----");
-		m.askAgree2customers("Do you agree ?");
+		myfoodora_service.askAgree2customers("Do you agree ?");
 	}
 
 	@Test
 	public void testGetHistory() {
 		System.out.println("-----testGetHistory-----");
-		System.out.println(m.getHistory());
+		System.out.println(myfoodora_service.getHistory());
 	}
 
 }

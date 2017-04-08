@@ -1,4 +1,6 @@
-package test.scenarios;
+package test.usecase;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,18 +15,22 @@ import restaurant.*;
 import system.*;
 import user.*;
 
+/**
+ * Use case scenario
+ * The following use case scenario describe examples of how the MyFoodora should function.
+ * @throws UserNotFoundException 
+ * 
+ * @author Ray
+ * @author Hxa
+ **/
+
+
+
 public class UseCaseTest {
 
-	/**
-	 * Use case scenario
-	 * The following use case scenario describe examples of how the MyFoodora should function.
-	 * @throws UserNotFoundException 
-	 **/
-	
 	private MyFoodora myfoodora;
-	private MyFoodoraService commonMyFoodoraService;
-	ManagerService managerService_director;
-	
+	private MyFoodoraService myfoodora_service;
+	private ManagerService managerService_director;
 	
 	/*
 	 * Startup scenario
@@ -32,6 +38,7 @@ public class UseCaseTest {
 			i.e. adjoint), 5 restaurants and 2 couriers, 7 customers, 4 full-meals per restaurant...
 		2. the system sends alerts to the customers that agreed to be notified of special offers
 	 */
+	
 	@Before
 	public void testStartupScenario() throws UserNotFoundException {
 		
@@ -39,20 +46,11 @@ public class UseCaseTest {
 		InitialScenario.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		commonMyFoodoraService = new MyFoodoraServiceImpl();
+		myfoodora_service = new MyFoodoraServiceImpl();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
-		
-		
-		ArrayList<User> restaurants = myfoodora.getUsersOfAssignedType("RESTAURANT");
-		for (User u:restaurants){
-			System.out.println("\n-----"+((Restaurant)u).getName()+"-----");
-			((Restaurant)u).getRestaurantService().displayMenu();
-			((Restaurant)u).getRestaurantService().displayMealMenu();
-		}
-		myfoodora.displayUsers();
-		System.out.println(commonMyFoodoraService.getHistory());
+	
 		// send alerts to customers
-		commonMyFoodoraService.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
+		myfoodora_service.askAgree2customers("Do you agree to be notified of special offers ? By default it is no.");
 	}
 
 	/*
@@ -80,7 +78,8 @@ public class UseCaseTest {
 		
 		System.out.println("You want to register an acount of which type ? \n"
 				+ "1. customer   2. restaurant  3. courier");	
-		int userType = s.nextInt();
+		String userTypeString = s.nextLine();
+		int userType = Integer.parseInt(userTypeString);
 		System.out.println("Please input your personal infos : \n"
 				+ "First name = ");
 		String firstname = s.nextLine();
@@ -88,12 +87,12 @@ public class UseCaseTest {
 		String lastname = s.nextLine();
 		System.out.println("username = ");
 		String username = s.nextLine();
-		System.out.println("address = ");
-		String address = s.nextLine();
-		AddressPoint address_point = new AddressPoint(2.0, 2.0);
-		System.out.println("birthdate = ");
-		String birthdate = s.nextLine();
-		
+		System.out.println("address (format 'x,y'), x= ");
+		String x = s.nextLine();
+		System.out.println("address (format 'x,y'), y= ");
+		String y = s.nextLine();
+		AddressPoint address_point = new AddressPoint(Double.parseDouble(x), Double.parseDouble(y));
+
 		System.out.println("email = ");
 		String email = s.nextLine();
 		System.out.println("phone = ");
@@ -101,6 +100,9 @@ public class UseCaseTest {
 		
 		switch (userType) {
 		case 1:
+			System.out.println("customer");
+			System.out.println("birthdate (dd/MM/yyyy) = ");
+			String birthdate = s.nextLine();
 			user = new Customer(firstname, lastname, username, address_point, email, phone);
 			System.out.println("Are you agree to be notified of special offers ? By default it is no. Y/N");
 			String agree = s.nextLine();
@@ -110,15 +112,17 @@ public class UseCaseTest {
 				((Customer)user).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
 			}
 			System.out.println("Please select the contact to be used to send the offers. By default it is the e-mail if exist. 1: email 2:SMS ");
-			int contactWay = s.nextInt();
+			while (s.nextLine()!="1" && s.nextLine()!="2"){
+				System.out.println("Please select the contact to be used to send the offers. By default it is the e-mail if exist. 1: email 2:SMS ");
+			}
 			break;
 
 		case 2:
-				
+			System.out.println("restaurant");
 			break;
 		case 3:
 			user = new Courier(firstname, lastname, username, address_point, phone);
-			System.out.println("Please sets your current duty status. By default off-duty. Y:on-duty N锛沷ff-duty");
+			System.out.println("Please sets your current duty status. By default off-duty. Y:on-duty N: off-duty");
 			String status = s.nextLine();
 			if(status=="Y"){
 				((Courier)user).getCourierService().turnOnDuty();
@@ -136,9 +140,13 @@ public class UseCaseTest {
 			managerService_director.addUser(user);
 			managerService_director.activateUser(user);
 			managerService_director.displayActiveUsers();
+			System.out.println("You have been registered on MyFoodora.");
+			System.out.println("Session closed.");
+			assertTrue(myfoodora.getUsers().contains(user));
 		}else if(specify=="N"){
-			
+			System.out.println("Session closed.");
 		}
+		s.close();
 	}
 
 	
@@ -205,7 +213,7 @@ public class UseCaseTest {
 			String restaurant_username = "restaurant_2";
 			System.out.println(restaurant_username);
 			Restaurant restaurant = null;
-			if( (restaurant=(Restaurant)commonMyFoodoraService.selectUser(restaurant_username)) != null ){
+			if( (restaurant=(Restaurant)myfoodora_service.selectUser(restaurant_username)) != null ){
 				restaurant.getRestaurantService().displayMenu();
 				restaurant.getRestaurantService().displayMealMenu();
 				

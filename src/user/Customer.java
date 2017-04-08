@@ -5,6 +5,7 @@ import java.util.Date;
 
 import policies.FidelityCard;
 import policies.StandardCard;
+import restaurant.Meal;
 import system.AddressPoint;
 import system.ConcreteSpecialOfferBoard;
 import system.Message;
@@ -24,7 +25,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	private FidelityCard card;
 	private Boolean agreeToBeNotifiedSpecialoffers;
 	
-	private ArrayList<SpecialOffer> specialoffers;
+	private ArrayList<Meal> specialoffers;
 	
 	
 	private ShoppingCart shoppingcart;
@@ -42,7 +43,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
-		this.specialoffers = new ArrayList<SpecialOffer>();
+		this.specialoffers = new ArrayList<Meal>();
 	}
 
 	/** basic methods **/
@@ -80,7 +81,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		return name+" "+surname;
 	}
 	
-	public ArrayList<SpecialOffer> getSpecialoffers() {
+	public ArrayList<Meal> getSpecialoffers() {
 		return specialoffers;
 	}
 
@@ -119,14 +120,14 @@ public class Customer extends User implements SpecialOfferObserver{
 	/** observer/observable business methods **/
 	//update the special offers
 	@Override
-	public void updateSpecialOffer(ArrayList<SpecialOffer> specialoffers){
+	public void updateSpecialOffer(ArrayList<Meal> specialoffers){
 	// TODO Auto-generated method stub
 		this.specialoffers = specialoffers;
 	}
 	
 	@Override
-	public void addSpecialOffer(SpecialOffer specialoffer) {
-		specialoffers.add(specialoffer);
+	public void addSpecialOffer(Meal meal) {
+		specialoffers.add(meal);
 	}
 
 	@Override

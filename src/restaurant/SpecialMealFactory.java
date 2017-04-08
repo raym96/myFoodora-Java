@@ -12,7 +12,12 @@ public class SpecialMealFactory extends MealFactory {
 		// TODO Auto-generated method stub
 		for (Meal meal : this.mealmenu.getMeals()){
 			if (meal.getName().equalsIgnoreCase(mealName)){
-				return new SpecialMeal(meal);
+				if (meal instanceof HalfMeal){
+					return new HalfMeal(meal);
+				}
+				if (meal instanceof FullMeal){
+					return new FullMeal(meal);
+				}
 			}
 		}
 		throw new MealNotFoundException(mealName);

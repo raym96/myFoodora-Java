@@ -32,7 +32,7 @@ public class CourierServiceTest {
 
 	Customer customer;
 	Restaurant restaurant;
-	Meal m;
+	Meal meal;
 	Order order;
 	
 	@Before
@@ -47,8 +47,8 @@ public class CourierServiceTest {
 
 		customer = (Customer)myfoodora_service.selectUser("customer_1");
 		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
-		m = restaurant.getHalfMealMenu().getMeals().get(0);
-		order = new StandardMealOrder(customer,restaurant,m);
+		meal = restaurant.getHalfMealMenu().getMeals().get(0);
+		order = new StandardMealOrder(customer,restaurant,meal);
 		
 	}
 
