@@ -1,11 +1,14 @@
 package initialization;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+
+import org.ini4j.Ini;
 
 import restaurant.MealMenu;
 import restaurant.Menu;
@@ -125,8 +128,9 @@ public class InitialScenarioGenerator {
 	public static void outPrintOrders(){
 		Random random = new Random();
 		try{
-		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant("scenario_test_services.ini");
-		ArrayList<Customer> customers = InitialScenario.loadCustomer("scenario_test_services.ini");
+		Ini ini = new Ini(new File("scenario_test_services.ini"));
+		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant(ini);
+		ArrayList<Customer> customers = InitialScenario.loadCustomer(ini);
 		for (int i = 0;i<nOrder;i++){
 			System.out.println("[Order/"+(i+1)+"]");
 			int c = random.nextInt(customers.size());

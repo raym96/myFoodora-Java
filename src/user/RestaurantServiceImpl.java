@@ -6,6 +6,7 @@ import java.util.Iterator;
 import exceptions.DishNotFoundException;
 import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
+import exceptions.NameAlreadyExistsException;
 import policies.SortingByAlaCarte;
 import policies.SortingByCriteria;
 import policies.SortingByHalfMeal;
@@ -35,8 +36,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 		public void addDish(Dish dish) {
 			// TODO Auto-generated method stub
 			//add/remove a dish to the menu
-			restaurant.getMenu().addDish(dish);
-			System.out.println(dish + " added to the menu");	
+			try{
+				restaurant.getMenu().addDish(dish);
+				System.out.println(dish + " added to the menu");	
+			} catch (NameAlreadyExistsException e){
+				e.printStackTrace();
+			}
 		}
 
 		@Override
@@ -78,6 +83,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void addMeal(Meal meal) {
 		// TODO Auto-generated method stub
+		try{
 		if (meal instanceof HalfMeal){
 			restaurant.getHalfMealMenu().addMeal(meal);
 		}
@@ -85,6 +91,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 			restaurant.getFullMealMenu().addMeal(meal);
 		}
 		System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu of "+restaurant.getName());
+		}catch(NameAlreadyExistsException e){
+			e.printStackTrace();
+		}
 	}
 		
 		
@@ -132,8 +141,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 			throw new DishTypeErrorException("half meal");
 		}
 		}
-		catch (DishNotFoundException e){}
-		catch (DishTypeErrorException e){}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -177,8 +187,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 				throw new DishTypeErrorException("full meal");
 			}
 			}
-			catch (DishTypeErrorException e){}
-			catch (DishNotFoundException e){}
+			catch (Exception e){
+				e.printStackTrace();
+			}
 	
 	}
 
@@ -206,16 +217,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 		MealMenu halfmeals = restaurant.getHalfMealMenu();
 		MealMenu fullmeals = restaurant.getFullMealMenu();
 		try{
+			if (!(halfmeals.hasMeal(mealName)||(fullmeals.hasMeal(mealName)))){
+				throw new MealNotFoundException(mealName);
+			}
 			if (halfmeals.hasMeal(mealName)){
 				halfmeals.removeMeal(mealName);
-				System.out.println(mealName + " successfully removed from the meal-menu");
+				System.out.println("Half-meal <" + mealName + "> successfully removed from the meal-menu");
 			}
 			if (fullmeals.hasMeal(mealName)){
 				fullmeals.removeMeal(mealName);
-				System.out.println(mealName + " successfully removed from the meal-menu");
-			}
-			else{
-				throw new MealNotFoundException(mealName);
+				System.out.println("Full-name <" + mealName + "> successfully removed from the meal-menu");
 			}
 		} catch (MealNotFoundException e){
 			e.printStackTrace();
@@ -252,7 +263,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if (count==0){
 				throw new MealNotFoundException(mealName);
 			}
-		}catch (MealNotFoundException e){}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -336,7 +349,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void displayMealMenu() {
 		// TODO Auto-generated method stub
-		System.out.println("\n"+"----- Meal menu -----");
+		System.out.println("\n"+"[Meal menu]");
 		System.out.println("\nHalf-Meals:");
 		restaurant.getHalfMealMenu().display();
 		System.out.println("\nFull-Meals:");
@@ -346,7 +359,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void displaySpecialMenu(){
 		// TODO Auto-generated method stub
-		System.out.println("\n----- Special Offers -----\n");
+		System.out.println("\n[Special Offers]");
 		restaurant.getSpecialmealmenu().display();
 	}
 	

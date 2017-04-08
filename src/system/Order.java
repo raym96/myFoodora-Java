@@ -37,7 +37,7 @@ public abstract class Order {
 		assigned = false;
 	}
 	
-	//Only for order generation with a date
+	//Only for old order registration with a past date (history for example)
 	public Order(Customer customer,Restaurant restaurant, Date date){
 		this.customer = customer;
 		this.restaurant = restaurant;
@@ -53,7 +53,6 @@ public abstract class Order {
 	
 	public abstract String getName(); //depends on whether it is a meal or a-la-carte
 	
-	//getters and setters
 	public Customer getCustomer(){
 		return customer;
 	}
@@ -67,6 +66,10 @@ public abstract class Order {
 	
 	public Date getDate(){
 		return date;
+	}
+	
+	public double getPrice(){
+		return price;
 	}
 	
 	public void setPrice(double price){
@@ -100,20 +103,19 @@ public abstract class Order {
 	
 	@Override
 	public String toString(){
-		String str = "";
+		String str = "["+price+"€] ";
 		if (this instanceof SpecialMealOrder){
-			str+= "[Special-meal] <";
+			str+= "Special-meal <";
 			str+= ((SpecialMealOrder)this).getName();
 		}
 		else if (this instanceof StandardMealOrder){
-			str+="[Meal] <";
+			str+="Meal <";
 			str+= ((StandardMealOrder)this).getName();
 		}
 		else if (this instanceof AlaCarteOrder){
-			str+="[A-la-carte] <";
+			str+="A-la-carte <";
 			str+= ((AlaCarteOrder)this).getName();
 		}
-		str+= " "+price+"€";
 		str+="> ORDERED BY <"+customer.getUsername()+ "> AT <" +restaurant.getUsername();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");

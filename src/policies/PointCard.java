@@ -26,7 +26,7 @@ public class PointCard extends FidelityCard {
 		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + amount);
 		
 		balance+=Math.floor(amount*100)/1000;
-		System.out.println("you gained " + amount+" points on your point card for this order.");
+		System.out.println("you gained " + balance+" points on your point card for this order.");
 		
 		if (balance>=100){
 			System.out.println("Your point balance reached 100, you will receive a 10% discount on the next order.");

@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import exceptions.DishNotFoundException;
+import exceptions.NameAlreadyExistsException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import restaurant.Dessert;
 import restaurant.MainDish;
@@ -52,9 +53,15 @@ public class MenuTest {
 		MainDish m = new MainDish("Pork ribs", "standard", 9.1);
 		Starter s = new Starter("Japanese soup", "gluten-free", 3.5);
 		Dessert d = new Dessert("Nougat", "gluten-free", 2.2);
-		menu.addDish(d);
-		menu.addDish(s);
-		menu.addDish(m);
+
+		try {
+			menu.addDish(m);
+			menu.addDish(d);
+			menu.addDish(s);
+		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue(menu.hasDish(m.getDishName()));
 		assertTrue(menu.hasDish(s.getDishName()));
 		assertTrue(menu.hasDish(d.getDishName()));
@@ -63,7 +70,12 @@ public class MenuTest {
 	@Test
 	public void testRemoveDish() {
 		MainDish m = new MainDish("Pork ribs 222222222", "standard", 9.1);
-		menu.addDish(m);
+		try {
+			menu.addDish(m);
+		} catch (NameAlreadyExistsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		assertTrue(menu.hasDish(m.getDishName()));
 		try {
 			menu.removeDish(m.getDishName());

@@ -81,7 +81,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		for (Order order:list){
 			totalIncome += order.accept(visitor);
 		}
-		return totalIncome;
+		return Math.floor(totalIncome*1000)/1000;
 	}
 	
 	public double getTotalProfit(Date date1, Date date2){
@@ -91,13 +91,12 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		for (Order order:list){
 			totalProfit += order.accept(visitor)*myfoodora.getMarkup_percentage()+myfoodora.getService_fee()-myfoodora.getDelivery_cost();
 		}
-		return totalProfit;
+		return Math.floor(totalProfit*1000)/1000;
 	}
 	
 	public double getAverageIncomePerCustomer(Date date1, Date date2){
 		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
 		ArrayList<Customer> customerlist = new ArrayList<Customer>();
-		double avgIncome = 0;
 		for (Order order:list){
 			//count the number of different customers over the time period
 			if (!(customerlist.contains(order.getCustomer()))){
@@ -110,7 +109,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 			return 0;
 		}
 		else{
-			return (getTotalIncome(date1, date2)/customerlist.size());
+			return Math.floor((getTotalIncome(date1, date2)/customerlist.size())*1000)/1000;
 		}
 	}
 	
@@ -129,13 +128,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	
 	
 /** myfoodora's basic services provided to User's specific operations rely on **/
-	
-/*	@Override
-	public void askAgree2customers(String ask) {
-		// TODO Auto-generated method stub
-		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
-	}
-*/
 	
 	public void displayUsersOfAssignedType(String userType){
 		
@@ -159,6 +151,10 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	public void displayActiveUsers(){
 		myfoodora.displayActiveUsers();
+	}
+	
+	public void displayAllMenus(){
+		myfoodora.displayAllMenus();
 	}
 
 

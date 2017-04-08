@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import exceptions.MealNotFoundException;
+import exceptions.NameAlreadyExistsException;
 
 public class MealMenu {
 
@@ -18,7 +19,10 @@ public class MealMenu {
 	}
 	
 	
-	public void addMeal(Meal meal){
+	public void addMeal(Meal meal) throws NameAlreadyExistsException{
+		if (hasMeal(meal.getName())){
+			throw new NameAlreadyExistsException(meal.getName());
+		}
 		double price = meal.getRawprice()*(1-discount_factor);
 		meal.setPrice(Math.floor(price*100)/100);
 		meals.add(meal);
@@ -72,6 +76,5 @@ public class MealMenu {
 	public void setDiscount_factor(double discount_factor) {
 		this.discount_factor = discount_factor;
 	}
-	
 	
 }

@@ -110,6 +110,11 @@ public class Courier extends User{
 	public String getSurname() {
 		return surname;
 	}
+	
+	public String getFullName(){
+		return name+" "+surname;
+	}
+	
 
 	public String getPhone() {
 		return phone;

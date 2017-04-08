@@ -197,17 +197,29 @@ public class MyFoodora implements Observable{
 	}
 
 	public void displayUsers(){
-		System.out.println("users:");
+		System.out.println("\n[USERS]");
 		for (User u:users){
 			System.out.println(u);
 		}
 	}
 	
 	public void displayActiveUsers(){
-		System.out.println("activeUsers:");
+		System.out.println("\n[ACTIVEUSERS]");
 		for (User u : getActiveUsers() ){
 			System.out.println(u);
 		}	
+	}
+	
+	public void displayAllMenus() {
+		System.out.println("\n[ALL MENUS]");
+		for (User u:getUsersOfAssignedType("RESTAURANT")){
+			((Restaurant)u).getRestaurantService().displayAllMenu();
+		}
+		System.out.println("[/All MENUS]");
+	}
+	
+	public void displayHistory(){
+		System.out.println("\n"+history);
 	}
 
 	public void addUser(User user){
@@ -241,6 +253,7 @@ public class MyFoodora implements Observable{
 		
 	}
 
+	
 	public Order getCurrentDeliveryTask() {
 		return currentDeliveryTask;
 	}
@@ -371,6 +384,8 @@ public class MyFoodora implements Observable{
 			obs.update(o);
 		}
 	}
+
+
 
 	
 }

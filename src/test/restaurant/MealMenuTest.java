@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import exceptions.MealNotFoundException;
+import exceptions.NameAlreadyExistsException;
 import restaurant.FullMeal;
 import restaurant.HalfMeal;
 import restaurant.MealMenu;
@@ -35,17 +36,27 @@ public class MealMenuTest {
 		HalfMeal hm1 = new HalfMeal("HM1", menu.getStarters().get(0), menu.getMaindishes().get(0));
 		HalfMeal hm2 = new HalfMeal("HM2", menu.getStarters().get(1), menu.getMaindishes().get(1));
 		
-		mealMenu.addMeal(fm1);
-		mealMenu.addMeal(fm2);
-		mealMenu.addMeal(hm1);
-		mealMenu.addMeal(hm2);
+		try {
+			mealMenu.addMeal(fm1);
+			mealMenu.addMeal(fm2);
+			mealMenu.addMeal(hm1);
+			mealMenu.addMeal(hm2);
+		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(4, mealMenu.getMeals().size());
 	}
 
 	@Test
 	public void testRemoveMeal() {
 		HalfMeal hm3 = new HalfMeal("HM3", menu.getStarters().get(1), menu.getMaindishes().get(1));
-		mealMenu.addMeal(hm3);
+		try {
+			mealMenu.addMeal(hm3);
+		} catch (NameAlreadyExistsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		assertTrue(mealMenu.getMeals().contains(hm3));
 		try {
 			mealMenu.removeMeal(hm3.getName());

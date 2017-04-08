@@ -58,7 +58,7 @@ public class ShoppingCart {
 		for (Order order:orders){
 			str += order+"\n";
 		}
-		return "ShoppingCart : \n" + str +"\nTotal price is: "+getTotalPrice();
+		return "\nShoppingCart : \n" + str +"Total price="+getTotalPrice()+"€";
 	}
 	
 	

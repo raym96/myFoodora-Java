@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import exceptions.MealNotFoundException;
+import exceptions.NameAlreadyExistsException;
 import restaurant.HalfMeal;
 import restaurant.HalfMealFactory;
 import restaurant.MealMenu;
@@ -24,8 +25,13 @@ public class HalfMealFactoryTest {
 		HalfMeal hm1 = new HalfMeal("HM1", menu.getStarters().get(0), menu.getMaindishes().get(0));
 		HalfMeal hm2 = new HalfMeal("HM2", menu.getStarters().get(1), menu.getMaindishes().get(1));
 
-		mealMenu.addMeal(hm1);
-		mealMenu.addMeal(hm2);
+		try {
+			mealMenu.addMeal(hm1);
+			mealMenu.addMeal(hm2);
+		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		halfMealFactory = new HalfMealFactory(mealMenu);
 		

@@ -76,7 +76,9 @@ public class Customer extends User implements SpecialOfferObserver{
 		return this.surname;
 	}
 	
-	
+	public String getFullName(){
+		return name+" "+surname;
+	}
 	
 	public ArrayList<SpecialOffer> getSpecialoffers() {
 		return specialoffers;

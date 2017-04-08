@@ -7,6 +7,7 @@ import exceptions.DishTypeErrorException;
 import exceptions.MealNotFoundException;
 import restaurant.*;
 import system.AddressPoint;
+import system.ConcreteShoppingCartVisitor;
 import system.History;
 import system.Message;
 import system.Observable;
@@ -18,11 +19,10 @@ public class Restaurant extends User{
 	private String name;
 	private AddressPoint address;
 	
-	
 	private double generic_discount_factor = 0.05;
 	private double special_discount_factor = 0.1;
 	private boolean gdf_changed;
-	private boolean sdf_changed; //small observer pattern with mealmenus
+	private boolean sdf_changed; // bserver pattern with mealmenus which adapt their factor
 	
 	private Menu menu;
 	private MealMenu halfmealmenu;
@@ -147,6 +147,14 @@ public class Restaurant extends User{
 
 	public void addToHistory(Order order){
 		history.addOrder(order);
+	}
+	
+	public double getIncome(){
+		double income = 0;
+		for (Order o:history.getOrders()){
+			income+=o.getPrice();
+		}
+		return Math.floor(income*100)/100;
 	}
 	
 	public History getHistory() {

@@ -126,7 +126,6 @@ public class RestaurantServiceTest {
 		assertTrue(restaurant.getHalfMealMenu().getMeals().contains(meal));
 		
 		r.removeMeal("test_menu");
-		r.displayAllMenu();
 		assertFalse(restaurant.getHalfMealMenu().getMeals().contains(meal));
 	}
 

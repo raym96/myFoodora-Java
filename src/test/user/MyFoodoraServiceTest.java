@@ -101,7 +101,7 @@ public class MyFoodoraServiceTest {
 		assertTrue(courier_1.getWaitingOrders().contains(order));
 		
 		//Should give the order to courier_2
-		System.out.println("FairOccupatioDelivery");
+		System.out.println("FairOccupationDelivery");
 		myfoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
 		m.parse(order, myfoodora.getAvailableCouriers());
 		

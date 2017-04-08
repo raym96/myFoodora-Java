@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import exceptions.DishNotFoundException;
+import exceptions.NameAlreadyExistsException;
 
 
 public class Menu {
@@ -53,7 +54,10 @@ public class Menu {
 		desserts.add(new Dessert("cafe", "standard", 1.5));
 	}
 	
-	public void addDish(Dish dish){
+	public void addDish(Dish dish) throws NameAlreadyExistsException{
+		if (hasDish(dish.getDishName())){
+			throw new NameAlreadyExistsException(dish.getDishName());
+		}
 		if (dish instanceof Starter){
 			starters.add((Starter)dish);}
 		if (dish instanceof MainDish){
@@ -97,7 +101,7 @@ public class Menu {
 	}
 	
 	public void display(){
-		System.out.println("\n-----Menu-----");
+		System.out.println("\n[Menu]");
 		System.out.println("\nStarters:");
 		for (Dish dish:this.getStarters()){
 			System.out.println(dish);

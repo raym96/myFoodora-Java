@@ -36,50 +36,45 @@ public class InitialScenario {
 	
 	//Load .ini file data into the MyFoodora System
 	public static void load(String filename) throws UserNotFoundException {
-		System.out.println("-------Loading initial scenario <"+filename+"> -------");
+		System.out.println("\n-----------------------------------------------------------------------------------");
+		System.out.println("Loading initial scenario <"+filename+">");
 		MyFoodora.reset(); //reset the state of the system
 		MyFoodora myfoodora = MyFoodora.getInstance();
 		ArrayList<User> users = new ArrayList<User>();
 		try{
-			users.addAll(loadManager(filename));
-			users.addAll(loadCustomer(filename));
-			users.addAll(loadRestaurant(filename)); //loading the menus at the same time
-			for (Courier c:loadCourier(filename)){
+			Ini ini = new Ini(new File(filename)); //if filename not found, throws new exception
+			users.addAll(loadManager(ini));
+			users.addAll(loadCustomer(ini));
+			users.addAll(loadRestaurant(ini)); //loading the menus at the same time
+			for (Courier c:loadCourier(ini)){
 				//different treatment for couriers because they are add to the courier list as well
 				users.add(c);
 				myfoodora.getCouriers().add(c);
 			}
-			System.out.println("\nLoading users:");
 			myfoodora.setUsers(users); //add them to myfoodora
-			myfoodora.displayUsers();
-			System.out.println("Users loaded into the system");
 			for (User u : users){
 				//activate them
 				myfoodora.activateUser(u);
 			}
-			myfoodora.setHistory(loadHistory(filename)); //initialize history by adding orders
-		}catch(IOException e){
-			e.printStackTrace();
+			myfoodora.setHistory(loadHistory(ini)); //initialize history by adding orders
+			
+			myfoodora.displayUsers();
+			myfoodora.displayAllMenus();
+			myfoodora.displayHistory();
+			
+			System.out.println("The initial file <"+filename+"> successfully loaded into the system.");
+			System.out.println("-----------------------------------------------------------------------------------\n");
+			}catch(IOException e){
+				e.printStackTrace();
 		}
-		
-		System.out.println("\nDisplaying the menus:");
-		for (User u:myfoodora.getUsersOfAssignedType("RESTAURANT")){
-			((Restaurant)u).getRestaurantService().displayAllMenu();
-		}
-		
-		System.out.println("Command history:");
-		System.out.println(myfoodora.getHistory()+"\n");
-		System.out.println("\nThe initial file <"+filename+"> successfully loaded into the system.");
-		System.out.println("-------------------------------------------------------------\n");
 	}
 
-	public static ArrayList<Manager> loadManager(String filename) throws IOException{
+	public static ArrayList<Manager> loadManager(Ini ini) throws IOException{
 		String name;
 		String surname;
 		String username;
 		
 		ArrayList<Manager> users = new ArrayList<Manager>();
-		Ini ini = new Ini(new File(filename));
 		
 		Ini.Section managers;
 		Ini.Section manager;
@@ -95,7 +90,7 @@ public class InitialScenario {
     	}
     	return users;
 	}
-	public static ArrayList<Customer> loadCustomer(String filename) throws IOException {
+	public static ArrayList<Customer> loadCustomer(Ini ini) throws IOException {
 		String name;
 		String surname;
 		String username;
@@ -104,7 +99,6 @@ public class InitialScenario {
 		AddressPoint address;
 		
 		ArrayList<Customer> users = new ArrayList<Customer>();
-		Ini ini = new Ini(new File(filename));
 
     	Ini.Section customers;
     	Ini.Section customer;
@@ -124,7 +118,7 @@ public class InitialScenario {
     	return users;
 	}
     	
-	public static ArrayList<Courier> loadCourier(String filename) throws IOException {
+	public static ArrayList<Courier> loadCourier(Ini ini) throws IOException {
 		String name;
 		String surname;
 		String username;
@@ -132,7 +126,6 @@ public class InitialScenario {
 		AddressPoint address;
 		
 		ArrayList<Courier> users = new ArrayList<Courier>();
-		Ini ini = new Ini(new File(filename));
 		
     	Ini.Section couriers;
     	Ini.Section courier;
@@ -152,13 +145,12 @@ public class InitialScenario {
     	return users;
 	}
 	//initialize restaurants and set up their menu & meal-menu
-	public static ArrayList<Restaurant> loadRestaurant(String filename) throws IOException {
+	public static ArrayList<Restaurant> loadRestaurant(Ini ini) throws IOException {
 		String name;
 		String username;
 		AddressPoint address;
 		
 		ArrayList<Restaurant> users = new ArrayList<Restaurant>();
-		Ini ini = new Ini(new File(filename));
 		
        	Ini.Section restaurants;
     	Ini.Section restaurant;
@@ -173,10 +165,8 @@ public class InitialScenario {
     		users.add(r);
     	}
     	
-    	System.out.println("Loading the menus:");
     	loadMenu(users, ini); //SET THE DISH MENU
     	loadMealMenu(users, ini); //SET THE MEAL MENU
-    	System.out.println("Loading completed.");
     	return users;
 	}
 	
@@ -195,7 +185,6 @@ public class InitialScenario {
 		double price;
 	
 		
-		Menu menu = new Menu();
 		dishes = ini.get("Dish");
 		for (String id:dishes.childrenNames()){
 			dish = dishes.getChild(id);
@@ -212,15 +201,18 @@ public class InitialScenario {
 			dishCategory = dish.get("category");
 			dishType = dish.get("type");
 			price = Double.parseDouble(dish.get("price"));
-			
-			if (dishCategory.equals("Starter")){
-				restaurant.getMenu().addDish(new Starter(name,dishType,price));
-			}
-			if (dishCategory.equals("Main-dish")){
-				restaurant.getMenu().addDish(new MainDish(name,dishType,price));
-			}
-			if (dishCategory.equals("Dessert")){
-				restaurant.getMenu().addDish(new Dessert(name,dishType,price));
+			try{
+				if (dishCategory.equals("Starter")){
+					restaurant.getMenu().addDish(new Starter(name,dishType,price));
+				}
+				if (dishCategory.equals("Main-dish")){
+					restaurant.getMenu().addDish(new MainDish(name,dishType,price));
+				}
+				if (dishCategory.equals("Dessert")){
+					restaurant.getMenu().addDish(new Dessert(name,dishType,price));
+				}
+			} catch (Exception e){
+				e.printStackTrace();
 			}
 		}
 	}
@@ -239,7 +231,9 @@ public class InitialScenario {
 		Ini.Section meals;
 		Ini.Section meal;
 		
+		Meal newmeal;
 		meals = ini.get("Meal");
+		try{
 		for (String id : meals.childrenNames()){
 			meal = meals.getChild(id);
 			
@@ -257,34 +251,51 @@ public class InitialScenario {
 			if (mealCategory.equals("Half-meal")){
 				dishName1 = meal.get("dish1");
 				dishName2 = meal.get("dish2");
-				restaurant.getRestaurantService().addMeal(mealName, dishName1, dishName2);
+				newmeal = new HalfMeal(mealName);
+				for (Dish d:restaurant.getMenu().getDishes()){
+					if (d.getDishName().equalsIgnoreCase(dishName1) || d.getDishName().equalsIgnoreCase(dishName2)){
+						newmeal.addDish(d);
+					}
+				}
+				newmeal.refreshMealType();
+				restaurant.getHalfMealMenu().addMeal(newmeal);
 			}
 			if (mealCategory.equals("Full-meal")){
 				dishName1 = meal.get("dish1");
 				dishName2 = meal.get("dish2");
 				dishName3 = meal.get("dish3");
-				restaurant.getRestaurantService().addMeal(mealName, dishName1, dishName2, dishName3);
+				newmeal = new FullMeal(mealName);
+				for (Dish d:restaurant.getMenu().getDishes()){
+					if (d.getDishName().equalsIgnoreCase(dishName1) || d.getDishName().equalsIgnoreCase(dishName2) ||d.getDishName().equalsIgnoreCase(dishName3)){
+						newmeal.addDish(d);
+					}
+				}
+				newmeal.refreshMealType();	
+				restaurant.getFullMealMenu().addMeal(newmeal);
 			}
 			if (mealCategory.equals("Special-offer")){
 				dishName1 = meal.get("dish1");
 				dishName2 = meal.get("dish2");
-				//add the meal and promotes it to special-meals
-				restaurant.getRestaurantService().addMeal(mealName, dishName1, dishName2);
-				restaurant.getRestaurantService().addSpecialMeal(mealName);
+				newmeal = new HalfMeal(mealName);
+				for (Dish d:restaurant.getMenu().getDishes()){
+					if (d.getDishName().equalsIgnoreCase(dishName1) || d.getDishName().equalsIgnoreCase(dishName2)){
+						newmeal.addDish(d);
+					}
+				}
+				newmeal.refreshMealType();
+				restaurant.getSpecialmealmenu().addMeal(newmeal);
 			}
+		}
+		}catch ( Exception e){
+			e.printStackTrace();
 		}
 
 	}
 	
 	//Initialize history by adding random orders to restaurants
-	public static History loadHistory(String filename) throws IOException{
+	public static History loadHistory(Ini ini) throws IOException{
 		History history= new History();
-		Ini ini = new Ini(new File(filename));
-		
-		//relative to dates
-		Random random = new Random();
-
-		
+				
 		Ini.Section orders;
 		Ini.Section order;
 		
@@ -350,7 +361,7 @@ public class InitialScenario {
 				//Set price (current discount factors)
 				neworder.setPrice(neworder.accept(new ConcreteShoppingCartVisitor()));
 				
-				restaurant.getHistory().addOrder(neworder);
+				restaurant.addToHistory(neworder);
 				history.addOrder(neworder);
 			}catch (Exception e){
 				e.printStackTrace();

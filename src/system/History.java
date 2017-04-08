@@ -42,6 +42,7 @@ public class History {
 	
 	@Override
 	public String toString(){
+		System.out.println("\n[COMMAND HISTORY]");
 		String str = "";
 		for (Order order:orders){
 			str+=order+"\n";

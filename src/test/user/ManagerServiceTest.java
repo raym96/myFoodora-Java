@@ -18,6 +18,7 @@ import user.Courier;
 import user.Manager;
 import user.ManagerService;
 import user.MyFoodora;
+import user.Restaurant;
 import user.User;
 
 public class ManagerServiceTest {
@@ -149,6 +150,10 @@ public class ManagerServiceTest {
 		System.out.println("-----testBestRestaurant-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
 		
+		for (User u :MyFoodora.getInstance().getUsersOfAssignedType("restaurant")){
+			Restaurant r = (Restaurant)u;
+			System.out.println("The total income of restaurant <"+r.getName()+"> is "+r.getIncome());
+		}
 		m.getBestRestaurant();
 	}
 
@@ -157,6 +162,10 @@ public class ManagerServiceTest {
 		System.out.println("-----testGetWorstRestaurant-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
 		
+		for (User u :MyFoodora.getInstance().getUsersOfAssignedType("restaurant")){
+			Restaurant r = (Restaurant)u;
+			System.out.println("The total income of restaurant <"+r.getName()+"> is "+r.getIncome());
+		}
 		m.getWorstRestaurant();
 	}
 

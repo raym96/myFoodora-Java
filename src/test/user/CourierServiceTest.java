@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class CourierServiceTest {
 	static Courier courier_test;
 	static CourierService courier_service;
 		
-	MyFoodora myfoodora;
+	static MyFoodora myfoodora;
 	MyFoodoraService myfoodora_service;
 
 	Customer customer;
@@ -117,6 +118,7 @@ public class CourierServiceTest {
 		
 		//verify that the order has been added to the histories
 		System.out.println(myfoodora_service.getHistory());
+		System.out.println("History of "+order.getRestaurant().getName());
 		System.out.println(order.getRestaurant().getHistory());
 	}
 
@@ -129,5 +131,4 @@ public class CourierServiceTest {
 		//verify that the order is no more in the waiting list
 		assertFalse(courier_test.getWaitingOrders().contains(order));
 	}
-
 }
