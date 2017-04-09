@@ -36,7 +36,7 @@ import user.*;
 //	taking into account the pricing rules
 //*/
 
-public class OrderingAMeal {
+public class OrderingAMealTest {
 
 	private MyFoodora myfoodora;
 	private MyFoodoraService myfoodora_service;
