@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
-import user.Manager;
-import user.ManagerService;
-import user.MyFoodora;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.service.ManagerService;
 
 public class ManagerTest {
 

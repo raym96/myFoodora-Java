@@ -12,12 +12,12 @@ import restaurant.Menu;
 import system.AddressPoint;
 import system.SpecialMealOrder;
 import system.SpecialOffer;
-import user.Courier;
-import user.Customer;
-import user.CustomerService;
-import user.Manager;
-import user.MyFoodora;
-import user.Restaurant;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.service.CustomerService;
 
 public class CustomerTest {
 

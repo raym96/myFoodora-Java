@@ -9,7 +9,7 @@ import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
 import system.SpecialOffer;
-import user.Restaurant;
+import user.model.Restaurant;
 
 public class SpecialOfferTest {
 

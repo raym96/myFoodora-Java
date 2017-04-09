@@ -26,13 +26,13 @@ import system.AlaCarteOrder;
 import system.Order;
 import system.SpecialOffer;
 import system.StandardMealOrder;
-import user.Courier;
-import user.Customer;
-import user.MyFoodora;
-import user.MyFoodoraService;
-import user.MyFoodoraServiceImpl;
-import user.Restaurant;
-import user.User;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.model.User;
+import user.service.MyFoodoraService;
+import user.service.impl.MyFoodoraServiceImpl;
 
 public class MyFoodoraServiceTest {
 

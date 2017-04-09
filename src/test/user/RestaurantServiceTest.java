@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import initialization.InitialScenario;
 import restaurant.*;
-import user.MyFoodora;
-import user.MyFoodoraServiceImpl;
-import user.Restaurant;
-import user.RestaurantService;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.service.RestaurantService;
+import user.service.impl.MyFoodoraServiceImpl;
 
 public class RestaurantServiceTest {
 	Restaurant restaurant1;

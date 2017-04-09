@@ -11,9 +11,9 @@ import restaurant.Menu;
 import system.AddressPoint;
 import system.ConcreteShoppingCartVisitor;
 import system.StandardMealOrder;
-import user.Courier;
-import user.Customer;
-import user.Restaurant;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.Restaurant;
 
 public class StandardMealOrderTest {
 

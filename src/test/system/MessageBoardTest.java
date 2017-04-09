@@ -10,8 +10,8 @@ import org.junit.Test;
 import system.AddressPoint;
 import system.Message;
 import system.MessageBoard;
-import user.Customer;
-import user.MyFoodora;
+import user.model.Customer;
+import user.model.MyFoodora;
 
 public class MessageBoardTest {
 

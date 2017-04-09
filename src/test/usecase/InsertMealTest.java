@@ -10,14 +10,14 @@ import initialization.InitialScenario;
 import restaurant.Dessert;
 import restaurant.MainDish;
 import restaurant.Starter;
-import user.Manager;
-import user.ManagerService;
-import user.ManagerServiceImpl;
-import user.MyFoodora;
-import user.MyFoodoraService;
-import user.MyFoodoraServiceImpl;
-import user.Restaurant;
-import user.User;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.model.User;
+import user.service.ManagerService;
+import user.service.MyFoodoraService;
+import user.service.impl.ManagerServiceImpl;
+import user.service.impl.MyFoodoraServiceImpl;
 
 /**
  * Use case scenario

@@ -13,7 +13,11 @@ import exceptions.UserNotFoundException;
 import initialization.InitialScenario;
 import restaurant.*;
 import system.*;
-import user.*;
+import user.model.*;
+import user.service.ManagerService;
+import user.service.MyFoodoraService;
+import user.service.impl.ManagerServiceImpl;
+import user.service.impl.MyFoodoraServiceImpl;
 
 /**
  * Use case scenario

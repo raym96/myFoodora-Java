@@ -14,12 +14,12 @@ import exceptions.UserNotFoundException;
 import initialization.InitialScenario;
 import policies.FastestDeliveryPolicy;
 import system.AddressPoint;
-import user.Courier;
-import user.Manager;
-import user.ManagerService;
-import user.MyFoodora;
-import user.Restaurant;
-import user.User;
+import user.model.Courier;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.model.User;
+import user.service.ManagerService;
 
 public class ManagerServiceTest {
 

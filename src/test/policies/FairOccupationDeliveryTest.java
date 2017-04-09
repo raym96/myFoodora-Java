@@ -12,10 +12,10 @@ import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
 import system.StandardMealOrder;
-import user.Courier;
-import user.Customer;
-import user.MyFoodora;
-import user.Restaurant;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.MyFoodora;
+import user.model.Restaurant;
 
 public class FairOccupationDeliveryTest {
 

@@ -15,11 +15,11 @@ import restaurant.Menu;
 import system.AddressPoint;
 import system.Order;
 import system.StandardMealOrder;
-import user.Courier;
-import user.Customer;
-import user.Manager;
-import user.MyFoodora;
-import user.Restaurant;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.model.Restaurant;
 
 public class CourierTest {
 

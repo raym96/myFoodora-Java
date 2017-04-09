@@ -12,7 +12,7 @@ import initialization.InitialScenario;
 import policies.TargetProfitPolicy;
 import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
-import user.MyFoodora;
+import user.model.MyFoodora;
 
 public class TargetProfit_DeliveryCostTest {
 	MyFoodora myfoodora;

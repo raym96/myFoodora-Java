@@ -14,13 +14,13 @@ import restaurant.Meal;
 import system.AddressPoint;
 import system.Order;
 import system.StandardMealOrder;
-import user.Courier;
-import user.CourierService;
-import user.Customer;
-import user.MyFoodora;
-import user.MyFoodoraService;
-import user.MyFoodoraServiceImpl;
-import user.Restaurant;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.service.CourierService;
+import user.service.MyFoodoraService;
+import user.service.impl.MyFoodoraServiceImpl;
 
 public class CourierServiceTest {
 	

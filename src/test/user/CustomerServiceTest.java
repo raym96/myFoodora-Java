@@ -18,12 +18,12 @@ import system.History;
 import system.MealOrder;
 import system.Order;
 import system.SpecialMealOrder;
-import user.Customer;
-import user.CustomerService;
-import user.MyFoodora;
-import user.MyFoodoraService;
-import user.MyFoodoraServiceImpl;
-import user.Restaurant;
+import user.model.Customer;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.service.CustomerService;
+import user.service.MyFoodoraService;
+import user.service.impl.MyFoodoraServiceImpl;
 
 public class CustomerServiceTest {
 
