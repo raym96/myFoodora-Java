@@ -32,7 +32,7 @@ import user.*;
 //	cording to his role
 //*/
 
-public class LoginUser {
+public class LoginUserTest {
 
 	private MyFoodora myfoodora;
 	private MyFoodoraService myfoodora_service;
