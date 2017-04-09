@@ -3,8 +3,8 @@ package system;
 import restaurant.FullMeal;
 import restaurant.HalfMeal;
 import restaurant.Meal;
-import user.Customer;
-import user.Restaurant;
+import user.model.Customer;
+import user.model.Restaurant;
 
 public abstract class MealOrder extends Order {
 	protected Meal meal;

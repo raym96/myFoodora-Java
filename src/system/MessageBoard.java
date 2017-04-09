@@ -2,8 +2,8 @@ package system;
 
 import java.util.ArrayList;
 
-import user.MyFoodora;
-import user.User;
+import user.model.MyFoodora;
+import user.model.User;
 
 public class MessageBoard {
 

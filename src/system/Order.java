@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
-import user.Courier;
-import user.Customer;
-import user.Restaurant;
-import user.User;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.Restaurant;
+import user.model.User;
 
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public abstract class Order {
@@ -103,7 +103,7 @@ public abstract class Order {
 	
 	@Override
 	public String toString(){
-		String str = "["+price+"€] ";
+		String str = "["+price+"ï¿½] ";
 		if (this instanceof SpecialMealOrder){
 			str+= "Special-meal <";
 			str+= ((SpecialMealOrder)this).getName();

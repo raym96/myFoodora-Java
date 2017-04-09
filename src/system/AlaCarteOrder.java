@@ -1,8 +1,8 @@
 package system;
 
 import restaurant.Dish;
-import user.Customer;
-import user.Restaurant;
+import user.model.Customer;
+import user.model.Restaurant;
 
 public class AlaCarteOrder extends Order {
 	private Dish dish;

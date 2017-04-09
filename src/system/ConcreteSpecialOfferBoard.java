@@ -3,8 +3,8 @@ package system;
 import java.util.ArrayList;
 
 import restaurant.Meal;
-import user.Customer;
-import user.User;
+import user.model.Customer;
+import user.model.User;
 
 public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	private ArrayList<SpecialOfferObserver> observers;

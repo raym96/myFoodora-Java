@@ -1,7 +1,7 @@
 package system;
 
 import restaurant.*;
-import user.Restaurant;
+import user.model.Restaurant;
 
 public class SpecialOffer {
 	private Meal meal;

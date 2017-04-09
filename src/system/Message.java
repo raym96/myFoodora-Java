@@ -2,7 +2,7 @@ package system;
 
 import java.util.Date;
 
-import user.User;
+import user.model.User;
 
 public class Message {
 

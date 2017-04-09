@@ -1,8 +1,8 @@
 package system;
 
 import restaurant.Meal;
-import user.Customer;
-import user.Restaurant;
+import user.model.Customer;
+import user.model.Restaurant;
 
 public class SpecialMealOrder extends MealOrder{
 	public SpecialMealOrder(Customer customer,Restaurant restaurant, Meal meal) {
