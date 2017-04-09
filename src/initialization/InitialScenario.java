@@ -21,23 +21,12 @@ import exceptions.MealNotFoundException;
 import exceptions.OrderNotFoundException;
 import exceptions.UserNotFoundException;
 import restaurant.*;
-import system.AddressPoint;
-import system.AlaCarteOrder;
-import system.ConcreteShoppingCartVisitor;
-import system.History;
-import system.Order;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
-import user.model.Courier;
-import user.model.Customer;
-import user.model.Manager;
-import user.model.MyFoodora;
-import user.model.Restaurant;
-import user.model.User;
+import system.*;
+import user.model.*;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InitialScenario.
+ * The Class InitialScenario. Loads an initial scenario from an ini file.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

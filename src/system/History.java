@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import restaurant.*;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class History.
  * @author He Xiaoan

@@ -3,7 +3,7 @@
  */
 package restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class HalfMeal.
  * @author He Xiaoan

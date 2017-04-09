@@ -7,7 +7,6 @@ import restaurant.Meal;
 import user.model.Customer;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SpecialMealOrder.
  * @author He Xiaoan

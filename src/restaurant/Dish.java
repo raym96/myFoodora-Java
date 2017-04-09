@@ -3,7 +3,7 @@
  */
 package restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Dish.
  * @author He Xiaoan
@@ -47,11 +47,10 @@ public abstract class Dish {
 	
 	
 	/**
-	 * Make copy.
+	 * Make copy of a dish for factory pattern
 	 *
 	 * @return the dish
 	 */
-	//Copy constructor
 	protected abstract Dish makeCopy();
 	
 	/* (non-Javadoc)

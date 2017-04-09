@@ -3,9 +3,10 @@
  */
 package policies;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface TargetProfitPolicy.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

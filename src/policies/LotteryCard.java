@@ -8,7 +8,6 @@ import java.util.Random;
 import user.model.Customer;
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LotteryCard.
  * @author He Xiaoan

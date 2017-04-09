@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import system.Order;
 import user.model.Courier;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FairOccupationDeliveryPolicy.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

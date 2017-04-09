@@ -26,7 +26,7 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SortingByRestaurantTest.
  * @author He Xiaoan

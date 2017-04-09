@@ -21,7 +21,7 @@ import user.model.Customer;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class FastestDeliveryTest.
  * @author He Xiaoan

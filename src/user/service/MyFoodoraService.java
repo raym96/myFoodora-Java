@@ -11,7 +11,7 @@ import system.*;
 import user.model.Courier;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface MyFoodoraService.
  * @author He Xiaoan
@@ -20,12 +20,11 @@ import user.model.User;
 public interface MyFoodoraService {
 		
 	/**
-	 *  myfoodora's specific services *.
+	 * Sets up the the service-fee.
 	 *
 	 * @param service_fee the new service fee
 	 */
-	// 1. setting of the service-fee, the markup percentage (\percentage de marge") and the
-	// delivery cost values
+
 	public void setServiceFee(double service_fee);
 	
 	/**
@@ -42,39 +41,36 @@ public interface MyFoodoraService {
 	 */
 	public void setDeliveryCost(double delivery_cost);
 	
-	// 2. allocating of a courier to an order placed by a customer (by application of the current
 	/**
-	 * Parses the.
+	 * 	allocating of a courier from a list of available couriers to an order placed by a customer 
+	 * (by application of the currentdelivery policy, see below details of supported policies)
 	 *
 	 * @param order the order
-	 * @param availablecouriers the availablecouriers
+	 * @param availablecouriers the available couriers
 	 */
-	// delivery policy, see below details of supported policies)
 	public void parse(Order order, ArrayList<Courier> availablecouriers);
 
-	// 3. notifying users that gave consensus to receive special oers notications, of a new
 	/**
-	 * Notify all.
-	 *
+	 * notifying users that gave consensus to receive special offers notifcations, of a new
+	 *	 special offer set by a restaurant
 	 * @param specialoffer the specialoffer
 	 */
-	// special offer set by a restaurant
+
 	public void notifyAll(Meal specialoffer);
 	
-	// 4. computing the total income (i.e. the sum of all completed orders) as well as the total
-	// profit of the system, knowing that the the prot of a single order is given by:
 	/**
-	 * Gets the total income.
+	 * computing the total income (i.e. the sum of all completed orders) over a period
 	 *
 	 * @param date1 the date 1
 	 * @param date2 the date 2
 	 * @return the total income
 	 */
-	// profit for one order = order_price * markup_percentage + service_fee - delivery cost
 	public double getTotalIncome(Date date1, Date date2);
 	
 	/**
-	 * Gets the total profit.
+	 * 	 computing profit of the system, knowing that the the profit of a single order is given by:
+	 * profit for one order = order_price * markup_percentage + service_fee - delivery cost
+
 	 *
 	 * @param date1 the date 1
 	 * @param date2 the date 2
@@ -83,7 +79,7 @@ public interface MyFoodoraService {
 	public double getTotalProfit(Date date1, Date date2);
 	
 	/**
-	 * Gets the average income per customer.
+	 * Gets the average income per customer over a period
 	 *
 	 * @param date1 the date 1
 	 * @param date2 the date 2
@@ -97,13 +93,10 @@ public interface MyFoodoraService {
 	 *
 	 * @param targetProfit the target profit
 	 */
-	// parameters (service-fee, markup percentage, and the delivery cost)
 	public void applyTargetProfitPolicy(double targetProfit);
 	
-
-	
 	/**
-	 *  myfoodora's basic services provided to User's specific operations rely on *.
+	 *  Select a user by his username
 	 *
 	 * @param username the username
 	 * @return the user
@@ -120,7 +113,7 @@ public interface MyFoodoraService {
 	public ArrayList<User> getUsersOfAssignedType(String userType);
 	
 	/**
-	 * Ask agree 2 customers.
+	 * Sends a message to customers.
 	 *
 	 * @param ask the ask
 	 */

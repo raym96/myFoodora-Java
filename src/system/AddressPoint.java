@@ -3,7 +3,7 @@
  */
 package system;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AddressPoint.
  * @author He Xiaoan
@@ -11,10 +11,10 @@ package system;
  */
 public class AddressPoint {
 
-	/** The x. */
+	/** The abcisse. */
 	private double x;
 	
-	/** The y. */
+	/** The ordonnee. */
 	private double y;
 	
 	/**

@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import system.AddressPoint;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AddressPointTest.
  * @author He Xiaoan

@@ -3,9 +3,10 @@
  */
 package restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class FullMeal.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */
@@ -39,7 +40,7 @@ public class FullMeal extends Meal {
 	
 
 	/**
-	 * Instantiates a new full meal.
+	 * Instantiates a new full meal by copying the argument
 	 *
 	 * @param fullmeal the fullmeal
 	 */
@@ -59,7 +60,6 @@ public class FullMeal extends Meal {
 	 * @param dishName2 the dish name 2
 	 * @param dishName3 the dish name 3
 	 */
-	//ONLY FOR TESTS
 	public FullMeal(String name, Menu menu, String dishName1, String dishName2, String dishName3) {
 		super(name);
 		Dish dish1 = null;

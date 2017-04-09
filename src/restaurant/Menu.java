@@ -10,7 +10,7 @@ import exceptions.DishNotFoundException;
 import exceptions.NameAlreadyExistsException;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Menu.
  * @author He Xiaoan
@@ -36,62 +36,6 @@ public class Menu {
 		maindishes = new ArrayList<MainDish>();
 		desserts = new ArrayList<Dessert>();
 //		initMenu();
-	}
-	
-	/**
-	 * Gets the starters.
-	 *
-	 * @return the starters
-	 */
-	public ArrayList<Starter> getStarters() {
-		return starters;
-	}
-
-	/**
-	 * Gets the maindishes.
-	 *
-	 * @return the maindishes
-	 */
-	public ArrayList<MainDish> getMaindishes() {
-		return maindishes;
-	}
-
-	/**
-	 * Gets the desserts.
-	 *
-	 * @return the desserts
-	 */
-	public ArrayList<Dessert> getDesserts() {
-		return desserts;
-	}
-
-	/**
-	 * Gets the dishes.
-	 *
-	 * @return the dishes
-	 */
-	public ArrayList<Dish> getDishes(){
-		ArrayList<Dish> list = new ArrayList<Dish>();
-		list.addAll(getStarters());
-		list.addAll(getMaindishes());
-		list.addAll(getDesserts());
-		
-		return list;
-	}
-	
-	
-	
-	/**
-	 * Inits the menu.
-	 */
-	public void initMenu(){
-		
-		starters.add(new Starter("foie gras", "standard", 1.5));
-		starters.add(new Starter("salade", "standard", 1.5));
-		maindishes.add(new MainDish("poulet", "standard", 1.5));
-		maindishes.add(new MainDish("poisson", "standard", 1.5));
-		desserts.add(new Dessert("glace", "standard", 1.5));
-		desserts.add(new Dessert("cafe", "standard", 1.5));
 	}
 	
 	/**
@@ -143,21 +87,7 @@ public class Menu {
 		}
 	}
 	
-	/**
-	 * Checks for dish.
-	 *
-	 * @param dishName the dish name
-	 * @return true, if successful
-	 */
-	public boolean hasDish(String dishName){
-		for (Dish dish : this.getDishes()) {
-			if (dish.getDishName().equalsIgnoreCase(dishName)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
+
 	/**
 	 * Display.
 	 */
@@ -175,6 +105,77 @@ public class Menu {
 		for (Dish dish:this.getDesserts()){
 			System.out.println(dish);
 		}
+	}
+
+	/**
+	 * Gets the desserts.
+	 *
+	 * @return the desserts
+	 */
+	public ArrayList<Dessert> getDesserts() {
+		return desserts;
+	}
+
+	/**
+	 * Gets the dishes.
+	 *
+	 * @return the dishes
+	 */
+	public ArrayList<Dish> getDishes(){
+		ArrayList<Dish> list = new ArrayList<Dish>();
+		list.addAll(getStarters());
+		list.addAll(getMaindishes());
+		list.addAll(getDesserts());
+		
+		return list;
+	}
+	
+	
+	
+	/**
+	 * Gets the maindishes.
+	 *
+	 * @return the maindishes
+	 */
+	public ArrayList<MainDish> getMaindishes() {
+		return maindishes;
+	}
+	
+	/**
+	 * Gets the starters.
+	 *
+	 * @return the starters
+	 */
+	public ArrayList<Starter> getStarters() {
+		return starters;
+	}
+	
+	/**
+	 * Checks for dish.
+	 *
+	 * @param dishName the dish name
+	 * @return true, if successful
+	 */
+	public boolean hasDish(String dishName){
+		for (Dish dish : this.getDishes()) {
+			if (dish.getDishName().equalsIgnoreCase(dishName)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Inits the menu for tests.
+	 */
+	public void initMenu(){
+		
+		starters.add(new Starter("foie gras", "standard", 1.5));
+		starters.add(new Starter("salade", "standard", 1.5));
+		maindishes.add(new MainDish("poulet", "standard", 1.5));
+		maindishes.add(new MainDish("poisson", "standard", 1.5));
+		desserts.add(new Dessert("glace", "standard", 1.5));
+		desserts.add(new Dessert("cafe", "standard", 1.5));
 	}
 	
 }

@@ -17,7 +17,7 @@ import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TargetProfit_DeliveryCostTest.
  * @author He Xiaoan

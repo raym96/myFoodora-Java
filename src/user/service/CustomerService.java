@@ -9,41 +9,40 @@ import system.SpecialMealOrder;
 import system.StandardMealOrder;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Interface CustomerService.
+ * The Interface CustomerService. 
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */
 public interface CustomerService {
 
-	// 1. place orders: this includes choosing a selection of items a-la-carte or one or more
-	// meals offered by a given restaurant, and paying the total price for the composed
 	/**
-	 * Adds the special meal order.
+	 * Place the special meal order.
 	 *
-	 * @param r the r
+	 * @param restaurant the restaurant
 	 * @param mealName the meal name
 	 */
 	// order.
-	public void addSpecialMealOrder(Restaurant r, String mealName);
+	public void addSpecialMealOrder(Restaurant restaurant, String mealName);
 	
 	/**
-	 * Adds the standard meal order.
+	 * Place the standard meal order.
 	 *
-	 * @param r the r
+	 * @param restaurant the restaurant
 	 * @param mealName the meal name
 	 * @param mealType the meal type
 	 */
-	public void addStandardMealOrder(Restaurant r, String mealName, String mealType);
+	public void addStandardMealOrder(Restaurant restaurant, String mealName, String mealType);
 	
 	/**
-	 * Adds the ala carte order.
+	 * Place the a-la-carte order.
 	 *
-	 * @param r the r
+	 * @param restaurant the restaurant
 	 * @param dishName the dish name
 	 */
-	public void addAlaCarteOrder(Restaurant r, String dishName);
+	public void addAlaCarteOrder(Restaurant restaurant, String dishName);
 	
 	/**
 	 * Pay.
@@ -51,44 +50,41 @@ public interface CustomerService {
 	public void pay();	
 	
 	/**
-	 * Register card.
+	 * register to a fidelity card plan
 	 *
 	 * @param cardType the card type
 	 */
-	// 2. register/unregister to/from a fidelity card plan
 	public void registerCard(String cardType);
 	
 	/**
-	 * Unregister card.
+	 * unregister from a fidelity card plan
 	 */
 	public void unregisterCard();
 	
-	// 3. access the information related to their account: including history of orders, and
-	// points acquired with a fidelity program
+
 	
 	/**
-	 * Gets the history.
+	 * access the history of orders
 	 *
 	 * @return the history
 	 */
 	History getHistory();
 	
 	/**
-	 * Gets the points.
+	 * access the points acquired with a fidelity program
 	 *
 	 * @return the points
 	 */
 	double getPoints();
 	
-	// 4. give/remove consensus to be notified whenever a new special offer is set by any
 	/**
-	 * Give consensus be notified special offers.
+	 * Give consensus to be notified of special offers.
 	 */
 	// restaurant
 	public void giveConsensusBeNotifiedSpecialOffers();
 	
 	/**
-	 * Removes the consensus be notified special offers.
+	 * Removes the consensus to be notified of special offers.
 	 */
 	public void removeConsensusBeNotifiedSpecialOffers();
 

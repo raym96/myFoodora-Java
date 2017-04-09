@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import restaurant.Starter;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class StarterTest.
  * @author He Xiaoan

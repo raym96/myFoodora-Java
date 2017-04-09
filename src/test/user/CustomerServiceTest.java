@@ -28,7 +28,7 @@ import user.service.CustomerService;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CustomerServiceTest.
  * @author He Xiaoan

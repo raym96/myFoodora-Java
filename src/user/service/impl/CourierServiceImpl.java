@@ -14,7 +14,7 @@ import user.model.Customer;
 import user.model.MyFoodora;
 import user.service.CourierService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CourierServiceImpl.
  * @author He Xiaoan

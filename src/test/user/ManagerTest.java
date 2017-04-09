@@ -14,7 +14,7 @@ import user.model.Manager;
 import user.model.MyFoodora;
 import user.service.ManagerService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ManagerTest.
  * @author He Xiaoan

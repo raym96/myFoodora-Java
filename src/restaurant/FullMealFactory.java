@@ -5,7 +5,7 @@ package restaurant;
 
 import exceptions.MealNotFoundException;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * A factory for creating FullMeal objects.
  * @author He Xiaoan

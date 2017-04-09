@@ -3,9 +3,10 @@
  */
 package exceptions;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class NameAlreadyExistsException.
+ * The Class NameAlreadyExistsException. Thrown when creating a user/meal/dish with
+ * an already existing username/mealname/dishname.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

@@ -7,7 +7,7 @@ import restaurant.Dish;
 import user.model.Customer;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AlaCarteOrder.
  * @author He Xiaoan

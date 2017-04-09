@@ -19,7 +19,7 @@ import system.SpecialOfferBoard;
 import user.service.RestaurantService;
 import user.service.impl.RestaurantServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Restaurant.
  * @author He Xiaoan

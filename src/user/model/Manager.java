@@ -13,7 +13,7 @@ import user.service.MyFoodoraService;
 import user.service.impl.ManagerServiceImpl;
 import user.service.impl.MyFoodoraServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Manager.
  * @author He Xiaoan

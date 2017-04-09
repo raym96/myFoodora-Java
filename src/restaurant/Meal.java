@@ -6,7 +6,7 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Meal.
  * @author He Xiaoan
@@ -49,11 +49,10 @@ public abstract class Meal {
 	}
 	
 	
-	//Check if the meal is composed only by dishes of the same type (vegetarian or gluten-free)
-	/**
-	 * Refresh meal type.
+	/**Check if the meal is composed only by dishes of the same type (vegetarian or gluten-free)
+	 *	if it is the case, the meal type is changed to the corresponding type.
+	 * .
 	 */
-	//if it is the case, the meal type is changed to the corresponding type
 	public void refreshMealType(){
 		if (this.sameMealType()){
 			this.mealType = this.getDishes().get(0).getDishType();

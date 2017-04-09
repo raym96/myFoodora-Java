@@ -11,7 +11,7 @@ import org.junit.Test;
 import restaurant.Dessert;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class DessertTest.
  * @author He Xiaoan

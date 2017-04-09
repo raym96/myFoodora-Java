@@ -20,9 +20,10 @@ import system.StandardMealOrder;
 
 import java.util.TreeMap;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SortingByHalfMeal.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

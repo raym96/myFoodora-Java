@@ -16,7 +16,7 @@ import restaurant.HalfMeal;
 import restaurant.MealMenu;
 import restaurant.Menu;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MealMenuTest.
  * @author He Xiaoan

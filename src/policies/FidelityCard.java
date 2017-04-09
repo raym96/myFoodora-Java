@@ -6,9 +6,9 @@ package policies;
 import user.model.Customer;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FidelityCard.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

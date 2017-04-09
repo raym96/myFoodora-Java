@@ -6,7 +6,7 @@ package system;
 import restaurant.*;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ConcreteShoppingCartVisitor.
  * @author He Xiaoan

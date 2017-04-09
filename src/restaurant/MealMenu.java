@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import exceptions.MealNotFoundException;
 import exceptions.NameAlreadyExistsException;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MealMenu.
  * @author He Xiaoan

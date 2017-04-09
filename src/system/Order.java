@@ -16,7 +16,7 @@ import user.model.Customer;
 import user.model.Restaurant;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Order.
  * @author He Xiaoan

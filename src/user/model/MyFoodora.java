@@ -24,7 +24,7 @@ import system.Order;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MyFoodora.
  * @author He Xiaoan

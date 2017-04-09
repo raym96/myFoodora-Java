@@ -3,9 +3,9 @@
  */
 package exceptions;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MealNotFoundException.
+ * The Class MealNotFoundException. Thrown when a mealname is not recognized.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

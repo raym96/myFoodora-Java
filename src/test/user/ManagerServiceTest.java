@@ -24,7 +24,7 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.ManagerService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ManagerServiceTest.
  * @author He Xiaoan

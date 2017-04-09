@@ -16,7 +16,7 @@ import system.MessageBoard;
 import user.model.Customer;
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MessageBoardTest.
  * @author He Xiaoan

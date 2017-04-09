@@ -12,43 +12,40 @@ import user.model.Courier;
 import user.model.Restaurant;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Interface ManagerService.
+ * The Interface ManagerService. 
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */
 public interface ManagerService {
-
-	// manager can perform these operations
 	
 	
 	/**
-	 * Adds the user.
+	 * Adds any kind of user to the system
 	 *
 	 * @param user the user
 	 */
-	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
 	public void addUser(User user);
 	
 	/**
-	 * Removes the user.
+	 * Removes any kind of user from the system
 	 *
 	 * @param user the user
 	 */
 	public void removeUser(User user);
 	
 	/**
-	 * Activate user.
+	 * Activate any kind of user.
 	 *
 	 * @param user the user
 	 * @throws UserNotFoundException the user not found exception
 	 */
-	// 2. activate/disactivate any kind of user (restaurant, customers and/or couriers) of the system
 	public void activateUser(User user) throws UserNotFoundException;
 	
 	/**
-	 * Disactivate user.
+	 * Disactivate any kind of user.
 	 *
 	 * @param user the user
 	 * @throws UserNotFoundException the user not found exception
@@ -60,7 +57,6 @@ public interface ManagerService {
 	 *
 	 * @param service_fee the new service free
 	 */
-	// 3. changing the service-fee percentage and/or the markup percentage (\percentage de marge") and/or the delivery-cost
 	public void setServiceFree(double service_fee);
 	
 	/**
@@ -78,94 +74,89 @@ public interface ManagerService {
 	public void setDeliveryCost(double delivery_cost);
 	
 	/**
-	 * Gets the total income.
+	 * Gets the total income over a time period
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param date1 the starting date
+	 * @param date2 the end date
 	 * @return the total income
 	 */
-	// 4. computing the total income and/or prot over a time period
 	public double getTotalIncome(Date date1, Date date2);
 	
 	/**
-	 * Gets the total profit.
+	 * Gets the total profit over a time period
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param date1 the starting date
+	 * @param date2 the end date
 	 * @return the total profit
 	 */
 	public double getTotalProfit(Date date1, Date date2);
 	
-	// 5. computing the average income per customer (i.e., the total income divided by
 	/**
-	 * Gets the average income per customer.
+	 * Computing the average income per customer over a time period.
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param date1 the starting date
+	 * @param date2 the end date
 	 * @return the average income per customer
 	 */
-	// the number of customers that placed at least one command) a time period
 	public double getAverageIncomePerCustomer(Date date1, Date date2);
 	
-	// 6. determining either the service-fee and/or markup percentage and/or the delivery-
 	/**
 	 * Sets the target profit policy.
 	 *
 	 * @param t the new target profit policy
 	 */
-	//cost so to meet a target-prot (see target prot policies below)
 	public void setTargetProfitPolicy(TargetProfitPolicy t);
 	
 	/**
-	 * Determine param 2 meet target profit.
+	 * determining either the service-fee and/or markup percentage and/or the delivery-
+	 * cost so to meet a target-prot (see target prot policies below)
 	 *
 	 * @param targetProfit the target profit
 	 */
 	public void determineParam2MeetTargetProfit(double targetProfit);
 	
 	/**
-	 * Gets the best restaurant.
+	 * Determines the best selling restaurant.
 	 *
 	 * @return the best restaurant
 	 */
-	// 7. determining the most/least selling restaurant
 	public Restaurant getBestRestaurant(); // to be completed
 	
 	/**
-	 * Gets the worst restaurant.
+	 * Determines the worst selling restaurant.
 	 *
 	 * @return the worst restaurant
 	 */
-	public Restaurant getWorstRestaurant(); // to be completed
+	public Restaurant getWorstRestaurant(); 
 	
 	/**
-	 * Gets the best courier.
+	 * Gets the most active courier of the fleet
 	 *
 	 * @return the best courier
 	 */
-	// 8. determining the most/least active courier of the fleet
-	public Courier getBestCourier(); // to be completed
+	public Courier getBestCourier(); 
 	
 	/**
-	 * Gets the worst courier.
+	 * Gets the least active courier of the fleet
 	 *
 	 * @return the worst courier
 	 */
-	public Courier getWorstCourier(); // to be completed 
+	public Courier getWorstCourier();
 	
-	// 9. setting the current delivery-policy used by MyFoodora to determine which courier
 	/**
-	 * Sets the delivery policy.
-	 *
+	 * setting the current delivery-policy used by MyFoodora to determine which courier
+	 *is assigned to deliver an order placed by a customer
+
 	 * @param deliverypolicy the new delivery policy
 	 */
-	// is assigned to deliver an order placed by a customer
 	public void setDeliveryPolicy(DeliveryPolicy deliverypolicy); 
 	
+	
+	// ##. extra tool method
+
 	/**
 	 * Display users.
 	 */
-	// ##. extra tool method
 	public void displayUsers();
 	
 	/**
@@ -174,7 +165,7 @@ public interface ManagerService {
 	public void displayActiveUsers();
 	
 	/**
-	 * Select user.
+	 * Select user by username
 	 *
 	 * @param username the username
 	 * @return the user

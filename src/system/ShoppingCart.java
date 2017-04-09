@@ -5,7 +5,7 @@ package system;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ShoppingCart.
  * @author He Xiaoan

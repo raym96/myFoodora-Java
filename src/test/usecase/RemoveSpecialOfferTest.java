@@ -22,7 +22,7 @@ import user.service.MyFoodoraService;
 import user.service.impl.ManagerServiceImpl;
 import user.service.impl.MyFoodoraServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Use case scenario
  * The following use case scenario describe examples of how the MyFoodora should function.

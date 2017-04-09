@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import system.Message;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MessageTest.
  * @author He Xiaoan

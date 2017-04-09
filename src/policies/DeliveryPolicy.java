@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import system.Order;
 import user.model.Courier;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface DeliveryPolicy.
  * @author He Xiaoan
@@ -18,7 +17,7 @@ import user.model.Courier;
 public interface DeliveryPolicy {
 
 	/**
-	 * Parses the.
+	 * Parses an order to a courier.
 	 *
 	 * @param order the order
 	 * @param activecouriers the activecouriers

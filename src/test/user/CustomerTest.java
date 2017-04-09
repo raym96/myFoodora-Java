@@ -22,7 +22,7 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.service.CustomerService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CustomerTest.
  * @author He Xiaoan

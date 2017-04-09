@@ -5,7 +5,6 @@ package restaurant;
 
 import exceptions.DishNotFoundException;
 
-// TODO: Auto-generated Javadoc
 //Create dishes for A-la-carte orders
 
 
@@ -17,7 +16,6 @@ import exceptions.DishNotFoundException;
 public class DishFactory {
 	
 	/** The menu. */
-	//needs to know what's in the menu to create dishes
 	private Menu menu;
 	
 	/**
@@ -34,7 +32,7 @@ public class DishFactory {
 	 *
 	 * @param dishName the dish name
 	 * @return the dish
-	 * @throws DishNotFoundException the dish not found exception
+	 * @throws DishNotFoundException
 	 */
 	public Dish createDish(String dishName) throws DishNotFoundException{
 		// TODO Auto-generated method stub

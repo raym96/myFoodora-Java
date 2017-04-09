@@ -16,7 +16,7 @@ import restaurant.HalfMeal;
 import restaurant.MealMenu;
 import restaurant.Menu;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class FullMealFactoryTest.
  * @author He Xiaoan

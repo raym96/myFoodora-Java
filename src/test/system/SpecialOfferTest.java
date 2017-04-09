@@ -14,7 +14,7 @@ import system.AddressPoint;
 import system.SpecialOffer;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SpecialOfferTest.
  * @author He Xiaoan

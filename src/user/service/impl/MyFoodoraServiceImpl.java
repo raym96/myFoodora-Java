@@ -19,7 +19,7 @@ import user.model.MyFoodora;
 import user.model.User;
 import user.service.MyFoodoraService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MyFoodoraServiceImpl.
  * @author He Xiaoan

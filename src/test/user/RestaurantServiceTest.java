@@ -16,7 +16,7 @@ import user.model.Restaurant;
 import user.service.RestaurantService;
 import user.service.impl.MyFoodoraServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class RestaurantServiceTest.
  * @author He Xiaoan

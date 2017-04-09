@@ -12,7 +12,7 @@ import org.junit.Test;
 import restaurant.FullMeal;
 import restaurant.Menu;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class FullMealTest.
  * @author He Xiaoan

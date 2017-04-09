@@ -20,7 +20,7 @@ import system.SpecialOfferObserver;
 import user.service.CustomerService;
 import user.service.impl.CustomerServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Customer.
  * @author He Xiaoan

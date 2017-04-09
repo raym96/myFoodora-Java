@@ -3,10 +3,9 @@
  */
 package exceptions;
 
-// TODO: Auto-generated Javadoc
 /**
  *
- * The Class DishNotFoundException.
+ * The Class DishNotFoundException. Thrown when a dishname is not recognized.
  * @author He Xiaoan
  * @author Ji Raymond
  */

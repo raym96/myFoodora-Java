@@ -3,7 +3,7 @@
  */
 package restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MainDish.
  * @author He Xiaoan
@@ -14,12 +14,12 @@ public final class MainDish extends Dish {
 	/**
 	 * Instantiates a new main dish.
 	 *
-	 * @param itemName the item name
-	 * @param itemType the item type
+	 * @param dishName the dish name
+	 * @param dishType the dish type
 	 * @param price the price
 	 */
-	public MainDish(String itemName, String itemType, double price) {
-		super(itemName, itemType, price);
+	public MainDish(String dishName, String dishType, double price) {
+		super(dishName, dishType, price);
 	}
 
 	/* (non-Javadoc)

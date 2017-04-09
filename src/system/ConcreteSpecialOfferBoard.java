@@ -9,7 +9,7 @@ import restaurant.Meal;
 import user.model.Customer;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ConcreteSpecialOfferBoard.
  * @author He Xiaoan

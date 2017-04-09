@@ -3,9 +3,9 @@
  */
 package exceptions;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserNotFoundException.
+ * The Class UserNotFoundException. Thrown when a username is not recognized.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

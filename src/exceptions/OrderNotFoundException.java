@@ -5,9 +5,9 @@ package exceptions;
 
 import system.Order;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class OrderNotFoundException.
+ * The Class OrderNotFoundException. Thrown when a order is not recognized.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

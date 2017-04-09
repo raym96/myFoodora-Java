@@ -16,7 +16,7 @@ import system.SpecialOfferBoard;
 import user.service.CourierService;
 import user.service.impl.CourierServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Courier.
  * @author He Xiaoan

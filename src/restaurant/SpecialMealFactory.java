@@ -5,9 +5,9 @@ package restaurant;
 
 import exceptions.MealNotFoundException;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * A factory for creating SpecialMeal objects.
+ * A factory for creating Meal-of-the-weeks which can be halfmeal or fullmeal.
  * @author He Xiaoan
  * @author Ji Raymond
  */

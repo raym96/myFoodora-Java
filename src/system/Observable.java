@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Observable.
  * @author He Xiaoan

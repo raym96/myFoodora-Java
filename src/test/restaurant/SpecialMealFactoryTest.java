@@ -16,7 +16,7 @@ import restaurant.MealMenu;
 import restaurant.Menu;
 import restaurant.SpecialMealFactory;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SpecialMealFactoryTest.
  * @author He Xiaoan

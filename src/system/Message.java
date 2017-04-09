@@ -7,7 +7,7 @@ import java.util.Date;
 
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Message.
  * @author He Xiaoan

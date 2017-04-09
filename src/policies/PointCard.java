@@ -6,9 +6,10 @@ package policies;
 import user.model.Customer;
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class PointCard.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */
@@ -21,7 +22,7 @@ public class PointCard extends FidelityCard {
 	/**
 	 * Instantiates a new point card.
 	 *
-	 * @param c the c
+	 * @param c the customer
 	 */
 	public PointCard(Customer c){
 		super(c);

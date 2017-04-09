@@ -17,7 +17,7 @@ import restaurant.MainDish;
 import restaurant.Menu;
 import restaurant.Starter;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MenuTest.
  * @author He Xiaoan

@@ -23,7 +23,7 @@ import user.model.Restaurant;
 import user.service.CustomerService;
 import user.service.MyFoodoraService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CustomerServiceImpl.
  * @author He Xiaoan

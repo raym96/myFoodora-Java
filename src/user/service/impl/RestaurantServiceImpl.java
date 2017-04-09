@@ -24,7 +24,7 @@ import system.*;
 import user.model.Restaurant;
 import user.service.RestaurantService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class RestaurantServiceImpl.
  * @author He Xiaoan

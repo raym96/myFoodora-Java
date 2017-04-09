@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import system.*;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface Observer.
  * @author He Xiaoan

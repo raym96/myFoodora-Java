@@ -9,9 +9,10 @@ import java.util.List;
 
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TargetProfit_Markup.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

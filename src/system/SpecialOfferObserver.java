@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import restaurant.Meal;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * An asynchronous update interface for receiving notifications
  * about SpecialOffer information as the SpecialOffer is constructed.

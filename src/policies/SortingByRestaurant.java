@@ -15,9 +15,10 @@ import restaurant.Meal;
 import system.Order;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SortingByRestaurant.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

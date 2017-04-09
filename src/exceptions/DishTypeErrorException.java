@@ -3,11 +3,12 @@
  */
 package exceptions;
 
-// TODO: Auto-generated Javadoc
 //Occurs when we try to create a Full-Meal with 2 starters for example
 
 /**
- * The Class DishTypeErrorException.
+ * The Class DishTypeErrorException. Thrown when the dish type is wrong when creating
+ * a meal, for example when a restaurant tries to add 2 starters to a half-meal.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

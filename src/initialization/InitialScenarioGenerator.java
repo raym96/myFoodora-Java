@@ -18,7 +18,6 @@ import restaurant.Menu;
 import user.model.Customer;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
 /** Provides methods to outprint initial scenarios, which can be copy-pasted
  *  to an .ini file, and once filled can be loaded by InitialScenario.load()
  *  
@@ -29,25 +28,18 @@ import user.model.Restaurant;
 
 public class InitialScenarioGenerator {
 	
-	/** The n customer. */
 	static int nCustomer = 2;
 	
-	/** The n restaurant. */
 	static int nRestaurant = 2;
 	
-	/** The n manager. */
 	static int nManager = 1;
 	
-	/** The n courier. */
 	static int nCourier = 3;
 	
-	/** The n menu. */
 	static int nMenu = 6; //total number of dishes per restaurant: 2 ST + 2 MD + 2 DS
 	
-	/** The n meal menu. */
 	static int nMealMenu = 5; // 4 HM + 4 FM + 1SM per restaurant
 	
-	/** The n order. */
 	static int nOrder = 30;
 	
 	/**

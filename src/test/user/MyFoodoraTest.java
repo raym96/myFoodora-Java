@@ -25,7 +25,7 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MyFoodoraTest.
  * @author He Xiaoan

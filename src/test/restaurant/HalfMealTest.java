@@ -13,7 +13,7 @@ import restaurant.FullMeal;
 import restaurant.HalfMeal;
 import restaurant.Menu;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class HalfMealTest.
  * @author He Xiaoan

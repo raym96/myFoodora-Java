@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import user.model.MyFoodora;
 import user.model.User;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MessageBoard.
  * @author He Xiaoan

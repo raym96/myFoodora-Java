@@ -8,9 +8,10 @@ import java.util.Date;
 
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TargetProfit_DeliveryCost.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

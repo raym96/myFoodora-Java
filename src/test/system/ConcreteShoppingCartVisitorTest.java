@@ -20,7 +20,7 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ConcreteShoppingCartVisitorTest.
  * @author He Xiaoan
@@ -34,9 +34,7 @@ public class ConcreteShoppingCartVisitorTest {
 	/** The menu. */
 	private static Menu menu = new Menu();
 	
-	/**
-	 * Inits the.
-	 */
+
 	@BeforeClass
 	public static void init(){
 		concreteShoppingCartVisitor = new ConcreteShoppingCartVisitor();

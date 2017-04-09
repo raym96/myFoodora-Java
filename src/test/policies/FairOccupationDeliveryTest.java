@@ -20,7 +20,7 @@ import user.model.Customer;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class FairOccupationDeliveryTest.
  * @author He Xiaoan

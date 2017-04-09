@@ -9,9 +9,9 @@ import system.AddressPoint;
 import system.Order;
 import user.model.Courier;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FastestDeliveryPolicy.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

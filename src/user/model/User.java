@@ -12,7 +12,7 @@ import system.Observable;
 import system.Observer;
 import user.model.MyFoodora;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class User.
  * @author He Xiaoan

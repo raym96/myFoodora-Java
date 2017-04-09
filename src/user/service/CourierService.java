@@ -6,54 +6,51 @@ package user.service;
 import system.AddressPoint;
 import system.Order;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Interface CourierService.
+ * The Interface CourierService. 
  * @author He Xiaoan
  * @author Ji Raymond
  */
 public interface CourierService {
-	
 	/**
-	 * Register.
+	 * register their account to the MyFoodora system
 	 */
-	// 1. register/unregister their account to the MyFoodora system.
 	public void register();
 	
 	/**
-	 * Unregister.
+	 * unregister their account to the MyFoodora system.
 	 */
 	public void unregister();
 	
+	
 	/**
-	 * Turn on duty.
+	 * Set the state as on-duty.
 	 */
-	// 2. set their state as on-duty or off-duty
 	public void turnOnDuty();
 	
 	/**
-	 * Turn off duty.
+	 * Set the state as off-duty
 	 */
 	public void turnOffDuty();
 	
+
 	/**
 	 * Change position.
 	 *
-	 * @param newPoint the new point
+	 * @param newPoint the new address
 	 */
-	// 3. change their position
 	public void changePosition(AddressPoint newPoint);
 	
 	/**
-	 * Accept call.
+	 * accept to a delivery call (received by the MyFoodora system)
 	 *
 	 * @param order the order
 	 */
-	// 4. accept/refuse to a delivery call (received by the MyFoodora system)
 	public void acceptCall(Order order);
 	
 	/**
-	 * Refuse call.
+	 * refuse a delivery call (received by the MyFoodora system)
 	 *
 	 * @param order the order
 	 */

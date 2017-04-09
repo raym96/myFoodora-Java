@@ -25,7 +25,7 @@ import user.service.CourierService;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CourierServiceTest.
  * @author He Xiaoan

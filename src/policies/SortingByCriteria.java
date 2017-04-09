@@ -7,9 +7,9 @@ import java.util.*;
 
 import system.Order;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SortingByCriteria.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */
@@ -24,14 +24,14 @@ public abstract class SortingByCriteria {
 	public abstract HashMap countOccurence(ArrayList<Order> history);
 
 	/**
-	 * Display ascending.
+	 * Display history in ascending order
 	 *
 	 * @param history the history
 	 */
 	public abstract void displayAscending(ArrayList<Order> history);
 
 	/**
-	 * Display descending.
+	 * Display history in descending order
 	 *
 	 * @param history the history
 	 */

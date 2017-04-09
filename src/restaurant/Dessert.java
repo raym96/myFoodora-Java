@@ -3,9 +3,10 @@
  */
 package restaurant;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Dessert.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */

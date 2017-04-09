@@ -14,7 +14,7 @@ import restaurant.*;
 import system.AlaCarteOrder;
 import system.Order;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SortingByAlaCarte.
  * @author He Xiaoan
