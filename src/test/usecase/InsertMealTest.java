@@ -45,7 +45,7 @@ import user.User;
 	8. the restaurant saves the new created meal (or dish) in the menu
  */
 
-public class InsertMeal {
+public class InsertMealTest {
 	
 	private MyFoodora myfoodora;
 	private MyFoodoraService myfoodora_service;
