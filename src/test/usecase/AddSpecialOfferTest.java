@@ -41,7 +41,7 @@ import user.User;
 //	new offer
 // */
 
-public class AddSpecialOffer {
+public class AddSpecialOfferTest {
 
 	private MyFoodora myfoodora;
 	private MyFoodoraService myfoodora_service;
