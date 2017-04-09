@@ -36,7 +36,7 @@ import user.User;
 	its special offer state.
  */
 
-public class RemoveSpecialOffer {
+public class RemoveSpecialOfferTest {
 
 	private MyFoodora myfoodora;
 	private MyFoodoraService myfoodora_service;
