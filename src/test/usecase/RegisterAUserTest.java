@@ -32,7 +32,7 @@ import user.*;
 	2. the system sends alerts to the customers that agreed to be notified of special offers
  */
 
-public class RegisterAUser {
+public class RegisterAUserTest {
 
 	private MyFoodora myfoodora;
 	private MyFoodoraService myfoodora_service;
