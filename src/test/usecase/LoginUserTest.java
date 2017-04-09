@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.usecase;
 
 import static org.junit.Assert.*;
@@ -19,14 +22,14 @@ import user.service.MyFoodoraService;
 import user.service.impl.ManagerServiceImpl;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
 /**
  * Use case scenario
  * The following use case scenario describe examples of how the MyFoodora should function.
- * @throws UserNotFoundException 
- * 
- * @author Ray
- * @author Hxa
- **/
+ *
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 
 
 //* Login user
@@ -38,11 +41,21 @@ import user.service.impl.MyFoodoraServiceImpl;
 
 public class LoginUserTest {
 
+	/** The myfoodora. */
 	private MyFoodora myfoodora;
+	
+	/** The myfoodora service. */
 	private MyFoodoraService myfoodora_service;
+	
+	/** The manager service director. */
 	private ManagerService managerService_director;
 
 	
+	/**
+	 * Test startup scenario.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Before
 	public void testStartupScenario() throws UserNotFoundException {
 	
@@ -58,6 +71,9 @@ public class LoginUserTest {
 
 	}
 
+	/**
+	 * Test of login user.
+	 */
 	@Test
 	public void testOfLoginUser(){
 		System.out.println("----------------------- Login User -----------------------");

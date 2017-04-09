@@ -1,23 +1,48 @@
+/*
+ * 
+ */
 package restaurant;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Meal.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public abstract class Meal {
 
+	/** The name. */
 	protected String name;
+	
+	/** The dishes. */
 	protected ArrayList<Dish> dishes;
+	
+	/** The price. */
 	protected double price; //rawprice adjusted by the discount factor. Undefined if the meal is not in a meal menu
 	
+	/** The meal type. */
 	//standard,vegetarian,gluten-free
 	protected String mealType;
 	
+	/**
+	 * Instantiates a new meal.
+	 *
+	 * @param name the name
+	 */
 	public Meal(String name) {
 		super();
 		this.name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
 		this.dishes = new ArrayList<Dish>();
 	}
 
+	/**
+	 * Adds the dish.
+	 *
+	 * @param dish the dish
+	 */
 	public void addDish(Dish dish) {
 		// TODO Auto-generated method stub
 		getDishes().add(dish);
@@ -25,6 +50,9 @@ public abstract class Meal {
 	
 	
 	//Check if the meal is composed only by dishes of the same type (vegetarian or gluten-free)
+	/**
+	 * Refresh meal type.
+	 */
 	//if it is the case, the meal type is changed to the corresponding type
 	public void refreshMealType(){
 		if (this.sameMealType()){
@@ -35,6 +63,11 @@ public abstract class Meal {
 		}
 	}
 	
+	/**
+	 * Same meal type.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean sameMealType(){
 		for (int i = 0 ; i<this.getDishes().size()-1;i++){
 			if (this.getDishes().get(i).getDishType()!=this.getDishes().get(i+1).getDishType()){
@@ -45,23 +78,56 @@ public abstract class Meal {
 	}
 	
 	
+	/**
+	 * Gets the meal type.
+	 *
+	 * @return the meal type
+	 */
 	public String getMealType() {
 		return mealType;
 	}
 
+	/**
+	 * Sets the meal type.
+	 *
+	 * @param mealType the new meal type
+	 */
 	public void setMealType(String mealType) {
 		this.mealType = mealType;
 	}
 
+	/**
+	 * Gets the dishes.
+	 *
+	 * @return the dishes
+	 */
 	public ArrayList<Dish> getDishes() {
 		return dishes;
 	}
+	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
+	
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	public String getType(){
 		return mealType;
 	}
+	
+	/**
+	 * Gets the rawprice.
+	 *
+	 * @return the rawprice
+	 */
 	public double getRawprice() {
 		int rawprice = 0;
 		for (Dish d:dishes){
@@ -70,14 +136,27 @@ public abstract class Meal {
 		return rawprice;
 	}
 	
+	/**
+	 * Gets the price.
+	 *
+	 * @return the price
+	 */
 	public double getPrice(){
 		return price;
 	}
 	
+	/**
+	 * Sets the price.
+	 *
+	 * @param price the new price
+	 */
 	public void setPrice(double price){
 		this.price = price;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String str;
@@ -86,11 +165,17 @@ public abstract class Meal {
 		return str;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		return 31;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

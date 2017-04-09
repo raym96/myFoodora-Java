@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package user.service.impl;
 
 import java.util.ArrayList;
@@ -20,10 +23,22 @@ import user.model.Restaurant;
 import user.service.CustomerService;
 import user.service.MyFoodoraService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CustomerServiceImpl.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CustomerServiceImpl implements CustomerService {
 
+	/** The customer. */
 	private Customer customer;
 	
+	/**
+	 * Instantiates a new customer service impl.
+	 *
+	 * @param customer the customer
+	 */
 	public CustomerServiceImpl(Customer customer) {
 		super();
 		this.customer = customer;
@@ -31,6 +46,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 1. place orders: this includes choosing a selection of items a-la-carte or one or more
 	// meals offered by a given restaurant, and paying the total price for the composed
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#addSpecialMealOrder(user.model.Restaurant, java.lang.String)
+	 */
 	// order.
 	public void addSpecialMealOrder(Restaurant r, String mealName){
 		Order neworder = new SpecialMealOrder(customer, r,r.getRestaurantService().createMeal("Special-Meal", mealName));
@@ -38,12 +56,18 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#addStandardMealOrder(user.model.Restaurant, java.lang.String, java.lang.String)
+	 */
 	public void addStandardMealOrder(Restaurant r, String mealName, String mealCategory){
 		Order neworder = new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealCategory, mealName));
 		customer.getShoppingCart().addOrder(neworder);
 		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#addAlaCarteOrder(user.model.Restaurant, java.lang.String)
+	 */
 	public void addAlaCarteOrder(Restaurant r, String dishName){
 		Order neworder = new AlaCarteOrder(customer,r,r.getRestaurantService().createDish(dishName));
 		customer.getShoppingCart().addOrder(neworder);
@@ -52,6 +76,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#pay()
+	 */
 	public void pay(){
 		MyFoodoraService m = new MyFoodoraServiceImpl();
 		customer.getCard().pay();
@@ -63,6 +90,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#registerCard(java.lang.String)
+	 */
 	// 2. register/unregister to/from a fidelity card plan
 	@Override
 	public void registerCard(String cardType){
@@ -77,6 +107,9 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#unregisterCard()
+	 */
 	@Override
 	public void unregisterCard(){
 		customer.setCard(new StandardCard(customer));
@@ -87,6 +120,9 @@ public class CustomerServiceImpl implements CustomerService {
 	// 3. access the information related to their account: including history of orders, and
 		// points acquired with a fidelity program
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#getHistory()
+	 */
 	@Override
 	public History getHistory(){
 		History history = new History();
@@ -98,6 +134,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return history;
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#getPoints()
+	 */
 	@Override
 	public double getPoints(){
 		if (customer.getCard() instanceof PointCard){
@@ -113,6 +152,9 @@ public class CustomerServiceImpl implements CustomerService {
 	// 4. give/remove consensus to be notified whenever a new special offer is set by any
 	// restaurant
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#giveConsensusBeNotifiedSpecialOffers()
+	 */
 	@Override
 	public void giveConsensusBeNotifiedSpecialOffers() {
 		// TODO Auto-generated method stub
@@ -123,6 +165,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#removeConsensusBeNotifiedSpecialOffers()
+	 */
 	@Override
 	public void removeConsensusBeNotifiedSpecialOffers() {
 		// TODO Auto-generated method stub

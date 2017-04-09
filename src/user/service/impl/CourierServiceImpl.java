@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package user.service.impl;
 
 import java.util.ArrayList;
@@ -11,15 +14,30 @@ import user.model.Customer;
 import user.model.MyFoodora;
 import user.service.CourierService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CourierServiceImpl.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CourierServiceImpl implements CourierService {
 
+	/** The courier. */
 	private Courier courier;
 	
+	/**
+	 * Instantiates a new courier service impl.
+	 *
+	 * @param courier the courier
+	 */
 	public CourierServiceImpl(Courier courier) {
 		super();
 		this.courier = courier;
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#register()
+	 */
 	// 1. register/unregister their account to the MyFoodora system.
 	@Override
 	public void register(){
@@ -27,12 +45,18 @@ public class CourierServiceImpl implements CourierService {
 		myfoodora.register(courier); 
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#unregister()
+	 */
 	@Override
 	public void unregister(){
 		MyFoodora myfoodora = MyFoodora.getInstance();
 		myfoodora.unregister(courier);
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#turnOnDuty()
+	 */
 	// 2. set their state as on-duty or off-duty
 	@Override
 	public void turnOnDuty() {
@@ -40,12 +64,18 @@ public class CourierServiceImpl implements CourierService {
 		courier.setOn_duty(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#turnOffDuty()
+	 */
 	@Override
 	public void turnOffDuty() {
 		// TODO Auto-generated method stub
 		courier.setOn_duty(false);
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#changePosition(system.AddressPoint)
+	 */
 	// 3. change their position
 	@Override
 	public void changePosition(AddressPoint newPoint) {
@@ -53,6 +83,9 @@ public class CourierServiceImpl implements CourierService {
 		courier.setPosition(newPoint);
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#acceptCall(system.Order)
+	 */
 	// 4. accept/refuse to a delivery call (received by the MyFoodora system)
 	@Override
 	public void acceptCall(Order order) {
@@ -75,6 +108,9 @@ public class CourierServiceImpl implements CourierService {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#refuseCall(system.Order)
+	 */
 	@Override
 	public void refuseCall(Order order) {
 		// TODO Auto-generated method stub

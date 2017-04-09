@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.usecase;
 
 import java.util.Scanner;
@@ -19,14 +22,14 @@ import user.service.MyFoodoraService;
 import user.service.impl.ManagerServiceImpl;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
 /**
  * Use case scenario
  * The following use case scenario describe examples of how the MyFoodora should function.
- * @throws UserNotFoundException 
- * 
- * @author Ray
- * @author Hxa
- **/
+ *
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 
 /*
  * Inserting a meal or dish in a restaurant menu
@@ -47,11 +50,21 @@ import user.service.impl.MyFoodoraServiceImpl;
 
 public class InsertMealTest {
 	
+	/** The myfoodora. */
 	private MyFoodora myfoodora;
+	
+	/** The myfoodora service. */
 	private MyFoodoraService myfoodora_service;
+	
+	/** The manager service director. */
 	private ManagerService managerService_director;
 
 	
+	/**
+	 * Test startup scenario.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Before
 	public void testStartupScenario() throws UserNotFoundException {
 	
@@ -67,6 +80,9 @@ public class InsertMealTest {
 
 	}
 
+	/**
+	 * Test of insert meal dish 2 menu.
+	 */
 	@Test
 	public void testOfInsertMealDish2menu(){
 		System.out.println("----------------------- Insert a meal/dish in a restaurant menu -----------------------");

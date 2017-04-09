@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.policies;
 
 import static org.junit.Assert.*;
@@ -25,22 +28,41 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SortingByHalfMealTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SortingByHalfMealTest {
 
+	/** The sorting by half meal. */
 	private static SortingByHalfMeal sortingByHalfMeal = null;
+	
+	/** The history. */
 	private static ArrayList<Order> history = new ArrayList<Order>();
 
+	/** The map. */
 	private static HashMap<HalfMeal, Integer> map = null;
 	
+	/** The hm 1. */
 	private static HalfMeal hm1 = null;
+	
+	/** The hm 2. */
 	private static HalfMeal hm2 = null;
 	
+	/**
+	 * Test sorting by restaurant.
+	 */
 	@BeforeClass
 	public static void testSortingByRestaurant(){
 		sortingByHalfMeal = new SortingByHalfMeal();
 		assertNotNull(sortingByHalfMeal);
 	}
 	
+	/**
+	 * Inits the.
+	 */
 	@BeforeClass
 	public static void init(){
 		Menu menu = new Menu();
@@ -84,6 +106,9 @@ public class SortingByHalfMealTest {
 	}
 	
 	
+	/**
+	 * Test count occurence.
+	 */
 	@Before
 	public void testCountOccurence() {
 		map = sortingByHalfMeal.countOccurence(history);
@@ -93,6 +118,9 @@ public class SortingByHalfMealTest {
 		assertTrue(map.get(hm2) == 1);
 	}
 
+	/**
+	 * Test sort by values.
+	 */
 	@Test
 	public void testSortByValues() {
 		HashMap<Restaurant, Integer> result = sortingByHalfMeal.sortByValues(map);
@@ -100,6 +128,9 @@ public class SortingByHalfMealTest {
 		System.out.println(result);
 	}
 
+	/**
+	 * Test sort by values reversed.
+	 */
 	@Test
 	public void testSortByValuesReversed() {
 		HashMap<Restaurant, Integer> result = sortingByHalfMeal.sortByValuesReversed(map);
@@ -107,12 +138,18 @@ public class SortingByHalfMealTest {
 		System.out.println(result);
 	}
 
+	/**
+	 * Test display ascending.
+	 */
 	@AfterClass
 	public static void testDisplayAscending() {
 		System.out.println("---testDisplayAscending---");
 		sortingByHalfMeal.displayAscending(history);
 	}
 
+	/**
+	 * Test display descending.
+	 */
 	@AfterClass
 	public static void testDisplayDescending() {
 		System.out.println("---testDisplayDescending---");

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.restaurant;
 
 import static org.junit.Assert.*;
@@ -13,12 +16,26 @@ import restaurant.MealMenu;
 import restaurant.Menu;
 import restaurant.SpecialMealFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpecialMealFactoryTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SpecialMealFactoryTest {
 
+	/** The menu. */
 	private static Menu menu = new Menu();
+	
+	/** The meal menu. */
 	private static MealMenu mealMenu = new MealMenu(0.1);
+	
+	/** The special meal factory. */
 	private static SpecialMealFactory specialMealFactory = null;
 	
+	/**
+	 * Test special meal factory.
+	 */
 	@BeforeClass
 	public static void testSpecialMealFactory() {
 		
@@ -40,6 +57,9 @@ public class SpecialMealFactoryTest {
 		assertEquals(mealMenu, specialMealFactory.getMealmenu());
 	}
 
+	/**
+	 * Test create meal string.
+	 */
 	@Test
 	public void testCreateMealString() {
 		
@@ -55,6 +75,9 @@ public class SpecialMealFactoryTest {
 		}
 	}
 	
+	/**
+	 * Test create meal string exception.
+	 */
 	@Test(expected = MealNotFoundException.class)
 	public void testCreateMealStringException() {
 		

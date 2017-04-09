@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -13,11 +16,23 @@ import system.MessageBoard;
 import user.model.Customer;
 import user.model.MyFoodora;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MessageBoardTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MessageBoardTest {
 
+	/** The msgb 1. */
 	private static MessageBoard msgb1 = null;
+	
+	/** The msgb 2. */
 	private static MessageBoard msgb2 = null;
 	
+	/**
+	 * Test message board user.
+	 */
 	@BeforeClass
 	public static void testMessageBoardUser() {
 		Customer customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -26,6 +41,9 @@ public class MessageBoardTest {
 		assertNotNull(msgb2.getMessages());
 	}
 
+	/**
+	 * Test message board my foodora.
+	 */
 	@BeforeClass
 	public static void testMessageBoardMyFoodora() {
 		msgb1 = new MessageBoard(MyFoodora.getInstance());
@@ -33,6 +51,9 @@ public class MessageBoardTest {
 		assertNotNull(msgb1.getMessages());
 	}
 
+	/**
+	 * Test add message.
+	 */
 	@Test
 	public void testAddMessage() {
 		Message msg1 = new Message("testAddMessage() of myFoodora");
@@ -45,6 +66,9 @@ public class MessageBoardTest {
 		assertTrue(msgb2.getMessages().size() > 0);
 	}
 
+	/**
+	 * Test display allmsgs.
+	 */
 	@AfterClass
 	public static void testDisplayAllmsgs() {
 		System.out.println(msgb1);

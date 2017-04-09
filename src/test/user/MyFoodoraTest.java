@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -22,14 +25,32 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MyFoodoraTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MyFoodoraTest {
 
+	/** The my foodora. */
 	private static MyFoodora myFoodora = MyFoodora.getInstance();
+	
+	/** The c. */
 	private static Customer c = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+	
+	/** The cr. */
 	private static Courier cr = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
+	
+	/** The r. */
 	private static Restaurant r = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+	
+	/** The m. */
 	private static Manager m = new Manager("He", "Xiaoan", "hxa");
 	
+	/**
+	 * Inits the.
+	 */
 	@BeforeClass
 	public static void init(){
 		MyFoodora myFoodora2 = MyFoodora.getInstance();
@@ -47,18 +68,29 @@ public class MyFoodoraTest {
 		
 	}
 	
+	/**
+	 * Test add special offer observer.
+	 */
 	@Test
 	public void testAddSpecialOfferObserver() {
 		myFoodora.addSpecialOfferObserver(c);
 		assertTrue(myFoodora.getSpecialOfferObserver().contains(c));
 	}
 
+	/**
+	 * Test remove special offer observer.
+	 */
 	@Test
 	public void testRemoveSpecialOfferObserver() {
 		myFoodora.removeSpecialOfferObserver(c);
 		assertFalse(myFoodora.getSpecialOfferObserver().contains(c));
 	}
 
+	/**
+	 * Test parse.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testParse() throws UserNotFoundException {
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
@@ -84,6 +116,9 @@ public class MyFoodoraTest {
 	} 
 
 	
+	/**
+	 * Test add user.
+	 */
 	@Test
 	public void testAddUser() {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -98,6 +133,9 @@ public class MyFoodoraTest {
 		assertTrue(myFoodora.getUsers().contains(cr2));
 	}
 
+	/**
+	 * Test remove user.
+	 */
 	@Test
 	public void testRemoveUser() {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -119,6 +157,11 @@ public class MyFoodoraTest {
 		assertFalse(myFoodora.getUsers().contains(cr2));
 	}
 
+	/**
+	 * Test activate user.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testActivateUser() throws UserNotFoundException {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -139,6 +182,11 @@ public class MyFoodoraTest {
 		assertTrue(cr2.isActivated());
 	}
 
+	/**
+	 * Test disactivate user.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testDisactivateUser() throws UserNotFoundException {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -170,6 +218,9 @@ public class MyFoodoraTest {
 		assertFalse(cr2.isActivated());
 	}
 
+	/**
+	 * Test get users of assigned type.
+	 */
 	@Test
 	public void testGetUsersOfAssignedType() {
 		myFoodora.addUser(m);
@@ -190,6 +241,9 @@ public class MyFoodoraTest {
 		assertTrue(restaurants.get(0) instanceof Restaurant);
 	}
 
+	/**
+	 * Test register.
+	 */
 	@Test
 	public void testRegister() {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -204,6 +258,9 @@ public class MyFoodoraTest {
 		assertTrue(myFoodora.getUsers().contains(cr2));
 	}
 
+	/**
+	 * Test unregister.
+	 */
 	@Test
 	public void testUnregister() {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -225,32 +282,50 @@ public class MyFoodoraTest {
 		assertFalse(myFoodora.getUsers().contains(cr2));
 	}
 
+	/**
+	 * Test notify all observers.
+	 */
 	@Test
 	@Ignore
 	public void testNotifyAllObservers() {
 
 	}
 
+	/**
+	 * Test notify all observers object.
+	 */
 	@Test
 	@Ignore
 	public void testNotifyAllObserversObject() {
 	}
 
+	/**
+	 * Test notify observer observer.
+	 */
 	@Test
 	@Ignore
 	public void testNotifyObserverObserver() {
 	}
 
+	/**
+	 * Test notify observer observer object.
+	 */
 	@Test
 	@Ignore
 	public void testNotifyObserverObserverObject() {
 	}
 
+	/**
+	 * Test notify observers array list of observer.
+	 */
 	@Test
 	@Ignore
 	public void testNotifyObserversArrayListOfObserver() {
 	}
 
+	/**
+	 * Test notify observers array list of user object.
+	 */
 	@Test
 	public void testNotifyObserversArrayListOfUserObject() {
 
@@ -258,16 +333,25 @@ public class MyFoodoraTest {
 		myFoodora.notifyObservers(customers, "testNotifyObserversArrayListOfUserObject() test"); 
 	}
 
+	/**
+	 * Test display users.
+	 */
 	@AfterClass
 	public static void testDisplayUsers() {
 		myFoodora.displayUsers();
 	}
 
+	/**
+	 * Test display active users.
+	 */
 	@AfterClass
 	public static void testDisplayActiveUsers() {
 		myFoodora.displayActiveUsers();
 	}
 
+	/**
+	 * Test refresh message board.
+	 */
 	@AfterClass
 	public static void testRefreshMessageBoard() {
 		myFoodora.refreshMessageBoard();

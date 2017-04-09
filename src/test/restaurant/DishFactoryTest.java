@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.restaurant;
 
 import static org.junit.Assert.*;
@@ -12,11 +15,23 @@ import restaurant.MainDish;
 import restaurant.Menu;
 import restaurant.Starter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DishFactoryTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class DishFactoryTest {
 
+	/** The dish factory. */
 	private static DishFactory dishFactory = null;
+	
+	/** The menu. */
 	private static Menu menu = null;
 	
+	/**
+	 * Test dish factory.
+	 */
 	@BeforeClass
 	public static void testDishFactory() {
 		
@@ -30,6 +45,11 @@ public class DishFactoryTest {
 		menu.display();
 	}
 
+	/**
+	 * Test create dish.
+	 *
+	 * @throws DishNotFoundException the dish not found exception
+	 */
 	@Test(expected = DishNotFoundException.class)
 	public void testCreateDish() throws DishNotFoundException {
 		

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package restaurant;
 
 import java.util.ArrayList;
@@ -7,12 +10,26 @@ import exceptions.DishNotFoundException;
 import exceptions.NameAlreadyExistsException;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Menu.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class Menu {
 
+	/** The starters. */
 	private ArrayList<Starter> starters;
+	
+	/** The maindishes. */
 	private ArrayList<MainDish> maindishes;
+	
+	/** The desserts. */
 	private ArrayList<Dessert> desserts;
 
+	/**
+	 * Instantiates a new menu.
+	 */
 	public Menu() {
 		super();
 		starters = new ArrayList<Starter>();
@@ -21,18 +38,38 @@ public class Menu {
 //		initMenu();
 	}
 	
+	/**
+	 * Gets the starters.
+	 *
+	 * @return the starters
+	 */
 	public ArrayList<Starter> getStarters() {
 		return starters;
 	}
 
+	/**
+	 * Gets the maindishes.
+	 *
+	 * @return the maindishes
+	 */
 	public ArrayList<MainDish> getMaindishes() {
 		return maindishes;
 	}
 
+	/**
+	 * Gets the desserts.
+	 *
+	 * @return the desserts
+	 */
 	public ArrayList<Dessert> getDesserts() {
 		return desserts;
 	}
 
+	/**
+	 * Gets the dishes.
+	 *
+	 * @return the dishes
+	 */
 	public ArrayList<Dish> getDishes(){
 		ArrayList<Dish> list = new ArrayList<Dish>();
 		list.addAll(getStarters());
@@ -44,6 +81,9 @@ public class Menu {
 	
 	
 	
+	/**
+	 * Inits the menu.
+	 */
 	public void initMenu(){
 		
 		starters.add(new Starter("foie gras", "standard", 1.5));
@@ -54,6 +94,12 @@ public class Menu {
 		desserts.add(new Dessert("cafe", "standard", 1.5));
 	}
 	
+	/**
+	 * Adds the dish.
+	 *
+	 * @param dish the dish
+	 * @throws NameAlreadyExistsException the name already exists exception
+	 */
 	public void addDish(Dish dish) throws NameAlreadyExistsException{
 		if (hasDish(dish.getDishName())){
 			throw new NameAlreadyExistsException(dish.getDishName());
@@ -67,6 +113,12 @@ public class Menu {
 		}
 	}
 	
+	/**
+	 * Removes the dish.
+	 *
+	 * @param dishName the dish name
+	 * @throws DishNotFoundException the dish not found exception
+	 */
 	public void removeDish(String dishName) throws DishNotFoundException{
 		int count = 0;
 		for(int i=0; i<starters.size(); i++){
@@ -91,6 +143,12 @@ public class Menu {
 		}
 	}
 	
+	/**
+	 * Checks for dish.
+	 *
+	 * @param dishName the dish name
+	 * @return true, if successful
+	 */
 	public boolean hasDish(String dishName){
 		for (Dish dish : this.getDishes()) {
 			if (dish.getDishName().equalsIgnoreCase(dishName)){
@@ -100,6 +158,9 @@ public class Menu {
 		return false;
 	}
 	
+	/**
+	 * Display.
+	 */
 	public void display(){
 		System.out.println("\n[Menu]");
 		System.out.println("\nStarters:");

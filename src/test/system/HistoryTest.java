@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -20,18 +23,38 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HistoryTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class HistoryTest {
 
+	/** The history. */
 	private static History history = null;
+	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/** The standard meal order. */
 	private static StandardMealOrder standardMealOrder = null;
+	
+	/** The special meal order. */
 	private static SpecialMealOrder specialMealOrder = null;
 	
+	/** The date 1. */
 	private static Date date1 = null;
+	
+	/** The date 2. */
 	private static Date date2 = null;
+	
+	/** The date 3. */
 	private static Date date3 = null;
 	
+	/**
+	 * Test history.
+	 */
 	@BeforeClass
 	public static void testHistory(){
 		history = new History();
@@ -40,6 +63,11 @@ public class HistoryTest {
 
 	}
 	
+	/**
+	 * Inits the.
+	 *
+	 * @throws InterruptedException the interrupted exception
+	 */
 	@BeforeClass
 	public static void init() throws InterruptedException{
 		
@@ -65,6 +93,9 @@ public class HistoryTest {
 		date3 = new Date();
 	}
 	
+	/**
+	 * Test add order.
+	 */
 	@Test
 	public void testAddOrder() {
 		
@@ -74,6 +105,9 @@ public class HistoryTest {
 		assertTrue(history.getOrders().size() > 0);
 	}
 
+	/**
+	 * Test get order between.
+	 */
 	@Test
 	public void testGetOrderBetween() {
 		history.addOrder(standardMealOrder);
@@ -92,6 +126,9 @@ public class HistoryTest {
 
 	
 
+	/**
+	 * Test get orders of.
+	 */
 	@Test
 	public void testGetOrdersOf() {
 		history.addOrder(standardMealOrder);

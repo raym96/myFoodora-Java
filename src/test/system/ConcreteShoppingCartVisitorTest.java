@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -17,11 +20,23 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConcreteShoppingCartVisitorTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class ConcreteShoppingCartVisitorTest {
 
+	/** The concrete shopping cart visitor. */
 	private static ConcreteShoppingCartVisitor concreteShoppingCartVisitor = null;
+	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/**
+	 * Inits the.
+	 */
 	@BeforeClass
 	public static void init(){
 		concreteShoppingCartVisitor = new ConcreteShoppingCartVisitor();
@@ -29,6 +44,9 @@ public class ConcreteShoppingCartVisitorTest {
 		menu.initMenu();
 	}
 	
+	/**
+	 * Test visit special meal order.
+	 */
 	@Test
 	public void testVisitSpecialMealOrder() {
 		SpecialMealOrder specialMealOrder = null;
@@ -43,6 +61,9 @@ public class ConcreteShoppingCartVisitorTest {
 		System.out.println(price);
 	}
 
+	/**
+	 * Test visit standard meal order.
+	 */
 	@Test
 	public void testVisitStandardMealOrder() {
 		StandardMealOrder standardMealOrder = null;	
@@ -57,6 +78,9 @@ public class ConcreteShoppingCartVisitorTest {
 		System.out.println(price);
 	}
 
+	/**
+	 * Test visit ala carte order.
+	 */
 	@Test
 	public void testVisitAlaCarteOrder() {
 		AlaCarteOrder alaCarteOrder = null;

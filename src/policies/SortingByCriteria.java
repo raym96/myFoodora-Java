@@ -1,16 +1,48 @@
+/*
+ * 
+ */
 package policies;
 
 import java.util.*;
 
 import system.Order;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SortingByCriteria.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public abstract class SortingByCriteria {
+	
+	/**
+	 * Count occurence.
+	 *
+	 * @param history the history
+	 * @return the hash map
+	 */
 	public abstract HashMap countOccurence(ArrayList<Order> history);
 
+	/**
+	 * Display ascending.
+	 *
+	 * @param history the history
+	 */
 	public abstract void displayAscending(ArrayList<Order> history);
 
+	/**
+	 * Display descending.
+	 *
+	 * @param history the history
+	 */
 	public abstract void displayDescending(ArrayList<Order> history);
 
+	/**
+	 * Sort by values.
+	 *
+	 * @param map the map
+	 * @return the hash map
+	 */
 	// Sort a HashMap, used in all SortingByCriteria subclasses
 	public static HashMap sortByValues(HashMap map) {
 		List list = new LinkedList(map.entrySet());
@@ -31,6 +63,12 @@ public abstract class SortingByCriteria {
 		return sortedHashMap;
 	}
 
+	/**
+	 * Sort by values reversed.
+	 *
+	 * @param map the map
+	 * @return the hash map
+	 */
 	public static HashMap sortByValuesReversed(HashMap map) {
 		List list = new LinkedList(map.entrySet());
 		// Defined Custom Comparator here

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -15,11 +18,23 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpecialMealOrderTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SpecialMealOrderTest {
 
+	/** The special meal order. */
 	private static SpecialMealOrder specialMealOrder = null;
+	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/**
+	 * Test special meal order.
+	 */
 	@BeforeClass
 	public static void testSpecialMealOrder() {
 		menu.initMenu();
@@ -39,6 +54,9 @@ public class SpecialMealOrderTest {
 		assertNotNull(specialMealOrder.getCourier());
 	}
 	
+	/**
+	 * Test accept.
+	 */
 	@Test
 	public void testAccept() {
 		double price = specialMealOrder.accept(new ConcreteShoppingCartVisitor());
@@ -48,6 +66,9 @@ public class SpecialMealOrderTest {
 
 	
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		int hashCode = specialMealOrder.hashCode();
@@ -55,6 +76,9 @@ public class SpecialMealOrderTest {
 	}
 
 	
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public void testEqualsObject() {
 		
@@ -62,6 +86,9 @@ public class SpecialMealOrderTest {
 		assertTrue(s2.equals(specialMealOrder));
 	}
 
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(specialMealOrder);

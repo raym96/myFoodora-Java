@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package policies;
 
 import java.util.ArrayList;
@@ -6,8 +9,17 @@ import system.AddressPoint;
 import system.Order;
 import user.model.Courier;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FastestDeliveryPolicy.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class FastestDeliveryPolicy implements DeliveryPolicy {
 	
+	/* (non-Javadoc)
+	 * @see policies.DeliveryPolicy#parse(system.Order, java.util.ArrayList)
+	 */
 	@Override
 	public Courier parse(Order order, ArrayList<Courier> activecouriers) {
 		double min = Integer.MAX_VALUE ;

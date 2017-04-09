@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.policies;
 
 import static org.junit.Assert.*;
@@ -24,22 +27,41 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SortingByAlaCarteTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SortingByAlaCarteTest {
 
+	/** The sorting by ala carte. */
 	private static SortingByAlaCarte sortingByAlaCarte = null;
+	
+	/** The history. */
 	private static ArrayList<Order> history = new ArrayList<Order>();
 
+	/** The map. */
 	private static HashMap<HalfMeal, Integer> map = null;
 	
+	/** The d 1. */
 	private static Dish d1 = null;
+	
+	/** The d 2. */
 	private static Dish	d2 = null;
 	
+	/**
+	 * Test sorting by restaurant.
+	 */
 	@BeforeClass
 	public static void testSortingByRestaurant(){
 		sortingByAlaCarte = new SortingByAlaCarte();
 		assertNotNull(sortingByAlaCarte);
 	}
 	
+	/**
+	 * Inits the.
+	 */
 	@BeforeClass
 	public static void init(){
 		Menu menu = new Menu();
@@ -83,6 +105,9 @@ public class SortingByAlaCarteTest {
 	}
 	
 	
+	/**
+	 * Test count occurence.
+	 */
 	@Before
 	public void testCountOccurence() {
 		map = sortingByAlaCarte.countOccurence(history);
@@ -92,6 +117,9 @@ public class SortingByAlaCarteTest {
 		assertTrue(map.get(d2) == 2);
 	}
 
+	/**
+	 * Test sort by values.
+	 */
 	@Test
 	public void testSortByValues() {
 		HashMap<Restaurant, Integer> result = sortingByAlaCarte.sortByValues(map);
@@ -99,6 +127,9 @@ public class SortingByAlaCarteTest {
 		System.out.println(result);
 	}
 
+	/**
+	 * Test sort by values reversed.
+	 */
 	@Test
 	public void testSortByValuesReversed() {
 		HashMap<Restaurant, Integer> result = sortingByAlaCarte.sortByValuesReversed(map);
@@ -106,12 +137,18 @@ public class SortingByAlaCarteTest {
 		System.out.println(result);
 	}
 
+	/**
+	 * Test display ascending.
+	 */
 	@AfterClass
 	public static void testDisplayAscending() {
 		System.out.println("---testDisplayAscending---");
 		sortingByAlaCarte.displayAscending(history);
 	}
 
+	/**
+	 * Test display descending.
+	 */
 	@AfterClass
 	public static void testDisplayDescending() {
 		System.out.println("---testDisplayDescending---");

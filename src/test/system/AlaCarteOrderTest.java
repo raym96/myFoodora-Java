@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -16,11 +19,23 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AlaCarteOrderTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class AlaCarteOrderTest {
 
+	/** The ala carte order. */
 	private static AlaCarteOrder alaCarteOrder = null;
+	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/**
+	 * Test ala carte order.
+	 */
 	@BeforeClass
 	public static void testAlaCarteOrder() {
 		menu.initMenu();
@@ -40,6 +55,9 @@ public class AlaCarteOrderTest {
 		assertNotNull(alaCarteOrder.getCourier());
 	}
 	
+	/**
+	 * Test accept.
+	 */
 	@Test
 	public void testAccept() {
 		double price = alaCarteOrder.accept(new ConcreteShoppingCartVisitor());
@@ -49,6 +67,9 @@ public class AlaCarteOrderTest {
 
 	
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		int hashCode = alaCarteOrder.hashCode();
@@ -56,6 +77,9 @@ public class AlaCarteOrderTest {
 	}
 
 	
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public void testEqualsObject() {
 		
@@ -63,6 +87,9 @@ public class AlaCarteOrderTest {
 		assertTrue(a2.equals(alaCarteOrder));
 	}
 
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(alaCarteOrder);

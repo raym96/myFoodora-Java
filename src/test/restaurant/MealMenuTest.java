@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.restaurant;
 
 import static org.junit.Assert.*;
@@ -13,12 +16,26 @@ import restaurant.HalfMeal;
 import restaurant.MealMenu;
 import restaurant.Menu;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MealMenuTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MealMenuTest {
 
+	/** The meal menu. */
 	private static MealMenu mealMenu = null;
+	
+	/** The Constant discount_factor. */
 	private static final double discount_factor = 0.1;
+	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/**
+	 * Test meal menu.
+	 */
 	@BeforeClass
 	public static void testMealMenu() {
 		menu.initMenu();
@@ -29,6 +46,9 @@ public class MealMenuTest {
 		assertTrue(discount_factor==mealMenu.getDiscount_factor());
 	}
 
+	/**
+	 * Test add meal.
+	 */
 	@Test
 	public void testAddMeal() {
 		FullMeal fm1 = new FullMeal("FM1", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
@@ -48,6 +68,9 @@ public class MealMenuTest {
 		assertEquals(4, mealMenu.getMeals().size());
 	}
 
+	/**
+	 * Test remove meal.
+	 */
 	@Test
 	public void testRemoveMeal() {
 		HalfMeal hm3 = new HalfMeal("HM3", menu.getStarters().get(1), menu.getMaindishes().get(1));
@@ -66,6 +89,9 @@ public class MealMenuTest {
 		assertFalse(mealMenu.getMeals().contains(hm3));
 	}
 
+	/**
+	 * Test display.
+	 */
 	@AfterClass
 	public static void testDisplay() {
 		mealMenu.display();

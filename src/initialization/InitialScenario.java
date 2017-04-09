@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package initialization;
 
 import java.io.File;
@@ -32,8 +35,20 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InitialScenario.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class InitialScenario {
 	
+	/**
+	 * Load.
+	 *
+	 * @param filename the filename
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	//Load .ini file data into the MyFoodora System
 	public static void load(String filename) throws UserNotFoundException {
 		System.out.println("\n-----------------------------------------------------------------------------------");
@@ -69,6 +84,13 @@ public class InitialScenario {
 		}
 	}
 
+	/**
+	 * Load manager.
+	 *
+	 * @param ini the ini
+	 * @return the array list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static ArrayList<Manager> loadManager(Ini ini) throws IOException{
 		String name;
 		String surname;
@@ -90,6 +112,14 @@ public class InitialScenario {
     	}
     	return users;
 	}
+	
+	/**
+	 * Load customer.
+	 *
+	 * @param ini the ini
+	 * @return the array list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static ArrayList<Customer> loadCustomer(Ini ini) throws IOException {
 		String name;
 		String surname;
@@ -118,6 +148,13 @@ public class InitialScenario {
     	return users;
 	}
     	
+	/**
+	 * Load courier.
+	 *
+	 * @param ini the ini
+	 * @return the array list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static ArrayList<Courier> loadCourier(Ini ini) throws IOException {
 		String name;
 		String surname;
@@ -144,6 +181,14 @@ public class InitialScenario {
     	}
     	return users;
 	}
+	
+	/**
+	 * Load restaurant.
+	 *
+	 * @param ini the ini
+	 * @return the array list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	//initialize restaurants and set up their menu & meal-menu
 	public static ArrayList<Restaurant> loadRestaurant(Ini ini) throws IOException {
 		String name;
@@ -170,6 +215,13 @@ public class InitialScenario {
     	return users;
 	}
 	
+	/**
+	 * Load menu.
+	 *
+	 * @param restaurants the restaurants
+	 * @param ini the ini
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	//add dishes to the menu of predefined restaurants
 	public static void loadMenu(ArrayList<Restaurant> restaurants, Ini ini) throws IOException {
 		
@@ -217,6 +269,14 @@ public class InitialScenario {
 		}
 	}
 	
+	/**
+	 * Load meal menu.
+	 *
+	 * @param restaurants the restaurants
+	 * @param ini the ini
+	 * @throws InvalidFileFormatException the invalid file format exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	//Add meals to the meal-menu of predefined restaurants
 	public static void loadMealMenu(ArrayList<Restaurant> restaurants, Ini ini) throws InvalidFileFormatException, IOException{	
 		String restaurant_username;
@@ -292,6 +352,13 @@ public class InitialScenario {
 
 	}
 	
+	/**
+	 * Load history.
+	 *
+	 * @param ini the ini
+	 * @return the history
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	//Initialize history by adding random orders to restaurants
 	public static History loadHistory(Ini ini) throws IOException{
 		History history= new History();

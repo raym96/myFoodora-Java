@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.restaurant;
 
 import static org.junit.Assert.*;
@@ -10,15 +13,32 @@ import restaurant.FullMeal;
 import restaurant.HalfMeal;
 import restaurant.Menu;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HalfMealTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class HalfMealTest {
 
+	/** The hm 1. */
 	private static HalfMeal hm1 = null;
+	
+	/** The hm 2. */
 	private static HalfMeal hm2 = null;
+	
+	/** The hm 3. */
 	private static HalfMeal hm3 = null;
+	
+	/** The hm 4. */
 	private static HalfMeal hm4 = null;
 	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/**
+	 * Test half meal string.
+	 */
 	@BeforeClass
 	public static void testHalfMealString() {
 		
@@ -27,6 +47,9 @@ public class HalfMealTest {
 		assertNotNull(hm1.getDishes());
 	}
 
+	/**
+	 * Test half meal string dish dish.
+	 */
 	@BeforeClass
 	public static void testHalfMealStringDishDish() {
 		menu.initMenu();
@@ -37,6 +60,9 @@ public class HalfMealTest {
 		assertNotNull(hm2.getDishes());
 	}
 
+	/**
+	 * Test half meal meal.
+	 */
 	@Test
 	public void testHalfMealMeal() {
 		hm3 = new HalfMeal(hm2);
@@ -45,6 +71,9 @@ public class HalfMealTest {
 		assertNotNull(hm3.getDishes());
 	}
 
+	/**
+	 * Test half meal string menu string string.
+	 */
 	@Test
 	public void testHalfMealStringMenuStringString() {
 		hm4 = new HalfMeal("HM4", menu,
@@ -54,17 +83,26 @@ public class HalfMealTest {
 		assertNotNull(hm4.getDishes());
 	}
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		assertEquals(31, hm1.hashCode());
 	}
 
+	/**
+	 * Test add dish.
+	 */
 	@Test
 	public void testAddDish() {
 		hm1.addDish(menu.getDishes().get(0));
 		assertEquals(hm1.getDishes().get(hm1.getDishes().size()-1), menu.getDishes().get(0));
 	}
 
+	/**
+	 * Test same meal type.
+	 */
 	@Test
 	public void testSameMealType() {
 		assertTrue(hm2.sameMealType());
@@ -74,6 +112,9 @@ public class HalfMealTest {
 		assertFalse(hm3.sameMealType());
 	}
 	
+	/**
+	 * Test refresh meal type.
+	 */
 	@Test
 	public void testRefreshMealType() {
 		hm2.refreshMealType();
@@ -89,12 +130,18 @@ public class HalfMealTest {
 		assertTrue(hm3.getMealType()=="vegetarian");
 	}
 
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public void testEqualsObject() {
 		HalfMeal hm5 = hm4;
 		assertTrue(hm4.equals(hm5));
 	}
 
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(hm1);

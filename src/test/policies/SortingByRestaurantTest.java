@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.policies;
 
 import static org.junit.Assert.*;
@@ -23,20 +26,41 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SortingByRestaurantTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SortingByRestaurantTest {
 
+	/** The sorting by restaurant. */
 	private static SortingByRestaurant sortingByRestaurant = null;
+	
+	/** The history. */
 	private static ArrayList<Order> history = new ArrayList<Order>();
+	
+	/** The r. */
 	private static Restaurant r = null;
+	
+	/** The r 2. */
 	private static Restaurant r2 = null;
+	
+	/** The map. */
 	private static HashMap<Restaurant, Integer> map = null;
 	
+	/**
+	 * Test sorting by restaurant.
+	 */
 	@BeforeClass
 	public static void testSortingByRestaurant(){
 		sortingByRestaurant = new SortingByRestaurant();
 		assertNotNull(sortingByRestaurant);
 	}
 	
+	/**
+	 * Inits the.
+	 */
 	@BeforeClass
 	public static void init(){
 		Menu menu = new Menu();
@@ -87,6 +111,9 @@ public class SortingByRestaurantTest {
 	}
 	
 	
+	/**
+	 * Test count occurence.
+	 */
 	@Before
 	public void testCountOccurence() {
 		map = sortingByRestaurant.countOccurence(history);
@@ -96,6 +123,9 @@ public class SortingByRestaurantTest {
 		assertTrue(map.get(r2) == 2);
 	}
 
+	/**
+	 * Test sort by values.
+	 */
 	@Test
 	public void testSortByValues() {
 		HashMap<Restaurant, Integer> result = sortingByRestaurant.sortByValues(map);
@@ -103,6 +133,9 @@ public class SortingByRestaurantTest {
 		System.out.println(result);
 	}
 
+	/**
+	 * Test sort by values reversed.
+	 */
 	@Test
 	public void testSortByValuesReversed() {
 		HashMap<Restaurant, Integer> result = sortingByRestaurant.sortByValuesReversed(map);
@@ -110,12 +143,18 @@ public class SortingByRestaurantTest {
 		System.out.println(result);
 	}
 
+	/**
+	 * Test display ascending.
+	 */
 	@AfterClass
 	public static void testDisplayAscending() {
 		System.out.println("---testDisplayAscending---");
 		sortingByRestaurant.displayAscending(history);
 	}
 
+	/**
+	 * Test display descending.
+	 */
 	@AfterClass
 	public static void testDisplayDescending() {
 		System.out.println("---testDisplayDescending---");

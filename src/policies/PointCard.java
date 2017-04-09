@@ -1,17 +1,36 @@
+/*
+ * 
+ */
 package policies;
 
 import user.model.Customer;
 import user.model.MyFoodora;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PointCard.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class PointCard extends FidelityCard {
+	
+	/** The balance. */
 	private double balance;
 	
 	
+	/**
+	 * Instantiates a new point card.
+	 *
+	 * @param c the c
+	 */
 	public PointCard(Customer c){
 		super(c);
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see policies.FidelityCard#pay()
+	 */
 	@Override
 	public void pay() {
 		// TODO Auto-generated method stub
@@ -35,6 +54,11 @@ public class PointCard extends FidelityCard {
 
 
 
+	/**
+	 * Gets the points.
+	 *
+	 * @return the points
+	 */
 	public double getPoints(){
 		return balance;
 	}

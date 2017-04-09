@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.restaurant;
 
 import static org.junit.Assert.*;
@@ -12,12 +15,26 @@ import restaurant.HalfMealFactory;
 import restaurant.MealMenu;
 import restaurant.Menu;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HalfMealFactoryTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class HalfMealFactoryTest {
 
+	/** The menu. */
 	private static Menu menu = new Menu();
+	
+	/** The meal menu. */
 	private static MealMenu mealMenu = new MealMenu(0.1);
+	
+	/** The half meal factory. */
 	private static HalfMealFactory halfMealFactory = null;
 	
+	/**
+	 * Test half meal factory.
+	 */
 	@BeforeClass
 	public static void testHalfMealFactory() {
 		
@@ -39,6 +56,9 @@ public class HalfMealFactoryTest {
 		assertEquals(mealMenu, halfMealFactory.getMealmenu());
 	}
 
+	/**
+	 * Test create meal string.
+	 */
 	@Test
 	public void testCreateMealString() {
 		
@@ -54,6 +74,9 @@ public class HalfMealFactoryTest {
 		}
 	}
 	
+	/**
+	 * Test create meal string exception.
+	 */
 	@Test(expected = MealNotFoundException.class)
 	public void testCreateMealStringException() {
 		

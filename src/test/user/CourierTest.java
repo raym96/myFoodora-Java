@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -21,12 +24,26 @@ import user.model.Manager;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CourierTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CourierTest {
 
+	/** The courier. */
 	private static Courier courier = null;
+	
+	/** The standard meal order 1. */
 	private StandardMealOrder standardMealOrder1 = null;
+	
+	/** The standard meal order 2. */
 	private StandardMealOrder standardMealOrder2 = null;
 	
+	/**
+	 * Test courier.
+	 */
 	@BeforeClass
 	public static void testCourier() {
 		courier = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
@@ -37,23 +54,35 @@ public class CourierTest {
 		assertNotNull(courier.getWaitingOrders());
 	}
 	
+	/**
+	 * Test observe observable.
+	 */
 	@Test
 	@Ignore
 	public void testObserveObservable() {
 	}
 
+	/**
+	 * Test update.
+	 */
 	@Test
 	public void testUpdate() {
 		String str = "testUpdate() message";
 		courier.update(str);
 	}
 
+	/**
+	 * Test observe observable object.
+	 */
 	@Test
 	public void testObserveObservableObject() {
 		String str = "testObserveObservableObject() message";
 		courier.observe(MyFoodora.getInstance(), str);
 	}
 	
+/**
+ * Test add waiting order.
+ */
 //	@Test
 	public void testAddWaitingOrder() {
 		
@@ -81,6 +110,11 @@ public class CourierTest {
 		assertTrue(courier.getWaitingOrders().contains(standardMealOrder2));
 	}
 	
+	/**
+	 * Test refuse waiting order.
+	 *
+	 * @throws OrderNotFoundException the order not found exception
+	 */
 	@Test(expected = OrderNotFoundException.class)
 	public void testRefuseWaitingOrder() throws OrderNotFoundException{
 		
@@ -91,6 +125,11 @@ public class CourierTest {
 		courier.refuseWaitingOrder(standardMealOrder1);
 	}
 
+	/**
+	 * Accept waiting order.
+	 *
+	 * @throws OrderNotFoundException the order not found exception
+	 */
 	@Test(expected = OrderNotFoundException.class)
 	public void acceptWaitingOrder() throws OrderNotFoundException{
 		
@@ -102,47 +141,71 @@ public class CourierTest {
 		courier.acceptWaitingOrder(standardMealOrder2);
 	}
 	
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		int hashCode = courier.hashCode();
 		System.out.println("hashCode = " + hashCode);
 	}
 
+	/**
+	 * Test log in.
+	 */
 	@Test
 	public void testLogIn() {
 		courier.logIn();
 		assertTrue(courier.isLogStatus());
 	}
 
+	/**
+	 * Test log out.
+	 */
 	@Test
 	public void testLogOut() {
 		courier.logOut();
 		assertFalse(courier.isLogStatus());
 	}
 
+	/**
+	 * Test turn on notification.
+	 */
 	@Test
 	public void testTurnOnNotification() {
 		courier.turnOnNotification();
 		assertTrue(courier.isNotified());
 	}
 
+	/**
+	 * Test turn off notification.
+	 */
 	@Test
 	public void testTurnOffNotification() {
 		courier.turnOffNotification();
 		assertFalse(courier.isNotified());
 	}
 
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public void testEqualsObject() {
 		Courier copy = courier;
 		assertTrue(copy.equals(courier));
 	}
 
+	/**
+	 * Test refresh message board.
+	 */
 	@AfterClass
 	public static void testRefreshMessageBoard() {
 		courier.refreshMessageBoard();
 	}
 	
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(courier);

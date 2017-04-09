@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -21,13 +24,28 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.ManagerService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ManagerServiceTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class ManagerServiceTest {
 
+	/** The manager. */
 	Manager manager;
+	
+	/** The manager service. */
 	ManagerService manager_service;
 	
+	/** The startingdate. */
 	static Date startingdate;
 	
+	/**
+	 * Sets the up before.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUpBefore() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");
@@ -42,6 +60,9 @@ public class ManagerServiceTest {
 	}
 
 
+	/**
+	 * Test add user.
+	 */
 	@Test
 	public void testAddUser() {
 		System.out.println("-----testAddUser-----");
@@ -52,6 +73,9 @@ public class ManagerServiceTest {
 		assertTrue(MyFoodora.getInstance().getUsers().contains(user_test));
 	}
 
+	/**
+	 * Test remove user.
+	 */
 	@Test
 	public void testRemoveUser() {
 		System.out.println("-----testRemoveUser-----");
@@ -65,6 +89,11 @@ public class ManagerServiceTest {
 		assertFalse(MyFoodora.getInstance().getUsers().contains(user_test));
 	}
 
+	/**
+	 * Test activate user.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testActivateUser() throws UserNotFoundException {
 		System.out.println("-----testActivateUser-----");
@@ -78,6 +107,11 @@ public class ManagerServiceTest {
 		
 	}
 
+	/**
+	 * Test disactivate user.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testDisactivateUser() throws UserNotFoundException{
 		System.out.println("-----testDisactivateUser-----");
@@ -93,6 +127,9 @@ public class ManagerServiceTest {
 	}
 	
 
+	/**
+	 * Test set servicefee.
+	 */
 	@Test
 	public void testSetServicefee() {
 		System.out.println("-----testSetServiceFee-----");
@@ -101,6 +138,9 @@ public class ManagerServiceTest {
 		assertTrue(MyFoodora.getInstance().getService_fee()==1);
 	}
 
+	/**
+	 * Test set markup percentage.
+	 */
 	@Test
 	public void testSetMarkupPercentage() {
 		System.out.println("-----testMarkUpPencentage-----");
@@ -110,6 +150,9 @@ public class ManagerServiceTest {
 
 	}
 
+	/**
+	 * Test set deliverycost.
+	 */
 	@Test
 	public void testSetDeliverycost() {
 		System.out.println("-----testSetServiceFee-----");
@@ -118,6 +161,9 @@ public class ManagerServiceTest {
 		assertTrue(MyFoodora.getInstance().getDelivery_cost()==1);
 	}
 
+	/**
+	 * Test get total income.
+	 */
 	@Test
 	public void testGetTotalIncome() {
 		System.out.println("-----testGetTotalIncom-----");
@@ -126,6 +172,9 @@ public class ManagerServiceTest {
 		
 	}
 
+	/**
+	 * Test get total profit.
+	 */
 	@Test
 	public void testGetTotalProfit() {
 		System.out.println("-----testGetTotalProfit-----");
@@ -133,6 +182,9 @@ public class ManagerServiceTest {
 		System.out.println(manager_service.getTotalProfit(startingdate, new Date()));
 	}
 
+	/**
+	 * Test get average income per customer.
+	 */
 	@Test
 	public void testGetAverageIncomePerCustomer() {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
@@ -140,11 +192,17 @@ public class ManagerServiceTest {
 		System.out.println(manager_service.getAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
+	/**
+	 * Test determine param 2 meet target profit.
+	 */
 	@Test
 	public void testDetermineParam2MeetTargetProfit() {
 		//already tested in MyFoodoraServiceTest.java
 	}
 
+	/**
+	 * Test get best restaurant.
+	 */
 	@Test
 	public void testGetBestRestaurant() {
 		System.out.println("-----testBestRestaurant-----");
@@ -157,6 +215,9 @@ public class ManagerServiceTest {
 		manager_service.getBestRestaurant();
 	}
 
+	/**
+	 * Test get worst restaurant.
+	 */
 	@Test
 	public void testGetWorstRestaurant() {
 		System.out.println("-----testGetWorstRestaurant-----");
@@ -169,6 +230,9 @@ public class ManagerServiceTest {
 		manager_service.getWorstRestaurant();
 	}
 
+	/**
+	 * Test get best courier.
+	 */
 	@Test
 	public void testGetBestCourier() {
 		System.out.println("-----testBestCourier-----");
@@ -180,6 +244,9 @@ public class ManagerServiceTest {
 		manager_service.getBestCourier();
 	}
 
+	/**
+	 * Test get worst courier.
+	 */
 	@Test
 	public void testGetWorstCourier() {
 		System.out.println("-----testWorstCourier-----");
@@ -191,6 +258,9 @@ public class ManagerServiceTest {
 		manager_service.getWorstCourier();
 	}
 
+	/**
+	 * Test set delivery policy.
+	 */
 	@Test
 	public void testSetDeliveryPolicy() {
 		System.out.println("-----testSetDeliveryPolicy-----");
@@ -199,18 +269,29 @@ public class ManagerServiceTest {
 		assertTrue(MyFoodora.getInstance().getDeliverypolicy() instanceof FastestDeliveryPolicy);
 	}
 
+	/**
+	 * Test display users.
+	 */
 	@Test
 	public void testDisplayUsers() {
 		System.out.println("------testDisplayUsers-----");
 		manager_service.displayUsers();
 	}
 
+	/**
+	 * Test display active users.
+	 */
 	@Test
 	public void testDisplayActiveUsers() {
 		System.out.println("------testDisplayActiveUsers-----");
 		manager_service.displayActiveUsers();
 	}
 
+	/**
+	 * Test select user.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testSelectUser() throws UserNotFoundException{
 		System.out.println("------testSelectUser-----");
@@ -223,6 +304,9 @@ public class ManagerServiceTest {
 		assertEquals(user,user_test);
 	}
 
+	/**
+	 * Test display users of assigned type.
+	 */
 	@Test
 	public void testDisplayUsersOfAssignedType() {
 		System.out.println("-----DisplayUsersOfAssignedType-----");

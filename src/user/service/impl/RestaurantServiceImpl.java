@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package user.service.impl;
 
 import java.util.ArrayList;
@@ -21,10 +24,22 @@ import system.*;
 import user.model.Restaurant;
 import user.service.RestaurantService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RestaurantServiceImpl.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class RestaurantServiceImpl implements RestaurantService {
 
+	/** The restaurant. */
 	private  Restaurant restaurant;
 	
+	/**
+	 * Instantiates a new restaurant service impl.
+	 *
+	 * @param restaurant the restaurant
+	 */
 	public RestaurantServiceImpl(Restaurant restaurant) {
 		super();
 		this.restaurant = restaurant;
@@ -34,7 +49,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 	// add/remove a dish to the menu
 	//add/remove a dish to the menu
 	
-		@Override
+		/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addDish(restaurant.Dish)
+	 */
+	@Override
 		public void addDish(Dish dish) {
 			// TODO Auto-generated method stub
 			//add/remove a dish to the menu
@@ -46,6 +64,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 		}
 
+		/* (non-Javadoc)
+		 * @see user.service.RestaurantService#removeDish(java.lang.String)
+		 */
 		@Override
 		public void removeDish(String dishName) {
 			// TODO Auto-generated method stub
@@ -57,12 +78,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}	
 		}
 		
+		/* (non-Javadoc)
+		 * @see user.service.RestaurantService#hasDish(java.lang.String)
+		 */
 		@Override
 		public boolean hasDish(String dishName) {
 			// TODO Auto-generated method stub
 			return restaurant.getMenu().hasDish(dishName);
 		}
 
+		/* (non-Javadoc)
+		 * @see user.service.RestaurantService#createDish(java.lang.String)
+		 */
 		//create an instance of Dish
 		@Override
 		public Dish createDish(String dishName) {
@@ -81,6 +108,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 	
 	// 2. creating/removing different meals (half or full meal, vegetarian, gluten-free
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addMeal(restaurant.Meal)
+	 */
 	// and/or standard meals).
 	@Override
 	public void addMeal(Meal meal) {
@@ -100,6 +130,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		
 		
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addMeal(java.lang.String, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void addMeal(String mealname, String dishname1, String dishname2) {
 		// TODO Auto-generated method stub
@@ -148,6 +181,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addMeal(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void addMeal(String mealname, String startername, String maindishname, String dessertname) {
 		// TODO Auto-generated method stub
@@ -195,6 +231,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#createMeal(java.lang.String, java.lang.String)
+	 */
 	//create an instance of Meal
 	@Override
 	public Meal createMeal(String mealCategory, String mealName) {
@@ -211,6 +250,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return new HalfMeal("problem");
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#removeMeal(java.lang.String)
+	 */
 	//Remove a meal from the meal menu
 	@Override
 	public void removeMeal(String mealName) {
@@ -237,6 +279,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addSpecialMeal(java.lang.String)
+	 */
 	//throw exception if meal name is not recognized
 	@Override
 	public void addSpecialMeal(String mealName) {
@@ -270,6 +315,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#removeSpecialMeal(java.lang.String)
+	 */
 	@Override
 	public void removeSpecialMeal(String mealName) {
 		// TODO Auto-generated method stub
@@ -285,6 +333,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	// 3. establishing the generic discount factor (default 5%) to apply when computing
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#setGenericDiscountFactor(double)
+	 */
 	// a meal price
 	@Override
 	public void setGenericDiscountFactor(double generic_discount_factor) {
@@ -294,6 +345,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	// 4. establishing the special discount factor (default 10%) to apply to the meal-of-
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#setSpecialDiscountFactor(double)
+	 */
 	// the-week special offer.
 	@Override
 	public void setSpecialDiscountFactor(double special_discount_factor) {
@@ -302,6 +356,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.updatePrice();
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#DisplayMostOrderedHalfMeal()
+	 */
 	// 5. sorting of shipped orders with respect to different criteria (see below)
 	@Override
 	public void DisplayMostOrderedHalfMeal() {
@@ -311,6 +368,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#DisplayLeastOrderedHalfMeal()
+	 */
 	@Override
 	public void DisplayLeastOrderedHalfMeal() {
 		// TODO Auto-generated method stub
@@ -319,6 +379,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#DisplayMostOrderedAlaCarte()
+	 */
 	@Override
 	public void DisplayMostOrderedAlaCarte() {
 		// TODO Auto-generated method stub
@@ -327,6 +390,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 		
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#DisplayLeastOrderedAlaCarte()
+	 */
 	@Override
 	public void DisplayLeastOrderedAlaCarte() {
 		// TODO Auto-generated method stub
@@ -335,6 +401,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addToHistory(system.Order)
+	 */
 	// EXTRA TOOLS
 	@Override
 	public void addToHistory(Order order) {
@@ -342,12 +411,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.addToHistory(order);
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#displayMenu()
+	 */
 	@Override
 	public void displayMenu() {
 		// TODO Auto-generated method stub
 		restaurant.getMenu().display();
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#displayMealMenu()
+	 */
 	@Override
 	public void displayMealMenu() {
 		// TODO Auto-generated method stub
@@ -358,6 +433,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.getFullMealMenu().display();
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#displaySpecialMenu()
+	 */
 	@Override
 	public void displaySpecialMenu(){
 		// TODO Auto-generated method stub
@@ -365,6 +443,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.getSpecialmealmenu().display();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#displayAllMenu()
+	 */
 	@Override
 	public void displayAllMenu(){
 		System.out.println("\n-----["+(restaurant.getName().toUpperCase()+"]-----"));

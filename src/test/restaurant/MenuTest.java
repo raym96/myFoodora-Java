@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.restaurant;
 
 import static org.junit.Assert.*;
@@ -14,10 +17,20 @@ import restaurant.MainDish;
 import restaurant.Menu;
 import restaurant.Starter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MenuTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MenuTest {
 
+	/** The menu. */
 	private static Menu menu;
 	
+	/**
+	 * Test menu.
+	 */
 	@BeforeClass
 	public static void testMenu() {
 		menu = new Menu();
@@ -27,6 +40,9 @@ public class MenuTest {
 		assertNotNull(menu.getStarters());
 	}
 	
+	/**
+	 * Test init menu.
+	 */
 	@Test
 	public void testInitMenu() {
 		menu.initMenu();
@@ -35,11 +51,17 @@ public class MenuTest {
 		assertTrue(menu.getStarters().size() > 0);
 	}
 
+	/**
+	 * Test get dishes.
+	 */
 	@Test
 	public void testGetDishes() {
 		assertNotNull(menu.getDishes());
 	}
 	
+	/**
+	 * Test has dish.
+	 */
 	@Test
 	public void testHasDish() {
 		menu.initMenu();
@@ -48,6 +70,9 @@ public class MenuTest {
 		assertTrue(menu.hasDish(menu.getDishes().get(2).getDishName()));
 	}
 
+	/**
+	 * Test add dish.
+	 */
 	@Test
 	public void testAddDish() {
 		MainDish m = new MainDish("Pork ribs", "standard", 9.1);
@@ -67,6 +92,9 @@ public class MenuTest {
 		assertTrue(menu.hasDish(d.getDishName()));
 	}
 
+	/**
+	 * Test remove dish.
+	 */
 	@Test
 	public void testRemoveDish() {
 		MainDish m = new MainDish("Pork ribs 222222222", "standard", 9.1);
@@ -86,6 +114,9 @@ public class MenuTest {
 	}
 
 	
+	/**
+	 * Test display.
+	 */
 	@Test
 	public void testDisplay() {
 		menu.display();

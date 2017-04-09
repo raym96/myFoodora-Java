@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -17,10 +20,20 @@ import user.model.Manager;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RestaurantTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class RestaurantTest {
 
+	/** The restaurant. */
 	private static Restaurant restaurant = null;
 	
+	/**
+	 * Test restaurant.
+	 */
 	@BeforeClass
 	public static void testRestaurant() {
 		restaurant = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
@@ -32,22 +45,35 @@ public class RestaurantTest {
 		assertNotNull(restaurant.getHistory());
 	}
 	
+	/**
+	 * Test observe observable.
+	 */
 	@Test
 	@Ignore
 	public void testObserveObservable() {
 	}
 
+	/**
+	 * Test update.
+	 */
 	@Test
 	public void testUpdate() {
 		String str = "testUpdate() message";
 		restaurant.update(str);
 	}
 
+	/**
+	 * Test observe observable object.
+	 */
 	@Test
 	public void testObserveObservableObject() {
 		String str = "testObserveObservableObject() message";
 		restaurant.observe(MyFoodora.getInstance(), str);
 	}
+	
+	/**
+	 * Test add to history.
+	 */
 	@Test
 	public void testAddToHistory() {
 		Menu menu = new Menu();
@@ -65,6 +91,9 @@ public class RestaurantTest {
 		System.out.println(restaurant.getHistory());
 	}
 
+	/**
+	 * Test update price.
+	 */
 	@Test
 	public void testUpdatePrice() {
 		double old_gdf = restaurant.getGeneric_discount_factor();
@@ -87,47 +116,71 @@ public class RestaurantTest {
 		assertTrue(new_sdf == restaurant.getSpecialmealmenu().getDiscount_factor());
 	}
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		int hashCode = restaurant.hashCode();
 		System.out.println("hashCode = " + hashCode);
 	}
 
+	/**
+	 * Test log in.
+	 */
 	@Test
 	public void testLogIn() {
 		restaurant.logIn();
 		assertTrue(restaurant.isLogStatus());
 	}
 
+	/**
+	 * Test log out.
+	 */
 	@Test
 	public void testLogOut() {
 		restaurant.logOut();
 		assertFalse(restaurant.isLogStatus());
 	}
 
+	/**
+	 * Test turn on notification.
+	 */
 	@Test
 	public void testTurnOnNotification() {
 		restaurant.turnOnNotification();
 		assertTrue(restaurant.isNotified());
 	}
 
+	/**
+	 * Test turn off notification.
+	 */
 	@Test
 	public void testTurnOffNotification() {
 		restaurant.turnOffNotification();
 		assertFalse(restaurant.isNotified());
 	}
 
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public void testEqualsObject() {
 		Restaurant copy = restaurant;
 		assertTrue(copy.equals(restaurant));
 	}
 
+	/**
+	 * Test refresh message board.
+	 */
 	@AfterClass
 	public static void testRefreshMessageBoard() {
 		restaurant.refreshMessageBoard();
 	}
 	
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(restaurant);

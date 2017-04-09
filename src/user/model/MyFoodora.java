@@ -1,3 +1,6 @@
+/*
+ * 
+ */
  package user.model;
 
 import java.util.ArrayList;
@@ -21,32 +24,57 @@ import system.Order;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MyFoodora.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MyFoodora implements Observable{
 	
+	/** The users. */
 	private ArrayList<User> users;
 
+	/** The specialofferobservers. */
 	private ArrayList<Customer> specialofferobservers;
 
+	/** The current delivery task. */
 	private Order currentDeliveryTask;
 	
+	/** The specialofferboard. */
 	private ConcreteSpecialOfferBoard specialofferboard;
 	
+	/** The message board. */
 	private MessageBoard messageBoard;//OBSERVABLE, public message board
 	
+	/** The service fee. */
 	private double service_fee;
+	
+	/** The markup percentage. */
 	private double markup_percentage;
+	
+	/** The delivery cost. */
 	private double delivery_cost;	
 	
+	/** The targetprofitpolicy. */
 	private TargetProfitPolicy targetprofitpolicy;
+	
+	/** The deliverypolicy. */
 	private DeliveryPolicy deliverypolicy;
 
+	/** The history. */
 	private History history;
 	
+	/** The balance. */
 	private double balance;
 	
+	/** The instance. */
 	//Singleton Pattern
 	private static MyFoodora instance = null;
 	
+	/**
+	 * Instantiates a new my foodora.
+	 */
 	private MyFoodora(){
 		this.users = new ArrayList<User>();
 		this.specialofferobservers = new ArrayList<Customer>();
@@ -64,12 +92,20 @@ public class MyFoodora implements Observable{
 		this.targetprofitpolicy = new TargetProfit_DeliveryCost(this);
 	};
 	
+	/**
+	 * Sync init.
+	 */
 	private static synchronized void syncInit(){
 		if(instance==null){
 			instance = new MyFoodora();
 		}
 	}
 	
+	/**
+	 * Gets the single instance of MyFoodora.
+	 *
+	 * @return single instance of MyFoodora
+	 */
 	public static MyFoodora getInstance(){
 		//if no instance of myfoodora exists, returns a new myfoodora; otherwise returns the existing myfoodora
 		if(instance == null){
@@ -78,73 +114,157 @@ public class MyFoodora implements Observable{
 		return instance;
 	}
 	
+	/**
+	 * Read resolve.
+	 *
+	 * @return the object
+	 */
 	public Object readResolve(){
 		return instance;
 	}
 
 	
+	/**
+	 * Reset.
+	 */
 	public static synchronized void reset(){
 		instance = null;
 	}
 	
+	/**
+	 * Gets the my foodora service.
+	 *
+	 * @return the my foodora service
+	 */
 	public MyFoodoraService getMyFoodoraService(){
 		return new MyFoodoraServiceImpl();
 	}
 	
+	/**
+	 * Adds the special offer observer.
+	 *
+	 * @param c the c
+	 */
 	public void addSpecialOfferObserver(Customer c){
 		specialofferobservers.add(c);
 	}
 	
+	/**
+	 * Removes the special offer observer.
+	 *
+	 * @param c the c
+	 */
 	public void removeSpecialOfferObserver(Customer c){
 		specialofferobservers.remove(c);
 	}
 	
+	/**
+	 * Gets the special offer observer.
+	 *
+	 * @return the special offer observer
+	 */
 	public ArrayList<Customer> getSpecialOfferObserver(){
 		return specialofferobservers;
 	}
 	
+	/**
+	 * Sets the delivery policy.
+	 *
+	 * @param d the new delivery policy
+	 */
 	public void setDeliveryPolicy(DeliveryPolicy d){
 		deliverypolicy = d;
 	}
 	
+	/**
+	 * Parses the.
+	 *
+	 * @param order the order
+	 * @return the courier
+	 */
 	public Courier parse(Order order){
 		
 		return deliverypolicy.parse(order, getActivecouriers());
 	}
 	
 	
+	/**
+	 * Gets the service fee.
+	 *
+	 * @return the service fee
+	 */
 	public double getService_fee() {
 		return service_fee;
 	}
 
+	/**
+	 * Sets the service fee.
+	 *
+	 * @param service_fee the new service fee
+	 */
 	public void setService_fee(double service_fee) {
 		this.service_fee = service_fee;
 	}
 
+	/**
+	 * Gets the markup percentage.
+	 *
+	 * @return the markup percentage
+	 */
 	public double getMarkup_percentage() {
 		return markup_percentage;
 	}
 
+	/**
+	 * Sets the markup percentage.
+	 *
+	 * @param markup_percentage the new markup percentage
+	 */
 	public void setMarkup_percentage(double markup_percentage) {
 		this.markup_percentage = markup_percentage;
 	}
 
+	/**
+	 * Gets the delivery cost.
+	 *
+	 * @return the delivery cost
+	 */
 	public double getDelivery_cost() {
 		return delivery_cost;
 	}
 
+	/**
+	 * Sets the delivery cost.
+	 *
+	 * @param delivery_cost the new delivery cost
+	 */
 	public void setDelivery_cost(double delivery_cost) {
 		this.delivery_cost = delivery_cost;
 	}
 	
+	/**
+	 * Gets the users.
+	 *
+	 * @return the users
+	 */
 	public ArrayList<User> getUsers() {
 		return users;
 	}
 
+	/**
+	 * Sets the users.
+	 *
+	 * @param users the new users
+	 */
 	public void setUsers(ArrayList<User> users) {
 		this.users = users;
 	}
 
+	/**
+	 * Gets the active users.
+	 *
+	 * @return the active users
+	 */
 	public ArrayList<User> getActiveUsers() {
 		ArrayList<User> activeUsers = new ArrayList<User>();
 		for(User user : users){
@@ -156,10 +276,20 @@ public class MyFoodora implements Observable{
 	}
 	
 
+	/**
+	 * Gets the couriers.
+	 *
+	 * @return the couriers
+	 */
 	public ArrayList<User> getCouriers() {
 		return getUsersOfAssignedType("COURIER");
 	}
 
+	/**
+	 * Gets the activecouriers.
+	 *
+	 * @return the activecouriers
+	 */
 	public ArrayList<Courier> getActivecouriers() {
 		ArrayList<User> couriers = getUsersOfAssignedType("COURIER");
 		ArrayList<Courier> activecouriers = new ArrayList<Courier>();
@@ -173,31 +303,65 @@ public class MyFoodora implements Observable{
 	}
 
 
+	/**
+	 * Gets the targetprofitpolicy.
+	 *
+	 * @return the targetprofitpolicy
+	 */
 	public TargetProfitPolicy getTargetprofitpolicy() {
 		return targetprofitpolicy;
 	}
 
+	/**
+	 * Gets the deliverypolicy.
+	 *
+	 * @return the deliverypolicy
+	 */
 	public DeliveryPolicy getDeliverypolicy() {
 		return deliverypolicy;
 	}
 
+	/**
+	 * Sets the history.
+	 *
+	 * @param h the new history
+	 */
 	public void setHistory(History h){
 		history = h;
 	}
+	
+	/**
+	 * Gets the history.
+	 *
+	 * @return the history
+	 */
 	public History getHistory() {
 		return history;
 	}
 
+	/**
+	 * Adds the to history.
+	 *
+	 * @param order the order
+	 */
 	public void addToHistory(Order order) {
 		// TODO Auto-generated method stub
 		history.getOrders().add(order);
 	}
 	
 	
+	/**
+	 * Gets the specialofferboard.
+	 *
+	 * @return the specialofferboard
+	 */
 	public ConcreteSpecialOfferBoard getSpecialofferboard() {
 		return specialofferboard;
 	}
 
+	/**
+	 * Display users.
+	 */
 	public void displayUsers(){
 		System.out.println("\n[USERS]");
 		for (User u:users){
@@ -205,6 +369,9 @@ public class MyFoodora implements Observable{
 		}
 	}
 	
+	/**
+	 * Display active users.
+	 */
 	public void displayActiveUsers(){
 		System.out.println("\n[ACTIVEUSERS]");
 		for (User u : getActiveUsers() ){
@@ -212,6 +379,9 @@ public class MyFoodora implements Observable{
 		}	
 	}
 	
+	/**
+	 * Display all menus.
+	 */
 	public void displayAllMenus() {
 		System.out.println("\n[ALL MENUS]");
 		for (User u:getUsersOfAssignedType("RESTAURANT")){
@@ -220,21 +390,40 @@ public class MyFoodora implements Observable{
 		System.out.println("[/All MENUS]");
 	}
 	
+	/**
+	 * Display history.
+	 */
 	public void displayHistory(){
 		System.out.println("\n"+history);
 	}
 
+	/**
+	 * Adds the user.
+	 *
+	 * @param user the user
+	 */
 	public void addUser(User user){
 		users.add(user);
 		System.out.println("User " + (user).getUsername() + " has registered on myFoodora.");
 	}
 	
+	/**
+	 * Removes the user.
+	 *
+	 * @param user the user
+	 */
 	public void removeUser(User user){
 		users.remove(user);
 		System.out.println("User " + (user).getUsername() + " has unregistered from myFoodora.");
 
 	}
 	
+	/**
+	 * Activate user.
+	 *
+	 * @param user the user
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	public void activateUser(User user) throws UserNotFoundException{
 		if(users.contains(user)){
 			getActiveUsers().add(user);
@@ -245,6 +434,12 @@ public class MyFoodora implements Observable{
 		
 	}
 	
+	/**
+	 * Disactivate user.
+	 *
+	 * @param user the user
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	public void disactivateUser(User user) throws UserNotFoundException {
 		if(users.contains(user)){
 			getActiveUsers().remove(user);
@@ -256,22 +451,45 @@ public class MyFoodora implements Observable{
 	}
 
 	
+	/**
+	 * Gets the current delivery task.
+	 *
+	 * @return the current delivery task
+	 */
 	public Order getCurrentDeliveryTask() {
 		return currentDeliveryTask;
 	}
 
+	/**
+	 * Sets the current delivery task.
+	 *
+	 * @param currentDeliveryTask the new current delivery task
+	 */
 	public void setCurrentDeliveryTask(Order currentDeliveryTask) {
 		this.currentDeliveryTask = currentDeliveryTask;
 	}
 	
+	/**
+	 * Gets the message board.
+	 *
+	 * @return the message board
+	 */
 	public MessageBoard getMessageBoard() {
 		return messageBoard;
 	}
 	
+	/**
+	 * Refresh message board.
+	 */
 	public void refreshMessageBoard(){
 		this.messageBoard.displayAllmsgs();
 	}
 	
+	/**
+	 * Gets the available couriers.
+	 *
+	 * @return the available couriers
+	 */
 	public ArrayList<Courier> getAvailableCouriers() {
 		ArrayList<Courier> availablecouriers = new ArrayList<Courier>();
 		for (User c : getCouriers()){
@@ -282,6 +500,12 @@ public class MyFoodora implements Observable{
 		return availablecouriers;
 	}
 	
+	/**
+	 * Gets the users of assigned type.
+	 *
+	 * @param userType the user type
+	 * @return the users of assigned type
+	 */
 	public ArrayList<User> getUsersOfAssignedType(String userType){
 		ArrayList<User> usersOfType = new ArrayList<User>();
 		
@@ -322,10 +546,18 @@ public class MyFoodora implements Observable{
 		return usersOfType;
 	}
 	
+	/**
+	 * Sets the targetprofitpolicy.
+	 *
+	 * @param tpp the new targetprofitpolicy
+	 */
 	public void setTargetprofitpolicy(TargetProfitPolicy tpp) {
 		this.targetprofitpolicy=tpp;
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#register(system.Observer)
+	 */
 	@Override
 	public synchronized void register(Observer obs) {
 		// TODO Auto-generated method stub
@@ -333,6 +565,9 @@ public class MyFoodora implements Observable{
 		System.out.println("User " + ((User)obs).getUsername() + " has registered on myFoodora.");
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#unregister(system.Observer)
+	 */
 	@Override
 	public synchronized void unregister(Observer obs) {
 		// TODO Auto-generated method stub
@@ -340,6 +575,9 @@ public class MyFoodora implements Observable{
 		System.out.println("User " + ((User)obs).getUsername() + " has unregistered from myFoodora.");
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#notifyAllObservers()
+	 */
 	@Override
 	public void notifyAllObservers() {
 		// TODO Auto-generated method stub
@@ -351,12 +589,18 @@ public class MyFoodora implements Observable{
 //		}
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#notifyAllObservers(java.lang.Object)
+	 */
 	@Override
 	public void notifyAllObservers(Object o) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see system.Observable#notifyObserver(system.Observer)
+	 */
 	@Override
 	public void notifyObserver(Observer obs) {
 		// TODO Auto-generated method stub
@@ -365,12 +609,18 @@ public class MyFoodora implements Observable{
 //		}
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#notifyObserver(system.Observer, java.lang.Object)
+	 */
 	@Override
 	public void notifyObserver(Observer obs, Object o) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#notifyObservers(java.util.ArrayList)
+	 */
 	@Override
 	public void notifyObservers(ArrayList<Observer> observers) {
 		// TODO Auto-generated method stub
@@ -379,6 +629,9 @@ public class MyFoodora implements Observable{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see system.Observable#notifyObservers(java.util.ArrayList, java.lang.Object)
+	 */
 	@Override
 	public void notifyObservers(ArrayList<User> observers, Object o) {
 		// TODO Auto-generated method stub

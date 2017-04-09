@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -18,11 +21,23 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShoppingCartTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class ShoppingCartTest {
 
+	/** The shopping cart. */
 	private static ShoppingCart shoppingCart = null;
+	
+	/** The menu. */
 	private static Menu menu = new Menu();
 	
+	/**
+	 * Test shopping cart.
+	 */
 	@BeforeClass
 	public static void testShoppingCart() {
 		menu.initMenu();
@@ -32,6 +47,9 @@ public class ShoppingCartTest {
 		assertNotNull(shoppingCart.getOrders());
 	}
 
+	/**
+	 * Test add order.
+	 */
 	@Test
 	public void testAddOrder() {
 
@@ -68,6 +86,9 @@ public class ShoppingCartTest {
 		assertTrue(shoppingCart.getOrders().contains(alaCarteOrder));
 	}
 
+	/**
+	 * Test remove order.
+	 */
 	@Test
 	public void testRemoveOrder() {
 		StandardMealOrder standardMealOrder = null;	
@@ -106,6 +127,9 @@ public class ShoppingCartTest {
 		assertFalse(shoppingCart.getOrders().contains(standardMealOrder));
 	}
 
+	/**
+	 * Test calculate price.
+	 */
 	@Test
 	public void testCalculatePrice() {
 		StandardMealOrder standardMealOrder = null;	
@@ -141,6 +165,9 @@ public class ShoppingCartTest {
 	}
 
 
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(shoppingCart);

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -13,16 +16,40 @@ import user.model.Restaurant;
 import user.service.RestaurantService;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RestaurantServiceTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class RestaurantServiceTest {
+	
+	/** The restaurant 1. */
 	Restaurant restaurant1;
+	
+	/** The restaurant 1 service. */
 	RestaurantService restaurant1_service;
 
+	/** The restaurant 2. */
 	Restaurant restaurant2;
+	
+	/** The restaurant 2 service. */
 	RestaurantService restaurant2_service;
+	
+	/** The terrine. */
 	Dish terrine;
+	
+	/** The sandwich. */
 	Dish sandwich;
+	
+	/** The fondant. */
 	Dish fondant;
 	
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");
@@ -38,6 +65,9 @@ public class RestaurantServiceTest {
 		
 	}
 
+	/**
+	 * Test add dish.
+	 */
 	@Test
 	public void testAddDish() {
 		System.out.println("-----testAddDish-----");
@@ -47,6 +77,9 @@ public class RestaurantServiceTest {
 		assertTrue(restaurant1.getMenu().getDishes().contains(sandwich));
 	}
 
+	/**
+	 * Test remove dish.
+	 */
 	@Test
 	public void testRemoveDish() {
 		System.out.println("-----testRemoveDish-----");
@@ -61,6 +94,9 @@ public class RestaurantServiceTest {
 		
 	}
 
+	/**
+	 * Test create dish.
+	 */
 	@Test
 	public void testCreateDish() {
 		System.out.println("-----testCreateDish-----");
@@ -70,6 +106,9 @@ public class RestaurantServiceTest {
 		
 	}
 
+	/**
+	 * Test add meal meal.
+	 */
 	@Test
 	public void testAddMealMeal() {
 		System.out.println("-----testAddMealMeal-----");
@@ -80,6 +119,9 @@ public class RestaurantServiceTest {
 		
 	}
 
+	/**
+	 * Test add meal string string string.
+	 */
 	@Test
 	public void testAddMealStringStringString() {
 		System.out.println("-----testAddMeal(mealname,dishname1,dishname2)-----");
@@ -94,6 +136,9 @@ public class RestaurantServiceTest {
 		
 	}
 
+	/**
+	 * Test add meal string string string string.
+	 */
 	@Test
 	public void testAddMealStringStringStringString() {
 		System.out.println("-----testAddMeal(mealname,dishname1,dishname2,dishname3)-----");
@@ -108,6 +153,9 @@ public class RestaurantServiceTest {
 		assertTrue(restaurant1.getFullMealMenu().getMeals().contains(meal));
 	}
 
+	/**
+	 * Test create meal.
+	 */
 	@Test
 	public void testCreateMeal() {
 		System.out.println("-----testCreateMeal-----");
@@ -118,6 +166,9 @@ public class RestaurantServiceTest {
 		assertEquals(restaurant1_service.createMeal("Half-Meal", "test_menu"), meal);
 	}
 
+	/**
+	 * Test remove meal.
+	 */
 	@Test
 	public void testRemoveMeal() {
 		System.out.println("-----testRemoveMeal------");
@@ -129,6 +180,9 @@ public class RestaurantServiceTest {
 		assertFalse(restaurant1.getHalfMealMenu().getMeals().contains(meal));
 	}
 
+	/**
+	 * Test add special meal.
+	 */
 	@Test
 	public void testAddSpecialMeal() {
 		System.out.println("-----testAddSpecialMeal-----");
@@ -139,6 +193,9 @@ public class RestaurantServiceTest {
 		assertTrue(restaurant1.getSpecialmealmenu().getMeals().contains(meal));
 	}
 
+	/**
+	 * Test remove special meal.
+	 */
 	@Test
 	public void testRemoveSpecialMeal() {
 		System.out.println("-----testRemoveSpecialMeal-----");
@@ -151,18 +208,27 @@ public class RestaurantServiceTest {
 		assertFalse(restaurant1.getSpecialmealmenu().getMeals().contains(meal));
 	}
 
+	/**
+	 * Test set generic discount factor.
+	 */
 	@Test
 	public void testSetGenericDiscountFactor() {
 		restaurant1_service.setGenericDiscountFactor(0.2);
 		assertTrue(restaurant1.getGeneric_discount_factor()==0.2);
 	}
 
+	/**
+	 * Test set special discount factor.
+	 */
 	@Test
 	public void testSetSpecialDiscountFactor() {
 		restaurant1_service.setSpecialDiscountFactor(0.3);
 		assertTrue(restaurant1.getSpecial_discount_factor()==0.3);
 	}
 
+	/**
+	 * Test display most ordered half meal.
+	 */
 	@Test
 	public void testDisplayMostOrderedHalfMeal() {
 		System.out.println("History of all orders on MyFoodora:");
@@ -171,6 +237,9 @@ public class RestaurantServiceTest {
 		restaurant2_service.DisplayMostOrderedHalfMeal();
 	}
 
+	/**
+	 * Test display least ordered half meal.
+	 */
 	@Test
 	public void testDisplayLeastOrderedHalfMeal() {
 		System.out.println("History of all orders on MyFoodora:");
@@ -179,6 +248,9 @@ public class RestaurantServiceTest {
 		restaurant2_service.DisplayLeastOrderedHalfMeal();
 	}
 
+	/**
+	 * Test display most ordered ala carte.
+	 */
 	@Test
 	public void testDisplayMostOrderedAlaCarte() {
 		System.out.println("History of all orders on MyFoodora:");
@@ -187,6 +259,9 @@ public class RestaurantServiceTest {
 		restaurant2_service.DisplayMostOrderedAlaCarte();
 	}
 
+	/**
+	 * Test display least ordered ala carte.
+	 */
 	@Test
 	public void testDisplayLeastOrderedAlaCarte() {
 		System.out.println("History of all orders on MyFoodora:");
@@ -195,22 +270,34 @@ public class RestaurantServiceTest {
 		restaurant2_service.DisplayLeastOrderedAlaCarte();
 	}
 
+	/**
+	 * Test display menu.
+	 */
 	@Test
 	public void testDisplayMenu() {
 		restaurant1_service.displayMenu();
 		restaurant2_service.displayMenu();
 	}
 
+	/**
+	 * Test display meal menu.
+	 */
 	@Test
 	public void testDisplayMealMenu() {
 		restaurant1_service.displayMealMenu();
 	}
 
+	/**
+	 * Test display special menu.
+	 */
 	@Test
 	public void testDisplaySpecialMenu() {
 		restaurant1_service.displaySpecialMenu();
 	}
 
+	/**
+	 * Test display all menu.
+	 */
 	@Test
 	public void testDisplayAllMenu() {
 		restaurant1_service.displayMealMenu();

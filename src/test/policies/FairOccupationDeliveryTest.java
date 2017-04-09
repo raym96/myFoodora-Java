@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.policies;
 
 import static org.junit.Assert.*;
@@ -17,10 +20,22 @@ import user.model.Customer;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FairOccupationDeliveryTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class FairOccupationDeliveryTest {
 
+	/** The fair occupation delivery. */
 	private FairOccupationDeliveryPolicy fairOccupationDelivery = new FairOccupationDeliveryPolicy();
 	
+	/**
+	 * Test parse.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testParse() throws UserNotFoundException {
 		MyFoodora myFoodora = MyFoodora.getInstance();

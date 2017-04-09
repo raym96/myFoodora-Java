@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.usecase;
 
 import static org.junit.Assert.*;
@@ -19,21 +22,26 @@ import user.service.MyFoodoraService;
 import user.service.impl.ManagerServiceImpl;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
 /**
  * Use case scenario
  * The following use case scenario describe examples of how the MyFoodora should function.
- * @throws UserNotFoundException 
- * 
- * @author Ray
- * @author Hxa
- **/
+ *
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 
 
 
 public class UseCaseTest {
 
+	/** The myfoodora. */
 	private MyFoodora myfoodora;
+	
+	/** The myfoodora service. */
 	private MyFoodoraService myfoodora_service;
+	
+	/** The manager service director. */
 	private ManagerService managerService_director;
 	
 	/*
@@ -43,6 +51,11 @@ public class UseCaseTest {
 		2. the system sends alerts to the customers that agreed to be notified of special offers
 	 */
 	
+	/**
+	 * Test startup scenario.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Before
 	public void testStartupScenario() throws UserNotFoundException {
 		
@@ -72,6 +85,11 @@ public class UseCaseTest {
 		7. the user specify to save the account
 	 */
 	
+	/**
+	 * Test of register user.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testOfRegisterUser() throws UserNotFoundException{
 		
@@ -161,6 +179,12 @@ public class UseCaseTest {
 //		3. the system handles the login and presents to the user the available operations ac-
 //		cording to his role
 //	 */
+/**
+ * Test of login user.
+ *
+ * @param username the username
+ * @return the user
+ */
 //	@Test
 	public User testOfLoginUser(String username){
 		
@@ -202,6 +226,9 @@ public class UseCaseTest {
 //		5. Once the order is completed the client selects the end
 //		6. the system shows the summary of the ordered dishes and the total price of the order
 //		taking into account the pricing rules
+/**
+ * Test of ordering meal.
+ */
 //	 */
 	@Test
 	public void testOfOrderingMeal(){
@@ -235,6 +262,9 @@ public class UseCaseTest {
 		}
 	}
 	
+	/**
+	 * Test of insert meal dish 2 menu.
+	 */
 	/*
 	 * Inserting a meal or dish in a restaurant menu
 		1. a restaurant person start using the system because she wants to insert a new meal
@@ -314,6 +344,9 @@ public class UseCaseTest {
 	
 
 	
+	/**
+	 * Test of add meal of week special offer.
+	 */
 	/*
 //	 * Adding a meal of the week special oer
 //		1. a restaurant sta starts using the system and inserts the restaurant credentials
@@ -345,6 +378,9 @@ public class UseCaseTest {
 		}
 	}
 	
+	/**
+	 * Test of remove meal of week special offer.
+	 */
 	/*
 	 * Removing a meal of the week special oer
 		1. a restaurant staff starts using the system and inserts the restaurant credentials

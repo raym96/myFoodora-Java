@@ -1,11 +1,33 @@
+/*
+ * 
+ */
 package restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FullMeal.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class FullMeal extends Meal {
 	
+	/**
+	 * Instantiates a new full meal.
+	 *
+	 * @param name the name
+	 */
 	public FullMeal(String name){
 		super(name);
 	}
 	
+	/**
+	 * Instantiates a new full meal.
+	 *
+	 * @param name the name
+	 * @param dish1 the dish 1
+	 * @param dish2 the dish 2
+	 * @param dish3 the dish 3
+	 */
 	public FullMeal(String name, Dish dish1, Dish dish2, Dish dish3) {
 		super(name);
 		// TODO Auto-generated constructor stub
@@ -16,6 +38,11 @@ public class FullMeal extends Meal {
 	}
 	
 
+	/**
+	 * Instantiates a new full meal.
+	 *
+	 * @param fullmeal the fullmeal
+	 */
 	//Copy constructor, useful for creating meals
 	public FullMeal(Meal fullmeal){
 		super(fullmeal.getName());
@@ -23,6 +50,15 @@ public class FullMeal extends Meal {
 		this.mealType = fullmeal.getMealType();
 	}
 	
+	/**
+	 * Instantiates a new full meal.
+	 *
+	 * @param name the name
+	 * @param menu the menu
+	 * @param dishName1 the dish name 1
+	 * @param dishName2 the dish name 2
+	 * @param dishName3 the dish name 3
+	 */
 	//ONLY FOR TESTS
 	public FullMeal(String name, Menu menu, String dishName1, String dishName2, String dishName3) {
 		super(name);

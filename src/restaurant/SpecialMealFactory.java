@@ -1,12 +1,30 @@
+/*
+ * 
+ */
 package restaurant;
 
 import exceptions.MealNotFoundException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating SpecialMeal objects.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SpecialMealFactory extends MealFactory {
+	
+	/**
+	 * Instantiates a new special meal factory.
+	 *
+	 * @param mealmenu the mealmenu
+	 */
 	public SpecialMealFactory(MealMenu mealmenu){
 		this.mealmenu = mealmenu;
 	}
 	
+	/* (non-Javadoc)
+	 * @see restaurant.MealFactory#createMeal(java.lang.String)
+	 */
 	@Override
 	public Meal createMeal(String mealName) throws MealNotFoundException{
 		// TODO Auto-generated method stub

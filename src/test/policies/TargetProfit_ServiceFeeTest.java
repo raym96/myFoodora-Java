@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.policies;
 
 import static org.junit.Assert.*;
@@ -14,10 +17,22 @@ import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_ServiceFee;
 import user.model.MyFoodora;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TargetProfit_ServiceFeeTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class TargetProfit_ServiceFeeTest {
 
+	/** The myfoodora. */
 	MyFoodora myfoodora;
 	
+	/**
+	 * Sets the up before.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUpBefore() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");	
@@ -25,6 +40,9 @@ public class TargetProfit_ServiceFeeTest {
 		System.out.println(myfoodora.getHistory());
 	}
 	
+	/**
+	 * Test meet target profit.
+	 */
 	@Test
 	public void testMeetTargetProfit() {
 		TargetProfitPolicy targetProfit_ServiceFee = new TargetProfit_ServiceFee(myfoodora);

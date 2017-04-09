@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -34,14 +37,29 @@ import user.model.User;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MyFoodoraServiceTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MyFoodoraServiceTest {
 
+	/** The myfoodora. */
 	MyFoodora myfoodora;
+	
+	/** The myfoodora service. */
 	MyFoodoraService myfoodora_service;
 	
 
+	/** The startingdate. */
 	static Date startingdate = null;
 	
+	/**
+	 * Sets the up before.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUpBefore() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");	
@@ -56,6 +74,9 @@ public class MyFoodoraServiceTest {
 
 	}
 
+	/**
+	 * Test set service fee.
+	 */
 	@Test
 	public void testSetServiceFee() {
 		System.out.println("-----testSetServiceFee-----");
@@ -64,6 +85,9 @@ public class MyFoodoraServiceTest {
 		
 	}
 
+	/**
+	 * Test set mark up percentage.
+	 */
 	@Test
 	public void testSetMarkUpPercentage() {
 		System.out.println("-----testSetMarkUpPercentage-----");
@@ -71,6 +95,9 @@ public class MyFoodoraServiceTest {
 		assertTrue(myfoodora.getMarkup_percentage()==0.01);
 	}
 
+	/**
+	 * Test set delivery cost.
+	 */
 	@Test
 	public void testSetDeliveryCost() {
 		System.out.println("-----testSetDeliveryCost-----");
@@ -78,6 +105,9 @@ public class MyFoodoraServiceTest {
 		assertTrue(myfoodora.getDelivery_cost()==0.5);
 	}
 
+	/**
+	 * Test parse.
+	 */
 	@Test
 	public void testParse() {
 		System.out.println("-----testParse-----");
@@ -111,6 +141,9 @@ public class MyFoodoraServiceTest {
 		
 	}
 
+	/**
+	 * Test notify all.
+	 */
 	@Test
 	public void testNotifyAll() {
 		System.out.println("-----testNotifyAll-----");
@@ -127,6 +160,11 @@ public class MyFoodoraServiceTest {
 		assertTrue(c.getSpecialoffers().contains(supermeal));
 	}
 
+	/**
+	 * Test get total income.
+	 *
+	 * @throws ParseException the parse exception
+	 */
 	@Test
 	public void testGetTotalIncome() throws ParseException {
 		//Starting date for calculating the income/profit
@@ -135,6 +173,11 @@ public class MyFoodoraServiceTest {
 		System.out.println(myfoodora_service.getTotalIncome(startingdate, new Date()));
 	}
 
+	/**
+	 * Test get total profit.
+	 *
+	 * @throws ParseException the parse exception
+	 */
 	@Test
 	public void testGetTotalProfit() throws ParseException {
 		//Starting date for calculating the income/profit
@@ -143,6 +186,11 @@ public class MyFoodoraServiceTest {
 		System.out.println(myfoodora_service.getTotalProfit(startingdate, new Date()));
 	}
 
+	/**
+	 * Test get average income per customer.
+	 *
+	 * @throws ParseException the parse exception
+	 */
 	@Test
 	public void testGetAverageIncomePerCustomer() throws ParseException {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
@@ -150,6 +198,9 @@ public class MyFoodoraServiceTest {
 		System.out.println(myfoodora_service.getAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
+	/**
+	 * Test apply target profit policy.
+	 */
 	@Test
 	public void testApplyTargetProfitPolicy() {
 		System.out.println("-----testApplyTargetProfitPolicy-----");
@@ -170,6 +221,9 @@ public class MyFoodoraServiceTest {
 		
 	}
 
+	/**
+	 * Test select user.
+	 */
 	@Test
 	public void testSelectUser() {
 		System.out.println("-----testSelectUser-----");
@@ -179,6 +233,9 @@ public class MyFoodoraServiceTest {
 		assertEquals(c,user);
 	}
 
+	/**
+	 * Test get users of assigned type.
+	 */
 	@Test
 	public void testGetUsersOfAssignedType() {
 		System.out.println("-----testGetUsersOfAssignedType-----");
@@ -189,12 +246,18 @@ public class MyFoodoraServiceTest {
 		}
 	}
 
+	/**
+	 * Test ask agree 2 customers.
+	 */
 	@Test
 	public void testAskAgree2customers() {
 		System.out.println("-----testAskAgree2customers-----");
 		myfoodora_service.askAgree2customers("Do you agree ?");
 	}
 
+	/**
+	 * Test get history.
+	 */
 	@Test
 	public void testGetHistory() {
 		System.out.println("-----testGetHistory-----");

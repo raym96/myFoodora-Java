@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.policies;
 
 import static org.junit.Assert.*;
@@ -14,15 +17,32 @@ import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
 import user.model.MyFoodora;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TargetProfit_DeliveryCostTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class TargetProfit_DeliveryCostTest {
+	
+	/** The myfoodora. */
 	MyFoodora myfoodora;
 	
+	/**
+	 * Sets the up before.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUpBefore() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");	
 		myfoodora = MyFoodora.getInstance();
 		System.out.println(myfoodora.getHistory());
 	}
+	
+	/**
+	 * Test meet target profit.
+	 */
 	@Test
 	public void testMeetTargetProfit() {
 		TargetProfitPolicy targetProfit_DeliveryCost =  new TargetProfit_DeliveryCost(myfoodora);

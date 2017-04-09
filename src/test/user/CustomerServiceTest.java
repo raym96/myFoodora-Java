@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -25,16 +28,34 @@ import user.service.CustomerService;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CustomerServiceTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CustomerServiceTest {
 
+	/** The myfoodora. */
 	MyFoodora myfoodora;
+	
+	/** The myfoodora service. */
 	MyFoodoraService myfoodora_service;
 	
+	/** The customer. */
 	Customer customer;
+	
+	/** The customer service. */
 	CustomerService customer_service;
 	
+	/** The restaurant. */
 	Restaurant restaurant;
 	
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");
@@ -48,6 +69,9 @@ public class CustomerServiceTest {
 
 
 
+	/**
+	 * Test add special meal order.
+	 */
 	@Test
 	public void testAddSpecialMealOrder() {
 		System.out.println("-------testAddSpecialMealOrder------");
@@ -58,6 +82,9 @@ public class CustomerServiceTest {
 		System.out.println(customer.getShoppingCart());
 	}
 
+	/**
+	 * Test add standard meal order.
+	 */
 	@Test
 	public void testAddStandardMealOrder() {
 		System.out.println("------testAddStandardMealOrder------");
@@ -68,6 +95,9 @@ public class CustomerServiceTest {
 		System.out.println(customer.getShoppingCart());
 	}
 
+	/**
+	 * Test add ala carte order.
+	 */
 	@Test
 	public void testAddAlaCarteOrder() {
 		System.out.println("------testAddAlaCarteOrder------");
@@ -79,6 +109,9 @@ public class CustomerServiceTest {
 	}
 
 
+	/**
+	 * Test pay.
+	 */
 	@Test
 	public void testPay() {
 		System.out.println("------testPay------");
@@ -87,6 +120,9 @@ public class CustomerServiceTest {
 		customer_service.pay();
 	}
 
+	/**
+	 * Test register card.
+	 */
 	@Test
 	public void testRegisterCard() {
 		System.out.println("------testRegisterCard------");
@@ -99,6 +135,9 @@ public class CustomerServiceTest {
 		
 	}
 
+	/**
+	 * Test unregister card.
+	 */
 	@Test
 	public void testUnregisterCard() {
 		System.out.println("------testUnregisterCard------");
@@ -107,6 +146,9 @@ public class CustomerServiceTest {
 		assertTrue(customer.getCard() instanceof StandardCard);
 	}
 
+	/**
+	 * Test get history.
+	 */
 	@Test
 	public void testGetHistory() {
 		System.out.println("------testGetHistory------");
@@ -114,6 +156,9 @@ public class CustomerServiceTest {
 		assertTrue(customer_service.getHistory() instanceof History);
 	}
 
+	/**
+	 * Test get points.
+	 */
 	@Test
 	public void testGetPoints() {
 		System.out.println("------testGetPoints-------");
@@ -131,6 +176,9 @@ public class CustomerServiceTest {
 		System.out.println(customer.getUsername() + " has "+customer_service.getPoints()+" points.");
 	}
 
+	/**
+	 * Test give consensus be notified special offers.
+	 */
 	@Test
 	public void testGiveConsensusBeNotifiedSpecialOffers() {
 		System.out.println("------testGiveConsensusBeNotifiedSpecialOffers------");
@@ -139,6 +187,9 @@ public class CustomerServiceTest {
 		assertTrue(MyFoodora.getInstance().getSpecialOfferObserver().contains(customer));
 	}
 
+	/**
+	 * Test remove consensus be notified special offers.
+	 */
 	@Test
 	public void testRemoveConsensusBeNotifiedSpecialOffers() {
 		System.out.println("------testRemoveConsensusBeNotifiedSpecialOffers------");

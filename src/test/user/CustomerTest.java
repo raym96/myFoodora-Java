@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -19,11 +22,23 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.service.CustomerService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CustomerTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CustomerTest {
 
+	/** The customer. */
 	private static Customer customer = null;
+	
+	/** The customer service. */
 	private static CustomerService customerService = null;
 	
+	/**
+	 * Test customer.
+	 */
 	@BeforeClass
 	public static void testCustomer() {
 		customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
@@ -34,23 +49,35 @@ public class CustomerTest {
 		assertNotNull(customer.getSpecialoffers());
 	}
 	
+	/**
+	 * Test observe observable.
+	 */
 	@Test
 	@Ignore
 	public void testObserveObservable() {
 	}
 
+	/**
+	 * Test update.
+	 */
 	@Test
 	public void testUpdate() {
 		String str = "testUpdate() message";
 		customer.update(str);
 	}
 
+	/**
+	 * Test observe observable object.
+	 */
 	@Test
 	public void testObserveObservableObject() {
 		String str = "testObserveObservableObject() message";
 		customer.observe(MyFoodora.getInstance(), str);
 	}
 
+	/**
+	 * Test add special offer.
+	 */
 	@Test
 	public void testAddSpecialOffer() {
 		Menu menu = new Menu();
@@ -68,47 +95,71 @@ public class CustomerTest {
 		assertTrue(customer.getSpecialoffers().size() > 0);
 	}
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		int hashCode = customer.hashCode();
 		System.out.println("hashCode = " + hashCode);
 	}
 
+	/**
+	 * Test log in.
+	 */
 	@Test
 	public void testLogIn() {
 		customer.logIn();
 		assertTrue(customer.isLogStatus());
 	}
 
+	/**
+	 * Test log out.
+	 */
 	@Test
 	public void testLogOut() {
 		customer.logOut();
 		assertFalse(customer.isLogStatus());
 	}
 
+	/**
+	 * Test turn on notification.
+	 */
 	@Test
 	public void testTurnOnNotification() {
 		customer.turnOnNotification();
 		assertTrue(customer.isNotified());
 	}
 
+	/**
+	 * Test turn off notification.
+	 */
 	@Test
 	public void testTurnOffNotification() {
 		customer.turnOffNotification();
 		assertFalse(customer.isNotified());
 	}
 
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public void testEqualsObject() {
 		Customer copy = customer;
 		assertTrue(copy.equals(customer));
 	}
 
+	/**
+	 * Test refresh message board.
+	 */
 	@AfterClass
 	public static void testRefreshMessageBoard() {
 		customer.refreshMessageBoard();
 	}
 	
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(customer);

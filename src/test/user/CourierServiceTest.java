@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.user;
 
 import static org.junit.Assert.*;
@@ -22,19 +25,43 @@ import user.service.CourierService;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CourierServiceTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CourierServiceTest {
 	
+	/** The courier test. */
 	static Courier courier_test;
+	
+	/** The courier service. */
 	static CourierService courier_service;
 		
+	/** The myfoodora. */
 	static MyFoodora myfoodora;
+	
+	/** The myfoodora service. */
 	MyFoodoraService myfoodora_service;
 
+	/** The customer. */
 	Customer customer;
+	
+	/** The restaurant. */
 	Restaurant restaurant;
+	
+	/** The meal. */
 	Meal meal;
+	
+	/** The order. */
 	Order order;
 	
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		InitialScenario.load("scenario_test_services.ini");	
@@ -52,6 +79,9 @@ public class CourierServiceTest {
 		
 	}
 
+	/**
+	 * Test register.
+	 */
 	@Test
 	public void testRegister() {
 		System.out.println("-----testRegister-----");
@@ -60,6 +90,9 @@ public class CourierServiceTest {
 		assertTrue(myfoodora.getCouriers().contains(courier_test));
 	}
 
+	/**
+	 * Test unregister.
+	 */
 	@Test
 	public void testUnregister() {
 		System.out.println("-----testUnregister-----");
@@ -74,6 +107,9 @@ public class CourierServiceTest {
 		assertFalse(myfoodora.getAvailableCouriers().contains(courier_test));
 	}
 
+	/**
+	 * Test turn on duty.
+	 */
 	@Test
 	public void testTurnOnDuty() {
 		System.out.println("-----testTurnOnDuty-----");
@@ -86,6 +122,9 @@ public class CourierServiceTest {
 		courier_service.unregister();
 	}
 
+	/**
+	 * Test turn off duty.
+	 */
 	@Test
 	public void testTurnOffDuty() {
 		System.out.println("-----testTurnOffDuty-----");
@@ -94,6 +133,9 @@ public class CourierServiceTest {
 		assertFalse(myfoodora.getAvailableCouriers().contains(courier_test));
 	}
 
+	/**
+	 * Test change position.
+	 */
 	@Test
 	public void testChangePosition() {
 		System.out.println("-----testChangePosition-----");
@@ -101,6 +143,9 @@ public class CourierServiceTest {
 		assertEquals(courier_test.getPosition(),new AddressPoint(2,2));
 	}
 
+	/**
+	 * Test accept call.
+	 */
 	@Test
 	public void testAcceptCall() {
 		System.out.println("-----testAcceptCall-----");
@@ -122,6 +167,9 @@ public class CourierServiceTest {
 		System.out.println(order.getRestaurant().getHistory());
 	}
 
+	/**
+	 * Test refuse call.
+	 */
 	@Test
 	public void testRefuseCall() {
 		System.out.println("-----testRefuseCall-----");

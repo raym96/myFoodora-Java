@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test.system;
 
 import static org.junit.Assert.*;
@@ -11,10 +14,20 @@ import system.AddressPoint;
 import system.SpecialOffer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SpecialOfferTest.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SpecialOfferTest {
 
+	/** The special offer. */
 	private static SpecialOffer specialOffer = null;
 	
+	/**
+	 * Test special offer.
+	 */
 	@Test
 	public void testSpecialOffer() {
 		Restaurant restaurant = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
@@ -27,6 +40,9 @@ public class SpecialOfferTest {
 		assertNotNull(specialOffer);
 	}
 
+	/**
+	 * Test to string.
+	 */
 	@AfterClass
 	public static void testToString() {
 		System.out.println(specialOffer);

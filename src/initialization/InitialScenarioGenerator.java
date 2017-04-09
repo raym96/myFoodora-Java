@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package initialization;
 
 import java.io.File;
@@ -15,27 +18,50 @@ import restaurant.Menu;
 import user.model.Customer;
 import user.model.Restaurant;
 
+// TODO: Auto-generated Javadoc
 /** Provides methods to outprint initial scenarios, which can be copy-pasted
  *  to an .ini file, and once filled can be loaded by InitialScenario.load()
  *  
- * @author Ray
+ * @author He Xiaoan
+ * @author Ji Raymond
  *
  */
 
 public class InitialScenarioGenerator {
 	
+	/** The n customer. */
 	static int nCustomer = 2;
+	
+	/** The n restaurant. */
 	static int nRestaurant = 2;
+	
+	/** The n manager. */
 	static int nManager = 1;
+	
+	/** The n courier. */
 	static int nCourier = 3;
+	
+	/** The n menu. */
 	static int nMenu = 6; //total number of dishes per restaurant: 2 ST + 2 MD + 2 DS
+	
+	/** The n meal menu. */
 	static int nMealMenu = 5; // 4 HM + 4 FM + 1SM per restaurant
+	
+	/** The n order. */
 	static int nOrder = 30;
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		outPrintOrders();
 	}
 	
+	/**
+	 * Out print customer.
+	 */
 	public static void outPrintCustomer(){
 		for (int i = 1;i<nCustomer+1;i++){
 			System.out.println("[Customer/"+i+"]");
@@ -49,6 +75,9 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
+	/**
+	 * Out print manager.
+	 */
 	public static void outPrintManager(){
 		for (int i = 1; i<nManager+1;i++){
 			System.out.println("[Manager/"+i+"]");
@@ -59,6 +88,9 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
+	/**
+	 * Out print restaurant.
+	 */
 	public static void outPrintRestaurant(){
 		for (int i = 1; i<nRestaurant+1;i++){
 			System.out.println("[Restaurant/"+i+"]");
@@ -69,6 +101,9 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
+	/**
+	 * Out print courier.
+	 */
 	public static void outPrintCourier(){
 		for (int i = 1; i<nCourier+1;i++){
 			System.out.println("[Courier/"+i+"]");
@@ -81,6 +116,9 @@ public class InitialScenarioGenerator {
 		}
 	}
 		
+	/**
+	 * Out print menu.
+	 */
 	public static void outPrintMenu(){
 		for (int i = 0; i<nRestaurant*nMenu; i++){
 			System.out.println("[Dish/"+(i+1)+"]");
@@ -101,6 +139,9 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
+	/**
+	 * Out print meal menu.
+	 */
 	public static void outPrintMealMenu(){
 		for (int i = 0; i<nRestaurant*nMealMenu; i++){
 			System.out.println("[Meal/"+(i+1)+"]");
@@ -125,6 +166,9 @@ public class InitialScenarioGenerator {
 		}
 	}
 	
+	/**
+	 * Out print orders.
+	 */
 	public static void outPrintOrders(){
 		Random random = new Random();
 		try{
