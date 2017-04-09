@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import system.AddressPoint;
 import system.Order;
-import user.Courier;
+import user.model.Courier;
 
 public class FastestDeliveryPolicy implements DeliveryPolicy {
 	

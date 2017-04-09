@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import restaurant.HalfMeal;
 import restaurant.Meal;
 import system.Order;
-import user.Restaurant;
+import user.model.Restaurant;
 
 public class SortingByRestaurant extends SortingByCriteria {
 

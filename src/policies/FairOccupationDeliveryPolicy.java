@@ -3,7 +3,7 @@ package policies;
 import java.util.ArrayList;
 
 import system.Order;
-import user.Courier;
+import user.model.Courier;
 
 public class FairOccupationDeliveryPolicy implements DeliveryPolicy {
 

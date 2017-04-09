@@ -1,7 +1,7 @@
 package policies;
 
-import user.Customer;
-import user.MyFoodora;
+import user.model.Customer;
+import user.model.MyFoodora;
 
 public class PointCard extends FidelityCard {
 	private double balance;

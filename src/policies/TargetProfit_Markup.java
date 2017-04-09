@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import user.MyFoodora;
+import user.model.MyFoodora;
 
 public class TargetProfit_Markup implements TargetProfitPolicy {
 	// target profit = last month income * markup + last month order*(service fee - delivery cost)
