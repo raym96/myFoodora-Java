@@ -25,12 +25,12 @@ import system.History;
 import system.Order;
 import system.SpecialMealOrder;
 import system.StandardMealOrder;
-import user.Courier;
-import user.Customer;
-import user.Manager;
-import user.MyFoodora;
-import user.Restaurant;
-import user.User;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.model.User;
 
 public class InitialScenario {
 	

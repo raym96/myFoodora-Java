@@ -12,8 +12,8 @@ import org.ini4j.Ini;
 
 import restaurant.MealMenu;
 import restaurant.Menu;
-import user.Customer;
-import user.Restaurant;
+import user.model.Customer;
+import user.model.Restaurant;
 
 /** Provides methods to outprint initial scenarios, which can be copy-pasted
  *  to an .ini file, and once filled can be loaded by InitialScenario.load()
