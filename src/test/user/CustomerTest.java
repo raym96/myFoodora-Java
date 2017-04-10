@@ -13,8 +13,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
 import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.SpecialMealOrder;
-import system.SpecialOffer;
+
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Manager;

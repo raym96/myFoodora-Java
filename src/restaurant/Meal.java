@@ -6,22 +6,27 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import system.ConcreteShoppingCartVisitor;
+import system.ShoppingCartVisitor;
+import user.model.Restaurant;
+
 
 /**
  * The Class Meal.
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public abstract class Meal {
+public abstract class Meal implements Item{
 
 	/** The name. */
 	protected String name;
 	
 	/** The dishes. */
 	protected ArrayList<Dish> dishes;
+		
+	protected Restaurant restaurant;
 	
-	/** The price. */
-	protected double price; //rawprice adjusted by the discount factor. Undefined if the meal is not in a meal menu
+	private boolean isSpecial;
 	
 	/** The meal type. */
 	//standard,vegetarian,gluten-free
@@ -135,22 +140,22 @@ public abstract class Meal {
 		return rawprice;
 	}
 	
-	/**
-	 * Gets the price.
-	 *
-	 * @return the price
-	 */
-	public double getPrice(){
-		return price;
+	
+	public void setRestaurant(Restaurant restaurant){
+		this.restaurant = restaurant;
 	}
 	
-	/**
-	 * Sets the price.
-	 *
-	 * @param price the new price
-	 */
-	public void setPrice(double price){
-		this.price = price;
+	
+	public boolean isSpecial() {
+		return isSpecial;
+	}
+
+	public void setSpecial(boolean isSpecial) {
+		this.isSpecial = isSpecial;
+	}
+	
+	public double accept(ShoppingCartVisitor visitor){
+		return visitor.visit(this);
 	}
 
 	/* (non-Javadoc)
@@ -159,8 +164,9 @@ public abstract class Meal {
 	@Override
 	public String toString() {
 		String str;
+		double price = new ConcreteShoppingCartVisitor().visit(this);
 		//the stream.map.collector allows to collect only dishnames
-		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+getPrice()+" euros";
+		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+price+" euros";
 		return str;
 	}
 
@@ -195,6 +201,10 @@ public abstract class Meal {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
 	}
 	
 }

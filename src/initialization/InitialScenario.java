@@ -63,7 +63,7 @@ public class InitialScenario {
 			myfoodora.setHistory(loadHistory(ini)); //initialize history by adding orders
 			
 			myfoodora.displayUsers();
-			myfoodora.displayAllMenus();
+			myfoodora.displayAllMenus();	
 			myfoodora.displayHistory();
 			
 			System.out.println("The initial file <"+filename+"> successfully loaded into the system.");
@@ -333,7 +333,9 @@ public class InitialScenario {
 				}
 				newmeal.refreshMealType();
 				restaurant.getSpecialmealmenu().addMeal(newmeal);
+				
 			}
+
 		}
 		}catch ( Exception e){
 			e.printStackTrace();
@@ -348,7 +350,7 @@ public class InitialScenario {
 	 * @return the history
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	//Initialize history by adding random orders to restaurants
+	//Initialize history by adding random generated orders to restaurants
 	public static History loadHistory(Ini ini) throws IOException{
 		History history= new History();
 				
@@ -393,14 +395,15 @@ public class InitialScenario {
 						courier = ((Courier)u); 
 					}
 				}
+				neworder = new Order(customer, restaurant);
 				if (orderType.equals("Special-meal")){
-					neworder = new SpecialMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
+					neworder.addItem(restaurant.getMealFactory(orderType).createMeal(ordername));
 				}
 				if (orderType.equals("A-la-carte")){
-					neworder = new AlaCarteOrder(customer, restaurant, restaurant.getDishFactory().createDish(ordername));
+					neworder.addItem(restaurant.getDishFactory().createDish(ordername));
 				}
 				else{
-					neworder = new StandardMealOrder(customer, restaurant, restaurant.getMealFactory(orderType).createMeal(ordername));
+					neworder.addItem(restaurant.getMealFactory(orderType).createMeal(ordername));
 				}
 				//Assign courier
 				neworder.setAssigned(true);
@@ -414,8 +417,6 @@ public class InitialScenario {
 				
 				//Set date
 				neworder.setDate(date);
-				//Set price (current discount factors)
-				neworder.setPrice(neworder.accept(new ConcreteShoppingCartVisitor()));
 				
 				restaurant.addToHistory(neworder);
 				history.addOrder(neworder);

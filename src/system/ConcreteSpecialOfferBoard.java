@@ -51,7 +51,7 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	 *
 	 * @param so the so
 	 */
-	public void removeSpecialOffer(SpecialOffer so){
+	public void removeSpecialOffer(Meal so){
 		specialoffers.remove(so);
 		this.changed = true;
 		this.notifyAllObservers();

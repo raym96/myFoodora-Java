@@ -9,7 +9,7 @@ package restaurant;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public abstract class Dish {
+public abstract class Dish implements Item{
 
 	/** The dish name. */
 	protected String dishName;

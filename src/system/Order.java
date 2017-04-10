@@ -1,35 +1,36 @@
-/*
- * 
- */
 package system;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
+import restaurant.*;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
 import user.model.User;
 
-
 /**
  * The Class Order.
+ * 
  * @author He Xiaoan
  * @author Ji Raymond
  */
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
-public abstract class Order {
+public class Order {
 	
 	/** The date. */
 	protected Date date;
 	
 	/** The order ID. */
 	protected String orderID;
+	
+	static private int ordercount = 1244;
 	
 	/** The restaurant. */
 	protected Restaurant restaurant;
@@ -41,12 +42,10 @@ public abstract class Order {
 	//relative to delivery
 	private Courier courier;
 	
-	/** The assigned. */
+	/** whether the order is assigned. */
 	private boolean assigned;
 	
-	/** The price. */
-	protected double price;
-	
+	private ArrayList<Item> items;
 	/**
 	 * Instantiates a new order.
 	 *
@@ -56,8 +55,10 @@ public abstract class Order {
 	public Order(Customer customer,Restaurant restaurant){
 		this.customer = customer;
 		this.restaurant = restaurant;
+		this.items = new ArrayList<Item>();
 		date = new Date();
-		orderID = UUID.randomUUID().toString();
+		orderID = String.valueOf(ordercount);
+		ordercount++;
 		
 		//initialy no courier is assigned
 		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
@@ -75,7 +76,9 @@ public abstract class Order {
 	public Order(Customer customer,Restaurant restaurant, Date date){
 		this.customer = customer;
 		this.restaurant = restaurant;
-		orderID = UUID.randomUUID().toString();
+		this.items = new ArrayList<Item>();
+		orderID = String.valueOf(ordercount);
+		ordercount++;
 		this.date = date;
 		
 		//initialy no courier is assigned
@@ -83,20 +86,6 @@ public abstract class Order {
 		assigned = false;
 	}
 	
-	/**
-	 * Accept.
-	 *
-	 * @param visitor the visitor
-	 * @return the double
-	 */
-	public abstract double accept(ShoppingCartVisitor visitor);	
-	
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public abstract String getName(); //depends on whether it is a meal or a-la-carte
 	
 	/**
 	 * Gets the customer.
@@ -134,23 +123,6 @@ public abstract class Order {
 		return date;
 	}
 	
-	/**
-	 * Gets the price.
-	 *
-	 * @return the price
-	 */
-	public double getPrice(){
-		return price;
-	}
-	
-	/**
-	 * Sets the price.
-	 *
-	 * @param price the new price
-	 */
-	public void setPrice(double price){
-		this.price = price;
-	}
 	
 	/**
 	 * Sets the date.
@@ -161,6 +133,16 @@ public abstract class Order {
 		this.date = date;
 	}
 	
+	
+	
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+	
+	public void addItem(Item item){
+		items.add(item);
+	}
+
 	/**
 	 * Checks if is assigned.
 	 *
@@ -212,23 +194,23 @@ public abstract class Order {
 	 */
 	@Override
 	public String toString(){
-		String str = "["+price+"�] ";
-		if (this instanceof SpecialMealOrder){
-			str+= "Special-meal <";
-			str+= ((SpecialMealOrder)this).getName();
+		String str = "[Order ID"+orderID+"]\n";
+		str+= "["+accept(new ConcreteShoppingCartVisitor())+"€] \n";
+		for (Item item:items){
+			if (item instanceof Dish){
+				str+="A-la-carte <";
+				str+= ((Dish)item).getDishName()+">\n";
+			}
+			if (item instanceof Meal){
+				str+="Meal <";
+				str+= ((Meal)item).getName()+">\n";
+			}
 		}
-		else if (this instanceof StandardMealOrder){
-			str+="Meal <";
-			str+= ((StandardMealOrder)this).getName();
-		}
-		else if (this instanceof AlaCarteOrder){
-			str+="A-la-carte <";
-			str+= ((AlaCarteOrder)this).getName();
-		}
-		str+="> ORDERED BY <"+customer.getUsername()+ "> AT <" +restaurant.getUsername();
+		str+="BY <"+customer.getUsername()+ "> "+customer.getFullName()+"\n";
+		str+="AT <" +restaurant.getUsername()+"> "+restaurant.getName()+"\n";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-		str+="> ON <"+ sdf.format(date);
+		str+="ON "+ sdf.format(date);
 		
 		if (assigned){
 			str+= "> DELIVERED BY <" + courier.getUsername()+">";
@@ -268,5 +250,8 @@ public abstract class Order {
 		return true;
 	}
 	
+	public double accept(ShoppingCartVisitor visitor){
+		return visitor.visit(this);
+	}
 }
 

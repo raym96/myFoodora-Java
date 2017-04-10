@@ -11,7 +11,6 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import restaurant.*;
-import system.AlaCarteOrder;
 import system.Order;
 
 
@@ -37,12 +36,14 @@ public class SortingByAlaCarte extends SortingByCriteria {
 	public HashMap countOccurence(ArrayList<Order> h){
 		HashMap<Dish, Integer> map = new HashMap<Dish,Integer>();
 		for (Order order:h){
-			if (order instanceof AlaCarteOrder){
-				Dish dish = ((AlaCarteOrder)order).getDish();
-				if (map.containsKey(dish)){
-					map.put(dish, map.get(dish)+1);
-				}else{
-					map.put(dish,1);
+			for (Item item: order.getItems()){
+				if (item instanceof Dish){
+					Dish dish = (Dish)item;
+					if (map.containsKey(dish)){
+						map.put(dish, map.get(dish)+1);
+					}else{
+						map.put(dish,1);
+					}
 				}
 			}
 		}

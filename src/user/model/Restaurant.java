@@ -39,12 +39,6 @@ public class Restaurant extends User{
 	/** The special discount factor. */
 	private double special_discount_factor = 0.1;
 	
-	/** The gdf changed. */
-	private boolean gdf_changed;
-	
-	/** The sdf changed. */
-	private boolean sdf_changed; // bserver pattern with mealmenus which adapt their factor
-	
 	/** The menu. */
 	private Menu menu;
 	
@@ -76,13 +70,10 @@ public class Restaurant extends User{
 		this.name = name;
 		this.address = address;
 		menu = new Menu();
-		halfmealmenu = new MealMenu(generic_discount_factor);
-		fullmealmenu = new MealMenu(generic_discount_factor);
-		specialmealmenu = new MealMenu(special_discount_factor);
+		halfmealmenu = new MealMenu(this);
+		fullmealmenu = new MealMenu(this);
+		specialmealmenu = new MealMenu(this);
 		history = new History();
-		
-		gdf_changed = false;
-		sdf_changed = false;
 		
 		restaurantService = new RestaurantServiceImpl(this);
 		
@@ -251,26 +242,6 @@ public class Restaurant extends User{
 	}
 
 	/**
-	 * Checks if is gdf changed.
-	 *
-	 * @return true, if is gdf changed
-	 */
-	public boolean isGdf_changed() {
-		return gdf_changed;
-	}
-
-
-	/**
-	 * Checks if is sdf changed.
-	 *
-	 * @return true, if is sdf changed
-	 */
-	public boolean isSdf_changed() {
-		return sdf_changed;
-	}
-
-
-	/**
 	 * Gets the specialmealmenu.
 	 *
 	 * @return the specialmealmenu
@@ -296,7 +267,7 @@ public class Restaurant extends User{
 	public double getIncome(){
 		double income = 0;
 		for (Order o:history.getOrders()){
-			income+=o.getPrice();
+			income+=o.accept(new ConcreteShoppingCartVisitor());
 		}
 		return Math.floor(income*100)/100;
 	}
@@ -329,7 +300,6 @@ public class Restaurant extends User{
 	public void setSDF(double sdf) {
 		// TODO Auto-generated method stub
 		this.special_discount_factor = sdf;
-		this.sdf_changed = true;
 	}
 
 	/**
@@ -340,23 +310,6 @@ public class Restaurant extends User{
 	public void setGDF(double gdf) {
 		// TODO Auto-generated method stub
 		this.generic_discount_factor = gdf;
-		this.gdf_changed = true;
-	}
-
-	/**
-	 * Update price.
-	 */
-	public void updatePrice(){ 
-		//Update the discount factor of the menus and therefore the price of the meals
-		if (gdf_changed){
-			this.fullmealmenu.setDiscountFactor(generic_discount_factor);
-			this.halfmealmenu.setDiscountFactor(generic_discount_factor);
-			gdf_changed = false;
-		}
-		if (sdf_changed){
-			this.specialmealmenu.setDiscountFactor(special_discount_factor);
-			sdf_changed = false;
-		}
 	}
 	
 	

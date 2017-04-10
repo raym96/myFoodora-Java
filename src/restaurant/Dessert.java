@@ -3,6 +3,7 @@
  */
 package restaurant;
 
+import system.ShoppingCartVisitor;
 
 /**
  * The Class Dessert.
@@ -29,6 +30,12 @@ public class Dessert extends Dish {
 	 */
 	public Dessert makeCopy(){
 		return new Dessert(this.dishName,this.dishType,this.price);
+	}
+
+	@Override
+	public double accept(ShoppingCartVisitor visitor) {
+		// TODO Auto-generated method stub
+		return visitor.visit(this);
 	}
 	
 }

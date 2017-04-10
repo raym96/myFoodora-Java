@@ -5,6 +5,8 @@ package system;
 
 import java.util.ArrayList;
 
+import user.model.Restaurant;
+
 
 /**
  * The Class ShoppingCart.
@@ -15,9 +17,7 @@ public class ShoppingCart {
 	
 	/** The orders. */
 	private ArrayList<Order> orders;
-	
-	/** The totalprice. */
-	private double totalprice;
+
 	
 	/**
 	 * Instantiates a new shopping cart.
@@ -33,11 +33,7 @@ public class ShoppingCart {
 	 * @param o the o
 	 */
 	public void addOrder(Order o){
-		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
-		totalprice += o.accept(visitor);
-		o.setPrice(o.accept(visitor)); //the price of the order is updated
 		orders.add(o);
-
 	}
 	
 	/**
@@ -46,8 +42,6 @@ public class ShoppingCart {
 	 * @param o the o
 	 */
 	public void removeOrder(Order o){
-		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
-		totalprice -= o.accept(visitor);
 		orders.remove(o);
 	}
 	
@@ -60,24 +54,40 @@ public class ShoppingCart {
 	public ArrayList<Order> getOrders(){
 		return orders;
 	}
+	
+	public boolean hasRestaurant(Restaurant restaurant){
+		for (Order order:orders){
+			if (order.getRestaurant().equals(restaurant)){
+				return true;
+			}
+		}
+		return false;
+	}
 
+	
+	public Order getOrder(Restaurant restaurant){
+		for (Order order:orders){
+			if (order.getRestaurant().equals(restaurant)){
+				return order;
+			}
+		}
+		return null;
+	}
 	/**
 	 * Gets the total price.
 	 *
 	 * @return the total price
 	 */
 	public double getTotalPrice(){
+		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
+		double totalprice =0;
+		for (Order order:orders){
+			totalprice += order.accept(visitor);
+		}
 		return totalprice;
 	}
 	
-	/**
-	 * Sets the total price.
-	 *
-	 * @param price the new total price
-	 */
-	public void setTotalPrice(double price){
-		this.totalprice = price;
-	}
+
 	
 	/**
 	 * Contains.
@@ -113,9 +123,9 @@ public class ShoppingCart {
 	public String toString() {
 		String str = "";
 		for (Order order:orders){
-			str += order+"\n";
+			str += order+"\n\n";
 		}
-		return "\nShoppingCart : \n" + str +"Total price="+getTotalPrice()+"?";
+		return "\nSHOPPINGCART : \n\n" + str +"TOTAL PRICE = "+getTotalPrice()+"€";
 	}
 	
 	

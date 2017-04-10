@@ -45,6 +45,7 @@ public class HalfMeal extends Meal {
 	public HalfMeal(Meal halfmeal){
 		super(halfmeal.getName());
 		this.dishes = halfmeal.getDishes();
+		this.restaurant = halfmeal.getRestaurant();
 	}
 	
 	/**

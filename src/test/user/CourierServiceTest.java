@@ -16,7 +16,6 @@ import initialization.InitialScenario;
 import restaurant.Meal;
 import system.AddressPoint;
 import system.Order;
-import system.StandardMealOrder;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.MyFoodora;
@@ -75,7 +74,8 @@ public class CourierServiceTest {
 		customer = (Customer)myfoodora_service.selectUser("customer_1");
 		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
 		meal = restaurant.getHalfMealMenu().getMeals().get(0);
-		order = new StandardMealOrder(customer,restaurant,meal);
+		order = new Order(customer,restaurant);
+		order.addItem(meal);
 		
 	}
 

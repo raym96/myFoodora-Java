@@ -1,16 +1,10 @@
-/*
- * 
- */
 package system;
 
 import restaurant.*;
 import user.model.Restaurant;
 
-
 /**
  * The Class ConcreteShoppingCartVisitor.
- * @author He Xiaoan
- * @author Ji Raymond
  */
 public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	
@@ -27,24 +21,18 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	/* (non-Javadoc)
 	 * @see system.ShoppingCartVisitor#visit(system.SpecialMealOrder)
 	 */
-	public double visit(SpecialMealOrder mealorder){
-		double price = mealorder.getMeal().getRawprice();
-		double discount_factor = mealorder.getRestaurant().getSpecial_discount_factor();
+	public double visit(Meal meal){
+		double price = meal.getRawprice();
+		double discount_factor = 0;
+		if (meal.isSpecial()){
+			discount_factor = meal.getRestaurant().getSpecial_discount_factor();
+		}
+		else{
+			discount_factor = meal.getRestaurant().getGeneric_discount_factor();
+		}
 		price*=(1.0 - discount_factor);
 		return Math.floor(price*100)/100;
 		
-	}
-	
-	/* (non-Javadoc)
-	 * @see system.ShoppingCartVisitor#visit(system.StandardMealOrder)
-	 */
-	@Override
-	public double visit(StandardMealOrder mealorder) {
-		// TODO Auto-generated method stub
-		double price = mealorder.getMeal().getRawprice();
-		double discount_factor =  mealorder.getRestaurant().getGeneric_discount_factor();
-		price*=(1.0 - discount_factor);
-		return Math.floor(price*100)/100;
 	}
 	
 
@@ -52,9 +40,18 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	 * @see system.ShoppingCartVisitor#visit(system.AlaCarteOrder)
 	 */
 	@Override
-	public double visit(AlaCarteOrder alacarteorder) {
+	public double visit(Dish dish) {
 		// TODO Auto-generated method stub
-		return alacarteorder.getDish().getPrice();
+		return dish.getPrice();
+	}
+	
+	@Override
+	public double visit(Order order){
+		double price = 0;
+		for (Item item:order.getItems()){
+			price += item.accept(new ConcreteShoppingCartVisitor());
+		}
+		return Math.floor(price*100)/100;
 	}
 	
 }

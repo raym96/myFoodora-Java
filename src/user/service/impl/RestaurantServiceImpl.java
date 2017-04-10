@@ -293,6 +293,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				Meal hm = iter1.next();
 				if (hm.getName().equalsIgnoreCase(mealName)){
 					iter1.remove();
+					hm.setSpecial(true);
 					restaurant.getSpecialmealmenu().addMeal(hm);
 					System.out.println(mealName + " has been added to the special-offer menu");
 					count++;
@@ -302,6 +303,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				Meal fm = iter2.next();
 				if (fm.getName().equalsIgnoreCase(mealName)){
 					iter2.remove();
+					fm.setSpecial(true);
 					restaurant.getSpecialmealmenu().addMeal(fm);
 					System.out.println(mealName + " has been added to the special-offer menu");
 					count++;
@@ -325,6 +327,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			Meal sm = iter.next();
 			if (sm.getName().equalsIgnoreCase(mealName)){
 				iter.remove();
+				sm.setSpecial(false);
 				restaurant.getRestaurantService().addMeal(sm);
 				System.out.println(mealName+" has been removed from the special-offer menu");
 			}
@@ -341,7 +344,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void setGenericDiscountFactor(double generic_discount_factor) {
 		// TODO Auto-generated method stub
 		restaurant.setGDF(generic_discount_factor);
-		restaurant.updatePrice();
 	}
 
 	// 4. establishing the special discount factor (default 10%) to apply to the meal-of-
@@ -353,7 +355,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void setSpecialDiscountFactor(double special_discount_factor) {
 		// TODO Auto-generated method stub
 		restaurant.setSDF(special_discount_factor);
-		restaurant.updatePrice();
 	}
 
 	/* (non-Javadoc)

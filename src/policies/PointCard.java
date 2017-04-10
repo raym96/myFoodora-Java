@@ -39,7 +39,7 @@ public class PointCard extends FidelityCard {
 		if (balance>=100){
 			System.out.println("Your point balance reached 100, you now receive a 10% discount on this order.");
 			balance-=100;
-			customer.getShoppingCart().setTotalPrice(amount*0.9);
+			amount *= 0.9;
 		}
 		
 		customer.update("paid for a total amount of = " + amount );

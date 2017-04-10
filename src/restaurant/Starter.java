@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import system.ShoppingCartVisitor;
+
 
 /**
  * The Class Starter.
@@ -35,5 +37,11 @@ public class Starter extends Dish {
 		
 		return s;
 		
+	}
+
+	@Override
+	public double accept(ShoppingCartVisitor visitor) {
+		// TODO Auto-generated method stub
+		return visitor.visit(this);
 	}
 }

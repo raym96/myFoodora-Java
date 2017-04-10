@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import exceptions.MealNotFoundException;
 import exceptions.NameAlreadyExistsException;
+import user.model.Restaurant;
 
 
 /**
@@ -20,19 +21,17 @@ public class MealMenu {
 	/** The meals. */
 	private ArrayList<Meal> meals;
 	
-	/** The discount factor. */
-	private double discount_factor; //depends on whether it is a special meal menu or standard meal menu
-	//simple observer pattern on discount factor
+	private Restaurant restaurant;
 	
 	/**
 	 * Instantiates a new meal menu.
 	 *
 	 * @param discount_factor the discount factor
 	 */
-	public MealMenu(double discount_factor) {
+	public MealMenu(Restaurant restaurant) {
 		super();
 		meals = new ArrayList<Meal>();
-		this.discount_factor=discount_factor;
+		this.restaurant = restaurant;
 	}
 	
 	
@@ -46,8 +45,7 @@ public class MealMenu {
 		if (hasMeal(meal.getName())){
 			throw new NameAlreadyExistsException(meal.getName());
 		}
-		double price = meal.getRawprice()*(1-discount_factor);
-		meal.setPrice(Math.floor(price*100)/100);
+		meal.setRestaurant(getRestaurant());
 		meals.add(meal);
 	}
 	
@@ -94,45 +92,25 @@ public class MealMenu {
 		return meals;
 	}
 	
-	/**
-	 * Sets the discount factor.
-	 *
-	 * @param discount_factor the new discount factor
-	 */
-	public void setDiscountFactor(double discount_factor){
-		this.discount_factor=discount_factor;
+	
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
 	}
 
-	
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+
 	/**
 	 * Display.
 	 */
 	public void display(){
 		for (Meal meal:meals){
-			double price = meal.getRawprice()*(1-discount_factor);
-			meal.setPrice(Math.floor(price*100)/100); //arrondi
-			System.out.println(meal);
+				System.out.println(meal);
 		}
-	}
-
-
-	/**
-	 * Gets the discount factor.
-	 *
-	 * @return the discount factor
-	 */
-	public double getDiscount_factor() {
-		return discount_factor;
-	}
-
-
-	/**
-	 * Sets the discount factor.
-	 *
-	 * @param discount_factor the new discount factor
-	 */
-	public void setDiscount_factor(double discount_factor) {
-		this.discount_factor = discount_factor;
 	}
 	
 }

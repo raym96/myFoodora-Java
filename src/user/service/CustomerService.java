@@ -3,10 +3,7 @@
  */
 package user.service;
 
-import system.AlaCarteOrder;
 import system.History;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
 import user.model.Restaurant;
 
 
@@ -25,7 +22,7 @@ public interface CustomerService {
 	 * @param mealName the meal name
 	 */
 	// order.
-	public void addSpecialMealOrder(Restaurant restaurant, String mealName);
+	public void commandSpecialMeal(Restaurant restaurant, String mealName);
 	
 	/**
 	 * Place the standard meal order.
@@ -34,7 +31,7 @@ public interface CustomerService {
 	 * @param mealName the meal name
 	 * @param mealType the meal type
 	 */
-	public void addStandardMealOrder(Restaurant restaurant, String mealName, String mealType);
+	public void commandRegularMeal(Restaurant restaurant, String mealName, String mealType);
 	
 	/**
 	 * Place the a-la-carte order.
@@ -42,7 +39,7 @@ public interface CustomerService {
 	 * @param restaurant the restaurant
 	 * @param dishName the dish name
 	 */
-	public void addAlaCarteOrder(Restaurant restaurant, String dishName);
+	public void commandAlaCarte(Restaurant restaurant, String dishName);
 	
 	/**
 	 * Pay.

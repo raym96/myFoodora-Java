@@ -18,9 +18,7 @@ import policies.StandardCard;
 import restaurant.Dish;
 import restaurant.Meal;
 import system.History;
-import system.MealOrder;
 import system.Order;
-import system.SpecialMealOrder;
 import user.model.Customer;
 import user.model.MyFoodora;
 import user.model.Restaurant;
@@ -50,6 +48,7 @@ public class CustomerServiceTest {
 	
 	/** The restaurant. */
 	Restaurant restaurant;
+	Restaurant restaurant2;
 	
 	/**
 	 * Sets the up before class.
@@ -65,6 +64,7 @@ public class CustomerServiceTest {
 		customer = (Customer)myfoodora_service.selectUser("customer_1");
 		customer_service = customer.getCustomerService();
 		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
+		restaurant2 = (Restaurant)myfoodora_service.selectUser("restaurant_2");
 	}
 
 
@@ -73,10 +73,10 @@ public class CustomerServiceTest {
 	 * Test add special meal order.
 	 */
 	@Test
-	public void testAddSpecialMealOrder() {
-		System.out.println("-------testAddSpecialMealOrder------");
+	public void testCommandSpecialMeal() {
+		System.out.println("-------testCommandSpecialMeal------");
 		Meal meal = restaurant.getSpecialmealmenu().getMeals().get(0);
-		customer_service.addSpecialMealOrder(restaurant, meal.getName());
+		customer_service.commandSpecialMeal(restaurant, meal.getName());
 	
 		//verify that the last item in the shopping cart of the customer is the new meal
 		System.out.println(customer.getShoppingCart());
@@ -86,10 +86,13 @@ public class CustomerServiceTest {
 	 * Test add standard meal order.
 	 */
 	@Test
-	public void testAddStandardMealOrder() {
-		System.out.println("------testAddStandardMealOrder------");
+	public void testCommandRegularMeal() {
+		System.out.println("------testCommandRegularMeal------");
 		Meal meal = restaurant.getHalfMealMenu().getMeals().get(0);
-		customer_service.addStandardMealOrder(restaurant, meal.getName(), "Half-meal");
+		Meal meal2 = restaurant.getFullMealMenu().getMeals().get(0);
+		customer_service.commandRegularMeal(restaurant, meal.getName(), "Half-meal");
+		customer_service.commandRegularMeal(restaurant, meal2.getName(), "Full-meal");
+		customer_service.commandRegularMeal(restaurant2, meal2.getName(), "Full-meal");
 		
 		//verify that the last item in the shopping cart of the customer is the new meal
 		System.out.println(customer.getShoppingCart());
@@ -99,11 +102,16 @@ public class CustomerServiceTest {
 	 * Test add ala carte order.
 	 */
 	@Test
-	public void testAddAlaCarteOrder() {
-		System.out.println("------testAddAlaCarteOrder------");
-		Dish dish = restaurant.getMenu().getDishes().get(0);
-		customer_service.addAlaCarteOrder(restaurant, dish.getDishName());
+	public void testCommandAlaCarte() {
+		System.out.println("------testCommandAlaCarte------");
+		Dish dish1 = restaurant.getMenu().getDishes().get(0);
+		Dish dish2 = restaurant.getMenu().getDishes().get(1);
+		Dish dish3 = restaurant2.getMenu().getDishes().get(0);
 		
+		customer_service.commandAlaCarte(restaurant, dish1.getDishName());
+		customer_service.commandAlaCarte(restaurant, dish2.getDishName());
+		customer_service.commandAlaCarte(restaurant2, dish3.getDishName());
+
 		//verify that the last item in the shopping cart of the customer is the new meal
 		System.out.println(customer.getShoppingCart());
 	}
@@ -116,7 +124,7 @@ public class CustomerServiceTest {
 	public void testPay() {
 		System.out.println("------testPay------");
 		Dish dish = restaurant.getMenu().getDishes().get(0);
-		customer_service.addAlaCarteOrder(restaurant, dish.getDishName());
+		customer_service.commandAlaCarte(restaurant, dish.getDishName());
 		customer_service.pay();
 	}
 
@@ -165,7 +173,7 @@ public class CustomerServiceTest {
 		//clear shopping cart, add a new order
 		customer.getShoppingCart().clear();
 		Meal meal = restaurant.getSpecialmealmenu().getMeals().get(0);
-		customer_service.addSpecialMealOrder(restaurant, meal.getName());
+		customer_service.commandSpecialMeal(restaurant, meal.getName());
 		
 		//set the card to a point card
 		customer_service.registerCard("PointCard");

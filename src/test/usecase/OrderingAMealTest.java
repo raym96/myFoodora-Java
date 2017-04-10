@@ -108,7 +108,7 @@ public class OrderingAMealTest {
 				System.out.println("Please enter 1 meal name corresponding the type specified:");
 				String mealname = s.nextLine();
 				while(!(mealname.equals("#"))){
-					((Customer)user).getCustomerService().addStandardMealOrder(restaurant, mealType, mealname);
+					((Customer)user).getCustomerService().commandRegularMeal(restaurant, mealType, mealname);
 					mealname = s.nextLine();
 				}
 				((Customer)user).getCustomerService().pay();

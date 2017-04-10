@@ -15,7 +15,6 @@ import system.Message;
 import system.MessageBoard;
 import system.Observable;
 import system.ShoppingCart;
-import system.SpecialOffer;
 import system.SpecialOfferObserver;
 import user.service.CustomerService;
 import user.service.impl.CustomerServiceImpl;

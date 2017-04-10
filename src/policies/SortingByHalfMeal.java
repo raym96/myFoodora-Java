@@ -16,7 +16,6 @@ import java.util.Map.Entry;
 
 import restaurant.*;
 import system.Order;
-import system.StandardMealOrder;
 
 import java.util.TreeMap;
 
@@ -44,9 +43,9 @@ public class SortingByHalfMeal extends SortingByCriteria{
 	public HashMap countOccurence(ArrayList<Order> h){
 		HashMap<HalfMeal, Integer> map = new HashMap<HalfMeal,Integer>();
 		for (Order order:h){
-			if (order instanceof StandardMealOrder){
-				if (((StandardMealOrder)order).getMeal() instanceof HalfMeal){
-					HalfMeal hm = (HalfMeal) ((StandardMealOrder)order).getMeal();
+			for (Item item : order.getItems()){
+				if (item instanceof HalfMeal){
+					HalfMeal hm = (HalfMeal)item;
 					if (map.containsKey(hm)){
 						map.put(hm, map.get(hm)+1);
 					}else{

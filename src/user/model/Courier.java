@@ -11,7 +11,6 @@ import system.ConcreteSpecialOfferBoard;
 import system.Message;
 import system.Observable;
 import system.Order;
-import system.SpecialOffer;
 import system.SpecialOfferBoard;
 import user.service.CourierService;
 import user.service.impl.CourierServiceImpl;

@@ -25,10 +25,7 @@ import restaurant.HalfMeal;
 import restaurant.Meal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.AlaCarteOrder;
 import system.Order;
-import system.SpecialOffer;
-import system.StandardMealOrder;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.MyFoodora;
@@ -114,7 +111,8 @@ public class MyFoodoraServiceTest {
 		Customer customer = (Customer)myfoodora_service.selectUser("customer_1");
 		Restaurant restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
 		Meal meal = restaurant.getFullMealMenu().getMeals().get(0);
-		Order order = new StandardMealOrder(customer,restaurant,meal);
+		Order order = new Order(customer,restaurant);
+		order.addItem(meal);
 		
 		System.out.println("restaurant position = " + restaurant.getAddress());
 		for (Courier c : myfoodora.getAvailableCouriers()){

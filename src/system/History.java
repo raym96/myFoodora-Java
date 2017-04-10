@@ -81,10 +81,9 @@ public class History {
 	 */
 	@Override
 	public String toString(){
-		System.out.println("\n[COMMAND HISTORY]");
-		String str = "";
+		String str = "\n[COMMAND HISTORY]\n\n";
 		for (Order order:orders){
-			str+=order+"\n";
+			str+=order+"\n\n";
 		}
 		return str;
 	}

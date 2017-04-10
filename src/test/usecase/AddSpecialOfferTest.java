@@ -14,7 +14,6 @@ import org.junit.Test;
 import exceptions.UserNotFoundException;
 import initialization.InitialScenario;
 import restaurant.Meal;
-import system.SpecialOffer;
 import user.model.Manager;
 import user.model.MyFoodora;
 import user.model.Restaurant;

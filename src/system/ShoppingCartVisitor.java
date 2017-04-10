@@ -15,26 +15,21 @@ import restaurant.*;
 public interface ShoppingCartVisitor {
 	
 	/**
-	 * Visit a special meal order and applies special factor
+	 * Visit a meal and applies the right discount_factor
 	 *
 	 * @param mealOrder the meal order
 	 * @return the double
 	 */
-	double visit(SpecialMealOrder mealOrder);
+	double visit(Meal meal);
 	
 	/**
-	 * Visit a standard meal order and applies generic factor
+	 * Visit a dish
 	 *
 	 * @param order the order
 	 * @return the double
 	 */
-	double visit(StandardMealOrder order);
+	double visit(Dish dish);
 	
-	/**
-	 * Visit an a la carte order and applies generic factor
-	 *
-	 * @param dish the dish
-	 * @return the double
-	 */
-	double visit(AlaCarteOrder dish);
+	double visit(Order order);
+	
 }

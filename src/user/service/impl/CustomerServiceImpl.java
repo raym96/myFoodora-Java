@@ -8,14 +8,10 @@ import java.util.ArrayList;
 import policies.LotteryCard;
 import policies.PointCard;
 import policies.StandardCard;
-import system.AlaCarteOrder;
 import system.ConcreteShoppingCartVisitor;
 import system.History;
-import system.MealOrder;
 import system.Message;
 import system.Order;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.MyFoodora;
@@ -50,31 +46,50 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @see user.service.CustomerService#addSpecialMealOrder(user.model.Restaurant, java.lang.String)
 	 */
 	// order.
-	public void addSpecialMealOrder(Restaurant r, String mealName){
-		Order neworder = new SpecialMealOrder(customer, r,r.getRestaurantService().createMeal("Special-Meal", mealName));
-		customer.getShoppingCart().addOrder(neworder);
-		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
+	public void commandSpecialMeal(Restaurant r, String mealName){
+		if (customer.getShoppingCart().hasRestaurant(r)){
+			Order order = customer.getShoppingCart().getOrder(r);
+			order.addItem(r.getRestaurantService().createMeal("Special-Meal", mealName));
+		}
+		else{
+			Order order = new Order(customer, r);
+			order.addItem(r.getRestaurantService().createMeal("Special-Meal", mealName));
+			customer.getShoppingCart().addOrder(order);
+		}
+		customer.update(new Message(customer.getUsername(), mealName+" has been added to your shopping cart !"));
 	}
 	
 	/* (non-Javadoc)
 	 * @see user.service.CustomerService#addStandardMealOrder(user.model.Restaurant, java.lang.String, java.lang.String)
 	 */
-	public void addStandardMealOrder(Restaurant r, String mealName, String mealCategory){
-		Order neworder = new StandardMealOrder(customer, r,r.getRestaurantService().createMeal(mealCategory, mealName));
-		customer.getShoppingCart().addOrder(neworder);
-		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
+	public void commandRegularMeal(Restaurant r, String mealName, String mealCategory){
+		if (customer.getShoppingCart().hasRestaurant(r)){
+			Order order = customer.getShoppingCart().getOrder(r);
+			order.addItem(r.getRestaurantService().createMeal(mealCategory, mealName));
+		}
+		else{
+			Order order = new Order(customer, r);
+			order.addItem(r.getRestaurantService().createMeal(mealCategory, mealName));
+			customer.getShoppingCart().addOrder(order);
+		}
+		customer.update(new Message(customer.getUsername(), mealName+" has been added to your shopping cart !"));
 	}
 
 	/* (non-Javadoc)
 	 * @see user.service.CustomerService#addAlaCarteOrder(user.model.Restaurant, java.lang.String)
 	 */
-	public void addAlaCarteOrder(Restaurant r, String dishName){
-		Order neworder = new AlaCarteOrder(customer,r,r.getRestaurantService().createDish(dishName));
-		customer.getShoppingCart().addOrder(neworder);
-		customer.update(new Message(customer.getUsername(), neworder.getOrderID()+" has been added to your shopping cart !"));
-
+	public void commandAlaCarte(Restaurant r, String dishName){
+		if (customer.getShoppingCart().hasRestaurant(r)){
+			Order order = customer.getShoppingCart().getOrder(r);
+			order.addItem(r.getRestaurantService().createDish(dishName));
+		}
+		else{
+			Order order = new Order(customer, r);
+			order.addItem(r.getRestaurantService().createDish(dishName));
+			customer.getShoppingCart().addOrder(order);
+		}
+		customer.update(new Message(customer.getUsername(), dishName+" has been added to your shopping cart !"));
 	}
-	
 
 	/* (non-Javadoc)
 	 * @see user.service.CustomerService#pay()
