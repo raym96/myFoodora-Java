@@ -15,6 +15,7 @@ import user.model.Customer;
 import user.model.Restaurant;
 import user.model.User;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Order.
  * 
@@ -68,10 +69,11 @@ public class Order {
 	}
 	
 	/**
-	 * Instantiates a new order with an item
+	 * Instantiates a new order with an item.
 	 *
 	 * @param customer the customer
 	 * @param restaurant the restaurant
+	 * @param item the item
 	 */
 	public Order(Customer customer,Restaurant restaurant, Item item){
 		this.customer = customer;

@@ -137,7 +137,7 @@ public class ShoppingCart {
 		for (Order order:orders){
 			str += order+"\n\n";
 		}
-		return "\nSHOPPINGCART : \n\n" + str +"TOTAL PRICE = "+getTotalPrice()+"€";
+		return "\nSHOPPINGCART : \n\n" + str +"TOTAL PRICE = "+getTotalPrice()+" euros";
 	}
 	
 	

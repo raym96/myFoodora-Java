@@ -1,12 +1,16 @@
+/*
+ * 
+ */
 package restaurant;
 
 import system.ShoppingCartVisitor;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface Item.
  * 
  * @author He Xiaoan
- * @authro Ji Raymond
+ * @author Ji Raymond
  */
 public interface  Item {
 	
