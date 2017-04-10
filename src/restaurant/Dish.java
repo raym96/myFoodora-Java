@@ -47,7 +47,7 @@ public abstract class Dish implements Item{
 	
 	
 	/**
-	 * Make copy of a dish for factory pattern
+	 * Make copy of a dish for factory pattern.
 	 *
 	 * @return the dish
 	 */

@@ -55,6 +55,12 @@ public class ShoppingCart {
 		return orders;
 	}
 	
+	/**
+	 * Checks if has restaurant.
+	 *
+	 * @param restaurant the restaurant
+	 * @return true, if successful
+	 */
 	public boolean hasRestaurant(Restaurant restaurant){
 		for (Order order:orders){
 			if (order.getRestaurant().equals(restaurant)){
@@ -65,6 +71,12 @@ public class ShoppingCart {
 	}
 
 	
+	/**
+	 * Gets the order.
+	 *
+	 * @param restaurant the restaurant
+	 * @return the order
+	 */
 	public Order getOrder(Restaurant restaurant){
 		for (Order order:orders){
 			if (order.getRestaurant().equals(restaurant)){

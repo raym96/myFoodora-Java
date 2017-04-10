@@ -32,7 +32,7 @@ public class DishFactory {
 	 *
 	 * @param dishName the dish name
 	 * @return the dish
-	 * @throws DishNotFoundException
+	 * @throws DishNotFoundException the dish not found exception
 	 */
 	public Dish createDish(String dishName) throws DishNotFoundException{
 		// TODO Auto-generated method stub

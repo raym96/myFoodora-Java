@@ -64,7 +64,7 @@ public class InitialScenario {
 			
 			myfoodora.displayUsers();
 			myfoodora.displayAllMenus();	
-			myfoodora.displayHistory();
+//			myfoodora.displayHistory();
 			
 			System.out.println("The initial file <"+filename+"> successfully loaded into the system.");
 			System.out.println("-----------------------------------------------------------------------------------\n");

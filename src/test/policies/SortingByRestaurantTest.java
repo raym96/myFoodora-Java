@@ -18,10 +18,9 @@ import restaurant.Dish;
 import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.AlaCarteOrder;
 import system.Order;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
+import system.Order;
+import system.Order;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
@@ -71,38 +70,40 @@ public class SortingByRestaurantTest {
 		r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		FullMeal fm1 = new FullMeal("FM1", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		StandardMealOrder standardMealOrder1 = new StandardMealOrder(c, r, fm1);
-		standardMealOrder1.setCourier(cr);
+		Order Order1 = new Order(c, r, fm1);
+		Order1.setCourier(cr);
 		
 		r2 = new Restaurant("Chinese Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c2 = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		FullMeal fm2 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		StandardMealOrder standardMealOrder2 = new StandardMealOrder(c2, r2, fm2);
-		standardMealOrder2.setCourier(cr);
+		Order Order2 = new Order(c2, r2, fm2);
+		Order2.setCourier(cr);
 	
 		FullMeal fm3 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		SpecialMealOrder specialMealOrder1 = new SpecialMealOrder(c, r, fm3);
+		fm3.setSpecial(true);
+		Order specialMealOrder1 = new Order(c, r, fm3);
 		specialMealOrder1.setCourier(cr);
 		
 	
 		FullMeal fm4 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		SpecialMealOrder specialMealOrder2 = new SpecialMealOrder(c2, r2, fm4);
+		fm4.setSpecial(true);
+		Order specialMealOrder2 = new Order(c2, r2, fm4);
 		specialMealOrder2.setCourier(cr);
 		
 		Dish d = menu.getDishes().get(0);
-		AlaCarteOrder alaCarteOrder1 = new AlaCarteOrder(c, r, d);
-		alaCarteOrder1.setCourier(cr);
+		Order order1 = new Order(c, r, d);
+		Order1.setCourier(cr);
 		
 		Dish d2 = menu.getDishes().get(1);
-		AlaCarteOrder alaCarteOrder2 = new AlaCarteOrder(c, r, d2);
-		alaCarteOrder2.setCourier(cr);
+		Order order2 = new Order(c, r, d2);
+		Order2.setCourier(cr);
 		
-		history.add(standardMealOrder1);
-		history.add(standardMealOrder2);
+		history.add(Order1);
+		history.add(Order2);
 		history.add(specialMealOrder1);
 		history.add(specialMealOrder2);
-		history.add(alaCarteOrder1);
-		history.add(alaCarteOrder2);
+		history.add(Order1);
+		history.add(Order2);
 		
 		System.out.println("orders = ");
 		for (Order order : history){

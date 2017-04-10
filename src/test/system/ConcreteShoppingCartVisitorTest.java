@@ -12,10 +12,8 @@ import restaurant.Dish;
 import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.AlaCarteOrder;
 import system.ConcreteShoppingCartVisitor;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
+import system.Order;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
@@ -35,6 +33,9 @@ public class ConcreteShoppingCartVisitorTest {
 	private static Menu menu = new Menu();
 	
 
+	/**
+	 * Loads the initial.
+	 */
 	@BeforeClass
 	public static void init(){
 		concreteShoppingCartVisitor = new ConcreteShoppingCartVisitor();
@@ -43,54 +44,59 @@ public class ConcreteShoppingCartVisitorTest {
 	}
 	
 	/**
-	 * Test visit special meal order.
+	 * Test visit a meal.
 	 */
 	@Test
-	public void testVisitSpecialMealOrder() {
-		SpecialMealOrder specialMealOrder = null;
+	public void testVisitMeal() {
 		Restaurant r2 = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c2 = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		FullMeal fm2 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		specialMealOrder = new SpecialMealOrder(c2, r2, fm2);
-		Courier cr2 = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
-		specialMealOrder.setCourier(cr2);
+		fm2.setRestaurant(r2);
 		
-		double price = concreteShoppingCartVisitor.visit(specialMealOrder);
-		System.out.println(price);
+		System.out.println(fm2);
+		System.out.println(concreteShoppingCartVisitor.visit(fm2));
+		
+		//if it is special
+		fm2.setSpecial(true);
+		System.out.println(fm2);
+		System.out.println(concreteShoppingCartVisitor.visit(fm2));
 	}
 
 	/**
-	 * Test visit standard meal order.
+	 * Test visit an order.
 	 */
 	@Test
-	public void testVisitStandardMealOrder() {
-		StandardMealOrder standardMealOrder = null;	
+	public void testVisitOrder() {
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
-		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		standardMealOrder = new StandardMealOrder(c, r, fm1);
-		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
-		standardMealOrder.setCourier(cr);
+		Order order = new Order(c,r);
 		
-		double price = concreteShoppingCartVisitor.visit(standardMealOrder);
-		System.out.println(price);
+		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
+		fm1.setRestaurant(r);
+		
+		order.addItem(fm1);
+		
+		System.out.println(order);
+		System.out.println(concreteShoppingCartVisitor.visit(order));
+
+		
+		FullMeal fm2 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
+		fm2.setRestaurant(r);
+		
+		order.addItem(fm2);
+		
+		System.out.println(order);
+		System.out.println(concreteShoppingCartVisitor.visit(order));
 	}
 
 	/**
-	 * Test visit ala carte order.
+	 * Test visit a dish.
 	 */
 	@Test
-	public void testVisitAlaCarteOrder() {
-		AlaCarteOrder alaCarteOrder = null;
-		Restaurant r3 = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c3 = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+	public void testVisitADish() {
 		Dish d = menu.getDishes().get(0);
-		alaCarteOrder = new AlaCarteOrder(c3, r3, d);
-		Courier cr3 = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
-		alaCarteOrder.setCourier(cr3);
+		System.out.println(d);
 		
-		double price = concreteShoppingCartVisitor.visit(alaCarteOrder);
-		System.out.println(price);
+		System.out.println(concreteShoppingCartVisitor.visit(d));
 	}
 
 }

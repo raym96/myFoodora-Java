@@ -24,14 +24,14 @@ public abstract class SortingByCriteria {
 	public abstract HashMap countOccurence(ArrayList<Order> history);
 
 	/**
-	 * Display history in ascending order
+	 * Display history in ascending order.
 	 *
 	 * @param history the history
 	 */
 	public abstract void displayAscending(ArrayList<Order> history);
 
 	/**
-	 * Display history in descending order
+	 * Display history in descending order.
 	 *
 	 * @param history the history
 	 */

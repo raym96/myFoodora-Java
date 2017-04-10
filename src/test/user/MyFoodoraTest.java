@@ -17,7 +17,7 @@ import policies.FairOccupationDeliveryPolicy;
 import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.StandardMealOrder;
+import system.Order;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Manager;
@@ -108,10 +108,11 @@ public class MyFoodoraTest {
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		StandardMealOrder standardMealOrder = new StandardMealOrder(c, r, fm1);
+		Order Order = new Order(c, r);
+		Order.addItem(fm1);
 	
 		myFoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
-		Courier theCourier = myFoodora.parse(standardMealOrder);
+		Courier theCourier = myFoodora.parse(Order);
 		System.out.println(theCourier);
 	} 
 

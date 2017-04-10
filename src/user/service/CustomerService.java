@@ -47,28 +47,28 @@ public interface CustomerService {
 	public void pay();	
 	
 	/**
-	 * register to a fidelity card plan
+	 * register to a fidelity card plan.
 	 *
 	 * @param cardType the card type
 	 */
 	public void registerCard(String cardType);
 	
 	/**
-	 * unregister from a fidelity card plan
+	 * unregister from a fidelity card plan.
 	 */
 	public void unregisterCard();
 	
 
 	
 	/**
-	 * access the history of orders
+	 * access the history of orders.
 	 *
 	 * @return the history
 	 */
 	History getHistory();
 	
 	/**
-	 * access the points acquired with a fidelity program
+	 * access the points acquired with a fidelity program.
 	 *
 	 * @return the points
 	 */

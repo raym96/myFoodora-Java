@@ -16,7 +16,7 @@ import system.Order;
 public interface RestaurantService {
 
 	/**
-	 * Adds a dish to the restaurant menu
+	 * Adds a dish to the restaurant menu.
 	 *
 	 * @param dish the dish
 	 */
@@ -24,7 +24,8 @@ public interface RestaurantService {
 	public void addDish(Dish dish);
 	
 	/**
-	 * Removes a dish from the restaurant menu	 *
+	 * Removes a dish from the restaurant menu	 *.
+	 *
 	 * @param dishName the dish name
 	 */
 	public void removeDish(String dishName);
@@ -108,8 +109,7 @@ public interface RestaurantService {
 	public void removeSpecialMeal(String mealName);
 
 	/**
-	 * establishing the generic discount factor (default 5%) to apply when computing
-
+	 * establishing the generic discount factor (default 5%) to apply when computing.
 	 *
 	 * @param generic_discount_factor the new generic discount factor
 	 */
@@ -117,7 +117,7 @@ public interface RestaurantService {
 	public void setGenericDiscountFactor(double generic_discount_factor);
 	
 	/**
-	 *  establishing the special discount factor (default 10%) to apply to the meal-of-week
+	 *  establishing the special discount factor (default 10%) to apply to the meal-of-week.
 	 *
 	 * @param special_discount_factor the new special discount factor
 	 */

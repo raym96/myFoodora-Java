@@ -115,6 +115,7 @@ public class Restaurant extends User{
 		}else if(mealCategory.equalsIgnoreCase("Special-meal")){
 			return new HalfMealFactory(specialmealmenu);
 		}
+		System.out.println("Meal category non recognized");
 		return null;
 	}
 

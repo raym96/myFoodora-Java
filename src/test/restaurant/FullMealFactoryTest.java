@@ -15,6 +15,8 @@ import restaurant.FullMealFactory;
 import restaurant.HalfMeal;
 import restaurant.MealMenu;
 import restaurant.Menu;
+import system.AddressPoint;
+import user.model.Restaurant;
 
 
 /**
@@ -28,7 +30,8 @@ public class FullMealFactoryTest {
 	private static Menu menu = new Menu();
 	
 	/** The meal menu. */
-	private static MealMenu mealMenu = new MealMenu(0.1);
+	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0));
+	private static MealMenu mealMenu = new MealMenu(restaurant);
 	
 	/** The full meal factory. */
 	private static FullMealFactory fullMealFactory = null;

@@ -13,7 +13,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
 import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.StandardMealOrder;
+import system.Order;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Manager;
@@ -82,39 +82,17 @@ public class RestaurantTest {
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		StandardMealOrder standardMealOrder = new StandardMealOrder(c, r, fm1);
+		fm1.setRestaurant(r);
+		Order Order = new Order(c, r);
+		Order.addItem(fm1);
 		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
-		standardMealOrder.setCourier(cr);
+		Order.setCourier(cr);
 		
-		restaurant.addToHistory(standardMealOrder);
+		restaurant.addToHistory(Order);
 		assertTrue(restaurant.getHistory().getOrders().size() > 0);
 		System.out.println(restaurant.getHistory());
 	}
 
-	/**
-	 * Test update price.
-	 */
-	@Test
-	public void testUpdatePrice() {
-		double old_gdf = restaurant.getGeneric_discount_factor();
-		double old_sdf = restaurant.getSpecial_discount_factor();
-		
-		double new_gdf = old_gdf + 0.5;
-		double new_sdf = old_sdf + 0.5;
-		
-		restaurant.setGDF(new_gdf);
-		restaurant.setSDF(new_sdf);
-		assertTrue(restaurant.isGdf_changed());
-		assertTrue(restaurant.isSdf_changed());
-		
-		restaurant.updatePrice();
-		assertFalse(restaurant.isGdf_changed());
-		assertFalse(restaurant.isSdf_changed());
-		
-		assertTrue(new_gdf == restaurant.getFullMealMenu().getDiscount_factor());
-		assertTrue(new_gdf == restaurant.getHalfMealMenu().getDiscount_factor());
-		assertTrue(new_sdf == restaurant.getSpecialmealmenu().getDiscount_factor());
-	}
 
 	/**
 	 * Test hash code.

@@ -40,7 +40,7 @@ public class FullMeal extends Meal {
 	
 
 	/**
-	 * Instantiates a new full meal by copying the argument
+	 * Instantiates a new full meal by copying the argument.
 	 *
 	 * @param fullmeal the fullmeal
 	 */

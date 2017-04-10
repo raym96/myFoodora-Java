@@ -30,6 +30,7 @@ public class Order {
 	/** The order ID. */
 	protected String orderID;
 	
+	/** The ordercount. */
 	static private int ordercount = 1244;
 	
 	/** The restaurant. */
@@ -45,9 +46,10 @@ public class Order {
 	/** whether the order is assigned. */
 	private boolean assigned;
 	
+	/** The items. */
 	private ArrayList<Item> items;
 	/**
-	 * Instantiates a new order.
+	 * Instantiates an empty new order with no item.
 	 *
 	 * @param customer the customer
 	 * @param restaurant the restaurant
@@ -64,6 +66,27 @@ public class Order {
 		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
 		assigned = false;
 	}
+	
+	/**
+	 * Instantiates a new order with an item
+	 *
+	 * @param customer the customer
+	 * @param restaurant the restaurant
+	 */
+	public Order(Customer customer,Restaurant restaurant, Item item){
+		this.customer = customer;
+		this.restaurant = restaurant;
+		this.items = new ArrayList<Item>();
+		items.add(item);
+		date = new Date();
+		orderID = String.valueOf(ordercount);
+		ordercount++;
+		
+		//initialy no courier is assigned
+		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
+		assigned = false;
+	}
+	
 	
 	/**
 	 * Instantiates a new order.
@@ -135,10 +158,20 @@ public class Order {
 	
 	
 	
+	/**
+	 * Gets the items.
+	 *
+	 * @return the items
+	 */
 	public ArrayList<Item> getItems() {
 		return items;
 	}
 	
+	/**
+	 * Adds the item.
+	 *
+	 * @param item the item
+	 */
 	public void addItem(Item item){
 		items.add(item);
 	}
@@ -199,11 +232,11 @@ public class Order {
 		for (Item item:items){
 			if (item instanceof Dish){
 				str+="A-la-carte <";
-				str+= ((Dish)item).getDishName()+">\n";
+				str+= ((Dish)item).getDishName()+"> "+item.accept(new ConcreteShoppingCartVisitor())+"\n";
 			}
 			if (item instanceof Meal){
 				str+="Meal <";
-				str+= ((Meal)item).getName()+">\n";
+				str+= ((Meal)item).getName()+"> "+item.accept(new ConcreteShoppingCartVisitor())+"\n";
 			}
 		}
 		str+="BY <"+customer.getUsername()+ "> "+customer.getFullName()+"\n";
@@ -250,6 +283,12 @@ public class Order {
 		return true;
 	}
 	
+	/**
+	 * Accept.
+	 *
+	 * @param visitor the visitor
+	 * @return the double
+	 */
 	public double accept(ShoppingCartVisitor visitor){
 		return visitor.visit(this);
 	}

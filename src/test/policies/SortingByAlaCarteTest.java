@@ -19,10 +19,9 @@ import restaurant.Dish;
 import restaurant.HalfMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.AlaCarteOrder;
 import system.Order;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
+import system.Order;
+import system.Order;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
@@ -74,31 +73,31 @@ public class SortingByAlaCarteTest {
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		
-		AlaCarteOrder alaCarteOrder1 = new AlaCarteOrder(c, r, d1);
-		alaCarteOrder1.setCourier(cr);
+		Order Order1 = new Order(c, r, d1);
+		Order1.setCourier(cr);
 		
-		AlaCarteOrder alaCarteOrder2 = new AlaCarteOrder(c, r, d1);
-		alaCarteOrder2.setCourier(cr);
+		Order Order2 = new Order(c, r, d1);
+		Order2.setCourier(cr);
 		
-		AlaCarteOrder alaCarteOrder3 = new AlaCarteOrder(c, r, d1);
-		alaCarteOrder3.setCourier(cr);
+		Order Order3 = new Order(c, r, d1);
+		Order3.setCourier(cr);
 		
-		AlaCarteOrder alaCarteOrder4 = new AlaCarteOrder(c, r, d1);
-		alaCarteOrder4.setCourier(cr);
+		Order Order4 = new Order(c, r, d1);
+		Order4.setCourier(cr);
 		
-		AlaCarteOrder alaCarteOrder5 = new AlaCarteOrder(c, r, d2);
-		alaCarteOrder5.setCourier(cr);
+		Order Order5 = new Order(c, r, d2);
+		Order5.setCourier(cr);
 		
-		AlaCarteOrder alaCarteOrder6 = new AlaCarteOrder(c, r, d2);
-		alaCarteOrder6.setCourier(cr);
+		Order Order6 = new Order(c, r, d2);
+		Order6.setCourier(cr);
 		
 
-		history.add(alaCarteOrder1);
-		history.add(alaCarteOrder2);
-		history.add(alaCarteOrder3);
-		history.add(alaCarteOrder4);
-		history.add(alaCarteOrder5);
-		history.add(alaCarteOrder6);
+		history.add(Order1);
+		history.add(Order2);
+		history.add(Order3);
+		history.add(Order4);
+		history.add(Order5);
+		history.add(Order6);
 		
 		System.out.println("orders = ");
 		System.out.println(history);

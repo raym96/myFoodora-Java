@@ -20,10 +20,9 @@ import restaurant.FullMeal;
 import restaurant.HalfMeal;
 import restaurant.Menu;
 import system.AddressPoint;
-import system.AlaCarteOrder;
 import system.Order;
-import system.SpecialMealOrder;
-import system.StandardMealOrder;
+import system.Order;
+import system.Order;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Restaurant;
@@ -75,29 +74,30 @@ public class SortingByHalfMealTest {
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
 		
-		StandardMealOrder standardMealOrder1 = new StandardMealOrder(c, r, hm1);
-		standardMealOrder1.setCourier(cr);
+		Order Order1 = new Order(c, r, hm1);
+		Order1.setCourier(cr);
 		
-		StandardMealOrder standardMealOrder2 = new StandardMealOrder(c, r, hm2);
-		standardMealOrder2.setCourier(cr);
+		Order Order2 = new Order(c, r, hm2);
+		Order2.setCourier(cr);
 		
-		StandardMealOrder standardMealOrder3 = new StandardMealOrder(c, r, hm1);
-		standardMealOrder3.setCourier(cr);
+		Order Order3 = new Order(c, r, hm1);
+		Order3.setCourier(cr);
 		
-		StandardMealOrder standardMealOrder4 = new StandardMealOrder(c, r, hm1);
-		standardMealOrder4.setCourier(cr);
+		Order Order4 = new Order(c, r, hm1);
+		Order4.setCourier(cr);
 		
-		SpecialMealOrder specialMealOrder1 = new SpecialMealOrder(c, r, hm1);
+		hm1.setSpecial(true);
+		Order specialMealOrder1 = new Order(c, r, hm1);
 		specialMealOrder1.setCourier(cr);
 		
-		SpecialMealOrder specialMealOrder2 = new SpecialMealOrder(c, r, hm1);
+		Order specialMealOrder2 = new Order(c, r, hm1);
 		specialMealOrder2.setCourier(cr);
 		
 
-		history.add(standardMealOrder1);
-		history.add(standardMealOrder2);
-		history.add(standardMealOrder3);
-		history.add(standardMealOrder4);
+		history.add(Order1);
+		history.add(Order2);
+		history.add(Order3);
+		history.add(Order4);
 		history.add(specialMealOrder1);
 		history.add(specialMealOrder2);
 		

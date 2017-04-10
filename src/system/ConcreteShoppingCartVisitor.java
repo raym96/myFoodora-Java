@@ -37,7 +37,7 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 	
 
 	/* (non-Javadoc)
-	 * @see system.ShoppingCartVisitor#visit(system.AlaCarteOrder)
+	 * @see system.ShoppingCartVisitor#visit(system.Order)
 	 */
 	@Override
 	public double visit(Dish dish) {
@@ -45,6 +45,9 @@ public class ConcreteShoppingCartVisitor implements ShoppingCartVisitor {
 		return dish.getPrice();
 	}
 	
+	/* (non-Javadoc)
+	 * @see system.ShoppingCartVisitor#visit(system.Order)
+	 */
 	@Override
 	public double visit(Order order){
 		double price = 0;

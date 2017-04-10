@@ -39,6 +39,9 @@ public class Starter extends Dish {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see restaurant.Item#accept(system.ShoppingCartVisitor)
+	 */
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {
 		// TODO Auto-generated method stub

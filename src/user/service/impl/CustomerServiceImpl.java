@@ -60,7 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	/* (non-Javadoc)
-	 * @see user.service.CustomerService#addStandardMealOrder(user.model.Restaurant, java.lang.String, java.lang.String)
+	 * @see user.service.CustomerService#addOrder(user.model.Restaurant, java.lang.String, java.lang.String)
 	 */
 	public void commandRegularMeal(Restaurant r, String mealName, String mealCategory){
 		if (customer.getShoppingCart().hasRestaurant(r)){
@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	/* (non-Javadoc)
-	 * @see user.service.CustomerService#addAlaCarteOrder(user.model.Restaurant, java.lang.String)
+	 * @see user.service.CustomerService#addOrder(user.model.Restaurant, java.lang.String)
 	 */
 	public void commandAlaCarte(Restaurant r, String dishName){
 		if (customer.getShoppingCart().hasRestaurant(r)){

@@ -21,12 +21,13 @@ public class MealMenu {
 	/** The meals. */
 	private ArrayList<Meal> meals;
 	
+	/** The restaurant. */
 	private Restaurant restaurant;
 	
 	/**
 	 * Instantiates a new meal menu.
 	 *
-	 * @param discount_factor the discount factor
+	 * @param restaurant the restaurant
 	 */
 	public MealMenu(Restaurant restaurant) {
 		super();
@@ -94,11 +95,21 @@ public class MealMenu {
 	
 	
 	
+	/**
+	 * Gets the restaurant.
+	 *
+	 * @return the restaurant
+	 */
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
 
 
+	/**
+	 * Sets the restaurant.
+	 *
+	 * @param restaurant the new restaurant
+	 */
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}

@@ -2,6 +2,19 @@ package restaurant;
 
 import system.ShoppingCartVisitor;
 
-public interface Item {
-	public  double accept(ShoppingCartVisitor visitor);
+/**
+ * The Interface Item.
+ * 
+ * @author He Xiaoan
+ * @authro Ji Raymond
+ */
+public interface  Item {
+	
+	/**
+	 * Accept.
+	 *
+	 * @param visitor the visitor
+	 * @return the double
+	 */
+	public double accept(ShoppingCartVisitor visitor);
 }

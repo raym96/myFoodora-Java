@@ -24,8 +24,10 @@ public abstract class Meal implements Item{
 	/** The dishes. */
 	protected ArrayList<Dish> dishes;
 		
+	/** The restaurant. */
 	protected Restaurant restaurant;
 	
+	/** The is special. */
 	private boolean isSpecial;
 	
 	/** The meal type. */
@@ -141,19 +143,37 @@ public abstract class Meal implements Item{
 	}
 	
 	
+	/**
+	 * Sets the restaurant.
+	 *
+	 * @param restaurant the new restaurant
+	 */
 	public void setRestaurant(Restaurant restaurant){
 		this.restaurant = restaurant;
 	}
 	
 	
+	/**
+	 * Checks if is special.
+	 *
+	 * @return true, if is special
+	 */
 	public boolean isSpecial() {
 		return isSpecial;
 	}
 
+	/**
+	 * Sets the special.
+	 *
+	 * @param isSpecial the new special
+	 */
 	public void setSpecial(boolean isSpecial) {
 		this.isSpecial = isSpecial;
 	}
 	
+	/* (non-Javadoc)
+	 * @see restaurant.Item#accept(system.ShoppingCartVisitor)
+	 */
 	public double accept(ShoppingCartVisitor visitor){
 		return visitor.visit(this);
 	}
@@ -203,6 +223,11 @@ public abstract class Meal implements Item{
 		return true;
 	}
 
+	/**
+	 * Gets the restaurant.
+	 *
+	 * @return the restaurant
+	 */
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}

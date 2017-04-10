@@ -15,21 +15,27 @@ import restaurant.*;
 public interface ShoppingCartVisitor {
 	
 	/**
-	 * Visit a meal and applies the right discount_factor
+	 * Visit a meal and applies the right discount_factor.
 	 *
-	 * @param mealOrder the meal order
+	 * @param meal the meal
 	 * @return the double
 	 */
 	double visit(Meal meal);
 	
 	/**
-	 * Visit a dish
+	 * Visit a dish.
 	 *
-	 * @param order the order
+	 * @param dish the dish
 	 * @return the double
 	 */
 	double visit(Dish dish);
 	
+	/**
+	 * Visit.
+	 *
+	 * @param order the order
+	 * @return the double
+	 */
 	double visit(Order order);
 	
 }

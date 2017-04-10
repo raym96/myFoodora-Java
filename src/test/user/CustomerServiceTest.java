@@ -48,6 +48,8 @@ public class CustomerServiceTest {
 	
 	/** The restaurant. */
 	Restaurant restaurant;
+	
+	/** The restaurant 2. */
 	Restaurant restaurant2;
 	
 	/**
@@ -124,7 +126,13 @@ public class CustomerServiceTest {
 	public void testPay() {
 		System.out.println("------testPay------");
 		Dish dish = restaurant.getMenu().getDishes().get(0);
+		Meal meal = restaurant.getHalfMealMenu().getMeals().get(0);
+		Meal specialmeal = restaurant.getSpecialmealmenu().getMeals().get(0);
 		customer_service.commandAlaCarte(restaurant, dish.getDishName());
+		customer_service.commandRegularMeal(restaurant, meal.getName(), "Half-meal");
+		customer_service.commandSpecialMeal(restaurant, specialmeal.getName());
+		
+		System.out.println(customer.getShoppingCart());
 		customer_service.pay();
 	}
 

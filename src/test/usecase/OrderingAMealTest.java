@@ -1,6 +1,3 @@
-/*
- * 
- */
 package test.usecase;
 
 import static org.junit.Assert.*;
@@ -103,12 +100,13 @@ public class OrderingAMealTest {
 				restaurant.getRestaurantService().displayMealMenu();
 				
 				System.out.println("Please select 1 meal type : Half-meal, Full-meal");
-				String mealType = s.nextLine();
+				String mealCategory = s.nextLine();
 				
 				System.out.println("Please enter 1 meal name corresponding the type specified:");
 				String mealname = s.nextLine();
 				while(!(mealname.equals("#"))){
-					((Customer)user).getCustomerService().commandRegularMeal(restaurant, mealType, mealname);
+					((Customer)user).getCustomerService().commandRegularMeal(restaurant, mealname, mealCategory);
+					System.out.println("Please enter 1 meal name corresponding the type specified: enter # to exit");
 					mealname = s.nextLine();
 				}
 				((Customer)user).getCustomerService().pay();

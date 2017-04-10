@@ -13,8 +13,9 @@ import system.Order;
  * @author Ji Raymond
  */
 public interface CourierService {
+	
 	/**
-	 * register their account to the MyFoodora system
+	 * register their account to the MyFoodora system.
 	 */
 	public void register();
 	
@@ -30,7 +31,7 @@ public interface CourierService {
 	public void turnOnDuty();
 	
 	/**
-	 * Set the state as off-duty
+	 * Set the state as off-duty.
 	 */
 	public void turnOffDuty();
 	
@@ -43,14 +44,14 @@ public interface CourierService {
 	public void changePosition(AddressPoint newPoint);
 	
 	/**
-	 * accept to a delivery call (received by the MyFoodora system)
+	 * accept to a delivery call (received by the MyFoodora system).
 	 *
 	 * @param order the order
 	 */
 	public void acceptCall(Order order);
 	
 	/**
-	 * refuse a delivery call (received by the MyFoodora system)
+	 * refuse a delivery call (received by the MyFoodora system).
 	 *
 	 * @param order the order
 	 */

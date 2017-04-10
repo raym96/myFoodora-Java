@@ -32,6 +32,9 @@ public class Dessert extends Dish {
 		return new Dessert(this.dishName,this.dishType,this.price);
 	}
 
+	/* (non-Javadoc)
+	 * @see restaurant.Item#accept(system.ShoppingCartVisitor)
+	 */
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {
 		// TODO Auto-generated method stub

@@ -15,6 +15,8 @@ import restaurant.FullMeal;
 import restaurant.HalfMeal;
 import restaurant.MealMenu;
 import restaurant.Menu;
+import system.AddressPoint;
+import user.model.Restaurant;
 
 
 /**
@@ -27,8 +29,9 @@ public class MealMenuTest {
 	/** The meal menu. */
 	private static MealMenu mealMenu = null;
 	
-	/** The Constant discount_factor. */
-	private static final double discount_factor = 0.1;
+	/** The restaurant of the meal menu. */
+	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0));
+
 	
 	/** The menu. */
 	private static Menu menu = new Menu();
@@ -40,10 +43,10 @@ public class MealMenuTest {
 	public static void testMealMenu() {
 		menu.initMenu();
 		
-		mealMenu = new MealMenu(discount_factor);
+		mealMenu = new MealMenu(restaurant);
 		assertNotNull(mealMenu);
 		assertNotNull(mealMenu.getMeals());
-		assertTrue(discount_factor==mealMenu.getDiscount_factor());
+		assertTrue(restaurant==mealMenu.getRestaurant());
 	}
 
 	/**

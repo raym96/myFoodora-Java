@@ -30,6 +30,9 @@ public final class MainDish extends Dish {
 		return new MainDish(this.dishName,this.dishType,this.price);
 	}
 
+	/* (non-Javadoc)
+	 * @see restaurant.Item#accept(system.ShoppingCartVisitor)
+	 */
 	@Override
 	public double accept(ShoppingCartVisitor visitor) {
 		// TODO Auto-generated method stub

@@ -23,14 +23,14 @@ public interface ManagerService {
 	
 	
 	/**
-	 * Adds any kind of user to the system
+	 * Adds any kind of user to the system.
 	 *
 	 * @param user the user
 	 */
 	public void addUser(User user);
 	
 	/**
-	 * Removes any kind of user from the system
+	 * Removes any kind of user from the system.
 	 *
 	 * @param user the user
 	 */
@@ -74,7 +74,7 @@ public interface ManagerService {
 	public void setDeliveryCost(double delivery_cost);
 	
 	/**
-	 * Gets the total income over a time period
+	 * Gets the total income over a time period.
 	 *
 	 * @param date1 the starting date
 	 * @param date2 the end date
@@ -83,7 +83,7 @@ public interface ManagerService {
 	public double getTotalIncome(Date date1, Date date2);
 	
 	/**
-	 * Gets the total profit over a time period
+	 * Gets the total profit over a time period.
 	 *
 	 * @param date1 the starting date
 	 * @param date2 the end date
@@ -109,7 +109,7 @@ public interface ManagerService {
 	
 	/**
 	 * determining either the service-fee and/or markup percentage and/or the delivery-
-	 * cost so to meet a target-prot (see target prot policies below)
+	 * cost so to meet a target-prot (see target prot policies below).
 	 *
 	 * @param targetProfit the target profit
 	 */
@@ -130,14 +130,14 @@ public interface ManagerService {
 	public Restaurant getWorstRestaurant(); 
 	
 	/**
-	 * Gets the most active courier of the fleet
+	 * Gets the most active courier of the fleet.
 	 *
 	 * @return the best courier
 	 */
 	public Courier getBestCourier(); 
 	
 	/**
-	 * Gets the least active courier of the fleet
+	 * Gets the least active courier of the fleet.
 	 *
 	 * @return the worst courier
 	 */
@@ -145,8 +145,8 @@ public interface ManagerService {
 	
 	/**
 	 * setting the current delivery-policy used by MyFoodora to determine which courier
-	 *is assigned to deliver an order placed by a customer
-
+	 * is assigned to deliver an order placed by a customer.
+	 *
 	 * @param deliverypolicy the new delivery policy
 	 */
 	public void setDeliveryPolicy(DeliveryPolicy deliverypolicy); 
@@ -165,7 +165,7 @@ public interface ManagerService {
 	public void displayActiveUsers();
 	
 	/**
-	 * Select user by username
+	 * Select user by username.
 	 *
 	 * @param username the username
 	 * @return the user

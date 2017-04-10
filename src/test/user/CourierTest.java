@@ -17,7 +17,6 @@ import restaurant.FullMeal;
 import restaurant.Menu;
 import system.AddressPoint;
 import system.Order;
-import system.StandardMealOrder;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Manager;
@@ -36,10 +35,10 @@ public class CourierTest {
 	private static Courier courier = null;
 	
 	/** The standard meal order 1. */
-	private StandardMealOrder standardMealOrder1 = null;
+	private Order Order1 = null;
 	
 	/** The standard meal order 2. */
-	private StandardMealOrder standardMealOrder2 = null;
+	private Order Order2 = null;
 	
 	/**
 	 * Test courier.
@@ -83,7 +82,7 @@ public class CourierTest {
 /**
  * Test add waiting order.
  */
-//	@Test
+	@Test
 	public void testAddWaitingOrder() {
 		
 		Menu menu = new Menu();
@@ -95,19 +94,23 @@ public class CourierTest {
 		
 		FullMeal fm1 = new FullMeal("FM1", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		FullMeal fm2 = new FullMeal("FM2", menu.getStarters().get(1), menu.getMaindishes().get(1), menu.getDesserts().get(1));
-		standardMealOrder1 = new StandardMealOrder(c, r, fm1);
-		standardMealOrder1.setCourier(cr);
-		standardMealOrder2 = new StandardMealOrder(c, r, fm2);
-		standardMealOrder2.setCourier(cr);
+		fm1.setRestaurant(r);
+		fm2.setRestaurant(r);
+		Order1 = new Order(c, r);
+		Order1.addItem(fm1);
+		Order1.setCourier(cr);
+		Order2 = new Order(c,r);
+		Order2.addItem(fm2);
+		Order2.setCourier(cr);
 
 		
 		courier.setWaitingOrders(new ArrayList<Order>());
 		
-		courier.addWaitingOrder(standardMealOrder1);
-		courier.addWaitingOrder(standardMealOrder2);
+		courier.addWaitingOrder(Order1);
+		courier.addWaitingOrder(Order2);
 		
-		assertTrue(courier.getWaitingOrders().contains(standardMealOrder1));
-		assertTrue(courier.getWaitingOrders().contains(standardMealOrder2));
+		assertTrue(courier.getWaitingOrders().contains(Order1));
+		assertTrue(courier.getWaitingOrders().contains(Order2));
 	}
 	
 	/**
@@ -119,10 +122,10 @@ public class CourierTest {
 	public void testRefuseWaitingOrder() throws OrderNotFoundException{
 		
 		testAddWaitingOrder();
-		courier.refuseWaitingOrder(standardMealOrder1);
-		assertFalse(courier.getWaitingOrders().contains(standardMealOrder1));
+		courier.refuseWaitingOrder(Order1);
+		assertFalse(courier.getWaitingOrders().contains(Order1));
 		
-		courier.refuseWaitingOrder(standardMealOrder1);
+		courier.refuseWaitingOrder(Order1);
 	}
 
 	/**
@@ -134,11 +137,11 @@ public class CourierTest {
 	public void acceptWaitingOrder() throws OrderNotFoundException{
 		
 		testAddWaitingOrder();
-		courier.acceptWaitingOrder(standardMealOrder2);
-		assertFalse(courier.getWaitingOrders().contains(standardMealOrder2));
-		assertTrue(courier.getDeliveredOrders().contains(standardMealOrder2));
+		courier.acceptWaitingOrder(Order2);
+		assertFalse(courier.getWaitingOrders().contains(Order2));
+		assertTrue(courier.getDeliveredOrders().contains(Order2));
 		
-		courier.acceptWaitingOrder(standardMealOrder2);
+		courier.acceptWaitingOrder(Order2);
 	}
 	
 	/**

@@ -43,7 +43,7 @@ public interface MyFoodoraService {
 	
 	/**
 	 * 	allocating of a courier from a list of available couriers to an order placed by a customer 
-	 * (by application of the currentdelivery policy, see below details of supported policies)
+	 * (by application of the currentdelivery policy, see below details of supported policies).
 	 *
 	 * @param order the order
 	 * @param availablecouriers the available couriers
@@ -52,7 +52,8 @@ public interface MyFoodoraService {
 
 	/**
 	 * notifying users that gave consensus to receive special offers notifcations, of a new
-	 *	 special offer set by a restaurant
+	 * 	 special offer set by a restaurant.
+	 *
 	 * @param specialoffer the specialoffer
 	 */
 
@@ -69,8 +70,7 @@ public interface MyFoodoraService {
 	
 	/**
 	 * 	 computing profit of the system, knowing that the the profit of a single order is given by:
-	 * profit for one order = order_price * markup_percentage + service_fee - delivery cost
-
+	 * profit for one order = order_price * markup_percentage + service_fee - delivery cost.
 	 *
 	 * @param date1 the date 1
 	 * @param date2 the date 2
@@ -79,7 +79,7 @@ public interface MyFoodoraService {
 	public double getTotalProfit(Date date1, Date date2);
 	
 	/**
-	 * Gets the average income per customer over a period
+	 * Gets the average income per customer over a period.
 	 *
 	 * @param date1 the date 1
 	 * @param date2 the date 2
@@ -96,7 +96,7 @@ public interface MyFoodoraService {
 	public void applyTargetProfitPolicy(double targetProfit);
 	
 	/**
-	 *  Select a user by his username
+	 *  Select a user by his username.
 	 *
 	 * @param username the username
 	 * @return the user
