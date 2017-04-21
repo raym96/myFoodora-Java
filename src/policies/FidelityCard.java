@@ -3,6 +3,7 @@
  */
 package policies;
 
+import system.Order;
 import user.model.Customer;
 import user.model.User;
 
@@ -29,5 +30,5 @@ public abstract class FidelityCard {
 	/**
 	 * Pay.
 	 */
-	public abstract void pay();
+	public abstract void pay(Order order);
 }

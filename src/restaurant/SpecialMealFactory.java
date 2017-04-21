@@ -11,8 +11,9 @@ import exceptions.MealNotFoundException;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public class SpecialMealFactory extends MealFactory {
+public class SpecialMealFactory {
 	
+	MealMenu mealmenu;
 	/**
 	 * Instantiates a new special meal factory.
 	 *
@@ -21,11 +22,7 @@ public class SpecialMealFactory extends MealFactory {
 	public SpecialMealFactory(MealMenu mealmenu){
 		this.mealmenu = mealmenu;
 	}
-	
-	/* (non-Javadoc)
-	 * @see restaurant.MealFactory#createMeal(java.lang.String)
-	 */
-	@Override
+
 	public Meal createMeal(String mealName) throws MealNotFoundException{
 		// TODO Auto-generated method stub
 		for (Meal meal : this.mealmenu.getMeals()){

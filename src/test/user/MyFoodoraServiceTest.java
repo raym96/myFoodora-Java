@@ -122,7 +122,7 @@ public class MyFoodoraServiceTest {
 		//Should give the order to courier_1
 		System.out.println("FastDeliveryPolicy:");
 		myfoodora.setDeliveryPolicy(new FastestDeliveryPolicy());
-		myfoodora_service.parse(order, myfoodora.getAvailableCouriers());
+		myfoodora_service.findDeliverer(order, myfoodora.getAvailableCouriers());
 		
 		//verify that the courier given by the algorithm of delivery policy (tested in its own test file) received the order
 		Courier courier_1 = new FastestDeliveryPolicy().parse(order, myfoodora.getAvailableCouriers());
@@ -131,7 +131,7 @@ public class MyFoodoraServiceTest {
 		//Should give the order to courier_2
 		System.out.println("FairOccupationDelivery");
 		myfoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
-		myfoodora_service.parse(order, myfoodora.getAvailableCouriers());
+		myfoodora_service.findDeliverer(order, myfoodora.getAvailableCouriers());
 		
 		//verify that the courier given by the algorithm of delivery policy (tested in its own test file) received the order
 		Courier courier_2 = new FairOccupationDeliveryPolicy().parse(order, myfoodora.getAvailableCouriers());

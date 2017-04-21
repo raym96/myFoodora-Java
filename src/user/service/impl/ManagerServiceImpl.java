@@ -10,18 +10,25 @@ import java.util.Map.Entry;
 
 import exceptions.UserNotFoundException;
 import policies.DeliveryPolicy;
+import policies.FairOccupationDeliveryPolicy;
+import policies.FastestDeliveryPolicy;
 import policies.SortingByCriteria;
 import policies.SortingByRestaurant;
 import policies.TargetProfitPolicy;
+import policies.TargetProfit_DeliveryCost;
+import policies.TargetProfit_Markup;
+import policies.TargetProfit_ServiceFee;
 import system.ConcreteShoppingCartVisitor;
 import system.Order;
 import system.ShoppingCartVisitor;
 import user.model.Courier;
+import user.model.Customer;
 import user.model.Manager;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 import user.service.ManagerService;
+import user.service.MyFoodoraService;
 
 
 /**
@@ -34,6 +41,7 @@ public class ManagerServiceImpl implements ManagerService {
 	/** The manager. */
 	private Manager manager;
 	
+	private MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
 	/**
 	 * Instantiates a new manager service impl.
 	 *
@@ -115,7 +123,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public double getTotalIncome(Date date1, Date date2) {
 		// TODO Auto-generated method stub
-		return manager.getMyfoodoraService().getTotalIncome(date1, date2);
+		return myfoodora_service.getTotalIncome(date1, date2);
 	}
 
 	/* (non-Javadoc)
@@ -124,7 +132,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public double getTotalProfit(Date date1, Date date2) {
 		// TODO Auto-generated method stub
-		return manager.getMyfoodoraService().getTotalProfit(date1, date2);
+		return myfoodora_service.getTotalProfit(date1, date2);
 	}
 
 
@@ -137,7 +145,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public double getAverageIncomePerCustomer(Date date1, Date date2) {
 		// TODO Auto-generated method stub
-		return manager.getMyfoodoraService().getAverageIncomePerCustomer(date1, date2);
+		return myfoodora_service.getAverageIncomePerCustomer(date1, date2);
 	}
 	
 	// 6. determining either the service-fee and/or markup percentage and/or the delivery-
@@ -146,8 +154,16 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	//cost so to meet a target-prot (see target prot policies below)
 	@Override
-	public void setTargetProfitPolicy(TargetProfitPolicy t){
-		MyFoodora.getInstance().setTargetprofitpolicy(t);
+	public void setTargetProfitPolicy(String ProfitPolicyName){
+		if (ProfitPolicyName.equalsIgnoreCase("delivery_cost")){
+			MyFoodora.getInstance().setTargetprofitpolicy(new TargetProfit_DeliveryCost(MyFoodora.getInstance()));
+		}
+		if (ProfitPolicyName.equalsIgnoreCase("markup_pencentage")){
+			MyFoodora.getInstance().setTargetprofitpolicy(new TargetProfit_Markup(MyFoodora.getInstance()));
+		}
+		if (ProfitPolicyName.equalsIgnoreCase("service_fee")){
+			MyFoodora.getInstance().setTargetprofitpolicy(new TargetProfit_ServiceFee(MyFoodora.getInstance()));
+		}
 	}
 
 	/* (non-Javadoc)
@@ -156,7 +172,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public void determineParam2MeetTargetProfit(double targetProfit) {
 		// TODO Auto-generated method stub
-		manager.getMyfoodoraService().applyTargetProfitPolicy(targetProfit);
+		myfoodora_service.applyTargetProfitPolicy(targetProfit);
 	}
 
 	// 7. determining the most/least selling restaurant
@@ -169,7 +185,7 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		double income = 0;
 		Restaurant restaurant = null;
-		ArrayList<User> restaurant_users =  manager.getMyfoodoraService().getUsersOfAssignedType("RESTAURANT");
+		ArrayList<User> restaurant_users =  myfoodora_service.getUsersOfAssignedType("RESTAURANT");
 		for (User u : restaurant_users){
 			Restaurant r = (Restaurant)u;
 			double rincome = r.getIncome(); //the number of commands passed at restaurant r is the length of its history
@@ -192,7 +208,7 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		double income = Integer.MAX_VALUE;
 		Restaurant restaurant = null;
-		ArrayList<User> restaurant_users =  manager.getMyfoodoraService().getUsersOfAssignedType("RESTAURANT");
+		ArrayList<User> restaurant_users =  myfoodora_service.getUsersOfAssignedType("RESTAURANT");
 		for (User u : restaurant_users){
 			Restaurant r = (Restaurant)u;
 			double rincome = r.getIncome(); //the number of commands passed at restaurant r is the length of its history
@@ -216,7 +232,7 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		int count = 0;
 		Courier courier = null;
-		ArrayList<User> courier_users =  manager.getMyfoodoraService().getUsersOfAssignedType("COURIER");
+		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
 		for (User u : courier_users){
 			Courier c = (Courier)u;
 			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
@@ -238,7 +254,7 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		int count = Integer.MAX_VALUE;
 		Courier courier = null;
-		ArrayList<User> courier_users =  manager.getMyfoodoraService().getUsersOfAssignedType("COURIER");
+		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
 		for (User u : courier_users){
 			Courier c = (Courier)u;
 			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
@@ -258,9 +274,14 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// is assigned to deliver an order placed by a customer
 	@Override
-	public void setDeliveryPolicy(DeliveryPolicy deliverypolicy) {
+	public void setDeliveryPolicy(String deliverypolicy) {
 		// TODO Auto-generated method stub
-		MyFoodora.getInstance().setDeliveryPolicy(deliverypolicy);
+		if (deliverypolicy.equalsIgnoreCase("fair")){
+			MyFoodora.getInstance().setDeliveryPolicy(new FairOccupationDeliveryPolicy());
+		}
+		if (deliverypolicy.equalsIgnoreCase("fastest")){
+			MyFoodora.getInstance().setDeliveryPolicy(new FastestDeliveryPolicy());
+		}
 	}
 	
 	
@@ -289,7 +310,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public User selectUser(String username) throws UserNotFoundException {
 		// TODO Auto-generated method stub
-		return manager.getMyfoodoraService().selectUser(username);
+		return myfoodora_service.selectUser(username);
 	}
 
 	/* (non-Javadoc)
@@ -299,5 +320,12 @@ public class ManagerServiceImpl implements ManagerService {
 		ArrayList<User> users = MyFoodora.getInstance().getUsersOfAssignedType(userType);
 		System.out.println("--- " + userType + " ---");
 		System.out.println(users);
+	}
+
+	@Override
+	public void associateCard(String username, String cardType) throws UserNotFoundException {
+		// TODO Auto-generated method stub
+		Customer customer = (Customer)selectUser(username);
+		customer.getCustomerService().registerCard(cardType);
 	}
 }

@@ -6,6 +6,7 @@ package user.service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import exceptions.LoginErrorException;
 import restaurant.*;
 import system.*;
 import user.model.Courier;
@@ -48,7 +49,7 @@ public interface MyFoodoraService {
 	 * @param order the order
 	 * @param availablecouriers the available couriers
 	 */
-	public void parse(Order order, ArrayList<Courier> availablecouriers);
+	public void findDeliverer(Order order, ArrayList<Courier> availablecouriers);
 
 	/**
 	 * notifying users that gave consensus to receive special offers notifcations, of a new
@@ -126,4 +127,6 @@ public interface MyFoodoraService {
 	 */
 	//returns history of myfoodora for manager-service
 	public History getHistory();
+
+	public void login(String username, String password) throws LoginErrorException;
 }

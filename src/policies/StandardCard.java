@@ -3,6 +3,8 @@
  */
 package policies;
 
+import system.ConcreteShoppingCartVisitor;
+import system.Order;
 import user.model.Customer;
 import user.model.MyFoodora;
 
@@ -29,11 +31,12 @@ public class StandardCard extends FidelityCard {
 	 * @see policies.FidelityCard#pay()
 	 */
 	@Override
-	public void pay() {
+	public void pay(Order order) {
 		// TODO Auto-generated method stub
-		double amount = customer.getShoppingCart().getTotalPrice();
-		customer.update("paid for a total amount of = " + amount );
-		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + amount);
+		double price = order.accept(new ConcreteShoppingCartVisitor());		
+		customer.update("paid for a total amount of = " + price );
+		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + price);
+		customer.getShoppingCart().removeOrder(order);
 	}
 	
 }

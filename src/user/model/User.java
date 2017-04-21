@@ -41,27 +41,12 @@ public abstract class User implements Observer{
 	/** The log status. */
 	private boolean logStatus;
 	
-	/**
-	 * Instantiates a new user.
-	 */
-	public User() {
-		super();
-		this.ID = UUID.randomUUID().toString();
-		this.messageBoard = new MessageBoard(this);
-		this.notified = false;
-		this.activated = false;
-		this.logStatus = false;
-	}
 
-	/**
-	 * Instantiates a new user.
-	 *
-	 * @param username the username
-	 */
-	public User(String username) {
+	public User(String username, String password) {
 		super();
 		this.ID = UUID.randomUUID().toString();
 		this.username = username;
+		this.password = password;
 		this.activated = false;
 		this.notified = false;
 		this.messageBoard = new MessageBoard(this);

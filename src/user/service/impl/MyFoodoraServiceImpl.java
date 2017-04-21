@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import exceptions.LoginErrorException;
 import policies.TargetProfitPolicy;
 import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
@@ -74,7 +75,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#parse(system.Order, java.util.ArrayList)
 	 */
-	public void parse(Order order, ArrayList<Courier> availablecouriers){
+	public void findDeliverer(Order order, ArrayList<Courier> availablecouriers){
 		if (availablecouriers.size()==0){
 			order.getCustomer().update(new Message("No courier available for the moment, sorry."));
 			return;
@@ -264,4 +265,14 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		return myfoodora.getHistory();
 	}
 	
+	@Override
+	public void login(String username, String password) throws LoginErrorException{
+		for(User u : myfoodora.getUsers()){
+			if( username.equalsIgnoreCase(u.getUsername()) && password.equals(u.getPassword()) ){
+				u.logIn();
+				return;
+			}
+		}
+		throw new LoginErrorException(username, password);
+	}
 }

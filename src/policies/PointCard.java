@@ -3,6 +3,8 @@
  */
 package policies;
 
+import system.ConcreteShoppingCartVisitor;
+import system.Order;
 import user.model.Customer;
 import user.model.MyFoodora;
 
@@ -33,19 +35,20 @@ public class PointCard extends FidelityCard {
 	 * @see policies.FidelityCard#pay()
 	 */
 	@Override
-	public void pay() {
+	public void pay(Order order) {
 		// TODO Auto-generated method stub
-		double amount = customer.getShoppingCart().getTotalPrice();
+		double price = order.accept(new ConcreteShoppingCartVisitor());
 		if (balance>=100){
 			System.out.println("Your point balance reached 100, you now receive a 10% discount on this order.");
 			balance-=100;
-			amount *= 0.9;
+			price *= 0.9;
 		}
 		
-		customer.update("paid for a total amount of = " + amount );
-		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + amount);
+		customer.update("paid for a total amount of = " + price );
+		customer.getShoppingCart().removeOrder(order);
+		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + price);
 		
-		balance+=Math.floor(amount*100)/1000;
+		balance+=Math.floor(price*100)/1000;
 		System.out.println("you gained " + balance+" points on your point card for this order.");
 		
 		if (balance>=100){

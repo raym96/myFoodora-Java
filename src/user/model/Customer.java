@@ -67,21 +67,19 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @param address the address
 	 * @param email the email
 	 * @param phone the phone
-	 */
-	public Customer(String name, String surname, String username, AddressPoint address, String email, String phone) {
-		super(username);
-		this.name = name;
-		this.surname = surname;
+	 */	
+	public Customer(String lastName, String firstName, String username, AddressPoint address, String password){
+		super(username,password);
+		this.name = lastName;
+		this.surname=firstName;
 		this.address = address;
-		this.email = email;
-		this.phone = phone;
 		this.card = new StandardCard(this);
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
 		this.specialoffers = new ArrayList<Meal>();
+		
 	}
-
 	/**
 	 *  basic methods *.
 	 *
@@ -153,7 +151,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @return the full name
 	 */
 	public String getFullName(){
-		return name+" "+surname;
+		return surname+" "+name;
 	}
 	
 	/**
@@ -225,7 +223,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	 */
 	@Override
 	public String toString() {
-		return  "<Customer> "+username+"; fullname = "+surname+" "+name+"; address="+address+"; "+email+"; "+phone;
+		return  "<Customer> "+username+"; fullname = "+name+" "+surname+"; address="+address+"; "+email+"; "+phone;
 	}
 	
 	/**

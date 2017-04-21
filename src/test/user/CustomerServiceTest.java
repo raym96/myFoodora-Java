@@ -133,7 +133,7 @@ public class CustomerServiceTest {
 		customer_service.commandSpecialMeal(restaurant, specialmeal.getName());
 		
 		System.out.println(customer.getShoppingCart());
-		customer_service.pay();
+		customer_service.endOrder();
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class CustomerServiceTest {
 		customer_service.registerCard("PointCard");
 		
 		//pay
-		customer_service.pay();
+		customer_service.endOrder();
 		
 		System.out.println(customer.getUsername() + " has "+customer_service.getPoints()+" points.");
 	}

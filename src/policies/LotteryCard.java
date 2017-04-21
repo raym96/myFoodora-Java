@@ -5,6 +5,8 @@ package policies;
 
 import java.util.Random;
 
+import system.ConcreteShoppingCartVisitor;
+import system.Order;
 import user.model.Customer;
 import user.model.MyFoodora;
 
@@ -32,13 +34,14 @@ public class LotteryCard extends FidelityCard {
 	 * @see policies.FidelityCard#pay()
 	 */
 	@Override
-	public void pay(){
+	public void pay(Order order){
+		double price = order.accept(new ConcreteShoppingCartVisitor());
 		if (Math.random()<probability){
 			System.out.println("Congratulations ! You got the meal for free !");
 		}
-		customer.update("paid for a total amount of = " + customer.getShoppingCart().getTotalPrice() +" for FREE !");
+		customer.update("paid for a total amount of = " + price +" for FREE !");
 		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + customer.getShoppingCart().getTotalPrice());
-		
+		customer.getShoppingCart().removeOrder(order);
 	}
 	
 	

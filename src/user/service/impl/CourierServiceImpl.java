@@ -126,7 +126,7 @@ public class CourierServiceImpl implements CourierService {
 			c.update(new Message("courier "+courier.getName()+" refused to take the order. Please wait for an other courier"));
 		
 			//A new courier is assigned to the delivery-task
-			new MyFoodoraServiceImpl().parse(order, availablecouriers); //a new courier is assigned
+			new MyFoodoraServiceImpl().findDeliverer(order, availablecouriers); //a new courier is assigned
 		} catch (OrderNotFoundException e){}
 	}
 }

@@ -102,7 +102,7 @@ public class RestaurantServiceTest {
 		System.out.println("-----testCreateDish-----");
 		restaurant1_service.addDish(sandwich);
 		
-		assertEquals(restaurant1_service.createDish("Sandwich"),sandwich);
+		assertEquals(restaurant1_service.createFactoryDish("Sandwich"),sandwich);
 		
 	}
 
@@ -163,7 +163,7 @@ public class RestaurantServiceTest {
 		restaurant1_service.addMeal(meal);
 		
 		//verify that the meal is effectively the one created
-		assertEquals(restaurant1_service.createMeal("Half-Meal", "test_menu"), meal);
+		assertEquals(restaurant1_service.createFactoryMeal("Half-Meal", "test_menu"), meal);
 	}
 
 	/**

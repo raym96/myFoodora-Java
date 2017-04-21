@@ -165,6 +165,16 @@ public class Menu {
 		return false;
 	}
 	
+	public Dish getDish(String dishName){
+		Dish dish = null;
+		for (Dish d : this.getDishes()) {
+			if (d.getDishName().equalsIgnoreCase(dishName)){
+				dish = d;
+			}
+		}
+		return dish;
+	}
+	
 	/**
 	 * Inits the menu for tests.
 	 */

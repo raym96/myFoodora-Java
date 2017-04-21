@@ -3,11 +3,19 @@
  */
 package user.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import exceptions.MealNotFoundException;
+import exceptions.OrderNotFoundException;
 import policies.LotteryCard;
 import policies.PointCard;
 import policies.StandardCard;
+import restaurant.Item;
+import restaurant.MealMenu;
+import restaurant.Menu;
 import system.ConcreteShoppingCartVisitor;
 import system.History;
 import system.Message;
@@ -30,6 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
 	/** The customer. */
 	private Customer customer;
 	
+	MyFoodoraService m = new MyFoodoraServiceImpl();
 	/**
 	 * Instantiates a new customer service impl.
 	 *
@@ -40,20 +49,40 @@ public class CustomerServiceImpl implements CustomerService {
 		this.customer = customer;
 	}
 
-	// 1. place orders: this includes choosing a selection of items a-la-carte or one or more
-	// meals offered by a given restaurant, and paying the total price for the composed
-	/* (non-Javadoc)
-	 * @see user.service.CustomerService#addSpecialMealOrder(user.model.Restaurant, java.lang.String)
-	 */
-	// order.
+	@Override
+	public void createOrder(String restaurantName, String orderName){
+		Restaurant restaurant = (Restaurant)m.selectUser(restaurantName);
+		Order newOrder = new Order(customer,restaurant,orderName);
+		customer.getShoppingCart().addOrder(newOrder);
+	}
+		
+	@Override
+	public void addItem2Order(String orderName,String itemName) throws OrderNotFoundException, MealNotFoundException{
+		Order order = customer.getShoppingCart().getOrder(orderName);
+		Menu menu = order.getRestaurant().getMenu();
+		MealMenu mealmenu = order.getRestaurant().getMealMenu();
+		Item item = null;
+		if (menu.hasDish(itemName)){
+			item = menu.getDish(itemName);
+		}
+		else if (mealmenu.hasMeal(itemName)){
+			item = mealmenu.getMeal(itemName);
+		}
+		else {
+			throw new MealNotFoundException(orderName);
+		}
+		order.addItem(item);
+	}
+	
+	
 	public void commandSpecialMeal(Restaurant r, String mealName){
 		if (customer.getShoppingCart().hasRestaurant(r)){
 			Order order = customer.getShoppingCart().getOrder(r);
-			order.addItem(r.getRestaurantService().createMeal("Special-Meal", mealName));
+			order.addItem(r.getRestaurantService().createFactoryMeal("Special-Meal", mealName));
 		}
 		else{
 			Order order = new Order(customer, r);
-			order.addItem(r.getRestaurantService().createMeal("Special-Meal", mealName));
+			order.addItem(r.getRestaurantService().createFactoryMeal("Special-Meal", mealName));
 			customer.getShoppingCart().addOrder(order);
 		}
 		customer.update(new Message(customer.getUsername(), mealName+" has been added to your shopping cart !"));
@@ -65,11 +94,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public void commandRegularMeal(Restaurant r, String mealName, String mealCategory){
 		if (customer.getShoppingCart().hasRestaurant(r)){
 			Order order = customer.getShoppingCart().getOrder(r);
-			order.addItem(r.getRestaurantService().createMeal(mealCategory, mealName));
+			order.addItem(r.getRestaurantService().createFactoryMeal(mealCategory, mealName));
 		}
 		else{
 			Order order = new Order(customer, r);
-			order.addItem(r.getRestaurantService().createMeal(mealCategory, mealName));
+			order.addItem(r.getRestaurantService().createFactoryMeal(mealCategory, mealName));
 			customer.getShoppingCart().addOrder(order);
 		}
 		customer.update(new Message(customer.getUsername(), mealName+" has been added to your shopping cart !"));
@@ -81,11 +110,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public void commandAlaCarte(Restaurant r, String dishName){
 		if (customer.getShoppingCart().hasRestaurant(r)){
 			Order order = customer.getShoppingCart().getOrder(r);
-			order.addItem(r.getRestaurantService().createDish(dishName));
+			order.addItem(r.getRestaurantService().createFactoryDish(dishName));
 		}
 		else{
 			Order order = new Order(customer, r);
-			order.addItem(r.getRestaurantService().createDish(dishName));
+			order.addItem(r.getRestaurantService().createFactoryDish(dishName));
 			customer.getShoppingCart().addOrder(order);
 		}
 		customer.update(new Message(customer.getUsername(), dishName+" has been added to your shopping cart !"));
@@ -94,14 +123,18 @@ public class CustomerServiceImpl implements CustomerService {
 	/* (non-Javadoc)
 	 * @see user.service.CustomerService#pay()
 	 */
-	public void pay(){
-		MyFoodoraService m = new MyFoodoraServiceImpl();
-		customer.getCard().pay();
-		for (Order order:customer.getShoppingCart().getOrders()){
-			ArrayList<Courier> availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
-			m.parse(order, availablecouriers);
-		}
-		customer.getShoppingCart().clear();
+	@Override
+	public void endOrder(String orderName, String Stringdate) throws OrderNotFoundException, ParseException{
+		MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
+		Order order = customer.getShoppingCart().getOrder(orderName);
+	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, hh:mm:ss");
+		Date date = sdf.parse(Stringdate);
+		order.setDate(date);
+		
+		customer.getCard().pay(order);
+		ArrayList<Courier> availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
+		myfoodora_service.findDeliverer(order, availablecouriers);
 	}
 	
 
@@ -191,7 +224,6 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.update("You refuse to be notified.");
 		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
 	}
-
 
 
 }

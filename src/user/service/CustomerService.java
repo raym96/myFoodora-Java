@@ -3,6 +3,10 @@
  */
 package user.service;
 
+import java.text.ParseException;
+
+import exceptions.MealNotFoundException;
+import exceptions.OrderNotFoundException;
 import system.History;
 import user.model.Restaurant;
 
@@ -43,8 +47,9 @@ public interface CustomerService {
 	
 	/**
 	 * Pay.
+	 * @throws ParseException 
 	 */
-	public void pay();	
+	void endOrder(String orderName, String date) throws OrderNotFoundException, ParseException;
 	
 	/**
 	 * register to a fidelity card plan.
@@ -84,5 +89,10 @@ public interface CustomerService {
 	 * Removes the consensus to be notified of special offers.
 	 */
 	public void removeConsensusBeNotifiedSpecialOffers();
+
+	void createOrder(String restaurantName, String orderName);
+
+	void addItem2Order(String orderName, String itemName) throws OrderNotFoundException, MealNotFoundException;
+
 
 }

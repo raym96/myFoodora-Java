@@ -3,6 +3,12 @@
  */
 package user.service;
 
+import java.util.ArrayList;
+
+import exceptions.DishNotFoundException;
+import exceptions.DishTypeErrorException;
+import exceptions.MealNotFoundException;
+import exceptions.NameAlreadyExistsException;
 import restaurant.Dish;
 import restaurant.Meal;
 import system.Order;
@@ -22,6 +28,9 @@ public interface RestaurantService {
 	 */
 	// add/remove a dish to the menu
 	public void addDish(Dish dish);
+	
+	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice);
+
 	
 	/**
 	 * Removes a dish from the restaurant menu	 *.
@@ -54,7 +63,7 @@ public interface RestaurantService {
 	 * @param dishname1 the dishname 1
 	 * @param dishname2 the dishname 2
 	 */
-		public void addMeal(String mealname, String dishname1, String dishname2);
+	public void addMeal(String mealname, String dishname1, String dishname2);
 	
 	/**
 	 * Create a full-meal from the dishes of the dish menu and add it to the meal menu
@@ -74,7 +83,10 @@ public interface RestaurantService {
 	 * @return the meal
 	 */
 	//create an instance of Meal
-	public Meal createMeal(String mealType, String mealName);	
+	public Meal createFactoryMeal(String mealType, String mealName);	
+	
+	//create an empty meal
+	public void createMeal(String mealName) throws NameAlreadyExistsException;
 	
 	/**
 	 * Creates the dish from a dish factory.
@@ -83,23 +95,25 @@ public interface RestaurantService {
 	 * @return the dish
 	 */
 	//create an instance of Dish
-	public Dish createDish(String dishName);
+	public Dish createFactoryDish(String dishName);
 	
 	/**
 	 * Removes a meal from the meal menu.
 	 *
 	 * @param mealName the meal name
+	 * @throws MealNotFoundException 
 	 */
 	//Remove a meal from the meal menu
-	public void removeMeal(String mealName);
+	public void removeMeal(String mealName) throws MealNotFoundException;
 	
 	/**
 	 * Promotes an existing meal to the meal-of-the-week meal-menu.
 	 *
 	 * @param mealName the meal name
+	 * @throws MealNotFoundException 
 	 */
 	//throw exception if meal name is not recognized
-	public void addSpecialMeal(String mealName);	
+	public void addSpecialMeal(String mealName) throws MealNotFoundException;	
 	
 	/**
 	 * Removes a meal-of-the-week and places it in the regular meal-menu.
@@ -172,5 +186,13 @@ public interface RestaurantService {
 	 * Display all menu.
 	 */
 	public void displayAllMenu();
+
+	void addDish2Meal(String dishName, String mealName) throws DishNotFoundException, MealNotFoundException, DishTypeErrorException;
+
+	void showMeal(String mealName) throws MealNotFoundException;
+
+	void saveMeal(String mealName) throws MealNotFoundException, DishTypeErrorException;
+
+
 	
 }

@@ -84,6 +84,16 @@ public class MealMenu {
 		return false;
 	}
 	
+	public Meal getMeal(String mealName){
+		Meal meal = null;
+		for (Meal m:getMeals()){
+			if (m.getName().equalsIgnoreCase(mealName)){
+				meal = m;
+			}
+		}
+		return meal;
+	}
+	
 	/**
 	 * Gets the meals.
 	 *

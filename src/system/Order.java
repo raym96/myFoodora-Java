@@ -25,20 +25,22 @@ import user.model.User;
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public class Order {
 	
+	private String name;
+	
 	/** The date. */
-	protected Date date;
+	private Date date;
 	
 	/** The order ID. */
-	protected String orderID;
+	private String orderID;
 	
 	/** The ordercount. */
 	static private int ordercount = 1244;
 	
 	/** The restaurant. */
-	protected Restaurant restaurant;
+	private Restaurant restaurant;
 	
 	/** The customer. */
-	protected Customer customer;
+	private Customer customer;
 	
 	/** The courier. */
 	//relative to delivery
@@ -55,40 +57,27 @@ public class Order {
 	 * @param customer the customer
 	 * @param restaurant the restaurant
 	 */
-	public Order(Customer customer,Restaurant restaurant){
+	public Order(Customer customer,Restaurant restaurant, String orderName){
 		this.customer = customer;
 		this.restaurant = restaurant;
 		this.items = new ArrayList<Item>();
+		this.name = orderName;
 		date = new Date();
 		orderID = String.valueOf(ordercount);
 		ordercount++;
 		
-		//initialy no courier is assigned
+		//initially no courier is assigned
 		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
 		assigned = false;
 	}
 	
-	/**
-	 * Instantiates a new order with an item.
-	 *
-	 * @param customer the customer
-	 * @param restaurant the restaurant
-	 * @param item the item
-	 */
-	public Order(Customer customer,Restaurant restaurant, Item item){
-		this.customer = customer;
-		this.restaurant = restaurant;
-		this.items = new ArrayList<Item>();
-		items.add(item);
-		date = new Date();
-		orderID = String.valueOf(ordercount);
-		ordercount++;
-		
-		//initialy no courier is assigned
-		courier = new Courier("default","default","NOT ASSIGNED",new AddressPoint(0,0),"default");
-		assigned = false;
+	public String getName() {
+		return name;
 	}
-	
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	/**
 	 * Instantiates a new order.
@@ -98,9 +87,10 @@ public class Order {
 	 * @param date the date
 	 */
 	//Only for old order registration with a past date (history for example)
-	public Order(Customer customer,Restaurant restaurant, Date date){
+	public Order(Customer customer,Restaurant restaurant, String orderName, Date date){
 		this.customer = customer;
 		this.restaurant = restaurant;
+		this.name = orderName;
 		this.items = new ArrayList<Item>();
 		orderID = String.valueOf(ordercount);
 		ordercount++;

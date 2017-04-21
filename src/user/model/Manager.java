@@ -27,9 +27,6 @@ public class Manager extends User{
 	/** The surname. */
 	private String surname;
 	
-	/** The my foodora service. */
-	private MyFoodoraService myFoodoraService;
-	
 	/** The manager service. */
 	private ManagerService managerService;
 	
@@ -40,11 +37,10 @@ public class Manager extends User{
 	 * @param surname the surname
 	 * @param username the username
 	 */
-	public Manager(String name, String surname, String username) {
-		super(username);
+	public Manager(String name, String surname, String username, String password) {
+		super(username, password);
 		this.name = name;
 		this.surname = surname;
-		this.myFoodoraService = new MyFoodoraServiceImpl();
 		managerService = new ManagerServiceImpl(this);
 	}
 
@@ -73,15 +69,6 @@ public class Manager extends User{
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * Gets the myfoodora service.
-	 *
-	 * @return the myfoodora service
-	 */
-	public MyFoodoraService getMyfoodoraService() {
-		return myFoodoraService;
 	}
 
 	/**

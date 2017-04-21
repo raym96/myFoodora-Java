@@ -1,0 +1,12 @@
+login ceo 123456789
+registerRestaurant BonheurDAntony 1,1 restaurant_1 password
+logout
+login restaurant_1 password
+createMeal iLoveChicken
+addDishRestaurantMenu chicken main standard 3.3
+addDish2Meal chicken iLoveChicken
+addDishRestaurantMenu ice-cream dessert standard 3.3
+addDish2Meal ice-cream iLoveChicken
+saveMeal iLoveChicken
+setSpecialOffer iLoveChicken
+		

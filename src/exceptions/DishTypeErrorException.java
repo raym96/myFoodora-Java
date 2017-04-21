@@ -13,6 +13,7 @@ package exceptions;
  * @author Ji Raymond
  */
 public class DishTypeErrorException extends Exception {
+	String errortype;
 	
 	/** The Constant serialVersionUID. */
 	public static final long serialVersionUID = 1L;
@@ -23,12 +24,13 @@ public class DishTypeErrorException extends Exception {
 	 * @param errortype the errortype
 	 */
 	public DishTypeErrorException(String errortype){
-		if (errortype == "full meal"){
-			System.out.println("[DishType error]:: A full-meal must have 1 starter, 1 main-dish and 1 dessert !");
-		}
-		if (errortype == "half meal"){
-			System.out.println("[DishType error]:: A half-meal must only have 1 main-dish + 1 starter/dessert !");
-		}
+		this.errortype = errortype;
 	}
+
+	public String getErrortype() {
+		return errortype;
+	}
+	
+	
 
 }

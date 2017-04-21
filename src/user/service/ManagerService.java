@@ -103,9 +103,9 @@ public interface ManagerService {
 	/**
 	 * Sets the target profit policy.
 	 *
-	 * @param t the new target profit policy
+	 * @param profitPolicyName the new target profit policy
 	 */
-	public void setTargetProfitPolicy(TargetProfitPolicy t);
+	public void setTargetProfitPolicy(String profitPolicyName);
 	
 	/**
 	 * determining either the service-fee and/or markup percentage and/or the delivery-
@@ -149,7 +149,7 @@ public interface ManagerService {
 	 *
 	 * @param deliverypolicy the new delivery policy
 	 */
-	public void setDeliveryPolicy(DeliveryPolicy deliverypolicy); 
+	public void setDeliveryPolicy(String deliveryPolicy); 
 	
 	
 	// ##. extra tool method
@@ -179,5 +179,7 @@ public interface ManagerService {
 	 * @param userType the user type
 	 */
 	public void displayUsersOfAssignedType(String userType);
+	
+	public void associateCard(String username, String cardType) throws UserNotFoundException;
 	
 }

@@ -5,6 +5,7 @@ package system;
 
 import java.util.ArrayList;
 
+import exceptions.OrderNotFoundException;
 import user.model.Restaurant;
 
 
@@ -61,9 +62,9 @@ public class ShoppingCart {
 	 * @param restaurant the restaurant
 	 * @return true, if successful
 	 */
-	public boolean hasRestaurant(Restaurant restaurant){
+	public boolean hasOrder(String orderName){
 		for (Order order:orders){
-			if (order.getRestaurant().equals(restaurant)){
+			if (order.getName().equalsIgnoreCase(orderName)){
 				return true;
 			}
 		}
@@ -77,13 +78,13 @@ public class ShoppingCart {
 	 * @param restaurant the restaurant
 	 * @return the order
 	 */
-	public Order getOrder(Restaurant restaurant){
+	public Order getOrder(String orderName) throws OrderNotFoundException{
 		for (Order order:orders){
-			if (order.getRestaurant().equals(restaurant)){
+			if (order.getName().equalsIgnoreCase(orderName)){
 				return order;
 			}
 		}
-		return null;
+		throw new OrderNotFoundException(orderName);
 	}
 	/**
 	 * Gets the total price.

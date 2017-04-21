@@ -3,6 +3,7 @@
  */
 package restaurant;
 
+import exceptions.DishTypeErrorException;
 
 /**
  * The Class HalfMeal.
@@ -30,8 +31,13 @@ public class HalfMeal extends Meal {
 	public HalfMeal(String name, Dish dish1, Dish dish2) {
 		super(name);
 		// TODO Auto-generated constructor stub
-		this.addDish(dish1);
-		this.addDish(dish2);
+		try {
+			this.addDish(dish1);
+			this.addDish(dish2);
+		} catch (DishTypeErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.refreshMealType();
 	}
 	
@@ -65,8 +71,13 @@ public class HalfMeal extends Meal {
 			if (dish.getDishName().equals(dishName1)) {dish1 = dish;}
 			if (dish.getDishName().equals(dishName2)) {dish2 = dish;}
 			}
-		this.addDish(dish1);
-		this.addDish(dish2);
+		try {
+			this.addDish(dish1);
+			this.addDish(dish2);
+		} catch (DishTypeErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.refreshMealType();
 	}
 	

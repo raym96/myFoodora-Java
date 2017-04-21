@@ -58,22 +58,20 @@ public class Courier extends User{
 	 * @param surname the surname
 	 * @param username the username
 	 * @param position the position
-	 * @param phone the phone
+	 * @param password the password
 	 */
-	public Courier(String name, String surname, String username, AddressPoint position, String phone) {
-		super(username);
+	public Courier(String name, String surname, String username, AddressPoint position, String password) {
+		super(username,password);
 		this.name = name;
 		this.surname = surname;
 		this.position = position;
-		this.phone = phone;
-		this.on_duty = false;
+		this.on_duty = true;
 		this.deliveredOrders = new ArrayList<Order>();
 		this.waitingOrders = new ArrayList<Order>();
 		
 		count = 0;
 		this.courierService = new CourierServiceImpl(this);
 	}
-
 	
 	/**
 	 * Sets the waiting orders.
@@ -110,7 +108,7 @@ public class Courier extends User{
 	 */
 	public void refuseWaitingOrder(Order order) throws OrderNotFoundException{
 		if (!(waitingOrders.contains(order))){
-			throw new OrderNotFoundException(order);
+			throw new OrderNotFoundException(order.getName());
 		}
 		waitingOrders.remove(order);
 	}
@@ -123,7 +121,7 @@ public class Courier extends User{
 	 */
 	public void acceptWaitingOrder(Order order) throws OrderNotFoundException{
 		if (!(waitingOrders.contains(order))){
-			throw new OrderNotFoundException(order);
+			throw new OrderNotFoundException(order.getName());
 		}
 		waitingOrders.remove(order);
 		deliveredOrders.add(order);

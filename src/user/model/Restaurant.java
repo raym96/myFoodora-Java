@@ -42,13 +42,10 @@ public class Restaurant extends User{
 	/** The menu. */
 	private Menu menu;
 	
-	/** The halfmealmenu. */
-	private MealMenu halfmealmenu;
+	/** The mealmenu. */
+	private MealMenu mealmenu;
 	
-	/** The fullmealmenu. */
-	private MealMenu fullmealmenu;
-	
-	/** The specialmealmenu. */
+	/** The special-offer menu. */
 	private MealMenu specialmealmenu;
 	
 	/** The history. */
@@ -64,24 +61,17 @@ public class Restaurant extends User{
 	 * @param username the username
 	 * @param address the address
 	 */
-	//Constructor
-	public Restaurant(String name, String username, AddressPoint address) {
-		super(username);
+	public Restaurant(String name, String username, AddressPoint address,String password) {
+		super(username,password);
 		this.name = name;
 		this.address = address;
 		menu = new Menu();
-		halfmealmenu = new MealMenu(this);
-		fullmealmenu = new MealMenu(this);
+		mealmenu = new MealMenu(this);
 		specialmealmenu = new MealMenu(this);
 		history = new History();
-		
 		restaurantService = new RestaurantServiceImpl(this);
-		
-		//INITIALIZE FOR TESTS
-//		menu = InitDishMenu.init("src/txt files/menu.txt");
-//		setMealMenu(InitMealMenu.init("src/txt files/mealmenu.txt"));
-	}
 	
+	}
 
 	/**
 	 * Gets the restaurant service.
@@ -108,12 +98,10 @@ public class Restaurant extends User{
 	 * @return the meal factory
 	 */
 	public MealFactory getMealFactory(String mealCategory){
-		if(mealCategory.equalsIgnoreCase("Full-meal")){
-			return new FullMealFactory(fullmealmenu);
-		}else if(mealCategory.equalsIgnoreCase("Half-meal")){
-			return new HalfMealFactory(halfmealmenu);
+		if(mealCategory.equalsIgnoreCase("meal")){
+			return new MealFactory(mealmenu);
 		}else if(mealCategory.equalsIgnoreCase("Special-meal")){
-			return new HalfMealFactory(specialmealmenu);
+			return new MealFactory(specialmealmenu);
 		}
 		System.out.println("Meal category non recognized");
 		return null;
@@ -129,22 +117,14 @@ public class Restaurant extends User{
 	}
 
 	/**
-	 * Gets the half meal menu.
+	 * Gets the meal menu.
 	 *
-	 * @return the half meal menu
+	 * @return the meal menu
 	 */
-	public MealMenu getHalfMealMenu() {
-		return halfmealmenu;
+	public MealMenu getMealMenu() {
+		return mealmenu;
 	}
 	
-	/**
-	 * Gets the full meal menu.
-	 *
-	 * @return the full meal menu
-	 */
-	public MealMenu getFullMealMenu(){
-		return fullmealmenu;
-	}
 
 	/**
 	 * Sets the menu.
@@ -162,29 +142,18 @@ public class Restaurant extends User{
 	 */
 	//USEFUL FOR TESTS
 	public void setMealMenu(ArrayList<MealMenu> mealmenus){
-		this.halfmealmenu = mealmenus.get(0);
-		this.fullmealmenu = mealmenus.get(1);
-		this.specialmealmenu = mealmenus.get(2);
+		this.mealmenu = mealmenus.get(0);
+		this.specialmealmenu = mealmenus.get(1);
 	}
 
 	/**
-	 * Sets the half mealmenu.
+	 * Sets the mealmenu.
 	 *
-	 * @param mealmenu the new half mealmenu
+	 * @param mealmenu the new mealmenu
 	 */
 	public void setHalfMealmenu(MealMenu mealmenu) {
-		this.halfmealmenu = mealmenu;
+		this.mealmenu = mealmenu;
 	}
-	
-	/**
-	 * Sets the full mealmenu.
-	 *
-	 * @param mealmenu the new full mealmenu
-	 */
-	public void setFullMealmenu(MealMenu mealmenu){
-		this.fullmealmenu=mealmenu;
-	}
-
 	/**
 	 * Sets the special mealmenu.
 	 *

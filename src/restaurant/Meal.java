@@ -6,6 +6,7 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import exceptions.DishTypeErrorException;
 import system.ConcreteShoppingCartVisitor;
 import system.ShoppingCartVisitor;
 import user.model.Restaurant;
@@ -16,7 +17,7 @@ import user.model.Restaurant;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public abstract class Meal implements Item{
+public class Meal implements Item{
 
 	/** The name. */
 	protected String name;
@@ -34,6 +35,8 @@ public abstract class Meal implements Item{
 	//standard,vegetarian,gluten-free
 	protected String mealType;
 	
+	private boolean saved;
+	
 	/**
 	 * Instantiates a new meal.
 	 *
@@ -43,16 +46,40 @@ public abstract class Meal implements Item{
 		super();
 		this.name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
 		this.dishes = new ArrayList<Dish>();
+		this.saved = false;
+	}
+
+	public boolean isSaved() {
+		return saved;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDishes(ArrayList<Dish> dishes) {
+		this.dishes = dishes;
+	}
+
+	public void setSaved(boolean saved) {
+		this.saved = saved;
 	}
 
 	/**
-	 * Adds the dish.
+	 * Adds the dish. Error if there a more than 1 starter/main-dish/dessert
 	 *
 	 * @param dish the dish
+	 * @throws DishTypeErrorException 
 	 */
-	public void addDish(Dish dish) {
+	public void addDish(Dish dish) throws DishTypeErrorException {
 		// TODO Auto-generated method stub
-		getDishes().add(dish);
+		for (Dish d : getDishes()){
+			if (d instanceof Starter && dish instanceof Starter) throw new DishTypeErrorException("duplicata");
+			if (d instanceof MainDish && dish instanceof MainDish) throw new DishTypeErrorException("duplicata");
+			if (d instanceof Dessert && dish instanceof Dessert) throw new DishTypeErrorException("duplicata");
+		}
+		dishes.add(dish);
+		refreshMealType();
 	}
 	
 	

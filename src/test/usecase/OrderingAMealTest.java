@@ -109,7 +109,7 @@ public class OrderingAMealTest {
 					System.out.println("Please enter 1 meal name corresponding the type specified: enter # to exit");
 					mealname = s.nextLine();
 				}
-				((Customer)user).getCustomerService().pay();
+				((Customer)user).getCustomerService().endOrder();
 				System.out.println("Session ended.");
 			}
 			s.close();
