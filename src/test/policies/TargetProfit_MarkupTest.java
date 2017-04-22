@@ -11,7 +11,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import initialization.InitialScenario;
+import initialization.InitialScenarioOld;
 import policies.TargetProfitPolicy;
 import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
@@ -36,7 +36,7 @@ public class TargetProfit_MarkupTest {
 	 */
 	@Before
 	public void setUpBefore() throws Exception {
-		InitialScenario.load("scenario_test_services.ini");	
+		InitialScenarioOld.load("scenario_test_services.ini");	
 		myfoodora = MyFoodora.getInstance();
 		System.out.println(myfoodora.getHistory());
 	}

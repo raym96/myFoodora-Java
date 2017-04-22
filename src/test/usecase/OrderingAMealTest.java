@@ -8,9 +8,9 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 
-import initialization.InitialScenario;
+import initialization.InitialScenarioOld;
 import restaurant.*;
 import system.*;
 import user.model.*;
@@ -55,13 +55,13 @@ public class OrderingAMealTest {
 	/**
 	 * Test startup scenario.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Before
-	public void testStartupScenario() throws UserNotFoundException {
+	public void testStartupScenario() throws NameNotFoundException {
 	
 		System.out.println("----------------------- Startup scenario -----------------------");
-		InitialScenario.load("init.ini");
+		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
 		myfoodora_service = new MyFoodoraServiceImpl();

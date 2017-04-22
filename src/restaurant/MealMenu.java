@@ -6,7 +6,7 @@ package restaurant;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import user.model.Restaurant;
 
@@ -54,9 +54,9 @@ public class MealMenu {
 	 * Removes the meal.
 	 *
 	 * @param mealName the meal name
-	 * @throws MealNotFoundException the meal not found exception
+	 * @throws NameNotFoundException the meal not found exception
 	 */
-	public void removeMeal(String mealName) throws MealNotFoundException{
+	public void removeMeal(String mealName) throws NameNotFoundException{
 		int count = 0;
 		for(int i=0; i<meals.size(); i++){
 			if( meals.get(i).getName().equalsIgnoreCase(mealName)){
@@ -65,7 +65,7 @@ public class MealMenu {
 			}
 		}
 		if (count==0){
-			throw new MealNotFoundException(mealName);
+			throw new NameNotFoundException(mealName);
 		}
 	}
 	

@@ -74,9 +74,9 @@ public class Meal implements Item{
 	public void addDish(Dish dish) throws DishTypeErrorException {
 		// TODO Auto-generated method stub
 		for (Dish d : getDishes()){
-			if (d instanceof Starter && dish instanceof Starter) throw new DishTypeErrorException("duplicata");
-			if (d instanceof MainDish && dish instanceof MainDish) throw new DishTypeErrorException("duplicata");
-			if (d instanceof Dessert && dish instanceof Dessert) throw new DishTypeErrorException("duplicata");
+			if (d instanceof Starter && dish instanceof Starter) throw new DishTypeErrorException();
+			if (d instanceof MainDish && dish instanceof MainDish) throw new DishTypeErrorException();
+			if (d instanceof Dessert && dish instanceof Dessert) throw new DishTypeErrorException();
 		}
 		dishes.add(dish);
 		refreshMealType();
@@ -210,10 +210,12 @@ public class Meal implements Item{
 	 */
 	@Override
 	public String toString() {
-		String str;
+		String str ="";
 		double price = new ConcreteShoppingCartVisitor().visit(this);
+		if (this instanceof HalfMeal) str+= "Half-meal <";
+		if (this instanceof FullMeal) str+= "Full-meal <";
 		//the stream.map.collector allows to collect only dishnames
-		str = "Formula <" +getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+price+" euros";
+		str += getName() + "> " +dishes.stream().map(Dish::getDishName).collect(Collectors.toList())+" type "+getType()+" "+price+" euros";
 		return str;
 	}
 

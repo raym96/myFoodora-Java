@@ -273,6 +273,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 				return;
 			}
 		}
-		throw new LoginErrorException(username, password);
+		throw new LoginErrorException();
 	}
 }

@@ -5,7 +5,7 @@ package system;
 
 import java.util.ArrayList;
 
-import exceptions.OrderNotFoundException;
+import exceptions.NameNotFoundException;
 import user.model.Restaurant;
 
 
@@ -78,13 +78,13 @@ public class ShoppingCart {
 	 * @param restaurant the restaurant
 	 * @return the order
 	 */
-	public Order getOrder(String orderName) throws OrderNotFoundException{
+	public Order getOrder(String orderName) throws NameNotFoundException{
 		for (Order order:orders){
 			if (order.getName().equalsIgnoreCase(orderName)){
 				return order;
 			}
 		}
-		throw new OrderNotFoundException(orderName);
+		throw new NameNotFoundException(orderName);
 	}
 	/**
 	 * Gets the total price.

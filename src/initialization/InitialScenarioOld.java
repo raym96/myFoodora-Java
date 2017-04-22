@@ -16,10 +16,10 @@ import java.util.Random;
 import org.ini4j.Ini;
 import org.ini4j.InvalidFileFormatException;
 
-import exceptions.DishNotFoundException;
-import exceptions.MealNotFoundException;
-import exceptions.OrderNotFoundException;
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
+import exceptions.NameNotFoundException;
+import exceptions.NameNotFoundException;
+import exceptions.NameNotFoundException;
 import restaurant.*;
 import system.*;
 import user.model.*;
@@ -30,16 +30,16 @@ import user.model.*;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public class InitialScenario {
+public class InitialScenarioOld {
 	
 	/**
 	 * Load.
 	 *
 	 * @param filename the filename
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	//Load .ini file data into the MyFoodora System
-	public static void load(String filename) throws UserNotFoundException {
+	public static void load(String filename) throws NameNotFoundException {
 		System.out.println("\n-----------------------------------------------------------------------------------");
 		System.out.println("Loading initial scenario <"+filename+">");
 		MyFoodora.reset(); //reset the state of the system
@@ -411,7 +411,7 @@ public class InitialScenario {
 				courier.addWaitingOrder(neworder);
 				try {
 					courier.acceptWaitingOrder(neworder);
-				} catch (OrderNotFoundException e) {
+				} catch (NameNotFoundException e) {
 					e.printStackTrace();
 				} //add the order to courier's delivery history
 				

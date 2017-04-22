@@ -5,7 +5,7 @@ package user.service.impl;
 
 import java.util.ArrayList;
 
-import exceptions.OrderNotFoundException;
+import exceptions.NameNotFoundException;
 import system.AddressPoint;
 import system.Message;
 import system.Order;
@@ -88,45 +88,33 @@ public class CourierServiceImpl implements CourierService {
 	 */
 	// 4. accept/refuse to a delivery call (received by the MyFoodora system)
 	@Override
-	public void acceptCall(Order order) {
+	public void acceptCall(String orderName) {
 		// TODO Auto-generated method stub
-		try{
-			order.setCourier(courier); //the courier is assigned to the delivery-task
-			order.setAssigned(true);
-			courier.acceptWaitingOrder(order); // automatic +1 for the delivery count of the courier
-										// may throw orderNotFoundException
-			System.out.println("courier "+courier.getName()+" accepts to take the order.");
-			
-			//new message appears on message board of customer
-			Customer c = order.getCustomer();
-			c.update(new Message("courier "+courier.getName()+" accepts to take the order."));
-
-			//Update the history
-			order.getRestaurant().addToHistory(order);
-			MyFoodora.getInstance().addToHistory(order);
-		}catch (OrderNotFoundException e){}
-		
+		Order order = courier.getWaitingOrder(orderName);
+		courier.acceptWaitingOrder(orderName); // automatic +1 for the delivery count of the courier
+									// may throw NameNotFoundException		
+		//new message appears on message board of customer
+		Customer c = order.getCustomer();
+		c.update(new Message("courier "+courier.getName()+" accepts to take the order."));	
 	}
 
 	/* (non-Javadoc)
 	 * @see user.service.CourierService#refuseCall(system.Order)
 	 */
 	@Override
-	public void refuseCall(Order order) {
+	public void refuseCall(String orderName) {
 		// TODO Auto-generated method stub
-		try{
-			courier.refuseWaitingOrder(order);	
-			ArrayList<Courier>availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
-			availablecouriers.remove(courier); //this courier doesn't want to take the order, so he won't be considered for the next parsing
-			
-			System.out.println("courier "+courier.getName()+" refuses to take the order. A new courier is being assigned.");
-			
-			// new message appears on message board of customer
-			Customer c = order.getCustomer();
-			c.update(new Message("courier "+courier.getName()+" refused to take the order. Please wait for an other courier"));
+		Order order = courier.getWaitingOrder(orderName);
+		courier.refuseWaitingOrder(orderName);	
 		
-			//A new courier is assigned to the delivery-task
-			new MyFoodoraServiceImpl().findDeliverer(order, availablecouriers); //a new courier is assigned
-		} catch (OrderNotFoundException e){}
+		ArrayList<Courier>availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
+		availablecouriers.remove(courier); //this courier doesn't want to take the order, so he won't be considered for the next parsing
+		
+		// new message appears on message board of customer
+		Customer c = order.getCustomer();
+		c.update(new Message("courier "+courier.getName()+" refused to take the order. Please wait for an other courier"));
+	
+		//A new courier is assigned to the delivery-task
+		new MyFoodoraServiceImpl().findDeliverer(order, availablecouriers); //a new courier is assigned
 	}
 }

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import restaurant.FullMeal;
 import restaurant.FullMealFactory;
@@ -72,7 +72,7 @@ public class FullMealFactoryTest {
 			FullMeal fm_create = fullMealFactory.createMeal(fm.getName());
 			assertEquals(fm, fm_create);
 			
-		} catch (MealNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -81,7 +81,7 @@ public class FullMealFactoryTest {
 	/**
 	 * Test create meal string exception.
 	 */
-	@Test(expected = MealNotFoundException.class)
+	@Test(expected = NameNotFoundException.class)
 	public void testCreateMealStringException() {
 		
 		try {
@@ -89,7 +89,7 @@ public class FullMealFactoryTest {
 			FullMeal fm_not_exist = fullMealFactory.createMeal("aaaaa");
 			assertNull(fm_not_exist);
 			
-		} catch (MealNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		}

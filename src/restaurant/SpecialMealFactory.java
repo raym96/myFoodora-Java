@@ -3,7 +3,7 @@
  */
 package restaurant;
 
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 
 
 /**
@@ -23,7 +23,7 @@ public class SpecialMealFactory {
 		this.mealmenu = mealmenu;
 	}
 
-	public Meal createMeal(String mealName) throws MealNotFoundException{
+	public Meal createMeal(String mealName) throws NameNotFoundException{
 		// TODO Auto-generated method stub
 		for (Meal meal : this.mealmenu.getMeals()){
 			if (meal.getName().equalsIgnoreCase(mealName)){
@@ -35,7 +35,7 @@ public class SpecialMealFactory {
 				}
 			}
 		}
-		throw new MealNotFoundException(mealName);
+		throw new NameNotFoundException(mealName);
 	}
 
 }

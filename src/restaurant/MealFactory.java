@@ -5,7 +5,7 @@ package restaurant;
 
 import java.util.ArrayList;
 
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 
 
 /**
@@ -41,9 +41,9 @@ public class MealFactory {
 	 *
 	 * @param mealName the meal name
 	 * @return the meal
-	 * @throws MealNotFoundException the meal not found exception
+	 * @throws NameNotFoundException the meal not found exception
 	 */
-	public Meal createMeal(String mealName) throws MealNotFoundException{
+	public Meal createMeal(String mealName) throws NameNotFoundException{
 		// TODO Auto-generated method stub
 		for (Meal meal : mealmenu.getMeals()){
 			if (meal.getName().equalsIgnoreCase(mealName)){
@@ -55,6 +55,6 @@ public class MealFactory {
 				}
 			}
 		}
-		throw new MealNotFoundException(mealName);
+		throw new NameNotFoundException(mealName);
 	}
 }

@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import initialization.InitialScenario;
+import initialization.InitialScenarioOld;
 import policies.LotteryCard;
 import policies.PointCard;
 import policies.StandardCard;
@@ -59,7 +59,7 @@ public class CustomerServiceTest {
 	 */
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		InitialScenario.load("scenario_test_services.ini");
+		InitialScenarioOld.load("scenario_test_services.ini");
 		myfoodora = MyFoodora.getInstance();
 		myfoodora_service = new MyFoodoraServiceImpl();
 		

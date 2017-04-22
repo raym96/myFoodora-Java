@@ -4,14 +4,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
+import exceptions.PermissionException;
 import exceptions.DishTypeErrorException;
 import exceptions.LoginErrorException;
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
-import exceptions.OrderNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.SyntaxErrorException;
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 import system.AddressPoint;
 import user.model.*;
 import user.service.MyFoodoraService;
@@ -36,11 +37,10 @@ public class CommandProcessor{
 	 
 
 	/**
- 	 * Process command.
- 	 *
- 	 * @param rawInput the raw input
- 	 * @throws SyntaxErrorException the syntax error exception
- 	 */
+	 * Process command.
+	 *
+	 * @param rawInput the raw input
+	 */
  	public void processCommand(String rawInput){
 		 Command command = new Command(rawInput);
 		 cmd = command.getCommand();
@@ -99,6 +99,12 @@ public class CommandProcessor{
 			 case "offduty":
 				 offDuty();
 				 break;
+			 case "acceptCall":
+				 acceptCall();
+				 break;
+			 case "refuseCall":
+				 refuseCall();
+				 break;
 			 case "finddeliverer":
 				 findDeliverer();
 				 break;
@@ -132,24 +138,27 @@ public class CommandProcessor{
 			 case "help":
 				 help();
 				 break;
+			 default: 
+				 throw new SyntaxErrorException();
 			 }
 		 }
 		 catch (SyntaxErrorException e){
-			 e.printStackTrace();
+			 System.out.println(rawInput);
+			 e.printError();
+		 }
+		 catch (PermissionException e){
+			 e.printError();
 		 }
 }
 
 
-
-
-
 	/**
-	 * login "username" "password"
+	 * login "username" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 */
 	public void login() throws SyntaxErrorException{
-		if (arguments.length!=2){
+		if (arguments.length<2){
 			throw new SyntaxErrorException();
 		}
 		String username = arguments[0];
@@ -175,11 +184,13 @@ public class CommandProcessor{
 	 * registerRestaurant "name" "address" "username" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void registerRestaurant() throws SyntaxErrorException{
-		if (arguments.length!=4){
+	public void registerRestaurant() throws SyntaxErrorException, PermissionException{
+		if (arguments.length<4){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String name = arguments[0];
 		String[] parts = arguments[1].split(",");
 		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
@@ -187,17 +198,20 @@ public class CommandProcessor{
 		String password = arguments[3];
 		Manager manager = (Manager)user;
 		manager.getManagerService().addUser(new Restaurant(name,userName,address,password));
+		System.out.println("Restaurant "+userName+" has been registered on myfoodora.");
 	}
 	
 	/**
 	 * registerCustomer "firstname" "lastname" "username" "address" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void registerCustomer() throws SyntaxErrorException {
-		if (arguments.length!=5){
+	public void registerCustomer() throws SyntaxErrorException, PermissionException {
+		if (arguments.length<5){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String firstName = arguments[0];
 		String lastName = arguments[1];
 		String userName = arguments[2];
@@ -205,18 +219,21 @@ public class CommandProcessor{
 		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
 		String password = arguments[4];
 		Manager manager = (Manager)user;
-			manager.getManagerService().addUser(new Customer(firstName,lastName,userName,address,password));
+		manager.getManagerService().addUser(new Customer(firstName,lastName,userName,address,password));
+		System.out.println("Customer "+userName+" has been registered on myfoodora.");
 	}
 
 	/**
 	 * registerCourier "firstname" "lastname" "username" "address" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void registerCourier() throws SyntaxErrorException {
+	public void registerCourier() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=5){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String firstName = arguments[0];
 		String lastName = arguments[1];
 		String userName = arguments[2];
@@ -224,76 +241,96 @@ public class CommandProcessor{
 		AddressPoint position = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
 		String password = arguments[4];
 		Manager manager = (Manager)user;
-		manager.getManagerService().addUser(new Courier(firstName,lastName,userName,position,password));		
+		manager.getManagerService().addUser(new Courier(firstName,lastName,userName,position,password));
+		System.out.println("Courier "+userName+" has been registered on myfoodora.");
 	}
 
 	/**
 	 * addDishRestaurantMenu  "dishName" "dishCategory" "foodCategory" "unitPrice".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void addDishRestaurantMenu() throws SyntaxErrorException {
+	public void addDishRestaurantMenu() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=4){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String dishName = arguments[0];
 		String dishCategory = arguments[1];
 		String foodCategory = arguments[2];
 		double unitPrice = Double.parseDouble(arguments[3]);
 		Restaurant restaurant = (Restaurant)user;
 		restaurant.getRestaurantService().addDish(dishName,dishCategory,foodCategory,unitPrice);
+		
+		System.out.println(dishName+" has been added to the menu of "+user.getUsername());
 	}
 	
 	/**
 	 * createMeal "mealName" .
-	 * @throws SyntaxErrorException 
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void createMeal() throws SyntaxErrorException {
+	public void createMeal() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
+
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
 			restaurant.getRestaurantService().createMeal(mealName);
+			
+			System.out.println("Meal " + mealName+" has been created");
+
 		} catch (NameAlreadyExistsException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printError();
 		}
 	}
 
 	/**
-	 * addDish2Meal "dishName" "mealName"
-	 * @throws SyntaxErrorException 
+	 * addDish2Meal "dishName" "mealName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void addDish2Meal() throws SyntaxErrorException {
+	public void addDish2Meal() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String dishName = arguments[0];
 		String mealName = arguments[1];
 		Restaurant restaurant = (Restaurant)user;
 		try {
 			restaurant.getRestaurantService().addDish2Meal(dishName, mealName);
-		} catch (DishNotFoundException | MealNotFoundException | DishTypeErrorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			System.out.println("Dish " + dishName+" has been added to the meal "+mealName);
+
+		} catch (NameNotFoundException e){e.printError();
+		} catch (DishTypeErrorException e) {e.printError();
 		}
 	}
 	
 	/**
-	 * showMeal "mealName"
-	 * @throws SyntaxErrorException 
+	 * showMeal "mealName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void showMeal() throws SyntaxErrorException {
-		if (arguments.length!=1){
+	public void showMeal() throws SyntaxErrorException, PermissionException {
+		if (arguments.length<1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
 			restaurant.getRestaurantService().showMeal(mealName);
-		} catch (MealNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -301,18 +338,23 @@ public class CommandProcessor{
 
 
 	/**
-	 * saveMeal "mealName"
-	 * @throws SyntaxErrorException 
+	 * saveMeal "mealName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void saveMeal() throws SyntaxErrorException {
-		if (arguments.length!=1){
+	public void saveMeal() throws SyntaxErrorException, PermissionException {
+		if (arguments.length<1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
 			restaurant.getRestaurantService().saveMeal(mealName);
-		} catch (MealNotFoundException | DishTypeErrorException e) {
+			
+			System.out.println("Meal" + mealName+" has been saved and added to the meal-menu of "+restaurant.getName());
+		} catch (NameNotFoundException | DishTypeErrorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -320,111 +362,179 @@ public class CommandProcessor{
 
 	
 	/**
-	 * setSpecialOffer "mealName"
-	 * @throws SyntaxErrorException 
+	 * setSpecialOffer "mealName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void setSpecialOffer() throws SyntaxErrorException {
+	public void setSpecialOffer() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
-		if (arguments.length!=1){
+		if (arguments.length<1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
 			restaurant.getRestaurantService().setSpecialOffer(mealName);
-		} catch (MealNotFoundException e) {
+			
+			System.out.println("Meal " + mealName+" saved as a special-offer of "+restaurant.getName());
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printError();
 		}
 	}
 	
 	/**
-	 * removeFromSpecialOffer "mealName"
-	 * @throws SyntaxErrorException 
+	 * removeFromSpecialOffer "mealName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void removeFromSpecialOffer() throws SyntaxErrorException {
+	public void removeFromSpecialOffer() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
-		if (arguments.length!=1){
+		if (arguments.length<1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		restaurant.getRestaurantService().removeSpecialOffer(mealName);
+		System.out.println("Meal " + mealName+" removed from the list of special-offers of "+restaurant.getName());
 
 	}
 
 	/**
-	 * createOrder "restaurantName" "orderName"
-	 * @throws SyntaxErrorException 
+	 * createOrder "restaurantName" "orderName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void createOrder() throws SyntaxErrorException {
+	public void createOrder() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		String restaurantName = arguments[0];
 		String orderName = arguments[1];
 		Customer customer = (Customer)user;
 		customer.getCustomerService().createOrder(restaurantName, orderName);
+		
+		System.out.println("Order " + orderName+" added to the shopping cart.");
+
 	}
 
 	/**
-	 * addItem2Order "orderName" "itemName"
-	 * @throws SyntaxErrorException 
+	 * addItem2Order "orderName" "itemName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void addItem2Order() throws SyntaxErrorException {
+	public void addItem2Order() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		String orderName = arguments[0];
 		String itemName = arguments[1];
 		Customer customer = (Customer)user;
 		try {
 			customer.getCustomerService().addItem2Order(orderName, itemName);
-		} catch (OrderNotFoundException | MealNotFoundException e) {
+			
+			System.out.println("Item " + itemName+" added to the order "+orderName);
+
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printError();
 		}
 	}
 
 	/**
-	 * endOrder "orderName" "date"
-	 * @throws SyntaxErrorException 
+	 * endOrder "orderName" "date".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void endOrder() throws SyntaxErrorException {
-		if (arguments.length!=1){
+	public void endOrder() throws SyntaxErrorException, PermissionException {
+		if (arguments.length!=2){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		String orderName = arguments[0];
 		String date = arguments[1];
 		Customer customer = (Customer)user;
 		try {
 			customer.getCustomerService().endOrder(orderName, date);
-		} catch (OrderNotFoundException | ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			System.out.println("Order " + orderName+" finalised at "+date+ " and you paid for it.");
+		} catch (NameNotFoundException e){e.printError();
+		} catch (ParseException e) {e.printStackTrace();
 		}
 	}
 
 	/**
-	 * onDuty ""
+	 * onDuty "".
+	 * @throws PermissionException 
 	 */
-	public void onDuty() {
+	public void onDuty() throws PermissionException {
 		// TODO Auto-generated method stub
+		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
 		courier.getCourierService().turnOnDuty();
+		System.out.println("Current state set as on-duty.");
+		
 	}
 
 	/**
-	 offDuty ""
+	 * 	 offDuty "".
+	 * @throws PermissionException 
 	 */
-	public void offDuty() {
+	public void offDuty() throws PermissionException {
 		// TODO Auto-generated method stub
+		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
 		courier.getCourierService().turnOffDuty();
+		System.out.println("Current state set as off-duty.");
+
 	}
 
 	/**
-	 * findDeliverer "orderName"
+	 *  acceptCall "orderName"
+	 * @throws SyntaxErrorException 
+	 * @throws PermissionException 
+	 */
+	private void acceptCall() throws SyntaxErrorException, PermissionException {
+		// TODO Auto-generated method stub
+		if (arguments.length!=1){
+			throw new SyntaxErrorException();
+		}
+		if (!(user instanceof Courier)) throw new PermissionException("courier");
+		String orderName = arguments[0];
+		Courier courier = (Courier)user;
+		courier.getCourierService().acceptCall(orderName);
+		System.out.println("courier "+courier.getName()+" accepts to take the order.");
+	}
+	
+	/**
+	 * Refuse call.
+	 * @throws SyntaxErrorException 
+	 * @throws PermissionException 
+	 */
+	private void refuseCall() throws SyntaxErrorException, PermissionException {
+		// TODO Auto-generated method stub
+		if (arguments.length!=1){
+			throw new SyntaxErrorException();
+		}
+		if (!(user instanceof Courier)) throw new PermissionException("courier");
+		String orderName = arguments[0];
+		Courier courier = (Courier)user;
+		System.out.println("courier "+courier.getName()+" refuses to take the order. A new courier is being assigned.");
+		courier.getCourierService().refuseCall(orderName);
+	}
+
+
+	/**
+	 * findDeliverer "orderName".
 	 */
 	public void findDeliverer() {
 		// TODO Auto-generated method stub
@@ -432,103 +542,123 @@ public class CommandProcessor{
 
 	/**
 	 * setDeliveryPolicy  "delpolicy".
-	 * @throws SyntaxErrorException 
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void setDeliveryPolicy() throws SyntaxErrorException {
+	public void setDeliveryPolicy() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
-		if (arguments.length!=1){
+		if (arguments.length<1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String deliveryPolicy = arguments[0];
 		Manager manager = (Manager)user;
 		manager.getManagerService().setDeliveryPolicy(deliveryPolicy);
 	}
 
 	/**
-	 * setProfitPolicy  "ProfitPolicyName"
-	 * @throws SyntaxErrorException 
+	 * setProfitPolicy  "ProfitPolicyName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void setProfitPolicy() throws SyntaxErrorException {
+	public void setProfitPolicy() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
-		if (arguments.length!=1){
+		if (arguments.length<1){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String ProfitPolicyName = arguments[0];
 		Manager manager = (Manager)user;
 		manager.getManagerService().setTargetProfitPolicy(ProfitPolicyName);
 	}
 
 	/**
-	 * associateCard "userName" "cardType"
-	 * @throws SyntaxErrorException 
+	 * associateCard "userName" "cardType".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException 
 	 */
-	public void associateCard() throws SyntaxErrorException {
+	public void associateCard() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
-		if (arguments.length!=2){
+		if (arguments.length<2){
 			throw new SyntaxErrorException();
 		}
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String userName = arguments[0];
 		String cardType = arguments[1];
 		Manager manager = (Manager)user;
 		try {
 			manager.getManagerService().associateCard(userName, cardType);
-		} catch (UserNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println("user not found");
+			e.printError();
 		}
 
 	}
+	
 	/**
-	 * showCourierDeliveries ""
+	 * showCourierDeliveries "".
+	 * @throws PermissionException 
 	 */
-	public void showCourierDeliveries() {
+	public void showCourierDeliveries() throws PermissionException {
 		// TODO Auto-generated method stub
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
-		manager.getManagerService().getBestCourier();
+		manager.getManagerService().showCourierDesc();
 	}
 
 	/**
-	 * showRestaurantTop ""
+	 * showRestaurantTop "".
+	 * @throws PermissionException 
 	 */
-	public void showRestaurantTop() {
+	public void showRestaurantTop() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		// TODO Auto-generated method stub
 		Manager manager = (Manager)user;
-		manager.getManagerService().getBestRestaurant();
+		manager.getManagerService().showRestaurantDesc();
 	}
 
 	/**
-	 * showCustomers
+	 * showCustomers.
+	 * @throws PermissionException 
 	 */
-	public void showCustomers() {
+	public void showCustomers() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		// TODO Auto-generated method stub
 		Manager manager = (Manager)user;
 		manager.getManagerService().displayUsersOfAssignedType("customer");
 	}
 
 	/**
-	 * showMenuItem "restaurant-name"
+	 * showMenuItem "restaurant-name".
+	 * @throws PermissionException 
 	 */
-	public void showMenuItem() {
+	public void showMenuItem() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String restaurant_name = arguments[0];
 		Manager manager = (Manager)user;
 		try {
 			Restaurant restaurant = (Restaurant) manager.getManagerService().selectUser(restaurant_name);
 			restaurant.getRestaurantService().displayAllMenu();
-		} catch (UserNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printError();
 		}
 		
 	}
 
 	/**
-	 * showTotalProfit ""
+	 * showTotalProfit "".
+	 * @throws PermissionException 
 	 */
-	public void showTotalProfit() {
+	public void showTotalProfit() throws PermissionException {
 		// TODO Auto-generated method stub
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		if (arguments.length==0){
-			manager.getManagerService().getTotalProfit(new Date(), new Date());
+			manager.getManagerService().showTotalProfit(new Date(), new Date());
 		}
 	}
 

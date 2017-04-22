@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import initialization.InitialScenario;
+import initialization.InitialScenarioOld;
 import restaurant.Meal;
 import system.AddressPoint;
 import system.Order;
@@ -63,7 +63,7 @@ public class CourierServiceTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		InitialScenario.load("scenario_test_services.ini");	
+		InitialScenarioOld.load("scenario_test_services.ini");	
 		
 		courier_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 		courier_service = courier_test.getCourierService();

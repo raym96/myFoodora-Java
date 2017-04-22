@@ -1,10 +1,11 @@
 package exceptions;
 
 public class LoginErrorException extends Exception {
-	String username;
-	String password;
-	public LoginErrorException(String username, String password){
-		this.username = username;
-		this.password = password;
+	
+	/** The Constant serialVersionUID. */
+	public static final long serialVersionUID = 1L;
+	
+	public void printError(){
+		System.out.println("LOGIN ERROR: Wrong username/password. Please try again.");
 	}
 }

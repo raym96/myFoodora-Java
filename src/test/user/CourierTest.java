@@ -11,7 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.OrderNotFoundException;
+import exceptions.NameNotFoundException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import restaurant.FullMeal;
 import restaurant.Menu;
@@ -116,10 +116,10 @@ public class CourierTest {
 	/**
 	 * Test refuse waiting order.
 	 *
-	 * @throws OrderNotFoundException the order not found exception
+	 * @throws NameNotFoundException the order not found exception
 	 */
-	@Test(expected = OrderNotFoundException.class)
-	public void testRefuseWaitingOrder() throws OrderNotFoundException{
+	@Test(expected = NameNotFoundException.class)
+	public void testRefuseWaitingOrder() throws NameNotFoundException{
 		
 		testAddWaitingOrder();
 		courier.refuseWaitingOrder(Order1);
@@ -131,10 +131,10 @@ public class CourierTest {
 	/**
 	 * Accept waiting order.
 	 *
-	 * @throws OrderNotFoundException the order not found exception
+	 * @throws NameNotFoundException the order not found exception
 	 */
-	@Test(expected = OrderNotFoundException.class)
-	public void acceptWaitingOrder() throws OrderNotFoundException{
+	@Test(expected = NameNotFoundException.class)
+	public void acceptWaitingOrder() throws NameNotFoundException{
 		
 		testAddWaitingOrder();
 		courier.acceptWaitingOrder(Order2);

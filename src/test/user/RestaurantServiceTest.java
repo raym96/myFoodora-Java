@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import initialization.InitialScenario;
+import initialization.InitialScenarioOld;
 import restaurant.*;
 import user.model.MyFoodora;
 import user.model.Restaurant;
@@ -52,7 +52,7 @@ public class RestaurantServiceTest {
 	 */
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		InitialScenario.load("scenario_test_services.ini");
+		InitialScenarioOld.load("scenario_test_services.ini");
 		restaurant1 = (Restaurant)new MyFoodoraServiceImpl().selectUser("restaurant_1");
 		restaurant1_service = restaurant1.getRestaurantService();
 		

@@ -48,12 +48,13 @@ public interface CourierService {
 	 *
 	 * @param order the order
 	 */
-	public void acceptCall(Order order);
+	public void acceptCall(String orderName);
 	
 	/**
 	 * refuse a delivery call (received by the MyFoodora system).
 	 *
 	 * @param order the order
 	 */
-	public void refuseCall(Order order);
+	public void refuseCall(String orderName);
+
 }

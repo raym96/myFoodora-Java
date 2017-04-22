@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.FastestDeliveryPolicy;
 import policies.TargetProfitPolicy;
@@ -422,14 +422,14 @@ public class MyFoodora implements Observable{
 	 * Activate user.
 	 *
 	 * @param user the user
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
-	public void activateUser(User user) throws UserNotFoundException{
+	public void activateUser(User user) throws NameNotFoundException{
 		if(users.contains(user)){
 			getActiveUsers().add(user);
 			user.setActived(true);
 		}else{
-			throw new UserNotFoundException(user.getUsername());
+			throw new NameNotFoundException(user.getUsername());
 		}
 		
 	}
@@ -438,14 +438,14 @@ public class MyFoodora implements Observable{
 	 * Disactivate user.
 	 *
 	 * @param user the user
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
-	public void disactivateUser(User user) throws UserNotFoundException {
+	public void disactivateUser(User user) throws NameNotFoundException {
 		if(users.contains(user)){
 			getActiveUsers().remove(user);
 			user.setActived(false);
 		}else{
-			throw new UserNotFoundException(user.getUsername());
+			throw new NameNotFoundException(user.getUsername());
 		}
 		
 	}

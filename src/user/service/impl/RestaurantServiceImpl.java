@@ -6,9 +6,9 @@ package user.service.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.DishTypeErrorException;
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import policies.SortingByAlaCarte;
 import policies.SortingByCriteria;
@@ -60,7 +60,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 		//add/remove a dish to the menu
 		try{
 			restaurant.getMenu().addDish(dish);
-			System.out.println(dish + " added to the menu");	
 		} catch (NameAlreadyExistsException e){
 			e.printStackTrace();
 		}
@@ -88,8 +87,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		try {
 			restaurant.getMenu().removeDish(dishName);
-			System.out.println(dishName + " removed from the menu");
-		} catch (DishNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}	
 	}
@@ -113,10 +111,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		//create an instance of Dish
 		try{ 
 			Dish dish = restaurant.getDishFactory().createDish(dishName);
-			System.out.println("Dish "+dishName + " successfully created");
 			return dish;	
 		}
-		catch (DishNotFoundException e){
+		catch (NameNotFoundException e){
 		}
 		return new Starter("","",0);
 		
@@ -131,14 +128,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 	
 	@Override
-	public void addDish2Meal(String dishName, String mealName) throws DishNotFoundException, MealNotFoundException, DishTypeErrorException{
+	public void addDish2Meal(String dishName, String mealName) throws NameNotFoundException, DishTypeErrorException{
 		Dish dish = restaurant.getMenu().getDish(dishName);
 		Meal meal = restaurant.getMealMenu().getMeal(mealName);
 		meal.addDish(dish);
 	}
 	
 	@Override
-	public void showMeal(String mealName) throws MealNotFoundException{
+	public void showMeal(String mealName) throws NameNotFoundException{
 		Meal meal = restaurant.getMealMenu().getMeal(mealName);
 		System.out.println("The dishes of the meal <"+mealName+"> are :");
 		for (Dish dish : meal.getDishes()){
@@ -147,7 +144,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 	
 	@Override
-	public void saveMeal(String mealName) throws MealNotFoundException, DishTypeErrorException{
+	public void saveMeal(String mealName) throws NameNotFoundException, DishTypeErrorException{
 		Meal meal = restaurant.getMealMenu().getMeal(mealName);
 		if (meal.getDishes().size()==2){
 			HalfMeal halfmeal = new HalfMeal(meal);
@@ -174,7 +171,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 		}
 		else{
-			throw new DishTypeErrorException("s");
+			throw new DishTypeErrorException();
 		}
 		
 	}
@@ -208,10 +205,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 		//Half-meal
 		try{
 			if (!(restaurant.getMenu().hasDish(dishname1))){
-				throw new DishNotFoundException(dishname1);
+				throw new NameNotFoundException(dishname1);
 			}
 			if (!(restaurant.getMenu().hasDish(dishname2))){
-				throw new DishNotFoundException(dishname2);
+				throw new NameNotFoundException(dishname2);
 			}
 		double md_count=0;
 		double st_ds_count=0;
@@ -240,7 +237,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu of "+restaurant.getName());
 		}
 		else{
-			throw new DishTypeErrorException("half meal");
+			throw new DishTypeErrorException();
 		}
 		}
 		catch (Exception e){
@@ -259,13 +256,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 		//Full-meal
 		try{
 			if (!(restaurant.getMenu().hasDish(startername))){
-				throw new DishNotFoundException(startername);
+				throw new NameNotFoundException(startername);
 			}
 			if (!(restaurant.getMenu().hasDish(maindishname))){
-				throw new DishNotFoundException(maindishname);
+				throw new NameNotFoundException(maindishname);
 			}
 			if (!(restaurant.getMenu().hasDish(dessertname))){
-				throw new DishNotFoundException(dessertname);
+				throw new NameNotFoundException(dessertname);
 			}
 			Meal meal = new FullMeal(mealname);
 			for (Dish starter:restaurant.getMenu().getStarters()){
@@ -289,7 +286,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				System.out.println("Formula <"+meal.getName()+">" +" added to the meal-menu of "+restaurant.getName());
 			}
 			else {
-				throw new DishTypeErrorException("full meal");
+				throw new DishTypeErrorException();
 			}
 			}
 			catch (Exception e){
@@ -312,7 +309,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			System.out.println("Formula "+mealName + " successfully created");
 			return meal;	
 		}
-		catch (MealNotFoundException e){
+		catch (NameNotFoundException e){
 		}
 		return new HalfMeal("problem");
 	}
@@ -322,12 +319,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	//Remove a meal from the meal menu
 	@Override
-	public void removeMeal(String mealName) throws MealNotFoundException {
+	public void removeMeal(String mealName) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		//Remove a meal from the meal menu
 		MealMenu mealmenu = restaurant.getMealMenu();
 		if (!(mealmenu.hasMeal(mealName))){
-			throw new MealNotFoundException(mealName);
+			throw new NameNotFoundException(mealName);
 		}
 		if (mealmenu.hasMeal(mealName)){
 			mealmenu.removeMeal(mealName);
@@ -342,7 +339,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	//throw exception if meal name is not recognized
 	@Override
-	public void setSpecialOffer(String mealName) throws MealNotFoundException {
+	public void setSpecialOffer(String mealName) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		//throw exception if meal name is not recognized
 		int count=0;
@@ -361,7 +358,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 		}
 		if (count==0){
-			throw new MealNotFoundException(mealName);
+			throw new NameNotFoundException(mealName);
 		}
 	}
 

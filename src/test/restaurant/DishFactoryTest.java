@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 import restaurant.Dessert;
 import restaurant.DishFactory;
 import restaurant.MainDish;
@@ -48,10 +48,10 @@ public class DishFactoryTest {
 	/**
 	 * Test create dish.
 	 *
-	 * @throws DishNotFoundException the dish not found exception
+	 * @throws NameNotFoundException the dish not found exception
 	 */
-	@Test(expected = DishNotFoundException.class)
-	public void testCreateDish() throws DishNotFoundException {
+	@Test(expected = NameNotFoundException.class)
+	public void testCreateDish() throws NameNotFoundException {
 		
 		Starter s = menu.getStarters().get(0);
 		MainDish m = menu.getMaindishes().get(0);

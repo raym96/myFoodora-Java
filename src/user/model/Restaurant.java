@@ -5,9 +5,9 @@ package user.model;
 
 import java.util.*;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.DishTypeErrorException;
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import restaurant.*;
 import system.AddressPoint;
 import system.ConcreteShoppingCartVisitor;

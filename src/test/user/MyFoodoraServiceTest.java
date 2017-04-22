@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import initialization.InitialScenario;
+import initialization.InitialScenarioOld;
 import policies.DeliveryPolicy;
 import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
@@ -59,7 +59,7 @@ public class MyFoodoraServiceTest {
 	 */
 	@Before
 	public void setUpBefore() throws Exception {
-		InitialScenario.load("scenario_test_services.ini");	
+		InitialScenarioOld.load("scenario_test_services.ini");	
 		
 		myfoodora = MyFoodora.getInstance();
 		myfoodora_service = new MyFoodoraServiceImpl();

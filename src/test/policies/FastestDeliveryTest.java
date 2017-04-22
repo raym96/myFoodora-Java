@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
 import restaurant.FullMeal;
@@ -35,10 +35,10 @@ public class FastestDeliveryTest {
 	/**
 	 * Test parse.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testParse() throws UserNotFoundException {
+	public void testParse() throws NameNotFoundException {
 		MyFoodora myFoodora = MyFoodora.getInstance();
 		
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");

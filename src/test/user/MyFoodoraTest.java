@@ -11,7 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import policies.FairOccupationDeliveryPolicy;
 import restaurant.FullMeal;
@@ -89,10 +89,10 @@ public class MyFoodoraTest {
 	/**
 	 * Test parse.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testParse() throws UserNotFoundException {
+	public void testParse() throws NameNotFoundException {
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
 		Courier cr3 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
 		Courier cr4 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
@@ -161,10 +161,10 @@ public class MyFoodoraTest {
 	/**
 	 * Test activate user.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testActivateUser() throws UserNotFoundException {
+	public void testActivateUser() throws NameNotFoundException {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
 		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
@@ -186,10 +186,10 @@ public class MyFoodoraTest {
 	/**
 	 * Test disactivate user.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testDisactivateUser() throws UserNotFoundException {
+	public void testDisactivateUser() throws NameNotFoundException {
 		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
 		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));

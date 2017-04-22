@@ -5,8 +5,8 @@ package user.service;
 
 import java.text.ParseException;
 
-import exceptions.MealNotFoundException;
-import exceptions.OrderNotFoundException;
+import exceptions.NameNotFoundException;
+import exceptions.NameNotFoundException;
 import system.History;
 import user.model.Restaurant;
 
@@ -49,7 +49,7 @@ public interface CustomerService {
 	 * Pay.
 	 * @throws ParseException 
 	 */
-	void endOrder(String orderName, String date) throws OrderNotFoundException, ParseException;
+	void endOrder(String orderName, String date) throws NameNotFoundException, ParseException;
 	
 	/**
 	 * register to a fidelity card plan.
@@ -92,7 +92,7 @@ public interface CustomerService {
 
 	void createOrder(String restaurantName, String orderName);
 
-	void addItem2Order(String orderName, String itemName) throws OrderNotFoundException, MealNotFoundException;
+	void addItem2Order(String orderName, String itemName) throws NameNotFoundException, NameNotFoundException;
 
 
 }

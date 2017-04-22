@@ -5,7 +5,7 @@ package user.service;
 
 import java.util.Date;
 
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.TargetProfitPolicy;
 import user.model.Courier;
@@ -40,17 +40,17 @@ public interface ManagerService {
 	 * Activate any kind of user.
 	 *
 	 * @param user the user
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
-	public void activateUser(User user) throws UserNotFoundException;
+	public void activateUser(User user) throws NameNotFoundException;
 	
 	/**
 	 * Disactivate any kind of user.
 	 *
 	 * @param user the user
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
-	public void disactivateUser(User user) throws UserNotFoundException;
+	public void disactivateUser(User user) throws NameNotFoundException;
 	
 	/**
 	 * Sets the service free.
@@ -80,7 +80,7 @@ public interface ManagerService {
 	 * @param date2 the end date
 	 * @return the total income
 	 */
-	public double getTotalIncome(Date date1, Date date2);
+	public double showTotalIncome(Date date1, Date date2);
 	
 	/**
 	 * Gets the total profit over a time period.
@@ -89,7 +89,7 @@ public interface ManagerService {
 	 * @param date2 the end date
 	 * @return the total profit
 	 */
-	public double getTotalProfit(Date date1, Date date2);
+	public double showTotalProfit(Date date1, Date date2);
 	
 	/**
 	 * Computing the average income per customer over a time period.
@@ -98,7 +98,7 @@ public interface ManagerService {
 	 * @param date2 the end date
 	 * @return the average income per customer
 	 */
-	public double getAverageIncomePerCustomer(Date date1, Date date2);
+	public double showAverageIncomePerCustomer(Date date1, Date date2);
 	
 	/**
 	 * Sets the target profit policy.
@@ -120,28 +120,28 @@ public interface ManagerService {
 	 *
 	 * @return the best restaurant
 	 */
-	public Restaurant getBestRestaurant(); // to be completed
+	public Restaurant showRestaurantDesc(); 
 	
 	/**
 	 * Determines the worst selling restaurant.
 	 *
 	 * @return the worst restaurant
 	 */
-	public Restaurant getWorstRestaurant(); 
+	public Restaurant showRestaurantAsc(); 
 	
 	/**
 	 * Gets the most active courier of the fleet.
 	 *
 	 * @return the best courier
 	 */
-	public Courier getBestCourier(); 
+	public Courier showCourierDesc(); 
 	
 	/**
 	 * Gets the least active courier of the fleet.
 	 *
 	 * @return the worst courier
 	 */
-	public Courier getWorstCourier();
+	public Courier showCourierAsc();
 	
 	/**
 	 * setting the current delivery-policy used by MyFoodora to determine which courier
@@ -169,9 +169,9 @@ public interface ManagerService {
 	 *
 	 * @param username the username
 	 * @return the user
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
-	public User selectUser(String username) throws UserNotFoundException;
+	public User selectUser(String username) throws NameNotFoundException;
 	
 	/**
 	 * Display users of assigned type.
@@ -180,6 +180,6 @@ public interface ManagerService {
 	 */
 	public void displayUsersOfAssignedType(String userType);
 	
-	public void associateCard(String username, String cardType) throws UserNotFoundException;
+	public void associateCard(String username, String cardType) throws NameNotFoundException;
 	
 }

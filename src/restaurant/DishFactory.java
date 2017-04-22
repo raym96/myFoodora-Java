@@ -3,7 +3,7 @@
  */
 package restaurant;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 
 //Create dishes for A-la-carte orders
 
@@ -32,9 +32,9 @@ public class DishFactory {
 	 *
 	 * @param dishName the dish name
 	 * @return the dish
-	 * @throws DishNotFoundException the dish not found exception
+	 * @throws NameNotFoundException the dish not found exception
 	 */
-	public Dish createDish(String dishName) throws DishNotFoundException{
+	public Dish createDish(String dishName) throws NameNotFoundException{
 		// TODO Auto-generated method stub
 		for (Starter st : this.menu.getStarters()){
 			if (st.getDishName().equalsIgnoreCase(dishName)){
@@ -51,7 +51,7 @@ public class DishFactory {
 				return ds.makeCopy();
 			}
 		}
-		throw new DishNotFoundException(dishName);
+		throw new NameNotFoundException(dishName);
 	}
 }
 		

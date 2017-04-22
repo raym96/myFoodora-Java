@@ -5,7 +5,7 @@ package user.model;
 
 import java.util.ArrayList;
 
-import exceptions.OrderNotFoundException;
+import restaurant.Dish;
 import system.AddressPoint;
 import system.ConcreteSpecialOfferBoard;
 import system.Message;
@@ -91,6 +91,17 @@ public class Courier extends User{
 		return waitingOrders;
 	}
 	
+	
+	public Order getWaitingOrder(String orderName){
+		Order order = null;
+		for (Order o : this.getWaitingOrders()){
+			if (o.getName().equalsIgnoreCase(orderName)){
+				order = o;
+			}
+		}
+		return order;
+	}
+	
 	/**
 	 * Adds the waiting order.
 	 *
@@ -104,12 +115,10 @@ public class Courier extends User{
 	 * Refuse waiting order.
 	 *
 	 * @param order the order
-	 * @throws OrderNotFoundException the order not found exception
+	 * @throws NameNotFoundException the order not found exception
 	 */
-	public void refuseWaitingOrder(Order order) throws OrderNotFoundException{
-		if (!(waitingOrders.contains(order))){
-			throw new OrderNotFoundException(order.getName());
-		}
+	public void refuseWaitingOrder(String orderName){
+		Order order = getWaitingOrder(orderName);
 		waitingOrders.remove(order);
 	}
 	
@@ -117,12 +126,12 @@ public class Courier extends User{
 	 * Accept waiting order.
 	 *
 	 * @param order the order
-	 * @throws OrderNotFoundException the order not found exception
+	 * @throws NameNotFoundException the order not found exception
 	 */
-	public void acceptWaitingOrder(Order order) throws OrderNotFoundException{
-		if (!(waitingOrders.contains(order))){
-			throw new OrderNotFoundException(order.getName());
-		}
+	public void acceptWaitingOrder(String orderName){
+		Order order = getWaitingOrder(orderName);
+		order.setCourier(this); //the courier is assigned to the delivery-task
+		order.setAssigned(true);
 		waitingOrders.remove(order);
 		deliveredOrders.add(order);
 		this.setCount(count+1);

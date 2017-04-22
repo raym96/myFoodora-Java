@@ -5,9 +5,9 @@ package user.service;
 
 import java.util.ArrayList;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.DishTypeErrorException;
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import restaurant.Dish;
 import restaurant.Meal;
@@ -101,19 +101,19 @@ public interface RestaurantService {
 	 * Removes a meal from the meal menu.
 	 *
 	 * @param mealName the meal name
-	 * @throws MealNotFoundException 
+	 * @throws NameNotFoundException 
 	 */
 	//Remove a meal from the meal menu
-	public void removeMeal(String mealName) throws MealNotFoundException;
+	public void removeMeal(String mealName) throws NameNotFoundException;
 	
 	/**
 	 * Promotes an existing meal to the meal-of-the-week meal-menu.
 	 *
 	 * @param mealName the meal name
-	 * @throws MealNotFoundException 
+	 * @throws NameNotFoundException 
 	 */
 	//throw exception if meal name is not recognized
-	public void setSpecialOffer(String mealName) throws MealNotFoundException;	
+	public void setSpecialOffer(String mealName) throws NameNotFoundException;	
 	
 	/**
 	 * Removes a meal-of-the-week and places it in the regular meal-menu.
@@ -187,11 +187,11 @@ public interface RestaurantService {
 	 */
 	public void displayAllMenu();
 
-	void addDish2Meal(String dishName, String mealName) throws DishNotFoundException, MealNotFoundException, DishTypeErrorException;
+	void addDish2Meal(String dishName, String mealName) throws NameNotFoundException, NameNotFoundException, DishTypeErrorException;
 
-	void showMeal(String mealName) throws MealNotFoundException;
+	void showMeal(String mealName) throws NameNotFoundException;
 
-	void saveMeal(String mealName) throws MealNotFoundException, DishTypeErrorException;
+	void saveMeal(String mealName) throws NameNotFoundException, DishTypeErrorException;
 
 
 	

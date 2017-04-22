@@ -276,7 +276,6 @@ public class Customer extends User implements SpecialOfferObserver{
 			}else if( o instanceof Boolean && (Boolean)o==false ){
 				msgBoard.addMessage(new Message("" + this.getUsername() + " refuses to be notified of special offers."));
 			}
-			System.out.println(msgBoard.getMessages().get(msgBoard.getMessages().size()-1));
 		}
 	}
 	

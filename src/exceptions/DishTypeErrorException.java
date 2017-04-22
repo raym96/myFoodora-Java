@@ -13,22 +13,12 @@ package exceptions;
  * @author Ji Raymond
  */
 public class DishTypeErrorException extends Exception {
-	String errortype;
-	
 	/** The Constant serialVersionUID. */
 	public static final long serialVersionUID = 1L;
 	
-	/**
-	 * Instantiates a new dish type error exception.
-	 *
-	 * @param errortype the errortype
-	 */
-	public DishTypeErrorException(String errortype){
-		this.errortype = errortype;
-	}
 
-	public String getErrortype() {
-		return errortype;
+	public void printError() {
+		System.out.println("DISH TYPE ERROR: A meal can have at most 1 dessert, 1 main & 1 dessert.");
 	}
 	
 	

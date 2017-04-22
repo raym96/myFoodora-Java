@@ -1,0 +1,7 @@
+
+-----------------------------------------------------------------------------------
+Loading initial scenario <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
+user ceo logged on myfoodora.

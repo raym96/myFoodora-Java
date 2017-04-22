@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import exceptions.UserNotFoundException;
+import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
@@ -74,7 +74,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// 2. activate/disactivate any kind of user (restaurant, customers and/or couriers) of the system
 	@Override
-	public void activateUser(User user) throws UserNotFoundException{
+	public void activateUser(User user) throws NameNotFoundException{
 		MyFoodora.getInstance().activateUser(user);
 	}
 	
@@ -82,7 +82,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#disactivateUser(user.model.User)
 	 */
 	@Override
-	public void disactivateUser(User user) throws UserNotFoundException{
+	public void disactivateUser(User user) throws NameNotFoundException{
 		MyFoodora.getInstance().disactivateUser(user);
 		
 	}
@@ -121,7 +121,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// 4. computing the total income and/or prot over a time period
 	@Override
-	public double getTotalIncome(Date date1, Date date2) {
+	public double showTotalIncome(Date date1, Date date2) {
 		// TODO Auto-generated method stub
 		return myfoodora_service.getTotalIncome(date1, date2);
 	}
@@ -130,7 +130,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getTotalProfit(java.util.Date, java.util.Date)
 	 */
 	@Override
-	public double getTotalProfit(Date date1, Date date2) {
+	public double showTotalProfit(Date date1, Date date2) {
 		// TODO Auto-generated method stub
 		return myfoodora_service.getTotalProfit(date1, date2);
 	}
@@ -143,7 +143,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getAverageIncomePerCustomer(java.util.Date, java.util.Date)
 	 */
 	@Override
-	public double getAverageIncomePerCustomer(Date date1, Date date2) {
+	public double showAverageIncomePerCustomer(Date date1, Date date2) {
 		// TODO Auto-generated method stub
 		return myfoodora_service.getAverageIncomePerCustomer(date1, date2);
 	}
@@ -181,7 +181,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getBestRestaurant()
 	 */
 	@Override
-	public Restaurant getBestRestaurant() {
+	public Restaurant showRestaurantDesc() {
 		// TODO Auto-generated method stub
 		double income = 0;
 		Restaurant restaurant = null;
@@ -189,6 +189,7 @@ public class ManagerServiceImpl implements ManagerService {
 		for (User u : restaurant_users){
 			Restaurant r = (Restaurant)u;
 			double rincome = r.getIncome(); //the number of commands passed at restaurant r is the length of its history
+			System.out.println(r.getName()+": total income = "+rincome);
 			if (rincome>income){
 				income = rincome;
 				restaurant = r;
@@ -204,7 +205,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getWorstRestaurant()
 	 */
 	@Override
-	public Restaurant getWorstRestaurant() {
+	public Restaurant showRestaurantAsc() {
 		// TODO Auto-generated method stub
 		double income = Integer.MAX_VALUE;
 		Restaurant restaurant = null;
@@ -212,6 +213,7 @@ public class ManagerServiceImpl implements ManagerService {
 		for (User u : restaurant_users){
 			Restaurant r = (Restaurant)u;
 			double rincome = r.getIncome(); //the number of commands passed at restaurant r is the length of its history
+			System.out.println(r.getName()+": total income = "+rincome);
 			if (rincome<income){
 				income = rincome;
 				restaurant = r;
@@ -228,7 +230,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// 8. determining the most/least active courier of the fleet
 	@Override
-	public Courier getBestCourier() {
+	public Courier showCourierDesc() {
 		// TODO Auto-generated method stub
 		int count = 0;
 		Courier courier = null;
@@ -250,7 +252,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getWorstCourier()
 	 */
 	@Override
-	public Courier getWorstCourier() {
+	public Courier showCourierAsc() {
 		// TODO Auto-generated method stub
 		int count = Integer.MAX_VALUE;
 		Courier courier = null;
@@ -308,7 +310,7 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#selectUser(java.lang.String)
 	 */
 	@Override
-	public User selectUser(String username) throws UserNotFoundException {
+	public User selectUser(String username) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		return myfoodora_service.selectUser(username);
 	}
@@ -323,7 +325,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public void associateCard(String username, String cardType) throws UserNotFoundException {
+	public void associateCard(String username, String cardType) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		Customer customer = (Customer)selectUser(username);
 		customer.getCustomerService().registerCard(cardType);

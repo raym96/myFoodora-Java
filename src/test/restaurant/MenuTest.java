@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import restaurant.Dessert;
@@ -107,7 +107,7 @@ public class MenuTest {
 		assertTrue(menu.hasDish(m.getDishName()));
 		try {
 			menu.removeDish(m.getDishName());
-		} catch (DishNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
 		assertFalse(menu.hasDish(m.getDishName()));

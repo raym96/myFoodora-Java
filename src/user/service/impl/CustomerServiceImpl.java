@@ -8,8 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import exceptions.MealNotFoundException;
-import exceptions.OrderNotFoundException;
+import exceptions.NameNotFoundException;
 import policies.LotteryCard;
 import policies.PointCard;
 import policies.StandardCard;
@@ -57,7 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 		
 	@Override
-	public void addItem2Order(String orderName,String itemName) throws OrderNotFoundException, MealNotFoundException{
+	public void addItem2Order(String orderName,String itemName) throws NameNotFoundException, NameNotFoundException{
 		Order order = customer.getShoppingCart().getOrder(orderName);
 		Menu menu = order.getRestaurant().getMenu();
 		MealMenu mealmenu = order.getRestaurant().getMealMenu();
@@ -69,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
 			item = mealmenu.getMeal(itemName);
 		}
 		else {
-			throw new MealNotFoundException(orderName);
+			throw new NameNotFoundException(orderName);
 		}
 		order.addItem(item);
 	}
@@ -124,17 +123,18 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @see user.service.CustomerService#pay()
 	 */
 	@Override
-	public void endOrder(String orderName, String Stringdate) throws OrderNotFoundException, ParseException{
+	public void endOrder(String orderName, String Stringdate) throws NameNotFoundException, ParseException{
 		MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
 		Order order = customer.getShoppingCart().getOrder(orderName);
 	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,hh:mm:ss");
 		Date date = sdf.parse(Stringdate);
 		order.setDate(date);
 		
 		customer.getCard().pay(order);
-		ArrayList<Courier> availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
-		myfoodora_service.findDeliverer(order, availablecouriers);
+		
+		order.getRestaurant().addToHistory(order);
+		MyFoodora.getInstance().addToHistory(order);		
 	}
 	
 

@@ -6,7 +6,7 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import exceptions.DishNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 
 
@@ -61,9 +61,9 @@ public class Menu {
 	 * Removes the dish.
 	 *
 	 * @param dishName the dish name
-	 * @throws DishNotFoundException the dish not found exception
+	 * @throws NameNotFoundException the dish not found exception
 	 */
-	public void removeDish(String dishName) throws DishNotFoundException{
+	public void removeDish(String dishName) throws NameNotFoundException{
 		int count = 0;
 		for(int i=0; i<starters.size(); i++){
 			if( starters.get(i).getDishName().equalsIgnoreCase(dishName) ){
@@ -83,7 +83,7 @@ public class Menu {
 			}
 		}
 		if (count==0){
-			throw new DishNotFoundException(dishName);
+			throw new NameNotFoundException(dishName);
 		}
 	}
 	

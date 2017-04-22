@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.MealNotFoundException;
+import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import restaurant.FullMeal;
 import restaurant.HalfMeal;
@@ -86,7 +86,7 @@ public class MealMenuTest {
 		assertTrue(mealMenu.getMeals().contains(hm3));
 		try {
 			mealMenu.removeMeal(hm3.getName());
-		} catch (MealNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
 		assertFalse(mealMenu.getMeals().contains(hm3));

@@ -106,7 +106,6 @@ public abstract class User implements Observer{
 		if(o instanceof String){
 			MessageBoard msgBoard = this.getMessageBoard();
 			msgBoard.addMessage(new Message(this.getUsername(), (String)o));
-			System.out.println(msgBoard.getMessages().get(msgBoard.getMessages().size()-1));
 		}
 	}
 	
@@ -119,7 +118,6 @@ public abstract class User implements Observer{
 			if(o instanceof String){
 				MessageBoard msgBoard = ((MyFoodora)obv).getMessageBoard();
 				msgBoard.addMessage(new Message((String)o));
-				System.out.println(msgBoard.getMessages().get(msgBoard.getMessages().size()-1));
 			}
 		}
 	}

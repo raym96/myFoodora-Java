@@ -172,8 +172,8 @@ public class InitialScenarioGenerator {
 		Random random = new Random();
 		try{
 		Ini ini = new Ini(new File("scenario_test_services.ini"));
-		ArrayList<Restaurant> restaurants = InitialScenario.loadRestaurant(ini);
-		ArrayList<Customer> customers = InitialScenario.loadCustomer(ini);
+		ArrayList<Restaurant> restaurants = InitialScenarioOld.loadRestaurant(ini);
+		ArrayList<Customer> customers = InitialScenarioOld.loadCustomer(ini);
 		for (int i = 0;i<nOrder;i++){
 			System.out.println("[Order/"+(i+1)+"]");
 			int c = random.nextInt(customers.size());

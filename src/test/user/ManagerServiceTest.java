@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import exceptions.UserNotFoundException;
-import initialization.InitialScenario;
+import exceptions.NameNotFoundException;
+import initialization.InitialScenarioOld;
 import policies.FastestDeliveryPolicy;
 import system.AddressPoint;
 import user.model.Courier;
@@ -48,7 +48,7 @@ public class ManagerServiceTest {
 	 */
 	@Before
 	public void setUpBefore() throws Exception {
-		InitialScenario.load("scenario_test_services.ini");
+		InitialScenarioOld.load("scenario_test_services.ini");
 		
 		manager = new Manager("test","test","test");
 		manager_service = manager.getManagerService();
@@ -92,10 +92,10 @@ public class ManagerServiceTest {
 	/**
 	 * Test activate user.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testActivateUser() throws UserNotFoundException {
+	public void testActivateUser() throws NameNotFoundException {
 		System.out.println("-----testActivateUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 
@@ -110,10 +110,10 @@ public class ManagerServiceTest {
 	/**
 	 * Test disactivate user.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testDisactivateUser() throws UserNotFoundException{
+	public void testDisactivateUser() throws NameNotFoundException{
 		System.out.println("-----testDisactivateUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 
@@ -168,7 +168,7 @@ public class ManagerServiceTest {
 	public void testGetTotalIncome() {
 		System.out.println("-----testGetTotalIncom-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.getTotalIncome(startingdate, new Date()));
+		System.out.println(manager_service.showTotalIncome(startingdate, new Date()));
 		
 	}
 
@@ -179,7 +179,7 @@ public class ManagerServiceTest {
 	public void testGetTotalProfit() {
 		System.out.println("-----testGetTotalProfit-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.getTotalProfit(startingdate, new Date()));
+		System.out.println(manager_service.showTotalProfit(startingdate, new Date()));
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class ManagerServiceTest {
 	public void testGetAverageIncomePerCustomer() {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.getAverageIncomePerCustomer(startingdate, new Date()));
+		System.out.println(manager_service.showAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class ManagerServiceTest {
 			Restaurant r = (Restaurant)u;
 			System.out.println("The total income of restaurant <"+r.getName()+"> is "+r.getIncome());
 		}
-		manager_service.getBestRestaurant();
+		manager_service.showRestaurantDesc();
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class ManagerServiceTest {
 			Restaurant r = (Restaurant)u;
 			System.out.println("The total income of restaurant <"+r.getName()+"> is "+r.getIncome());
 		}
-		manager_service.getWorstRestaurant();
+		manager_service.showRestaurantAsc();
 	}
 
 	/**
@@ -241,7 +241,7 @@ public class ManagerServiceTest {
 			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
 		}
 		
-		manager_service.getBestCourier();
+		manager_service.showCourierDesc();
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class ManagerServiceTest {
 			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
 		}
 		
-		manager_service.getWorstCourier();
+		manager_service.showCourierAsc();
 	}
 
 	/**
@@ -290,10 +290,10 @@ public class ManagerServiceTest {
 	/**
 	 * Test select user.
 	 *
-	 * @throws UserNotFoundException the user not found exception
+	 * @throws NameNotFoundException the user not found exception
 	 */
 	@Test
-	public void testSelectUser() throws UserNotFoundException{
+	public void testSelectUser() throws NameNotFoundException{
 		System.out.println("------testSelectUser-----");
 	
 		Courier user_test = new Courier("test","test","user_test", new AddressPoint(0,0),"+06 00 00 00 00");
