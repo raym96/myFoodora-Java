@@ -15,6 +15,7 @@ public class NameNotFoundException extends Exception{
 	/** The Constant serialVersionUID. */
 	public static final long serialVersionUID = 1L;
 	
+	/** The name. */
 	private String name;
 	
 	/**
@@ -26,7 +27,10 @@ public class NameNotFoundException extends Exception{
 		this.name = name;
 	}
 	
+	/**
+	 * Prints the error.
+	 */
 	public void printError(){
-		System.out.println("NAME NOT FOUND: The name " + name + " is not recognized");
+		System.out.println("OBJECT NOT FOUND: The name " + name + " is not recognized");
 	}
 }

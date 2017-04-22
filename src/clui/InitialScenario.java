@@ -6,20 +6,35 @@ import java.util.Scanner;
 import user.model.Manager;
 import user.model.MyFoodora;
 
+/**
+ * The Class InitialScenario.
+ */
 public class InitialScenario {
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
-		PersonalStream.setOutputStream("output.txt");
+		CustomPrintStream.setOutputStream("output.txt");
 		
 		InitialScenario.load("my_foodora.ini");
 		
 		CommandProcessor c = new CommandProcessor();
-		c.processCommand("login ceo 123456789");
-	
+		
 	}
 	
+	/**
+	 * Load.
+	 *
+	 * @param filename the filename
+	 */
 	public static void load(String filename) {
 		System.out.println("\n-----------------------------------------------------------------------------------");
-		System.out.println("Loading initial scenario <"+filename+">");
+		System.out.println("Loading initial setup <"+filename+">");
+		
+		MyFoodora.reset();
 		
 		PrintStream originalStream = System.out;
 		

@@ -3,6 +3,8 @@
  */
 package system;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -43,12 +45,16 @@ public class History {
 	/**
 	 * Gets the order between.
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the order between
+	 * @throws ParseException the parse exception
 	 */
-	public ArrayList<Order> getOrderBetween(Date date1, Date date2){
+	public ArrayList<Order> getOrderBetween(String stringDate1, String stringDate2) throws ParseException{
 		//returns all orders made between date 1 and date 2
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date date1 = sdf.parse(stringDate1);
+		Date date2 = sdf.parse(stringDate2);
 		ArrayList<Order >list = new ArrayList<Order>();
 		for (Order order:orders){
 			if (order.getDate().compareTo(date1)>=0 && order.getDate().compareTo(date2)<=0){

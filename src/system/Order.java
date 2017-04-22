@@ -25,6 +25,7 @@ import user.model.User;
 //An item to be visited (Visitable) by a ShoppingCartVisitor (Visitor) to determine the price
 public class Order {
 	
+	/** The name. */
 	private String name;
 	
 	/** The date. */
@@ -51,11 +52,13 @@ public class Order {
 	
 	/** The items. */
 	private ArrayList<Item> items;
+	
 	/**
 	 * Instantiates an empty new order with no item.
 	 *
 	 * @param customer the customer
 	 * @param restaurant the restaurant
+	 * @param orderName the order name
 	 */
 	public Order(Customer customer,Restaurant restaurant, String orderName){
 		this.customer = customer;
@@ -71,10 +74,20 @@ public class Order {
 		assigned = false;
 	}
 	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -84,6 +97,7 @@ public class Order {
 	 *
 	 * @param customer the customer
 	 * @param restaurant the restaurant
+	 * @param orderName the order name
 	 * @param date the date
 	 */
 	//Only for old order registration with a past date (history for example)
@@ -219,7 +233,7 @@ public class Order {
 	 */
 	@Override
 	public String toString(){
-		String str = "[Order ID"+orderID+"]\n";
+		String str = "[Order <"+name+"> ID"+orderID+"]\n";
 		str+= "["+accept(new ConcreteShoppingCartVisitor())+"€] \n";
 		for (Item item:items){
 			if (item instanceof Dish){
@@ -234,7 +248,7 @@ public class Order {
 		str+="BY <"+customer.getUsername()+ "> "+customer.getFullName()+"\n";
 		str+="AT <" +restaurant.getUsername()+"> "+restaurant.getName()+"\n";
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		str+="ON "+ sdf.format(date);
 		
 		if (assigned){

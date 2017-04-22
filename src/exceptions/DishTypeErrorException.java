@@ -17,6 +17,9 @@ public class DishTypeErrorException extends Exception {
 	public static final long serialVersionUID = 1L;
 	
 
+	/**
+	 * Prints the error.
+	 */
 	public void printError() {
 		System.out.println("DISH TYPE ERROR: A meal can have at most 1 dessert, 1 main & 1 dessert.");
 	}

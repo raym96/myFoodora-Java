@@ -66,6 +66,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addDish(java.lang.String, java.lang.String, java.lang.String, double)
+	 */
 	@Override
 	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice) {
 		// TODO Auto-generated method stub
@@ -120,6 +123,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 		}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#createMeal(java.lang.String)
+	 */
 	@Override
 	public void createMeal(String mealName) throws NameAlreadyExistsException {
 		// TODO Auto-generated method stub
@@ -127,6 +133,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.getMealMenu().addMeal(meal);
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addDish2Meal(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void addDish2Meal(String dishName, String mealName) throws NameNotFoundException, DishTypeErrorException{
 		Dish dish = restaurant.getMenu().getDish(dishName);
@@ -134,6 +143,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		meal.addDish(dish);
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showMeal(java.lang.String)
+	 */
 	@Override
 	public void showMeal(String mealName) throws NameNotFoundException{
 		Meal meal = restaurant.getMealMenu().getMeal(mealName);
@@ -143,6 +155,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#saveMeal(java.lang.String)
+	 */
 	@Override
 	public void saveMeal(String mealName) throws NameNotFoundException, DishTypeErrorException{
 		Meal meal = restaurant.getMealMenu().getMeal(mealName);
@@ -176,6 +191,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#addMeal(restaurant.Meal)
+	 */
 	@Override
 	public void addMeal(Meal meal) {
 		// TODO Auto-generated method stub
@@ -353,7 +371,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 				} catch (NameAlreadyExistsException e) {
 					e.printStackTrace();
 				}
-				System.out.println(mealName + " has been added to the special-offer menu");
 				count++;
 			}
 		}
@@ -374,7 +391,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 				iter.remove();
 				sm.setSpecial(false);
 				restaurant.getRestaurantService().addMeal(sm);
-				System.out.println(mealName+" has been removed from the special-offer menu");
 			}
 		
 		}

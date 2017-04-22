@@ -13,6 +13,7 @@ import exceptions.NameNotFoundException;
  */
 public class SpecialMealFactory {
 	
+	/** The mealmenu. */
 	MealMenu mealmenu;
 	/**
 	 * Instantiates a new special meal factory.
@@ -23,6 +24,13 @@ public class SpecialMealFactory {
 		this.mealmenu = mealmenu;
 	}
 
+	/**
+	 * Creates a new SpecialMeal object.
+	 *
+	 * @param mealName the meal name
+	 * @return the meal
+	 * @throws NameNotFoundException the name not found exception
+	 */
 	public Meal createMeal(String mealName) throws NameNotFoundException{
 		// TODO Auto-generated method stub
 		for (Meal meal : this.mealmenu.getMeals()){

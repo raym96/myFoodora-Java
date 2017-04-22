@@ -19,6 +19,11 @@ public class MealFactory {
 	//needs to know what's in the meal-menu to create meals
 	protected MealMenu mealmenu;
 	
+	/**
+	 * Instantiates a new meal factory.
+	 *
+	 * @param mealmenu the mealmenu
+	 */
 	public MealFactory(MealMenu mealmenu) {
 		this.mealmenu = mealmenu;
 	}

@@ -1,9 +1,21 @@
 package clui;
 
+/**
+ * The Class Command.
+ */
 public class Command {
+	
+	/** The command. */
 	String command;
+	
+	/** The arguments. */
 	String[] arguments;
 	
+	/**
+	 * Instantiates a new command.
+	 *
+	 * @param rawInput the raw input
+	 */
 	public Command(String rawInput){
 		String [] input = rawInput.trim().split(" ");
 		command = input[0];
@@ -15,18 +27,38 @@ public class Command {
 		}
 	}
 
+	/**
+	 * Gets the command.
+	 *
+	 * @return the command
+	 */
 	public String getCommand() {
 		return command;
 	}
 
+	/**
+	 * Sets the command.
+	 *
+	 * @param command the new command
+	 */
 	public void setCommand(String command) {
 		this.command = command;
 	}
 
+	/**
+	 * Gets the arguments.
+	 *
+	 * @return the arguments
+	 */
 	public String[] getArguments() {
 		return arguments;
 	}
 
+	/**
+	 * Sets the arguments.
+	 *
+	 * @param arguments the new arguments
+	 */
 	public void setArguments(String[] arguments) {
 		this.arguments = arguments;
 	}

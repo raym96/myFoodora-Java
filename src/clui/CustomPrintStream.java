@@ -7,7 +7,7 @@ import java.io.*;
  * and write to a file while also having it displayed on the console.
  * 
  */
-public class PersonalStream extends PrintStream {
+public class CustomPrintStream extends PrintStream {
     
     /** The second. */
     private final PrintStream second;
@@ -18,15 +18,20 @@ public class PersonalStream extends PrintStream {
      * @param main the main
      * @param second the second
      */
-    public PersonalStream(OutputStream main, PrintStream second) {
+    public CustomPrintStream(OutputStream main, PrintStream second) {
         super(main);
         this.second = second;
     }
     
+    /**
+     * Sets the output stream.
+     *
+     * @param fileName the new output stream
+     */
     public static void setOutputStream(String fileName){
     	try {
 			FileOutputStream out = new FileOutputStream(fileName);
-		    PersonalStream output = new PersonalStream(out, System.out);
+		    CustomPrintStream output = new CustomPrintStream(out, System.out);
 		    System.setOut(output);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

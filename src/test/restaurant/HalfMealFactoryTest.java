@@ -30,6 +30,8 @@ public class HalfMealFactoryTest {
 	
 	/** The meal menu. */
 	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0));
+	
+	/** The meal menu. */
 	private static MealMenu mealMenu = new MealMenu(restaurant);
 	
 

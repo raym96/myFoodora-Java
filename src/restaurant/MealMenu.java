@@ -84,6 +84,12 @@ public class MealMenu {
 		return false;
 	}
 	
+	/**
+	 * Gets the meal.
+	 *
+	 * @param mealName the meal name
+	 * @return the meal
+	 */
 	public Meal getMeal(String mealName){
 		Meal meal = null;
 		for (Meal m:getMeals()){

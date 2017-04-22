@@ -61,12 +61,11 @@ public class Customer extends User implements SpecialOfferObserver{
 	/**
 	 * Instantiates a new customer.
 	 *
-	 * @param name the name
-	 * @param surname the surname
+	 * @param lastName the last name
+	 * @param firstName the first name
 	 * @param username the username
 	 * @param address the address
-	 * @param email the email
-	 * @param phone the phone
+	 * @param password the password
 	 */	
 	public Customer(String lastName, String firstName, String username, AddressPoint address, String password){
 		super(username,password);

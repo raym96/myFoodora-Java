@@ -165,6 +165,12 @@ public class Menu {
 		return false;
 	}
 	
+	/**
+	 * Gets the dish.
+	 *
+	 * @param dishName the dish name
+	 * @return the dish
+	 */
 	public Dish getDish(String dishName){
 		Dish dish = null;
 		for (Dish d : this.getDishes()) {

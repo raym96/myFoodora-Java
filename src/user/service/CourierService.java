@@ -46,14 +46,14 @@ public interface CourierService {
 	/**
 	 * accept to a delivery call (received by the MyFoodora system).
 	 *
-	 * @param order the order
+	 * @param orderName the order name
 	 */
 	public void acceptCall(String orderName);
 	
 	/**
 	 * refuse a delivery call (received by the MyFoodora system).
 	 *
-	 * @param order the order
+	 * @param orderName the order name
 	 */
 	public void refuseCall(String orderName);
 

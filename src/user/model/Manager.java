@@ -36,6 +36,7 @@ public class Manager extends User{
 	 * @param name the name
 	 * @param surname the surname
 	 * @param username the username
+	 * @param password the password
 	 */
 	public Manager(String name, String surname, String username, String password) {
 		super(username, password);

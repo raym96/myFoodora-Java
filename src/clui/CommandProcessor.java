@@ -1,8 +1,12 @@
 package clui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 import exceptions.NameNotFoundException;
 import exceptions.PermissionException;
@@ -167,9 +171,11 @@ public class CommandProcessor{
 		try{
 		m.login(username,password);
 		user = m.selectUser(username);
-		System.out.println("user "+username+" logged on myfoodora.");
+		System.out.println("Welcome on MyFoodora, user "+username+". Please enter a command.");
 		}
-		catch (LoginErrorException e){}
+		catch (LoginErrorException e){
+			e.printError();
+		}
 	}
 
 	/**
@@ -177,14 +183,14 @@ public class CommandProcessor{
 	 */
 	public void logout() {
 		user.logOut();
-		System.out.println("user "+user.getUsername()+" logged out from myfoodora.");
+		System.out.println("Goodbye "+user.getUsername()+". We hope to see you again on MyFoodora.");
 	}
 	
 	/**
 	 * registerRestaurant "name" "address" "username" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void registerRestaurant() throws SyntaxErrorException, PermissionException{
 		if (arguments.length<4){
@@ -205,7 +211,7 @@ public class CommandProcessor{
 	 * registerCustomer "firstname" "lastname" "username" "address" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void registerCustomer() throws SyntaxErrorException, PermissionException {
 		if (arguments.length<5){
@@ -227,7 +233,7 @@ public class CommandProcessor{
 	 * registerCourier "firstname" "lastname" "username" "address" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void registerCourier() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=5){
@@ -249,7 +255,7 @@ public class CommandProcessor{
 	 * addDishRestaurantMenu  "dishName" "dishCategory" "foodCategory" "unitPrice".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void addDishRestaurantMenu() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=4){
@@ -270,7 +276,7 @@ public class CommandProcessor{
 	 * createMeal "mealName" .
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void createMeal() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=1){
@@ -295,7 +301,7 @@ public class CommandProcessor{
 	 * addDish2Meal "dishName" "mealName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void addDish2Meal() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
@@ -319,7 +325,7 @@ public class CommandProcessor{
 	 * showMeal "mealName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void showMeal() throws SyntaxErrorException, PermissionException {
 		if (arguments.length<1){
@@ -341,7 +347,7 @@ public class CommandProcessor{
 	 * saveMeal "mealName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void saveMeal() throws SyntaxErrorException, PermissionException {
 		if (arguments.length<1){
@@ -365,7 +371,7 @@ public class CommandProcessor{
 	 * setSpecialOffer "mealName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void setSpecialOffer() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -389,7 +395,7 @@ public class CommandProcessor{
 	 * removeFromSpecialOffer "mealName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void removeFromSpecialOffer() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -408,7 +414,7 @@ public class CommandProcessor{
 	 * createOrder "restaurantName" "orderName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void createOrder() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
@@ -428,7 +434,7 @@ public class CommandProcessor{
 	 * addItem2Order "orderName" "itemName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void addItem2Order() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
@@ -453,7 +459,7 @@ public class CommandProcessor{
 	 * endOrder "orderName" "date".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void endOrder() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=2){
@@ -474,7 +480,8 @@ public class CommandProcessor{
 
 	/**
 	 * onDuty "".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void onDuty() throws PermissionException {
 		// TODO Auto-generated method stub
@@ -487,7 +494,8 @@ public class CommandProcessor{
 
 	/**
 	 * 	 offDuty "".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void offDuty() throws PermissionException {
 		// TODO Auto-generated method stub
@@ -499,9 +507,10 @@ public class CommandProcessor{
 	}
 
 	/**
-	 *  acceptCall "orderName"
-	 * @throws SyntaxErrorException 
-	 * @throws PermissionException 
+	 *  acceptCall "orderName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException the permission exception
 	 */
 	private void acceptCall() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -517,8 +526,9 @@ public class CommandProcessor{
 	
 	/**
 	 * Refuse call.
-	 * @throws SyntaxErrorException 
-	 * @throws PermissionException 
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException the permission exception
 	 */
 	private void refuseCall() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -544,7 +554,7 @@ public class CommandProcessor{
 	 * setDeliveryPolicy  "delpolicy".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void setDeliveryPolicy() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -561,7 +571,7 @@ public class CommandProcessor{
 	 * setProfitPolicy  "ProfitPolicyName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void setProfitPolicy() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -578,7 +588,7 @@ public class CommandProcessor{
 	 * associateCard "userName" "cardType".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException 
+	 * @throws PermissionException the permission exception
 	 */
 	public void associateCard() throws SyntaxErrorException, PermissionException {
 		// TODO Auto-generated method stub
@@ -600,7 +610,8 @@ public class CommandProcessor{
 	
 	/**
 	 * showCourierDeliveries "".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void showCourierDeliveries() throws PermissionException {
 		// TODO Auto-generated method stub
@@ -611,7 +622,8 @@ public class CommandProcessor{
 
 	/**
 	 * showRestaurantTop "".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void showRestaurantTop() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
@@ -622,7 +634,8 @@ public class CommandProcessor{
 
 	/**
 	 * showCustomers.
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void showCustomers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
@@ -633,7 +646,8 @@ public class CommandProcessor{
 
 	/**
 	 * showMenuItem "restaurant-name".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void showMenuItem() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
@@ -651,23 +665,58 @@ public class CommandProcessor{
 
 	/**
 	 * showTotalProfit "".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	public void showTotalProfit() throws PermissionException {
 		// TODO Auto-generated method stub
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
-		if (arguments.length==0){
-			manager.getManagerService().showTotalProfit(new Date(), new Date());
+		try{
+		if (arguments==null){
+			String startingDate = "01/01/2017";
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			String endingDate = sdf.format(new Date());
+			System.out.println("Total profit : "+manager.getManagerService().getTotalProfit(startingDate, endingDate)+" euros.");
+		}
+		else if (arguments.length==2){
+			String startingDate = arguments[0];
+			String endingDate = arguments[1];
+			System.out.println("Total profit : "+manager.getManagerService().getTotalProfit(startingDate, endingDate)+" euros.");
+		}
+		}
+		catch (ParseException e){
+			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
 		}
 	}
 
 	/**
-	 * Run test.
+	 * runtest "testScenario1.txt"
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
 	 */
-	public void runTest() {
-		// TODO Auto-generated method stub
+	public void runTest() throws SyntaxErrorException {
+		if (arguments.length<1) throw new SyntaxErrorException();
+		String testScenarioN = arguments[0];
+		String[] parts = testScenarioN.split("\\.");
+		String testScenarioNoutput = parts[0]+"outut"+parts[1];
+		CustomPrintStream.setOutputStream(testScenarioNoutput);
 		
+		CommandProcessor c = new CommandProcessor();
+		
+		File file = new File(testScenarioN);
+		Scanner s;
+		try {
+			s = new Scanner(file);
+			String rawInput = "";
+			while (s.hasNextLine()){
+				rawInput = s.nextLine();
+				c.processCommand(rawInput);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

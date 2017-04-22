@@ -3,6 +3,7 @@
  */
 package user.service;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import exceptions.NameNotFoundException;
@@ -76,29 +77,32 @@ public interface ManagerService {
 	/**
 	 * Gets the total income over a time period.
 	 *
-	 * @param date1 the starting date
-	 * @param date2 the end date
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the total income
+	 * @throws ParseException the parse exception
 	 */
-	public double showTotalIncome(Date date1, Date date2);
+	public double getTotalIncome(String stringDate1, String stringDate2) throws ParseException;
 	
 	/**
 	 * Gets the total profit over a time period.
 	 *
-	 * @param date1 the starting date
-	 * @param date2 the end date
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the total profit
+	 * @throws ParseException the parse exception
 	 */
-	public double showTotalProfit(Date date1, Date date2);
+	public double getTotalProfit(String stringDate1, String stringDate2) throws ParseException;
 	
 	/**
 	 * Computing the average income per customer over a time period.
 	 *
-	 * @param date1 the starting date
-	 * @param date2 the end date
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the average income per customer
+	 * @throws ParseException the parse exception
 	 */
-	public double showAverageIncomePerCustomer(Date date1, Date date2);
+	public double getAverageIncomePerCustomer(String stringDate1, String stringDate2) throws ParseException;
 	
 	/**
 	 * Sets the target profit policy.
@@ -147,7 +151,7 @@ public interface ManagerService {
 	 * setting the current delivery-policy used by MyFoodora to determine which courier
 	 * is assigned to deliver an order placed by a customer.
 	 *
-	 * @param deliverypolicy the new delivery policy
+	 * @param deliveryPolicy the new delivery policy
 	 */
 	public void setDeliveryPolicy(String deliveryPolicy); 
 	
@@ -180,6 +184,13 @@ public interface ManagerService {
 	 */
 	public void displayUsersOfAssignedType(String userType);
 	
+	/**
+	 * Associate card.
+	 *
+	 * @param username the username
+	 * @param cardType the card type
+	 * @throws NameNotFoundException the name not found exception
+	 */
 	public void associateCard(String username, String cardType) throws NameNotFoundException;
 	
 }

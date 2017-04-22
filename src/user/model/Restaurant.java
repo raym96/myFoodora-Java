@@ -60,6 +60,7 @@ public class Restaurant extends User{
 	 * @param name the name
 	 * @param username the username
 	 * @param address the address
+	 * @param password the password
 	 */
 	public Restaurant(String name, String username, AddressPoint address,String password) {
 		super(username,password);

@@ -47,7 +47,11 @@ public interface CustomerService {
 	
 	/**
 	 * Pay.
-	 * @throws ParseException 
+	 *
+	 * @param orderName the order name
+	 * @param date the date
+	 * @throws NameNotFoundException the name not found exception
+	 * @throws ParseException the parse exception
 	 */
 	void endOrder(String orderName, String date) throws NameNotFoundException, ParseException;
 	
@@ -90,8 +94,22 @@ public interface CustomerService {
 	 */
 	public void removeConsensusBeNotifiedSpecialOffers();
 
+	/**
+	 * Creates the order.
+	 *
+	 * @param restaurantName the restaurant name
+	 * @param orderName the order name
+	 */
 	void createOrder(String restaurantName, String orderName);
 
+	/**
+	 * Adds the item 2 order.
+	 *
+	 * @param orderName the order name
+	 * @param itemName the item name
+	 * @throws NameNotFoundException the name not found exception
+	 * @throws NameNotFoundException the name not found exception
+	 */
 	void addItem2Order(String orderName, String itemName) throws NameNotFoundException, NameNotFoundException;
 
 

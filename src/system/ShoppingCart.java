@@ -59,7 +59,7 @@ public class ShoppingCart {
 	/**
 	 * Checks if has restaurant.
 	 *
-	 * @param restaurant the restaurant
+	 * @param orderName the order name
 	 * @return true, if successful
 	 */
 	public boolean hasOrder(String orderName){
@@ -75,8 +75,9 @@ public class ShoppingCart {
 	/**
 	 * Gets the order.
 	 *
-	 * @param restaurant the restaurant
+	 * @param orderName the order name
 	 * @return the order
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	public Order getOrder(String orderName) throws NameNotFoundException{
 		for (Order order:orders){

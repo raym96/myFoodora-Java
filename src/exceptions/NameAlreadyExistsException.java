@@ -14,6 +14,8 @@ public class NameAlreadyExistsException extends Exception {
 	
 	/** The Constant serialVersionUID. */
 	public static final long serialVersionUID = 1L;
+	
+	/** The name. */
 	String name;
 	
 	/**
@@ -25,6 +27,9 @@ public class NameAlreadyExistsException extends Exception {
 		this.name = name;
 	}
 	
+	/**
+	 * Prints the error.
+	 */
 	public void printError(){
 		System.out.println("NAME ALREADY TAKEN : \""+name+"\" already exists.");
 	}

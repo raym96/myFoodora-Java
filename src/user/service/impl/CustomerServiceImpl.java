@@ -37,6 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 	/** The customer. */
 	private Customer customer;
 	
+	/** The m. */
 	MyFoodoraService m = new MyFoodoraServiceImpl();
 	/**
 	 * Instantiates a new customer service impl.
@@ -48,6 +49,9 @@ public class CustomerServiceImpl implements CustomerService {
 		this.customer = customer;
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#createOrder(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void createOrder(String restaurantName, String orderName){
 		Restaurant restaurant = (Restaurant)m.selectUser(restaurantName);
@@ -55,8 +59,11 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.getShoppingCart().addOrder(newOrder);
 	}
 		
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#addItem2Order(java.lang.String, java.lang.String)
+	 */
 	@Override
-	public void addItem2Order(String orderName,String itemName) throws NameNotFoundException, NameNotFoundException{
+	public void addItem2Order(String orderName,String itemName) throws NameNotFoundException{
 		Order order = customer.getShoppingCart().getOrder(orderName);
 		Menu menu = order.getRestaurant().getMenu();
 		MealMenu mealmenu = order.getRestaurant().getMealMenu();
@@ -74,6 +81,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#commandSpecialMeal(user.model.Restaurant, java.lang.String)
+	 */
 	public void commandSpecialMeal(Restaurant r, String mealName){
 		if (customer.getShoppingCart().hasRestaurant(r)){
 			Order order = customer.getShoppingCart().getOrder(r);
@@ -123,12 +133,13 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @see user.service.CustomerService#pay()
 	 */
 	@Override
-	public void endOrder(String orderName, String Stringdate) throws NameNotFoundException, ParseException{
+	public void endOrder(String orderName, String stringDate) throws NameNotFoundException, ParseException{
 		MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
 		Order order = customer.getShoppingCart().getOrder(orderName);
 	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,hh:mm:ss");
-		Date date = sdf.parse(Stringdate);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = sdf.parse(stringDate);
+		
 		order.setDate(date);
 		
 		customer.getCard().pay(order);

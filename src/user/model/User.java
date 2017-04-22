@@ -42,6 +42,12 @@ public abstract class User implements Observer{
 	private boolean logStatus;
 	
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 */
 	public User(String username, String password) {
 		super();
 		this.ID = UUID.randomUUID().toString();

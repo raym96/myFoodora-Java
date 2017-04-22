@@ -3,6 +3,8 @@
  */
 package user.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -114,8 +116,8 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#getTotalIncome(java.util.Date, java.util.Date)
 	 */
-	public double getTotalIncome(Date date1, Date date2){
-		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
+	public double getTotalIncome(String stringDate1, String stringDate2) throws ParseException{
+		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(stringDate1, stringDate2);
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
 		double totalIncome = 0;
 		for (Order order:list){
@@ -127,8 +129,8 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#getTotalProfit(java.util.Date, java.util.Date)
 	 */
-	public double getTotalProfit(Date date1, Date date2){
-		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
+	public double getTotalProfit(String stringDate1, String stringDate2) throws ParseException{
+		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(stringDate1, stringDate2);
 		ShoppingCartVisitor visitor = new ConcreteShoppingCartVisitor();
 		double totalProfit = 0;
 		for (Order order:list){
@@ -140,8 +142,8 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#getAverageIncomePerCustomer(java.util.Date, java.util.Date)
 	 */
-	public double getAverageIncomePerCustomer(Date date1, Date date2){
-		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(date1, date2);
+	public double getAverageIncomePerCustomer(String stringDate1, String stringDate2) throws ParseException{
+		ArrayList<Order> list = myfoodora.getHistory().getOrderBetween(stringDate1, stringDate2);
 		ArrayList<Customer> customerlist = new ArrayList<Customer>();
 		for (Order order:list){
 			//count the number of different customers over the time period
@@ -155,7 +157,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 			return 0;
 		}
 		else{
-			return Math.floor((getTotalIncome(date1, date2)/customerlist.size())*1000)/1000;
+			return Math.floor((getTotalIncome(stringDate1, stringDate2)/customerlist.size())*1000)/1000;
 		}
 	}
 	
@@ -265,6 +267,9 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		return myfoodora.getHistory();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.MyFoodoraService#login(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void login(String username, String password) throws LoginErrorException{
 		for(User u : myfoodora.getUsers()){

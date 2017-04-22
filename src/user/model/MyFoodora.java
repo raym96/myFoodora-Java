@@ -84,8 +84,8 @@ public class MyFoodora implements Observable{
 		
 		//default values
 		service_fee = 1;
-		markup_percentage=0.02;
-		delivery_cost = 1;
+		markup_percentage=0.1;
+		delivery_cost = 0.5;
 		
 		// default policies
 		this.deliverypolicy = new FastestDeliveryPolicy();
@@ -404,7 +404,6 @@ public class MyFoodora implements Observable{
 	 */
 	public void addUser(User user){
 		users.add(user);
-		System.out.println("User " + (user).getUsername() + " has registered on myFoodora.");
 	}
 	
 	/**
@@ -562,7 +561,6 @@ public class MyFoodora implements Observable{
 	public synchronized void register(Observer obs) {
 		// TODO Auto-generated method stub
 		users.add((User)obs);
-		System.out.println("User " + ((User)obs).getUsername() + " has registered on myFoodora.");
 	}
 
 	/* (non-Javadoc)

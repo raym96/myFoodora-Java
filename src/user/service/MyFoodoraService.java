@@ -3,6 +3,7 @@
  */
 package user.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -63,30 +64,33 @@ public interface MyFoodoraService {
 	/**
 	 * computing the total income (i.e. the sum of all completed orders) over a period
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the total income
+	 * @throws ParseException the parse exception
 	 */
-	public double getTotalIncome(Date date1, Date date2);
+	public double getTotalIncome(String stringDate1, String stringDate2) throws ParseException;
 	
 	/**
 	 * 	 computing profit of the system, knowing that the the profit of a single order is given by:
 	 * profit for one order = order_price * markup_percentage + service_fee - delivery cost.
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the total profit
+	 * @throws ParseException the parse exception
 	 */
-	public double getTotalProfit(Date date1, Date date2);
+	public double getTotalProfit(String stringDate1, String stringDate2) throws ParseException;
 	
 	/**
 	 * Gets the average income per customer over a period.
 	 *
-	 * @param date1 the date 1
-	 * @param date2 the date 2
+	 * @param stringDate1 the string date 1
+	 * @param stringDate2 the string date 2
 	 * @return the average income per customer
+	 * @throws ParseException the parse exception
 	 */
-	public double getAverageIncomePerCustomer(Date date1, Date date2);
+	public double getAverageIncomePerCustomer(String stringDate1, String stringDate2) throws ParseException;
 
 	// 5. chose the target prot policy (see below) used to optimise the profit-related-
 	/**
@@ -128,5 +132,12 @@ public interface MyFoodoraService {
 	//returns history of myfoodora for manager-service
 	public History getHistory();
 
+	/**
+	 * Login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @throws LoginErrorException the login error exception
+	 */
 	public void login(String username, String password) throws LoginErrorException;
 }

@@ -29,6 +29,8 @@ public abstract class FidelityCard {
 	
 	/**
 	 * Pay.
+	 *
+	 * @param order the order
 	 */
 	public abstract void pay(Order order);
 }

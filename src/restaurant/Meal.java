@@ -35,6 +35,7 @@ public class Meal implements Item{
 	//standard,vegetarian,gluten-free
 	protected String mealType;
 	
+	/** The saved. */
 	private boolean saved;
 	
 	/**
@@ -49,18 +50,38 @@ public class Meal implements Item{
 		this.saved = false;
 	}
 
+	/**
+	 * Checks if is saved.
+	 *
+	 * @return true, if is saved
+	 */
 	public boolean isSaved() {
 		return saved;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Sets the dishes.
+	 *
+	 * @param dishes the new dishes
+	 */
 	public void setDishes(ArrayList<Dish> dishes) {
 		this.dishes = dishes;
 	}
 
+	/**
+	 * Sets the saved.
+	 *
+	 * @param saved the new saved
+	 */
 	public void setSaved(boolean saved) {
 		this.saved = saved;
 	}
@@ -69,7 +90,7 @@ public class Meal implements Item{
 	 * Adds the dish. Error if there a more than 1 starter/main-dish/dessert
 	 *
 	 * @param dish the dish
-	 * @throws DishTypeErrorException 
+	 * @throws DishTypeErrorException the dish type error exception
 	 */
 	public void addDish(Dish dish) throws DishTypeErrorException {
 		// TODO Auto-generated method stub

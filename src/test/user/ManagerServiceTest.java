@@ -168,7 +168,7 @@ public class ManagerServiceTest {
 	public void testGetTotalIncome() {
 		System.out.println("-----testGetTotalIncom-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.showTotalIncome(startingdate, new Date()));
+		System.out.println(manager_service.getTotalIncome(startingdate, new Date()));
 		
 	}
 
@@ -179,7 +179,7 @@ public class ManagerServiceTest {
 	public void testGetTotalProfit() {
 		System.out.println("-----testGetTotalProfit-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.showTotalProfit(startingdate, new Date()));
+		System.out.println(manager_service.getTotalProfit(startingdate, new Date()));
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class ManagerServiceTest {
 	public void testGetAverageIncomePerCustomer() {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.showAverageIncomePerCustomer(startingdate, new Date()));
+		System.out.println(manager_service.getAverageIncomePerCustomer(startingdate, new Date()));
 	}
 
 	/**

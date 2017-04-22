@@ -3,6 +3,7 @@
  */
 package user.service.impl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,6 +42,7 @@ public class ManagerServiceImpl implements ManagerService {
 	/** The manager. */
 	private Manager manager;
 	
+	/** The myfoodora service. */
 	private MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
 	/**
 	 * Instantiates a new manager service impl.
@@ -121,18 +123,18 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// 4. computing the total income and/or prot over a time period
 	@Override
-	public double showTotalIncome(Date date1, Date date2) {
+	public double getTotalIncome(String stringDate1, String stringDate2) throws ParseException {
 		// TODO Auto-generated method stub
-		return myfoodora_service.getTotalIncome(date1, date2);
+		return myfoodora_service.getTotalIncome(stringDate1, stringDate2);
 	}
 
 	/* (non-Javadoc)
 	 * @see user.service.ManagerService#getTotalProfit(java.util.Date, java.util.Date)
 	 */
 	@Override
-	public double showTotalProfit(Date date1, Date date2) {
+	public double getTotalProfit(String stringDate1, String stringDate2) throws ParseException {
 		// TODO Auto-generated method stub
-		return myfoodora_service.getTotalProfit(date1, date2);
+		return myfoodora_service.getTotalProfit(stringDate1, stringDate2);
 	}
 
 
@@ -143,9 +145,9 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getAverageIncomePerCustomer(java.util.Date, java.util.Date)
 	 */
 	@Override
-	public double showAverageIncomePerCustomer(Date date1, Date date2) {
+	public double getAverageIncomePerCustomer(String stringDate1, String stringDate2) throws ParseException {
 		// TODO Auto-generated method stub
-		return myfoodora_service.getAverageIncomePerCustomer(date1, date2);
+		return myfoodora_service.getAverageIncomePerCustomer(stringDate1, stringDate2);
 	}
 	
 	// 6. determining either the service-fee and/or markup percentage and/or the delivery-
@@ -324,6 +326,9 @@ public class ManagerServiceImpl implements ManagerService {
 		System.out.println(users);
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.ManagerService#associateCard(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void associateCard(String username, String cardType) throws NameNotFoundException {
 		// TODO Auto-generated method stub

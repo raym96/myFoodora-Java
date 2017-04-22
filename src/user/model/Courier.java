@@ -92,6 +92,12 @@ public class Courier extends User{
 	}
 	
 	
+	/**
+	 * Gets the waiting order.
+	 *
+	 * @param orderName the order name
+	 * @return the waiting order
+	 */
 	public Order getWaitingOrder(String orderName){
 		Order order = null;
 		for (Order o : this.getWaitingOrders()){
@@ -114,8 +120,7 @@ public class Courier extends User{
 	/**
 	 * Refuse waiting order.
 	 *
-	 * @param order the order
-	 * @throws NameNotFoundException the order not found exception
+	 * @param orderName the order name
 	 */
 	public void refuseWaitingOrder(String orderName){
 		Order order = getWaitingOrder(orderName);
@@ -125,8 +130,7 @@ public class Courier extends User{
 	/**
 	 * Accept waiting order.
 	 *
-	 * @param order the order
-	 * @throws NameNotFoundException the order not found exception
+	 * @param orderName the order name
 	 */
 	public void acceptWaitingOrder(String orderName){
 		Order order = getWaitingOrder(orderName);
