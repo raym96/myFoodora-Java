@@ -95,7 +95,7 @@ public class AddSpecialOfferTest {
 			Scanner s = new Scanner(System.in);
 			System.out.println("Please enter the name of the meal to be upgraded as meal-of-the-week");
 			String mealname = s.nextLine();
-			restaurant.getRestaurantService().addSpecialMeal(mealname);
+			restaurant.getRestaurantService().setSpecialOffer(mealname);
 			//the price is automatically updated when adding the meal to the special menu
 			restaurant.getRestaurantService().displayMealMenu();
 			restaurant.getRestaurantService().displaySpecialMenu();

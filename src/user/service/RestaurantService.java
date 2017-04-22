@@ -113,14 +113,14 @@ public interface RestaurantService {
 	 * @throws MealNotFoundException 
 	 */
 	//throw exception if meal name is not recognized
-	public void addSpecialMeal(String mealName) throws MealNotFoundException;	
+	public void setSpecialOffer(String mealName) throws MealNotFoundException;	
 	
 	/**
 	 * Removes a meal-of-the-week and places it in the regular meal-menu.
 	 *
 	 * @param mealName the meal name
 	 */
-	public void removeSpecialMeal(String mealName);
+	public void removeSpecialOffer(String mealName);
 
 	/**
 	 * establishing the generic discount factor (default 5%) to apply when computing.

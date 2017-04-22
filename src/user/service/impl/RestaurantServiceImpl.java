@@ -342,7 +342,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	//throw exception if meal name is not recognized
 	@Override
-	public void addSpecialMeal(String mealName) throws MealNotFoundException {
+	public void setSpecialOffer(String mealName) throws MealNotFoundException {
 		// TODO Auto-generated method stub
 		//throw exception if meal name is not recognized
 		int count=0;
@@ -369,7 +369,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @see user.service.RestaurantService#removeSpecialMeal(java.lang.String)
 	 */
 	@Override
-	public void removeSpecialMeal(String mealName) {
+	public void removeSpecialOffer(String mealName) {
 		// TODO Auto-generated method stub
 		for (Iterator<Meal> iter = restaurant.getSpecialmealmenu().getMeals().iterator();iter.hasNext();){
 			Meal sm = iter.next();

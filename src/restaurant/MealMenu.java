@@ -130,7 +130,9 @@ public class MealMenu {
 	 */
 	public void display(){
 		for (Meal meal:meals){
+			if (meal.isSaved()){
 				System.out.println(meal);
+			}
 		}
 	}
 	

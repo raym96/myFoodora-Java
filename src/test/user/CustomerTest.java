@@ -87,7 +87,7 @@ public class CustomerTest {
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		
 		r.getRestaurantService().addMeal(fm);
-		r.getRestaurantService().addSpecialMeal("FM2");
+		r.getRestaurantService().setSpecialOffer("FM2");
 		
 		customer.addSpecialOffer(fm);
 		

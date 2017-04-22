@@ -331,7 +331,7 @@ public class CommandProcessor{
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().addSpecialMeal(mealName);
+			restaurant.getRestaurantService().setSpecialOffer(mealName);
 		} catch (MealNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -349,7 +349,7 @@ public class CommandProcessor{
 		}
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().removeSpecialMeal(mealName);
+		restaurant.getRestaurantService().removeSpecialOffer(mealName);
 
 	}
 

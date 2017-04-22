@@ -188,7 +188,7 @@ public class RestaurantServiceTest {
 		System.out.println("-----testAddSpecialMeal-----");
 		Meal meal = new HalfMeal("test_menu",terrine,sandwich);
 		restaurant1_service.addMeal(meal);
-		restaurant1_service.addSpecialMeal("test_menu");
+		restaurant1_service.setSpecialOffer("test_menu");
 		restaurant1_service.displayAllMenu();
 		assertTrue(restaurant1.getSpecialmealmenu().getMeals().contains(meal));
 	}
@@ -201,10 +201,10 @@ public class RestaurantServiceTest {
 		System.out.println("-----testRemoveSpecialMeal-----");
 		Meal meal = new HalfMeal("test_menu",terrine,sandwich);
 		restaurant1_service.addMeal(meal);
-		restaurant1_service.addSpecialMeal("test_menu");
+		restaurant1_service.setSpecialOffer("test_menu");
 		restaurant1_service.displayAllMenu();
 		
-		restaurant1_service.removeSpecialMeal("test_menu");
+		restaurant1_service.removeSpecialOffer("test_menu");
 		assertFalse(restaurant1.getSpecialmealmenu().getMeals().contains(meal));
 	}
 

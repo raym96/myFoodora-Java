@@ -91,7 +91,7 @@ public class RemoveSpecialOfferTest {
 			Scanner s = new Scanner(System.in);
 			System.out.println("Please enter the name of the meal to be removed from the meal-of-the-week list");
 			String mealname = s.nextLine();
-			restaurant.getRestaurantService().removeSpecialMeal(mealname);
+			restaurant.getRestaurantService().removeSpecialOffer(mealname);
 			restaurant.getRestaurantService().displayMealMenu();
 			s.close();
 	}
