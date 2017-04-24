@@ -1,0 +1,13 @@
+login ceo 123456789
+registerCustomer herve biausser hbiausser 0,0 password
+showtotalincome
+logout
+login hbiausser password
+createOrder chinese myorder
+additem2order myorder fm1
+additem2order myorder hm3
+endorder myorder 24/04/2017
+logout
+login ceo 123456789
+showtotalincome
+

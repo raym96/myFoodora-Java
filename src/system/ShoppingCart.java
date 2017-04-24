@@ -57,7 +57,7 @@ public class ShoppingCart {
 	}
 	
 	/**
-	 * Checks if has restaurant.
+	 * Checks if has order name orderName.
 	 *
 	 * @param orderName the order name
 	 * @return true, if successful

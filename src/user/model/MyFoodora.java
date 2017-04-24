@@ -499,6 +499,15 @@ public class MyFoodora implements Observable{
 		return availablecouriers;
 	}
 	
+	public boolean hasUser(String username){
+		for (User user : users){
+			if (user.getUsername().equalsIgnoreCase(username)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Gets the users of assigned type.
 	 *

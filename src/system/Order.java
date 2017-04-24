@@ -35,7 +35,7 @@ public class Order {
 	private String orderID;
 	
 	/** The ordercount. */
-	static private int ordercount = 1244;
+	static private int ordercount = 1000;
 	
 	/** The restaurant. */
 	private Restaurant restaurant;

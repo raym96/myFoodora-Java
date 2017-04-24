@@ -28,7 +28,7 @@ public class CustomPrintStream extends PrintStream {
      *
      * @param fileName the new output stream
      */
-    public static void setOutputStream(String fileName){
+    public static void setOutPutFile(String fileName){
     	try {
 			FileOutputStream out = new FileOutputStream(fileName);
 		    CustomPrintStream output = new CustomPrintStream(out, System.out);

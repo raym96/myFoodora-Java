@@ -40,17 +40,19 @@ public class SortingByHalfMeal extends SortingByCriteria{
 	 * @see policies.SortingByCriteria#countOccurence(java.util.ArrayList)
 	 */
 	@Override
-	public HashMap countOccurence(ArrayList<Order> h){
+	public HashMap countOccurence(ArrayList<Order> history){
 		HashMap<HalfMeal, Integer> map = new HashMap<HalfMeal,Integer>();
-		for (Order order:h){
+		
+		//assign value 0 at the beginning
+		ArrayList<Meal> meals = history.get(0).getRestaurant().getMealMenu().getMeals();
+		for (Meal meal:meals){
+			if (meal instanceof HalfMeal) map.put((HalfMeal)meal,0);
+		}
+		for (Order order:history){
 			for (Item item : order.getItems()){
 				if (item instanceof HalfMeal){
 					HalfMeal hm = (HalfMeal)item;
-					if (map.containsKey(hm)){
-						map.put(hm, map.get(hm)+1);
-					}else{
-						map.put(hm,1);
-					}
+					map.put(hm, map.get(hm)+1);
 				}
 			}
 		}

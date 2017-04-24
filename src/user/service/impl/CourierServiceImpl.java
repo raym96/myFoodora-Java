@@ -78,8 +78,9 @@ public class CourierServiceImpl implements CourierService {
 	 */
 	// 3. change their position
 	@Override
-	public void changePosition(AddressPoint newPoint) {
+	public void changePosition(String positionString) {
 		// TODO Auto-generated method stub
+		AddressPoint newPoint = new AddressPoint(positionString);
 		courier.setPosition(newPoint);
 	}
 

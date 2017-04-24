@@ -41,7 +41,7 @@ public interface CourierService {
 	 *
 	 * @param newPoint the new address
 	 */
-	public void changePosition(AddressPoint newPoint);
+	public void changePosition(String positionString);
 	
 	/**
 	 * accept to a delivery call (received by the MyFoodora system).

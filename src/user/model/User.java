@@ -29,6 +29,12 @@ public abstract class User implements Observer{
 	/** The password. */
 	private String password = "password";
 	
+	/** The email. */
+	protected String email;
+	
+	/** The phone. */
+	protected String phone;
+	
 	/** The notified. */
 	private boolean notified;
 	
@@ -53,7 +59,7 @@ public abstract class User implements Observer{
 		this.ID = UUID.randomUUID().toString();
 		this.username = username;
 		this.password = password;
-		this.activated = false;
+		this.activated = true; //activated by default
 		this.notified = false;
 		this.messageBoard = new MessageBoard(this);
 		this.logStatus = false;
@@ -139,6 +145,7 @@ public abstract class User implements Observer{
 		return username;
 	}
 	
+	
 	/**
 	 * Sets the username.
 	 *
@@ -148,6 +155,23 @@ public abstract class User implements Observer{
 		this.username = username;
 	}
 	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	/**
 	 * Gets the message board.
 	 *
@@ -294,4 +318,6 @@ public abstract class User implements Observer{
 	public String toString() {
 		return "User ID=" + ID + ", username=" + username + ", activated=" + activated;
 	}
+	
+	public abstract void displayInfo();
 }

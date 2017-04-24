@@ -13,7 +13,9 @@ import java.util.Map.Entry;
 import restaurant.HalfMeal;
 import restaurant.Meal;
 import system.Order;
+import user.model.MyFoodora;
 import user.model.Restaurant;
+import user.model.User;
 
 
 /**
@@ -38,13 +40,13 @@ public class SortingByRestaurant extends SortingByCriteria {
 	@Override
 	public HashMap countOccurence(ArrayList<Order> h){
 		HashMap<Restaurant, Integer> map = new HashMap<Restaurant,Integer>();
+		ArrayList<User> restaurants = MyFoodora.getInstance().getUsersOfAssignedType("Restaurant");
+		for (User u : restaurants){
+			map.put((Restaurant)u,0);
+		}
 		for (Order order:h){
 			Restaurant r = order.getRestaurant();
-			if (map.containsKey(r)){
-				map.put(r, map.get(r)+1);
-			}else{
-				map.put(r,1);
-			}
+			map.put(r, map.get(r)+1);
 		}
 		return map;
 	}
@@ -54,7 +56,6 @@ public class SortingByRestaurant extends SortingByCriteria {
 	 */
 	@Override
 	public void displayAscending(ArrayList<Order> h) {
-		System.out.println("\nDisplaying restaurants sorted w.r.t the number of shipped orders ");
 		// TODO Auto-generated method stub
 		HashMap map = countOccurence(h);
 		Map<Restaurant,Integer> newMap = sortByValues(map);
@@ -71,7 +72,6 @@ public class SortingByRestaurant extends SortingByCriteria {
 	@Override
 	public void displayDescending(ArrayList<Order> h) {
 		// TODO Auto-generated method stub
-		System.out.println("\nDisplaying restaurants sorted w.r.t the number of shipped orders ");
 		HashMap map = countOccurence(h);
 		Map<Restaurant,Integer> newMap = sortByValuesReversed(map);
 	    for (Entry<Restaurant, Integer> entry : newMap.entrySet()) {

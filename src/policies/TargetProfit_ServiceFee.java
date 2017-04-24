@@ -3,6 +3,8 @@
  */
 package policies;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,14 +42,25 @@ public class TargetProfit_ServiceFee implements TargetProfitPolicy {
 		cal.add(Calendar.MONTH, -1);
 		Date aMonthAgo = cal.getTime();
 		
-		double lastIncome = myfoodora.getMyFoodoraService().getTotalIncome(aMonthAgo, new Date());
-		double delivery_cost = myfoodora.getDelivery_cost();
-		double markup_percentage = myfoodora.getMarkup_percentage();
-		int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgo, new Date()).size();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String aMonthAgoString= sdf.format(aMonthAgo);
+		String todayString = sdf.format(new Date());
 		
-		double service_fee = 0;
-		service_fee = delivery_cost + (targetProfit - lastIncome*markup_percentage)/number_of_orders ;
-		
-		myfoodora.setService_fee(service_fee);
+		double lastIncome;
+		try {
+			lastIncome = myfoodora.getMyFoodoraService().getTotalIncome(aMonthAgoString, todayString);
+			double delivery_cost = myfoodora.getDelivery_cost();
+			double markup_percentage = myfoodora.getMarkup_percentage();
+			int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgoString, todayString).size();
+			
+			double service_fee = 0;
+			service_fee = delivery_cost + (targetProfit - lastIncome*markup_percentage)/number_of_orders ;
+			
+			myfoodora.setService_fee(service_fee);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

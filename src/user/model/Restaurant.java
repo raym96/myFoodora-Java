@@ -261,6 +261,19 @@ public class Restaurant extends User{
 	public String toString() {
 		return  "<Restaurant> "+username+"; name = "+name+"; address="+address;
 	}
+	
+	@Override
+	public void displayInfo(){
+		String output = "";
+		output+="<Restaurant> "+username+"; name = "+name+"; address="+address;
+		if (email !=null){
+			output+="; email = "+email;
+		}
+		if (phone !=null){
+			output+="; phone = "+phone;
+		}
+		System.out.println(output);
+	}
 
 
 	/**

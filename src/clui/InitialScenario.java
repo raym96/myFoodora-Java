@@ -17,7 +17,7 @@ public class InitialScenario {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		CustomPrintStream.setOutputStream("output.txt");
+		CustomPrintStream.setOutPutFile("output.txt");
 		
 		InitialScenario.load("my_foodora.ini");
 		
@@ -69,9 +69,9 @@ public class InitialScenario {
 
 		System.setOut(originalStream);
 		
-//		myfoodora.displayUsers();
-//		myfoodora.displayAllMenus();
-//		myfoodora.displayHistory();
+		myfoodora.displayUsers();
+		myfoodora.displayAllMenus();
+		myfoodora.displayHistory();
 		System.out.println("The initial file <"+filename+"> successfully loaded into the system.");
 		System.out.println("-----------------------------------------------------------------------------------\n");
 

@@ -33,17 +33,20 @@ public class SortingByAlaCarte extends SortingByCriteria {
 	 * @see policies.SortingByCriteria#countOccurence(java.util.ArrayList)
 	 */
 	@Override
-	public HashMap countOccurence(ArrayList<Order> h){
+	public HashMap countOccurence(ArrayList<Order> history){
 		HashMap<Dish, Integer> map = new HashMap<Dish,Integer>();
-		for (Order order:h){
+		
+		//assign value 0 at the beginning
+		ArrayList<Dish> dishes = history.get(0).getRestaurant().getMenu().getDishes();
+		for (Dish dish:dishes){
+			map.put(dish,0);
+		}
+		//count occurence
+		for (Order order:history){
 			for (Item item: order.getItems()){
 				if (item instanceof Dish){
 					Dish dish = (Dish)item;
-					if (map.containsKey(dish)){
-						map.put(dish, map.get(dish)+1);
-					}else{
-						map.put(dish,1);
-					}
+					map.put(dish, map.get(dish)+1);
 				}
 			}
 		}

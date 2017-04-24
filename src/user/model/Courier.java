@@ -54,16 +54,16 @@ public class Courier extends User{
 	/**
 	 * Instantiates a new courier.
 	 *
-	 * @param name the name
-	 * @param surname the surname
+	 * @param lastname the name
+	 * @param lastname the surname
 	 * @param username the username
 	 * @param position the position
 	 * @param password the password
 	 */
-	public Courier(String name, String surname, String username, AddressPoint position, String password) {
+	public Courier(String firstname, String lastname, String username, AddressPoint position, String password) {
 		super(username,password);
-		this.name = name;
-		this.surname = surname;
+		this.name = lastname;
+		this.surname = firstname;
 		this.position = position;
 		this.on_duty = true;
 		this.deliveredOrders = new ArrayList<Order>();
@@ -258,7 +258,26 @@ public class Courier extends User{
 	 */
 	@Override
 	public String toString() {
-		return  "<Courier> "+username+"; fullname = "+surname+" "+name+"; position="+position+"; "+phone;
+		return  "<Courier> "+username+"; fullname = "+surname+" "+name.toUpperCase()+"; position="+position;
+	}
+	
+	@Override
+	public void displayInfo(){
+		String output = "";
+		output+="<Courier> "+username+"; fullname = "+surname+" "+name.toUpperCase()+"; position="+position;
+		if (email !=null){
+			output+="; email = "+email;
+		}
+		if (phone !=null){
+			output+="; phone = "+phone;
+		}
+		if (isOn_duty()){
+			output+="; is on-duty.";
+		}
+		if (!(isOn_duty())){
+			output+="; is off-duty";
+		}
+		System.out.println(output);
 	}
 
 	/* (non-Javadoc)

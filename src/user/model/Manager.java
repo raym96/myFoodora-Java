@@ -95,7 +95,14 @@ public class Manager extends User{
 	 */
 	@Override
 	public String toString() {
-		return  "<Manager> "+username+"; fullname = "+surname+" "+name;
+		return  "<Manager> "+username+"; fullname = "+surname+" "+name.toUpperCase();
+	}
+	
+	@Override
+	public void displayInfo(){
+		String output = "";
+		output+="<Manager> "+username+"; fullname = "+surname+" "+name.toUpperCase();
+		System.out.println(output);
 	}
 
 	/* (non-Javadoc)

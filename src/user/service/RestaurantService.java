@@ -22,31 +22,69 @@ import system.Order;
 public interface RestaurantService {
 
 	/**
-	 * Adds a dish to the restaurant menu.
-	 *
-	 * @param dish the dish
-	 */
-	// add/remove a dish to the menu
-	public void addDish(Dish dish);
-	
-	/**
 	 * Adds the dish.
 	 *
 	 * @param dishName the dish name
 	 * @param dishCategory the dish category
 	 * @param foodCategory the food category
 	 * @param unitPrice the unit price
+	 * @throws NameAlreadyExistsException 
 	 */
-	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice);
+	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice) throws NameAlreadyExistsException;
+
+	/**
+	 * Creates the meal.
+	 *
+	 * @param mealName the meal name
+	 * @throws NameAlreadyExistsException the name already exists exception
+	 */
+	public void createMeal(String mealName) throws NameAlreadyExistsException;
+	
+	/**
+	 * Adds the dish 2 meal.
+	 *
+	 * @param dishName the dish name
+	 * @param mealName the meal name
+	 * @throws NameNotFoundException the name not found exception
+	 * @throws DishTypeErrorException the dish type error exception
+	 */
+	void addDish2Meal(String dishName, String mealName) throws NameNotFoundException, DishTypeErrorException;
+
+	/**
+	 * Show meal.
+	 *
+	 * @param mealName the meal name
+	 * @throws NameNotFoundException the name not found exception
+	 */
+	void showMeal(String mealName) throws NameNotFoundException;
+
+	/**
+	 * Save meal.
+	 *
+	 * @param mealName the meal name
+	 * @throws NameNotFoundException the name not found exception
+	 * @throws DishTypeErrorException the dish type error exception
+	 */
+	void saveMeal(String mealName) throws NameNotFoundException, DishTypeErrorException;
 
 	
 	/**
 	 * Removes a dish from the restaurant menu	 *.
 	 *
 	 * @param dishName the dish name
+	 * @throws NameNotFoundException 
 	 */
-	public void removeDish(String dishName);
+	public void removeDish(String dishName) throws NameNotFoundException;
 	
+	/**
+	 * Removes a meal from the meal menu.
+	 *
+	 * @param mealName the meal name
+	 * @throws NameNotFoundException the name not found exception
+	 */
+	//Remove a meal from the meal menu
+	public void removeMeal(String mealName) throws NameNotFoundException;
+
 	/**
 	 * Checks for dish.
 	 *
@@ -54,34 +92,6 @@ public interface RestaurantService {
 	 * @return true, if successful
 	 */
 	public boolean hasDish(String dishName);
-	
-	/**
-	 * Add  an existing meal object to the meal menu.
-	 Error occurs when dish name is not recognized or when dish types don't match/
-
-	 *
-	 * @param meal the meal
-	 */
-	public void addMeal(Meal meal);
-	
-	/**
-	 * Create a half-meal from the dishes of the dish menu and add it to the meal menu
-	 * Exception thrown if dish categories don't match.
-	 * @param mealname the mealname
-	 * @param dishname1 the dishname 1
-	 * @param dishname2 the dishname 2
-	 */
-	public void addMeal(String mealname, String dishname1, String dishname2);
-	
-	/**
-	 * Create a full-meal from the dishes of the dish menu and add it to the meal menu
-	 * Exception thrown if dish categories don't match.
-	 * @param mealname the mealname
-	 * @param startername the startername
-	 * @param maindishname the maindishname
-	 * @param dessertname the dessertname
-	 */
-	public void addMeal(String mealname, String startername, String maindishname,String dessertname);
 	
 	/**
 	 * Creates a half-meal/full-meal from a factory.
@@ -93,14 +103,6 @@ public interface RestaurantService {
 	//create an instance of Meal
 	public Meal createFactoryMeal(String mealType, String mealName);	
 	
-	/**
-	 * Creates the meal.
-	 *
-	 * @param mealName the meal name
-	 * @throws NameAlreadyExistsException the name already exists exception
-	 */
-	//create an empty meal
-	public void createMeal(String mealName) throws NameAlreadyExistsException;
 	
 	/**
 	 * Creates the dish from a dish factory.
@@ -111,14 +113,6 @@ public interface RestaurantService {
 	//create an instance of Dish
 	public Dish createFactoryDish(String dishName);
 	
-	/**
-	 * Removes a meal from the meal menu.
-	 *
-	 * @param mealName the meal name
-	 * @throws NameNotFoundException the name not found exception
-	 */
-	//Remove a meal from the meal menu
-	public void removeMeal(String mealName) throws NameNotFoundException;
 	
 	/**
 	 * Promotes an existing meal to the meal-of-the-week meal-menu.
@@ -126,7 +120,6 @@ public interface RestaurantService {
 	 * @param mealName the meal name
 	 * @throws NameNotFoundException the name not found exception
 	 */
-	//throw exception if meal name is not recognized
 	public void setSpecialOffer(String mealName) throws NameNotFoundException;	
 	
 	/**
@@ -141,7 +134,6 @@ public interface RestaurantService {
 	 *
 	 * @param generic_discount_factor the new generic discount factor
 	 */
-	// a meal price
 	public void setGenericDiscountFactor(double generic_discount_factor);
 	
 	/**
@@ -162,12 +154,12 @@ public interface RestaurantService {
 	public void DisplayLeastOrderedHalfMeal();
 	
 	/**
-	 * Display most ordered ala carte.
+	 * Display most ordered a la carte.
 	 */
 	public void DisplayMostOrderedAlaCarte();
 	
 	/**
-	 * Display least ordered ala carte.
+	 * Display least ordered a la carte.
 	 */
 	public void DisplayLeastOrderedAlaCarte();
 	
@@ -200,34 +192,6 @@ public interface RestaurantService {
 	 * Display all menu.
 	 */
 	public void displayAllMenu();
-
-	/**
-	 * Adds the dish 2 meal.
-	 *
-	 * @param dishName the dish name
-	 * @param mealName the meal name
-	 * @throws NameNotFoundException the name not found exception
-	 * @throws NameNotFoundException the name not found exception
-	 * @throws DishTypeErrorException the dish type error exception
-	 */
-	void addDish2Meal(String dishName, String mealName) throws NameNotFoundException, NameNotFoundException, DishTypeErrorException;
-
-	/**
-	 * Show meal.
-	 *
-	 * @param mealName the meal name
-	 * @throws NameNotFoundException the name not found exception
-	 */
-	void showMeal(String mealName) throws NameNotFoundException;
-
-	/**
-	 * Save meal.
-	 *
-	 * @param mealName the meal name
-	 * @throws NameNotFoundException the name not found exception
-	 * @throws DishTypeErrorException the dish type error exception
-	 */
-	void saveMeal(String mealName) throws NameNotFoundException, DishTypeErrorException;
 
 
 	

@@ -19,6 +19,7 @@ public class Command {
 	public Command(String rawInput){
 		String [] input = rawInput.trim().split(" ");
 		command = input[0];
+		arguments = new String[0];
 		if (input.length != 1){
 			arguments = new String[input.length-1];
 			for (int i = 1; i<input.length;i++){

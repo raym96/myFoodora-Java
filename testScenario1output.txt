@@ -1,0 +1,40 @@
+login ceo 123456789
+Welcome on MyFoodora, user ceo. Please enter a command.
+
+registerCustomer herve biausser hbiausser 0,0 password
+Customer hbiausser has been registered on myfoodora.
+
+showtotalincome
+Total income : 1125.78 euros.
+
+logout
+Goodbye ceo. We hope to see you again on MyFoodora.
+
+login hbiausser password
+Welcome on MyFoodora, user hbiausser. Please enter a command.
+
+createOrder chinese myorder
+Order myorder added to the shopping cart.
+
+additem2order myorder fm1
+Item fm1 added to the order myorder
+
+additem2order myorder hm3
+Item hm3 added to the order myorder
+
+endorder myorder 24/04/2017
+bsanders has been assigned to the delivery task. Please wait for confirmation.
+Order myorder finalised at 24/04/2017 and you paid for it.
+
+logout
+Goodbye hbiausser. We hope to see you again on MyFoodora.
+
+login ceo 123456789
+Welcome on MyFoodora, user ceo. Please enter a command.
+
+showtotalincome
+Total income : 1150.48 euros.
+
+
+
+

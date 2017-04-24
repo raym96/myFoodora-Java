@@ -34,8 +34,9 @@ public interface ManagerService {
 	 * Removes any kind of user from the system.
 	 *
 	 * @param user the user
+	 * @throws NameNotFoundException 
 	 */
-	public void removeUser(User user);
+	public void removeUser(String username) throws NameNotFoundException;
 	
 	/**
 	 * Activate any kind of user.
@@ -124,28 +125,28 @@ public interface ManagerService {
 	 *
 	 * @return the best restaurant
 	 */
-	public Restaurant showRestaurantDesc(); 
+	public void showRestaurantDesc(); 
 	
 	/**
 	 * Determines the worst selling restaurant.
 	 *
 	 * @return the worst restaurant
 	 */
-	public Restaurant showRestaurantAsc(); 
+	public void showRestaurantAsc(); 
 	
 	/**
 	 * Gets the most active courier of the fleet.
 	 *
 	 * @return the best courier
 	 */
-	public Courier showCourierDesc(); 
+	public void showCourierDesc(); 
 	
 	/**
 	 * Gets the least active courier of the fleet.
 	 *
 	 * @return the worst courier
 	 */
-	public Courier showCourierAsc();
+	public void showCourierAsc();
 	
 	/**
 	 * setting the current delivery-policy used by MyFoodora to determine which courier

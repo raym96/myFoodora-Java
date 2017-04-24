@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import exceptions.NameNotFoundException;
 import restaurant.*;
 
 
@@ -43,7 +44,39 @@ public class History {
 	}
 	
 	/**
-	 * Gets the order between.
+	 * Checks if has order name orderName.
+	 *
+	 * @param orderName the order name
+	 * @return true, if successful
+	 */
+	public boolean hasOrder(String orderName){
+		for (Order order:orders){
+			if (order.getName().equalsIgnoreCase(orderName)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	/**
+	 * Gets the order.
+	 *
+	 * @param orderName the order name
+	 * @return the order
+	 * @throws NameNotFoundException the name not found exception
+	 */
+	public Order getOrder(String orderName) throws NameNotFoundException{
+		for (Order order:orders){
+			if (order.getName().equalsIgnoreCase(orderName)){
+				return order;
+			}
+		}
+		throw new NameNotFoundException(orderName);
+	}
+	
+	/**
+	 * Gets the orders between 2 dates
 	 *
 	 * @param stringDate1 the string date 1
 	 * @param stringDate2 the string date 2

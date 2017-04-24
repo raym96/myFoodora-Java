@@ -28,19 +28,13 @@ import user.service.impl.CustomerServiceImpl;
 public class Customer extends User implements SpecialOfferObserver{
 	
 	/** The name. */
-	private String name;
+	private String lastname;
 	
 	/** The surname. */
-	private String surname;
+	private String firstname;
 	
 	/** The address. */
 	private AddressPoint address;
-	
-	/** The email. */
-	private String email;
-	
-	/** The phone. */
-	private String phone;
 	
 	/** The card. */
 	private FidelityCard card;
@@ -67,10 +61,10 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @param address the address
 	 * @param password the password
 	 */	
-	public Customer(String lastName, String firstName, String username, AddressPoint address, String password){
+	public Customer(String firstName, String lastName, String username, AddressPoint address, String password){
 		super(username,password);
-		this.name = lastName;
-		this.surname=firstName;
+		this.lastname = lastName;
+		this.firstname=firstName;
 		this.address = address;
 		this.card = new StandardCard(this);
 		this.shoppingcart = new ShoppingCart();
@@ -132,7 +126,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @return the name
 	 */
 	public String getName(){
-		return this.name;
+		return this.lastname;
 	}
 	
 	/**
@@ -141,7 +135,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @return the surname
 	 */
 	public String getSurname(){
-		return this.surname;
+		return this.firstname;
 	}
 	
 	/**
@@ -150,7 +144,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @return the full name
 	 */
 	public String getFullName(){
-		return surname+" "+name;
+		return firstname+" "+lastname;
 	}
 	
 	/**
@@ -162,23 +156,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		return specialoffers;
 	}
 
-	/**
-	 * Gets the email.
-	 *
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
 
-	/**
-	 * Gets the phone.
-	 *
-	 * @return the phone
-	 */
-	public String getPhone() {
-		return phone;
-	}
 
 	/* (non-Javadoc)
 	 * @see user.model.User#getUsername()
@@ -222,8 +200,28 @@ public class Customer extends User implements SpecialOfferObserver{
 	 */
 	@Override
 	public String toString() {
-		return  "<Customer> "+username+"; fullname = "+name+" "+surname+"; address="+address+"; "+email+"; "+phone;
+		return  "<Customer> "+username+"; fullname = "+firstname+" "+lastname.toUpperCase()+"; address="+address;
 	}
+	
+	@Override
+	public void displayInfo(){
+		String output = "";
+		output+="<Customer> "+username+"; fullname = "+firstname+" "+lastname.toUpperCase()+"; address="+address;
+		if (email !=null){
+			output+="; email = "+email;
+		}
+		if (phone !=null){
+			output+="; phone = "+phone;
+		}
+		if (agreeToBeNotifiedSpecialoffers){
+			output+="; agrees to be notified of special offers.";
+		}
+		if (!(agreeToBeNotifiedSpecialoffers)){
+			output+="; will not be notified of special offers.";
+		}
+		System.out.println(output);
+	}
+	
 	
 	/**
 	 *  observer/observable business methods *.

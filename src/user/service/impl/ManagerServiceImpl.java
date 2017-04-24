@@ -13,6 +13,7 @@ import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
+import policies.SortingByAlaCarte;
 import policies.SortingByCriteria;
 import policies.SortingByRestaurant;
 import policies.TargetProfitPolicy;
@@ -67,7 +68,8 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#removeUser(user.model.User)
 	 */
 	@Override
-	public void removeUser(User user){
+	public void removeUser(String username) throws NameNotFoundException{
+		User user = selectUser(username);
 		MyFoodora.getInstance().unregister(user);
 	}
 	
@@ -183,47 +185,22 @@ public class ManagerServiceImpl implements ManagerService {
 	 * @see user.service.ManagerService#getBestRestaurant()
 	 */
 	@Override
-	public Restaurant showRestaurantDesc() {
-		// TODO Auto-generated method stub
-		double income = 0;
-		Restaurant restaurant = null;
-		ArrayList<User> restaurant_users =  myfoodora_service.getUsersOfAssignedType("RESTAURANT");
-		for (User u : restaurant_users){
-			Restaurant r = (Restaurant)u;
-			double rincome = r.getIncome(); //the number of commands passed at restaurant r is the length of its history
-			System.out.println(r.getName()+": total income = "+rincome);
-			if (rincome>income){
-				income = rincome;
-				restaurant = r;
-			}
-		}
-		System.out.println("\nThe best selling restaurant is:");
-		System.out.println(restaurant.getName());
-		return restaurant;
-		
+	public void showRestaurantDesc() {
+		SortingByCriteria sortingcriteria = new SortingByRestaurant();
+		System.out.println("Displaying restaurants sorted w.r.t the number of shipped orders ");
+		sortingcriteria.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
 	}
 
 	/* (non-Javadoc)
 	 * @see user.service.ManagerService#getWorstRestaurant()
 	 */
 	@Override
-	public Restaurant showRestaurantAsc() {
+	public void showRestaurantAsc() {
 		// TODO Auto-generated method stub
-		double income = Integer.MAX_VALUE;
-		Restaurant restaurant = null;
-		ArrayList<User> restaurant_users =  myfoodora_service.getUsersOfAssignedType("RESTAURANT");
-		for (User u : restaurant_users){
-			Restaurant r = (Restaurant)u;
-			double rincome = r.getIncome(); //the number of commands passed at restaurant r is the length of its history
-			System.out.println(r.getName()+": total income = "+rincome);
-			if (rincome<income){
-				income = rincome;
-				restaurant = r;
-			}
-		}
-		System.out.println("\nThe worst selling restaurant is:");
-		System.out.println(restaurant.getName());
-		return restaurant;
+		SortingByCriteria sortingcriteria = new SortingByRestaurant();
+		System.out.println("Displaying restaurants sorted w.r.t the number of shipped orders ");
+		sortingcriteria.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
+
 	}
 
 
@@ -232,44 +209,44 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// 8. determining the most/least active courier of the fleet
 	@Override
-	public Courier showCourierDesc() {
+	public void showCourierDesc() {
 		// TODO Auto-generated method stub
-		int count = 0;
-		Courier courier = null;
-		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
-		for (User u : courier_users){
-			Courier c = (Courier)u;
-			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
-			if (ccount>count){
-				count = ccount;
-				courier = c;
-			}
-		}
-		System.out.println("\nThe most active courier is:");
-		System.out.println(courier.getName());
-		return courier;
+//		int count = 0;
+//		Courier courier = null;
+//		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
+//		for (User u : courier_users){
+//			Courier c = (Courier)u;
+//			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
+//			if (ccount>count){
+//				count = ccount;
+//				courier = c;
+//			}
+//		}
+//		System.out.println("\nThe most active courier is:");
+//		System.out.println(courier.getName());
+//		return courier;
 	}
 
 	/* (non-Javadoc)
 	 * @see user.service.ManagerService#getWorstCourier()
 	 */
 	@Override
-	public Courier showCourierAsc() {
-		// TODO Auto-generated method stub
-		int count = Integer.MAX_VALUE;
-		Courier courier = null;
-		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
-		for (User u : courier_users){
-			Courier c = (Courier)u;
-			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
-			if (ccount<count){
-				count = ccount;
-				courier = c;
-			}
-		}
-		System.out.println("\nThe least active courier is:");
-		System.out.println(courier.getName());
-		return courier;
+	public void showCourierAsc() {
+//		// TODO Auto-generated method stub
+//		int count = Integer.MAX_VALUE;
+//		Courier courier = null;
+//		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
+//		for (User u : courier_users){
+//			Courier c = (Courier)u;
+//			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
+//			if (ccount<count){
+//				count = ccount;
+//				courier = c;
+//			}
+//		}
+//		System.out.println("\nThe least active courier is:");
+//		System.out.println(courier.getName());
+//		return courier;
 	}
 
 	// 9. setting the current delivery-policy used by MyFoodora to determine which courier

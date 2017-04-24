@@ -51,32 +51,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 	// add/remove a dish to the menu
 	//add/remove a dish to the menu
 	
-		/* (non-Javadoc)
-	 * @see user.service.RestaurantService#addDish(restaurant.Dish)
-	 */
-	@Override
-	public void addDish(Dish dish) {
-		// TODO Auto-generated method stub
-		//add/remove a dish to the menu
-		try{
-			restaurant.getMenu().addDish(dish);
-		} catch (NameAlreadyExistsException e){
-			e.printStackTrace();
-		}
-	}
-
 
 	/* (non-Javadoc)
 	 * @see user.service.RestaurantService#addDish(java.lang.String, java.lang.String, java.lang.String, double)
 	 */
 	@Override
-	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice) {
+	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice) throws NameAlreadyExistsException {
 		// TODO Auto-generated method stub
 		Dish dish = null;
 		if (dishCategory.equalsIgnoreCase("starter")) dish = new Starter(dishName,foodCategory,unitPrice);
 		if (dishCategory.equalsIgnoreCase("main")) dish = new MainDish(dishName,foodCategory,unitPrice);
 		if (dishCategory.equalsIgnoreCase("dessert")) dish = new Dessert(dishName,foodCategory,unitPrice);
-		addDish(dish);
+		restaurant.getMenu().addDish(dish);
 	}
 	
 	
@@ -86,13 +72,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @see user.service.RestaurantService#removeDish(java.lang.String)
 	 */
 	@Override
-	public void removeDish(String dishName) {
-		// TODO Auto-generated method stub
-		try {
-			restaurant.getMenu().removeDish(dishName);
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}	
+	public void removeDish(String dishName) throws NameNotFoundException  {
+		restaurant.getMenu().removeDish(dishName);
 	}
 	
 	/* (non-Javadoc)
@@ -103,25 +84,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurant.getMenu().hasDish(dishName);
 	}
-
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#createDish(java.lang.String)
-	 */
-	//create an instance of Dish
-	@Override
-	public Dish createFactoryDish(String dishName) {
-		// TODO Auto-generated method stub
-		//create an instance of Dish
-		try{ 
-			Dish dish = restaurant.getDishFactory().createDish(dishName);
-			return dish;	
-		}
-		catch (NameNotFoundException e){
-		}
-		return new Starter("","",0);
-		
-
-		}
 	
 	/* (non-Javadoc)
 	 * @see user.service.RestaurantService#createMeal(java.lang.String)
@@ -190,128 +152,25 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 		
 	}
-
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#addMeal(restaurant.Meal)
-	 */
-	@Override
-	public void addMeal(Meal meal) {
-		// TODO Auto-generated method stub
-		try{
-		if (meal instanceof HalfMeal){
-			restaurant.getMealMenu().addMeal(meal);
-		}
-		if (meal instanceof FullMeal){
-			restaurant.getMealMenu().addMeal(meal);
-		}
-		System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu of "+restaurant.getName());
-		}catch(NameAlreadyExistsException e){
-			e.printStackTrace();
-		}
-	}
-		
-		
-		
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#addMeal(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void addMeal(String mealname, String dishname1, String dishname2) {
-		// TODO Auto-generated method stub
-		//Add  a meal to the meal menu.
-		//Error occurs when dish name is not recognized or when dish types don't match
-		//Half-meal
-		try{
-			if (!(restaurant.getMenu().hasDish(dishname1))){
-				throw new NameNotFoundException(dishname1);
-			}
-			if (!(restaurant.getMenu().hasDish(dishname2))){
-				throw new NameNotFoundException(dishname2);
-			}
-		double md_count=0;
-		double st_ds_count=0;
-		Meal meal = new HalfMeal(mealname);
-		for (Dish starter:restaurant.getMenu().getStarters()){
-			if (starter.getDishName().equalsIgnoreCase(dishname1) || starter.getDishName().equalsIgnoreCase(dishname2)){
-				meal.addDish(starter);
-				st_ds_count++;
-			}
-		}
-		for (Dish maindish:restaurant.getMenu().getMaindishes()){
-			if (maindish.getDishName().equalsIgnoreCase(dishname1) || maindish.getDishName().equalsIgnoreCase(dishname2)){
-				meal.addDish(maindish);
-				md_count++;
-			}
-		}
-		for (Dish dessert:restaurant.getMenu().getDesserts()){
-			if (dessert.getDishName().equalsIgnoreCase(dishname1) || dessert.getDishName().equalsIgnoreCase(dishname2)){
-				meal.addDish(dessert);
-				st_ds_count++;
-			}
-		}
-		if (md_count==1 && st_ds_count==1){
-			meal.refreshMealType();
-			restaurant.getMealMenu().addMeal(meal);
-			System.out.println("Formula <"+meal.getName()+">" + " added to the meal-menu of "+restaurant.getName());
-		}
-		else{
-			throw new DishTypeErrorException();
-		}
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#addMeal(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void addMeal(String mealname, String startername, String maindishname, String dessertname) {
-		// TODO Auto-generated method stub
-
-		
-		//Full-meal
-		try{
-			if (!(restaurant.getMenu().hasDish(startername))){
-				throw new NameNotFoundException(startername);
-			}
-			if (!(restaurant.getMenu().hasDish(maindishname))){
-				throw new NameNotFoundException(maindishname);
-			}
-			if (!(restaurant.getMenu().hasDish(dessertname))){
-				throw new NameNotFoundException(dessertname);
-			}
-			Meal meal = new FullMeal(mealname);
-			for (Dish starter:restaurant.getMenu().getStarters()){
-				if (starter.getDishName().equalsIgnoreCase(startername)){
-					meal.addDish(starter);
-				}
-			}
-			for (Dish maindish:restaurant.getMenu().getMaindishes()){
-				if (maindish.getDishName().equalsIgnoreCase(maindishname)){
-					meal.addDish(maindish);
-				}
-			}
-			for (Dish dessert:restaurant.getMenu().getDesserts()){
-				if (dessert.getDishName().equalsIgnoreCase(dessertname)){
-					meal.addDish(dessert);
-				}
-			}
-			if (meal.getDishes().size()==3){
-				meal.refreshMealType();
-				this.restaurant.getMealMenu().addMeal(meal);
-				System.out.println("Formula <"+meal.getName()+">" +" added to the meal-menu of "+restaurant.getName());
-			}
-			else {
-				throw new DishTypeErrorException();
-			}
-			}
-			catch (Exception e){
-				e.printStackTrace();
-			}
 	
-	}
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#createDish(java.lang.String)
+	 */
+	//create an instance of Dish
+	@Override
+	public Dish createFactoryDish(String dishName) {
+		// TODO Auto-generated method stub
+		//create an instance of Dish
+		try{ 
+			Dish dish = restaurant.getDishFactory().createDish(dishName);
+			return dish;	
+		}
+		catch (NameNotFoundException e){
+		}
+		return new Starter("","",0);
+		
+
+		}
 
 	/* (non-Javadoc)
 	 * @see user.service.RestaurantService#createMeal(java.lang.String, java.lang.String)
@@ -346,7 +205,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 		if (mealmenu.hasMeal(mealName)){
 			mealmenu.removeMeal(mealName);
-			System.out.println("Half-meal <" + mealName + "> successfully removed from the meal-menu");
+			System.out.println(mealName + " successfully removed from the meal-menu");
 		}
 	}
 
@@ -390,9 +249,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if (sm.getName().equalsIgnoreCase(mealName)){
 				iter.remove();
 				sm.setSpecial(false);
-				restaurant.getRestaurantService().addMeal(sm);
+				try {
+					restaurant.getMealMenu().addMeal(sm);
+				} catch (NameAlreadyExistsException e) {
+					e.printStackTrace();
+				}
 			}
-		
 		}
 	}
 
@@ -425,9 +287,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void DisplayMostOrderedHalfMeal() {
 		// TODO Auto-generated method stub
-		SortingByCriteria s = new SortingByHalfMeal();
-		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
-		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
+		SortingByCriteria sortingcriteria = new SortingByHalfMeal();
+		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
+		sortingcriteria.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
 	/* (non-Javadoc)
@@ -436,9 +298,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void DisplayLeastOrderedHalfMeal() {
 		// TODO Auto-generated method stub
-		SortingByCriteria s = new SortingByHalfMeal();
-		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
-		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
+		SortingByCriteria sortingcriteria = new SortingByHalfMeal();
+		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
+		sortingcriteria.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
 	/* (non-Javadoc)
@@ -447,9 +309,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void DisplayMostOrderedAlaCarte() {
 		// TODO Auto-generated method stub
-		SortingByCriteria s = new SortingByAlaCarte();
-		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
-		s.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
+		SortingByCriteria sortingcriteria = new SortingByAlaCarte();
+		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
+		sortingcriteria.displayDescending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 		
 	/* (non-Javadoc)
@@ -458,9 +320,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public void DisplayLeastOrderedAlaCarte() {
 		// TODO Auto-generated method stub
-		SortingByCriteria s = new SortingByAlaCarte();
-		System.out.println("\nDisplaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
-		s.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
+		SortingByCriteria sortingcriteria = new SortingByAlaCarte();
+		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
+		sortingcriteria.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 	
 	/* (non-Javadoc)

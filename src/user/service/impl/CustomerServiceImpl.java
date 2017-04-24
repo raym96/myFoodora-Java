@@ -82,54 +82,6 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	
 	/* (non-Javadoc)
-	 * @see user.service.CustomerService#commandSpecialMeal(user.model.Restaurant, java.lang.String)
-	 */
-	public void commandSpecialMeal(Restaurant r, String mealName){
-		if (customer.getShoppingCart().hasRestaurant(r)){
-			Order order = customer.getShoppingCart().getOrder(r);
-			order.addItem(r.getRestaurantService().createFactoryMeal("Special-Meal", mealName));
-		}
-		else{
-			Order order = new Order(customer, r);
-			order.addItem(r.getRestaurantService().createFactoryMeal("Special-Meal", mealName));
-			customer.getShoppingCart().addOrder(order);
-		}
-		customer.update(new Message(customer.getUsername(), mealName+" has been added to your shopping cart !"));
-	}
-	
-	/* (non-Javadoc)
-	 * @see user.service.CustomerService#addOrder(user.model.Restaurant, java.lang.String, java.lang.String)
-	 */
-	public void commandRegularMeal(Restaurant r, String mealName, String mealCategory){
-		if (customer.getShoppingCart().hasRestaurant(r)){
-			Order order = customer.getShoppingCart().getOrder(r);
-			order.addItem(r.getRestaurantService().createFactoryMeal(mealCategory, mealName));
-		}
-		else{
-			Order order = new Order(customer, r);
-			order.addItem(r.getRestaurantService().createFactoryMeal(mealCategory, mealName));
-			customer.getShoppingCart().addOrder(order);
-		}
-		customer.update(new Message(customer.getUsername(), mealName+" has been added to your shopping cart !"));
-	}
-
-	/* (non-Javadoc)
-	 * @see user.service.CustomerService#addOrder(user.model.Restaurant, java.lang.String)
-	 */
-	public void commandAlaCarte(Restaurant r, String dishName){
-		if (customer.getShoppingCart().hasRestaurant(r)){
-			Order order = customer.getShoppingCart().getOrder(r);
-			order.addItem(r.getRestaurantService().createFactoryDish(dishName));
-		}
-		else{
-			Order order = new Order(customer, r);
-			order.addItem(r.getRestaurantService().createFactoryDish(dishName));
-			customer.getShoppingCart().addOrder(order);
-		}
-		customer.update(new Message(customer.getUsername(), dishName+" has been added to your shopping cart !"));
-	}
-
-	/* (non-Javadoc)
 	 * @see user.service.CustomerService#pay()
 	 */
 	@Override
@@ -143,6 +95,10 @@ public class CustomerServiceImpl implements CustomerService {
 		order.setDate(date);
 		
 		customer.getCard().pay(order);
+		
+		//automatically find a deliverer
+		MyFoodora myfoodora = MyFoodora.getInstance();
+		myfoodora_service.findDeliverer(order, myfoodora.getAvailableCouriers());
 		
 		order.getRestaurant().addToHistory(order);
 		MyFoodora.getInstance().addToHistory(order);		
@@ -183,27 +139,26 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @see user.service.CustomerService#getHistory()
 	 */
 	@Override
-	public History getHistory(){
+	public void getHistory(){
 		History history = new History();
 		for (Order order:MyFoodora.getInstance().getHistory().getOrders()){
 			if (order.getCustomer() == customer){
 				history.addOrder(order);
 			}
 		}
-		return history;
+		System.out.println(history);
 	}
 	
 	/* (non-Javadoc)
 	 * @see user.service.CustomerService#getPoints()
 	 */
 	@Override
-	public double getPoints(){
+	public void getPoints(){
 		if (customer.getCard() instanceof PointCard){
-			return ((PointCard)customer.getCard()).getPoints();
+			System.out.println("Balance of points = "+((PointCard)customer.getCard()).getPoints());
 		}
 		else{
 			System.out.println("the customer doesn't have a point fidelity card");
-			return 0;
 		}
 	}
 	

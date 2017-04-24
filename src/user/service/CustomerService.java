@@ -20,33 +20,24 @@ import user.model.Restaurant;
 public interface CustomerService {
 
 	/**
-	 * Place the special meal order.
+	 * Creates the order.
 	 *
-	 * @param restaurant the restaurant
-	 * @param mealName the meal name
+	 * @param restaurantName the restaurant name
+	 * @param orderName the order name
 	 */
-	// order.
-	public void commandSpecialMeal(Restaurant restaurant, String mealName);
-	
+	void createOrder(String restaurantName, String orderName);
+
 	/**
-	 * Place the standard meal order.
+	 * Adds the item 2 order.
 	 *
-	 * @param restaurant the restaurant
-	 * @param mealName the meal name
-	 * @param mealType the meal type
+	 * @param orderName the order name
+	 * @param itemName the item name
+	 * @throws NameNotFoundException the name not found exception
 	 */
-	public void commandRegularMeal(Restaurant restaurant, String mealName, String mealType);
-	
+	void addItem2Order(String orderName, String itemName) throws NameNotFoundException;
+
 	/**
-	 * Place the a-la-carte order.
-	 *
-	 * @param restaurant the restaurant
-	 * @param dishName the dish name
-	 */
-	public void commandAlaCarte(Restaurant restaurant, String dishName);
-	
-	/**
-	 * Pay.
+	 * end the order and pay for it at a given date
 	 *
 	 * @param orderName the order name
 	 * @param date the date
@@ -74,14 +65,14 @@ public interface CustomerService {
 	 *
 	 * @return the history
 	 */
-	History getHistory();
+	void getHistory();
 	
 	/**
 	 * access the points acquired with a fidelity program.
 	 *
 	 * @return the points
 	 */
-	double getPoints();
+	void getPoints();
 	
 	/**
 	 * Give consensus to be notified of special offers.
@@ -94,23 +85,6 @@ public interface CustomerService {
 	 */
 	public void removeConsensusBeNotifiedSpecialOffers();
 
-	/**
-	 * Creates the order.
-	 *
-	 * @param restaurantName the restaurant name
-	 * @param orderName the order name
-	 */
-	void createOrder(String restaurantName, String orderName);
-
-	/**
-	 * Adds the item 2 order.
-	 *
-	 * @param orderName the order name
-	 * @param itemName the item name
-	 * @throws NameNotFoundException the name not found exception
-	 * @throws NameNotFoundException the name not found exception
-	 */
-	void addItem2Order(String orderName, String itemName) throws NameNotFoundException, NameNotFoundException;
 
 
 }
