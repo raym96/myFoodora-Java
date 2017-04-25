@@ -48,7 +48,7 @@ public class CourierTest {
 		courier = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
 		
 		assertNotNull(courier);
-		assertNotNull(courier.getCourierService());
+		assertNotNull(courier.getService());
 		assertNotNull(courier.getDeliveredOrders());
 		assertNotNull(courier.getWaitingOrders());
 	}

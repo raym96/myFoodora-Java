@@ -18,6 +18,7 @@ import system.ShoppingCart;
 import system.SpecialOfferObserver;
 import user.service.CustomerService;
 import user.service.impl.CustomerServiceImpl;
+import user.view.CustomerView;
 
 
 /**
@@ -52,6 +53,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	/** The customer service. */
 	private CustomerService customerService;
 	
+	private CustomerView customerView;
 	/**
 	 * Instantiates a new customer.
 	 *
@@ -70,6 +72,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.customerService = new CustomerServiceImpl(this);
+		this.customerView = new CustomerView(this);
 		this.specialoffers = new ArrayList<Meal>();
 		
 	}
@@ -78,11 +81,14 @@ public class Customer extends User implements SpecialOfferObserver{
 	 *
 	 * @return the customer service
 	 */
-	public CustomerService getCustomerService() {
+	public CustomerService getService() {
 		return customerService;
 	}
 
 
+	public CustomerView getView() {
+		return customerView;
+	}
 	/**
 	 * Gets the shopping cart.
 	 *
@@ -203,25 +209,7 @@ public class Customer extends User implements SpecialOfferObserver{
 		return  "<Customer> "+username+"; fullname = "+firstname+" "+lastname.toUpperCase()+"; address="+address;
 	}
 	
-	@Override
-	public void displayInfo(){
-		String output = "";
-		output+="<Customer> "+username+"; fullname = "+firstname+" "+lastname.toUpperCase()+"; address="+address;
-		if (email !=null){
-			output+="; email = "+email;
-		}
-		if (phone !=null){
-			output+="; phone = "+phone;
-		}
-		if (agreeToBeNotifiedSpecialoffers){
-			output+="; agrees to be notified of special offers.";
-		}
-		if (!(agreeToBeNotifiedSpecialoffers)){
-			output+="; will not be notified of special offers.";
-		}
-		System.out.println(output);
-	}
-	
+
 	
 	/**
 	 *  observer/observable business methods *.

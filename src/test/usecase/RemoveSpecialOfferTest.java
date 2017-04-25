@@ -63,7 +63,7 @@ public class RemoveSpecialOfferTest {
 		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 		// send alerts to customers
@@ -87,12 +87,12 @@ public class RemoveSpecialOfferTest {
 		
 		if (user!=null && user instanceof Restaurant){
 			Restaurant restaurant = (Restaurant)user;
-			restaurant.getRestaurantService().displaySpecialMenu();
+			restaurant.getService().displaySpecialMenu();
 			Scanner s = new Scanner(System.in);
 			System.out.println("Please enter the name of the meal to be removed from the meal-of-the-week list");
 			String mealname = s.nextLine();
-			restaurant.getRestaurantService().removeSpecialOffer(mealname);
-			restaurant.getRestaurantService().displayMealMenu();
+			restaurant.getService().removeSpecialOffer(mealname);
+			restaurant.getService().displayMealMenu();
 			s.close();
 	}
 	}

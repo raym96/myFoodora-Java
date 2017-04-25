@@ -34,7 +34,7 @@ public class ManagerTest {
 	@BeforeClass
 	public static void testManager() {
 		manager = new Manager("He", "Xiaoan", "hxa");
-		managerService = manager.getManagerService();
+		managerService = manager.getService();
 		
 		assertNotNull(manager);
 		assertNotNull(managerService);

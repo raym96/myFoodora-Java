@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import exceptions.LoginErrorException;
+import exceptions.NameNotFoundException;
 import policies.TargetProfitPolicy;
 import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
@@ -36,9 +37,9 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/**
 	 * Instantiates a new my foodora service impl.
 	 */
-	public MyFoodoraServiceImpl() {
+	public MyFoodoraServiceImpl(MyFoodora myfoodora) {
 		super();
-		this.myfoodora = MyFoodora.getInstance();
+		this.myfoodora = myfoodora;
 	}
 
 /**
@@ -183,18 +184,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 	
-/**
- *  myfoodora's basic services provided to User's specific operations rely on *.
- *
- * @param userType the user type
- */
-	
-	public void displayUsersOfAssignedType(String userType){
-		
-		ArrayList<User> users = myfoodora.getUsersOfAssignedType(userType);
-		System.out.println("--- " + userType + " ---");
-		System.out.println(users);
-	}
 	
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#getUsersOfAssignedType(java.lang.String)
@@ -204,50 +193,19 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	}
 	
 
-	/**
-	 * Adds the to history.
-	 *
-	 * @param order the order
-	 */
-	public void addToHistory(Order order){
-		myfoodora.getHistory().addOrder(order);
-	}
-
-	/**
-	 * Display users.
-	 */
-	public void displayUsers() {
-		// TODO Auto-generated method stub
-		myfoodora.displayUsers();
-	}
-	
-	/**
-	 * Display active users.
-	 */
-	public void displayActiveUsers(){
-		myfoodora.displayActiveUsers();
-	}
-	
-	/**
-	 * Display all menus.
-	 */
-	public void displayAllMenus(){
-		myfoodora.displayAllMenus();
-	}
-
 
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#selectUser(java.lang.String)
 	 */
 	@Override
-	public User selectUser(String username) {
+	public User selectUser(String username) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		for(User user : myfoodora.getUsers()){
 			if( username.equalsIgnoreCase(user.getUsername()) ){
 				return user;
 			}
 		}
-		return null;
+		throw new NameNotFoundException(username);
 	}
 
 	/* (non-Javadoc)
@@ -259,14 +217,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
 	}
 
-	/* (non-Javadoc)
-	 * @see user.service.MyFoodoraService#getHistory()
-	 */
-	@Override
-	public History getHistory(){
-		return myfoodora.getHistory();
-	}
-	
+
 	/* (non-Javadoc)
 	 * @see user.service.MyFoodoraService#login(java.lang.String, java.lang.String)
 	 */

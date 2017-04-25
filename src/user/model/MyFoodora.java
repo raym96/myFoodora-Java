@@ -4,16 +4,12 @@
  package user.model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.FastestDeliveryPolicy;
 import policies.TargetProfitPolicy;
 import policies.TargetProfit_DeliveryCost;
-import policies.TargetProfit_Markup;
-import policies.TargetProfit_ServiceFee;
 import restaurant.*;
 import system.ConcreteSpecialOfferBoard;
 import system.History;
@@ -23,6 +19,7 @@ import system.Observer;
 import system.Order;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
+import user.view.MyFoodoraView;
 
 
 /**
@@ -38,9 +35,6 @@ public class MyFoodora implements Observable{
 	/** The specialofferobservers. */
 	private ArrayList<Customer> specialofferobservers;
 
-	/** The current delivery task. */
-	private Order currentDeliveryTask;
-	
 	/** The specialofferboard. */
 	private ConcreteSpecialOfferBoard specialofferboard;
 	
@@ -65,13 +59,15 @@ public class MyFoodora implements Observable{
 	/** The history. */
 	private History history;
 	
-	/** The balance. */
-	private double balance;
-	
 	/** The instance. */
 	//Singleton Pattern
 	private static MyFoodora instance = null;
 	
+	private MyFoodoraService myfoodoraService; 
+	private MyFoodoraView myfoodoraView;
+	
+	
+
 	/**
 	 * Instantiates a new my foodora.
 	 */
@@ -81,7 +77,8 @@ public class MyFoodora implements Observable{
 		this.messageBoard = new MessageBoard(this);
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
 		this.history = new History();
-		
+		this.myfoodoraService = new MyFoodoraServiceImpl(this);
+		this.myfoodoraView = new MyFoodoraView(this);
 		//default values
 		service_fee = 1;
 		markup_percentage=0.1;
@@ -131,13 +128,17 @@ public class MyFoodora implements Observable{
 		instance = null;
 	}
 	
+	public MyFoodoraView getView() {
+		return myfoodoraView;
+	}
+	
 	/**
 	 * Gets the my foodora service.
 	 *
 	 * @return the my foodora service
 	 */
-	public MyFoodoraService getMyFoodoraService(){
-		return new MyFoodoraServiceImpl();
+	public MyFoodoraService getService(){
+		return myfoodoraService;
 	}
 	
 	/**
@@ -359,43 +360,7 @@ public class MyFoodora implements Observable{
 		return specialofferboard;
 	}
 
-	/**
-	 * Display users.
-	 */
-	public void displayUsers(){
-		System.out.println("\n[USERS]");
-		for (User u:users){
-			System.out.println(u);
-		}
-	}
 	
-	/**
-	 * Display active users.
-	 */
-	public void displayActiveUsers(){
-		System.out.println("\n[ACTIVEUSERS]");
-		for (User u : getActiveUsers() ){
-			System.out.println(u);
-		}	
-	}
-	
-	/**
-	 * Display all menus.
-	 */
-	public void displayAllMenus() {
-		System.out.println("\n[ALL MENUS]");
-		for (User u:getUsersOfAssignedType("RESTAURANT")){
-			((Restaurant)u).getRestaurantService().displayAllMenu();
-		}
-		System.out.println("[/All MENUS]");
-	}
-	
-	/**
-	 * Display history.
-	 */
-	public void displayHistory(){
-		System.out.println("\n"+history);
-	}
 
 	/**
 	 * Adds the user.
@@ -449,24 +414,7 @@ public class MyFoodora implements Observable{
 		
 	}
 
-	
-	/**
-	 * Gets the current delivery task.
-	 *
-	 * @return the current delivery task
-	 */
-	public Order getCurrentDeliveryTask() {
-		return currentDeliveryTask;
-	}
 
-	/**
-	 * Sets the current delivery task.
-	 *
-	 * @param currentDeliveryTask the new current delivery task
-	 */
-	public void setCurrentDeliveryTask(Order currentDeliveryTask) {
-		this.currentDeliveryTask = currentDeliveryTask;
-	}
 	
 	/**
 	 * Gets the message board.

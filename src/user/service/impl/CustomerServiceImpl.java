@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import policies.LotteryCard;
 import policies.PointCard;
@@ -38,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private Customer customer;
 	
 	/** The m. */
-	MyFoodoraService m = new MyFoodoraServiceImpl();
+	MyFoodoraService m = MyFoodora.getInstance().getService();
 	/**
 	 * Instantiates a new customer service impl.
 	 *
@@ -53,9 +54,12 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @see user.service.CustomerService#createOrder(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void createOrder(String restaurantName, String orderName){
+	public void createOrder(String restaurantName, String orderName) throws NameAlreadyExistsException, NameNotFoundException{
 		Restaurant restaurant = (Restaurant)m.selectUser(restaurantName);
 		Order newOrder = new Order(customer,restaurant,orderName);
+		if (customer.getShoppingCart().hasOrder(orderName)){
+			throw new NameAlreadyExistsException(orderName);
+		}
 		customer.getShoppingCart().addOrder(newOrder);
 	}
 		
@@ -75,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
 			item = mealmenu.getMeal(itemName);
 		}
 		else {
-			throw new NameNotFoundException(orderName);
+			throw new NameNotFoundException(itemName);
 		}
 		order.addItem(item);
 	}
@@ -86,7 +90,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Override
 	public void endOrder(String orderName, String stringDate) throws NameNotFoundException, ParseException{
-		MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
+		MyFoodoraService myfoodora_service = MyFoodora.getInstance().getService();
 		Order order = customer.getShoppingCart().getOrder(orderName);
 	
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -110,15 +114,13 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	// 2. register/unregister to/from a fidelity card plan
 	@Override
-	public void registerCard(String cardType){
-		if (cardType.equalsIgnoreCase("lotterycard")){
+	public void registerCard(String cardType) throws NameNotFoundException{
+		if (cardType.equalsIgnoreCase("lottery")){
 			customer.setCard(new LotteryCard(customer));
-			System.out.println("" + customer.getUsername() + " have registered a lottery card !");
-		}else if (cardType.equalsIgnoreCase("pointcard")){
+		}else if (cardType.equalsIgnoreCase("point")){
 			customer.setCard(new PointCard(customer));
-			System.out.println("" + customer.getUsername() + " have registered a point card !");
 		}else{
-			System.out.println("The fidelity card type "+cardType+" is not recognized");
+			throw new NameNotFoundException(cardType);
 		}
 	}
 	
@@ -131,36 +133,6 @@ public class CustomerServiceImpl implements CustomerService {
 		System.out.println("" + customer.getUsername() + " has unregistered his/her card.");
 	}
 
-
-	// 3. access the information related to their account: including history of orders, and
-		// points acquired with a fidelity program
-
-	/* (non-Javadoc)
-	 * @see user.service.CustomerService#getHistory()
-	 */
-	@Override
-	public void getHistory(){
-		History history = new History();
-		for (Order order:MyFoodora.getInstance().getHistory().getOrders()){
-			if (order.getCustomer() == customer){
-				history.addOrder(order);
-			}
-		}
-		System.out.println(history);
-	}
-	
-	/* (non-Javadoc)
-	 * @see user.service.CustomerService#getPoints()
-	 */
-	@Override
-	public void getPoints(){
-		if (customer.getCard() instanceof PointCard){
-			System.out.println("Balance of points = "+((PointCard)customer.getCard()).getPoints());
-		}
-		else{
-			System.out.println("the customer doesn't have a point fidelity card");
-		}
-	}
 	
 	
 	// 4. give/remove consensus to be notified whenever a new special offer is set by any

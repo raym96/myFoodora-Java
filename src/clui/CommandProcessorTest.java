@@ -31,7 +31,7 @@ public class CommandProcessorTest {
 		//initial scenario
 		InitialScenario.load("my_foodora.ini");
 		c = new CommandProcessor();
-		m = new MyFoodoraServiceImpl();
+		m = MyFoodora.getInstance().getService();
 	}
 
 	/**
@@ -58,7 +58,6 @@ public class CommandProcessorTest {
 	public void testRegisterRestaurant() {
 		c.processCommand("login ceo 123456789");
 		c.processCommand("registerRestaurant BonheurDAntony 1,1 restaurant_1 password");
-		MyFoodora.getInstance().displayUsers();
 	}
 
 	/**
@@ -68,7 +67,6 @@ public class CommandProcessorTest {
 	public void testRegisterCustomer() {
 		c.processCommand("login ceo 123456789");
 		c.processCommand("registerCustomer francois hollande fhollande 2,7 password");
-		MyFoodora.getInstance().displayUsers();
 	}
 
 	/**
@@ -78,7 +76,6 @@ public class CommandProcessorTest {
 	public void testRegisterCourier() {
 		c.processCommand("login ceo 123456789");
 		c.processCommand("registerCourier nicolas sarkozy nsarkozy 2,7 password");
-		MyFoodora.getInstance().displayUsers();
 	}
 
 	/**
@@ -96,7 +93,6 @@ public class CommandProcessorTest {
 		c.processCommand("addDishRestaurantMenu ice-cream dessert standard 3.3");
 		
 		Restaurant restaurant = (Restaurant)m.selectUser("restaurant_1");
-		restaurant.getRestaurantService().displayAllMenu();
 	}
 
 	/**
@@ -112,7 +108,6 @@ public class CommandProcessorTest {
 		c.processCommand("createMeal iLoveChicken");
 		
 		Restaurant restaurant = (Restaurant)m.selectUser("restaurant_1");
-		restaurant.getRestaurantService().displayAllMenu();
 	}
 
 	/**
@@ -133,7 +128,6 @@ public class CommandProcessorTest {
 		c.processCommand("addDish2Meal chicken iLoveChicken");
 		
 		Restaurant restaurant = (Restaurant)m.selectUser("restaurant_1");
-		restaurant.getRestaurantService().displayAllMenu();
 	}
 
 	/**
@@ -195,7 +189,6 @@ public class CommandProcessorTest {
 		c.processCommand("setSpecialOffer iLoveChicken");
 		
 		Restaurant restaurant = (Restaurant)m.selectUser("restaurant_1");
-		restaurant.getRestaurantService().displayAllMenu();
 	}
 
 	/**

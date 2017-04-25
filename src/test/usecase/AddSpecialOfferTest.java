@@ -67,7 +67,7 @@ public class AddSpecialOfferTest {
 		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 		// send alerts to customers
@@ -90,20 +90,20 @@ public class AddSpecialOfferTest {
 		
 		if (user!=null && user instanceof Restaurant){
 			Restaurant restaurant = (Restaurant)user;
-			restaurant.getRestaurantService().displayMenu();
-			restaurant.getRestaurantService().displayMealMenu();
+			restaurant.getService().displayMenu();
+			restaurant.getService().displayMealMenu();
 			Scanner s = new Scanner(System.in);
 			System.out.println("Please enter the name of the meal to be upgraded as meal-of-the-week");
 			String mealname = s.nextLine();
-			restaurant.getRestaurantService().setSpecialOffer(mealname);
+			restaurant.getService().setSpecialOffer(mealname);
 			//the price is automatically updated when adding the meal to the special menu
-			restaurant.getRestaurantService().displayMealMenu();
-			restaurant.getRestaurantService().displaySpecialMenu();
+			restaurant.getService().displayMealMenu();
+			restaurant.getService().displaySpecialMenu();
 			
 			//notify all observers
 			for (Meal m: restaurant.getSpecialmealmenu().getMeals()){
 				if (m.getName().equalsIgnoreCase(mealname)){
-					myfoodora.getMyFoodoraService().notifyAll(m);
+					myfoodora.getService().notifyAll(m);
 				}
 			}
 			s.close();

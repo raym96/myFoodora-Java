@@ -252,7 +252,7 @@ public class Order {
 		str+="ON "+ sdf.format(date);
 		
 		if (assigned){
-			str+= "> DELIVERED BY <" + courier.getUsername()+">";
+			str+= " DELIVERED BY <" + courier.getUsername()+">";
 		}
 		return str;
 	}

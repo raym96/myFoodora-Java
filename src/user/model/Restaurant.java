@@ -18,6 +18,7 @@ import system.Order;
 import system.SpecialOfferBoard;
 import user.service.RestaurantService;
 import user.service.impl.RestaurantServiceImpl;
+import user.view.RestaurantView;
 
 
 /**
@@ -54,6 +55,8 @@ public class Restaurant extends User{
 	/** The restaurant service. */
 	private RestaurantService restaurantService;
 	
+	private RestaurantView restaurantView;
+	
 	/**
 	 * Instantiates a new restaurant.
 	 *
@@ -71,7 +74,7 @@ public class Restaurant extends User{
 		specialmealmenu = new MealMenu(this);
 		history = new History();
 		restaurantService = new RestaurantServiceImpl(this);
-	
+		restaurantView = new RestaurantView(this);
 	}
 
 	/**
@@ -79,10 +82,15 @@ public class Restaurant extends User{
 	 *
 	 * @return the restaurant service
 	 */
-	public RestaurantService getRestaurantService() {
+	public RestaurantService getService() {
 		return restaurantService;
 	}
 	
+	
+	public RestaurantView getView() {
+		return restaurantView;
+	}
+
 	/**
 	 * Gets the dish factory.
 	 *
@@ -262,19 +270,6 @@ public class Restaurant extends User{
 		return  "<Restaurant> "+username+"; name = "+name+"; address="+address;
 	}
 	
-	@Override
-	public void displayInfo(){
-		String output = "";
-		output+="<Restaurant> "+username+"; name = "+name+"; address="+address;
-		if (email !=null){
-			output+="; email = "+email;
-		}
-		if (phone !=null){
-			output+="; phone = "+phone;
-		}
-		System.out.println(output);
-	}
-
 
 	/**
 	 * Sets the sdf.

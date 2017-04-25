@@ -72,7 +72,7 @@ public class InsertMealTest {
 		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 		// send alerts to customers
@@ -94,8 +94,8 @@ public class InsertMealTest {
 		
 		if (user!=null && user instanceof Restaurant){
 			Restaurant restaurant = (Restaurant)user;
-			restaurant.getRestaurantService().displayMenu();
-			restaurant.getRestaurantService().displayMealMenu();
+			restaurant.getService().displayMenu();
+			restaurant.getService().displayMealMenu();
 			
 			System.out.println("Please choose your operation: \n"+"1.add a dish 2.add a meal");
 			Scanner s = new Scanner(System.in);
@@ -114,16 +114,16 @@ public class InsertMealTest {
 				s.nextLine();
 				switch(category){
 				case 1: 
-					restaurant.getRestaurantService().addDish(new Starter(dishName,dishType,price));
+					restaurant.getService().addDish(new Starter(dishName,dishType,price));
 					break;
 				case 2:
-					restaurant.getRestaurantService().addDish(new MainDish(dishName,dishType,price));
+					restaurant.getService().addDish(new MainDish(dishName,dishType,price));
 					break;
 				case 3:
-					restaurant.getRestaurantService().addDish(new Dessert(dishName,dishType,price));
+					restaurant.getService().addDish(new Dessert(dishName,dishType,price));
 					break;
 				}
-				restaurant.getRestaurantService().displayMenu();
+				restaurant.getService().displayMenu();
 			}
 			if (choice==2){
 				System.out.println("Please enter the name of the meal you want to add.");
@@ -135,14 +135,14 @@ public class InsertMealTest {
 				String dishname1 = s.nextLine();
 				String dishname2 = s.nextLine();
 				if (mealType ==1){
-					restaurant.getRestaurantService().addMeal(mealname, dishname1, dishname2);
+					restaurant.getService().addMeal(mealname, dishname1, dishname2);
 				}
 				else{
 					String dishname3 = s.nextLine();
-					restaurant.getRestaurantService().addMeal(mealname,dishname1,dishname2,dishname3);
+					restaurant.getService().addMeal(mealname,dishname1,dishname2,dishname3);
 				}
 				System.out.println("The price of the meal has been automatically computed and updated");
-				restaurant.getRestaurantService().displayMealMenu();
+				restaurant.getService().displayMealMenu();
 			}
 			
 			// The price is automatically updated

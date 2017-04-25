@@ -52,7 +52,7 @@ public class TargetProfit_MarkupTest {
 		cal.add(Calendar.MONTH, -1);
 		Date aMonthAgo = cal.getTime();
 		
-		double lastIncome = myfoodora.getMyFoodoraService().getTotalIncome(aMonthAgo, new Date());
+		double lastIncome = myfoodora.getService().getTotalIncome(aMonthAgo, new Date());
 		double delivery_cost = myfoodora.getDelivery_cost();
 		double markup_percentage = myfoodora.getMarkup_percentage();
 		double service_fee = myfoodora.getService_fee();

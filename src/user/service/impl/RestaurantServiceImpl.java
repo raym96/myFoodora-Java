@@ -285,7 +285,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 */
 	// 5. sorting of shipped orders with respect to different criteria (see below)
 	@Override
-	public void DisplayMostOrderedHalfMeal() {
+	public void displayMostOrderedHalfMeal() {
 		// TODO Auto-generated method stub
 		SortingByCriteria sortingcriteria = new SortingByHalfMeal();
 		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
@@ -296,10 +296,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @see user.service.RestaurantService#DisplayLeastOrderedHalfMeal()
 	 */
 	@Override
-	public void DisplayLeastOrderedHalfMeal() {
+	public void displayLeastOrderedHalfMeal() {
 		// TODO Auto-generated method stub
 		SortingByCriteria sortingcriteria = new SortingByHalfMeal();
-		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals");
+		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped half-meals (ascending order)");
 		sortingcriteria.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 
@@ -307,7 +307,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @see user.service.RestaurantService#DisplayMostOrderedAlaCarte()
 	 */
 	@Override
-	public void DisplayMostOrderedAlaCarte() {
+	public void displayMostOrderedAlaCarte() {
 		// TODO Auto-generated method stub
 		SortingByCriteria sortingcriteria = new SortingByAlaCarte();
 		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
@@ -318,10 +318,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @see user.service.RestaurantService#DisplayLeastOrderedAlaCarte()
 	 */
 	@Override
-	public void DisplayLeastOrderedAlaCarte() {
+	public void displayLeastOrderedAlaCarte() {
 		// TODO Auto-generated method stub
 		SortingByCriteria sortingcriteria = new SortingByAlaCarte();
-		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes");
+		System.out.println("Displaying all menu items of "+restaurant.getName()+" sorted w.r.t the number of shipped a-la-carte dishes (ascending order)");
 		sortingcriteria.displayAscending(restaurant.getHistory().getOrdersOf(restaurant.getUsername()));
 	}
 	
@@ -334,50 +334,5 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		restaurant.addToHistory(order);
 	}
-
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#displayMenu()
-	 */
-	@Override
-	public void displayMenu() {
-		// TODO Auto-generated method stub
-		restaurant.getMenu().display();
-	}
-
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#displayMealMenu()
-	 */
-	@Override
-	public void displayMealMenu() {
-		// TODO Auto-generated method stub
-		System.out.println("\n"+"[Meal menu]");
-		restaurant.getMealMenu().display();
-	}
-
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#displaySpecialMenu()
-	 */
-	@Override
-	public void displaySpecialMenu(){
-		// TODO Auto-generated method stub
-		System.out.println("\n[Special Offers]");
-		restaurant.getSpecialmealmenu().display();
-	}
-	
-	/* (non-Javadoc)
-	 * @see user.service.RestaurantService#displayAllMenu()
-	 */
-	@Override
-	public void displayAllMenu(){
-		System.out.println("\n-----["+(restaurant.getName().toUpperCase()+"]-----"));
-		displayMenu();
-		displayMealMenu();
-		displaySpecialMenu();
-	}
-
-
-
-	
-
 
 }

@@ -63,7 +63,7 @@ public class LoginUserTest {
 		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 		// send alerts to customers

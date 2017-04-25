@@ -50,7 +50,7 @@ public class TargetProfit_Markup implements TargetProfitPolicy {
 		
 		double lastIncome;
 		try {
-			lastIncome = myfoodora.getMyFoodoraService().getTotalIncome(aMonthAgoString, todayString);
+			lastIncome = myfoodora.getService().getTotalIncome(aMonthAgoString, todayString);
 			double delivery_cost = myfoodora.getDelivery_cost();
 			double service_fee = myfoodora.getService_fee();
 			int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgoString, todayString).size();

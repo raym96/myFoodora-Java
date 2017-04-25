@@ -19,7 +19,7 @@ import system.Order;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public interface RestaurantService {
+public interface RestaurantService extends UserService{
 
 	/**
 	 * Adds the dish.
@@ -146,22 +146,22 @@ public interface RestaurantService {
 	/**
 	 * Display most ordered half meal.
 	 */
-	public void DisplayMostOrderedHalfMeal();
+	public void displayMostOrderedHalfMeal();
 	
 	/**
 	 * Display least ordered half meal.
 	 */
-	public void DisplayLeastOrderedHalfMeal();
+	public void displayLeastOrderedHalfMeal();
 	
 	/**
 	 * Display most ordered a la carte.
 	 */
-	public void DisplayMostOrderedAlaCarte();
+	public void displayMostOrderedAlaCarte();
 	
 	/**
 	 * Display least ordered a la carte.
 	 */
-	public void DisplayLeastOrderedAlaCarte();
+	public void displayLeastOrderedAlaCarte();
 	
 	
 	// #. extra tool methods
@@ -173,26 +173,5 @@ public interface RestaurantService {
 	 */
 	public void addToHistory(Order order);
 	
-	/**
-	 * Display menu.
-	 */
-	public void displayMenu();
-	
-	/**
-	 * Display meal menu.
-	 */
-	public void displayMealMenu();
-	
-	/**
-	 * Display special menu.
-	 */
-	public void displaySpecialMenu();
-	
-	/**
-	 * Display all menu.
-	 */
-	public void displayAllMenu();
-
-
 	
 }

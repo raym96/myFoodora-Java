@@ -142,5 +142,12 @@ public class ShoppingCart {
 		return "\nSHOPPINGCART : \n\n" + str +"TOTAL PRICE = "+getTotalPrice()+" euros";
 	}
 	
+	public void display() {
+		String str = "";
+		for (Order order:orders){
+			str += order+"\n\n";
+		}
+		System.out.println("\nSHOPPINGCART : \n\n" + str +"TOTAL PRICE = "+getTotalPrice()+" euros");
+	}
 	
 }

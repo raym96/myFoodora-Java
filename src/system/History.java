@@ -127,6 +127,14 @@ public class History {
 		return str;
 	}
 	
+	public void display(){
+		String str = "\n[COMMAND HISTORY]\n\n";
+		for (Order order:orders){
+			str+=order+"\n\n";
+		}
+		System.out.println(str);
+	}
+	
 	/**
 	 * Gets the orders of.
 	 *

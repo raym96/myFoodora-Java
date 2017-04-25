@@ -38,7 +38,7 @@ public class RestaurantTest {
 	public static void testRestaurant() {
 		restaurant = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
 		assertNotNull(restaurant);
-		assertNotNull(restaurant.getRestaurantService());
+		assertNotNull(restaurant.getService());
 		assertNotNull(restaurant.getMenu());
 		assertNotNull(restaurant.getHalfMealMenu());
 		assertNotNull(restaurant.getHalfMealMenu());

@@ -61,10 +61,10 @@ public class CustomerServiceTest {
 	public void setUpBeforeClass() throws Exception {
 		InitialScenarioOld.load("scenario_test_services.ini");
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		
 		customer = (Customer)myfoodora_service.selectUser("customer_1");
-		customer_service = customer.getCustomerService();
+		customer_service = customer.getService();
 		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
 		restaurant2 = (Restaurant)myfoodora_service.selectUser("restaurant_2");
 	}

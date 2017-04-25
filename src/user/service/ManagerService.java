@@ -20,7 +20,7 @@ import user.model.User;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public interface ManagerService {
+public interface ManagerService extends UserService{
 	
 	
 	/**
@@ -159,31 +159,7 @@ public interface ManagerService {
 	
 	// ##. extra tool method
 
-	/**
-	 * Display users.
-	 */
-	public void displayUsers();
-	
-	/**
-	 * Display active users.
-	 */
-	public void displayActiveUsers();
-	
-	/**
-	 * Select user by username.
-	 *
-	 * @param username the username
-	 * @return the user
-	 * @throws NameNotFoundException the user not found exception
-	 */
 	public User selectUser(String username) throws NameNotFoundException;
-	
-	/**
-	 * Display users of assigned type.
-	 *
-	 * @param userType the user type
-	 */
-	public void displayUsersOfAssignedType(String userType);
 	
 	/**
 	 * Associate card.

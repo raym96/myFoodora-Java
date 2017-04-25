@@ -12,6 +12,7 @@ import user.service.ManagerService;
 import user.service.MyFoodoraService;
 import user.service.impl.ManagerServiceImpl;
 import user.service.impl.MyFoodoraServiceImpl;
+import user.view.ManagerView;
 
 
 /**
@@ -30,6 +31,8 @@ public class Manager extends User{
 	/** The manager service. */
 	private ManagerService managerService;
 	
+	private ManagerView managerView;
+	
 	/**
 	 * Instantiates a new manager.
 	 *
@@ -43,6 +46,7 @@ public class Manager extends User{
 		this.name = name;
 		this.surname = surname;
 		managerService = new ManagerServiceImpl(this);
+		managerView = new ManagerView(this);
 	}
 
 	/**
@@ -50,8 +54,13 @@ public class Manager extends User{
 	 *
 	 * @return the manager service
 	 */
-	public ManagerService getManagerService() {
+	public ManagerService getService() {
 		return managerService;
+	}
+
+
+	public ManagerView getView() {
+		return managerView;
 	}
 
 	/**
@@ -98,12 +107,6 @@ public class Manager extends User{
 		return  "<Manager> "+username+"; fullname = "+surname+" "+name.toUpperCase();
 	}
 	
-	@Override
-	public void displayInfo(){
-		String output = "";
-		output+="<Manager> "+username+"; fullname = "+surname+" "+name.toUpperCase();
-		System.out.println(output);
-	}
 
 	/* (non-Javadoc)
 	 * @see user.model.User#update(java.lang.Object)

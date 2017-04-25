@@ -14,6 +14,7 @@ import system.Order;
 import system.SpecialOfferBoard;
 import user.service.CourierService;
 import user.service.impl.CourierServiceImpl;
+import user.view.CourierView;
 
 
 /**
@@ -51,6 +52,7 @@ public class Courier extends User{
 	/** The courier service. */
 	private CourierService courierService;
 	
+	private CourierView courierview;
 	/**
 	 * Instantiates a new courier.
 	 *
@@ -71,8 +73,21 @@ public class Courier extends User{
 		
 		count = 0;
 		this.courierService = new CourierServiceImpl(this);
+		this.courierview = new CourierView(this);
 	}
 	
+	public CourierView getView() {
+		return courierview;
+	}
+	/**
+	 * Gets the courier service.
+	 *
+	 * @return the courier service
+	 */
+	public CourierService getService() {
+		return courierService;
+	}
+
 	/**
 	 * Sets the waiting orders.
 	 *
@@ -150,15 +165,7 @@ public class Courier extends User{
 		return deliveredOrders;
 	}
 	
-	/**
-	 * Gets the courier service.
-	 *
-	 * @return the courier service
-	 */
-	//Getters & Setters
-	public CourierService getCourierService() {
-		return courierService;
-	}
+	
 
 
 	/**
@@ -261,24 +268,6 @@ public class Courier extends User{
 		return  "<Courier> "+username+"; fullname = "+surname+" "+name.toUpperCase()+"; position="+position;
 	}
 	
-	@Override
-	public void displayInfo(){
-		String output = "";
-		output+="<Courier> "+username+"; fullname = "+surname+" "+name.toUpperCase()+"; position="+position;
-		if (email !=null){
-			output+="; email = "+email;
-		}
-		if (phone !=null){
-			output+="; phone = "+phone;
-		}
-		if (isOn_duty()){
-			output+="; is on-duty.";
-		}
-		if (!(isOn_duty())){
-			output+="; is off-duty";
-		}
-		System.out.println(output);
-	}
 
 	/* (non-Javadoc)
 	 * @see user.model.User#update(java.lang.Object)

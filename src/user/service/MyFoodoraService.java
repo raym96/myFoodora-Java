@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import exceptions.LoginErrorException;
+import exceptions.NameNotFoundException;
 import restaurant.*;
 import system.*;
 import user.model.Courier;
@@ -105,9 +106,10 @@ public interface MyFoodoraService {
 	 *
 	 * @param username the username
 	 * @return the user
+	 * @throws NameNotFoundException 
 	 */
 
-	public User selectUser(String username);
+	public User selectUser(String username) throws NameNotFoundException;
 	
 	/**
 	 * Gets the users of assigned type.
@@ -124,14 +126,6 @@ public interface MyFoodoraService {
 	 */
 	public void askAgree2customers(String ask);
 	
-	/**
-	 * Gets the history.
-	 *
-	 * @return the history
-	 */
-	//returns history of myfoodora for manager-service
-	public History getHistory();
-
 	/**
 	 * Login.
 	 *

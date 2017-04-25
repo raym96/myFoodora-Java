@@ -63,7 +63,7 @@ public class RegisterAUserTest {
 		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 		// send alerts to customers
@@ -132,9 +132,9 @@ public class RegisterAUserTest {
 			System.out.println("Do you agree to be notified of special offers ? By default it is no. Y/N");
 			String agree = s.nextLine();
 			if(agree=="Y"){
-				((Customer)user).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+				((Customer)user).getService().giveConsensusBeNotifiedSpecialOffers();
 			}else if(agree=="N"){
-				((Customer)user).getCustomerService().removeConsensusBeNotifiedSpecialOffers();
+				((Customer)user).getService().removeConsensusBeNotifiedSpecialOffers();
 			}
 			System.out.println("Please select the contact to be used to send the offers. By default it is the e-mail if exist. 1: email 2:SMS ");
 			String choice = s.nextLine();
@@ -151,9 +151,9 @@ public class RegisterAUserTest {
 			System.out.println("Please sets your current duty status. By default off-duty. Y:on-duty N: off-duty");
 			String status = s.nextLine();
 			if(status=="Y"){
-				((Courier)user).getCourierService().turnOnDuty();
+				((Courier)user).getService().turnOnDuty();
 			}else if(status=="N"){
-				((Courier)user).getCourierService().turnOffDuty();
+				((Courier)user).getService().turnOffDuty();
 			}
 			break;
 		default:

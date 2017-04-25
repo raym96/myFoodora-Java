@@ -11,6 +11,8 @@ import system.MessageBoard;
 import system.Observable;
 import system.Observer;
 import user.model.MyFoodora;
+import user.service.UserService;
+import user.view.UserView;
 
 
 /**
@@ -47,7 +49,6 @@ public abstract class User implements Observer{
 	/** The log status. */
 	private boolean logStatus;
 	
-
 	/**
 	 * Instantiates a new user.
 	 *
@@ -65,6 +66,11 @@ public abstract class User implements Observer{
 		this.logStatus = false;
 	}
 	
+	
+	public abstract UserView getView();
+
+	public abstract UserService getService();
+
 	/**
 	 * Log in.
 	 */
@@ -319,5 +325,4 @@ public abstract class User implements Observer{
 		return "User ID=" + ID + ", username=" + username + ", activated=" + activated;
 	}
 	
-	public abstract void displayInfo();
 }

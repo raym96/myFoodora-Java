@@ -48,7 +48,7 @@ public class TargetProfit_ServiceFee implements TargetProfitPolicy {
 		
 		double lastIncome;
 		try {
-			lastIncome = myfoodora.getMyFoodoraService().getTotalIncome(aMonthAgoString, todayString);
+			lastIncome = myfoodora.getService().getTotalIncome(aMonthAgoString, todayString);
 			double delivery_cost = myfoodora.getDelivery_cost();
 			double markup_percentage = myfoodora.getMarkup_percentage();
 			int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgoString, todayString).size();

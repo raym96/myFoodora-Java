@@ -22,8 +22,8 @@ public class SyntaxErrorException extends Exception {
 	 */
 	public void printError() {
 		if (sizeArgument==0){
-		 System.out.println("SYNTAX ERROR: Unknown command / "
-		 		+ "missing arguments. Please check your spelling. "
+		 System.out.println("SYNTAX ERROR: Unknown command"
+		 		+ ". Please check your spelling. "
 		 		+ "For more information, enter \"help\".");
 		}
 		if (sizeArgument>0){

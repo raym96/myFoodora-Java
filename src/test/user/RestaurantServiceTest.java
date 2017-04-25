@@ -53,11 +53,11 @@ public class RestaurantServiceTest {
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		InitialScenarioOld.load("scenario_test_services.ini");
-		restaurant1 = (Restaurant)new MyFoodoraServiceImpl().selectUser("restaurant_1");
-		restaurant1_service = restaurant1.getRestaurantService();
+		restaurant1 = (Restaurant)MyFoodora.getInstance().getService().selectUser("restaurant_1");
+		restaurant1_service = restaurant1.getService();
 		
-		restaurant2 = (Restaurant)new MyFoodoraServiceImpl().selectUser("restaurant_2");
-		restaurant2_service = restaurant2.getRestaurantService();
+		restaurant2 = (Restaurant)MyFoodora.getInstance().getService().selectUser("restaurant_2");
+		restaurant2_service = restaurant2.getService();
 		
 		terrine = new Starter("terrine","standard",3);
 		sandwich = new MainDish("Sandwich","vegetarian",4);
@@ -233,8 +233,8 @@ public class RestaurantServiceTest {
 	public void testDisplayMostOrderedHalfMeal() {
 		System.out.println("History of all orders on MyFoodora:");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		restaurant1_service.DisplayMostOrderedHalfMeal();
-		restaurant2_service.DisplayMostOrderedHalfMeal();
+		restaurant1_service.displayMostOrderedHalfMeal();
+		restaurant2_service.displayMostOrderedHalfMeal();
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class RestaurantServiceTest {
 	public void testDisplayLeastOrderedHalfMeal() {
 		System.out.println("History of all orders on MyFoodora:");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		restaurant1_service.DisplayLeastOrderedHalfMeal();
-		restaurant2_service.DisplayLeastOrderedHalfMeal();
+		restaurant1_service.displayLeastOrderedHalfMeal();
+		restaurant2_service.displayLeastOrderedHalfMeal();
 	}
 
 	/**
@@ -255,8 +255,8 @@ public class RestaurantServiceTest {
 	public void testDisplayMostOrderedAlaCarte() {
 		System.out.println("History of all orders on MyFoodora:");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		restaurant1_service.DisplayMostOrderedAlaCarte();
-		restaurant2_service.DisplayMostOrderedAlaCarte();
+		restaurant1_service.displayMostOrderedAlaCarte();
+		restaurant2_service.displayMostOrderedAlaCarte();
 	}
 
 	/**
@@ -266,8 +266,8 @@ public class RestaurantServiceTest {
 	public void testDisplayLeastOrderedAlaCarte() {
 		System.out.println("History of all orders on MyFoodora:");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		restaurant1_service.DisplayLeastOrderedAlaCarte();
-		restaurant2_service.DisplayLeastOrderedAlaCarte();
+		restaurant1_service.displayLeastOrderedAlaCarte();
+		restaurant2_service.displayLeastOrderedAlaCarte();
 	}
 
 	/**

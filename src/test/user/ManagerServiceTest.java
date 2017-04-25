@@ -51,7 +51,7 @@ public class ManagerServiceTest {
 		InitialScenarioOld.load("scenario_test_services.ini");
 		
 		manager = new Manager("test","test","test");
-		manager_service = manager.getManagerService();
+		manager_service = manager.getService();
 		
 		
 		String s = "2016.01.01";

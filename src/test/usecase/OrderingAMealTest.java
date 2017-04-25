@@ -64,7 +64,7 @@ public class OrderingAMealTest {
 		InitialScenarioOld.load("init.ini");
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		managerService_director = new ManagerServiceImpl(new Manager("test","myfoodora","usecase"));
 	
 		// send alerts to customers
@@ -96,8 +96,8 @@ public class OrderingAMealTest {
 			System.out.println(restaurant_username);
 			Restaurant restaurant = null;
 			if( (restaurant=(Restaurant)myfoodora_service.selectUser(restaurant_username)) != null ){
-				restaurant.getRestaurantService().displayMenu();
-				restaurant.getRestaurantService().displayMealMenu();
+				restaurant.getService().displayMenu();
+				restaurant.getService().displayMealMenu();
 				
 				System.out.println("Please select 1 meal type : Half-meal, Full-meal");
 				String mealCategory = s.nextLine();
@@ -105,11 +105,11 @@ public class OrderingAMealTest {
 				System.out.println("Please enter 1 meal name corresponding the type specified:");
 				String mealname = s.nextLine();
 				while(!(mealname.equals("#"))){
-					((Customer)user).getCustomerService().commandRegularMeal(restaurant, mealname, mealCategory);
+					((Customer)user).getService().commandRegularMeal(restaurant, mealname, mealCategory);
 					System.out.println("Please enter 1 meal name corresponding the type specified: enter # to exit");
 					mealname = s.nextLine();
 				}
-				((Customer)user).getCustomerService().endOrder();
+				((Customer)user).getService().endOrder();
 				System.out.println("Session ended.");
 			}
 			s.close();

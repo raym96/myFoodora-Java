@@ -5,6 +5,7 @@ package user.service;
 
 import java.text.ParseException;
 
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import exceptions.NameNotFoundException;
 import system.History;
@@ -17,15 +18,17 @@ import user.model.Restaurant;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public interface CustomerService {
+public interface CustomerService extends UserService{
 
 	/**
 	 * Creates the order.
 	 *
 	 * @param restaurantName the restaurant name
 	 * @param orderName the order name
+	 * @throws NameAlreadyExistsException 
+	 * @throws NameNotFoundException 
 	 */
-	void createOrder(String restaurantName, String orderName);
+	void createOrder(String restaurantName, String orderName) throws NameAlreadyExistsException, NameNotFoundException;
 
 	/**
 	 * Adds the item 2 order.
@@ -47,32 +50,18 @@ public interface CustomerService {
 	void endOrder(String orderName, String date) throws NameNotFoundException, ParseException;
 	
 	/**
-	 * register to a fidelity card plan.
+	 * register to a fidelity card plan. Possible entries "Point" for pointcard, "Lottery" for lottery card
 	 *
 	 * @param cardType the card type
+	 * @throws NameNotFoundException 
 	 */
-	public void registerCard(String cardType);
+	public void registerCard(String cardType) throws NameNotFoundException;
 	
 	/**
 	 * unregister from a fidelity card plan.
 	 */
 	public void unregisterCard();
 	
-
-	
-	/**
-	 * access the history of orders.
-	 *
-	 * @return the history
-	 */
-	void getHistory();
-	
-	/**
-	 * access the points acquired with a fidelity program.
-	 *
-	 * @return the points
-	 */
-	void getPoints();
 	
 	/**
 	 * Give consensus to be notified of special offers.

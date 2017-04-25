@@ -62,7 +62,7 @@ public class MyFoodoraServiceTest {
 		InitialScenarioOld.load("scenario_test_services.ini");	
 		
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 		
 		//starting date for computing revenue between 2 dates
 		String s = "2016.01.01";
@@ -150,7 +150,7 @@ public class MyFoodoraServiceTest {
 		
 		//customer c agrees to be notified
 		Customer c = (Customer)myfoodora_service.selectUser("customer_1");
-		c.getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+		c.getService().giveConsensusBeNotifiedSpecialOffers();
 		
 		myfoodora_service.notifyAll(supermeal);
 		

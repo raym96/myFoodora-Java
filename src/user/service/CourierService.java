@@ -12,7 +12,7 @@ import system.Order;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public interface CourierService {
+public interface CourierService extends UserService {
 	
 	/**
 	 * register their account to the MyFoodora system.

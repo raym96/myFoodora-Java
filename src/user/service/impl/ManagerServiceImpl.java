@@ -14,6 +14,7 @@ import policies.DeliveryPolicy;
 import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
 import policies.SortingByAlaCarte;
+import policies.SortingByCourierDeliveries;
 import policies.SortingByCriteria;
 import policies.SortingByRestaurant;
 import policies.TargetProfitPolicy;
@@ -44,7 +45,7 @@ public class ManagerServiceImpl implements ManagerService {
 	private Manager manager;
 	
 	/** The myfoodora service. */
-	private MyFoodoraService myfoodora_service = new MyFoodoraServiceImpl();
+	private MyFoodoraService myfoodora_service = MyFoodora.getInstance().getService();
 	/**
 	 * Instantiates a new manager service impl.
 	 *
@@ -198,8 +199,8 @@ public class ManagerServiceImpl implements ManagerService {
 	public void showRestaurantAsc() {
 		// TODO Auto-generated method stub
 		SortingByCriteria sortingcriteria = new SortingByRestaurant();
-		System.out.println("Displaying restaurants sorted w.r.t the number of shipped orders ");
-		sortingcriteria.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
+		System.out.println("Displaying restaurants sorted w.r.t the number of shipped orders (ascending order)");
+		sortingcriteria.displayAscending(MyFoodora.getInstance().getHistory().getOrders());
 
 	}
 
@@ -211,20 +212,9 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public void showCourierDesc() {
 		// TODO Auto-generated method stub
-//		int count = 0;
-//		Courier courier = null;
-//		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
-//		for (User u : courier_users){
-//			Courier c = (Courier)u;
-//			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
-//			if (ccount>count){
-//				count = ccount;
-//				courier = c;
-//			}
-//		}
-//		System.out.println("\nThe most active courier is:");
-//		System.out.println(courier.getName());
-//		return courier;
+		SortingByCriteria sortingcriteria = new SortingByCourierDeliveries();
+		System.out.println("Displaying couriers sorted w.r.t the number of delivered orders ");
+		sortingcriteria.displayDescending(MyFoodora.getInstance().getHistory().getOrders());
 	}
 
 	/* (non-Javadoc)
@@ -232,21 +222,10 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	@Override
 	public void showCourierAsc() {
-//		// TODO Auto-generated method stub
-//		int count = Integer.MAX_VALUE;
-//		Courier courier = null;
-//		ArrayList<User> courier_users =  myfoodora_service.getUsersOfAssignedType("COURIER");
-//		for (User u : courier_users){
-//			Courier c = (Courier)u;
-//			int ccount = c.getCount(); //the number of commands passed at restaurant r is the length of its history
-//			if (ccount<count){
-//				count = ccount;
-//				courier = c;
-//			}
-//		}
-//		System.out.println("\nThe least active courier is:");
-//		System.out.println(courier.getName());
-//		return courier;
+		SortingByCriteria sortingcriteria = new SortingByCourierDeliveries();
+		System.out.println("Displaying couriers sorted w.r.t the number of delivered orders (ascending order)");
+		sortingcriteria.displayAscending(MyFoodora.getInstance().getHistory().getOrders());
+
 	}
 
 	// 9. setting the current delivery-policy used by MyFoodora to determine which courier
@@ -266,24 +245,6 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see user.service.ManagerService#displayUsers()
-	 */
-	// ##. extra tool method
-	@Override
-	public void displayUsers() {
-		// TODO Auto-generated method stub
-		MyFoodora.getInstance().displayUsers();
-	}
-
-	/* (non-Javadoc)
-	 * @see user.service.ManagerService#displayActiveUsers()
-	 */
-	@Override
-	public void displayActiveUsers() {
-		// TODO Auto-generated method stub
-		MyFoodora.getInstance().displayActiveUsers();
-	}
 
 	/* (non-Javadoc)
 	 * @see user.service.ManagerService#selectUser(java.lang.String)
@@ -295,21 +256,12 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	/* (non-Javadoc)
-	 * @see user.service.ManagerService#displayUsersOfAssignedType(java.lang.String)
-	 */
-	public void displayUsersOfAssignedType(String userType){
-		ArrayList<User> users = MyFoodora.getInstance().getUsersOfAssignedType(userType);
-		System.out.println("--- " + userType + " ---");
-		System.out.println(users);
-	}
-
-	/* (non-Javadoc)
 	 * @see user.service.ManagerService#associateCard(java.lang.String, java.lang.String)
 	 */
 	@Override
 	public void associateCard(String username, String cardType) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		Customer customer = (Customer)selectUser(username);
-		customer.getCustomerService().registerCard(cardType);
+		customer.getService().registerCard(cardType);
 	}
 }

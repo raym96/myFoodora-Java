@@ -2,6 +2,7 @@ package clui;
 
 import java.util.Scanner;
 
+import user.model.Courier;
 import user.model.MyFoodora;
 
 /**
@@ -21,6 +22,7 @@ public class CLUI {
 		
 		CommandProcessor cmd = new CommandProcessor();
 		cmd.start();
+		
 	}
 }
 

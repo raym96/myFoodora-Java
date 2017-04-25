@@ -106,8 +106,11 @@ public class CommandProcessor{
 			 case "unregister":
 				 unregister();
 				 break;
-			 case "displayinfo":
-				 displayInfo();
+			 case "showinfo":
+				 showInfo();
+				 break;
+			 case "showrestaurantmenus":
+				 showRestaurantMenus();
 				 break;
 			// MANAGER
 			 case "registermanager":
@@ -167,8 +170,20 @@ public class CommandProcessor{
 			 case "applytargetprofitpolicy":
 				 applyTargetProfitPolicy();
 				 break;
-			 case "displayUser":
-				 displayUsers();
+			 case "showusers":
+				 showUsers();
+				 break;
+			 case "activeusers":
+				 showActiveUsers();
+				 break;
+			 case "showmyfoodorahistory":
+				 showMyFoodoraHistory();
+				 break;
+			 case "showpolicies":
+				 showPolicies();
+				 break;
+			 case "showprofitfactors":
+				 showprofitfactors();
 				 break;
 			// RESTAURANT
 			 case "adddishrestaurantmenu":
@@ -210,8 +225,8 @@ public class CommandProcessor{
 			 case "showalacarte":
 				 showAlaCarte();
 				 break;
-			 case "displaymenu":
-				 displayMenu();
+			 case "showmymenu":
+				 showMyMenu();
 				 break;
 			 case "finddeliverer":
 				 findDeliverer();
@@ -241,6 +256,9 @@ public class CommandProcessor{
 			 case "showshoppingcart":
 				 showShoppingCart();
 				 break;
+			 case "showspecialoffers":
+				 showSpecialOffers();
+				 break;
 			 case "turnonnotification":
 				 turnOnNotification();
 				 break;
@@ -257,10 +275,10 @@ public class CommandProcessor{
 			 case "changeposition":
 				 changePosition();
 				 break;
-			 case "acceptCall":
+			 case "acceptcall":
 				 acceptCall();
 				 break;
-			 case "refuseCall":
+			 case "refusecall":
 				 refuseCall();
 				 break;
 			 default: 
@@ -275,9 +293,8 @@ public class CommandProcessor{
 		 }
 }
 
-	
 
-	
+
 	/**
 	 * login "username" "password".
 	 *
@@ -287,13 +304,15 @@ public class CommandProcessor{
 		if (arguments.length<2)throw new SyntaxErrorException(2);
 		String username = arguments[0];
 		String password = arguments[1];
-		MyFoodoraService m = new MyFoodoraServiceImpl();
+		MyFoodoraService m = MyFoodora.getInstance().getService();
 		try{
-		m.login(username,password);
-		user = m.selectUser(username);
-		System.out.println("Welcome on MyFoodora, user "+username+". Please enter a command.");
+			user = m.selectUser(username);
+			m.login(username,password);
+			System.out.println("Welcome on MyFoodora, user "+username+". Please enter a command.");
 		}
 		catch (LoginErrorException e){
+			e.printError();
+		} catch (NameNotFoundException e) {
 			e.printError();
 		}
 	}
@@ -379,7 +398,7 @@ public class CommandProcessor{
 		if (userType==2){
 			System.out.println("Do you agree to be notified about the special offer ? It's no by default");
 			if (s.nextLine().equalsIgnoreCase("yes")){
-				((Customer)newUser).getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+				((Customer)newUser).getService().giveConsensusBeNotifiedSpecialOffers();
 			}
 			System.out.println("Select the contact to be used to send the offers: email or phone.");
 			s.nextLine();
@@ -388,11 +407,11 @@ public class CommandProcessor{
 		if (userType==3){
 			System.out.println("Do you want to set your current duty status as on-duty ? By default it's off-duty. If you do enter \"yes\".");
 			if (s.nextLine().equalsIgnoreCase("yes")){
-				((Courier)newUser).getCourierService().turnOnDuty();
+				((Courier)newUser).getService().turnOnDuty();
 			}
 		}
 
-		newUser.displayInfo();
+		newUser.getView().showInfo();
 		System.out.println("If these informations are correct, please enter \"yes\" to save this account.");
 		if (s.nextLine().equalsIgnoreCase("yes")){
 			MyFoodora.getInstance().addUser(newUser);
@@ -421,14 +440,19 @@ public class CommandProcessor{
 		logout();
 	}
 	
+	
+	private void showRestaurantMenus() {
+		MyFoodora.getInstance().getView().showRestaurantMenus();
+	}
+	
 	/**
 	 * displayinfo<>
 	 *
 	 * @throws PermissionException the permission exception
 	 */
-	private void displayInfo() throws PermissionException {
+	private void showInfo() throws PermissionException {
 		if (user==null) throw new PermissionException("user");
-		user.displayInfo();
+		user.getView().showInfo();
 	}
 	/**
 	 * Register manager.
@@ -444,7 +468,7 @@ public class CommandProcessor{
 		String userName = arguments[2];
 		String password = arguments[3];
 		Manager manager = (Manager)user;
-		manager.getManagerService().addUser(new Manager(name,firstname,userName,password));
+		manager.getService().addUser(new Manager(name,firstname,userName,password));
 		System.out.println("Manager "+userName+" has been registered on myfoodora.");
 	}
 	
@@ -459,11 +483,11 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String name = arguments[0];
 		String[] parts = arguments[1].split(",");
-		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
+		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[1]));
 		String userName = arguments[2];
 		String password = arguments[3];
 		Manager manager = (Manager)user;
-		manager.getManagerService().addUser(new Restaurant(name,userName,address,password));
+		manager.getService().addUser(new Restaurant(name,userName,address,password));
 		System.out.println("Restaurant "+userName+" has been registered on myfoodora.");
 	}
 	
@@ -483,7 +507,7 @@ public class CommandProcessor{
 		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
 		String password = arguments[4];
 		Manager manager = (Manager)user;
-		manager.getManagerService().addUser(new Customer(firstName,lastName,userName,address,password));
+		manager.getService().addUser(new Customer(firstName,lastName,userName,address,password));
 		System.out.println("Customer "+userName+" has been registered on myfoodora.");
 	}
 
@@ -500,18 +524,18 @@ public class CommandProcessor{
 		String lastName = arguments[1];
 		String userName = arguments[2];
 		String[] parts = arguments[3].split(",");
-		AddressPoint position = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
+		AddressPoint position = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[1]));
 		String password = arguments[4];
 		Manager manager = (Manager)user;
-		manager.getManagerService().addUser(new Courier(firstName,lastName,userName,position,password));
+		manager.getService().addUser(new Courier(firstName,lastName,userName,position,password));
 		System.out.println("Courier "+userName+" has been registered on myfoodora.");
 	}
 
 	/**
 	 * displayUsers "".
 	 */
-	private void displayUsers() {
-		MyFoodora.getInstance().displayUsers();
+	private void showUsers() {
+		MyFoodora.getInstance().getView().showUsers();
 	}
 	
 	/**
@@ -526,7 +550,7 @@ public class CommandProcessor{
 		String username = arguments[0];
 		Manager manager = (Manager)user;
 		try {
-			manager.getManagerService().removeUser(username);
+			manager.getService().removeUser(username);
 			System.out.println("User "+username+" removed from MyFoodora.");
 		} catch (NameNotFoundException e) {
 			e.printError();
@@ -544,7 +568,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		Double markUp_percentage = Double.parseDouble(arguments[0]);
-		manager.getManagerService().setServiceFree(markUp_percentage);
+		manager.getService().setServiceFree(markUp_percentage);
 		System.out.println("Mark up percentage updated.");
 	}
 	
@@ -559,7 +583,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		Double delivery_cost = Double.parseDouble(arguments[0]);
-		manager.getManagerService().setServiceFree(delivery_cost);
+		manager.getService().setServiceFree(delivery_cost);
 		System.out.println("Delivery cost updated");
 	}
 	
@@ -574,7 +598,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		Double service_fee = Double.parseDouble(arguments[0]);
-		manager.getManagerService().setServiceFree(service_fee);
+		manager.getService().setServiceFree(service_fee);
 		System.out.println("Service fee updated");
 	}
 	
@@ -589,7 +613,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String deliveryPolicy = arguments[0];
 		Manager manager = (Manager)user;
-		manager.getManagerService().setDeliveryPolicy(deliveryPolicy);
+		manager.getService().setDeliveryPolicy(deliveryPolicy);
 		System.out.println("Delivery policy set as "+deliveryPolicy);
 	}
 
@@ -604,7 +628,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String ProfitPolicyName = arguments[0];
 		Manager manager = (Manager)user;
-		manager.getManagerService().setTargetProfitPolicy(ProfitPolicyName);
+		manager.getService().setTargetProfitPolicy(ProfitPolicyName);
 		System.out.println("Profit policy set as "+ProfitPolicyName);
 	}
 
@@ -622,7 +646,7 @@ public class CommandProcessor{
 		String cardType = arguments[1];
 		Manager manager = (Manager)user;
 		try {
-			manager.getManagerService().associateCard(userName, cardType);
+			manager.getService().associateCard(userName, cardType);
 			System.out.println("Card "+cardType+" associated to user "+userName+".");
 		} catch (NameNotFoundException e) {
 			e.printError();
@@ -638,7 +662,14 @@ public class CommandProcessor{
 	private void showCourierDeliveries() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
-		manager.getManagerService().showCourierDesc();
+
+		if (arguments.length==0 || arguments[0].equalsIgnoreCase("desc")){
+			manager.getService().showCourierDesc();
+		}
+		else if (arguments[0].equalsIgnoreCase("asc")){
+			manager.getService().showCourierAsc();
+		}
+		
 	}
 
 	/**
@@ -649,7 +680,13 @@ public class CommandProcessor{
 	private void showRestaurantTop() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
-		manager.getManagerService().showRestaurantDesc();
+		
+		if (arguments.length==0 || arguments[0].equalsIgnoreCase("desc")){
+			manager.getService().showRestaurantDesc();
+		}
+		else if (arguments[0].equalsIgnoreCase("asc")){
+			manager.getService().showRestaurantAsc();
+		}
 	}
 
 	/**
@@ -659,8 +696,7 @@ public class CommandProcessor{
 	 */
 	private void showCustomers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
-		Manager manager = (Manager)user;
-		manager.getManagerService().displayUsersOfAssignedType("customer");
+		MyFoodora.getInstance().getView().showUsersOfAssignedType("customer");
 	}
 
 	/**
@@ -675,8 +711,8 @@ public class CommandProcessor{
 		String restaurant_name = arguments[0];
 		Manager manager = (Manager)user;
 		try {
-			Restaurant restaurant = (Restaurant) manager.getManagerService().selectUser(restaurant_name);
-			restaurant.getRestaurantService().displayAllMenu();
+			Restaurant restaurant = (Restaurant) manager.getService().selectUser(restaurant_name);
+			restaurant.getView().showMenu();
 		} catch (NameNotFoundException e) {
 			e.printError();
 		}
@@ -695,12 +731,12 @@ public class CommandProcessor{
 			String startingDate = "01/01/2017";
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			String endingDate = sdf.format(new Date());
-			System.out.println("Total profit : "+manager.getManagerService().getTotalProfit(startingDate, endingDate)+" euros.");
+			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
 		}
 		else if (arguments.length==2){
 			String startingDate = arguments[0];
 			String endingDate = arguments[1];
-			System.out.println("Total profit : "+manager.getManagerService().getTotalProfit(startingDate, endingDate)+" euros.");
+			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
 		}
 		}
 		catch (ParseException e){
@@ -719,7 +755,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		Double targetProfit = Double.parseDouble(arguments[0]);
-		manager.getManagerService().determineParam2MeetTargetProfit(targetProfit);;
+		manager.getService().determineParam2MeetTargetProfit(targetProfit);;
 		System.out.println("Profit policy has been applied.");
 	}
 	
@@ -736,12 +772,12 @@ public class CommandProcessor{
 			String startingDate = "01/01/2017";
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			String endingDate = sdf.format(new Date());
-			System.out.println("Average income per customer : "+manager.getManagerService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
+			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
 		}
 		else if (arguments.length==2){
 			String startingDate = arguments[0];
 			String endingDate = arguments[1];
-			System.out.println("Average income per customer : "+manager.getManagerService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
+			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
 		}
 		}
 		catch (ParseException e){
@@ -762,12 +798,12 @@ public class CommandProcessor{
 			String startingDate = "01/01/2017";
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			String endingDate = sdf.format(new Date());
-			System.out.println("Total income : "+manager.getManagerService().getTotalIncome(startingDate, endingDate)+" euros.");
+			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
 		}
 		else if (arguments.length==2){
 			String startingDate = arguments[0];
 			String endingDate = arguments[1];
-			System.out.println("Total income : "+manager.getManagerService().getTotalIncome(startingDate, endingDate)+" euros.");
+			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
 		}
 		}
 		catch (ParseException e){
@@ -775,6 +811,29 @@ public class CommandProcessor{
 		}
 		
 	}
+	
+
+	private void showActiveUsers() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("Manager");
+		MyFoodora.getInstance().getView().showActiveUsers();
+	}
+
+	private void showMyFoodoraHistory() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("Manager");
+		MyFoodora.getInstance().getView().showHistory();
+		
+	}
+
+	private void showPolicies() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("Manager");
+		MyFoodora.getInstance().getView().showPolicies();
+	}
+
+	private void showprofitfactors() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("Manager");
+		MyFoodora.getInstance().getView().showProfitFactors();
+	}
+
 	
 
 	/**
@@ -792,7 +851,7 @@ public class CommandProcessor{
 		double unitPrice = Double.parseDouble(arguments[3]);
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().addDish(dishName,dishCategory,foodCategory,unitPrice);
+			restaurant.getService().addDish(dishName,dishCategory,foodCategory,unitPrice);
 			System.out.println(dishName+" has been added to the menu of "+user.getUsername());
 		} catch (NameAlreadyExistsException e) {
 			e.printError();
@@ -812,7 +871,7 @@ public class CommandProcessor{
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().createMeal(mealName);
+			restaurant.getService().createMeal(mealName);
 			
 			System.out.println("Meal " + mealName+" has been created");
 
@@ -834,7 +893,7 @@ public class CommandProcessor{
 		String mealName = arguments[1];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().addDish2Meal(dishName, mealName);
+			restaurant.getService().addDish2Meal(dishName, mealName);
 			
 			System.out.println("Dish " + dishName+" has been added to the meal "+mealName);
 
@@ -855,7 +914,7 @@ public class CommandProcessor{
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().showMeal(mealName);
+			restaurant.getService().showMeal(mealName);
 		} catch (NameNotFoundException e) {
 			e.printError();
 		}
@@ -874,7 +933,7 @@ public class CommandProcessor{
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().saveMeal(mealName);
+			restaurant.getService().saveMeal(mealName);
 			
 			System.out.println("Meal" + mealName+" has been saved and added to the meal-menu of "+restaurant.getName());
 		} catch (NameNotFoundException e){e.printError();
@@ -896,7 +955,7 @@ public class CommandProcessor{
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().setSpecialOffer(mealName);
+			restaurant.getService().setSpecialOffer(mealName);
 			
 			System.out.println("Meal " + mealName+" saved as a special-offer of "+restaurant.getName());
 		} catch (NameNotFoundException e) {
@@ -915,7 +974,7 @@ public class CommandProcessor{
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().removeSpecialOffer(mealName);
+		restaurant.getService().removeSpecialOffer(mealName);
 		System.out.println("Meal " + mealName+" removed from the list of special-offers of "+restaurant.getName());
 
 	}
@@ -932,7 +991,7 @@ public class CommandProcessor{
 		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().removeMeal(mealName);
+			restaurant.getService().removeMeal(mealName);
 			System.out.println("Meal " + mealName+" removed from the meal-menu of "+restaurant.getName());
 		} catch (NameNotFoundException e) {
 			e.printError();
@@ -951,7 +1010,7 @@ public class CommandProcessor{
 		String dishName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getRestaurantService().removeDish(dishName);
+			restaurant.getService().removeDish(dishName);
 			System.out.println("Dish " + dishName+" removed from the menu of "+restaurant.getName());
 		} catch (NameNotFoundException e) {
 			e.printError();
@@ -969,7 +1028,7 @@ public class CommandProcessor{
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		double generic_discount_factor = Double.parseDouble(arguments[0]);
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().setGenericDiscountFactor(generic_discount_factor);
+		restaurant.getService().setGenericDiscountFactor(generic_discount_factor);
 		System.out.println("Generic discount factor updated.");
 	}
 	
@@ -984,7 +1043,7 @@ public class CommandProcessor{
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		double special_discount_factor = Double.parseDouble(arguments[0]);
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().setSpecialDiscountFactor(special_discount_factor);
+		restaurant.getService().setSpecialDiscountFactor(special_discount_factor);
 		System.out.println("Special discount factor updated.");
 	}
 	
@@ -996,7 +1055,7 @@ public class CommandProcessor{
 	private void showHalfMeal() throws PermissionException {
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().DisplayMostOrderedHalfMeal();
+		restaurant.getService().displayMostOrderedHalfMeal();
 	}
 	
 	/**
@@ -1007,7 +1066,7 @@ public class CommandProcessor{
 	private void showAlaCarte() throws PermissionException {
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().DisplayMostOrderedAlaCarte();
+		restaurant.getService().displayMostOrderedAlaCarte();
 
 	}
 	
@@ -1016,10 +1075,10 @@ public class CommandProcessor{
 	 *
 	 * @throws PermissionException the permission exception
 	 */
-	private void displayMenu() throws PermissionException {
+	private void showMyMenu() throws PermissionException {
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getRestaurantService().displayAllMenu();
+		restaurant.getView().showMenu();
 	}
 
 	/**
@@ -1037,7 +1096,7 @@ public class CommandProcessor{
 			Order order = restaurant.getHistory().getOrder(orderName);
 			MyFoodora myfoodora = MyFoodora.getInstance();
 			ArrayList<Courier> availablecouriers = myfoodora.getAvailableCouriers();
-			new MyFoodoraServiceImpl().findDeliverer(order, availablecouriers);
+			MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers);
 		} catch (NameNotFoundException e) {
 			e.printError();
 		}
@@ -1054,14 +1113,18 @@ public class CommandProcessor{
 		String restaurantName = arguments[0];
 		String orderName = arguments[1];
 		Customer customer = (Customer)user;
-		customer.getCustomerService().createOrder(restaurantName, orderName);
-		
-		System.out.println("Order " + orderName+" added to the shopping cart.");
-
+		try {
+			customer.getService().createOrder(restaurantName, orderName);
+			System.out.println("Order " + orderName+" added to the shopping cart.");
+		} catch (NameAlreadyExistsException e) {
+			e.printError();
+		} catch (NameNotFoundException e) {
+			e.printError();
+		}
 	}
 
 	/**
-	 * addItem2Order "orderName" "itemName".
+	 * addItem2Order "itemName" "orderName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
@@ -1069,11 +1132,11 @@ public class CommandProcessor{
 	private void addItem2Order() throws SyntaxErrorException, PermissionException {
 		if (arguments.length<2) throw new SyntaxErrorException(2);
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
-		String orderName = arguments[0];
-		String itemName = arguments[1];
+		String orderName = arguments[1];
+		String itemName = arguments[0];
 		Customer customer = (Customer)user;
 		try {
-			customer.getCustomerService().addItem2Order(orderName, itemName);
+			customer.getService().addItem2Order(orderName, itemName);
 			
 			System.out.println("Item " + itemName+" added to the order "+orderName);
 
@@ -1095,7 +1158,7 @@ public class CommandProcessor{
 		String date = arguments[1];
 		Customer customer = (Customer)user;
 		try {
-			customer.getCustomerService().endOrder(orderName, date);
+			customer.getService().endOrder(orderName, date);
 			
 			System.out.println("Order " + orderName+" finalised at "+date+ " and you paid for it.");
 		} catch (NameNotFoundException e){e.printError();
@@ -1115,8 +1178,12 @@ public class CommandProcessor{
 		if (arguments.length == 0) throw new SyntaxErrorException();
 		String cardType = arguments[0];
 		Customer customer = (Customer)user;
-		customer.getCustomerService().registerCard(cardType);
-		System.out.println("You subscribed to a new fidelity plan. Fidelity card set as "+cardType+" card.");
+		try {
+			customer.getService().registerCard(cardType);
+			System.out.println("You subscribed to a new fidelity plan. Fidelity card set as "+cardType+" card.");
+		} catch (NameNotFoundException e) {
+			e.printError();
+		}
 	}
 	
 	/**
@@ -1127,7 +1194,7 @@ public class CommandProcessor{
 	private void unregisterCard() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getCustomerService().unregisterCard();
+		customer.getService().unregisterCard();
 		System.out.println("You unsubscribed from fidelity plan. Fidelity card reset as standard card.");
 	}
 	
@@ -1139,7 +1206,7 @@ public class CommandProcessor{
 	private void showHistory() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getCustomerService().getHistory();
+		customer.getView().showHistory();
 	}
 	
 	/**
@@ -1148,10 +1215,9 @@ public class CommandProcessor{
 	 * @throws PermissionException the permission exception
 	 */
 	private void showPoints() throws PermissionException {
-		
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getCustomerService().getPoints();
+		customer.getView().showPoints();
 	}
 	
 	/**
@@ -1161,9 +1227,19 @@ public class CommandProcessor{
 	 */
 	private void showShoppingCart() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
-		System.out.println(((Customer)user).getShoppingCart());
+		Customer customer = (Customer)user;
+		customer.getView().showShoppingCart();
 		
 	}
+
+
+	
+	private void showSpecialOffers() throws PermissionException {
+		if (!(user instanceof Customer)) throw new PermissionException("customer");
+		Customer customer = (Customer)user;
+		customer.getView().showSpecialOffers();
+	}
+
 	
 	/**
 	 * turnOnNotification <>.
@@ -1173,7 +1249,7 @@ public class CommandProcessor{
 	private void turnOnNotification() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getCustomerService().giveConsensusBeNotifiedSpecialOffers();
+		customer.getService().giveConsensusBeNotifiedSpecialOffers();
 		System.out.println("You agreed to be notified of new special-offers.");
 	}
 	
@@ -1185,7 +1261,7 @@ public class CommandProcessor{
 	private void turnOffNotification() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getCustomerService().removeConsensusBeNotifiedSpecialOffers();
+		customer.getService().removeConsensusBeNotifiedSpecialOffers();
 		System.out.println("You refused to be notified of new special-offers.");
 	}
 
@@ -1197,7 +1273,7 @@ public class CommandProcessor{
 	private void onDuty() throws PermissionException {
 		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
-		courier.getCourierService().turnOnDuty();
+		courier.getService().turnOnDuty();
 		System.out.println("Current state set as on-duty.");
 		
 	}
@@ -1210,7 +1286,7 @@ public class CommandProcessor{
 	private void offDuty() throws PermissionException {
 		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
-		courier.getCourierService().turnOffDuty();
+		courier.getService().turnOffDuty();
 		System.out.println("Current state set as off-duty.");
 
 	}
@@ -1227,7 +1303,7 @@ public class CommandProcessor{
 		if (arguments.length==0) throw new SyntaxErrorException();
 		String newposition = arguments[0];
 		Courier courier = (Courier)user;
-		courier.getCourierService().changePosition(newposition);
+		courier.getService().changePosition(newposition);
 		System.out.println("Position updated.");
 	}
 
@@ -1242,7 +1318,7 @@ public class CommandProcessor{
 		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		String orderName = arguments[0];
 		Courier courier = (Courier)user;
-		courier.getCourierService().acceptCall(orderName);
+		courier.getService().acceptCall(orderName);
 		System.out.println("courier "+courier.getName()+" accepts to take the order.");
 	}
 	
@@ -1258,7 +1334,7 @@ public class CommandProcessor{
 		String orderName = arguments[0];
 		Courier courier = (Courier)user;
 		System.out.println("courier "+courier.getName()+" refuses to take the order. A new courier is being assigned.");
-		courier.getCourierService().refuseCall(orderName);
+		courier.getService().refuseCall(orderName);
 	}
 
 

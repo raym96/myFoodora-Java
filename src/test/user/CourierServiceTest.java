@@ -66,10 +66,10 @@ public class CourierServiceTest {
 		InitialScenarioOld.load("scenario_test_services.ini");	
 		
 		courier_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
-		courier_service = courier_test.getCourierService();
+		courier_service = courier_test.getService();
 			
 		myfoodora = MyFoodora.getInstance();
-		myfoodora_service = new MyFoodoraServiceImpl();
+		myfoodora_service = MyFoodora.getInstance().getService();
 
 		customer = (Customer)myfoodora_service.selectUser("customer_1");
 		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");

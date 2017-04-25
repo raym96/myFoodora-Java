@@ -41,7 +41,7 @@ public class CustomerTest {
 	@BeforeClass
 	public static void testCustomer() {
 		customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
-		customerService = customer.getCustomerService();
+		customerService = customer.getService();
 		
 		assertNotNull(customer);
 		assertNotNull(customerService);
@@ -86,8 +86,8 @@ public class CustomerTest {
 		
 		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
 		
-		r.getRestaurantService().addMeal(fm);
-		r.getRestaurantService().setSpecialOffer("FM2");
+		r.getService().addMeal(fm);
+		r.getService().setSpecialOffer("FM2");
 		
 		customer.addSpecialOffer(fm);
 		
