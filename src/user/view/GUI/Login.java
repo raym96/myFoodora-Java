@@ -1,8 +1,8 @@
 package user.view.GUI;
 
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,86 +10,139 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-public class Login extends JFrame implements ActionListener{
+import clui.Command;
+import clui.InitialScenario;
+import exceptions.LoginErrorException;
+import exceptions.NameNotFoundException;
+import user.model.Courier;
+import user.model.Customer;
+import user.model.Manager;
+import user.model.MyFoodora;
+import user.model.Restaurant;
+import user.model.User;
+import user.service.MyFoodoraService;
+import user.view.GUI.model.BasicButton;
+import user.view.GUI.model.BasicFrameSimplePage;
+import user.view.GUI.model.TextFieldWithLabel;
+
+public class Login extends BasicFrameSimplePage {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton loginUpButton;
-	private JButton loginInButton;
+	private BasicButton loginUpButton;
+	private BasicButton loginInButton;
+	private TextFieldWithLabel usernameField;
+	private JPasswordField passwordField;
 	
-	public Login(){
-		this.setTitle("Login");
-		this.setSize(800,600);
-		this.setLocation(600,00);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel1 = new JPanel();
-		this.add(panel1);
-		
-		placeComponents(panel1);
-		
-		this.setVisible(true);
-	}
+	private User user;
 
-	public static void main(String[] args) {
+	public Login() {
+		super("login");
 		
-		Login login = new Login();
+		initialMyFoodora();
 		
+		headerLabel.setText("Welcome to MyFoodora!");
+		statusLabel.setText("login in or login up");
+
 	}
 	
-	private void placeComponents(JPanel panel) {
+	public void initialMyFoodora(){
+		MyFoodora.reset();
+		InitialScenario.load("my_foodora.ini");
+	}
+	
+	@Override
+	public void placeComponents() {
+		// TODO Auto-generated method stub
 		
-		panel.setLayout(null);
+		controlPanel.setLayout(null);
 		
-		JLabel userLabel = new JLabel("User:");
-		
+		int x=370, y=300;
+	
 		// username
-		userLabel.setBounds(200, 100, 80, 25);
-		panel.add(userLabel);
-		
-		JTextField userText = new JTextField(20);
-		userText.setBounds(300,100,165,25);
-		panel.add(userText);
+//		JLabel userLabel = new JLabel("User:");
+//		userLabel.setBounds(200, 100, 80, 25);
+//		controlPanel.add(userLabel);
+//		
+//		userText = new JTextField(20);
+//		userText.setBounds(300,100,165,25);
+//		controlPanel.add(userText);
+		usernameField = new TextFieldWithLabel("username", controlPanel, x, y);
 		
 		// password
 		JLabel passwordLabel = new JLabel("password:");
-		passwordLabel.setBounds(200, 150, 80, 25);
-		panel.add(passwordLabel);
+		passwordLabel.setBounds(x, y+50, 80, 25);
+		controlPanel.add(passwordLabel);
 		
-		JPasswordField passwordText = new JPasswordField(20);
-		passwordText.setBounds(300,150,165,25);
-		panel.add(passwordText);
+		passwordField = new JPasswordField(20);
+		passwordField.setBounds(x+100, y+50,150,25);
+		controlPanel.add(passwordField);
 		
 		// button for login up
-		loginUpButton = new JButton("login up");
-		loginUpButton.setBounds(300, 200, 80, 25);
+		loginUpButton = new BasicButton("login up", x, y+100);
+//		loginUpButton.setBEColor(BasicButton.LIGHTBLUE);
 		loginUpButton.addActionListener(this);
-		panel.add(loginUpButton);
+		controlPanel.add(loginUpButton);
 		
 		// button for login in 
-		loginInButton = new JButton("login in ");
-		loginInButton.setBounds(400, 200, 80, 25);
+		loginInButton = new BasicButton("login in", x+150, y+100);
+//		loginInButton.setBEColor(BasicButton.LIGHTBLUE);
 		loginInButton.addActionListener(this);
-		panel.add(loginInButton);
-				
+		controlPanel.add(loginInButton);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		super.actionPerformed(e);
+
 		if(e.getSource()==loginUpButton){
-			System.out.println("login up");
+//			System.out.println("login up");
+			dealLoginUp();
 		}
 		else if(e.getSource()==loginInButton){
-			System.out.println("login in");
+//			System.out.println("login in");
 			this.dispose();
 			new LoginIn();
 		}
 	}
 
+	public void dealLoginUp(){
+		String username = usernameField.getTextFieldContent();
+		String password = String.valueOf(passwordField.getPassword());
+		System.out.println(username + " " + password );
+
+		MyFoodoraService foodoraService = MyFoodora.getInstance().getService();
+		
+		try{
+			user = foodoraService.selectUser(username);
+			foodoraService.login(username,password);
+			System.out.println("Welcome on MyFoodora, user "+username+". Please enter a command.");
+		}
+		catch (LoginErrorException e){
+			e.printError();
+		} catch (NameNotFoundException e) {
+			e.printError();
+		}
+		
+		if(user != null){
+			this.dispose();
+			if(user instanceof Manager){
+				new ManagerGUI(user);
+			}else if(user instanceof Restaurant){
+				new RestaurantGUI(user);
+			}else if(user instanceof Courier){
+				new CourierGUI(user);
+			}else if(user instanceof Customer){
+				new CustomerGUI(user);
+			}
+		}
+	}
+	
+	
 	
 }
