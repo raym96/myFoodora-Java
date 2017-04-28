@@ -4,7 +4,7 @@ import user.model.Restaurant;
 
 public class RestaurantView implements UserView{
 	/** The restaurant. */
-	private  Restaurant r;
+	private  Restaurant restaurant;
 	
 	/**
 	 * Instantiates a new restaurant view.
@@ -13,56 +13,56 @@ public class RestaurantView implements UserView{
 	 */
 	public RestaurantView(Restaurant restaurant) {
 		super();
-		this.r = restaurant;
+		this.restaurant = restaurant;
 	}
 	
 	public void showInfo(){
 		String output = "";
-		output+="<Restaurant> "+r.getUsername()+"; name = "+r.getName()+"; address="+r.getAddress();
-		if (r.getEmail() !=null){
-			output+="; email = "+r.getEmail();
+		output+="<Restaurant> "+restaurant.getUsername()+"; name = "+restaurant.getName()+"; address="+restaurant.getAddress();
+		if (restaurant.getEmail() !=null){
+			output+="; email = "+restaurant.getEmail();
 		}
-		if (r.getPhone() !=null){
-			output+="; phone = "+r.getPhone();
+		if (restaurant.getPhone() !=null){
+			output+="; phone = "+restaurant.getPhone();
 		}
 		System.out.println(output);
 	}
 	
 	public void showHistory(){
-		r.getHistory().display();
+		restaurant.getHistory().display();
 	}
 	
 
 	public void showDishes() {
 		// TODO Auto-generated method stub
-		r.getMenu().display();
+		restaurant.getMenu().display();
 	}
 
 
 	public void showMeals() {
 		// TODO Auto-generated method stub
 		System.out.println("\n"+"[Meal menu]");
-		r.getMealMenu().display();
+		restaurant.getMealMenu().display();
 	}
 
 	public void showDiscountFactors(){
-		System.out.println("Generic discount factor = "+r.getGeneric_discount_factor());
-		System.out.println("Special discount factor = "+r.getSpecial_discount_factor());
+		System.out.println("Generic discount factor = "+restaurant.getGeneric_discount_factor());
+		System.out.println("Special discount factor = "+restaurant.getSpecial_discount_factor());
 	}
 	
 	public void showSpecialOffers(){
 		// TODO Auto-generated method stub
 		System.out.println("\n[Special Offers]");
-		r.getSpecialmealmenu().display();
+		restaurant.getSpecialmealmenu().display();
 	}
 	
 	public void showTotalIncome(){
-		System.out.println(r.getName()+"'s total income = " + r.getIncome()+ " euros.");
+		System.out.println(restaurant.getName()+"'s total income = " + restaurant.getIncome()+ " euros.");
 	}
 	
 
 	public void showMenu(){
-		System.out.println("\n-----["+(r.getName().toUpperCase()+"]-----"));
+		System.out.println("\n-----["+(restaurant.getName().toUpperCase()+" username <"+restaurant.getUsername()+">-----"));
 		showDishes();
 		showMeals();
 		showSpecialOffers();

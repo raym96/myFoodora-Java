@@ -361,8 +361,6 @@ public class MyFoodora {
 	 */
 	public void removeUser(User user){
 		users.remove(user);
-		System.out.println("User " + (user).getUsername() + " has unregistered from myFoodora.");
-
 	}
 	
 	/**

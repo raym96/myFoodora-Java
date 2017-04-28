@@ -12,7 +12,7 @@ import user.service.impl.MyFoodoraServiceImpl;
 
 public class CustomerView implements UserView{
 	/** The customer. */
-	private Customer c;
+	private Customer customer;
 	
 	/**
 	 * Instantiates a new customer view.
@@ -21,22 +21,22 @@ public class CustomerView implements UserView{
 	 */
 	public CustomerView(Customer customer) {
 		super();
-		this.c = customer;
+		this.customer = customer;
 	}
 
 	public void showInfo(){
 		String output = "";
-		output+="<Customer> "+c.getUsername()+"; fullname = "+c.getSurname()+" "+c.getUsername().toUpperCase()+"; address="+c.getAddress();
-		if (c.getEmail() !=null){
-			output+="; email = "+c.getEmail();
+		output+="<Customer> "+customer.getUsername()+"; fullname = "+customer.getSurname()+" "+customer.getName().toUpperCase()+"; address="+customer.getAddress();
+		if (customer.getEmail() !=null){
+			output+="; email = "+customer.getEmail();
 		}
-		if (c.getPhone() !=null){
-			output+="; phone = "+c.getPhone();
+		if (customer.getPhone() !=null){
+			output+="; phone = "+customer.getPhone();
 		}
-		if (c.isAgreeBeNotifiedSpecialoffers()){
+		if (customer.isAgreeBeNotifiedSpecialoffers()){
 			output+="; agrees to be notified of special offers.";
 		}
-		if (!(c.isAgreeBeNotifiedSpecialoffers())){
+		if (!(customer.isAgreeBeNotifiedSpecialoffers())){
 			output+="; will not be notified of special offers.";
 		}
 		System.out.println(output);
@@ -46,7 +46,7 @@ public class CustomerView implements UserView{
 	public void showHistory(){
 		History history = new History();
 		for (Order order:MyFoodora.getInstance().getHistory().getOrders()){
-			if (order.getCustomer().equals(c)){
+			if (order.getCustomer().equals(customer)){
 				history.addOrder(order);
 			}
 		}
@@ -55,12 +55,12 @@ public class CustomerView implements UserView{
 
 
 	public void showShoppingCart(){
-		c.getShoppingCart().display();
+		customer.getShoppingCart().display();
 	}
 	
 	public void showPoints(){
-		if (c.getCard() instanceof PointCard){
-			System.out.println("Balance of points = "+((PointCard)c.getCard()).getPoints());
+		if (customer.getCard() instanceof PointCard){
+			System.out.println("Balance of points = "+((PointCard)customer.getCard()).getPoints());
 		}
 		else{
 			System.out.println("You don't have a point card.");
@@ -69,7 +69,7 @@ public class CustomerView implements UserView{
 	
 	public void showSpecialOffers(){
 		System.out.println("Special offers :");
-		for (Meal meal : c.getSpecialoffers()){
+		for (Meal meal : customer.getSpecialoffers()){
 			System.out.println(meal+" BY "+meal.getRestaurant().getName());
 		}
 	}

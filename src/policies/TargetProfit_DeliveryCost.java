@@ -62,4 +62,9 @@ public class TargetProfit_DeliveryCost implements TargetProfitPolicy {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return "targetProfit DeliveryCost: based on the last month total income (i.e. number of completed orders), and given a service fee value, and a markup percentage value compute the delivery cost value to meet a given target profit.";
+	}
+	
 }

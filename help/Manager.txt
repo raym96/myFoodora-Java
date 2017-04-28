@@ -1,0 +1,92 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP - MANAGER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands for a MANAGER:
+
+registerRestaurant <name> <username> <address> <password> : add a restaurant of given name, address, username and password to the system. <username> must be unique.
+<address> is given as a bi-dimensional coordinate, example 1.0,2.5
+
+registerCustomer <firstName> <lastName> <username> <address> <password> : add a client to the system. By default each newly registered customer will not receive notification for special-offers.
+<username> must be unique.
+<address> is given as a bi-dimensional coordinate, example 1.0,2.5
+
+registerCourier <firstName> <lastName> <username> <position> <password> : add a courier to the system. By default each newly registered courier is on-duty.
+<username> must be unique.
+<address> is given as a bi-dimensional coordinate, example 1.0,2.5
+
+registerManager <firstName> <lastName> <username> : add a manager to the system. <username> must be unique.
+
+removeUser <username> : delete the account of the user from the system.
+
+setDeliveryPolicy <deliveryPolicyName>: set the delivery policy of the system to that passed as argument. <deliveryPolicyName> = fastest/fair for respectively FastestDelivery/FairOccupationDelivery
+
+setProfitPolicy <profitPolicyName> : set the profit policy of the system to that passed as argument. <profitPolicyName> = delivery_cost/markup_percentage/service_fee
+
+setServiceFee <service_fee> : change the service fee of the system to the value passed as argument.
+
+setMarkupPercentage <markup_percentage> : change the mark-up percentage of the system to the value passed as argument.
+
+setDeliveryCost <delivery_cost> : change the delivery cost of the system to the value passed as argument.
+
+associateCard <userName> <cardType> : associate a fidelity card to a user with given name. 
+<cardType> = point/lottery for respectively PointCard/LotteryCard.
+
+showCourierDeliveries <sortingOrder> : display the list of couriers sorted in given order w.r.t. the number of completed deliveries.
+<sortingOrder> = asc/desc. If empty, display in decreasing order.
+
+showRestaurantTop <sortingOrder> : display the list of restaurant sorted in given order w.r.t. the number of delivered orders.
+<sortingOrder> = asc/desc. If empty, display in decreasing order.
+
+applyProfitPolicy <> : determining either the service-fee and/or markup percentage and/or the deliverycost so to meet a target-profit and set the new value.
+
+showCustomers <> : display the list of customers.
+
+showMenuItem <restaurant-username> : display the menu of a given restaurant with its username.
+
+showTotalProfit<> : show the total profit of the system since creation.
+
+showTotalProfit <startDate> <endDate> : show the total profit of the system within a time interval.
+dateformat "dd/MM/yyyy", example 01/01/2017
+
+showTotalIncome<> : show the total income of the system since creation.
+
+showTotalIncome <startDate> <endDate> : show the total income of the system within a time interval.
+dateformat "dd/MM/yyyy", example 01/01/2017
+
+showAverageIncome<> : show the average income per customer of the system since creation.
+
+showAverageIncome <startDate> <endDate> : show the average income per customer of the system within a time interval.
+dateformat "dd/MM/yyyy", example 01/01/2017
+
+showUsers <userType> : show users of the given type.
+<userType> = customer/manager/restaurant/courier. 
+
+showUsers <> : show all users.
+
+showActiveUsers <>: show all active users.
+
+showPolicies <>: show the delivery policy and the target profit policy of the system.
+
+showSystemValues <>: show the delivery cost, service fee and mark-up percentage of the system.
+
+showMessages <>:  show messages of your message board.
+
+showNewMessages <>: show unread messages of your message board.
+
+showInfo <> : show your general personal info.
+
+showRestaurantMenus <> : show all restaurants with their menu.
+
+showHistory <> : show history of all commands passed at MyFoodora since creation.
+
+unregister <> : delete your account.
+
+logout <> : log out.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

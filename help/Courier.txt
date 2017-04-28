@@ -1,0 +1,44 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP - COURIER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands for a COURIER:
+
+setOnDuty <> : set your state as on-duty.
+
+setOffDuty <> : set your state as off-duty.
+
+changePosition <position> : change your current position.
+<position> is given as a bi-dimensional coordinate, example 1.0,2.5
+
+acceptCall <orderName> : accept an order that has been assigned to you. 
+
+refuseCall <orderName> : refuse an order that has been assigned to you. The order will automatically re-assigned to someone else.
+
+showWaiting <> : show orders that have been assigned to you by MyFoodora that awaits your answer (accept or refuse).
+
+showCount <> : show your delivery count.
+
+showMessages <>:  show messages of your message board.
+
+showNewMessages <>: show unread messages of your message board.
+
+showInfo <> : show your general personal info.
+
+showRestaurantMenus <> : show all restaurants with their menu.
+
+showHistory <> : show history of all orders you delivered since creation.
+
+unregister <> : delete your account.
+
+logout <> : log out.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+

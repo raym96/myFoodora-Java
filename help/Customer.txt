@@ -1,0 +1,47 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP - CUSTOMER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands for a CUSTOMER:
+
+createOrder <restaurant_username> <orderName> : create an order from a given restaurant. <orderName> must
+
+addItem2Order <itemName> <orderName>: add an item (either a dish or a meal) to an existing order
+
+endOrder <orderName> <date> : finalise an order at a given date and pay it.
+If <date> is empty, order is finalised at the current date.
+
+registerCard <cardType> : register for a fidelity plan.
+<cardType> = point/lottery for respectively PointCard/LotteryCard.
+
+unregisterCard <> : unsubscribe from all fidelity plan. Your fidelity card becomes a standard card.
+
+showPoints <> : if you have a point fidelity card, show the balance of points on your card.
+
+showShoppingCart <> : show all orders in your shopping cart.
+
+showSpecialOffers <> : show all available special-offers.
+
+turnOnNotification <> : turn on notifications to new special offers.You will get a message on your message board when a new special offer appears.
+
+turnOffNotification <> : turn off notifications to new special offers.
+
+showMessages <>:  show messages of your message board.
+
+showNewMessages <>: show unread messages of your message board.
+
+showInfo <> : show your general personal info.
+
+showRestaurantMenus <> : show all restaurants with their menu.
+
+showHistory <> : show history of all commands YOU passed at MyFoodora since creation.
+
+unregister <> : delete your account.
+
+logout <> : log out.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

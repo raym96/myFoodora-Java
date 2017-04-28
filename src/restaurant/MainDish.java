@@ -39,4 +39,8 @@ public final class MainDish extends Dish {
 		return visitor.visit(this);
 	}
 	
+	public String toString() {
+		return "MainDish <"+ dishName +"> " + dishType+ " " + price + " euros ";
+	}
+	
 }

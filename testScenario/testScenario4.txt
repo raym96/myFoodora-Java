@@ -13,6 +13,8 @@ showMenu
 logout
 
 login ffillon password
+showNewMessages
+
 showspecialoffers
 createOrder korean specialorder
 addItem2Order hotpot specialorder

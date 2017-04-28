@@ -163,7 +163,7 @@ public class ManagerServiceImpl implements ManagerService {
 		if (ProfitPolicyName.equalsIgnoreCase("delivery_cost")){
 			MyFoodora.getInstance().setTargetprofitpolicy(new TargetProfit_DeliveryCost(MyFoodora.getInstance()));
 		}
-		if (ProfitPolicyName.equalsIgnoreCase("markup_pencentage")){
+		if (ProfitPolicyName.equalsIgnoreCase("markup_percentage")){
 			MyFoodora.getInstance().setTargetprofitpolicy(new TargetProfit_Markup(MyFoodora.getInstance()));
 		}
 		if (ProfitPolicyName.equalsIgnoreCase("service_fee")){

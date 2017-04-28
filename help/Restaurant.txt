@@ -1,0 +1,63 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP - RESTAURANT
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands for a RESTAURANT :
+
+addDishRestaurantMenu <dishName> <dishCategory> <foodCategory> <unitPrice> : add a dish with a given name, given category and price.  <dishname> must be unique.
+<dishCategory> = starter/main/dessert. 
+<foodCategory> = standard/vegetarian/gluten-free
+
+createMeal <mealName> : create a meal with a given name. <mealName> must be unique.
+
+addDish2Meal <dishName> <mealName> : add a dish to a meal. You can't add more than 1 dish of a given category (starter/main/dessert) to a meal.
+
+showMeal <mealName> : show the dishes in a meal with given name
+
+saveMeal <mealName> : save a meal with given name. A meal must have at least 1 main-dish, and must have 2 or 3 dishes.
+
+setSpecialOffer <mealName> : add a meal in meal-of-the-week special offer.
+
+removeFromSpecialOffer <mealName> : reset a special offer, remove the meal from the special offers.
+
+removeDish <dishName> : remove the dish from the menu.
+
+removeMeal <mealName> : remove the meal form the menu.
+
+setGenericDiscountFactor <discount_factor> : change the generic discount factor to the value passed as argument.
+
+setSpecialDiscountFactor <discount_factor> : change the special discount factor to the value passed as argument.
+
+showHalfMeal <sortingOrder> : display the list of half-meals sorted in given order w.r.t. the number of shipped half-meals.
+<sortingOrder> = asc/desc. If empty, display in decreasing order.
+
+showAlaCarte <sortingOrder> : display the list of dishes sorted in given order w.r.t. the number of time they have been selected a la carte.
+<sortingOrder> = asc/desc. If empty, display in decreasing order.
+
+showMenu <> : show my menu.
+
+showDiscountFactor <> : show my discount factors.
+
+showIncome <> : show my total income.
+
+findDeliverer <orderName> : allocate an order in the HISTORY to a deliverer by application of the current delivery policy. (EXTRA FACILITY, ONLY FOR TESTS).
+
+showMessages <>:  show messages of your message board.
+
+showNewMessages <>: show unread messages of your message board.
+
+showInfo <> : show your general info.
+
+showRestaurantMenus <> : show all restaurants with their menu.
+
+showHistory <> : show history of all commands passed at your restaurant since creation.
+
+unregister <> : delete your account.
+
+logout <> : log out.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

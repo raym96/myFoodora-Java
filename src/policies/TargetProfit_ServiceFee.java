@@ -63,4 +63,11 @@ public class TargetProfit_ServiceFee implements TargetProfitPolicy {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "targetProfit ServiceFee: based on the last month total income (i.e. number of completed orders), and given a markup percentage value, and a delivery cost value, compute the service  fee value to meet a given target  profit.";
+	}
+	
+	
 }

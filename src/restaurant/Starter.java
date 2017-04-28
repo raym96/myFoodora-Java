@@ -47,4 +47,8 @@ public class Starter extends Dish {
 		// TODO Auto-generated method stub
 		return visitor.visit(this);
 	}
+	
+	public String toString() {
+		return "Starter <"+ dishName +"> " + dishType+ " " + price + " euros ";
+	}
 }

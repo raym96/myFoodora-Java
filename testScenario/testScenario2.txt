@@ -7,10 +7,10 @@ showhistory
 
 showtotalincome
 showtotalprofit
-showaverageincomepercustomer
+showaverageincome
 showtotalincome 01/04/2017 01/05/2017
 showtotalprofit 01/04/2017 01/05/2017
-showaverageincomepercustomer 01/04/2017 01/05/2017
+showaverageincome 01/04/2017 01/05/2017
 
 showsystemvalues
 setdeliverycost 1.5

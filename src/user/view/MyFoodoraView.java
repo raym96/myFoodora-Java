@@ -19,7 +19,11 @@ public class MyFoodoraView{
 
 	public void showUsersOfAssignedType(String userType){
 		ArrayList<User> users = myfoodora.getUsersOfAssignedType(userType);
-		System.out.println("--- " + userType + " ---");
+		if (users.size()==0){
+			System.out.println("The user type "+userType +" is not recognized.");
+			return;
+		}
+		System.out.println("[" + userType.toUpperCase() + "]");
 		for(User user :users){
 			 System.out.println(user);
 		}

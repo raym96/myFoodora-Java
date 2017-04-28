@@ -41,4 +41,7 @@ public class Dessert extends Dish {
 		return visitor.visit(this);
 	}
 	
+	public String toString() {
+		return "Dessert <"+ dishName +"> " + dishType+ " " + price + " euros ";
+	}
 }

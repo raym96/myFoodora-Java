@@ -1,0 +1,176 @@
+login ceo 123456789
+
+Welcome on MyFoodora, user <ceo>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+registerCustomer herve biausser hbiausser 0,0 password
+Customer <hbiausser> has been registered on myfoodora.
+
+registerCustomer paulo ballarini pballarini 20,10 password
+Customer <pballarini> has been registered on myfoodora.
+
+registerRestaurant BonheurdAntony bantony 3,3 password
+Restaurant <bantony> has been registered on myfoodora.
+
+registerCourier john cagnol jcagnol 4,-2 password
+Courier <jcagnol> has been registered on myfoodora.
+
+showUsers
+
+[USERS]
+<Manager> ceo; fullname = raymond JI
+<Manager> deputy; fullname = Xiaoan HE
+<Customer> emacron; fullname = Emmanuel MACRON; address=100.0,100.0
+<Customer> mlepen; fullname = Marine LEPEN; address=101.0,101.0
+<Customer> ffillon; fullname = Francois FILLON; address=102.0,102.0
+<Customer> jlmelenchon; fullname = JeanLuc MELENCHON; address=1.0,1.0
+<Customer> bhamon; fullname = Benoit HAMON; address=-23.0,-23.0
+<Customer> ndupont; fullname = Nicolas DUPONT; address=0.0,0.0
+<Customer> ppoutou; fullname = Philippe POUTOU; address=25.0,25.0
+<Courier> dtrump; fullname = Donald TRUMP; position=2.0,2.0
+<Courier> hclinton; fullname = Hillary CLINTON; position=-2.0,2.0
+<Courier> bsanders; fullname = Bernie SANDERS; position=2.0,-2.0
+<Courier> bobama; fullname = Barack OBAMA; position=-2.0,-2.0
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
+<Customer> hbiausser; fullname = herve BIAUSSER; address=0.0,0.0
+<Customer> pballarini; fullname = paulo BALLARINI; address=20.0,20.0
+<Restaurant> bantony; name = BonheurdAntony; address=3.0,3.0
+<Courier> jcagnol; fullname = john CAGNOL; position=4.0,-2.0
+
+logout
+Goodbye <ceo>. We hope to see you again on MyFoodora.
+
+
+
+login bantony password
+
+-----[BONHEURDANTONY username <bantony>-----
+
+[Menu]
+
+Starters:
+
+Main-dishes:
+
+Desserts:
+
+[Meal menu]
+
+[Special Offers]
+
+Welcome on MyFoodora, user <bantony>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+addDishRestaurantMenu salad starter vegetarian 3.3
+<salad> has been added to the menu of <bantony>.
+
+addDishRestaurantMenu vegetables main vegetarian 5.5
+<vegetables> has been added to the menu of <bantony>.
+
+addDishRestaurantMenu potatoes dessert gluten-free 2.0
+<potatoes> has been added to the menu of <bantony>.
+
+createMeal BA01
+Meal <BA01> has been created. Add dishes to it and save to add to the menu.
+
+addDish2Meal salad BA01
+Dish <salad> has been added to the meal <BA01>.
+
+addDish2Meal vegetables BA01
+Dish <vegetables> has been added to the meal <BA01>.
+
+addDish2Meal potatoes BA01
+Dish <potatoes> has been added to the meal <BA01>.
+
+showMeal BA01
+The dishes of the meal <BA01> are :
+<Salad> vegetarian 3.3 euros 
+<Vegetables> vegetarian 5.5 euros 
+<Potatoes> gluten-free 2.0 euros 
+
+saveMeal BA01
+Formula <Ba01> added to the meal-menu of BonheurdAntony
+Meal <BA01> has been saved and added to the meal-menu of <BonheurdAntony>.
+
+setSpecialOffer BA01
+Meal BA01 saved as a special-offer of BonheurdAntony
+
+showMenu
+
+-----[BONHEURDANTONY username <bantony>-----
+
+[Menu]
+
+Starters:
+<Salad> vegetarian 3.3 euros 
+
+Main-dishes:
+<Vegetables> vegetarian 5.5 euros 
+
+Desserts:
+<Potatoes> gluten-free 2.0 euros 
+
+[Meal menu]
+
+[Special Offers]
+Full-meal <Ba01> [Salad, Vegetables, Potatoes] type standard 9.5 euros
+
+logout
+Goodbye <bantony>. We hope to see you again on MyFoodora.
+
+
+
+login hbiausser password
+--- Restaurant ---
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
+<Restaurant> bantony; name = BonheurdAntony; address=3.0,3.0
+
+Welcome on MyFoodora, user <hbiausser>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+createOrder italian myorder
+Order <myorder> added to your shopping cart.
+
+additem2order pizza myorder 
+Item <pizza> added to the order <myorder>.
+
+additem2order hm3 myorder
+Item <hm3> added to the order <myorder>.
+
+showshoppingcart
+
+SHOPPINGCART : 
+
+[Order <myorder> ID1078]
+[11.99€] 
+A-la-carte <Pizza> 6.3
+Meal <Hm3> 5.69
+BY <hbiausser> herve biausser
+AT <italian> ItalianRestaurant
+ON 28/04/2017
+
+TOTAL PRICE = 11.99 euros
+
+endorder myorder 24/04/2017
+[Order <myorder> ID1078]
+[11.99€] 
+A-la-carte <Pizza> 6.3
+Meal <Hm3> 5.69
+BY <hbiausser> herve biausser
+AT <italian> ItalianRestaurant
+ON 28/04/2017
+bsanders has been assigned to the delivery task.
+Order <myorder> finalised on 24/04/2017 and you paid for it.
+
+logout
+Goodbye <hbiausser>. We hope to see you again on MyFoodora.
+
+

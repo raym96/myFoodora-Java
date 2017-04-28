@@ -66,4 +66,8 @@ public class TargetProfit_Markup implements TargetProfitPolicy {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "targetProfit Markup: based on the last month total income (i.e. number of completed orders), and given a service  fee value and a delivery  cost value, compute the markup  percentage value to meet a given target  profit.";
+	}
 }

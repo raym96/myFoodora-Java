@@ -64,12 +64,4 @@ public class InitialScenario {
 		System.out.println("-----------------------------------------------------------------------------------\n");
 
 	}
-	
-	public static void main(String[] args) {
-		load("my_foodora.ini");
-		System.out.println(MyFoodora.getInstance().getSpecialOfferBoard().getSpecialOffers());
-		Customer customer = (Customer) MyFoodora.getInstance().getUsersOfAssignedType("customer").get(0);
-		System.out.println(MyFoodora.getInstance().getSpecialOfferBoard().getObservers());
-		System.out.println(customer.getSpecialoffers());
-	}
 }

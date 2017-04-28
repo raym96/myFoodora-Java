@@ -15,7 +15,7 @@ addDish2Meal salad BA01
 addDish2Meal vegetables BA01
 addDish2Meal potatoes BA01
 showMeal BA01
-saveMeal
+saveMeal BA01
 setSpecialOffer BA01
 showMenu
 logout

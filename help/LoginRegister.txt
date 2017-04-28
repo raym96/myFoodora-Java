@@ -1,0 +1,15 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands:
+
+login <username> <password> : login with your username & password.
+
+register <> : register on the MyFoodora system. Follow the steps.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

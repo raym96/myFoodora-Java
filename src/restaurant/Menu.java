@@ -93,15 +93,15 @@ public class Menu {
 	 */
 	public void display(){
 		System.out.println("\n[Menu]");
-		System.out.println("\nStarters:");
+		System.out.println("Starters:");
 		for (Dish dish:this.getStarters()){
 			System.out.println(dish);
 		}
-		System.out.println("\nMain-dishes:");
+		System.out.println("Main-dishes:");
 		for (Dish dish:this.getMaindishes()){
 			System.out.println(dish);
 		}
-		System.out.println("\nDesserts:");
+		System.out.println("Desserts:");
 		for (Dish dish:this.getDesserts()){
 			System.out.println(dish);
 		}
