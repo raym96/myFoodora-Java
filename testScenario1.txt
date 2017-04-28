@@ -1,13 +1,29 @@
 login ceo 123456789
 registerCustomer herve biausser hbiausser 0,0 password
-showtotalincome
+registerCustomer paulo ballarini pballarini 20,10 password
+registerRestaurant BonheurdAntony bantony 3,3 password
+registerCourier john cagnol jcagnol 4,-2 password
+showUsers
 logout
+
+login bantony password
+addDishRestaurantMenu salad starter vegetarian 3.3
+addDishRestaurantMenu vegetables main vegetarian 5.5
+addDishRestaurantMenu potatoes dessert gluten-free 2.0
+createMeal BA01
+addDish2Meal salad BA01
+addDish2Meal vegetables BA01
+addDish2Meal potatoes BA01
+showMeal BA01
+saveMeal
+setSpecialOffer BA01
+showMenu
+logout
+
 login hbiausser password
-createOrder chinese myorder
-additem2order myorder fm1
-additem2order myorder hm3
+createOrder italian myorder
+additem2order pizza myorder 
+additem2order hm3 myorder
+showshoppingcart
 endorder myorder 24/04/2017
 logout
-login ceo 123456789
-showtotalincome
-

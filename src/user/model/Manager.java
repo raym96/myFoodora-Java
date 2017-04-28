@@ -6,7 +6,6 @@ package user.model;
 import java.util.ArrayList;
 
 import system.Message;
-import system.Observable;
 import system.SpecialOfferBoard;
 import user.service.ManagerService;
 import user.service.MyFoodoraService;
@@ -105,34 +104,6 @@ public class Manager extends User{
 	@Override
 	public String toString() {
 		return  "<Manager> "+username+"; fullname = "+surname+" "+name.toUpperCase();
-	}
-	
-
-	/* (non-Javadoc)
-	 * @see user.model.User#update(java.lang.Object)
-	 */
-	@Override
-	public void update(Object o) {
-		// TODO Auto-generated method stub
-		super.update(o);
-	}
-
-	/* (non-Javadoc)
-	 * @see user.model.User#observe(system.Observable)
-	 */
-	@Override
-	public void observe(Observable o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see user.model.User#observe(system.Observable, java.lang.Object)
-	 */
-	@Override
-	public void observe(Observable obv, Object o) {
-		// TODO Auto-generated method stub
-		super.observe(obv, o);
 	}
 
 

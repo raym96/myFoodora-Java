@@ -1,0 +1,19 @@
+login ffillon password
+registerCard lottery
+turnOnNotification
+logout
+
+login korean password
+createMeal Hotpot
+addDish2Meal bibimbap hotpot
+addDish2Meal soja hotpot
+saveMeal hotpot
+setSpecialOffer Hotpot
+showMenu
+logout
+
+login ffillon password
+showspecialoffers
+createOrder korean specialorder
+addItem2Order hotpot specialorder
+endorder specialorder

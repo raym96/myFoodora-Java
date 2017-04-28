@@ -71,12 +71,16 @@ public class CustomerServiceImpl implements CustomerService {
 		Order order = customer.getShoppingCart().getOrder(orderName);
 		Menu menu = order.getRestaurant().getMenu();
 		MealMenu mealmenu = order.getRestaurant().getMealMenu();
+		MealMenu specialmealmenu = order.getRestaurant().getSpecialmealmenu();
 		Item item = null;
 		if (menu.hasDish(itemName)){
 			item = menu.getDish(itemName);
 		}
 		else if (mealmenu.hasMeal(itemName)){
 			item = mealmenu.getMeal(itemName);
+		}
+		else if (specialmealmenu.hasMeal(itemName)){
+			item = specialmealmenu.getMeal(itemName);
 		}
 		else {
 			throw new NameNotFoundException(itemName);
@@ -92,7 +96,6 @@ public class CustomerServiceImpl implements CustomerService {
 	public void endOrder(String orderName, String stringDate) throws NameNotFoundException, ParseException{
 		MyFoodoraService myfoodora_service = MyFoodora.getInstance().getService();
 		Order order = customer.getShoppingCart().getOrder(orderName);
-	
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = sdf.parse(stringDate);
 		
@@ -144,10 +147,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void giveConsensusBeNotifiedSpecialOffers() {
 		// TODO Auto-generated method stub
+		if (customer.isAgreeBeNotifiedSpecialoffers()){
+			return;
+		}
 		customer.setAgreeBeNotifiedSpecialoffers(true);
 		MyFoodora.getInstance().addSpecialOfferObserver(customer);
-		customer.update("You agree to be notified.");
-		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
 	}
 
 
@@ -157,10 +161,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void removeConsensusBeNotifiedSpecialOffers() {
 		// TODO Auto-generated method stub
+		if (!(customer.isAgreeBeNotifiedSpecialoffers())){
+			return;
+		}
 		customer.setAgreeBeNotifiedSpecialoffers(false);
 		MyFoodora.getInstance().removeSpecialOfferObserver(customer);
-		customer.update("You refuse to be notified.");
-		customer.observe(MyFoodora.getInstance(),customer.isAgreeBeNotifiedSpecialoffers());
 	}
 
 

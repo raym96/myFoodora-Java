@@ -56,6 +56,10 @@ public class RestaurantView implements UserView{
 		r.getSpecialmealmenu().display();
 	}
 	
+	public void showTotalIncome(){
+		System.out.println(r.getName()+"'s total income = " + r.getIncome()+ " euros.");
+	}
+	
 
 	public void showMenu(){
 		System.out.println("\n-----["+(r.getName().toUpperCase()+"]-----"));

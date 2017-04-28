@@ -1,0 +1,25 @@
+login ceo 123456789
+
+removeUser mlepen
+showUsers
+
+showhistory
+
+showtotalincome
+showtotalprofit
+showaverageincomepercustomer
+showtotalincome 01/04/2017 01/05/2017
+showtotalprofit 01/04/2017 01/05/2017
+showaverageincomepercustomer 01/04/2017 01/05/2017
+
+showsystemvalues
+setdeliverycost 1.5
+showsystemvalues
+setprofitpolicy service_fee
+applyprofitpolicy 60
+showtotalprofit 27/03/2017 01/05/2017
+
+showrestauranttop desc
+showrestauranttop asc
+showcourierdeliveries desc
+showcourierdeliveries asc

@@ -6,6 +6,7 @@ package system;
 import java.util.ArrayList;
 
 import user.model.User;
+import restaurant.*;
 
 
 /**
@@ -13,7 +14,7 @@ import user.model.User;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public interface SpecialOfferBoard {
+public interface SpecialOfferBoard{
 
 	/**
 	 * Register.
@@ -35,43 +36,8 @@ public interface SpecialOfferBoard {
 	 * Notify all observers.
 	 */
 	// notify all observers of a change of state of this observable
-	public void notifyAllObservers();
-	
-	/**
-	 * Notify all observers.
-	 *
-	 * @param o the o
-	 */
-	public void notifyAllObservers(Object o);
-	
-	/**
-	 * Notify observer.
-	 *
-	 * @param obs the obs
-	 */
-	// notify a appointed observer
-	public void notifyObserver(Observer obs);
-	
-	/**
-	 * Notify observer.
-	 *
-	 * @param obs the obs
-	 * @param o the o
-	 */
-	public void notifyObserver(Observer obs, Object o);
-	
-	/**
-	 * Notify observers.
-	 *
-	 * @param observers the observers
-	 */
-	public void notifyObservers(ArrayList<Observer> observers);	
-	
-	/**
-	 * Notify observers.
-	 *
-	 * @param observers the observers
-	 * @param o the o
-	 */
-	public void notifyObservers(ArrayList<User> observers, Object o);
+	public void notifyAllSpecialObservers(Meal meal);
+
+	public ArrayList<Meal> getSpecialOffers();
+		
 }

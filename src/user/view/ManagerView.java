@@ -1,6 +1,7 @@
 package user.view;
 
 import user.model.Manager;
+import user.model.MyFoodora;
 
 public class ManagerView implements UserView{
 	/** The manager. */
@@ -20,6 +21,10 @@ public class ManagerView implements UserView{
 		String output = "";
 		output+="<Manager> "+manager.getUsername()+"; fullname = "+manager.getSurname()+" "+manager.getName().toUpperCase();
 		System.out.println(output);
+	}
+	
+	public void showHistory(){
+		MyFoodora.getInstance().getView().showHistory();
 	}
 	
 }

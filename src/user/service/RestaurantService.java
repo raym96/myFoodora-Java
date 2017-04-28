@@ -126,8 +126,9 @@ public interface RestaurantService extends UserService{
 	 * Removes a meal-of-the-week and places it in the regular meal-menu.
 	 *
 	 * @param mealName the meal name
+	 * @throws NameNotFoundException 
 	 */
-	public void removeSpecialOffer(String mealName);
+	public void removeSpecialOffer(String mealName) throws NameNotFoundException;
 
 	/**
 	 * establishing the generic discount factor (default 5%) to apply when computing.

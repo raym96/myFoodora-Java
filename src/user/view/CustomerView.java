@@ -70,7 +70,7 @@ public class CustomerView implements UserView{
 	public void showSpecialOffers(){
 		System.out.println("Special offers :");
 		for (Meal meal : c.getSpecialoffers()){
-			System.out.println(meal + "from "+meal.getRestaurant());
+			System.out.println(meal+" BY "+meal.getRestaurant().getName());
 		}
 	}
 }

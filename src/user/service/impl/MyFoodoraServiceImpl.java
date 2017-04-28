@@ -80,13 +80,12 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	 */
 	public void findDeliverer(Order order, ArrayList<Courier> availablecouriers){
 		if (availablecouriers.size()==0){
-			order.getCustomer().update(new Message("No courier available for the moment, sorry."));
+			System.out.println("No courier available for the moment, sorry.");
 			return;
 		}
 		Courier courier = myfoodora.getDeliverypolicy().parse(order, availablecouriers);
 		courier.addWaitingOrder(order); //allocate delivery task to the waiting list of courier
-		System.out.println(courier.getUsername()+" has been assigned to the delivery task. Please wait for confirmation.");
-		order.getCustomer().update(new Message(courier.getUsername()+" has been assigned to the delivery task. Please wait for confirmation.")); //the courier must accept
+		System.out.println(courier.getUsername()+" has been assigned to the delivery task.");
 	}
 	
 	/**
@@ -101,12 +100,8 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	// special offer set by a restaurant
 	
 	@Override
-	public void notifyAll(Meal specialoffer) {
-		// TODO Auto-generated method stub
-		for (Customer c : myfoodora.getSpecialOfferObserver()){
-			//add the new special offer to the special-offer list of the customer
-			c.addSpecialOffer(specialoffer);
-		}
+	public void notifyAllObservers() {
+		myfoodora.getSpecialOfferBoard().notifyAll();
 	}
 
 	
@@ -208,14 +203,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		throw new NameNotFoundException(username);
 	}
 
-	/* (non-Javadoc)
-	 * @see user.service.MyFoodoraService#askAgree2customers(java.lang.String)
-	 */
-	@Override
-	public void askAgree2customers(String ask) {
-		// TODO Auto-generated method stub
-		myfoodora.notifyObservers(myfoodora.getUsersOfAssignedType("CUSTOMER"), (Object)ask);
-	}
 
 
 	/* (non-Javadoc)

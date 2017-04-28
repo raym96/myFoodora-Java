@@ -33,9 +33,6 @@ public class StandardCard extends FidelityCard {
 	@Override
 	public void pay(Order order) {
 		// TODO Auto-generated method stub
-		double price = order.accept(new ConcreteShoppingCartVisitor());		
-		customer.update("paid for a total amount of = " + price );
-		customer.observe(MyFoodora.getInstance(), "" + customer.getUsername() + " has paid " + price);
 		customer.getShoppingCart().removeOrder(order);
 	}
 	

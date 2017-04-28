@@ -14,8 +14,7 @@ import restaurant.*;
 import system.ConcreteSpecialOfferBoard;
 import system.History;
 import system.MessageBoard;
-import system.Observable;
-import system.Observer;
+import system.MessageBoardObserver;
 import system.Order;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
@@ -27,19 +26,13 @@ import user.view.MyFoodoraView;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public class MyFoodora implements Observable{
+public class MyFoodora {
 	
 	/** The users. */
 	private ArrayList<User> users;
 
-	/** The specialofferobservers. */
-	private ArrayList<Customer> specialofferobservers;
-
 	/** The specialofferboard. */
 	private ConcreteSpecialOfferBoard specialofferboard;
-	
-	/** The message board. */
-	private MessageBoard messageBoard;//OBSERVABLE, public message board
 	
 	/** The service fee. */
 	private double service_fee;
@@ -73,8 +66,6 @@ public class MyFoodora implements Observable{
 	 */
 	private MyFoodora(){
 		this.users = new ArrayList<User>();
-		this.specialofferobservers = new ArrayList<Customer>();
-		this.messageBoard = new MessageBoard(this);
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
 		this.history = new History();
 		this.myfoodoraService = new MyFoodoraServiceImpl(this);
@@ -147,7 +138,7 @@ public class MyFoodora implements Observable{
 	 * @param c the c
 	 */
 	public void addSpecialOfferObserver(Customer c){
-		specialofferobservers.add(c);
+		specialofferboard.register(c);
 	}
 	
 	/**
@@ -156,17 +147,9 @@ public class MyFoodora implements Observable{
 	 * @param c the c
 	 */
 	public void removeSpecialOfferObserver(Customer c){
-		specialofferobservers.remove(c);
+		specialofferboard.unregister(c);
 	}
 	
-	/**
-	 * Gets the special offer observer.
-	 *
-	 * @return the special offer observer
-	 */
-	public ArrayList<Customer> getSpecialOfferObserver(){
-		return specialofferobservers;
-	}
 	
 	/**
 	 * Sets the delivery policy.
@@ -356,7 +339,7 @@ public class MyFoodora implements Observable{
 	 *
 	 * @return the specialofferboard
 	 */
-	public ConcreteSpecialOfferBoard getSpecialofferboard() {
+	public ConcreteSpecialOfferBoard getSpecialOfferBoard() {
 		return specialofferboard;
 	}
 
@@ -414,24 +397,6 @@ public class MyFoodora implements Observable{
 		
 	}
 
-
-	
-	/**
-	 * Gets the message board.
-	 *
-	 * @return the message board
-	 */
-	public MessageBoard getMessageBoard() {
-		return messageBoard;
-	}
-	
-	/**
-	 * Refresh message board.
-	 */
-	public void refreshMessageBoard(){
-		this.messageBoard.displayAllmsgs();
-	}
-	
 	/**
 	 * Gets the available couriers.
 	 *
@@ -511,91 +476,16 @@ public class MyFoodora implements Observable{
 		this.targetprofitpolicy=tpp;
 	}
 
-	/* (non-Javadoc)
-	 * @see system.Observable#register(system.Observer)
-	 */
-	@Override
-	public synchronized void register(Observer obs) {
-		// TODO Auto-generated method stub
-		users.add((User)obs);
-	}
 
-	/* (non-Javadoc)
-	 * @see system.Observable#unregister(system.Observer)
-	 */
-	@Override
-	public synchronized void unregister(Observer obs) {
+	public synchronized void register(User user) {
 		// TODO Auto-generated method stub
-		users.remove((User)obs);
-		System.out.println("User " + ((User)obs).getUsername() + " has unregistered from myFoodora.");
-	}
-
-	/* (non-Javadoc)
-	 * @see system.Observable#notifyAllObservers()
-	 */
-	@Override
-	public void notifyAllObservers() {
-		// TODO Auto-generated method stub
-//		if (this.delivery_task_state){
-//			for (Observer ob : couriers){
-//				ob.update(this.deliveryTasks);
-//			}
-//			this.delivery_task_state=false;
-//		}
-	}
-
-	/* (non-Javadoc)
-	 * @see system.Observable#notifyAllObservers(java.lang.Object)
-	 */
-	@Override
-	public void notifyAllObservers(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/* (non-Javadoc)
-	 * @see system.Observable#notifyObserver(system.Observer)
-	 */
-	@Override
-	public void notifyObserver(Observer obs) {
-		// TODO Auto-generated method stub
-//		if( obs instanceof Courier ){
-//			obs.update(this.currentDeliveryTask);
-//		}
-	}
-
-	/* (non-Javadoc)
-	 * @see system.Observable#notifyObserver(system.Observer, java.lang.Object)
-	 */
-	@Override
-	public void notifyObserver(Observer obs, Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see system.Observable#notifyObservers(java.util.ArrayList)
-	 */
-	@Override
-	public void notifyObservers(ArrayList<Observer> observers) {
-		// TODO Auto-generated method stub
-		if(observers.get(0) instanceof Customer){
-			
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see system.Observable#notifyObservers(java.util.ArrayList, java.lang.Object)
-	 */
-	@Override
-	public void notifyObservers(ArrayList<User> observers, Object o) {
-		// TODO Auto-generated method stub
-		for(Observer obs : observers){
-			obs.update(o);
-		}
+		users.add(user);
 	}
 
 
-
+	public synchronized void unregister(User user) {
+		// TODO Auto-generated method stub
+		users.remove(user);
+	}
 	
 }

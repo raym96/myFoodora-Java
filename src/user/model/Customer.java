@@ -13,8 +13,8 @@ import system.AddressPoint;
 import system.ConcreteSpecialOfferBoard;
 import system.Message;
 import system.MessageBoard;
-import system.Observable;
 import system.ShoppingCart;
+import system.SpecialOfferBoard;
 import system.SpecialOfferObserver;
 import user.service.CustomerService;
 import user.service.impl.CustomerServiceImpl;
@@ -43,10 +43,8 @@ public class Customer extends User implements SpecialOfferObserver{
 	/** The agree to be notified specialoffers. */
 	private Boolean agreeToBeNotifiedSpecialoffers;
 	
-	/** The specialoffers. */
-	private ArrayList<Meal> specialoffers;
-	
-	
+	private SpecialOfferBoard specialOfferBoard;
+
 	/** The shoppingcart. */
 	private ShoppingCart shoppingcart;
 	
@@ -71,10 +69,9 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.card = new StandardCard(this);
 		this.shoppingcart = new ShoppingCart();
 		this.agreeToBeNotifiedSpecialoffers = false;
+		this.specialOfferBoard = MyFoodora.getInstance().getSpecialOfferBoard();
 		this.customerService = new CustomerServiceImpl(this);
-		this.customerView = new CustomerView(this);
-		this.specialoffers = new ArrayList<Meal>();
-		
+		this.customerView = new CustomerView(this);		
 	}
 	/**
 	 *  basic methods *.
@@ -116,7 +113,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	public void setAgreeBeNotifiedSpecialoffers(boolean agreeBeNotifiedSpecialoffers) {
 		this.agreeToBeNotifiedSpecialoffers = agreeBeNotifiedSpecialoffers;
 	}
-
+	
 	/**
 	 * Gets the card.
 	 *
@@ -159,7 +156,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	 * @return the specialoffers
 	 */
 	public ArrayList<Meal> getSpecialoffers() {
-		return specialoffers;
+		return specialOfferBoard.getSpecialOffers();
 	}
 
 
@@ -208,60 +205,12 @@ public class Customer extends User implements SpecialOfferObserver{
 	public String toString() {
 		return  "<Customer> "+username+"; fullname = "+firstname+" "+lastname.toUpperCase()+"; address="+address;
 	}
-	
 
-	
-	/**
-	 *  observer/observable business methods *.
-	 *
-	 * @param specialoffers the specialoffers
-	 */
-	//update the special offers
-	@Override
-	public void updateSpecialOffer(ArrayList<Meal> specialoffers){
-	// TODO Auto-generated method stub
-		this.specialoffers = specialoffers;
-	}
-	
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferObserver#addSpecialOffer(restaurant.Meal)
-	 */
-	@Override
-	public void addSpecialOffer(Meal meal) {
-		specialoffers.add(meal);
-	}
 
-	/* (non-Javadoc)
-	 * @see user.model.User#update(java.lang.Object)
-	 */
 	@Override
-	public void update(Object o) {
-		super.update(o);
-	}
-
-	/* (non-Javadoc)
-	 * @see user.model.User#observe(system.Observable)
-	 */
-	@Override
-	public void observe(Observable o) {
-
-		// complete when you need use it
-	}
-
-	/* (non-Javadoc)
-	 * @see user.model.User#observe(system.Observable, java.lang.Object)
-	 */
-	@Override
-	public void observe(Observable obv, Object o) {
-		super.observe(obv, o);
-		if( obv instanceof MyFoodora ){
-			MessageBoard msgBoard = ((MyFoodora) obv).getMessageBoard();
-			if( o instanceof Boolean && (Boolean)o==true ){
-				msgBoard.addMessage(new Message("" + this.getUsername() + " agrees to be notified of special offers."));
-			}else if( o instanceof Boolean && (Boolean)o==false ){
-				msgBoard.addMessage(new Message("" + this.getUsername() + " refuses to be notified of special offers."));
-			}
-		}
+	public void updateNewOffer(Meal meal) {
+		// TODO Auto-generated method stub
+		update(new Message("There is a new special-offer : "+meal+" by "+meal.getRestaurant().getName()));
 	}
 	
 }

@@ -1,5 +1,6 @@
 package user.view;
 
+import system.Order;
 import user.model.Courier;
 
 public class CourierView implements UserView{
@@ -35,15 +36,25 @@ public class CourierView implements UserView{
 		System.out.println(output);
 	}
 	
-	public void showDeliveryCount(){
-		System.out.println(c.getCount());
+	public void showCount(){
+		System.out.println(c.getName()+ "'s total delivery count = " + c.getCount());
 	}
 	
-	public void showDeliveredOrders(){
-		System.out.println(c.getDeliveredOrders());
+	public void showHistory(){
+		System.out.println("List of delivered orders by "+c.getName()+":");
+		for (Order order: c.getDeliveredOrders()){
+			System.out.println(order+"\n");
+		}
 	}
 	
 	public void showWaitingOrders(){
-		System.out.println(c.getWaitingOrders());
+		System.out.println("List of waiting orders by "+c.getName()+":");
+		if (c.getWaitingOrders().size()==0){
+			System.out.println("EMPTY");
+		}
+		for (Order order: c.getWaitingOrders()){
+			System.out.println(order+"\n");
+		}		
+		System.out.println("Please answer each of them (acceptCall/refuseCall) as soon as possible.");
 	}
 }

@@ -8,9 +8,7 @@ import java.util.UUID;
 
 import system.Message;
 import system.MessageBoard;
-import system.Observable;
-import system.Observer;
-import user.model.MyFoodora;
+import system.MessageBoardObserver;
 import user.service.UserService;
 import user.view.UserView;
 
@@ -20,7 +18,7 @@ import user.view.UserView;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public abstract class User implements Observer{
+public abstract class User implements MessageBoardObserver{
 
 	/** The id. */
 	protected String ID;
@@ -75,9 +73,7 @@ public abstract class User implements Observer{
 	 * Log in.
 	 */
 	public void logIn(){
-		this.logStatus = true;
-		this.observe(MyFoodora.getInstance(), "" + this.getUsername() + " has logged in to the myFoodora system");
-		
+		this.logStatus = true;		
 	}
 	
 	/**
@@ -85,7 +81,6 @@ public abstract class User implements Observer{
 	 */
 	public void logOut(){
 		this.logStatus = false;
-		this.observe(MyFoodora.getInstance(), "" + this.getUsername() + " has logged out of the myFoodora system");
 	}
 
 	/**
@@ -101,45 +96,16 @@ public abstract class User implements Observer{
 	public void turnOffNotification(){
 		notified = false;
 	}
-	
-	/**
-	 * Refresh message board.
-	 */
-	public void refreshMessageBoard(){
+
+	@Override
+	public void observe(MessageBoard messageboard){
 		this.messageBoard.displayAllmsgs();
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see system.Observer#observe(system.Observable)
-	 */
 	@Override
-	public abstract void observe(Observable o);
-	
-	/* (non-Javadoc)
-	 * @see system.Observer#update(java.lang.Object)
-	 */
-	@Override
-	public void update(Object o){
-		if(o instanceof String){
-			MessageBoard msgBoard = this.getMessageBoard();
-			msgBoard.addMessage(new Message(this.getUsername(), (String)o));
-		}
+	public void update(Message message){
+		this.messageBoard.addMessage(message);
 	}
-	
-	/* (non-Javadoc)
-	 * @see system.Observer#observe(system.Observable, java.lang.Object)
-	 */
-	@Override
-	public void observe(Observable obv, Object o){
-		if(obv instanceof MyFoodora){
-			if(o instanceof String){
-				MessageBoard msgBoard = ((MyFoodora)obv).getMessageBoard();
-				msgBoard.addMessage(new Message((String)o));
-			}
-		}
-	}
-
 	
 	/**
 	 * Gets the username.

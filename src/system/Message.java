@@ -3,6 +3,7 @@
  */
 package system;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import user.model.User;
@@ -24,6 +25,8 @@ public class Message {
 	/** The poster. */
 	private String poster; //message poster's name
 	
+	private Boolean hasBeenRead;
+	
 	/**
 	 * Instantiates a new message.
 	 *
@@ -35,6 +38,7 @@ public class Message {
 		this.date = new Date();
 		this.msgContent = msgContent;
 		this.poster = "SYSTEM";
+		this.hasBeenRead = false;
 	}
 	
 	/**
@@ -48,6 +52,7 @@ public class Message {
 		this.date = new Date();
 		this.msgContent = msgContent;
 		this.poster = poster;
+		this.hasBeenRead = false;
 	}
 
 	/* (non-Javadoc)
@@ -55,7 +60,17 @@ public class Message {
 	 */
 	@Override
 	public String toString() {
-		return date + ", "+poster+": "+msgContent + "\n";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String dateString = sdf.format(date);
+		return dateString + ", "+poster+": "+msgContent;
+	}
+
+	public Boolean hasBeenRead() {
+		return hasBeenRead;
+	}
+
+	public void setHasBeenRead(Boolean read) {
+		this.hasBeenRead = read;
 	}
 	
 	

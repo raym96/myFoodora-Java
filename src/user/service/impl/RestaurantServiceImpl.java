@@ -23,6 +23,7 @@ import restaurant.MealFactory;
 import restaurant.MealMenu;
 import restaurant.Starter;
 import system.*;
+import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.service.RestaurantService;
 
@@ -124,6 +125,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public void saveMeal(String mealName) throws NameNotFoundException, DishTypeErrorException{
 		Meal meal = restaurant.getMealMenu().getMeal(mealName);
 		if (meal.getDishes().size()==2){
+			if (!(meal.getDishes().get(0) instanceof MainDish || meal.getDishes().get(1) instanceof MainDish)){
+				throw new DishTypeErrorException();
+			}
 			HalfMeal halfmeal = new HalfMeal(meal);
 			halfmeal.setSaved(true);
 			restaurant.getMealMenu().removeMeal(mealName);
@@ -217,24 +221,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 	//throw exception if meal name is not recognized
 	@Override
 	public void setSpecialOffer(String mealName) throws NameNotFoundException {
-		// TODO Auto-generated method stub
-		//throw exception if meal name is not recognized
-		int count=0;
-		for (Iterator<Meal> iter1 = restaurant.getMealMenu().getMeals().iterator();iter1.hasNext();){
-			Meal meal = iter1.next();
-			if (meal.getName().equalsIgnoreCase(mealName)){
-				iter1.remove();
-				meal.setSpecial(true);
-				try {
-					restaurant.getSpecialmealmenu().addMeal(meal);
-				} catch (NameAlreadyExistsException e) {
-					e.printStackTrace();
-				}
-				count++;
-			}
-		}
-		if (count==0){
-			throw new NameNotFoundException(mealName);
+		MealMenu mealmenu = restaurant.getMealMenu();
+		Meal meal = mealmenu.getMeal(mealName);
+		mealmenu.removeMeal(mealName);
+		try {
+			restaurant.getSpecialmealmenu().addMeal(meal);
+			MyFoodora.getInstance().getSpecialOfferBoard().addSpecialOffer(meal);
+		} catch (NameAlreadyExistsException e) {
+			e.printError();
 		}
 	}
 
@@ -242,19 +236,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 	 * @see user.service.RestaurantService#removeSpecialMeal(java.lang.String)
 	 */
 	@Override
-	public void removeSpecialOffer(String mealName) {
+	public void removeSpecialOffer(String mealName) throws NameNotFoundException {
 		// TODO Auto-generated method stub
-		for (Iterator<Meal> iter = restaurant.getSpecialmealmenu().getMeals().iterator();iter.hasNext();){
-			Meal sm = iter.next();
-			if (sm.getName().equalsIgnoreCase(mealName)){
-				iter.remove();
-				sm.setSpecial(false);
-				try {
-					restaurant.getMealMenu().addMeal(sm);
-				} catch (NameAlreadyExistsException e) {
-					e.printStackTrace();
-				}
-			}
+		MealMenu specialmealmenu = restaurant.getSpecialmealmenu();
+		Meal meal = specialmealmenu.getMeal(mealName);
+		specialmealmenu.removeMeal(mealName);
+		try {
+			restaurant.getMealMenu().addMeal(meal);
+			MyFoodora.getInstance().getSpecialOfferBoard().removeSpecialOffer(meal);
+		} catch (NameAlreadyExistsException e1) {
+			e1.printError();
 		}
 	}
 

@@ -1,5 +1,10 @@
 package user.view;
 
+
 public interface UserView {
-	public void showInfo();
+	
+	public abstract void showInfo();
+
+	public abstract void showHistory();
+	
 }

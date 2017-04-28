@@ -96,7 +96,7 @@ public class CourierServiceImpl implements CourierService {
 									// may throw NameNotFoundException		
 		//new message appears on message board of customer
 		Customer c = order.getCustomer();
-		c.update(new Message("courier "+courier.getName()+" accepts to take the order."));	
+//		c.update(new Message("courier "+courier.getName()+" <"+courier.getUsername()+"> accepted to deliver your order <"+order.getName()+">."));	
 	}
 
 	/* (non-Javadoc)
@@ -113,7 +113,8 @@ public class CourierServiceImpl implements CourierService {
 		
 		// new message appears on message board of customer
 		Customer c = order.getCustomer();
-		c.update(new Message("courier "+courier.getName()+" refused to take the order. Please wait for an other courier"));
+//		c.update(new Message("courier "+courier.getName()+" <"+courier.getUsername()+"> refused to take the order. "
+//				+ "Another courier is being assigned."));
 	
 		//A new courier is assigned to the delivery-task
 		MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers); //a new courier is assigned

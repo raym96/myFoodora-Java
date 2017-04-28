@@ -60,7 +60,7 @@ public interface MyFoodoraService {
 	 * @param specialoffer the specialoffer
 	 */
 
-	public void notifyAll(Meal specialoffer);
+	public void notifyAllObservers();
 	
 	/**
 	 * computing the total income (i.e. the sum of all completed orders) over a period
@@ -120,13 +120,6 @@ public interface MyFoodoraService {
 	public ArrayList<User> getUsersOfAssignedType(String userType);
 	
 	/**
-	 * Sends a message to customers.
-	 *
-	 * @param ask the ask
-	 */
-	public void askAgree2customers(String ask);
-	
-	/**
 	 * Login.
 	 *
 	 * @param username the username
@@ -134,4 +127,5 @@ public interface MyFoodoraService {
 	 * @throws LoginErrorException the login error exception
 	 */
 	public void login(String username, String password) throws LoginErrorException;
+
 }

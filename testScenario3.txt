@@ -1,0 +1,24 @@
+login emacron password
+registerCard point
+
+createOrder french myorder
+addItem2Order Snail myorder
+addItem2Order hm2 myorder
+createOrder chinese myorder2
+addItem2Order Nem myorder2
+addItem2Order fm4 myorder2
+showshoppingcart
+
+endorder myorder
+endorder myorder2
+showpoints
+logout
+
+login dtrump password
+acceptcall myorder
+showhistory
+showcount
+changeposition 4.4,5.0
+offduty
+showinfo
+logout

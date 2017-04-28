@@ -21,7 +21,8 @@ public class DishTypeErrorException extends Exception {
 	 * Prints the error.
 	 */
 	public void printError() {
-		System.out.println("DISH TYPE ERROR: A meal can have at most 1 dessert, 1 main & 1 dessert.");
+		System.out.println("DISH TYPE ERROR: A meal can have at most 1 dessert, 1 main & 1 dessert. Furthermore,"
+				+ "a half-meal must have a least 1 main-dish.");
 	}
 	
 	

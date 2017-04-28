@@ -38,32 +38,31 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	/**
 	 * Adds the special offer.
 	 *
-	 * @param specialmeal the specialmeal
+	 * @param meal the specialmeal
 	 */
-	public void addSpecialOffer(Meal specialmeal){
-		specialoffers.add(specialmeal);
+	public void addSpecialOffer(Meal meal){
+		specialoffers.add(meal);
 		this.changed = true;
-		this.notifyAllObservers();
+		this.notifyAllSpecialObservers(meal);
 	}
 	
 	/**
 	 * Removes the special offer.
 	 *
-	 * @param so the so
+	 * @param meal the meal
 	 */
-	public void removeSpecialOffer(Meal so){
-		specialoffers.remove(so);
+	public void removeSpecialOffer(Meal meal){
+		specialoffers.remove(meal);
 		this.changed = true;
-		this.notifyAllObservers();
 	}
 
 	/* (non-Javadoc)
 	 * @see system.SpecialOfferBoard#register(system.SpecialOfferObserver)
 	 */
 	@Override
-	public void register(SpecialOfferObserver obs) {
+	public void register(SpecialOfferObserver observer) {
 		// TODO Auto-generated method stub
-		observers.add(obs);
+		observers.add(observer);
 	}
 
 	/* (non-Javadoc)
@@ -75,74 +74,25 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 		observers.remove(obs);
 	}
 
-	/**
-	 * Gets the specialoffers.
-	 *
-	 * @return the specialoffers
-	 */
-	public ArrayList<Meal> getSpecialoffers() {
+	
+	public ArrayList<SpecialOfferObserver> getObservers() {
+		return observers;
+	}
+
+
+	public ArrayList<Meal> getSpecialOffers() {
+		// TODO Auto-generated method stub
 		return specialoffers;
 	}
 
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferBoard#notifyObserver(system.Observer)
-	 */
 	@Override
-	public void notifyObserver(Observer obs) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferBoard#notifyAllObservers()
-	 */
-	@Override
-	public void notifyAllObservers() {
-		// TODO Auto-generated method stub
+	public void notifyAllSpecialObservers(Meal meal) {
 		if (this.changed){
 			for (SpecialOfferObserver ob :observers){
-				ob.updateSpecialOffer(this.specialoffers);
+				ob.updateNewOffer(meal);
 			}
-			this.changed=false;
+			this.changed = false;
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferBoard#notifyAllObservers(java.lang.Object)
-	 */
-	@Override
-	public void notifyAllObservers(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferBoard#notifyObserver(system.Observer, java.lang.Object)
-	 */
-	@Override
-	public void notifyObserver(Observer obs, Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferBoard#notifyObservers(java.util.ArrayList)
-	 */
-	@Override
-	public void notifyObservers(ArrayList<Observer> observers) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see system.SpecialOfferBoard#notifyObservers(java.util.ArrayList, java.lang.Object)
-	 */
-	@Override
-	public void notifyObservers(ArrayList<User> observers, Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
 }

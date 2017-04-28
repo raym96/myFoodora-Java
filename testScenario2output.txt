@@ -2,326 +2,6 @@ login ceo 123456789
 
 Welcome on MyFoodora, user <ceo>. Please enter a command. Enter "help" to get the list of available commands.
 
-registerCustomer herve biausser hbiausser 0,0 password
-Customer hbiausser has been registered on myfoodora.
-
-registerCustomer paulo ballarini pballarini 20,10 password
-Customer pballarini has been registered on myfoodora.
-
-registerRestaurant BonheurdAntony bantony 3,3 password
-Restaurant bantony has been registered on myfoodora.
-
-registerCourier john cagnol jcagnol 4,-2 password
-Courier jcagnol has been registered on myfoodora.
-
-showUsers
-
-[USERS]
-<Manager> ceo; fullname = raymond JI
-<Manager> debuty; fullname = Xiaoan HE
-<Customer> emacron; fullname = Emmanuel MACRON; address=100.0,100.0
-<Customer> mlepen; fullname = Marine LEPEN; address=101.0,101.0
-<Customer> ffillon; fullname = Francois FILLON; address=102.0,102.0
-<Customer> jlmelenchon; fullname = JeanLuc MELENCHON; address=1.0,1.0
-<Customer> bhamon; fullname = Benoit HAMON; address=-23.0,-23.0
-<Customer> ndupont; fullname = Nicolas DUPONT; address=0.0,0.0
-<Customer> ppoutou; fullname = Philippe POUTOU; address=25.0,25.0
-<Courier> dtrump; fullname = Donald TRUMP; position=2.0,2.0
-<Courier> hclinton; fullname = Hillary CLINTON; position=-2.0,2.0
-<Courier> bsanders; fullname = Bernie SANDERS; position=2.0,-2.0
-<Courier> bobama; fullname = Barack OBAMA; position=-2.0,-2.0
-<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
-<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
-<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
-<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
-<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-<Customer> hbiausser; fullname = herve BIAUSSER; address=0.0,0.0
-<Customer> pballarini; fullname = paulo BALLARINI; address=20.0,20.0
-<Restaurant> bantony; name = BonheurdAntony; address=3.0,3.0
-<Courier> jcagnol; fullname = john CAGNOL; position=4.0,-2.0
-
-logout
-Goodbye ceo. We hope to see you again on MyFoodora.
-
-
-
-login bantony password
-
------[BONHEURDANTONY]-----
-
-[Menu]
-
-Starters:
-
-Main-dishes:
-
-Desserts:
-
-[Meal menu]
-
-[Special Offers]
-
-Welcome on MyFoodora, user <bantony>. Please enter a command. Enter "help" to get the list of available commands.
-
-addDishRestaurantMenu salad starter vegetarian 3.3
-salad has been added to the menu of bantony
-
-addDishRestaurantMenu vegetables main vegetarian 5.5
-vegetables has been added to the menu of bantony
-
-addDishRestaurantMenu potatoes dessert gluten-free 2.0
-potatoes has been added to the menu of bantony
-
-createMeal BA01
-Meal BA01 has been created
-
-addDish2Meal salad BA01
-Dish salad has been added to the meal BA01
-
-addDish2Meal vegetables BA01
-Dish vegetables has been added to the meal BA01
-
-addDish2Meal potatoes BA01
-Dish potatoes has been added to the meal BA01
-
-showMeal BA01
-The dishes of the meal <BA01> are :
-<Salad> vegetarian 3.3 euros 
-<Vegetables> vegetarian 5.5 euros 
-<Potatoes> gluten-free 2.0 euros 
-
-saveMeal
-SYNTAX ERROR: Missing arguments. You must have at least 1 arguments for this command. For more information, enter "help".
-
-setSpecialOffer BA01
-Meal BA01 saved as a special-offer of BonheurdAntony
-
-showMenu
-
------[BONHEURDANTONY]-----
-
-[Menu]
-
-Starters:
-<Salad> vegetarian 3.3 euros 
-
-Main-dishes:
-<Vegetables> vegetarian 5.5 euros 
-
-Desserts:
-<Potatoes> gluten-free 2.0 euros 
-
-[Meal menu]
-
-[Special Offers]
-
-logout
-Goodbye bantony. We hope to see you again on MyFoodora.
-
-
-
-login hbiausser password
-
------[FRENCHRESTAURANT]-----
-
-[Menu]
-
-Starters:
-<Snail> vegetarian 2.5 euros 
-<Foie-gras> standard 5.5 euros 
-
-Main-dishes:
-<Steak> standard 9.8 euros 
-<Choucroute> vegetarian 7.0 euros 
-
-Desserts:
-<Ice-cream> gluten-free 2.0 euros 
-<Chocolate> standard 3.5 euros 
-
-[Meal menu]
-Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
-Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
-Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
-Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
-Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
-Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
-Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
-Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
-
-[Special Offers]
-Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
-
------[CHINESERESTAURANT]-----
-
-[Menu]
-
-Starters:
-<Nem> gluten-free 2.1 euros 
-<Ravioli> vegetarian 2.8 euros 
-
-Main-dishes:
-<Canard_laque> standard 10.0 euros 
-<Pork_ribs> standard 9.1 euros 
-
-Desserts:
-<Lychees> gluten-free 2.0 euros 
-<Nougat> gluten-free 3.0 euros 
-
-[Meal menu]
-Half-meal <Hm1> [Canard_laque, Nougat] type standard 12.35 euros
-Half-meal <Hm2> [Pork_ribs, Nougat] type standard 11.39 euros
-Half-meal <Hm3> [Pork_ribs, Lychees] type standard 10.45 euros
-Half-meal <Hm4> [Ravioli, Pork_ribs] type standard 10.45 euros
-Full-meal <Fm1> [Nem, Canard_laque, Nougat] type standard 14.25 euros
-Full-meal <Fm2> [Ravioli, Canard_laque, Lychees] type standard 13.3 euros
-Full-meal <Fm3> [Nem, Pork_ribs, Lychees] type standard 12.35 euros
-Full-meal <Fm4> [Ravioli, Pork_ribs, Lychees] type standard 12.35 euros
-
-[Special Offers]
-Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros
-
------[JAPANESERESTAURANT]-----
-
-[Menu]
-
-Starters:
-<Japanese_soup> gluten-free 3.5 euros 
-<Japanese_salad> vegetarian 2.4 euros 
-
-Main-dishes:
-<Sushi> gluten-free 5.0 euros 
-<Maki> gluten-free 4.3 euros 
-
-Desserts:
-<Nougat> gluten-free 2.2 euros 
-<Lychee> vegetarian 3.0 euros 
-
-[Meal menu]
-Half-meal <Hm4> [Maki, Nougat] type standard 5.69 euros
-Half-meal <Hm1> [Maki, Lychee] type standard 6.65 euros
-Half-meal <Hm2> [Japanese_salad, Sushi] type standard 6.65 euros
-Half-meal <Hm3> [Japanese_salad, Maki] type standard 5.69 euros
-Full-meal <Fm1> [Japanese_soup, Sushi, Lychee] type standard 10.45 euros
-Full-meal <Fm2> [Japanese_salad, Sushi, Lychee] type standard 9.5 euros
-Full-meal <Fm3> [Japanese_soup, Maki, Nougat] type standard 8.54 euros
-Full-meal <Fm4> [Japanese_salad, Maki, Nougat] type standard 7.6 euros
-
-[Special Offers]
-Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros
-
------[KOREANRESTAURANT]-----
-
-[Menu]
-
-Starters:
-<Noodles> gluten-free 4.4 euros 
-<Soja> vegetarian 2.0 euros 
-
-Main-dishes:
-<Bibimbap> standard 6.9 euros 
-<Barbecue> standard 10.5 euros 
-
-Desserts:
-<Lychee> vegetarian 3.1 euros 
-<Macha> standard 5.8 euros 
-
-[Meal menu]
-Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
-Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
-Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
-Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
-Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
-Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
-Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
-Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
-
-[Special Offers]
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
-
------[ITALIANRESTAURANT]-----
-
-[Menu]
-
-Starters:
-<Olive> gluten-free 1.0 euros 
-<Salad> vegetarian 6.3 euros 
-
-Main-dishes:
-<Pizza> standard 6.3 euros 
-<Spaghetti> standard 5.9 euros 
-
-Desserts:
-<Ice-cream> standard 3.3 euros 
-<Tiramisu> vegetarian 5.0 euros 
-
-[Meal menu]
-Half-meal <Hm1> [Salad, Pizza] type standard 11.39 euros
-Half-meal <Hm2> [Salad, Spaghetti] type standard 10.45 euros
-Half-meal <Hm3> [Olive, Spaghetti] type standard 5.69 euros
-Half-meal <Hm4> [Olive, Pizza] type standard 6.65 euros
-Full-meal <Fm1> [Olive, Pizza, Ice-cream] type standard 9.5 euros
-Full-meal <Fm2> [Salad, Pizza, Tiramisu] type standard 16.14 euros
-Full-meal <Fm3> [Olive, Spaghetti, Tiramisu] type standard 10.45 euros
-Full-meal <Fm4> [Salad, Spaghetti, Ice-cream] type standard 13.3 euros
-
-[Special Offers]
-Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros
-
------[BONHEURDANTONY]-----
-
-[Menu]
-
-Starters:
-<Salad> vegetarian 3.3 euros 
-
-Main-dishes:
-<Vegetables> vegetarian 5.5 euros 
-
-Desserts:
-<Potatoes> gluten-free 2.0 euros 
-
-[Meal menu]
-
-[Special Offers]
-
-Welcome on MyFoodora, user <hbiausser>. Please enter a command. Enter "help" to get the list of available commands.
-
-createOrder italian myorder
-Order myorder added to the shopping cart.
-
-additem2order pizza myorder 
-Item pizza added to the order myorder
-
-additem2order hm3 myorder
-Item hm3 added to the order myorder
-
-showshoppingcart
-
-SHOPPINGCART : 
-
-[Order <myorder> ID1079]
-[11.99€] 
-A-la-carte <Pizza> 6.3
-Meal <Hm3> 5.69
-BY <hbiausser> herve biausser
-AT <italian> ItalianRestaurant
-ON 27/04/2017
-
-TOTAL PRICE = 11.99 euros
-
-endorder myorder 24/04/2017
-bsanders has been assigned to the delivery task. Please wait for confirmation.
-Order myorder finalised on 24/04/2017 and you paid for it.
-
-logout
-Goodbye hbiausser. We hope to see you again on MyFoodora.
-
-
-runtest testScenario2.txt
-login ceo 123456789
-
-Welcome on MyFoodora, user <ceo>. Please enter a command. Enter "help" to get the list of available commands.
-
 
 
 removeUser mlepen
@@ -348,10 +28,6 @@ showUsers
 <Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
 <Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
 <Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-<Customer> hbiausser; fullname = herve BIAUSSER; address=0.0,0.0
-<Customer> pballarini; fullname = paulo BALLARINI; address=20.0,20.0
-<Restaurant> bantony; name = BonheurdAntony; address=3.0,3.0
-<Courier> jcagnol; fullname = john CAGNOL; position=4.0,-2.0
 
 
 
@@ -1069,29 +745,27 @@ BY <ppoutou> Philippe Poutou
 AT <korean> KoreanRestaurant
 ON 09/01/2017 DELIVERED BY <bobama>
 
-[Order <myorder> ID1079]
-[11.99€] 
-A-la-carte <Pizza> 6.3
-Meal <Hm3> 5.69
-BY <hbiausser> herve biausser
-AT <italian> ItalianRestaurant
-ON 24/04/2017
-
 
 
 
 
 showtotalincome
-Total income : 1168.44 euros.
+Total income : 1156.45 euros.
 
 showtotalprofit
-Total profit : 137.844 euros.
+Total profit : 136.145 euros.
 
 showaverageincomepercustomer
-Average income per customer : 146.055 euros.
+Average income per customer : 165.207 euros.
 
 showtotalincome 01/04/2017 01/05/2017
-Total income : 388.859 euros.
+Total income : 376.869 euros.
+
+showtotalprofit 01/04/2017 01/05/2017
+Total profit : 43.687 euros.
+
+showaverageincomepercustomer 01/04/2017 01/05/2017
+Average income per customer : 94.217 euros.
 
 
 
@@ -1103,10 +777,53 @@ Service fee = 1.0
 setdeliverycost 1.5
 Delivery cost updated
 
+showsystemvalues
+Delivery cost = 1.5
+Mark up percentage = 0.1
+Service fee = 1.0
+
 setprofitpolicy service_fee
 Profit policy set as service_fee
 
-applyprofitpolicy 200
-SYNTAX ERROR: Unknown command. Please check your spelling. For more information, enter "help".
+applyprofitpolicy 60
+Profit policy has been applied, system values updated.
+Delivery cost = 1.5
+Mark up percentage = 0.1
+Service fee = 2.762435714285714
+
+showtotalprofit 27/03/2017 01/05/2017
+Total profit : 60.0 euros.
+
+
+
+showrestauranttop desc
+Displaying restaurants sorted w.r.t the number of shipped orders 
+Restaurant <KoreanRestaurant>; number of orders: 17
+Restaurant <JapaneseRestaurant>; number of orders: 17
+Restaurant <ChineseRestaurant>; number of orders: 16
+Restaurant <ItalianRestaurant>; number of orders: 16
+Restaurant <FrenchRestaurant>; number of orders: 13
+
+showrestauranttop asc
+Displaying restaurants sorted w.r.t the number of shipped orders (ascending order)
+Restaurant <FrenchRestaurant>; number of orders: 13
+Restaurant <ItalianRestaurant>; number of orders: 16
+Restaurant <ChineseRestaurant>; number of orders: 16
+Restaurant <JapaneseRestaurant>; number of orders: 17
+Restaurant <KoreanRestaurant>; number of orders: 17
+
+showcourierdeliveries desc
+Displaying couriers sorted w.r.t the number of delivered orders 
+Courier <Obama>; number of delivered orders: 34
+Courier <Clinton>; number of delivered orders: 16
+Courier <Sanders>; number of delivered orders: 16
+Courier <Trump>; number of delivered orders: 13
+
+showcourierdeliveries asc
+Displaying couriers sorted w.r.t the number of delivered orders (ascending order)
+Courier <Trump>; number of delivered orders: 13
+Courier <Sanders>; number of delivered orders: 16
+Courier <Clinton>; number of delivered orders: 16
+Courier <Obama>; number of delivered orders: 34
 
 

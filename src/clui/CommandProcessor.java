@@ -45,7 +45,7 @@ public class CommandProcessor{
 	public void start(){
  		System.out.println("Welcome to MyFoodora. Please login/register before executing any command."
 				+ " For more information, enter \"help\".");
-		System.out.println("To exit system, enter \"#end\"");
+		System.out.println("To exit system, enter \"#end\"\n");
 		
 		Scanner s = new Scanner(System.in);
 		String rawInput = s.nextLine();
@@ -112,6 +112,12 @@ public class CommandProcessor{
 			 case "showrestaurantmenus":
 				 showRestaurantMenus();
 				 break;
+			 case "shownewmessages":
+				 showNewMessages();
+				 break;
+			 case "showmessages":
+				 showAllMessages();
+				 break;
 			// MANAGER
 			 case "registermanager":
 				 registerManager();
@@ -167,7 +173,7 @@ public class CommandProcessor{
 			 case "showaverageincomepercustomer":
 				 showAverageIncomePerCustomer();
 				 break;
-			 case "applytargetprofitpolicy":
+			 case "applyprofitpolicy":
 				 applyTargetProfitPolicy();
 				 break;
 			 case "showusers":
@@ -182,8 +188,8 @@ public class CommandProcessor{
 			 case "showpolicies":
 				 showPolicies();
 				 break;
-			 case "showprofitfactors":
-				 showprofitfactors();
+			 case "showsystemvalues":
+				 showSystemValues();
 				 break;
 			// RESTAURANT
 			 case "adddishrestaurantmenu":
@@ -225,11 +231,17 @@ public class CommandProcessor{
 			 case "showalacarte":
 				 showAlaCarte();
 				 break;
-			 case "showmymenu":
+			 case "showmenu":
 				 showMyMenu();
+				 break;
+			 case "showdiscountfactor":
+				 showDiscountFactor();
 				 break;
 			 case "finddeliverer":
 				 findDeliverer();
+				 break;
+			 case "showincome":
+				 showIncome();
 				 break;
 			//CUSTOMER
 			 case "createorder":
@@ -281,6 +293,12 @@ public class CommandProcessor{
 			 case "refusecall":
 				 refuseCall();
 				 break;
+			 case "showwaiting":
+				 showWaitingOrders();
+				 break;
+			 case "showcount":
+				 showCount();
+				 break;
 			 default: 
 				 throw new SyntaxErrorException();
 			 }
@@ -292,7 +310,6 @@ public class CommandProcessor{
 			 e.printError();
 		 }
 }
-
 
 
 	/**
@@ -308,7 +325,22 @@ public class CommandProcessor{
 		try{
 			user = m.selectUser(username);
 			m.login(username,password);
-			System.out.println("Welcome on MyFoodora, user "+username+". Please enter a command.");
+			if (user instanceof Restaurant){
+				((Restaurant)user).getView().showMenu();
+			}
+			if (user instanceof Customer){
+				MyFoodora.getInstance().getView().showUsersOfAssignedType("Restaurant");
+			}
+			if (user instanceof Courier){
+				((Courier)user).getView().showWaitingOrders();
+			}
+			System.out.println("\nWelcome on MyFoodora, user <"+username+">. ");
+			if (user.getMessageBoard().getHasUnreadMessages()){
+				System.out.println("You have new messages.");
+			}
+			else System.out.println("You don't have unread messages.");
+			System.out.println("Please enter a command. Enter \"help\" "
+					+ "to get the list of available commands.");
 		}
 		catch (LoginErrorException e){
 			e.printError();
@@ -355,7 +387,7 @@ public class CommandProcessor{
 		String password = s.nextLine();
 		
 	
-		System.out.println("Please input your address (x,y): \n"
+		System.out.println("Please enter your address (x,y): \n"
 				+"address = ");
 		String addressString = s.nextLine();
 		AddressPoint address = new AddressPoint(addressString);
@@ -445,6 +477,18 @@ public class CommandProcessor{
 		MyFoodora.getInstance().getView().showRestaurantMenus();
 	}
 	
+	
+	
+	private void showAllMessages() throws PermissionException {
+		if (user == null) throw new PermissionException("user");
+		user.getMessageBoard().displayAllmsgs();
+	}
+
+	private void showNewMessages() throws PermissionException {
+		if (user == null) throw new PermissionException("user");
+		user.getMessageBoard().displayUnreadMessages();
+	}
+
 	/**
 	 * displayinfo<>
 	 *
@@ -454,6 +498,19 @@ public class CommandProcessor{
 		if (user==null) throw new PermissionException("user");
 		user.getView().showInfo();
 	}
+	
+	/**
+	 * showHistory <>.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
+	private void showHistory() throws PermissionException {
+		if (user == null) throw new PermissionException("user");
+		user.getView().showHistory();
+	}
+	
+	
+	
 	/**
 	 * Register manager.
 	 *
@@ -473,7 +530,7 @@ public class CommandProcessor{
 	}
 	
 	/**
-	 * registerRestaurant "name" "address" "username" "password".
+	 * registerRestaurant "name" "username" "address" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
@@ -482,9 +539,9 @@ public class CommandProcessor{
 		if (arguments.length<4) throw new SyntaxErrorException(4);
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		String name = arguments[0];
-		String[] parts = arguments[1].split(",");
+		String userName = arguments[1];
+		String[] parts = arguments[2].split(",");
 		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[1]));
-		String userName = arguments[2];
 		String password = arguments[3];
 		Manager manager = (Manager)user;
 		manager.getService().addUser(new Restaurant(name,userName,address,password));
@@ -512,7 +569,7 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * registerCourier "firstname" "lastname" "username" "address" "password".
+	 * registerCourier "firstname" "lastname" "username" "address" "password"
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
@@ -531,13 +588,6 @@ public class CommandProcessor{
 		System.out.println("Courier "+userName+" has been registered on myfoodora.");
 	}
 
-	/**
-	 * displayUsers "".
-	 */
-	private void showUsers() {
-		MyFoodora.getInstance().getView().showUsers();
-	}
-	
 	/**
 	 * removeUser "username".
 	 *
@@ -568,7 +618,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		Double markUp_percentage = Double.parseDouble(arguments[0]);
-		manager.getService().setServiceFree(markUp_percentage);
+		manager.getService().setMarkUpPencentage(markUp_percentage);
 		System.out.println("Mark up percentage updated.");
 	}
 	
@@ -583,7 +633,7 @@ public class CommandProcessor{
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		Manager manager = (Manager)user;
 		Double delivery_cost = Double.parseDouble(arguments[0]);
-		manager.getService().setServiceFree(delivery_cost);
+		manager.getService().setDeliveryCost(delivery_cost);
 		System.out.println("Delivery cost updated");
 	}
 	
@@ -690,6 +740,108 @@ public class CommandProcessor{
 	}
 
 	/**
+	 * showTotalProfit "".
+	 *
+	 * @throws PermissionException the permission exception
+	 */
+	private void showTotalProfit() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
+		Manager manager = (Manager)user;
+		try{
+		if (arguments.length==0){
+			String startingDate = "01/01/2017";
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			String endingDate = sdf.format(new Date());
+			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
+		}
+		else if (arguments.length==2){
+			String startingDate = arguments[0];
+			String endingDate = arguments[1];
+			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
+		}
+		}
+		catch (ParseException e){
+			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
+		}
+	}
+
+	/**
+	 * showTotalIncome <>.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
+	private void showTotalIncome() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
+		Manager manager = (Manager)user;
+		try{
+		if (arguments.length==0){
+			String startingDate = "01/01/2017";
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			String endingDate = sdf.format(new Date());
+			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
+		}
+		else if (arguments.length==2){
+			String startingDate = arguments[0];
+			String endingDate = arguments[1];
+			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
+		}
+		}
+		catch (ParseException e){
+			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
+		}
+		
+	}
+
+	/**
+	 * showAverageIncomePerCustomer <>
+	 *
+	 * @throws PermissionException the permission exception
+	 */
+	private void showAverageIncomePerCustomer() throws PermissionException {
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
+		Manager manager = (Manager)user;
+		try{
+		if (arguments.length==0){
+			String startingDate = "01/01/2017";
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			String endingDate = sdf.format(new Date());
+			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
+		}
+		else if (arguments.length==2){
+			String startingDate = arguments[0];
+			String endingDate = arguments[1];
+			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
+		}
+		}
+		catch (ParseException e){
+			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
+		}
+	}
+
+	/**
+	 * applyTargetProfitPolicy "profit".
+	 *
+	 * @throws PermissionException the permission exception
+	 * @throws SyntaxErrorException the syntax error exception
+	 */
+	private void applyTargetProfitPolicy() throws PermissionException, SyntaxErrorException {
+		if (arguments.length<1) throw new SyntaxErrorException(1);
+		if (!(user instanceof Manager)) throw new PermissionException("manager");
+		Manager manager = (Manager)user;
+		Double targetProfit = Double.parseDouble(arguments[0]);
+		manager.getService().determineParam2MeetTargetProfit(targetProfit);;
+		System.out.println("Profit policy has been applied, system values updated.");
+		MyFoodora.getInstance().getView().showProfitFactors();
+	}
+
+	/**
+	 * displayUsers "".
+	 */
+	private void showUsers() {
+		MyFoodora.getInstance().getView().showUsers();
+	}
+
+	/**
 	 * showCustomers.
 	 *
 	 * @throws PermissionException the permission exception
@@ -718,101 +870,6 @@ public class CommandProcessor{
 		}
 	}
 
-	/**
-	 * showTotalProfit "".
-	 *
-	 * @throws PermissionException the permission exception
-	 */
-	private void showTotalProfit() throws PermissionException {
-		if (!(user instanceof Manager)) throw new PermissionException("manager");
-		Manager manager = (Manager)user;
-		try{
-		if (arguments.length==0){
-			String startingDate = "01/01/2017";
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			String endingDate = sdf.format(new Date());
-			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
-		}
-		else if (arguments.length==2){
-			String startingDate = arguments[0];
-			String endingDate = arguments[1];
-			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
-		}
-		}
-		catch (ParseException e){
-			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
-		}
-	}
-	
-	/**
-	 * applyTargetProfitPolicy "profit".
-	 *
-	 * @throws PermissionException the permission exception
-	 * @throws SyntaxErrorException the syntax error exception
-	 */
-	private void applyTargetProfitPolicy() throws PermissionException, SyntaxErrorException {
-		if (arguments.length<1) throw new SyntaxErrorException(1);
-		if (!(user instanceof Manager)) throw new PermissionException("manager");
-		Manager manager = (Manager)user;
-		Double targetProfit = Double.parseDouble(arguments[0]);
-		manager.getService().determineParam2MeetTargetProfit(targetProfit);;
-		System.out.println("Profit policy has been applied.");
-	}
-	
-	/**
-	 * showAverageIncomePerCustomer <>
-	 *
-	 * @throws PermissionException the permission exception
-	 */
-	private void showAverageIncomePerCustomer() throws PermissionException {
-		if (!(user instanceof Manager)) throw new PermissionException("manager");
-		Manager manager = (Manager)user;
-		try{
-		if (arguments.length==0){
-			String startingDate = "01/01/2017";
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			String endingDate = sdf.format(new Date());
-			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
-		}
-		else if (arguments.length==2){
-			String startingDate = arguments[0];
-			String endingDate = arguments[1];
-			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
-		}
-		}
-		catch (ParseException e){
-			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
-		}
-	}
-	
-	/**
-	 * showTotalIncome <>.
-	 *
-	 * @throws PermissionException the permission exception
-	 */
-	private void showTotalIncome() throws PermissionException {
-		if (!(user instanceof Manager)) throw new PermissionException("manager");
-		Manager manager = (Manager)user;
-		try{
-		if (arguments.length==0){
-			String startingDate = "01/01/2017";
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			String endingDate = sdf.format(new Date());
-			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
-		}
-		else if (arguments.length==2){
-			String startingDate = arguments[0];
-			String endingDate = arguments[1];
-			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
-		}
-		}
-		catch (ParseException e){
-			System.out.println("DATE FORMAT ERROR : please enter date formated as dd/MM/YYYY");
-		}
-		
-	}
-	
-
 	private void showActiveUsers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
 		MyFoodora.getInstance().getView().showActiveUsers();
@@ -829,7 +886,7 @@ public class CommandProcessor{
 		MyFoodora.getInstance().getView().showPolicies();
 	}
 
-	private void showprofitfactors() throws PermissionException {
+	private void showSystemValues() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
 		MyFoodora.getInstance().getView().showProfitFactors();
 	}
@@ -944,39 +1001,22 @@ public class CommandProcessor{
 
 	
 	/**
-	 * setSpecialOffer "mealName".
+	 * removeDish "dishName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
 	 */
-	private void setSpecialOffer() throws SyntaxErrorException, PermissionException {
+	private void removeDish() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=1) throw new SyntaxErrorException(1);
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
-		String mealName = arguments[0];
+		String dishName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getService().setSpecialOffer(mealName);
-			
-			System.out.println("Meal " + mealName+" saved as a special-offer of "+restaurant.getName());
+			restaurant.getService().removeDish(dishName);
+			System.out.println("Dish " + dishName+" removed from the menu of "+restaurant.getName());
 		} catch (NameNotFoundException e) {
 			e.printError();
 		}
-	}
-	
-	/**
-	 * removeFromSpecialOffer "mealName".
-	 *
-	 * @throws SyntaxErrorException the syntax error exception
-	 * @throws PermissionException the permission exception
-	 */
-	private void removeFromSpecialOffer() throws SyntaxErrorException, PermissionException {
-		if (arguments.length!=1) throw new SyntaxErrorException(1);
-		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
-		String mealName = arguments[0];
-		Restaurant restaurant = (Restaurant)user;
-		restaurant.getService().removeSpecialOffer(mealName);
-		System.out.println("Meal " + mealName+" removed from the list of special-offers of "+restaurant.getName());
-
 	}
 	
 	/**
@@ -999,24 +1039,44 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * removeDish "dishName".
+	 * setSpecialOffer "mealName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
 	 */
-	private void removeDish() throws SyntaxErrorException, PermissionException {
+	private void setSpecialOffer() throws SyntaxErrorException, PermissionException {
 		if (arguments.length!=1) throw new SyntaxErrorException(1);
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
-		String dishName = arguments[0];
+		String mealName = arguments[0];
 		Restaurant restaurant = (Restaurant)user;
 		try {
-			restaurant.getService().removeDish(dishName);
-			System.out.println("Dish " + dishName+" removed from the menu of "+restaurant.getName());
+			restaurant.getService().setSpecialOffer(mealName);
+			
+			System.out.println("Meal " + mealName+" saved as a special-offer of "+restaurant.getName());
 		} catch (NameNotFoundException e) {
 			e.printError();
 		}
 	}
-	
+
+	/**
+	 * removeFromSpecialOffer "mealName".
+	 *
+	 * @throws SyntaxErrorException the syntax error exception
+	 * @throws PermissionException the permission exception
+	 */
+	private void removeFromSpecialOffer() throws SyntaxErrorException, PermissionException {
+		if (arguments.length<1) throw new SyntaxErrorException(1);
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
+		String mealName = arguments[0];
+		Restaurant restaurant = (Restaurant)user;
+		try {
+			restaurant.getService().removeSpecialOffer(mealName);
+			System.out.println("Meal " + mealName+" removed from the list of special-offers of "+restaurant.getName());
+		} catch (NameNotFoundException e) {
+			e.printError();
+		}
+	}
+
 	/**
 	 * setGenericDiscountFactor "generic_discount_factor".
 	 *
@@ -1080,6 +1140,19 @@ public class CommandProcessor{
 		Restaurant restaurant = (Restaurant)user;
 		restaurant.getView().showMenu();
 	}
+
+	private void showDiscountFactor() throws PermissionException {
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
+		Restaurant restaurant = (Restaurant)user;
+		restaurant.getView().showDiscountFactors();
+	}
+	
+	private void showIncome() throws PermissionException{
+		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
+		Restaurant restaurant = (Restaurant)user;
+		restaurant.getView().showTotalIncome();
+	}
+
 
 	/**
 	 * findDeliverer "orderName".
@@ -1146,21 +1219,32 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * endOrder "orderName" "date".
+	 * endOrder "orderName" "date" or endOrder "orderName"
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
 	 */
 	private void endOrder() throws SyntaxErrorException, PermissionException {
-		if (arguments.length<2) throw new SyntaxErrorException(2);
+		if (arguments.length<1) throw new SyntaxErrorException(1);
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
-		String orderName = arguments[0];
-		String date = arguments[1];
 		Customer customer = (Customer)user;
+
+		String orderName = arguments[0];
+		
+		String dateString = null;
 		try {
-			customer.getService().endOrder(orderName, date);
-			
-			System.out.println("Order " + orderName+" finalised at "+date+ " and you paid for it.");
+			if (arguments.length==1){
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				dateString = sdf.format(new Date());
+				
+			}
+			if (arguments.length==2){
+				dateString = arguments[1];
+			}
+			Order order = customer.getShoppingCart().getOrder(orderName);
+			System.out.println(order);
+			customer.getService().endOrder(orderName, dateString);
+			System.out.println("Order " + orderName+" finalised on "+dateString+ " and you paid for it.");
 		} catch (NameNotFoundException e){e.printError();
 		} catch (ParseException e) {e.printStackTrace();
 		}
@@ -1198,16 +1282,7 @@ public class CommandProcessor{
 		System.out.println("You unsubscribed from fidelity plan. Fidelity card reset as standard card.");
 	}
 	
-	/**
-	 * showHistory <>.
-	 *
-	 * @throws PermissionException the permission exception
-	 */
-	private void showHistory() throws PermissionException {
-		if (!(user instanceof Customer)) throw new PermissionException("customer");
-		Customer customer = (Customer)user;
-		customer.getView().showHistory();
-	}
+	
 	
 	/**
 	 * showPoints <>.
@@ -1337,7 +1412,20 @@ public class CommandProcessor{
 		courier.getService().refuseCall(orderName);
 	}
 
+	private void showWaitingOrders() throws PermissionException {
+		if (!(user instanceof Courier)) throw new PermissionException("courier");
+		Courier courier = (Courier)user;
+		courier.getView().showWaitingOrders();
+	}
 
+
+
+	private void showCount() throws PermissionException {
+		// TODO Auto-generated method stub
+		if (!(user instanceof Courier)) throw new PermissionException("courier");
+		Courier courier = (Courier)user;
+		courier.getView().showCount();
+	}
 
 	/**
 	 * runtest "testScenario1.txt"

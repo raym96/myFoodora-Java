@@ -13,7 +13,6 @@ import system.AddressPoint;
 import system.ConcreteShoppingCartVisitor;
 import system.History;
 import system.Message;
-import system.Observable;
 import system.Order;
 import system.SpecialOfferBoard;
 import user.service.RestaurantService;
@@ -51,6 +50,8 @@ public class Restaurant extends User{
 	
 	/** The history. */
 	private History history;
+	
+	private double income;
 	
 	/** The restaurant service. */
 	private RestaurantService restaurantService;
@@ -235,6 +236,7 @@ public class Restaurant extends User{
 	 * @param order the order
 	 */
 	public void addToHistory(Order order){
+		income += order.accept(new ConcreteShoppingCartVisitor());
 		history.addOrder(order);
 	}
 	
@@ -244,10 +246,6 @@ public class Restaurant extends User{
 	 * @return the income
 	 */
 	public double getIncome(){
-		double income = 0;
-		for (Order o:history.getOrders()){
-			income+=o.accept(new ConcreteShoppingCartVisitor());
-		}
 		return Math.floor(income*100)/100;
 	}
 	
@@ -291,34 +289,6 @@ public class Restaurant extends User{
 		this.generic_discount_factor = gdf;
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see user.model.User#update(java.lang.Object)
-	 */
-	@Override
-	public void update(Object o) {
-		// TODO Auto-generated method stub
-		super.update(o);
-	}
-
-	/* (non-Javadoc)
-	 * @see user.model.User#observe(system.Observable)
-	 */
-	@Override
-	public void observe(Observable o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see user.model.User#observe(system.Observable, java.lang.Object)
-	 */
-	@Override
-	public void observe(Observable obv, Object o) {
-		// TODO Auto-generated method stub
-		super.observe(obv, o);
-	}
-
 
 	/**
 	 * Gets the name.
