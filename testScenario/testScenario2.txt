@@ -2,21 +2,26 @@ login ceo 123456789
 
 removeUser mlepen
 showUsers
+showUsers courier
+showMenuItem chinese
+showHistory
 
-showhistory
+setDeliveryPolicy fair
+showPolicies
 
 showtotalincome
 showtotalprofit
 showaverageincome
+
 showtotalincome 01/04/2017 01/05/2017
 showtotalprofit 01/04/2017 01/05/2017
 showaverageincome 01/04/2017 01/05/2017
 
-showsystemvalues
+showSystemvalues
 setdeliverycost 1.5
-showsystemvalues
-setprofitpolicy service_fee
-applyprofitpolicy 60
+showSystemvalues
+setProfitpolicy Service_fee
+applyprofitpolicy 15
 showtotalprofit 27/03/2017 01/05/2017
 
 showrestauranttop desc

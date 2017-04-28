@@ -34,11 +34,12 @@ public class CustomerView implements UserView{
 			output+="; phone = "+customer.getPhone();
 		}
 		if (customer.isAgreeBeNotifiedSpecialoffers()){
-			output+="; agrees to be notified of special offers.";
+			output+="; agrees to be notified of special offers;";
 		}
 		if (!(customer.isAgreeBeNotifiedSpecialoffers())){
-			output+="; will not be notified of special offers.";
+			output+="; will not be notified of special offers;";
 		}
+		output += " has a "+customer.getCard();
 		System.out.println(output);
 	}
 	

@@ -18,7 +18,7 @@ import user.model.MyFoodora;
 public class LotteryCard extends FidelityCard {
 	
 	/** The probability. */
-	private static double probability = 0.01;
+	private static double probability = 0.1;
 
 	/**
 	 * Instantiates a new lottery card.
@@ -61,5 +61,9 @@ public class LotteryCard extends FidelityCard {
 		LotteryCard.probability = probability;
 	}
 	
+	@Override
+	public String toString() {
+		return "point fidelity card";
+	}
 	
 }

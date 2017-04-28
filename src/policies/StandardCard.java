@@ -35,5 +35,13 @@ public class StandardCard extends FidelityCard {
 		// TODO Auto-generated method stub
 		customer.getShoppingCart().removeOrder(order);
 	}
+
+
+	@Override
+	public String toString() {
+		return "standard fidelity card";
+	}
+	
+	
 	
 }

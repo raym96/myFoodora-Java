@@ -35,7 +35,7 @@ public class MyFoodoraView{
 	public void showUsers(){
 		System.out.println("\n[USERS]");
 		for (User u:myfoodora.getUsers()){
-			System.out.println(u);
+			u.getView().showInfo();
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class MyFoodoraView{
 	public void showActiveUsers(){
 		System.out.println("\n[ACTIVEUSERS]");
 		for (User u :myfoodora.getActiveUsers()){
-			System.out.println(u);
+			u.getView().showInfo();
 		}	
 	}
 	
@@ -66,7 +66,7 @@ public class MyFoodoraView{
 		System.out.println("\n"+myfoodora.getHistory());
 	}
 	
-	public void showProfitFactors(){
+	public void showSystemValues(){
 		System.out.println("Delivery cost = "+myfoodora.getDelivery_cost());
 		System.out.println("Mark up percentage = "+myfoodora.getMarkup_percentage());
 		System.out.println("Service fee = "+myfoodora.getService_fee());

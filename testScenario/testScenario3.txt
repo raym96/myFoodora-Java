@@ -1,5 +1,6 @@
 login emacron password
 registerCard point
+showRestaurantMenus
 
 createOrder french myorder
 addItem2Order Snail myorder
@@ -15,10 +16,20 @@ showpoints
 logout
 
 login dtrump password
+showWaiting
 acceptcall myorder
 showhistory
-showcount
+showCount
 changeposition 4.4,5.0
 setOffDuty
 showinfo
+logout
+
+login hclinton password
+showWaiting
+refusecall myorder2
+logout
+
+login bobama password
+acceptCall myorder2
 logout

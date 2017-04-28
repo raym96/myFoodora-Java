@@ -1,13 +1,11 @@
 login ffillon password
---- Restaurant ---
+[RESTAURANT]
 <Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
 <Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
 <Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
 <Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
 <Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-
 Welcome on MyFoodora, user <ffillon>. 
-You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 registerCard lottery
@@ -16,6 +14,9 @@ You subscribed to a new fidelity plan. Fidelity card set as <lottery> card.
 turnOnNotification
 You agreed to be notified of new special-offers.
 
+showMessages
+There are no messages yet.
+
 logout
 Goodbye <ffillon>. We hope to see you again on MyFoodora.
 
@@ -23,7 +24,7 @@ Goodbye <ffillon>. We hope to see you again on MyFoodora.
 
 login korean password
 
------[KOREANRESTAURANT username <korean>-----
+-----[KOREANRESTAURANT username <korean>]-----
 
 [Menu]
 Starters:
@@ -47,9 +48,7 @@ Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
 Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 
 [Special Offers]
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 14.25 euros
-Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros
-
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
 Welcome on MyFoodora, user <korean>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
@@ -67,12 +66,11 @@ Formula <Hotpot> added to the meal-menu of KoreanRestaurant
 Meal <hotpot> has been saved and added to the meal-menu of <KoreanRestaurant>.
 
 setSpecialOffer Hotpot
-NAME ALREADY TAKEN : "Hotpot" already exists.
 Meal Hotpot saved as a special-offer of KoreanRestaurant
 
 showMenu
 
------[KOREANRESTAURANT username <korean>-----
+-----[KOREANRESTAURANT username <korean>]-----
 
 [Menu]
 Starters:
@@ -96,8 +94,8 @@ Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
 Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 
 [Special Offers]
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 14.25 euros
-Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros
 
 logout
 Goodbye <korean>. We hope to see you again on MyFoodora.
@@ -105,30 +103,29 @@ Goodbye <korean>. We hope to see you again on MyFoodora.
 
 
 login ffillon password
---- Restaurant ---
+[RESTAURANT]
 <Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
 <Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
 <Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
 <Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
 <Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-
 Welcome on MyFoodora, user <ffillon>. 
 You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 showNewMessages
-28/04/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros by KoreanRestaurant
+28/04/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
 
 
 
 showspecialoffers
 Special offers :
-Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros BY FrenchRestaurant
-Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 10.45 euros BY ChineseRestaurant
-Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.6 euros BY JapaneseRestaurant
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 14.25 euros BY KoreanRestaurant
-Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 10.45 euros BY ItalianRestaurant
-Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros BY KoreanRestaurant
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros BY FrenchRestaurant
+Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros BY ChineseRestaurant
+Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros BY JapaneseRestaurant
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros BY KoreanRestaurant
+Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros BY ItalianRestaurant
+Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros BY KoreanRestaurant
 
 createOrder korean specialorder
 Order <specialorder> added to your shopping cart.
@@ -137,159 +134,107 @@ addItem2Order hotpot specialorder
 Item <hotpot> added to the order <specialorder>.
 
 endorder specialorder
-[Order <specialorder> ID1081]
-[7.6€] 
-Meal <Hotpot> 7.6
+[Order <specialorder> ID1044]
+[7.2€] 
+Meal <Hotpot> 7.2
 BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
 ON 28/04/2017
-bobama has been assigned to the delivery task.
+Obama Barack <bobama> has been assigned to the delivery task.
 Order <specialorder> finalised on 28/04/2017 and you paid for it.
-
-
-logout
-= KoreanRestaurant; address=-1.0,-2.0
-<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-
-Welcome on MyFoodora, user <ffillon>. 
-You have new messages.
-Please enter a command. Enter "help" to get the list of available commands.
-
-registerCard lottery
-You subscribed to a new fidelity plan. Fidelity card set as <lottery> card.
-
-turnOnNotification
-You agreed to be notified of new special-offers.
 
 logout
 Goodbye <ffillon>. We hope to see you again on MyFoodora.
 
 
 
-login korean password
+login french password
 
------[KOREANRESTAURANT username <korean>-----
+-----[FRENCHRESTAURANT username <french>]-----
 
 [Menu]
 Starters:
-Starter <Noodles> gluten-free 4.4 euros 
-Starter <Soja> vegetarian 2.0 euros 
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
 Main-dishes:
-MainDish <Bibimbap> standard 6.9 euros 
-MainDish <Barbecue> standard 10.5 euros 
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
 Desserts:
-Dessert <Lychee> vegetarian 3.1 euros 
-Dessert <Macha> standard 5.8 euros 
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
 
 [Meal menu]
-Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
-Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
-Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
-Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
-Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
-Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
-Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
-Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
 [Special Offers]
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 14.25 euros
-Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros
-
-Welcome on MyFoodora, user <korean>. 
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+Welcome on MyFoodora, user <french>. 
 Please enter a command. Enter "help" to get the list of available commands.
-
-createMeal Hotpot
-Meal <Hotpot> has been created.
-
-addDish2Meal bibimbap hotpot
-Dish <bibimbap> has been added to the meal <hotpot>.
-
-addDish2Meal soja hotpot
-Dish <soja> has been added to the meal <hotpot>.
-
-saveMeal hotpot
-Formula <Hotpot> added to the meal-menu of KoreanRestaurant
-Meal <hotpot> has been saved and added to the meal-menu of <KoreanRestaurant>.
-
-setSpecialOffer Hotpot
-NAME ALREADY TAKEN : "Hotpot" already exists.
-Meal Hotpot saved as a special-offer of KoreanRestaurant
 
 showMenu
 
------[KOREANRESTAURANT username <korean>-----
+-----[FRENCHRESTAURANT username <french>]-----
 
 [Menu]
 Starters:
-Starter <Noodles> gluten-free 4.4 euros 
-Starter <Soja> vegetarian 2.0 euros 
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
 Main-dishes:
-MainDish <Bibimbap> standard 6.9 euros 
-MainDish <Barbecue> standard 10.5 euros 
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
 Desserts:
-Dessert <Lychee> vegetarian 3.1 euros 
-Dessert <Macha> standard 5.8 euros 
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
 
 [Meal menu]
-Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
-Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
-Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
-Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
-Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
-Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
-Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
-Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
 [Special Offers]
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 14.25 euros
-Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
 
-logout
-Goodbye <korean>. We hope to see you again on MyFoodora.
+removeFromSpecialOffer I_love_paris
+Meal <I_love_paris> removed from the list of special-offers of <FrenchRestaurant>.
 
+showMenu
 
+-----[FRENCHRESTAURANT username <french>]-----
 
-login ffillon password
---- Restaurant ---
-<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
-<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
-<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
-<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
-<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
+[Menu]
+Starters:
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
+Main-dishes:
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
+Desserts:
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
 
-Welcome on MyFoodora, user <ffillon>. 
-You have new messages.
-Please enter a command. Enter "help" to get the list of available commands.
+[Meal menu]
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
 
-showNewMessages
-28/04/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros by KoreanRestaurant
-
-
-
-showspecialoffers
-Special offers :
-Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros BY FrenchRestaurant
-Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 10.45 euros BY ChineseRestaurant
-Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.6 euros BY JapaneseRestaurant
-Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 14.25 euros BY KoreanRestaurant
-Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 10.45 euros BY ItalianRestaurant
-Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.6 euros BY KoreanRestaurant
-
-createOrder korean specialorder
-Order <specialorder> added to your shopping cart.
-
-addItem2Order hotpot specialorder
-Item <hotpot> added to the order <specialorder>.
-
-endorder specialorder
-[Order <specialorder> ID1081]
-[7.6€] 
-Meal <Hotpot> 7.6
-BY <ffillon> Francois Fillon
-AT <korean> KoreanRestaurant
-ON 28/04/2017
-bobama has been assigned to the delivery task.
-Order <specialorder> finalised on 28/04/2017 and you paid for it.
+[Special Offers]
 
 
-logout

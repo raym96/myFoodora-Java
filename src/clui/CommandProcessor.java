@@ -335,7 +335,7 @@ public class CommandProcessor{
 			if (user instanceof Courier){
 				((Courier)user).getView().showWaitingOrders();
 			}
-			System.out.println("\nWelcome on MyFoodora, user <"+username+">. ");
+			System.out.println("Welcome on MyFoodora, user <"+username+">. ");
 			if (user.getMessageBoard().getHasUnreadMessages()){
 				System.out.println("You have new messages.");
 			}
@@ -773,7 +773,8 @@ public class CommandProcessor{
 		else if (arguments.length==2){
 			String startingDate = arguments[0];
 			String endingDate = arguments[1];
-			System.out.println("Total profit : "+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
+			System.out.println("Total profit between "+startingDate+" and "+endingDate+": "
+					+manager.getService().getTotalProfit(startingDate, endingDate)+" euros.");
 		}
 		}
 		catch (ParseException e){
@@ -799,7 +800,8 @@ public class CommandProcessor{
 		else if (arguments.length==2){
 			String startingDate = arguments[0];
 			String endingDate = arguments[1];
-			System.out.println("Total income : "+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
+			System.out.println("Total income between "+startingDate+" and "+endingDate+": "
+					+manager.getService().getTotalIncome(startingDate, endingDate)+" euros.");
 		}
 		}
 		catch (ParseException e){
@@ -826,7 +828,8 @@ public class CommandProcessor{
 		else if (arguments.length==2){
 			String startingDate = arguments[0];
 			String endingDate = arguments[1];
-			System.out.println("Average income per customer : "+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
+			System.out.println("Average income per customer between "+startingDate+" and "+endingDate+": "
+					+manager.getService().getAverageIncomePerCustomer(startingDate, endingDate)+" euros.");
 		}
 		}
 		catch (ParseException e){
@@ -848,7 +851,7 @@ public class CommandProcessor{
 		Double targetProfit = Double.parseDouble(arguments[0]);
 		manager.getService().determineParam2MeetTargetProfit(targetProfit);;
 		System.out.println("The target profit policy has been applied, system values updated.");
-		MyFoodora.getInstance().getView().showProfitFactors();
+		MyFoodora.getInstance().getView().showSystemValues();
 	}
 
 	/**
@@ -907,7 +910,7 @@ public class CommandProcessor{
 
 	private void showSystemValues() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
-		MyFoodora.getInstance().getView().showProfitFactors();
+		MyFoodora.getInstance().getView().showSystemValues();
 	}
 
 	

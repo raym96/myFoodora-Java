@@ -64,4 +64,10 @@ public class PointCard extends FidelityCard {
 	public double getPoints(){
 		return balance;
 	}
+	
+	@Override
+	public String toString() {
+		return "point fidelity card";
+	}
+	
 }

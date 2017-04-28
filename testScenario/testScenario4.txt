@@ -1,6 +1,7 @@
 login ffillon password
 registerCard lottery
 turnOnNotification
+showMessages
 logout
 
 login korean password
@@ -19,3 +20,9 @@ showspecialoffers
 createOrder korean specialorder
 addItem2Order hotpot specialorder
 endorder specialorder
+logout
+
+login french password
+showMenu
+removeFromSpecialOffer I_love_paris
+showMenu

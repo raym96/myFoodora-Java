@@ -225,6 +225,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		Meal meal = mealmenu.getMeal(mealName);
 		mealmenu.removeMeal(mealName);
 		try {
+			meal.setSpecial(true);
 			restaurant.getSpecialmealmenu().addMeal(meal);
 			MyFoodora.getInstance().getSpecialOfferBoard().addSpecialOffer(meal);
 		} catch (NameAlreadyExistsException e) {
@@ -242,6 +243,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		Meal meal = specialmealmenu.getMeal(mealName);
 		specialmealmenu.removeMeal(mealName);
 		try {
+			meal.setSpecial(false);
 			restaurant.getMealMenu().addMeal(meal);
 			MyFoodora.getInstance().getSpecialOfferBoard().removeSpecialOffer(meal);
 		} catch (NameAlreadyExistsException e1) {

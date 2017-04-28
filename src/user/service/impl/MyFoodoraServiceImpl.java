@@ -85,7 +85,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		}
 		Courier courier = myfoodora.getDeliverypolicy().parse(order, availablecouriers);
 		courier.addWaitingOrder(order); //allocate delivery task to the waiting list of courier
-		System.out.println(courier.getUsername()+" has been assigned to the delivery task.");
+		System.out.println(courier.getFullName()+" <"+courier.getUsername()+"> has been assigned to the delivery task.");
 	}
 	
 	/**

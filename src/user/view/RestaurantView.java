@@ -62,7 +62,7 @@ public class RestaurantView implements UserView{
 	
 
 	public void showMenu(){
-		System.out.println("\n-----["+(restaurant.getName().toUpperCase()+" username <"+restaurant.getUsername()+">-----"));
+		System.out.println("\n-----["+(restaurant.getName().toUpperCase()+" username <"+restaurant.getUsername()+">]-----"));
 		showDishes();
 		showMeals();
 		showSpecialOffers();

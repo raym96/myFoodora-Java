@@ -48,13 +48,14 @@ public class CourierView implements UserView{
 	}
 	
 	public void showWaitingOrders(){
-		System.out.println("List of waiting orders by "+courier.getName()+":");
 		if (courier.getWaitingOrders().size()==0){
-			System.out.println("EMPTY");
+			System.out.println("You have no waiting delivery tasks.");
+			return;
 		}
+		System.out.println("You have new waiting delivery tasks.");
 		for (Order order: courier.getWaitingOrders()){
-			System.out.println(order+"\n");
-		}		
-		System.out.println("Please answer each of them (acceptCall/refuseCall) as soon as possible.");
+			System.out.println(order);
+		}			
 	}
+	
 }
