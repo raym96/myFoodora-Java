@@ -181,6 +181,15 @@ public class Order {
 	public void addItem(Item item){
 		items.add(item);
 	}
+	
+	/**
+	 * removes the item.
+	 *
+	 * @param item the item
+	 */
+	public void removeItem(Item item){
+		items.remove(item);
+	}
 
 	/**
 	 * Checks if is assigned.
