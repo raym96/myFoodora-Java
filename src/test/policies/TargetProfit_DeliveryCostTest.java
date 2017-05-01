@@ -5,13 +5,15 @@ package test.policies;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import initialization.InitialScenarioOld;
+import clui.InitialScenario;
 import policies.TargetProfitPolicy;
 import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
@@ -35,27 +37,31 @@ public class TargetProfit_DeliveryCostTest {
 	 */
 	@Before
 	public void setUpBefore() throws Exception {
-		InitialScenarioOld.load("scenario_test_services.ini");	
+		InitialScenario.load("my_foodora.ini");	
 		myfoodora = MyFoodora.getInstance();
 		System.out.println(myfoodora.getHistory());
 	}
 	
 	/**
 	 * Test meet target profit.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testMeetTargetProfit() {
+	public void testMeetTargetProfit() throws ParseException {
 		TargetProfitPolicy targetProfit_DeliveryCost =  new TargetProfit_DeliveryCost(myfoodora);
 		
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date aMonthAgo = cal.getTime();
-		
-		double lastIncome = myfoodora.getService().getTotalIncome(aMonthAgo, new Date());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String aMonthAgoString = sdf.format(aMonthAgo);
+		String nowString = sdf.format(new Date());
+
+		double lastIncome = myfoodora.getService().getTotalIncome(aMonthAgoString, nowString);
 		double delivery_cost = myfoodora.getDelivery_cost();
 		double markup_percentage = myfoodora.getMarkup_percentage();
 		double service_fee = myfoodora.getService_fee();
-		int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgo, new Date()).size();
+		int number_of_orders = myfoodora.getHistory().getOrderBetween(aMonthAgoString, nowString).size();
 		
 		
 		System.out.println("Old delivery_Cost=" + delivery_cost);

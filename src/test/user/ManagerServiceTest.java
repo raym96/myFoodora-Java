@@ -48,7 +48,7 @@ public class ManagerServiceTest {
 	 */
 	@Before
 	public void setUpBefore() throws Exception {
-		InitialScenarioOld.load("scenario_test_services.ini");
+		InitialScenario.load("my_foodora.ini");;
 		
 		manager = new Manager("test","test","test");
 		manager_service = manager.getService();

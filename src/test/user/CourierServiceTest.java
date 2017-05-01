@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import initialization.InitialScenarioOld;
+import clui.InitialScenario;
 import restaurant.Meal;
 import system.AddressPoint;
 import system.Order;
@@ -63,7 +63,7 @@ public class CourierServiceTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		InitialScenarioOld.load("scenario_test_services.ini");	
+		InitialScenario.load("my_foodora.ini");
 		
 		courier_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 		courier_service = courier_test.getService();
@@ -73,8 +73,8 @@ public class CourierServiceTest {
 
 		customer = (Customer)myfoodora_service.selectUser("customer_1");
 		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
-		meal = restaurant.getHalfMealMenu().getMeals().get(0);
-		order = new Order(customer,restaurant);
+		meal = restaurant.getMealMenu().getMeals().get(0);
+		order = new Order(customer,restaurant,"myorder");
 		order.addItem(meal);
 		
 	}
@@ -139,7 +139,7 @@ public class CourierServiceTest {
 	@Test
 	public void testChangePosition() {
 		System.out.println("-----testChangePosition-----");
-		courier_service.changePosition(new AddressPoint(2,2));
+		courier_service.changePosition("2,2");
 		assertEquals(courier_test.getPosition(),new AddressPoint(2,2));
 	}
 
@@ -153,7 +153,7 @@ public class CourierServiceTest {
 		int delivery_count = courier_test.getCount();
 		courier_test.addWaitingOrder(order); //tested in CourierTest.java
 		
-		courier_service.acceptCall(order);
+		courier_service.acceptCall(order.getName());
 		//verify that the order is no more in the waiting list
 		assertFalse(courier_test.getWaitingOrders().contains(order));
 		//verify that the order is added to the list of delivered missions
@@ -162,9 +162,9 @@ public class CourierServiceTest {
 		assertEquals(courier_test.getCount(),delivery_count+1);
 		
 		//verify that the order has been added to the histories
-		System.out.println(myfoodora_service.getHistory());
+		MyFoodora.getInstance().getView().showHistory();
 		System.out.println("History of "+order.getRestaurant().getName());
-		System.out.println(order.getRestaurant().getHistory());
+		order.getRestaurant().getView().showHistory();
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class CourierServiceTest {
 		System.out.println("-----testRefuseCall-----");
 		courier_service.turnOnDuty();
 		courier_test.addWaitingOrder(order); //tested in CourierTest.java
-		courier_service.refuseCall(order);
+		courier_service.refuseCall(order.getName());
 		//verify that the order is no more in the waiting list
 		assertFalse(courier_test.getWaitingOrders().contains(order));
 	}

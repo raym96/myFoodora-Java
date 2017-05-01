@@ -5,6 +5,9 @@ package test.system;
 
 import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -74,19 +77,20 @@ public class HistoryTest {
 		date1 = new Date();
 		Thread.sleep(1 * 1000);
 		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		fm1.setRestaurant(r);
-		Order = new Order(c, r, fm1);
+		Order = new Order(c, r, "myorder");
 		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
 		Order.setCourier(cr);
 		
 		date2 = new Date();
 		Thread.sleep(1 * 1000);
 		
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint(1.0,1.0));
-		specialMealOrder = new Order(c, r2, fm1);
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint(1.0,1.0),"password");
+		specialMealOrder = new Order(c, r2, "specialorder");
+		specialMealOrder.addItem(fm1);
 		specialMealOrder.setCourier(cr);
 		
 		date3 = new Date();
@@ -106,18 +110,23 @@ public class HistoryTest {
 
 	/**
 	 * Test get order between.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testGetOrderBetween() {
+	public void testGetOrderBetween() throws ParseException {
 		history.addOrder(Order);
 		history.addOrder(specialMealOrder);
 		
-		ArrayList<Order> theOrders1 = history.getOrderBetween(date1, date2);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String date1String = sdf.format(date1);
+		String date2String = sdf.format(date2);
+		String date3String = sdf.format(date3);
+		ArrayList<Order> theOrders1 = history.getOrderBetween(date1String, date2String);
 		assertNotNull(theOrders1);
 		assertTrue(theOrders1.contains(Order));
 		assertFalse(theOrders1.contains(specialMealOrder));
 		
-		ArrayList<Order> theOrders2 = history.getOrderBetween(date2, date3);
+		ArrayList<Order> theOrders2 = history.getOrderBetween(date2String, date3String);
 		assertNotNull(theOrders2);
 		assertTrue(theOrders2.contains(specialMealOrder));
 		assertFalse(theOrders2.contains(Order));

@@ -40,7 +40,7 @@ public class CustomerTest {
 	 */
 	@BeforeClass
 	public static void testCustomer() {
-		customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		customerService = customer.getService();
 		
 		assertNotNull(customer);
@@ -55,24 +55,7 @@ public class CustomerTest {
 	@Ignore
 	public void testObserveObservable() {
 	}
-
-	/**
-	 * Test update.
-	 */
-	@Test
-	public void testUpdate() {
-		String str = "testUpdate() message";
-		customer.update(str);
-	}
-
-	/**
-	 * Test observe observable object.
-	 */
-	@Test
-	public void testObserveObservableObject() {
-		String str = "testObserveObservableObject() message";
-		customer.observe(MyFoodora.getInstance(), str);
-	}
+\
 
 	/**
 	 * Test add special offer.
@@ -84,7 +67,7 @@ public class CustomerTest {
 		
 		FullMeal fm = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
 		
 		r.getService().addMeal(fm);
 		r.getService().setSpecialOffer("FM2");
@@ -148,13 +131,7 @@ public class CustomerTest {
 		assertTrue(copy.equals(customer));
 	}
 
-	/**
-	 * Test refresh message board.
-	 */
-	@AfterClass
-	public static void testRefreshMessageBoard() {
-		customer.refreshMessageBoard();
-	}
+
 	
 	/**
 	 * Test to string.

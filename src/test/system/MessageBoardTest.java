@@ -35,7 +35,7 @@ public class MessageBoardTest {
 	 */
 	@BeforeClass
 	public static void testMessageBoardUser() {
-		Customer customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer customer = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		msgb2 = new MessageBoard(customer);
 		assertNotNull(msgb2);
 		assertNotNull(msgb2.getMessages());

@@ -53,11 +53,12 @@ public class FastestDeliveryTest {
 		
 		Menu menu = new Menu();
 		menu.initMenu();
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0), "password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0),"password");
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		Order Order = new Order(c, r, fm1);
+		Order Order = new Order(c, r, "myorder");
 		
+		Order.addItem(fm1);
 		ArrayList<Courier> activecouriers = myFoodora.getActivecouriers();
 		
 		Courier courier = fastestDelivery.parse(Order, activecouriers);

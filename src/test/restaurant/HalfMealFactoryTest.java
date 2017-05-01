@@ -29,7 +29,7 @@ public class HalfMealFactoryTest {
 	private static Menu menu = new Menu();
 	
 	/** The meal menu. */
-	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0));
+	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0),"password");
 	
 	/** The meal menu. */
 	private static MealMenu mealMenu = new MealMenu(restaurant);

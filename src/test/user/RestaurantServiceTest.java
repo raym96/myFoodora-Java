@@ -52,7 +52,7 @@ public class RestaurantServiceTest {
 	 */
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		InitialScenarioOld.load("scenario_test_services.ini");
+		InitialScenario.load("my_foodora.ini");;
 		restaurant1 = (Restaurant)MyFoodora.getInstance().getService().selectUser("restaurant_1");
 		restaurant1_service = restaurant1.getService();
 		
@@ -115,7 +115,7 @@ public class RestaurantServiceTest {
 		Meal meal = new HalfMeal("test_menu",terrine,sandwich);
 		restaurant1_service.addMeal(meal);
 		
-		assertTrue(restaurant1.getHalfMealMenu().getMeals().contains(meal));
+		assertTrue(restaurant1.getMealMenu().getMeals().contains(meal));
 		
 	}
 
@@ -132,7 +132,7 @@ public class RestaurantServiceTest {
 		restaurant1_service.addMeal("test_menu", "terrine", "sandwich");
 		
 		Meal meal = new HalfMeal("test_menu",terrine,sandwich);
-		assertTrue(restaurant1.getHalfMealMenu().getMeals().contains(meal));
+		assertTrue(restaurant1.getMealMenu().getMeals().contains(meal));
 		
 	}
 
@@ -150,7 +150,7 @@ public class RestaurantServiceTest {
 		
 		
 		Meal meal = new FullMeal("test_menu",terrine,sandwich,fondant);
-		assertTrue(restaurant1.getFullMealMenu().getMeals().contains(meal));
+		assertTrue(restaurant1.getMealMenu().getMeals().contains(meal));
 	}
 
 	/**
@@ -174,10 +174,10 @@ public class RestaurantServiceTest {
 		System.out.println("-----testRemoveMeal------");
 		Meal meal = new HalfMeal("test_menu",terrine,sandwich);
 		restaurant1_service.addMeal(meal);
-		assertTrue(restaurant1.getHalfMealMenu().getMeals().contains(meal));
+		assertTrue(restaurant1.getMealMenu().getMeals().contains(meal));
 		
 		restaurant1_service.removeMeal("test_menu");
-		assertFalse(restaurant1.getHalfMealMenu().getMeals().contains(meal));
+		assertFalse(restaurant1.getMealMenu().getMeals().contains(meal));
 	}
 
 	/**

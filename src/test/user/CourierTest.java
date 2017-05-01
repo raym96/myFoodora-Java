@@ -61,23 +61,7 @@ public class CourierTest {
 	public void testObserveObservable() {
 	}
 
-	/**
-	 * Test update.
-	 */
-	@Test
-	public void testUpdate() {
-		String str = "testUpdate() message";
-		courier.update(str);
-	}
-
-	/**
-	 * Test observe observable object.
-	 */
-	@Test
-	public void testObserveObservableObject() {
-		String str = "testObserveObservableObject() message";
-		courier.observe(MyFoodora.getInstance(), str);
-	}
+	
 	
 /**
  * Test add waiting order.
@@ -88,18 +72,18 @@ public class CourierTest {
 		Menu menu = new Menu();
 		menu.initMenu();
 		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
 		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
 		
 		FullMeal fm1 = new FullMeal("FM1", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		FullMeal fm2 = new FullMeal("FM2", menu.getStarters().get(1), menu.getMaindishes().get(1), menu.getDesserts().get(1));
 		fm1.setRestaurant(r);
 		fm2.setRestaurant(r);
-		Order1 = new Order(c, r);
+		Order1 = new Order(c, r,"myorder"); ;
 		Order1.addItem(fm1);
 		Order1.setCourier(cr);
-		Order2 = new Order(c,r);
+		Order2 = new Order(c, r,  "myorder") ;
 		Order2.addItem(fm2);
 		Order2.setCourier(cr);
 
@@ -122,10 +106,10 @@ public class CourierTest {
 	public void testRefuseWaitingOrder() throws NameNotFoundException{
 		
 		testAddWaitingOrder();
-		courier.refuseWaitingOrder(Order1);
+		courier.refuseWaitingOrder(Order1.getName());
 		assertFalse(courier.getWaitingOrders().contains(Order1));
 		
-		courier.refuseWaitingOrder(Order1);
+		courier.refuseWaitingOrder(Order1.getName());
 	}
 
 	/**
@@ -137,11 +121,11 @@ public class CourierTest {
 	public void acceptWaitingOrder() throws NameNotFoundException{
 		
 		testAddWaitingOrder();
-		courier.acceptWaitingOrder(Order2);
+		courier.acceptWaitingOrder(Order2.getName());
 		assertFalse(courier.getWaitingOrders().contains(Order2));
 		assertTrue(courier.getDeliveredOrders().contains(Order2));
 		
-		courier.acceptWaitingOrder(Order2);
+		courier.acceptWaitingOrder(Order2.getName());
 	}
 	
 	/**
@@ -198,13 +182,7 @@ public class CourierTest {
 		assertTrue(copy.equals(courier));
 	}
 
-	/**
-	 * Test refresh message board.
-	 */
-	@AfterClass
-	public static void testRefreshMessageBoard() {
-		courier.refreshMessageBoard();
-	}
+
 	
 	/**
 	 * Test to string.

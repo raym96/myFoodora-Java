@@ -48,7 +48,7 @@ public class ConcreteShoppingCartVisitorTest {
 	 */
 	@Test
 	public void testVisitMeal() {
-		Restaurant r2 = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
+		Restaurant r2 = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
 		FullMeal fm2 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		fm2.setRestaurant(r2);
 		
@@ -66,9 +66,9 @@ public class ConcreteShoppingCartVisitorTest {
 	 */
 	@Test
 	public void testVisitOrder() {
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
-		Order order = new Order(c,r);
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
+		Order order = new Order(c,r,"myorder");
 		
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		fm1.setRestaurant(r);

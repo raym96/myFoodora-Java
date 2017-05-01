@@ -33,12 +33,12 @@ public class ManagerTest {
 	 */
 	@BeforeClass
 	public static void testManager() {
-		manager = new Manager("He", "Xiaoan", "hxa");
+		manager = new Manager("He", "Xiaoan", "hxa","password");
 		managerService = manager.getService();
 		
 		assertNotNull(manager);
 		assertNotNull(managerService);
-		assertNotNull(manager.getMyfoodoraService());
+		assertNotNull(manager.getService());
 	}
 	
 	/**
@@ -49,23 +49,6 @@ public class ManagerTest {
 	public void testObserveObservable() {
 	}
 
-	/**
-	 * Test update.
-	 */
-	@Test
-	public void testUpdate() {
-		String str = "testUpdate() message";
-		manager.update(str);
-	}
-
-	/**
-	 * Test observe observable object.
-	 */
-	@Test
-	public void testObserveObservableObject() {
-		String str = "testObserveObservableObject() message";
-		manager.observe(MyFoodora.getInstance(), str);
-	}
 
 	/**
 	 * Test hash code.
@@ -129,11 +112,5 @@ public class ManagerTest {
 		System.out.println(manager);
 	}
 	
-	/**
-	 * Test refresh message board.
-	 */
-	@AfterClass
-	public static void testRefreshMessageBoard() {
-		manager.refreshMessageBoard();
-	}
+
 }

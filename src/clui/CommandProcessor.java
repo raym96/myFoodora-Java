@@ -850,7 +850,7 @@ public class CommandProcessor{
 		Manager manager = (Manager)user;
 		Double targetProfit = Double.parseDouble(arguments[0]);
 		manager.getService().determineParam2MeetTargetProfit(targetProfit);;
-		System.out.println("The target profit policy has been applied, system values updated.");
+		System.out.println("The target profit policy has been applied, system values updated to meet a profit of "+targetProfit+" euros.");
 		MyFoodora.getInstance().getView().showSystemValues();
 	}
 
@@ -1473,14 +1473,18 @@ public class CommandProcessor{
 		File file = new File("testScenario/"+testScenarioN);
 		Scanner s;
 		try {
+			System.out.println("----------------------------------------------------------------------------------------------------------------");
+			System.out.println("                                   "+testScenarioN.toUpperCase()+"                                    ");
+			System.out.println("----------------------------------------------------------------------------------------------------------------");
 			s = new Scanner(file);
 			String rawInput = "";
 			while (s.hasNextLine()){
 				rawInput = s.nextLine();
 				System.out.println(rawInput);
 				c.processCommand(rawInput);
-				System.out.println();
+				System.out.println();	
 			}
+			System.out.println("----------------------------------------------------------------------------------------------------------------");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

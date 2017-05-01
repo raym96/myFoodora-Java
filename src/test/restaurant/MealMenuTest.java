@@ -30,7 +30,7 @@ public class MealMenuTest {
 	private static MealMenu mealMenu = null;
 	
 	/** The restaurant of the meal menu. */
-	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0));
+	static Restaurant restaurant = new Restaurant("test","test", new AddressPoint(0,0),"password");
 
 	
 	/** The menu. */

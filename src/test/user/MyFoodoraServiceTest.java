@@ -59,7 +59,7 @@ public class MyFoodoraServiceTest {
 	 */
 	@Before
 	public void setUpBefore() throws Exception {
-		InitialScenarioOld.load("scenario_test_services.ini");	
+		InitialScenario.load("my_foodora.ini");
 		
 		myfoodora = MyFoodora.getInstance();
 		myfoodora_service = MyFoodora.getInstance().getService();
@@ -110,8 +110,8 @@ public class MyFoodoraServiceTest {
 		System.out.println("-----testParse-----");
 		Customer customer = (Customer)myfoodora_service.selectUser("customer_1");
 		Restaurant restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
-		Meal meal = restaurant.getFullMealMenu().getMeals().get(0);
-		Order order = new Order(customer,restaurant);
+		Meal meal = restaurant.getMealMenu().getMeals().get(0);
+		Order order = new Order(customer,restaurant,"myorder");
 		order.addItem(meal);
 		
 		System.out.println("restaurant position = " + restaurant.getAddress());

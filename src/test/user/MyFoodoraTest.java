@@ -37,16 +37,16 @@ public class MyFoodoraTest {
 	private static MyFoodora myFoodora = MyFoodora.getInstance();
 	
 	/** The c. */
-	private static Customer c = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+	private static Customer c = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 	
 	/** The cr. */
 	private static Courier cr = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
 	
 	/** The r. */
-	private static Restaurant r = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+	private static Restaurant r = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 	
 	/** The m. */
-	private static Manager m = new Manager("He", "Xiaoan", "hxa");
+	private static Manager m = new Manager("He", "Xiaoan", "hxa","password");
 	
 	/**
 	 * Inits the.
@@ -61,8 +61,7 @@ public class MyFoodoraTest {
 		assertNotNull(myFoodora.getActiveUsers());
 		assertNotNull(myFoodora.getCouriers());
 		assertNotNull(myFoodora.getActivecouriers());
-		assertNotNull(myFoodora.getSpecialOfferObserver());
-		assertNotNull(myFoodora.getMessageBoard());
+
 		assertNotNull(myFoodora.getSpecialOfferBoard());
 		assertNotNull(myFoodora.getHistory());
 		
@@ -74,7 +73,7 @@ public class MyFoodoraTest {
 	@Test
 	public void testAddSpecialOfferObserver() {
 		myFoodora.addSpecialOfferObserver(c);
-		assertTrue(myFoodora.getSpecialOfferObserver().contains(c));
+		assertTrue(myFoodora.getSpecialOfferBoard().getObservers().contains(c));
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class MyFoodoraTest {
 	@Test
 	public void testRemoveSpecialOfferObserver() {
 		myFoodora.removeSpecialOfferObserver(c);
-		assertFalse(myFoodora.getSpecialOfferObserver().contains(c));
+		assertFalse(myFoodora.getSpecialOfferBoard().getObservers().contains(c));
 	}
 
 	/**
@@ -105,10 +104,10 @@ public class MyFoodoraTest {
 		
 		Menu menu = new Menu();
 		menu.initMenu();
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		Order Order = new Order(c, r);
+		Order Order = new Order(c, r,"myorder"); ;
 		Order.addItem(fm1);
 	
 		myFoodora.setDeliveryPolicy(new FairOccupationDeliveryPolicy());
@@ -122,9 +121,9 @@ public class MyFoodoraTest {
 	 */
 	@Test
 	public void testAddUser() {
-		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		
 		myFoodora.addUser(r2);
 		myFoodora.addUser(c2);
@@ -139,9 +138,9 @@ public class MyFoodoraTest {
 	 */
 	@Test
 	public void testRemoveUser() {
-		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		
 		myFoodora.addUser(r2);
 		myFoodora.addUser(c2);
@@ -165,9 +164,9 @@ public class MyFoodoraTest {
 	 */
 	@Test
 	public void testActivateUser() throws NameNotFoundException {
-		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		
 		myFoodora.register(r2);
 		myFoodora.register(c2);
@@ -190,9 +189,9 @@ public class MyFoodoraTest {
 	 */
 	@Test
 	public void testDisactivateUser() throws NameNotFoundException {
-		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		
 		myFoodora.register(r2);
 		myFoodora.register(c2);
@@ -247,9 +246,9 @@ public class MyFoodoraTest {
 	 */
 	@Test
 	public void testRegister() {
-		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		
 		myFoodora.register(c2);
 		myFoodora.register(r2);
@@ -264,9 +263,9 @@ public class MyFoodoraTest {
 	 */
 	@Test
 	public void testUnregister() {
-		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "guanyu@gmail.com", "+33 1 01 01 02 02");
+		Customer c2 = new Customer("Guan", "Yu", "customer_2", new AddressPoint("101.0,101.0"), "password");
 		Courier cr2 = new Courier("Clinton", "Hillary", "courier_2", new AddressPoint("5.5,12.4"), "+33 6 29 04 59 20");
-		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		Restaurant r2 = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		
 		myFoodora.register(r2);
 		myFoodora.register(c2);
@@ -283,78 +282,4 @@ public class MyFoodoraTest {
 		assertFalse(myFoodora.getUsers().contains(cr2));
 	}
 
-	/**
-	 * Test notify all observers.
-	 */
-	@Test
-	@Ignore
-	public void testNotifyAllObservers() {
-
-	}
-
-	/**
-	 * Test notify all observers object.
-	 */
-	@Test
-	@Ignore
-	public void testNotifyAllObserversObject() {
-	}
-
-	/**
-	 * Test notify observer observer.
-	 */
-	@Test
-	@Ignore
-	public void testNotifyObserverObserver() {
-	}
-
-	/**
-	 * Test notify observer observer object.
-	 */
-	@Test
-	@Ignore
-	public void testNotifyObserverObserverObject() {
-	}
-
-	/**
-	 * Test notify observers array list of observer.
-	 */
-	@Test
-	@Ignore
-	public void testNotifyObserversArrayListOfObserver() {
-	}
-
-	/**
-	 * Test notify observers array list of user object.
-	 */
-	@Test
-	public void testNotifyObserversArrayListOfUserObject() {
-
-		ArrayList<User> customers = myFoodora.getUsersOfAssignedType("CUSTOMER");
-		myFoodora.notifyObservers(customers, "testNotifyObserversArrayListOfUserObject() test"); 
-	}
-
-	/**
-	 * Test display users.
-	 */
-	@AfterClass
-	public static void testDisplayUsers() {
-		myFoodora.displayUsers();
-	}
-
-	/**
-	 * Test display active users.
-	 */
-	@AfterClass
-	public static void testDisplayActiveUsers() {
-		myFoodora.displayActiveUsers();
-	}
-
-	/**
-	 * Test refresh message board.
-	 */
-	@AfterClass
-	public static void testRefreshMessageBoard() {
-		myFoodora.refreshMessageBoard();
-	}
 }

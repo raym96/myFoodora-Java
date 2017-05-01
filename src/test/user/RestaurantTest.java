@@ -36,12 +36,11 @@ public class RestaurantTest {
 	 */
 	@BeforeClass
 	public static void testRestaurant() {
-		restaurant = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"));
+		restaurant = new Restaurant("Chinese Restaurant", "restaurant_2", new AddressPoint("2.0,2.0"),"password");
 		assertNotNull(restaurant);
 		assertNotNull(restaurant.getService());
 		assertNotNull(restaurant.getMenu());
-		assertNotNull(restaurant.getHalfMealMenu());
-		assertNotNull(restaurant.getHalfMealMenu());
+		assertNotNull(restaurant.getMealMenu());
 		assertNotNull(restaurant.getHistory());
 	}
 	
@@ -53,23 +52,7 @@ public class RestaurantTest {
 	public void testObserveObservable() {
 	}
 
-	/**
-	 * Test update.
-	 */
-	@Test
-	public void testUpdate() {
-		String str = "testUpdate() message";
-		restaurant.update(str);
-	}
-
-	/**
-	 * Test observe observable object.
-	 */
-	@Test
-	public void testObserveObservableObject() {
-		String str = "testObserveObservableObject() message";
-		restaurant.observe(MyFoodora.getInstance(), str);
-	}
+	
 	
 	/**
 	 * Test add to history.
@@ -79,11 +62,11 @@ public class RestaurantTest {
 		Menu menu = new Menu();
 		menu.initMenu();
 		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
 		FullMeal fm1 = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
 		fm1.setRestaurant(r);
-		Order Order = new Order(c, r);
+		Order Order = new Order(c, r,"myorder"); ;
 		Order.addItem(fm1);
 		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
 		Order.setCourier(cr);
@@ -148,14 +131,7 @@ public class RestaurantTest {
 		assertTrue(copy.equals(restaurant));
 	}
 
-	/**
-	 * Test refresh message board.
-	 */
-	@AfterClass
-	public static void testRefreshMessageBoard() {
-		restaurant.refreshMessageBoard();
-	}
-	
+
 	/**
 	 * Test to string.
 	 */

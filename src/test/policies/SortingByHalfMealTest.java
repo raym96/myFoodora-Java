@@ -71,26 +71,32 @@ public class SortingByHalfMealTest {
 		hm1 = new HalfMeal("HM2", menu.getStarters().get(0), menu.getMaindishes().get(0));
 		hm2 = new HalfMeal("HM2", menu.getStarters().get(1), menu.getMaindishes().get(1));
 		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
 		
-		Order Order1 = new Order(c, r, hm1);
+		Order Order1 = new Order(c, r, "order1");
+		Order1.addItem(hm1);
 		Order1.setCourier(cr);
 		
-		Order Order2 = new Order(c, r, hm2);
+		Order Order2 = new Order(c, r, "order2");
+		Order2.addItem(hm1);
 		Order2.setCourier(cr);
 		
-		Order Order3 = new Order(c, r, hm1);
+		Order Order3 = new Order(c, r, "order3");
+		Order3.addItem(hm2);
 		Order3.setCourier(cr);
 		
-		Order Order4 = new Order(c, r, hm1);
+		Order Order4 = new Order(c, r, "order4");
+		Order4.addItem(hm2);
 		Order4.setCourier(cr);
 		
 		hm1.setSpecial(true);
-		Order specialMealOrder1 = new Order(c, r, hm1);
+		Order specialMealOrder1 = new Order(c, r, "specialorder1");
+		specialMealOrder1.addItem(hm1);
 		specialMealOrder1.setCourier(cr);
 		
-		Order specialMealOrder2 = new Order(c, r, hm1);
+		Order specialMealOrder2 = new Order(c, r, "specialorder2");
+		specialMealOrder2.addItem(hm1);
 		specialMealOrder2.setCourier(cr);
 		
 

@@ -9,6 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import exceptions.DishTypeErrorException;
 import restaurant.FullMeal;
 import restaurant.Menu;
 
@@ -96,7 +97,12 @@ public class FullMealTest {
 	 */
 	@Test
 	public void testAddDish() {
-		fm1.addDish(menu.getDishes().get(0));
+		try {
+			fm1.addDish(menu.getDishes().get(0));
+		} catch (DishTypeErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(fm1.getDishes().get(fm1.getDishes().size()-1), menu.getDishes().get(0));
 	}
 

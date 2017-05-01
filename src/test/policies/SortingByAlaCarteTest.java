@@ -66,29 +66,35 @@ public class SortingByAlaCarteTest {
 		Menu menu = new Menu();
 		menu.initMenu();
 		
-		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
+		Courier cr = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "password");
 		d1 = menu.getDishes().get(0);
 		d2 = menu.getDishes().get(1);
 		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0));
-		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "liubei@gmail.com", "+33 1 01 01 02 01");
+		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
+		Customer c = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
 		
-		Order Order1 = new Order(c, r, d1);
+		Order Order1 = new Order(c, r, "order1");
+		Order1.addItem(d1);
 		Order1.setCourier(cr);
 		
-		Order Order2 = new Order(c, r, d1);
+		Order Order2 = new Order(c, r, "order2");
+		Order2.addItem(d1);
 		Order2.setCourier(cr);
 		
-		Order Order3 = new Order(c, r, d1);
+		Order Order3 = new Order(c, r, "order3");
+		Order3.addItem(d1);
 		Order3.setCourier(cr);
 		
-		Order Order4 = new Order(c, r, d1);
+		Order Order4 = new Order(c, r, "order4");
+		Order4.addItem(d1);
 		Order4.setCourier(cr);
 		
-		Order Order5 = new Order(c, r, d2);
+		Order Order5 = new Order(c, r, "order5");
+		Order5.addItem(d2);
 		Order5.setCourier(cr);
 		
-		Order Order6 = new Order(c, r, d2);
+		Order Order6 = new Order(c, r, "order6");
+		Order6.addItem(d2);
 		Order6.setCourier(cr);
 		
 
