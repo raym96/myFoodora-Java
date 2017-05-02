@@ -43,6 +43,9 @@ public class MyFoodora {
 	/** The delivery cost. */
 	private double delivery_cost;	
 	
+	/** The current target profit **/
+	private double targetprofit;
+	
 	/** The targetprofitpolicy. */
 	private TargetProfitPolicy targetprofitpolicy;
 	
@@ -197,6 +200,24 @@ public class MyFoodora {
 	 */
 	public double getMarkup_percentage() {
 		return markup_percentage;
+	}
+	
+	/**
+	 * Sets the target profit.
+	 *
+	 * @param targetprofit the new target profit
+	 */
+	public void setTargetprofit(double targetprofit) {
+		this.targetprofit = targetprofit;
+	}
+
+	/**
+	 * Gets the target profit.
+	 *
+	 * @return the target profit
+	 */
+	public double getTargetprofit() {
+		return targetprofit;
 	}
 
 	/**
