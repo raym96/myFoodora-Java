@@ -220,6 +220,15 @@ public class Restaurant extends User{
 	public AddressPoint getAddress(){
 		return address;
 	}
+	
+	/**
+	 * Sets the address.
+	 *
+	 * @param address the address
+	 */
+	public void setAddress(AddressPoint address){
+		this.address = address;
+	}
 
 	/**
 	 * Gets the specialmealmenu.
@@ -298,6 +307,16 @@ public class Restaurant extends User{
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+	
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the name
+	 */
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		this.name = name;
 	}
 
 	

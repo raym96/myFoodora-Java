@@ -151,6 +151,17 @@ public class Customer extends User implements SpecialOfferObserver{
 	}
 	
 	/**
+	 * Sets the full name.
+	 *
+	 * @param name the first name and last name
+	 */
+	public void setFullName(String name) {
+		// TODO Auto-generated method stub
+		this.firstname = name.split(" ")[0];
+		this.lastname = name.split(" ")[1];
+	}
+	
+	/**
 	 * Gets the specialoffers.
 	 *
 	 * @return the specialoffers
@@ -196,6 +207,15 @@ public class Customer extends User implements SpecialOfferObserver{
 	 */
 	public AddressPoint getAddress() {
 		return address;
+	}
+	
+	/**
+	 * Sets the address.
+	 *
+	 * @param address the address
+	 */
+	public void setAddress(AddressPoint address){
+		this.address = address;
 	}
 
 	/* (non-Javadoc)

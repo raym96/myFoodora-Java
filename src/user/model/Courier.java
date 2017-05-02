@@ -177,6 +177,15 @@ public class Courier extends User{
 	}
 	
 	/**
+	 * Sets the position.
+	 *
+	 * @param the position
+	 */
+	public void getPosition(AddressPoint position){
+		this.position = position;
+	}
+	
+	/**
 	 * Gets the count.
 	 *
 	 * @return the count
@@ -249,6 +258,16 @@ public class Courier extends User{
 		return name+" "+surname;
 	}
 	
+	/**
+	 * Sets the full name.
+	 *
+	 * @param name the first name and last name
+	 */
+	public void setFullName(String name) {
+		// TODO Auto-generated method stub
+		this.surname = name.split(" ")[0];
+		this.name = name.split(" ")[1];
+	}
 
 	/**
 	 * Gets the phone.
