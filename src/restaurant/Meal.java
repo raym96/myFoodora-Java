@@ -142,15 +142,6 @@ public class Meal implements Item{
 	}
 
 	/**
-	 * Sets the meal type.
-	 *
-	 * @param mealType the new meal type
-	 */
-	public void setMealType(String mealType) {
-		this.mealType = mealType;
-	}
-
-	/**
 	 * Gets the dishes.
 	 *
 	 * @return the dishes

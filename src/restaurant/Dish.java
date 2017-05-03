@@ -99,6 +99,15 @@ public abstract class Dish implements Item{
 	public String getDishName() {
 		return dishName;
 	}
+	
+	/**
+	 * Sets the dish name.
+	 *
+	 * @param dishName the dish name
+	 */
+	public void setDishName(String dishName) {
+		this.dishName = dishName;
+	}
 
 	/**
 	 * Gets the dish type.
@@ -108,8 +117,6 @@ public abstract class Dish implements Item{
 	public String getDishType() {
 		return dishType;
 	}
-
-	
 	
 	/**
 	 * Sets the dish type.
@@ -128,6 +135,15 @@ public abstract class Dish implements Item{
 	 */
 	public double getPrice() {
 		return price;
+	}
+	
+	/**
+	 * Sets the price.
+	 *
+	 * @param price the price
+	 */
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 	/* (non-Javadoc)
