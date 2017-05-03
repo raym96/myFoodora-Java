@@ -162,7 +162,14 @@ public abstract class User implements MessageBoardObserver{
 		return this.password;
 	}
 	
-	
+	/**
+	 * Sets the password.
+	 *
+	 * @param the password
+	 */
+	public void setPassword(String password){
+		this.password = password;
+	}
 	
 	/**
 	 * Gets the id.
