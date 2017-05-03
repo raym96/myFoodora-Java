@@ -41,9 +41,11 @@ public class SortingByRestaurant extends SortingByCriteria {
 	public HashMap countOccurence(ArrayList<Order> h){
 		HashMap<Restaurant, Integer> map = new HashMap<Restaurant,Integer>();
 		ArrayList<User> restaurants = MyFoodora.getInstance().getUsersOfAssignedType("Restaurant");
+		
 		for (User u : restaurants){
 			map.put((Restaurant)u,0);
 		}
+		
 		for (Order order:h){
 			Restaurant r = order.getRestaurant();
 			map.put(r, map.get(r)+1);

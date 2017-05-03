@@ -41,11 +41,13 @@ public class SortingByAlaCarte extends SortingByCriteria {
 		for (Dish dish:dishes){
 			map.put(dish,0);
 		}
+		
 		//count occurence
 		for (Order order:history){
 			for (Item item: order.getItems()){
 				if (item instanceof Dish){
 					Dish dish = (Dish)item;
+
 					map.put(dish, map.get(dish)+1);
 				}
 			}
