@@ -190,6 +190,15 @@ public class Order {
 	public void removeItem(Item item){
 		items.remove(item);
 	}
+	
+	/**
+	 * clears the item.
+	 *
+	 * @param 
+	 */
+	public void clearItem(){
+		items = new ArrayList<Item>();
+	}
 
 	/**
 	 * Checks if is assigned.
