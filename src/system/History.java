@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ import restaurant.*;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public class History {
+public class History{
 	
 	/** The orders. */
 	private ArrayList<Order> orders;
@@ -41,6 +42,15 @@ public class History {
 	 */
 	public void addOrder(Order order){
 		orders.add(order);
+	}
+	
+	/**
+	 * Removes the order.
+	 *
+	 * @param order the order
+	 */
+	public void removeOrder(Order order){
+		orders.remove(order);
 	}
 	
 	/**
@@ -150,4 +160,5 @@ public class History {
 		}
 		return ret;
 	}
+
 }
