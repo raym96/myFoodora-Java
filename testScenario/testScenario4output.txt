@@ -1,3 +1,12 @@
+
+-----------------------------------------------------------------------------------
+Loading initial setup <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+                                   TESTSCENARIO4.TXT                                    
+----------------------------------------------------------------------------------------------------------------
 login ffillon password
 [RESTAURANT]
 <Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
@@ -114,7 +123,7 @@ You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 showNewMessages
-28/04/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
+04/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
 
 
 
@@ -134,14 +143,14 @@ addItem2Order hotpot specialorder
 Item <hotpot> added to the order <specialorder>.
 
 endorder specialorder
-[Order <specialorder> ID1044]
+[Order <specialorder> ID1178]
 [7.2€] 
 Meal <Hotpot> 7.2
 BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
-ON 28/04/2017
+ON 04/05/2017
 Obama Barack <bobama> has been assigned to the delivery task.
-Order <specialorder> finalised on 28/04/2017 and you paid for it.
+Order <specialorder> finalised on 04/05/2017 and you paid for it.
 
 logout
 Goodbye <ffillon>. We hope to see you again on MyFoodora.
@@ -237,4 +246,27 @@ Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
 
 [Special Offers]
 
+----------------------------------------------------------------------------------------------------------------
+
+help
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands:
+
+login <username> <password> : login with your username & password.
+
+register <> : register on the MyFoodora system. Follow the steps.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+login hclinton password
+You have no waiting delivery tasks.
+Welcome on MyFoodora, user <hclinton>. 
+Please enter a command. Enter "help" to get the list of available commands.
 

@@ -51,7 +51,6 @@ public class Customer extends User implements SpecialOfferObserver{
 	/** The customer service. */
 	private CustomerService customerService;
 	
-	private CustomerView customerView;
 	/**
 	 * Instantiates a new customer.
 	 *
@@ -71,7 +70,6 @@ public class Customer extends User implements SpecialOfferObserver{
 		this.agreeToBeNotifiedSpecialoffers = false;
 		this.specialOfferBoard = MyFoodora.getInstance().getSpecialOfferBoard();
 		this.customerService = new CustomerServiceImpl(this);
-		this.customerView = new CustomerView(this);		
 	}
 	/**
 	 *  basic methods *.
@@ -83,9 +81,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	}
 
 
-	public CustomerView getView() {
-		return customerView;
-	}
+	
 	/**
 	 * Gets the shopping cart.
 	 *

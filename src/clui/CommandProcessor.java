@@ -327,17 +327,18 @@ public class CommandProcessor{
 			m.login(username,password);
 			user = m.selectUser(username);
 			if (user instanceof Restaurant){
-				((Restaurant)user).getView().showMenu();
+				((Restaurant)user).getService().showMenu();
 			}
 			if (user instanceof Customer){
-				MyFoodora.getInstance().getView().showUsersOfAssignedType("Restaurant");
+				MyFoodora.getInstance().getService().showUsersOfAssignedType("Restaurant");
 			}
-			if (user instanceof Courier){
-				((Courier)user).getView().showWaitingOrders();
-			}
+			
 			System.out.println("Welcome on MyFoodora, user <"+username+">. ");
 			if (user.getMessageBoard().getHasUnreadMessages()){
 				System.out.println("You have new messages.");
+			}
+			if (user instanceof Courier){
+				((Courier)user).getService().showWaitingOrders();
 			}
 			System.out.println("Please enter a command. Enter \"help\" "
 					+ "to get the list of available commands.");
@@ -450,7 +451,7 @@ public class CommandProcessor{
 			}
 		}
 
-		newUser.getView().showInfo();
+		newUser.getService().showInfo();
 		System.out.println("If these informations are correct, please enter \"yes\" to save this account.");
 		if (scan.nextLine().equalsIgnoreCase("yes")){
 			MyFoodora.getInstance().addUser(newUser);
@@ -482,7 +483,7 @@ public class CommandProcessor{
 	
 	
 	private void showRestaurantMenus() {
-		MyFoodora.getInstance().getView().showRestaurantMenus();
+		MyFoodora.getInstance().getService().showRestaurantMenus();
 	}
 	
 	
@@ -504,7 +505,7 @@ public class CommandProcessor{
 	 */
 	private void showInfo() throws PermissionException {
 		if (user==null) throw new PermissionException("user");
-		user.getView().showInfo();
+		user.getService().showInfo();
 	}
 	
 	/**
@@ -514,7 +515,7 @@ public class CommandProcessor{
 	 */
 	private void showHistory() throws PermissionException {
 		if (user == null) throw new PermissionException("user");
-		user.getView().showHistory();
+		user.getService().showHistory();
 	}
 	
 	
@@ -851,7 +852,7 @@ public class CommandProcessor{
 		Double targetProfit = Double.parseDouble(arguments[0]);
 		manager.getService().determineParam2MeetTargetProfit(targetProfit);;
 		System.out.println("The target profit policy has been applied, system values updated to meet a profit of "+targetProfit+" euros.");
-		MyFoodora.getInstance().getView().showSystemValues();
+		MyFoodora.getInstance().getService().showSystemValues();
 	}
 
 	/**
@@ -861,11 +862,11 @@ public class CommandProcessor{
 	private void showUsers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
 		if (arguments.length==0){
-			MyFoodora.getInstance().getView().showUsers();
+			MyFoodora.getInstance().getService().showUsers();
 		}
 		else{
 			String userType = arguments[0];
-			MyFoodora.getInstance().getView().showUsersOfAssignedType(userType);
+			MyFoodora.getInstance().getService().showUsersOfAssignedType(userType);
 		}
 	}
 
@@ -876,7 +877,7 @@ public class CommandProcessor{
 	 */
 	private void showCustomers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
-		MyFoodora.getInstance().getView().showUsersOfAssignedType("customer");
+		MyFoodora.getInstance().getService().showUsersOfAssignedType("customer");
 	}
 
 	/**
@@ -892,7 +893,7 @@ public class CommandProcessor{
 		Manager manager = (Manager)user;
 		try {
 			Restaurant restaurant = (Restaurant) manager.getService().selectUser(restaurant_name);
-			restaurant.getView().showMenu();
+			restaurant.getService().showMenu();
 		} catch (NameNotFoundException e) {
 			e.printError();
 		}
@@ -900,17 +901,17 @@ public class CommandProcessor{
 
 	private void showActiveUsers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
-		MyFoodora.getInstance().getView().showActiveUsers();
+		MyFoodora.getInstance().getService().showActiveUsers();
 	}
 
 	private void showPolicies() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
-		MyFoodora.getInstance().getView().showPolicies();
+		MyFoodora.getInstance().getService().showPolicies();
 	}
 
 	private void showSystemValues() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
-		MyFoodora.getInstance().getView().showSystemValues();
+		MyFoodora.getInstance().getService().showSystemValues();
 	}
 
 	
@@ -1163,19 +1164,19 @@ public class CommandProcessor{
 	private void showMyMenu() throws PermissionException {
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getView().showMenu();
+		restaurant.getService().showMenu();
 	}
 
 	private void showDiscountFactor() throws PermissionException {
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getView().showDiscountFactors();
+		restaurant.getService().showDiscountFactors();
 	}
 	
 	private void showIncome() throws PermissionException{
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
-		restaurant.getView().showTotalIncome();
+		restaurant.getService().showTotalIncome();
 	}
 
 
@@ -1320,7 +1321,7 @@ public class CommandProcessor{
 	private void showPoints() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getView().showPoints();
+		customer.getService().showPoints();
 	}
 	
 	/**
@@ -1331,7 +1332,7 @@ public class CommandProcessor{
 	private void showShoppingCart() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getView().showShoppingCart();
+		customer.getService().showShoppingCart();
 		
 	}
 
@@ -1340,7 +1341,7 @@ public class CommandProcessor{
 	private void showSpecialOffers() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
-		customer.getView().showSpecialOffers();
+		customer.getService().showSpecialOffers();
 	}
 
 	
@@ -1444,7 +1445,7 @@ public class CommandProcessor{
 	private void showWaitingOrders() throws PermissionException {
 		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
-		courier.getView().showWaitingOrders();
+		courier.getService().showWaitingOrders();
 	}
 
 
@@ -1453,7 +1454,7 @@ public class CommandProcessor{
 		// TODO Auto-generated method stub
 		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
-		courier.getView().showCount();
+		courier.getService().showCount();
 	}
 
 	/**
@@ -1463,6 +1464,7 @@ public class CommandProcessor{
 	 */
 	private void runTest() throws SyntaxErrorException {
 		if (arguments.length<1) throw new SyntaxErrorException();
+		
 		String testScenarioN = arguments[0];
 		String[] parts = testScenarioN.split("\\.");
 		String testScenarioNoutput = parts[0]+"output."+parts[1];
@@ -1473,6 +1475,8 @@ public class CommandProcessor{
 		File file = new File("testScenario/"+testScenarioN);
 		Scanner s;
 		try {
+			MyFoodora.reset();
+			InitialScenario.load("my_foodora.ini");
 			System.out.println("----------------------------------------------------------------------------------------------------------------");
 			System.out.println("                                   "+testScenarioN.toUpperCase()+"                                    ");
 			System.out.println("----------------------------------------------------------------------------------------------------------------");

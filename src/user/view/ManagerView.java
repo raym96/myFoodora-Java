@@ -24,7 +24,7 @@ public class ManagerView implements UserView{
 	}
 	
 	public void showHistory(){
-		MyFoodora.getInstance().getView().showHistory();
+		MyFoodora.getInstance().getService().showHistory();
 	}
 	
 }

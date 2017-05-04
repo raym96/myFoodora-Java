@@ -13,6 +13,7 @@ import user.model.Courier;
 import user.model.Customer;
 import user.model.MyFoodora;
 import user.service.CourierService;
+import user.view.CourierView;
 
 
 /**
@@ -25,6 +26,8 @@ public class CourierServiceImpl implements CourierService {
 	/** The courier. */
 	private Courier courier;
 	
+	private CourierView courierView;
+	
 	/**
 	 * Instantiates a new courier service impl.
 	 *
@@ -33,6 +36,7 @@ public class CourierServiceImpl implements CourierService {
 	public CourierServiceImpl(Courier courier) {
 		super();
 		this.courier = courier;
+		this.courierView = new CourierView(courier);
 	}
 
 	/* (non-Javadoc)
@@ -118,5 +122,21 @@ public class CourierServiceImpl implements CourierService {
 	
 		//A new courier is assigned to the delivery-task
 		MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers); //a new courier is assigned
+	}
+	
+	public void showInfo(){
+		courierView.showInfo();
+	}
+	
+	public void showCount(){
+		courierView.showCount();
+	}
+	
+	public void showHistory(){
+		courierView.showHistory();
+	}
+	
+	public void showWaitingOrders(){
+		courierView.showWaitingOrders();	
 	}
 }

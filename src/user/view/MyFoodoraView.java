@@ -35,7 +35,7 @@ public class MyFoodoraView{
 	public void showUsers(){
 		System.out.println("\n[USERS]");
 		for (User u:myfoodora.getUsers()){
-			u.getView().showInfo();
+			u.getService().showInfo();
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class MyFoodoraView{
 	public void showActiveUsers(){
 		System.out.println("\n[ACTIVEUSERS]");
 		for (User u :myfoodora.getActiveUsers()){
-			u.getView().showInfo();
+			u.getService().showInfo();
 		}	
 	}
 	
@@ -54,7 +54,7 @@ public class MyFoodoraView{
 	 */
 	public void showRestaurantMenus() {
 		for (User u:myfoodora.getUsersOfAssignedType("RESTAURANT")){
-			((Restaurant)u).getView().showMenu();
+			((Restaurant)u).getService().showMenu();
 		}
 	}
 	

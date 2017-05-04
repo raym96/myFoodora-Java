@@ -174,5 +174,25 @@ public interface RestaurantService extends UserService{
 	 */
 	public void addToHistory(Order order);
 	
+	public void showInfo();
+	
+	public void showHistory();
+	
+
+	public void showDishes() ;
+
+
+	public void showMeals() ;
+
+	public void showDiscountFactors();
+	
+	public void showSpecialOffers();
+	
+	public void showTotalIncome();
+	
+
+	public void showMenu();
+
+	
 	
 }

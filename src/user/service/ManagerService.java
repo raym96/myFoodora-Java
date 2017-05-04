@@ -170,4 +170,7 @@ public interface ManagerService extends UserService{
 	 */
 	public void associateCard(String username, String cardType) throws NameNotFoundException;
 	
+	public void showInfo();
+	
+	public void showHistory();
 }

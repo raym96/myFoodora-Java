@@ -20,8 +20,10 @@ import system.*;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.MyFoodora;
+import user.model.Restaurant;
 import user.model.User;
 import user.service.MyFoodoraService;
+import user.view.MyFoodoraView;
 
 
 /**
@@ -34,12 +36,15 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/** The myfoodora. */
 	private MyFoodora myfoodora;
 	
+	private MyFoodoraView myfoodoraView;
+	
 	/**
 	 * Instantiates a new my foodora service impl.
 	 */
 	public MyFoodoraServiceImpl(MyFoodora myfoodora) {
 		super();
 		this.myfoodora = myfoodora;
+		this.myfoodoraView = new MyFoodoraView(myfoodora);
 	}
 
 /**
@@ -217,5 +222,43 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 			}
 		}
 		throw new LoginErrorException();
+	}
+	
+	public void showUsersOfAssignedType(String userType){
+		myfoodoraView.showUsersOfAssignedType(userType);
+	}
+	
+	/**
+	 * Display users.
+	 */
+	public void showUsers(){
+		myfoodoraView.showUsers();
+	}
+	
+	/**
+	 * Display active users.
+	 */
+	public void showActiveUsers(){
+		myfoodoraView.showActiveUsers();
+	}
+	
+	/**
+	 * Display menus of all restaurants.
+	 */
+	public void showRestaurantMenus() {
+		myfoodoraView.showRestaurantMenus();
+	}
+	
+
+	public void showHistory(){
+		myfoodoraView.showHistory();
+	}
+	
+	public void showSystemValues(){
+		myfoodoraView.showSystemValues();
+	}
+	
+	public void showPolicies(){
+		myfoodoraView.showPolicies();
 	}
 }

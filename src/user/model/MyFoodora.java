@@ -60,7 +60,6 @@ public class MyFoodora {
 	private static MyFoodora instance = null;
 	
 	private MyFoodoraService myfoodoraService; 
-	private MyFoodoraView myfoodoraView;
 	
 	
 
@@ -72,7 +71,6 @@ public class MyFoodora {
 		this.specialofferboard = new ConcreteSpecialOfferBoard();
 		this.history = new History();
 		this.myfoodoraService = new MyFoodoraServiceImpl(this);
-		this.myfoodoraView = new MyFoodoraView(this);
 		//default values
 		service_fee = 1;
 		markup_percentage=0.1;
@@ -122,10 +120,7 @@ public class MyFoodora {
 		instance = null;
 	}
 	
-	public MyFoodoraView getView() {
-		return myfoodoraView;
-	}
-	
+
 	/**
 	 * Gets the my foodora service.
 	 *

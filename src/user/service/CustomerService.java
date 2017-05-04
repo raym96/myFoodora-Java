@@ -74,6 +74,15 @@ public interface CustomerService extends UserService{
 	 */
 	public void removeConsensusBeNotifiedSpecialOffers();
 
+	public void showInfo();
+	
+	public void showHistory();
+
+	public void showShoppingCart();
+	
+	public void showPoints();
+	
+	public void showSpecialOffers();
 
 
 }

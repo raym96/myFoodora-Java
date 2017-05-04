@@ -32,6 +32,7 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.ManagerService;
 import user.service.MyFoodoraService;
+import user.view.ManagerView;
 
 
 /**
@@ -44,6 +45,8 @@ public class ManagerServiceImpl implements ManagerService {
 	/** The manager. */
 	private Manager manager;
 	
+	private ManagerView managerView;
+	
 	/** The myfoodora service. */
 	private MyFoodoraService myfoodora_service = MyFoodora.getInstance().getService();
 	/**
@@ -54,6 +57,7 @@ public class ManagerServiceImpl implements ManagerService {
 	public ManagerServiceImpl(Manager manager) {
 		super();
 		this.manager = manager;
+		this.managerView = new ManagerView(manager);
 	}
 
 	/* (non-Javadoc)
@@ -263,5 +267,13 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		Customer customer = (Customer)selectUser(username);
 		customer.getService().registerCard(cardType);
+	}
+	
+	public void showInfo(){
+		managerView.showInfo();
+	}
+	
+	public void showHistory(){
+		managerView.showHistory();
 	}
 }

@@ -1,3 +1,9 @@
+
+-----------------------------------------------------------------------------------
+Loading initial setup <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
 ----------------------------------------------------------------------------------------------------------------
                                    TESTSCENARIO2.TXT                                    
 ----------------------------------------------------------------------------------------------------------------
@@ -71,7 +77,7 @@ showHistory
 
 [COMMAND HISTORY]
 
-[Order <emacron> ID1000]
+[Order <emacron> ID1044]
 [10.09€] 
 A-la-carte <Nougat> 2.2
 A-la-carte <Nougat> 2.2
@@ -80,7 +86,7 @@ BY <emacron> Emmanuel Macron
 AT <japanese> JapaneseRestaurant
 ON 16/12/2016 DELIVERED BY <bobama>
 
-[Order <emacron> ID1001]
+[Order <emacron> ID1045]
 [37.99€] 
 Meal <Fm3> 16.14
 Meal <Hm3> 9.5
@@ -89,7 +95,7 @@ BY <emacron> Emmanuel Macron
 AT <korean> KoreanRestaurant
 ON 01/12/2016 DELIVERED BY <bobama>
 
-[Order <emacron> ID1002]
+[Order <emacron> ID1046]
 [17.05€] 
 Meal <Fm1> 14.25
 A-la-carte <Ravioli> 2.8
@@ -97,7 +103,7 @@ BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
 ON 12/11/2016 DELIVERED BY <hclinton>
 
-[Order <emacron> ID1003]
+[Order <emacron> ID1047]
 [24.7€] 
 Meal <Fm4> 12.35
 Meal <Fm3> 12.35
@@ -105,7 +111,7 @@ BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
 ON 26/10/2016 DELIVERED BY <hclinton>
 
-[Order <emacron> ID1004]
+[Order <emacron> ID1048]
 [35.14€] 
 Meal <Fm4> 13.3
 Meal <Hm4> 10.45
@@ -114,7 +120,7 @@ BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
 ON 18/02/2017 DELIVERED BY <dtrump>
 
-[Order <emacron> ID1005]
+[Order <emacron> ID1049]
 [25.9€] 
 Meal <Hm1> 10.45
 Meal <Fm1> 12.35
@@ -123,7 +129,7 @@ BY <emacron> Emmanuel Macron
 AT <korean> KoreanRestaurant
 ON 10/12/2016 DELIVERED BY <bobama>
 
-[Order <emacron> ID1006]
+[Order <emacron> ID1050]
 [46.15€] 
 Meal <Fm4> 12.35
 A-la-carte <Pork_ribs> 9.1
@@ -133,7 +139,7 @@ BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
 ON 03/03/2017 DELIVERED BY <hclinton>
 
-[Order <mlepen> ID1007]
+[Order <mlepen> ID1051]
 [25.8€] 
 A-la-carte <Tiramisu> 5.0
 A-la-carte <Salad> 6.3
@@ -143,7 +149,7 @@ BY <emacron> Emmanuel Macron
 AT <italian> ItalianRestaurant
 ON 07/03/2017 DELIVERED BY <bsanders>
 
-[Order <mlepen> ID1008]
+[Order <mlepen> ID1052]
 [11.5€] 
 A-la-carte <Maki> 4.3
 A-la-carte <Nougat> 2.2
@@ -152,7 +158,7 @@ BY <mlepen> Marine LePen
 AT <japanese> JapaneseRestaurant
 ON 06/03/2017 DELIVERED BY <bobama>
 
-[Order <mlepen> ID1009]
+[Order <mlepen> ID1053]
 [31.34€] 
 Meal <Hm1> 11.39
 Meal <Fm1> 9.5
@@ -161,7 +167,7 @@ BY <mlepen> Marine LePen
 AT <italian> ItalianRestaurant
 ON 11/03/2017 DELIVERED BY <bsanders>
 
-[Order <mlepen> ID1010]
+[Order <mlepen> ID1054]
 [22.0€] 
 A-la-carte <Canard_laque> 10.0
 A-la-carte <Canard_laque> 10.0
@@ -170,7 +176,7 @@ BY <mlepen> Marine LePen
 AT <chinese> ChineseRestaurant
 ON 19/10/2016 DELIVERED BY <hclinton>
 
-[Order <mlepen> ID1011]
+[Order <mlepen> ID1055]
 [39.89€] 
 Meal <Hm2> 10.45
 Meal <Fm4> 13.3
@@ -179,7 +185,7 @@ BY <mlepen> Marine LePen
 AT <italian> ItalianRestaurant
 ON 29/01/2017 DELIVERED BY <bsanders>
 
-[Order <mlepen> ID1012]
+[Order <mlepen> ID1056]
 [34.7€] 
 A-la-carte <Canard_laque> 10.0
 Meal <Fm3> 12.35
@@ -188,7 +194,7 @@ BY <mlepen> Marine LePen
 AT <chinese> ChineseRestaurant
 ON 25/04/2017 DELIVERED BY <hclinton>
 
-[Order <mlepen> ID1013]
+[Order <mlepen> ID1057]
 [21.84€] 
 Meal <Hm2> 8.54
 Meal <Fm4> 13.3
@@ -196,7 +202,7 @@ BY <mlepen> Marine LePen
 AT <french> FrenchRestaurant
 ON 02/03/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1014]
+[Order <ffillon> ID1058]
 [19.25€] 
 Meal <Fm1> 12.35
 A-la-carte <Bibimbap> 6.9
@@ -204,7 +210,7 @@ BY <mlepen> Marine LePen
 AT <korean> KoreanRestaurant
 ON 28/11/2016 DELIVERED BY <bobama>
 
-[Order <ffillon> ID1015]
+[Order <ffillon> ID1059]
 [23.74€] 
 Meal <Fm2> 11.39
 Meal <Fm1> 12.35
@@ -212,7 +218,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 26/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1016]
+[Order <ffillon> ID1060]
 [20.8€] 
 A-la-carte <Tiramisu> 5.0
 Meal <Fm1> 9.5
@@ -221,7 +227,7 @@ BY <ffillon> Francois Fillon
 AT <italian> ItalianRestaurant
 ON 13/12/2016 DELIVERED BY <bsanders>
 
-[Order <ffillon> ID1017]
+[Order <ffillon> ID1061]
 [14.73€] 
 A-la-carte <Lychee> 3.1
 A-la-carte <Lychee> 3.1
@@ -230,7 +236,7 @@ BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
 ON 22/02/2017 DELIVERED BY <bobama>
 
-[Order <ffillon> ID1018]
+[Order <ffillon> ID1062]
 [13.0€] 
 A-la-carte <Choucroute> 7.0
 A-la-carte <Chocolate> 3.5
@@ -239,7 +245,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 02/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1019]
+[Order <ffillon> ID1063]
 [29.84€] 
 Meal <Hm3> 11.39
 A-la-carte <Foie-gras> 5.5
@@ -249,7 +255,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 12/01/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1020]
+[Order <jlmelenchon> ID1064]
 [28.84€] 
 A-la-carte <Macha> 5.8
 A-la-carte <Bibimbap> 6.9
@@ -258,7 +264,7 @@ BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
 ON 05/02/2017 DELIVERED BY <bobama>
 
-[Order <jlmelenchon> ID1021]
+[Order <jlmelenchon> ID1065]
 [31.99€] 
 Meal <Hm1> 9.5
 Meal <Hm2> 8.54
@@ -268,7 +274,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 16/03/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1022]
+[Order <jlmelenchon> ID1066]
 [31.65€] 
 A-la-carte <Chocolate> 3.5
 Meal <Fm1> 12.35
@@ -278,7 +284,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 06/03/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1023]
+[Order <jlmelenchon> ID1067]
 [27.35€] 
 A-la-carte <Sushi> 5.0
 A-la-carte <Japanese_salad> 2.4
@@ -288,7 +294,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <japanese> JapaneseRestaurant
 ON 04/01/2017 DELIVERED BY <bobama>
 
-[Order <jlmelenchon> ID1024]
+[Order <jlmelenchon> ID1068]
 [16.45€] 
 A-la-carte <Nougat> 3.0
 Meal <Hm3> 10.45
@@ -297,7 +303,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <chinese> ChineseRestaurant
 ON 07/04/2017 DELIVERED BY <hclinton>
 
-[Order <jlmelenchon> ID1025]
+[Order <jlmelenchon> ID1069]
 [34.2€] 
 Meal <Fm1> 12.35
 Meal <Hm1> 9.5
@@ -306,7 +312,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 08/01/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1026]
+[Order <jlmelenchon> ID1070]
 [34.39€] 
 A-la-carte <Macha> 5.8
 Meal <Fm2> 10.45
@@ -316,7 +322,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <korean> KoreanRestaurant
 ON 24/02/2017 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1027]
+[Order <bhamon> ID1071]
 [16.14€] 
 Meal <Fm3> 8.54
 Meal <Fm4> 7.6
@@ -324,7 +330,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <japanese> JapaneseRestaurant
 ON 15/10/2016 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1028]
+[Order <bhamon> ID1072]
 [6.5€] 
 A-la-carte <Japanese_soup> 3.5
 A-la-carte <Lychee> 3.0
@@ -332,7 +338,7 @@ BY <bhamon> Benoit Hamon
 AT <japanese> JapaneseRestaurant
 ON 24/02/2017 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1029]
+[Order <bhamon> ID1073]
 [26.88€] 
 A-la-carte <Nougat> 2.2
 Meal <Hm4> 5.69
@@ -342,7 +348,7 @@ BY <bhamon> Benoit Hamon
 AT <japanese> JapaneseRestaurant
 ON 24/11/2016 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1030]
+[Order <bhamon> ID1074]
 [35.15€] 
 Meal <Fm1> 12.35
 Meal <Fm1> 12.35
@@ -351,7 +357,7 @@ BY <bhamon> Benoit Hamon
 AT <french> FrenchRestaurant
 ON 23/12/2016 DELIVERED BY <dtrump>
 
-[Order <bhamon> ID1031]
+[Order <bhamon> ID1075]
 [20.89€] 
 Meal <Hm2> 8.54
 Meal <Fm1> 12.35
@@ -359,7 +365,7 @@ BY <bhamon> Benoit Hamon
 AT <korean> KoreanRestaurant
 ON 27/12/2016 DELIVERED BY <bobama>
 
-[Order <ndupont> ID1032]
+[Order <ndupont> ID1076]
 [24.94€] 
 Meal <Hm4> 6.65
 A-la-carte <Pizza> 6.3
@@ -369,7 +375,7 @@ BY <bhamon> Benoit Hamon
 AT <italian> ItalianRestaurant
 ON 23/02/2017 DELIVERED BY <bsanders>
 
-[Order <ndupont> ID1033]
+[Order <ndupont> ID1077]
 [18.3€] 
 Meal <Hm2> 6.65
 Meal <Hm2> 6.65
@@ -378,7 +384,7 @@ BY <ndupont> Nicolas Dupont
 AT <japanese> JapaneseRestaurant
 ON 11/02/2017 DELIVERED BY <bobama>
 
-[Order <ndupont> ID1034]
+[Order <ndupont> ID1078]
 [19.95€] 
 Meal <Hm1> 9.5
 Meal <Hm4> 10.45
@@ -386,7 +392,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 11/03/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1035]
+[Order <ndupont> ID1079]
 [21.85€] 
 Meal <Hm1> 9.5
 Meal <Fm1> 12.35
@@ -394,7 +400,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 18/01/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1036]
+[Order <ndupont> ID1080]
 [13.0€] 
 A-la-carte <Chocolate> 3.5
 Meal <Hm1> 9.5
@@ -402,7 +408,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 14/12/2016 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1037]
+[Order <ndupont> ID1081]
 [13.29€] 
 Meal <Hm4> 5.69
 Meal <Fm4> 7.6
@@ -410,7 +416,7 @@ BY <ndupont> Nicolas Dupont
 AT <japanese> JapaneseRestaurant
 ON 19/02/2017 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1038]
+[Order <ppoutou> ID1082]
 [19.84€] 
 Meal <Hm2> 8.54
 A-la-carte <Noodles> 4.4
@@ -419,7 +425,7 @@ BY <ndupont> Nicolas Dupont
 AT <korean> KoreanRestaurant
 ON 29/10/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1039]
+[Order <ppoutou> ID1083]
 [30.88€] 
 Meal <Fm2> 9.5
 Meal <Fm1> 10.45
@@ -429,7 +435,7 @@ BY <ppoutou> Philippe Poutou
 AT <japanese> JapaneseRestaurant
 ON 11/11/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1040]
+[Order <ppoutou> ID1084]
 [34.43€] 
 Meal <Hm1> 11.39
 A-la-carte <Tiramisu> 5.0
@@ -439,7 +445,7 @@ BY <ppoutou> Philippe Poutou
 AT <italian> ItalianRestaurant
 ON 29/01/2017 DELIVERED BY <bsanders>
 
-[Order <ppoutou> ID1041]
+[Order <ppoutou> ID1085]
 [6.4€] 
 A-la-carte <Soja> 2.0
 A-la-carte <Noodles> 4.4
@@ -447,7 +453,7 @@ BY <ppoutou> Philippe Poutou
 AT <korean> KoreanRestaurant
 ON 29/11/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1042]
+[Order <ppoutou> ID1086]
 [37.03€] 
 Meal <Hm4> 12.35
 Meal <Fm3> 16.14
@@ -456,7 +462,7 @@ BY <ppoutou> Philippe Poutou
 AT <korean> KoreanRestaurant
 ON 31/10/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1043]
+[Order <ppoutou> ID1087]
 [36.34€] 
 Meal <Fm3> 10.45
 Meal <Hm2> 10.45
@@ -521,10 +527,10 @@ applyprofitpolicy 15
 The target profit policy has been applied, system values updated to meet a profit of 15.0 euros.
 Delivery cost = 1.5
 Mark up percentage = 0.1
-Service fee = 3.05275
+Service fee = 4.003666666666666
 
 showtotalprofit 27/03/2017 01/05/2017
-Total profit between 27/03/2017 and 01/05/2017: 15.0 euros.
+Total profit between 27/03/2017 and 01/05/2017: 18.803 euros.
 
 
 
@@ -559,4 +565,719 @@ Courier <Trump>; number of delivered orders: 12
 Courier <Obama>; number of delivered orders: 19
 
 ----------------------------------------------------------------------------------------------------------------
+
+runtest testScenario3.txt
+
+-----------------------------------------------------------------------------------
+Loading initial setup <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+                                   TESTSCENARIO3.TXT                                    
+----------------------------------------------------------------------------------------------------------------
+login emacron password
+[RESTAURANT]
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
+Welcome on MyFoodora, user <emacron>. 
+You have new messages.
+Please enter a command. Enter "help" to get the list of available commands.
+
+registerCard point
+You subscribed to a new fidelity plan. Fidelity card set as <point> card.
+
+showRestaurantMenus
+
+-----[FRENCHRESTAURANT username <french>]-----
+
+[Menu]
+Starters:
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
+Main-dishes:
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
+Desserts:
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
+
+[Special Offers]
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+
+-----[CHINESERESTAURANT username <chinese>]-----
+
+[Menu]
+Starters:
+Starter <Nem> gluten-free 2.1 euros 
+Starter <Ravioli> vegetarian 2.8 euros 
+Main-dishes:
+MainDish <Canard_laque> standard 10.0 euros 
+MainDish <Pork_ribs> standard 9.1 euros 
+Desserts:
+Dessert <Lychees> gluten-free 2.0 euros 
+Dessert <Nougat> gluten-free 3.0 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Canard_laque, Nougat] type standard 12.35 euros
+Half-meal <Hm2> [Pork_ribs, Nougat] type standard 11.39 euros
+Half-meal <Hm3> [Pork_ribs, Lychees] type standard 10.45 euros
+Half-meal <Hm4> [Ravioli, Pork_ribs] type standard 10.45 euros
+Full-meal <Fm1> [Nem, Canard_laque, Nougat] type standard 14.25 euros
+Full-meal <Fm2> [Ravioli, Canard_laque, Lychees] type standard 13.3 euros
+Full-meal <Fm3> [Nem, Pork_ribs, Lychees] type standard 12.35 euros
+Full-meal <Fm4> [Ravioli, Pork_ribs, Lychees] type standard 12.35 euros
+
+[Special Offers]
+Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros
+
+-----[JAPANESERESTAURANT username <japanese>]-----
+
+[Menu]
+Starters:
+Starter <Japanese_soup> gluten-free 3.5 euros 
+Starter <Japanese_salad> vegetarian 2.4 euros 
+Main-dishes:
+MainDish <Sushi> gluten-free 5.0 euros 
+MainDish <Maki> gluten-free 4.3 euros 
+Desserts:
+Dessert <Nougat> gluten-free 2.2 euros 
+Dessert <Lychee> vegetarian 3.0 euros 
+
+[Meal menu]
+Half-meal <Hm4> [Maki, Nougat] type standard 5.69 euros
+Half-meal <Hm1> [Maki, Lychee] type standard 6.65 euros
+Half-meal <Hm2> [Japanese_salad, Sushi] type standard 6.65 euros
+Half-meal <Hm3> [Japanese_salad, Maki] type standard 5.69 euros
+Full-meal <Fm1> [Japanese_soup, Sushi, Lychee] type standard 10.45 euros
+Full-meal <Fm2> [Japanese_salad, Sushi, Lychee] type standard 9.5 euros
+Full-meal <Fm3> [Japanese_soup, Maki, Nougat] type standard 8.54 euros
+Full-meal <Fm4> [Japanese_salad, Maki, Nougat] type standard 7.6 euros
+
+[Special Offers]
+Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros
+
+-----[KOREANRESTAURANT username <korean>]-----
+
+[Menu]
+Starters:
+Starter <Noodles> gluten-free 4.4 euros 
+Starter <Soja> vegetarian 2.0 euros 
+Main-dishes:
+MainDish <Bibimbap> standard 6.9 euros 
+MainDish <Barbecue> standard 10.5 euros 
+Desserts:
+Dessert <Lychee> vegetarian 3.1 euros 
+Dessert <Macha> standard 5.8 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
+Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
+Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
+Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
+Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
+Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
+Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
+Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
+
+[Special Offers]
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+
+-----[ITALIANRESTAURANT username <italian>]-----
+
+[Menu]
+Starters:
+Starter <Olive> gluten-free 1.0 euros 
+Starter <Salad> vegetarian 6.3 euros 
+Main-dishes:
+MainDish <Pizza> standard 6.3 euros 
+MainDish <Spaghetti> standard 5.9 euros 
+Desserts:
+Dessert <Ice-cream> standard 3.3 euros 
+Dessert <Tiramisu> vegetarian 5.0 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Salad, Pizza] type standard 11.39 euros
+Half-meal <Hm2> [Salad, Spaghetti] type standard 10.45 euros
+Half-meal <Hm3> [Olive, Spaghetti] type standard 5.69 euros
+Half-meal <Hm4> [Olive, Pizza] type standard 6.65 euros
+Full-meal <Fm1> [Olive, Pizza, Ice-cream] type standard 9.5 euros
+Full-meal <Fm2> [Salad, Pizza, Tiramisu] type standard 16.14 euros
+Full-meal <Fm3> [Olive, Spaghetti, Tiramisu] type standard 10.45 euros
+Full-meal <Fm4> [Salad, Spaghetti, Ice-cream] type standard 13.3 euros
+
+[Special Offers]
+Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros
+
+
+
+createOrder french myorder
+Order <myorder> added to your shopping cart.
+
+addItem2Order Snail myorder
+Item <Snail> added to the order <myorder>.
+
+addItem2Order hm2 myorder
+Item <hm2> added to the order <myorder>.
+
+createOrder chinese myorder2
+Order <myorder2> added to your shopping cart.
+
+addItem2Order Nem myorder2
+Item <Nem> added to the order <myorder2>.
+
+addItem2Order fm4 myorder2
+Item <fm4> added to the order <myorder2>.
+
+showshoppingcart
+
+SHOPPINGCART : 
+
+[Order <myorder> ID1132]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 04/05/2017
+
+[Order <myorder2> ID1133]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 04/05/2017
+
+TOTAL PRICE = 25.49 euros
+
+
+
+endorder myorder
+[Order <myorder> ID1132]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 04/05/2017
+you earned 1.1 points on your point card for this order.
+Trump Donald <dtrump> has been assigned to the delivery task.
+Order <myorder> finalised on 04/05/2017 and you paid for it.
+
+endorder myorder2
+[Order <myorder2> ID1133]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 04/05/2017
+you earned 1.44 points on your point card for this order.
+Clinton Hillary <hclinton> has been assigned to the delivery task.
+Order <myorder2> finalised on 04/05/2017 and you paid for it.
+
+showpoints
+Balance of points = 2.54
+
+logout
+Goodbye <emacron>. We hope to see you again on MyFoodora.
+
+
+
+login dtrump password
+You have new waiting delivery tasks.
+[Order <myorder> ID1132]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 04/05/2017
+Welcome on MyFoodora, user <dtrump>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+showWaiting
+You have new waiting delivery tasks.
+[Order <myorder> ID1132]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 04/05/2017
+
+acceptcall myorder
+courier Trump Donald <Trump> accepts to take the order.
+
+showhistory
+List of delivered orders by Trump:
+[Order <emacron> ID1092]
+[35.14€] 
+Meal <Fm4> 13.3
+Meal <Hm4> 10.45
+Meal <Hm3> 11.39
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 18/02/2017 DELIVERED BY <dtrump>
+
+[Order <mlepen> ID1101]
+[21.84€] 
+Meal <Hm2> 8.54
+Meal <Fm4> 13.3
+BY <mlepen> Marine LePen
+AT <french> FrenchRestaurant
+ON 02/03/2017 DELIVERED BY <dtrump>
+
+[Order <ffillon> ID1103]
+[23.74€] 
+Meal <Fm2> 11.39
+Meal <Fm1> 12.35
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 26/04/2017 DELIVERED BY <dtrump>
+
+[Order <ffillon> ID1106]
+[13.0€] 
+A-la-carte <Choucroute> 7.0
+A-la-carte <Chocolate> 3.5
+A-la-carte <Snail> 2.5
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 02/04/2017 DELIVERED BY <dtrump>
+
+[Order <ffillon> ID1107]
+[29.84€] 
+Meal <Hm3> 11.39
+A-la-carte <Foie-gras> 5.5
+Meal <Hm4> 10.45
+A-la-carte <Snail> 2.5
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 12/01/2017 DELIVERED BY <dtrump>
+
+[Order <jlmelenchon> ID1109]
+[31.99€] 
+Meal <Hm1> 9.5
+Meal <Hm2> 8.54
+A-la-carte <Chocolate> 3.5
+Meal <Hm4> 10.45
+BY <jlmelenchon> JeanLuc Melenchon
+AT <french> FrenchRestaurant
+ON 16/03/2017 DELIVERED BY <dtrump>
+
+[Order <jlmelenchon> ID1110]
+[31.65€] 
+A-la-carte <Chocolate> 3.5
+Meal <Fm1> 12.35
+Meal <Fm4> 13.3
+A-la-carte <Snail> 2.5
+BY <jlmelenchon> JeanLuc Melenchon
+AT <french> FrenchRestaurant
+ON 06/03/2017 DELIVERED BY <dtrump>
+
+[Order <jlmelenchon> ID1113]
+[34.2€] 
+Meal <Fm1> 12.35
+Meal <Hm1> 9.5
+Meal <Fm1> 12.35
+BY <jlmelenchon> JeanLuc Melenchon
+AT <french> FrenchRestaurant
+ON 08/01/2017 DELIVERED BY <dtrump>
+
+[Order <bhamon> ID1118]
+[35.15€] 
+Meal <Fm1> 12.35
+Meal <Fm1> 12.35
+Meal <Hm4> 10.45
+BY <bhamon> Benoit Hamon
+AT <french> FrenchRestaurant
+ON 23/12/2016 DELIVERED BY <dtrump>
+
+[Order <ndupont> ID1122]
+[19.95€] 
+Meal <Hm1> 9.5
+Meal <Hm4> 10.45
+BY <ndupont> Nicolas Dupont
+AT <french> FrenchRestaurant
+ON 11/03/2017 DELIVERED BY <dtrump>
+
+[Order <ndupont> ID1123]
+[21.85€] 
+Meal <Hm1> 9.5
+Meal <Fm1> 12.35
+BY <ndupont> Nicolas Dupont
+AT <french> FrenchRestaurant
+ON 18/01/2017 DELIVERED BY <dtrump>
+
+[Order <ndupont> ID1124]
+[13.0€] 
+A-la-carte <Chocolate> 3.5
+Meal <Hm1> 9.5
+BY <ndupont> Nicolas Dupont
+AT <french> FrenchRestaurant
+ON 14/12/2016 DELIVERED BY <dtrump>
+
+[Order <myorder> ID1132]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 04/05/2017 DELIVERED BY <dtrump>
+
+
+showCount
+Trump's total delivery count = 13
+
+changeposition 4.4,5.0
+Position updated.
+
+setOffDuty
+Current state set as off-duty.
+
+showinfo
+<Courier> dtrump; fullname = Donald TRUMP; position=4.4,5.0; is off-duty
+
+logout
+Goodbye <dtrump>. We hope to see you again on MyFoodora.
+
+
+
+login hclinton password
+You have new waiting delivery tasks.
+[Order <myorder2> ID1133]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 04/05/2017
+Welcome on MyFoodora, user <hclinton>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+showWaiting
+You have new waiting delivery tasks.
+[Order <myorder2> ID1133]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 04/05/2017
+
+refusecall myorder2
+courier <Clinton> refuses to take the order. A new courier is being assigned.
+Obama Barack <bobama> has been assigned to the delivery task.
+
+logout
+Goodbye <hclinton>. We hope to see you again on MyFoodora.
+
+
+
+login bobama password
+You have new waiting delivery tasks.
+[Order <myorder2> ID1133]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 04/05/2017
+Welcome on MyFoodora, user <bobama>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+acceptCall myorder2
+courier Obama Barack <Obama> accepts to take the order.
+
+logout
+Goodbye <bobama>. We hope to see you again on MyFoodora.
+
+----------------------------------------------------------------------------------------------------------------
+
+runtest testScenario4.txt
+
+-----------------------------------------------------------------------------------
+Loading initial setup <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+                                   TESTSCENARIO4.TXT                                    
+----------------------------------------------------------------------------------------------------------------
+login ffillon password
+[RESTAURANT]
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
+Welcome on MyFoodora, user <ffillon>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+registerCard lottery
+You subscribed to a new fidelity plan. Fidelity card set as <lottery> card.
+
+turnOnNotification
+You agreed to be notified of new special-offers.
+
+showMessages
+There are no messages yet.
+
+logout
+Goodbye <ffillon>. We hope to see you again on MyFoodora.
+
+
+
+login korean password
+
+-----[KOREANRESTAURANT username <korean>]-----
+
+[Menu]
+Starters:
+Starter <Noodles> gluten-free 4.4 euros 
+Starter <Soja> vegetarian 2.0 euros 
+Main-dishes:
+MainDish <Bibimbap> standard 6.9 euros 
+MainDish <Barbecue> standard 10.5 euros 
+Desserts:
+Dessert <Lychee> vegetarian 3.1 euros 
+Dessert <Macha> standard 5.8 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
+Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
+Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
+Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
+Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
+Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
+Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
+Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
+
+[Special Offers]
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+Welcome on MyFoodora, user <korean>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+createMeal Hotpot
+Meal <Hotpot> has been created.
+
+addDish2Meal bibimbap hotpot
+Dish <bibimbap> has been added to the meal <hotpot>.
+
+addDish2Meal soja hotpot
+Dish <soja> has been added to the meal <hotpot>.
+
+saveMeal hotpot
+Formula <Hotpot> added to the meal-menu of KoreanRestaurant
+Meal <hotpot> has been saved and added to the meal-menu of <KoreanRestaurant>.
+
+setSpecialOffer Hotpot
+Meal Hotpot saved as a special-offer of KoreanRestaurant
+
+showMenu
+
+-----[KOREANRESTAURANT username <korean>]-----
+
+[Menu]
+Starters:
+Starter <Noodles> gluten-free 4.4 euros 
+Starter <Soja> vegetarian 2.0 euros 
+Main-dishes:
+MainDish <Bibimbap> standard 6.9 euros 
+MainDish <Barbecue> standard 10.5 euros 
+Desserts:
+Dessert <Lychee> vegetarian 3.1 euros 
+Dessert <Macha> standard 5.8 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
+Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
+Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
+Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
+Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
+Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
+Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
+Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
+
+[Special Offers]
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros
+
+logout
+Goodbye <korean>. We hope to see you again on MyFoodora.
+
+
+
+login ffillon password
+[RESTAURANT]
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
+Welcome on MyFoodora, user <ffillon>. 
+You have new messages.
+Please enter a command. Enter "help" to get the list of available commands.
+
+showNewMessages
+04/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
+
+
+
+showspecialoffers
+Special offers :
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros BY FrenchRestaurant
+Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros BY ChineseRestaurant
+Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros BY JapaneseRestaurant
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros BY KoreanRestaurant
+Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros BY ItalianRestaurant
+Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros BY KoreanRestaurant
+
+createOrder korean specialorder
+Order <specialorder> added to your shopping cart.
+
+addItem2Order hotpot specialorder
+Item <hotpot> added to the order <specialorder>.
+
+endorder specialorder
+[Order <specialorder> ID1178]
+[7.2€] 
+Meal <Hotpot> 7.2
+BY <ffillon> Francois Fillon
+AT <korean> KoreanRestaurant
+ON 04/05/2017
+Obama Barack <bobama> has been assigned to the delivery task.
+Order <specialorder> finalised on 04/05/2017 and you paid for it.
+
+logout
+Goodbye <ffillon>. We hope to see you again on MyFoodora.
+
+
+
+login french password
+
+-----[FRENCHRESTAURANT username <french>]-----
+
+[Menu]
+Starters:
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
+Main-dishes:
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
+Desserts:
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
+
+[Special Offers]
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+Welcome on MyFoodora, user <french>. 
+Please enter a command. Enter "help" to get the list of available commands.
+
+showMenu
+
+-----[FRENCHRESTAURANT username <french>]-----
+
+[Menu]
+Starters:
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
+Main-dishes:
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
+Desserts:
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
+
+[Special Offers]
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+
+removeFromSpecialOffer I_love_paris
+Meal <I_love_paris> removed from the list of special-offers of <FrenchRestaurant>.
+
+showMenu
+
+-----[FRENCHRESTAURANT username <french>]-----
+
+[Menu]
+Starters:
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
+Main-dishes:
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
+Desserts:
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
+
+[Special Offers]
+
+----------------------------------------------------------------------------------------------------------------
+
+help
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands:
+
+login <username> <password> : login with your username & password.
+
+register <> : register on the MyFoodora system. Follow the steps.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+login hclinton password
+You have no waiting delivery tasks.
+Welcome on MyFoodora, user <hclinton>. 
+Please enter a command. Enter "help" to get the list of available commands.
 

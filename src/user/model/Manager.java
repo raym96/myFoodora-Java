@@ -30,7 +30,6 @@ public class Manager extends User{
 	/** The manager service. */
 	private ManagerService managerService;
 	
-	private ManagerView managerView;
 	
 	/**
 	 * Instantiates a new manager.
@@ -45,7 +44,6 @@ public class Manager extends User{
 		this.name = name;
 		this.surname = surname;
 		managerService = new ManagerServiceImpl(this);
-		managerView = new ManagerView(this);
 	}
 
 	/**
@@ -58,9 +56,7 @@ public class Manager extends User{
 	}
 
 
-	public ManagerView getView() {
-		return managerView;
-	}
+
 
 	/**
 	 * Gets the name.

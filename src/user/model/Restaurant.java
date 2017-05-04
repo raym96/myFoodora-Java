@@ -56,7 +56,6 @@ public class Restaurant extends User{
 	/** The restaurant service. */
 	private RestaurantService restaurantService;
 	
-	private RestaurantView restaurantView;
 	
 	/**
 	 * Instantiates a new restaurant.
@@ -75,7 +74,6 @@ public class Restaurant extends User{
 		specialmealmenu = new MealMenu(this);
 		history = new History();
 		restaurantService = new RestaurantServiceImpl(this);
-		restaurantView = new RestaurantView(this);
 	}
 
 	/**
@@ -88,10 +86,6 @@ public class Restaurant extends User{
 	}
 	
 	
-	public RestaurantView getView() {
-		return restaurantView;
-	}
-
 	/**
 	 * Gets the dish factory.
 	 *

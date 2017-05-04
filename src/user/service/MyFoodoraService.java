@@ -127,5 +127,27 @@ public interface MyFoodoraService {
 	 * @throws LoginErrorException the login error exception
 	 */
 	public void login(String username, String password) throws LoginErrorException;
+	
+	public void showUsersOfAssignedType(String userType);
+	
+	/**
+	 * Display users.
+	 */
+	public void showUsers();
+	/**
+	 * Display active users.
+	 */
+	public void showActiveUsers();
+	
+	/**
+	 * Display menus of all restaurants.
+	 */
+	public void showRestaurantMenus();
+	
 
+	public void showHistory();
+	
+	public void showSystemValues();
+	
+	public void showPolicies();
 }

@@ -14,6 +14,7 @@ import policies.LotteryCard;
 import policies.PointCard;
 import policies.StandardCard;
 import restaurant.Item;
+import restaurant.Meal;
 import restaurant.MealMenu;
 import restaurant.Menu;
 import system.ConcreteShoppingCartVisitor;
@@ -26,6 +27,7 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.service.CustomerService;
 import user.service.MyFoodoraService;
+import user.view.CustomerView;
 
 
 /**
@@ -38,6 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
 	/** The customer. */
 	private Customer customer;
 	
+	private CustomerView customerView;
+	
 	/** The m. */
 	MyFoodoraService m = MyFoodora.getInstance().getService();
 	/**
@@ -48,6 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerServiceImpl(Customer customer) {
 		super();
 		this.customer = customer;
+		this.customerView = new CustomerView(customer);
 	}
 
 	/* (non-Javadoc)
@@ -168,5 +173,26 @@ public class CustomerServiceImpl implements CustomerService {
 		MyFoodora.getInstance().removeSpecialOfferObserver(customer);
 	}
 
+	public void showInfo(){
+		customerView.showInfo();
+	}
+	
+
+	public void showHistory(){
+		customerView.showHistory();
+	}
+
+
+	public void showShoppingCart(){
+		customerView.showShoppingCart();
+	}
+	
+	public void showPoints(){
+		customerView.showPoints();
+	}
+	
+	public void showSpecialOffers(){
+		customerView.showSpecialOffers();
+	}
 
 }

@@ -56,5 +56,13 @@ public interface CourierService extends UserService {
 	 * @param orderName the order name
 	 */
 	public void refuseCall(String orderName);
+	
+	public void showInfo();
+	
+	public void showCount();
+	
+	public void showHistory();
+	
+	public void showWaitingOrders();
 
 }

@@ -26,6 +26,7 @@ import system.*;
 import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.service.RestaurantService;
+import user.view.RestaurantView;
 
 
 /**
@@ -38,6 +39,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 	/** The restaurant. */
 	private  Restaurant restaurant;
 	
+	private RestaurantView r;
+	
 	/**
 	 * Instantiates a new restaurant service impl.
 	 *
@@ -46,6 +49,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public RestaurantServiceImpl(Restaurant restaurant) {
 		super();
 		this.restaurant = restaurant;
+		this.r = new RestaurantView(restaurant);
 	}
 	
 	// 1. editing the restaurant menu (adding/removing items)
@@ -327,5 +331,44 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		restaurant.addToHistory(order);
 	}
+	
+	public void showInfo(){
+		r.showInfo();
+	}
+	
+	public void showHistory(){
+		r.showHistory();
+	}
+	
+
+	public void showDishes() {
+		// TODO Auto-generated method stub
+		r.showDishes();
+	}
+
+
+	public void showMeals() {
+		// TODO Auto-generated method stub
+		r.showMeals();
+	}
+
+	public void showDiscountFactors(){
+		r.showDiscountFactors();
+	}
+	
+	public void showSpecialOffers(){
+		// TODO Auto-generated method stub
+		r.showSpecialOffers();
+	}
+	
+	public void showTotalIncome(){
+		r.showTotalIncome();
+	}
+	
+
+	public void showMenu(){
+		r.showMenu();
+	}
+
 
 }

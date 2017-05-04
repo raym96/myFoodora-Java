@@ -64,9 +64,6 @@ public abstract class User implements MessageBoardObserver{
 		this.logStatus = false;
 	}
 	
-	
-	public abstract UserView getView();
-
 	public abstract UserService getService();
 
 	/**

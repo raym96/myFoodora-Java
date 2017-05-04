@@ -51,7 +51,6 @@ public class Courier extends User{
 	/** The courier service. */
 	private CourierService courierService;
 	
-	private CourierView courierview;
 	/**
 	 * Instantiates a new courier.
 	 *
@@ -72,12 +71,9 @@ public class Courier extends User{
 		
 		count = 0;
 		this.courierService = new CourierServiceImpl(this);
-		this.courierview = new CourierView(this);
 	}
 	
-	public CourierView getView() {
-		return courierview;
-	}
+
 	/**
 	 * Gets the courier service.
 	 *
