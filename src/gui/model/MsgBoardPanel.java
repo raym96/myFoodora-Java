@@ -38,7 +38,7 @@ public class MsgBoardPanel extends JPanel{
 		this.add(Box.createVerticalStrut(gap));
 		    
 		msgArea = new JTextArea();
-		msgArea.setColumns(80);
+		msgArea.setColumns(120);
 		msgArea.setRows(20);
 		msgArea.setEditable(false);
 		

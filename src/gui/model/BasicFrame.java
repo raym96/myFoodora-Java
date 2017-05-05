@@ -3,6 +3,7 @@ package gui.model;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -34,10 +35,11 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static final int width = 1200;
-	public static final int height = 900;
-	public static final int x = 380;
-	public static final int y = 100;
+	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final int width = screenSize.width * 3/4;
+	public static final int height = screenSize.height * 5/6;
+	public static final int x = screenSize.width/2 - width/2;
+	public static final int y = screenSize.height/2 - height/2;
 	
 	protected JMenuBar menuBar;
 	
@@ -90,7 +92,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		menu_ope.add(new JMenuItem("Login out"));
 		menu_ope.add(new JMenuItem("Exit"));
 	    
-		menu_other.add(new JMenuItem("Help"));
 		menu_other.add(new JMenuItem("About"));		
 	}
 	
@@ -117,8 +118,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 				this.dispose();
 				System.exit(0);
 			}else if(eventSource==menuBar.getMenu(menuBar.getMenuCount()-1).getItem(0)){
-
-			}else if(eventSource==menuBar.getMenu(menuBar.getMenuCount()-1).getItem(1)){
 				ChildFrame helpFrame = new ChildFrame("About", this);
 				Font font = new Font("Arial", Font.ITALIC, 16);
 				

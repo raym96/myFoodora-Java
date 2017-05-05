@@ -97,7 +97,7 @@ public class SystemData {
 				sortedRestaurant = sortingcriteria.sortByValuesReversed(sortingcriteria.countOccurence(history));
 			}
 			for (Entry<Restaurant, Integer> entry : sortedRestaurant.entrySet()) {
-				usernames.add(entry.getKey().getUsername() + " - " + entry.getValue() + " orders");     
+				usernames.add(entry.getKey().getUsername() + " - " + entry.getValue() + " shipped orders");     
 		    }
 		}else if(users.get(0) instanceof Courier){
 			ArrayList<Order> history = MyFoodora.getInstance().getHistory().getOrders();
@@ -109,7 +109,7 @@ public class SystemData {
 				sortedCourier = sortingcriteria.sortByValuesReversed(sortingcriteria.countOccurence(history));
 			}
 			for (Entry<Courier, Integer> entry : sortedCourier.entrySet()) {
-				usernames.add(entry.getKey().getUsername() + " - " + entry.getValue() + " orders");     
+				usernames.add(entry.getKey().getUsername() + " - " + entry.getValue() + " deliveried orders");     
 		    }
 		}else if(users.get(0) instanceof Customer){
 			for(User user : users){
@@ -268,27 +268,21 @@ public class SystemData {
 		return ordernames;
 	}
 	
-	public static synchronized ArrayList<String> getAssignedOrderNamesByCourier(Courier courier){
+	public static synchronized ArrayList<String> getDeliveriedOrderNamesByCourier(Courier courier){
 		ArrayList<String> ordernames = new ArrayList<String>();
 		
-		for(Order order : MyFoodora.getInstance().getHistory().getOrders()){
-			if(order.getCourier() == courier){
-				ordernames.add(order.getName() + " - " + order.getOrderID());
-			}
-			
+		for(Order order : courier.getDeliveredOrders()){
+			ordernames.add(order.getName() + " - " + order.getOrderID());
 		}
 		
 		return ordernames;
 	}
 	
-	public static synchronized ArrayList<String> getUnassignedOrderNames(){
+	public static synchronized ArrayList<String> getWaitingOrderNamesByCourier(Courier courier){
 		ArrayList<String> ordernames = new ArrayList<String>();
 		
-		for(Order order : MyFoodora.getInstance().getHistory().getOrders()){
-			if(order.getCourier() == null){
-				ordernames.add(order.getName() + " - " + order.getOrderID());
-			}
-			
+		for(Order order : courier.getWaitingOrders()){
+			ordernames.add(order.getName() + " - " + order.getOrderID());	
 		}
 		
 		return ordernames;

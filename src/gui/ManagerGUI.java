@@ -96,8 +96,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 	private MyListWithButtons restaurantList;
 	private MyListWithButtons courierList;
 	private MyListWithButtons customerList;
-	private MyListWithButtons assignedOrderList;
-	private MyListWithButtons unassignedOrderList;
+	private MyListWithButtons history;
 	private MyComboBox ordercourier;
 	
 	private HashMap<String, String> myfoodora_params;
@@ -126,7 +125,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		addTab("users");
 		addTab("Performance");
 		addTab("Setting");
-		addTab("personnel information");
+		addTab("personal information");
 		addTab("message board");
 		
 		panel_user = (JPanel) tabbedPane.getComponentAt(0);
@@ -167,7 +166,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		customerList.bindActionListener(this);
 		subPanel_lists.add(Box.createHorizontalStrut(gap_lists));
 		
-		JPanel label_orderManagement = new MyLabel("Order management", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
+		JPanel label_orderManagement = new MyLabel("History", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
 		panel_user.add(label_orderManagement);
 		panel_user.add(Box.createVerticalStrut(10));
 		
@@ -176,10 +175,9 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		subPanel_orders.setLayout(new BoxLayout(subPanel_orders, BoxLayout.X_AXIS));
 		
 		subPanel_orders.add(Box.createHorizontalStrut(gap_lists));
-		assignedOrderList = new MyListWithButtons("assigned orders", SystemData.getAssignedOrderNames(), subPanel_orders, new String[] {"Detail"});
-		assignedOrderList.bindActionListener(this);
-		unassignedOrderList = new MyListWithButtons("unassigned orders", SystemData.getUnassignedOrderNames(), subPanel_orders, new String[] {"Detail"});
-		unassignedOrderList.bindActionListener(this);
+		history = new MyListWithButtons("orders", SystemData.getAssignedOrderNames(), subPanel_orders, new String[] {"Detail"});
+		history.bindActionListener(this);
+
 		subPanel_orders.add(Box.createHorizontalStrut(gap_lists));
 		
 	}
@@ -869,10 +867,8 @@ public class ManagerGUI extends BasicFrameWithTabs{
 			ChildFrame userDetail = createUserDetailChildFrame(customerList.getSelectedValue());
 		}else if(e.getSource()==customerList.getButton("Add new")){
 			ChildFrame addUser = createAddUserChildFrame("CUSTOMER");
-		}else if(e.getSource()==assignedOrderList.getButton("Detail")){;
-			ChildFrame orderDetail = createOrderDetailChildFrame(assignedOrderList.getSelectedValue());
-		}else if(e.getSource()==unassignedOrderList.getButton("Detail")){;
-			ChildFrame orderDetail = createOrderDetailChildFrame(unassignedOrderList.getSelectedValue());
+		}else if(e.getSource()==history.getButton("Detail")){;
+			ChildFrame orderDetail = createOrderDetailChildFrame(history.getSelectedValue());
 		}
 	}
 	
@@ -884,7 +880,6 @@ public class ManagerGUI extends BasicFrameWithTabs{
 	}
 	
 	public void refreshOrderList(){
-		assignedOrderList.refresh(SystemData.getAssignedOrderNames());
-		unassignedOrderList.refresh(SystemData.getUnassignedOrderNames());
+		history.refresh(SystemData.getAssignedOrderNames());
 	}
 }

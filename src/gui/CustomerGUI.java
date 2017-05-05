@@ -37,6 +37,7 @@ import restaurant.Starter;
 import system.ConcreteShoppingCartVisitor;
 import system.Message;
 import system.Order;
+import user.model.Courier;
 import user.model.Customer;
 import user.model.MyFoodora;
 import user.model.Restaurant;
@@ -97,7 +98,7 @@ public class CustomerGUI extends BasicFrameWithTabs{
 	public void placeComponents() {
 		// TODO Auto-generated method stub
 		addTab("order");
-		addTab("personnel information");
+		addTab("personal information");
 		addTab("message board");
 		
 		panel_order = (JPanel) tabbedPane.getComponentAt(0);
@@ -225,7 +226,9 @@ public class CustomerGUI extends BasicFrameWithTabs{
 				}
 				createPayFrame(restaurantDetail, totalPrice);
 				JOptionPane.showMessageDialog(restaurantDetail, "Submit successful !");
-				MyFoodora.getInstance().getHistory().addOrder(order);
+				ArrayList<Courier> availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
+				MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers);
+//				MyFoodora.getInstance().getHistory().addOrder(order);		
 				customer.getMessageBoard().addMessage(new Message(customer.getUsername(), "You have submit an order : " + order.toString()));
 				msgBoard.refresh();
 				items.clear();
@@ -342,6 +345,6 @@ public class CustomerGUI extends BasicFrameWithTabs{
 			totalPrice = 0.0;
 		}
 		shoppingCart.refresh(itemnames);
-		totalPriceLabel.setText("TotalPrice : " + String.valueOf(totalPrice) + " euros");
+		totalPriceLabel.setText("TotalPrice : " + String.valueOf(Math.floor(totalPrice*100)/100) + " euros");
 	}
 }

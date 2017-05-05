@@ -84,7 +84,7 @@ public class UserInfoPanel extends JPanel{
 		this.add(Box.createVerticalStrut(gap_usual));
 		
 		// header
-		header = new MyLabel("User infromation: " + user.getUsername(), new Font("Arial", Font.ITALIC, 25), Color.BLACK).generateMyLabelPanel(50);
+		header = new MyLabel("User information: " + user.getUsername(), new Font("Arial", Font.ITALIC, 25), Color.BLACK).generateMyLabelPanel(50);
 		this.add(header);
 		this.add(Box.createVerticalStrut(gap_usual));
 		

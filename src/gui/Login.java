@@ -91,14 +91,14 @@ public class Login extends BasicFrameSimplePage {
 		btnPanel.setLayout(new BoxLayout(btnPanel, BoxLayout.X_AXIS));
 		btnPanel.add(Box.createHorizontalStrut(100));
 		// button for login up
-		loginUpButton = new BasicButton("login up");
+		loginUpButton = new BasicButton("Login");
 		loginUpButton.addActionListener(this);
 		btnPanel.add(loginUpButton);
 		
 		btnPanel.add(Box.createHorizontalStrut(100));
 		
 		// button for login in 
-		loginInButton = new BasicButton("login in");
+		loginInButton = new BasicButton("Register");
 		loginInButton.addActionListener(this);
 		btnPanel.add(loginInButton);
 		loginPanel.add(btnPanel);
@@ -119,7 +119,7 @@ public class Login extends BasicFrameSimplePage {
 		loginPanel.add(manager);
 		loginPanel.add(Box.createVerticalStrut(10));
 		
-		JLabel courier = new JLabel("Courier: username = bobama, password = password");
+		JLabel courier = new JLabel("Courier: username = dtrump, password = password");
 		courier.setFont(font);
 		courier.setForeground(color);
 		loginPanel.add(courier);
@@ -147,7 +147,7 @@ public class Login extends BasicFrameSimplePage {
 		else if(e.getSource()==loginInButton){
 //			System.out.println("login in");
 			this.dispose();
-			new LoginIn();
+			new register();
 		}
 	}
 

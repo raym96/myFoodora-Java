@@ -37,7 +37,7 @@ public class MyListWithButtons extends JPanel{
 	public final int SINGLE_SELECTION = ListSelectionModel.SINGLE_SELECTION;
 	public final int MULTIPLEL_SELECTION = ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 	
-	public static final String item_suffix = "                   ";
+	public static final String item_suffix = "       ";
 	
 	public MyListWithButtons(String labeltext, ArrayList<String> data, String[] btnsStr) {
 		super();

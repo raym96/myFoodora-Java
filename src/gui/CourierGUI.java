@@ -55,7 +55,8 @@ public class CourierGUI extends BasicFrameWithTabs{
 	private JPanel panel_messageBoard;
 	private MsgBoardPanel msgBoard;
 	
-	private MyListWithButtons orderList;
+	private MyListWithButtons deliveriedOrderList;
+	private MyListWithButtons waitingOrderList;
 
 	public CourierGUI(User user) {
 		super("courier");
@@ -72,7 +73,7 @@ public class CourierGUI extends BasicFrameWithTabs{
 	public void placeComponents() {
 		// TODO Auto-generated method stub
 		addTab("order");
-		addTab("personnel information");
+		addTab("personal information");
 		addTab("message board");
 		
 		panel_Order = (JPanel) tabbedPane.getComponentAt(0);
@@ -88,14 +89,24 @@ public class CourierGUI extends BasicFrameWithTabs{
 	public void layoutTabOrder(){
 		panel_Order.removeAll();
 		
-		JPanel subPanel_orders = new JPanel();
-		panel_Order.add(subPanel_orders);
-		subPanel_orders.setLayout(new BoxLayout(subPanel_orders, BoxLayout.Y_AXIS));
-		final int gap_lists = 150;
+		JPanel subPanel = new JPanel();
+		panel_Order.add(subPanel);
+		subPanel.setLayout(new BoxLayout(subPanel, BoxLayout.Y_AXIS));
+		final int gap_y = 150;
+		subPanel.add(Box.createVerticalStrut(gap_y));
 		
-		subPanel_orders.add(Box.createVerticalStrut(gap_lists));
-		orderList = new MyListWithButtons("orders assigned to you :¡¡", SystemData.getAssignedOrderNamesByCourier(courier), subPanel_orders, new String[] {"Detail"});
-		orderList.bindActionListener(this);
+		JPanel subPanel_orders = new JPanel();
+		subPanel.add(subPanel_orders);
+		subPanel_orders.setLayout(new BoxLayout(subPanel_orders, BoxLayout.X_AXIS));
+		final int gap_x = 80;
+		subPanel.add(Box.createHorizontalStrut(gap_x));
+		
+		deliveriedOrderList = new MyListWithButtons("deliveried orders :", SystemData.getDeliveriedOrderNamesByCourier(courier), subPanel_orders, new String[] {"Detail"});
+		deliveriedOrderList.bindActionListener(this);
+		
+		waitingOrderList = new MyListWithButtons("waiting orders :", SystemData.getWaitingOrderNamesByCourier(courier), subPanel_orders, new String[] {"Detail"});
+		waitingOrderList.bindActionListener(this);
+		subPanel.add(Box.createHorizontalStrut(gap_x));
 	}
 	
 	public void layoutTabInfo(){
@@ -112,18 +123,23 @@ public class CourierGUI extends BasicFrameWithTabs{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		super.actionPerformed(e);
-		if(e.getSource()==orderList.getButton("Detail")){
-			ChildFrame orderDetail = createOrderDetailChildFrame(orderList.getSelectedValue());
+		if(e.getSource()==deliveriedOrderList.getButton("Detail")){
+			ChildFrame orderDetail = createOrderDetailChildFrame(deliveriedOrderList.getSelectedValue(), "deliveried");
+		}else if(e.getSource()==waitingOrderList.getButton("Detail")){
+			ChildFrame orderDetail = createOrderDetailChildFrame(waitingOrderList.getSelectedValue(), "waiting");
 		}
 	}
 		
-	public ChildFrame createOrderDetailChildFrame(String selected) {
+	public ChildFrame createOrderDetailChildFrame(String selected, String type) {
 		
 		if(selected==null){
 			return null;
 		}
-		
-		order = MyFoodora.getInstance().getHistory().getOrderById(selected.split(" - ")[1]);
+		if(type.equalsIgnoreCase("deliveried")){
+			order = courier.getDeliveriedOrderById(selected.split(" - ")[1]);
+		}else if(type.equalsIgnoreCase("waiting")) {
+			order = courier.getWaitingOrderById(selected.split(" - ")[1]);
+		}
 		
 		ChildFrame orderDetail = new ChildFrame("order detail", this);
 		
@@ -153,7 +169,7 @@ public class CourierGUI extends BasicFrameWithTabs{
 		panel_content.add(ordercustomer);
 		panel_content.add(Box.createVerticalStrut(gap));
 		
-		JLabel ordercourier= new JLabel("courier : " + order.getCourier().getName());
+		JLabel ordercourier= new JLabel("courier : " + courier.getUsername());
 		panel_content.add(ordercourier);
 		panel_content.add(Box.createVerticalStrut(gap));
 		
@@ -178,19 +194,40 @@ public class CourierGUI extends BasicFrameWithTabs{
 		JPanel subPanel_btns = new JPanel();
 		subPanel_btns.setLayout(new BoxLayout(subPanel_btns, BoxLayout.X_AXIS));
 		subPanel_btns.add(Box.createHorizontalStrut(100));
-		(new BasicButton("Refuse", subPanel_btns)).addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				order.setCourier(null);
-				courier.getMessageBoard().addMessage(new Message(courier.getUsername(), "You have refused the order " + order.getName()));
-				msgBoard.refresh();
-				orderDetail.close();
-				refreshOrderList();
-			}
-		});
-		subPanel_btns.add(Box.createHorizontalStrut(100));
+		if(type.equalsIgnoreCase("waiting")){
+			(new BasicButton("Accept", subPanel_btns)).addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					order.setCourier(courier); //the courier is assigned to the delivery-task
+					order.setAssigned(true);
+					courier.getWaitingOrders().remove(order);
+					courier.getDeliveredOrders().add(order);
+					courier.setCount(courier.getCount()+1);
+					MyFoodora.getInstance().getHistory().addOrder(order);
+					courier.getMessageBoard().addMessage(new Message(courier.getUsername(), "You have accepted the order " + order.getName()));
+					msgBoard.refresh();
+					orderDetail.close();
+					refreshOrderList();
+				}
+			});
+			subPanel_btns.add(Box.createHorizontalStrut(50));
+			(new BasicButton("Refuse", subPanel_btns)).addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					courier.getWaitingOrders().remove(order);
+					courier.getMessageBoard().addMessage(new Message(courier.getUsername(), "You have refused the order " + order.getName()));
+					msgBoard.refresh();
+					orderDetail.close();
+					refreshOrderList();
+				}
+			});
+			subPanel_btns.add(Box.createHorizontalStrut(50));
+		}
+		
 		(new BasicButton("Back", subPanel_btns)).addActionListener(new ActionListener() {
 					
 			@Override
@@ -205,6 +242,7 @@ public class CourierGUI extends BasicFrameWithTabs{
 	}
 
 	public void refreshOrderList(){
-		orderList.refresh(SystemData.getAssignedOrderNamesByCourier(courier));
+		deliveriedOrderList.refresh(SystemData.getDeliveriedOrderNamesByCourier(courier));
+		waitingOrderList.refresh(SystemData.getWaitingOrderNamesByCourier(courier));
 	}
 }

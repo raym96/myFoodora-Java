@@ -111,7 +111,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		addTab("Menu");
 //		addTab("Performance");
 		addTab("Setting");
-		addTab("personnel information");
+		addTab("personal information");
 		addTab("message board");
 		
 		panel_menu = (JPanel) tabbedPane.getComponentAt(0);
