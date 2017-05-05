@@ -1,7 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Label;
@@ -33,6 +35,7 @@ import gui.model.BasicFrameWithTabs;
 import gui.model.ChildFrame;
 import gui.model.MsgBoardPanel;
 import gui.model.MyComboBox;
+import gui.model.MyLabel;
 import gui.model.MyListWithButtons;
 import gui.model.MyRadioButton;
 import gui.model.SystemData;
@@ -57,84 +60,37 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.RestaurantService;
 
-/**
- * The Class RestaurantGUI.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public class RestaurantGUI extends BasicFrameWithTabs{
 
-	/** The Constant serialVersionUID. */
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** The restaurant. */
 	private Restaurant restaurant;
-	
-	/** The service. */
 	private RestaurantService service;
-	
-	/** The menu. */
 	private Menu menu;
-	
-	/** The meal menu. */
 	private MealMenu mealMenu;
-	
-	/** The specialmeal menu. */
 	private MealMenu specialmealMenu;
-	
-	/** The dish. */
 	private Dish dish;
-	
-	/** The meal. */
 	private Meal meal;
-	
-	/** The specialmeal. */
 	private Meal specialmeal;
 	
-	/** The panel menu. */
 	private JPanel panel_menu;
-	
-	/** The panel performance. */
 	private JPanel panel_performance;
-	
-	/** The panel setting. */
 	private JPanel panel_setting;
-	
-	/** The panel info. */
 	private JPanel panel_info;
-	
-	/** The panel message board. */
 	private JPanel panel_messageBoard;
-	
-	/** The msg board. */
 	private MsgBoardPanel msgBoard;
 	
-	/** The dish list. */
 	private MyListWithButtons dishList;
-	
-	/** The meal list. */
 	private MyListWithButtons mealList;
-	
-	/** The specialmeal list. */
 	private MyListWithButtons specialmealList;
-	
-	/** The dish catetory. */
 	private MyRadioButton dishCatetory;
-	
-	/** The dish combo. */
 	private MyComboBox dishCombo;
-	
-	/** The meal combo. */
 	private MyComboBox mealCombo;
-	
-	/** The specialmeal combo. */
 	private MyComboBox specialmealCombo;
 	
-	/**
-	 * Instantiates a new restaurant GUI.
-	 *
-	 * @param user the user
-	 */
 	public RestaurantGUI(User user) {
 		super("restaurant");
 
@@ -149,44 +105,42 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		placeComponents();
 	}
 
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#placeComponents()
-	 */
 	@Override
 	public void placeComponents() {
 
 		addTab("Menu");
-		addTab("Performance");
+//		addTab("Performance");
 		addTab("Setting");
 		addTab("personnel information");
 		addTab("message board");
 		
 		panel_menu = (JPanel) tabbedPane.getComponentAt(0);
-		panel_performance = (JPanel) tabbedPane.getComponentAt(1);
-		panel_setting = (JPanel) tabbedPane.getComponentAt(2);
-		panel_info = (JPanel) tabbedPane.getComponentAt(3);
-		panel_messageBoard = (JPanel) tabbedPane.getComponentAt(4);
+//		panel_performance = (JPanel) tabbedPane.getComponentAt(1);
+		panel_setting = (JPanel) tabbedPane.getComponentAt(1);
+		panel_info = (JPanel) tabbedPane.getComponentAt(2);
+		panel_messageBoard = (JPanel) tabbedPane.getComponentAt(3);
 		
 		layoutTabMenu();
-		layoutTabPerformance();
 		layoutTabSetting();
 		layoutTabInfo();
 		layoutTabMsgBoard();
 	}
 
-	/**
-	 * Layout tab menu.
-	 */
 	public void layoutTabMenu(){
 		panel_menu.removeAll();
 		panel_menu.setLayout(new BoxLayout(panel_menu, BoxLayout.Y_AXIS));
-		final int gap_usual = 150;
+		final int gap_usual = 80;
 		panel_menu.add(Box.createVerticalStrut(gap_usual));
+		final int gap_lists = 70;
+		
+		JPanel label_menuManagement = new MyLabel("menu management", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
+		panel_menu.add(label_menuManagement);
+		panel_menu.add(Box.createVerticalStrut(10));
 		
 		JPanel subPanel_lists = new JPanel();
 		panel_menu.add(subPanel_lists);
 		subPanel_lists.setLayout(new BoxLayout(subPanel_lists, BoxLayout.X_AXIS));
-		final int gap_lists = 70;
+		
 		
 		subPanel_lists.add(Box.createHorizontalStrut(gap_lists));
 		dishList = new MyListWithButtons("dishes (sorting by order)", SystemData.getDishnamesFromRestaurant(restaurant, "desc"), subPanel_lists, new String[] {"Detail", "Add new", "Remove"});
@@ -201,16 +155,6 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		
 	}
 	
-	/**
-	 * Layout tab performance.
-	 */
-	public void layoutTabPerformance(){
-		
-	}
-	
-	/**
-	 * Layout tab setting.
-	 */
 	public void layoutTabSetting(){
 		
 		panel_setting.removeAll();
@@ -269,45 +213,36 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		});
 	}
 
-	/**
-	 * Layout tab info.
-	 */
 	public void layoutTabInfo(){
 		panel_info.removeAll();
 		new UserInfoPanel(restaurant.getUsername(), panel_info);
 	}
 	
-	/**
-	 * Layout tab msg board.
-	 */
 	public void layoutTabMsgBoard(){
 		panel_messageBoard.removeAll();
 		msgBoard = new MsgBoardPanel(restaurant, panel_messageBoard);
 	}
 	
-	/**
-	 * Creates the item detail child frame.
-	 *
-	 * @param name the name
-	 * @param itemType the item type
-	 * @return the child frame
-	 */
 	public ChildFrame createItemDetailChildFrame(String name, String itemType){
 		
-		ChildFrame itemDetail = new ChildFrame(name + " information");
+		ChildFrame itemDetail = new ChildFrame(name + " information", this);
 		JPanel panel = new JPanel();
 		itemDetail.controlPanel.add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		final int gap = 20;
 		panel.add(Box.createVerticalStrut(50));
 		
-		TextFieldWithLabel nameField = new TextFieldWithLabel("name: ", "name already exists !", panel);
+		JPanel subp1 = new JPanel();
+		panel.add(subp1);
+		TextFieldWithLabel nameField = new TextFieldWithLabel("name: ", "name already exists !", subp1);
 		panel.add(Box.createVerticalStrut(gap));
 		
 		MyRadioButton rbtn_type = new MyRadioButton("type", panel, new String[] {"standard", "vegetarian", "gluten-free"});
 		panel.add(Box.createVerticalStrut(gap));
 		
-		TextFieldWithLabel priceField = new TextFieldWithLabel("price: ", "please input a valid price !", panel);
+		JPanel subp2 = new JPanel();
+		panel.add(subp2);
+		TextFieldWithLabel priceField = new TextFieldWithLabel("price: ", "please input a valid price !", subp2);
 		panel.add(Box.createVerticalStrut(gap));
 		
 		JPanel subPanel_option = new JPanel();
@@ -327,7 +262,15 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 				
 				if(itemType.equalsIgnoreCase("dish")){
 					dish = restaurant.getMenu().getDish(name);
-					dish.setDishName(nameField.getTextFieldContent());
+					
+					String newname = nameField.getTextFieldContent();
+					if(SystemData.getDishnamesFromRestaurant(restaurant).contains(newname) && !newname.equalsIgnoreCase(dish.getDishName())){
+						nameField.showIllegal();
+					}else{
+						nameField.hideIllegal();
+						dish.setDishName(nameField.getTextFieldContent());
+					}
+
 					if(rbtn_type.getButton("standard").isSelected()){
 						dish.setDishType("standard");
 					}else if(rbtn_type.getButton("vegetarian").isSelected()){
@@ -339,41 +282,53 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 					success = true;
 					
 				}else if(itemType.equalsIgnoreCase("meal")){
+					meal = mealMenu.getMeal(name);
 					
 					String starter = dishCombo.getComboSelected();
 					String main = mealCombo.getComboSelected();
 					String dessert = specialmealCombo.getComboSelected();
 					
-					if(!starter.equals("null") && !dessert.equals("null")){
-						meal = new FullMeal(nameField.getTextFieldContent(), menu.getDish(starter), menu.getDish(main), menu.getDish(dessert));
-					}else if(!starter.equals("null") && dessert.equals("null")){
-						meal = new HalfMeal(nameField.getTextFieldContent(), menu.getDish(starter), menu.getDish(main));
-					}else if(starter.equals("null") && !dessert.equals("null")){
-						meal = new HalfMeal(nameField.getTextFieldContent(), menu.getDish(dessert), menu.getDish(main));
-					}
-					meal.refreshMealType();
-					rbtn_type.getButton(meal.getMealType()).setSelected(true);
-					priceField.setTextFieldContent(String.valueOf(meal.accept(new ConcreteShoppingCartVisitor())));
-					
-					try {
-						mealMenu.removeMeal(name);
-					} catch (NameNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						mealMenu.addMeal(meal);
-					} catch (NameAlreadyExistsException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					String newname = nameField.getTextFieldContent();
+					if(SystemData.getMealnamesFromRestaurant(restaurant).contains(newname) && !newname.equalsIgnoreCase(meal.getName())){
 						nameField.showIllegal();
+					}else{
+						nameField.hideIllegal();
+						
+						if(!starter.equals("null") && !dessert.equals("null")){
+							meal = new FullMeal(nameField.getTextFieldContent(), menu.getDish(starter), menu.getDish(main), menu.getDish(dessert));
+						}else if(!starter.equals("null") && dessert.equals("null")){
+							meal = new HalfMeal(nameField.getTextFieldContent(), menu.getDish(starter), menu.getDish(main));
+						}else if(starter.equals("null") && !dessert.equals("null")){
+							meal = new HalfMeal(nameField.getTextFieldContent(), menu.getDish(dessert), menu.getDish(main));
+						}
+						meal.refreshMealType();
+						rbtn_type.getButton(meal.getMealType()).setSelected(true);
+						meal.setRestaurant(restaurant);
+						priceField.setTextFieldContent(String.valueOf(meal.accept(new ConcreteShoppingCartVisitor())));
+						
+						try {
+							mealMenu.removeMeal(name);
+							mealMenu.addMeal(meal);
+							
+							success = true;
+						} catch (NameNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (NameAlreadyExistsException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							nameField.showIllegal();
+						}
 					}
+					
+					
+					
 				}else if(itemType.equalsIgnoreCase("specialmeal")){
 					
 				}
 				if(success){
 					refreshMenu("desc");
-					JOptionPane.showMessageDialog(itemDetail, "Modify successful !");
+//					JOptionPane.showMessageDialog(itemDetail, "Modify successful !");
 					restaurant.getMessageBoard().addMessage(new Message(restaurant.getUsername(), "You have modified the information of item : " + name));
 					msgBoard.refresh();
 				}
@@ -385,8 +340,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				itemDetail.dispose();
-				RestaurantGUI.this.setFocusable(true);
+				itemDetail.close();
 			}
 		});
 		
@@ -404,15 +358,18 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 			}else if(dish instanceof Dessert){
 				dishCatetory.getButton("Dessert").setSelected(true);
 			}
-			dishCatetory.setEnabled(false);
+			dishCatetory.setRBtnEnable(false);
 			
 		}else if(itemType.equalsIgnoreCase("meal")){
 			meal = restaurant.getMealMenu().getMeal(name);
 			nameField.setTextFieldContent(meal.getName());
+			meal.setRestaurant(restaurant);
 			priceField.setTextFieldContent(String.valueOf(meal.accept(new ConcreteShoppingCartVisitor())));
-			priceField.setEnabled(false);
+			priceField.setTextEditable(false);
+			meal.refreshMealType();
 			rbtn_type.getButton(meal.getMealType()).setSelected(true);
-			rbtn_type.setEnabled(false);
+			rbtn_type.setRBtnEnable(false);
+			
 			
 			subPanel_option.setLayout(new BoxLayout(subPanel_option, BoxLayout.X_AXIS));
 			
@@ -434,11 +391,12 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		}else if(itemType.equalsIgnoreCase("specialmeal")){
 			specialmeal = restaurant.getSpecialmealmenu().getMeal(name);
 			nameField.setTextFieldContent(specialmeal.getName());
-			nameField.setEnabled(false);
-			priceField.setTextFieldContent(String.valueOf(meal.accept(new ConcreteShoppingCartVisitor())));
-			priceField.setEnabled(false);
+			nameField.setTextEditable(false);
+			specialmeal.setRestaurant(restaurant);
+			priceField.setTextFieldContent(String.valueOf(specialmeal.accept(new ConcreteShoppingCartVisitor())));
+			priceField.setTextEditable(false);
 			rbtn_type.getButton(specialmeal.getMealType()).setSelected(true);
-			rbtn_type.setEnabled(false);
+			rbtn_type.setRBtnEnable(false);
 			
 			subPanel_option.setLayout(new BoxLayout(subPanel_option, BoxLayout.X_AXIS));
 			
@@ -447,7 +405,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 			mealCombo = new MyComboBox("Main", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Main"));
 			specialmealCombo = new MyComboBox("Dessert", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Dessert"));
 			subPanel_option.add(Box.createHorizontalStrut(70));
-			for(Dish d : meal.getDishes()){
+			for(Dish d : specialmeal.getDishes()){
 				if(d instanceof Starter){
 					dishCombo.setComboSelected(d.getDishName()+MyComboBox.item_suffix);
 				}else if(d instanceof MainDish){
@@ -456,22 +414,17 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 					specialmealCombo.setComboSelected(d.getDishName()+MyComboBox.item_suffix);
 				}
 			}
-			dishCombo.setEnabled(false);
-			mealCombo.setEnabled(false);
-			specialmealCombo.setEnabled(false);
+			dishCombo.setComboEnable(false);
+			mealCombo.setComboEnable(false);
+			specialmealCombo.setComboEnable(false);
+			subPanel_btns.getComponent(0).setEnabled(false);
 		}
 		
 		return itemDetail;
 	}
 
-	/**
-	 * Creates the add item child frame.
-	 *
-	 * @param itemType the item type
-	 * @return the child frame
-	 */
 	public ChildFrame createAddItemChildFrame(String itemType){
-		ChildFrame addItem = new ChildFrame("add new item");
+		ChildFrame addItem = new ChildFrame("add new item", this);
 		JPanel panel = new JPanel();
 		addItem.controlPanel.add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -537,6 +490,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 				}else if(itemType.equalsIgnoreCase("meal")){
 					meal = null;
 					
+
 					String starter = dishCombo.getComboSelected();
 					String main = mealCombo.getComboSelected();
 					String dessert = specialmealCombo.getComboSelected();
@@ -550,6 +504,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 					}
 					meal.refreshMealType();
 					rbtn_type.getButton(meal.getMealType()).setSelected(true);
+					meal.setRestaurant(restaurant);
 					priceField.setTextFieldContent(String.valueOf(meal.accept(new ConcreteShoppingCartVisitor())));
 
 					if(meal != null){
@@ -577,8 +532,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				addItem.dispose();
-				RestaurantGUI.this.setFocusable(true);
+				addItem.close();
 			}
 		});
 		
@@ -590,12 +544,12 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		}else if(itemType.equalsIgnoreCase("meal")){
 			subPanel_option.setLayout(new BoxLayout(subPanel_option, BoxLayout.X_AXIS));
 			
-			MyComboBox dishCombo = new MyComboBox("Starter", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Starter"));
-			MyComboBox mealCombo = new MyComboBox("Main", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Main"));
-			MyComboBox specialmealCombo = new MyComboBox("Dessert", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Dessert"));
+			dishCombo = new MyComboBox("Starter", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Starter"));
+			mealCombo = new MyComboBox("Main", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Main"));
+			specialmealCombo = new MyComboBox("Dessert", subPanel_option, SystemData.getDishnamesFromRestaurantByCategory(restaurant, "Dessert"));
 			
-			priceField.setEnabled(false);
-			rbtn_type.setEnabled(false);
+			priceField.setTextEditable(false);
+			rbtn_type.setRBtnEnable(false);
 	
 		}else if(itemType.equalsIgnoreCase("specialmeal")){
 		
@@ -604,9 +558,6 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		return addItem;
 	}
 	
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrameWithTabs#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -614,13 +565,9 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		
 		// for tab page "menu"
 		if(e.getSource()==dishList.getButton("Detail")){
-			RestaurantGUI.this.setFocusable(false);
 			ChildFrame itemDetail = createItemDetailChildFrame(dishList.getSelectedValue().split(" - ")[0], "dish");
-			itemDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==dishList.getButton("Add new")){
-			RestaurantGUI.this.setFocusable(false);
 			ChildFrame itemDetail = createAddItemChildFrame("dish");
-			itemDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==dishList.getButton("Remove")){
 			boolean success = true;
 			for(Order order : MyFoodora.getInstance().getHistory().getOrders()){
@@ -644,31 +591,28 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 				}
 				refreshMenu("desc");
 			}else{
-				JOptionPane.showMessageDialog(RestaurantGUI.this, "This dish is included in a order, you can't delete it.");
+				JOptionPane.showMessageDialog(RestaurantGUI.this, "This dish is included in an order, you can't delete it.");
 			}
 			
 		}else if(e.getSource()==mealList.getButton("Detail")){
-			RestaurantGUI.this.setFocusable(false);
 			ChildFrame itemDetail = createItemDetailChildFrame(mealList.getSelectedValue().trim(), "meal");
-			itemDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==mealList.getButton("Add new")){
-			RestaurantGUI.this.setFocusable(false);
 			ChildFrame itemDetail = createAddItemChildFrame("meal");
-			itemDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==mealList.getButton("Add as special meal")){
 			try {
 				specialmealMenu.addMeal(mealMenu.getMeal(mealList.getSelectedValue().trim()));
+				mealMenu.removeMeal(mealList.getSelectedValue().trim());
+				restaurant.getMessageBoard().addMessage(new Message(restaurant.getUsername(), "You have added the meal : " + mealList.getSelectedValue().trim() + " as a specialmeal"));
+				msgBoard.refresh();
+				refreshMenu("desc");
 			} catch (NameAlreadyExistsException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			try {			
-				mealMenu.removeMeal(mealList.getSelectedValue().trim());
 			} catch (NameNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			refreshMenu("desc");
+			
 		}else if(e.getSource()==mealList.getButton("Remove")){
 			boolean success = true;
 			for(Order order : MyFoodora.getInstance().getHistory().getOrders()){
@@ -692,35 +636,29 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 				}
 				refreshMenu("desc");
 			}else{
-				JOptionPane.showMessageDialog(RestaurantGUI.this, "This meal is included in a order, you can't delete it.");
+				JOptionPane.showMessageDialog(RestaurantGUI.this, "This meal is included in an order, you can't delete it.");
 			}
 			
 		}else if(e.getSource()==specialmealList.getButton("Detail")){
-			RestaurantGUI.this.setFocusable(false);
 			ChildFrame itemDetail = createItemDetailChildFrame(specialmealList.getSelectedValue().trim(), "specialmeal");
-			itemDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==specialmealList.getButton("Remove")){
 			try {
 				mealMenu.addMeal(specialmealMenu.getMeal(specialmealList.getSelectedValue().trim()));
+				specialmealMenu.removeMeal(specialmealList.getSelectedValue().trim());
+				restaurant.getMessageBoard().addMessage(new Message(restaurant.getUsername(), "You have removed the meal : " + specialmealList.getSelectedValue().trim() + " from specialmeals"));
+				msgBoard.refresh();
+				refreshMenu("desc");
 			} catch (NameAlreadyExistsException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			try {
-				specialmealMenu.removeMeal(specialmealList.getSelectedValue().trim());
 			} catch (NameNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			refreshMenu("desc");
+
 		}
 	}
 	
-	/**
-	 * Refresh menu.
-	 *
-	 * @param sortingType the sorting type
-	 */
 	public void refreshMenu(String sortingType){
 		dishList.refresh(SystemData.getDishnamesFromRestaurant(restaurant, sortingType));
 		mealList.refresh(SystemData.getMealnamesFromRestaurant(restaurant));

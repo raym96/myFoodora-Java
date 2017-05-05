@@ -2,41 +2,45 @@ package gui.model;
 
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-/**
- * The Class ChildFrame.
- * @author He Xiaoan
- * @author Ji Raymond
- */
+import com.sun.net.httpserver.Authenticator.Success;
+
 public class ChildFrame extends BasicFrame{
 
-	/** The control panel. */
 	public  JPanel controlPanel;
-	
-	/** The Ok button. */
 	private BasicButton OkButton;
-	
-	/** The Cancel button. */
 	private BasicButton CancelButton;
 	
-	/**
-	 * Instantiates a new child frame.
-	 *
-	 * @param title the title
-	 */
+	private Container superFrame;
+	
 	public ChildFrame(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
+		
 		placeComponents();
 	}
 	
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#prepareGUI(java.lang.String)
-	 */
+	public ChildFrame(String title, Container superFrame) {
+		this(title);
+		this.superFrame = superFrame;
+		
+		this.superFrame.setEnabled(false);
+		this.setAlwaysOnTop(true);
+	}
+	
+	public void close(){
+		this.dispose();
+		this.superFrame.setEnabled(true);
+		this.superFrame.setVisible(true);
+	}
+	
+	
 	@Override
 	public void prepareGUI(String title) {
 		// TODO Auto-generated method stub
@@ -45,19 +49,22 @@ public class ChildFrame extends BasicFrame{
 		this.setTitle(title);
 		this.setSize(BasicFrame.width*2/3,BasicFrame.height*2/3);
 		this.setLocation(BasicFrame.x+150, BasicFrame.y+150);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+	         public void windowClosing(WindowEvent windowEvent){
+	            ChildFrame.this.close();
+ 
+	         }        
+	      });
 
 		this.setResizable(false);
 	    this.setVisible(true);
 	}
 
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#placeComponents()
-	 */
 	@Override
 	public void placeComponents() {
 		// TODO Auto-generated method stub
 		controlPanel = new JPanel();
 		this.add(controlPanel);
 	}
+	
 }

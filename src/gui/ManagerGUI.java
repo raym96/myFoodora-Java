@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -20,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.plaf.basic.BasicScrollPaneUI.HSBChangeListener;
 
 import com.sun.javafx.collections.MappingChange.Map;
@@ -29,6 +31,8 @@ import gui.model.BasicButton;
 import gui.model.BasicFrameWithTabs;
 import gui.model.ChildFrame;
 import gui.model.MsgBoardPanel;
+import gui.model.MyComboBox;
+import gui.model.MyLabel;
 import gui.model.MyListWithButtons;
 import gui.model.MyRadioButton;
 import gui.model.SystemData;
@@ -42,8 +46,12 @@ import policies.SortingByRestaurant;
 import policies.TargetProfit_DeliveryCost;
 import policies.TargetProfit_Markup;
 import policies.TargetProfit_ServiceFee;
+import restaurant.Dish;
+import restaurant.Item;
+import restaurant.Meal;
 import sun.net.www.content.image.jpeg;
 import system.AddressPoint;
+import system.ConcreteShoppingCartVisitor;
 import system.Message;
 import system.Order;
 import user.model.Courier;
@@ -56,82 +64,46 @@ import user.service.ManagerService;
 import user.service.UserService;
 import user.view.UserView;
 
-/**
- * The Class ManagerGUI.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public class ManagerGUI extends BasicFrameWithTabs{
 
-	/** The Constant serialVersionUID. */
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** The manager. */
 	private Manager manager;
-	
-	/** The service. */
 	private ManagerService service;
-	
-	/** The user. */
 	private User user;;
+	private Courier courier;
 	
-	/** The panel user. */
 	private JPanel panel_user;
-	
-	/** The panel performance. */
 	private JPanel panel_performance;
-	
-	/** The panel setting. */
 	private JPanel panel_setting;
-	
-	/** The panel info. */
 	private JPanel panel_info;
-	
-	/** The panel message board. */
 	private JPanel panel_messageBoard;
-	
-	/** The msg board. */
 	private MsgBoardPanel msgBoard;
 	
 	
-	/** The rbtn notify. */
 	private MyRadioButton rbtn_notify;
-	
-	/** The rbtn duty. */
 	private MyRadioButton rbtn_duty;
 	
-	/** The my foodora. */
 	private MyFoodora myFoodora;
-	
-	/** The restaurants. */
 	private ArrayList<User> restaurants;
-	
-	/** The customers. */
 	private ArrayList<User> customers;
-	
-	/** The couriers. */
 	private ArrayList<User> couriers;
+	private Order order;
 
-	/** The restaurant list. */
 	private MyListWithButtons restaurantList;
-	
-	/** The courier list. */
 	private MyListWithButtons courierList;
-	
-	/** The customer list. */
 	private MyListWithButtons customerList;
+	private MyListWithButtons assignedOrderList;
+	private MyListWithButtons unassignedOrderList;
+	private MyComboBox ordercourier;
 	
-	/** The myfoodora params. */
 	private HashMap<String, String> myfoodora_params;
 	
-	/** The starting date. */
 	private String startingDate = "01/01/2017";
 
-	/**
-	 * Instantiates a new manager GUI.
-	 *
-	 * @param user the user
-	 */
 	public ManagerGUI(User user) {
 		super("manager");
 
@@ -148,9 +120,6 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		placeComponents();
 	}
 
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#placeComponents()
-	 */
 	@Override
 	public void placeComponents() {
 
@@ -173,36 +142,48 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		layoutTabMsgBoard();
 	}
 	
-	/**
-	 * Layout tab user.
-	 */
 	public void layoutTabUser(){
 		panel_user.removeAll();
 		
 		panel_user.setLayout(new BoxLayout(panel_user, BoxLayout.Y_AXIS));
-		final int gap_usual = 150;
+		final int gap_usual = 50;
 		panel_user.add(Box.createVerticalStrut(gap_usual));
+		final int gap_lists = 70;
+		
+		JPanel label_userManagement = new MyLabel("User management", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
+		panel_user.add(label_userManagement);
+		panel_user.add(Box.createVerticalStrut(10));
 		
 		JPanel subPanel_lists = new JPanel();
 		panel_user.add(subPanel_lists);
 		subPanel_lists.setLayout(new BoxLayout(subPanel_lists, BoxLayout.X_AXIS));
-		final int gap_lists = 70;
-		
+			
 		subPanel_lists.add(Box.createHorizontalStrut(gap_lists));
-		restaurantList = new MyListWithButtons("restaurants (sorting by orders)", SystemData.getUsernamesFromUsers(restaurants, "desc"), subPanel_lists, new String[] {"Detail", "Add new"});
+		restaurantList = new MyListWithButtons("restaurants", SystemData.getUsernamesFromUsers(restaurants, "desc"), subPanel_lists, new String[] {"Detail", "Add new"});
 		restaurantList.bindActionListener(this);
-		courierList = new MyListWithButtons("couriers (sorting by order deliveries)", SystemData.getUsernamesFromUsers(couriers, "desc"), subPanel_lists, new String[] {"Detail", "Add new"});
+		courierList = new MyListWithButtons("couriers", SystemData.getUsernamesFromUsers(couriers, "desc"), subPanel_lists, new String[] {"Detail", "Add new"});
 		courierList.bindActionListener(this);
 		customerList = new MyListWithButtons("customers", SystemData.getUsernamesFromUsers(customers), subPanel_lists, new String[] {"Detail", "Add new"});
 		customerList.bindActionListener(this);
 		subPanel_lists.add(Box.createHorizontalStrut(gap_lists));
 		
-		panel_user.add(Box.createVerticalStrut(gap_usual));
+		JPanel label_orderManagement = new MyLabel("Order management", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
+		panel_user.add(label_orderManagement);
+		panel_user.add(Box.createVerticalStrut(10));
+		
+		JPanel subPanel_orders = new JPanel();
+		panel_user.add(subPanel_orders);
+		subPanel_orders.setLayout(new BoxLayout(subPanel_orders, BoxLayout.X_AXIS));
+		
+		subPanel_orders.add(Box.createHorizontalStrut(gap_lists));
+		assignedOrderList = new MyListWithButtons("assigned orders", SystemData.getAssignedOrderNames(), subPanel_orders, new String[] {"Detail"});
+		assignedOrderList.bindActionListener(this);
+		unassignedOrderList = new MyListWithButtons("unassigned orders", SystemData.getUnassignedOrderNames(), subPanel_orders, new String[] {"Detail"});
+		unassignedOrderList.bindActionListener(this);
+		subPanel_orders.add(Box.createHorizontalStrut(gap_lists));
+		
 	}
 
-	/**
-	 * Layout tab performance.
-	 */
 	public void layoutTabPerformance(){
 		
 		panel_performance.removeAll();
@@ -212,37 +193,35 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		panel_performance.add(subPanel_content);
 		subPanel_content.setLayout(new BoxLayout(subPanel_content, BoxLayout.Y_AXIS));
 		
-		final int gap_usual = 40;
+		final int gap_usual = 150;
 		subPanel_content.add(Box.createVerticalStrut(gap_usual));
 		
 		final int gap = 40;
 		
 		Font font = new Font("Arial", Font.ITALIC, 20);
+		final String Monetary_unit = " euros";
 		
 		JLabel time_periode = new JLabel("from " + startingDate + " until now :" );
 		time_periode.setFont(font);
 		subPanel_content.add(time_periode);
 		subPanel_content.add(Box.createVerticalStrut(gap));
 		
-		JLabel totalIncome = new JLabel("total income: " + myfoodora_params.get("total income"));
+		JLabel totalIncome = new JLabel("total income: " + myfoodora_params.get("total income") + Monetary_unit);
 		totalIncome.setFont(font);
 		subPanel_content.add(totalIncome);
 		subPanel_content.add(Box.createVerticalStrut(gap));
 		
-		JLabel totalProfit = new JLabel("total profit: " + myfoodora_params.get("total profit"));
+		JLabel totalProfit = new JLabel("total profit: " + myfoodora_params.get("total profit") + Monetary_unit);
 		totalProfit.setFont(font);
 		subPanel_content.add(totalProfit);
 		subPanel_content.add(Box.createVerticalStrut(gap));
 		
-		JLabel averageIncome = new JLabel("average income per customer: " + myfoodora_params.get("average income per customer"));
+		JLabel averageIncome = new JLabel("average income per customer: " + myfoodora_params.get("average income per customer") + Monetary_unit);
 		averageIncome.setFont(font);
 		subPanel_content.add(averageIncome);
 		subPanel_content.add(Box.createVerticalStrut(gap));
 	}
 	
-	/**
-	 * Layout tab setting.
-	 */
 	public void layoutTabSetting(){
 		
 		panel_setting.removeAll();
@@ -252,7 +231,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		subPanel_content.setLayout(new BoxLayout(subPanel_content, BoxLayout.Y_AXIS));
 		
 		
-		final int gap_usual = 40;
+		final int gap_usual = 150;
 		subPanel_content.add(Box.createVerticalStrut(gap_usual));
 		
 		final int gap = 20;
@@ -294,15 +273,39 @@ public class ManagerGUI extends BasicFrameWithTabs{
 				myFoodora.setTargetprofit(Double.valueOf(targetProfitField.getTextFieldContent()));
 				if(rbtn_targetProfitPolicy.getButton("delivery cost").isSelected()){
 					service.setTargetProfitPolicy("delivery_cost");
+					
+					myFoodora.setService_fee(Double.valueOf(servicefeeField.getTextFieldContent()));
+					myFoodora.setMarkup_percentage(Double.valueOf(markUpPercentageField.getTextFieldContent()));
+					service.determineParam2MeetTargetProfit(myFoodora.getTargetprofit());
+					servicefeeField.setTextEnable(true);
+					markUpPercentageField.setTextEnable(true);
+					deliveryCostField.setTextEnable(false);
+					
 				}else if(rbtn_targetProfitPolicy.getButton("markup percentage").isSelected()){
 					service.setTargetProfitPolicy("markup_percentage");
+					
+					myFoodora.setService_fee(Double.valueOf(servicefeeField.getTextFieldContent()));
+					myFoodora.setDelivery_cost(Double.valueOf(deliveryCostField.getTextFieldContent()));
+					service.determineParam2MeetTargetProfit(myFoodora.getTargetprofit());
+					servicefeeField.setTextEnable(true);
+					markUpPercentageField.setTextEnable(false);
+					deliveryCostField.setTextEnable(true);
+					
 				}else if(rbtn_targetProfitPolicy.getButton("service fee").isSelected()){
 					service.setTargetProfitPolicy("service_fee");
+					
+					myFoodora.setMarkup_percentage(Double.valueOf(markUpPercentageField.getTextFieldContent()));
+					myFoodora.setDelivery_cost(Double.valueOf(deliveryCostField.getTextFieldContent()));
+					service.determineParam2MeetTargetProfit(myFoodora.getTargetprofit());
+					servicefeeField.setTextEnable(false);
+					markUpPercentageField.setTextEnable(true);
+					deliveryCostField.setTextEnable(true);
+					
 				}
-				service.determineParam2MeetTargetProfit(myFoodora.getTargetprofit());
-				myFoodora.setService_fee(Double.valueOf(servicefeeField.getTextFieldContent()));
-				myFoodora.setMarkup_percentage(Double.valueOf(markUpPercentageField.getTextFieldContent()));
-				myFoodora.setDelivery_cost(Double.valueOf(deliveryCostField.getTextFieldContent()));
+
+				servicefeeField.setTextFieldContent(String.valueOf(myFoodora.getService_fee()));
+				markUpPercentageField.setTextFieldContent(String.valueOf(myFoodora.getMarkup_percentage()));
+				deliveryCostField.setTextFieldContent(String.valueOf(myFoodora.getDelivery_cost()));
 				
 				if(rbtn_deliveryPolicy.getButton("fair-occupation").isSelected()){
 					service.setDeliveryPolicy("fair");
@@ -329,28 +332,16 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		});
 	}
 	
-	/**
-	 * Layout tab info.
-	 */
 	public void layoutTabInfo(){
 		panel_info.removeAll();
 		new UserInfoPanel(manager.getUsername(), panel_info);
 	}
 	
-	/**
-	 * Layout tab msg board.
-	 */
 	public void layoutTabMsgBoard(){
 		panel_messageBoard.removeAll();
 		msgBoard = new MsgBoardPanel(manager, panel_messageBoard);
 	}
 	
-	/**
-	 * Creates the user detail child frame.
-	 *
-	 * @param username the username
-	 * @return the child frame
-	 */
 	public ChildFrame createUserDetailChildFrame(String username){
 		user = null;
 		try {
@@ -360,7 +351,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 			e2.printStackTrace();
 		}
 		
-		ChildFrame userDetail = new ChildFrame(username + " information");
+		ChildFrame userDetail = new ChildFrame(username + " information", this);
 		JPanel panel = new JPanel();
 		userDetail.controlPanel.add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -386,7 +377,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		panel.add(Box.createVerticalStrut(gap));
 		
 		// address/position
-		TextFieldWithLabel positionField = new TextFieldWithLabel("address/position: ", panel);
+		TextFieldWithLabel positionField = new TextFieldWithLabel("address/position: ", "address format wrong ! (example:2.1,8.5)", panel);
 		panel.add(Box.createVerticalStrut(gap));
 		
 		// email
@@ -425,9 +416,30 @@ public class ManagerGUI extends BasicFrameWithTabs{
 				if(user instanceof Restaurant){
 
 					Restaurant restaurant = (Restaurant)user;
-					restaurant.setUsername(usernameField.getTextFieldContent());
+					
+					String newUsername = usernameField.getTextFieldContent();
+					if(SystemData.getUsernamesFromUsers(MyFoodora.getInstance().getUsers()).contains(newUsername) && !newUsername.equalsIgnoreCase(user.getUsername())){
+						usernameField.showIllegal();
+					}else{
+						usernameField.hideIllegal();
+						restaurant.setUsername(usernameField.getTextFieldContent());
+					}
+					
 					restaurant.setName(nameField.getTextFieldContent());
-					restaurant.setAddress(new AddressPoint(positionField.getTextFieldContent()));
+					
+					AddressPoint address = null;
+					try{
+						address = new AddressPoint(positionField.getTextFieldContent());
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
+					if(address!=null){
+						positionField.hideIllegal();
+						restaurant.setAddress(address);
+					}else{
+						positionField.showIllegal();
+					}
+							
 					restaurant.setPassword(psdField.getTextFieldContent());
 					restaurant.setEmail(emailField.getTextFieldContent());
 					restaurant.setPhone(phoneField.getTextFieldContent());
@@ -440,9 +452,30 @@ public class ManagerGUI extends BasicFrameWithTabs{
 					success = true;
 				}else if(user instanceof Courier){
 					Courier courier = (Courier)user;
-					courier.setUsername(usernameField.getTextFieldContent());
+					
+					String newUsername = usernameField.getTextFieldContent();
+					usernameField.hideIllegal();
+					if(SystemData.getUsernamesFromUsers(MyFoodora.getInstance().getUsers()).contains(newUsername)){
+						usernameField.showIllegal();
+					}else{
+						courier.setUsername(usernameField.getTextFieldContent());
+					}
+					
 					courier.setFullName(nameField.getTextFieldContent());
-					courier.setPosition(new AddressPoint(positionField.getTextFieldContent()));
+					
+					AddressPoint address = null;
+					try{
+						address = new AddressPoint(positionField.getTextFieldContent());
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
+					if(address!=null){
+						positionField.hideIllegal();
+						courier.setPosition(address);
+					}else{
+						positionField.showIllegal();
+					}
+					
 					courier.setPassword(psdField.getTextFieldContent());
 					courier.setEmail(emailField.getTextFieldContent());
 					courier.setPhone(phoneField.getTextFieldContent());
@@ -459,9 +492,30 @@ public class ManagerGUI extends BasicFrameWithTabs{
 					success = true;
 				}else if(user instanceof Customer){
 					Customer customer = (Customer)user;
-					customer.setUsername(usernameField.getTextFieldContent());
+					
+					String newUsername = usernameField.getTextFieldContent();
+					usernameField.hideIllegal();
+					if(SystemData.getUsernamesFromUsers(MyFoodora.getInstance().getUsers()).contains(newUsername)){
+						usernameField.showIllegal();
+					}else{
+						customer.setUsername(usernameField.getTextFieldContent());
+					}
+					
 					customer.setFullName(nameField.getTextFieldContent());
-					customer.setAddress(new AddressPoint(positionField.getTextFieldContent()));
+					
+					AddressPoint address = null;
+					try{
+						address = new AddressPoint(positionField.getTextFieldContent());
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
+					if(address!=null){
+						positionField.hideIllegal();
+						customer.setAddress(address);
+					}else{
+						positionField.showIllegal();
+					}
+					
 					customer.setEmail(emailField.getTextFieldContent());
 					customer.setPhone(phoneField.getTextFieldContent());
 					if(rbtn_active.getButton("on").isSelected()){
@@ -478,7 +532,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 				}
 				if(success){
 					refreshUserLists("desc");
-					JOptionPane.showMessageDialog(userDetail, "Modify successful !");
+//					JOptionPane.showMessageDialog(userDetail, "Modify successful !");
 					manager.getMessageBoard().addMessage(new Message(manager.getUsername(), "You have modified the information of user : " + user.getUsername()));
 					msgBoard.refresh();
 					
@@ -491,8 +545,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				userDetail.dispose();
-				ManagerGUI.this.setFocusable(true);
+				userDetail.close();
 			}
 		});
 		subPanel_btns.add(Box.createHorizontalStrut(100));
@@ -517,8 +570,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						userDetail.dispose();
-						ManagerGUI.this.setFocusable(true);
+						userDetail.close();
 						refreshUserLists("desc");
 						manager.getMessageBoard().addMessage(new Message(manager.getUsername(), "You have deleted the user : " + username));
 						msgBoard.refresh();
@@ -562,14 +614,8 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		return userDetail;
 	}
 
-	/**
-	 * Creates the add user child frame.
-	 *
-	 * @param userType the user type
-	 * @return the child frame
-	 */
 	public ChildFrame createAddUserChildFrame(String userType){
-		ChildFrame addUser = new ChildFrame("add new user");
+		ChildFrame addUser = new ChildFrame("add new user", this);
 		JPanel panel = new JPanel();
 		addUser.controlPanel.add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -589,7 +635,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		panel.add(Box.createVerticalStrut(gap));
 		
 		// address/position
-		TextFieldWithLabel positionField = new TextFieldWithLabel("address/position: ", panel);
+		TextFieldWithLabel positionField = new TextFieldWithLabel("address/position: ", "address format wrong ! (example:2.1,8.5)", panel);
 		panel.add(Box.createVerticalStrut(gap));
 		
 		// email
@@ -619,30 +665,56 @@ public class ManagerGUI extends BasicFrameWithTabs{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				User user = null;
-				if(userType.equalsIgnoreCase("RESTAURANT")){
-					user = new Restaurant(nameField.getTextFieldContent(), usernameField.getTextFieldContent(), new AddressPoint(positionField.getTextFieldContent()), psdField.getTextFieldContent());
-				}else if(userType.equalsIgnoreCase("COURIER")){
-					user = new Courier(nameField.getTextFieldContent().split(" ")[0], nameField.getTextFieldContent().split(" ")[1], usernameField.getTextFieldContent(), new AddressPoint(positionField.getTextFieldContent()), psdField.getTextFieldContent());
-					if(rbtn_duty.getButton("on").isSelected()){
-						((Courier)user).setOn_duty(true);
-					}else if(rbtn_duty.getButton("off").isSelected()){
-						((Courier)user).setOn_duty(false);
+				boolean o1 = false;
+				
+				String newUsername = usernameField.getTextFieldContent();
+				if(SystemData.getUsernamesFromUsers(MyFoodora.getInstance().getUsers()).contains(newUsername)){
+					usernameField.showIllegal();
+				}else{
+					usernameField.hideIllegal();
+					o1 = true;
+				}
+				
+				AddressPoint address = null;
+				try{
+					address = new AddressPoint(positionField.getTextFieldContent());
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+				if(address!=null){
+					positionField.hideIllegal();
+				}else{
+					positionField.showIllegal();
+				}
+				
+				if(o1 && address!=null){
+					if(userType.equalsIgnoreCase("RESTAURANT")){
+						user = new Restaurant(nameField.getTextFieldContent(), usernameField.getTextFieldContent(), new AddressPoint(positionField.getTextFieldContent()), psdField.getTextFieldContent());
+					}else if(userType.equalsIgnoreCase("COURIER")){
+						user = new Courier(nameField.getTextFieldContent().split(" ")[0], nameField.getTextFieldContent().split(" ")[1], usernameField.getTextFieldContent(), new AddressPoint(positionField.getTextFieldContent()), psdField.getTextFieldContent());
+						if(rbtn_duty.getButton("on").isSelected()){
+							((Courier)user).setOn_duty(true);
+						}else if(rbtn_duty.getButton("off").isSelected()){
+							((Courier)user).setOn_duty(false);
+						}
+					}else if(userType.equalsIgnoreCase("CUSTOMER")){
+						user = new Customer(nameField.getTextFieldContent().split(" ")[0], nameField.getTextFieldContent().split(" ")[1], usernameField.getTextFieldContent(), new AddressPoint(positionField.getTextFieldContent()), psdField.getTextFieldContent());
+						if(rbtn_notify.getButton("yes").isSelected()){
+							((Customer)user).setNotified(true);
+						}else if(rbtn_notify.getButton("no").isSelected()){
+							((Customer)user).setNotified(false);
+						}
 					}
-				}else if(userType.equalsIgnoreCase("CUSTOMER")){
-					user = new Customer(nameField.getTextFieldContent().split(" ")[0], nameField.getTextFieldContent().split(" ")[1], usernameField.getTextFieldContent(), new AddressPoint(positionField.getTextFieldContent()), psdField.getTextFieldContent());
-					if(rbtn_notify.getButton("yes").isSelected()){
-						((Customer)user).setNotified(true);
-					}else if(rbtn_notify.getButton("no").isSelected()){
-						((Customer)user).setNotified(false);
+					user.setEmail(emailField.getTextFieldContent());
+					user.setPhone(phoneField.getTextFieldContent());
+					if(rbtn_active.getButton("on").isSelected()){
+						user.setActivated(true);
+					}else if(rbtn_active.getButton("off").isSelected()){
+						user.setActivated(false);
 					}
 				}
-				user.setEmail(emailField.getTextFieldContent());
-				user.setPhone(phoneField.getTextFieldContent());
-				if(rbtn_active.getButton("on").isSelected()){
-					user.setActivated(true);
-				}else if(rbtn_active.getButton("off").isSelected()){
-					user.setActivated(false);
-				}
+				
+				
 				if(user != null){
 					service.addUser(user);
 					refreshUserLists("desc");
@@ -657,8 +729,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				addUser.dispose();
-				ManagerGUI.this.setFocusable(true);
+				addUser.close();
 			}
 		});
 
@@ -678,9 +749,108 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		return addUser;
 	}
 	
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrameWithTabs#actionPerformed(java.awt.event.ActionEvent)
-	 */
+	public ChildFrame createOrderDetailChildFrame(String selected) {
+		
+		order = MyFoodora.getInstance().getHistory().getOrderById(selected.split(" - ")[1]);
+		courier = order.getCourier();
+		
+		ChildFrame orderDetail = new ChildFrame("order detail", this);
+		
+		JPanel panel_content = new JPanel();
+		orderDetail.controlPanel.add(panel_content);
+		panel_content.setLayout(new BoxLayout(panel_content, BoxLayout.Y_AXIS));
+		final int gap = 30;
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		JLabel orderId = new JLabel("order ID : " + order.getOrderID());
+		panel_content.add(orderId);
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		JLabel orderdate = new JLabel("order date : " + order.getDate());
+		panel_content.add(orderdate);
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		JLabel ordename = new JLabel("order name : " + order.getName());
+		panel_content.add(ordename);
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		JLabel orderrestaurant= new JLabel("restaurant : " + order.getRestaurant().getName());
+		panel_content.add(orderrestaurant);
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		JLabel ordercustomer= new JLabel("customer : " + order.getCustomer().getName());
+		panel_content.add(ordercustomer);
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		if(courier != null){
+			JLabel ordercourier= new JLabel("courier : " + order.getCourier().getName());
+			panel_content.add(ordercourier);
+			panel_content.add(Box.createVerticalStrut(gap));
+		}else{
+			ordercourier = new MyComboBox("courier : ", panel_content, SystemData.getUsernamesFromUsers(couriers));
+			panel_content.add(Box.createVerticalStrut(gap));
+		}
+		
+		String content = null;
+		for(Item item : order.getItems()){
+			if (item instanceof Dish){
+				content+="A-la-carte <";
+				content+= ((Dish)item).getDishName()+"> "+item.accept(new ConcreteShoppingCartVisitor())+"\n";
+			}
+			if (item instanceof Meal){
+				content+="Meal <";
+				content+= ((Meal)item).getName()+"> "+item.accept(new ConcreteShoppingCartVisitor())+"\n";
+			}
+		}
+		
+		JTextArea items= new JTextArea(content);
+		items.setEditable(false);
+		panel_content.add(items);
+		panel_content.add(Box.createVerticalStrut(gap));
+		
+		// buttons
+		JPanel subPanel_btns = new JPanel();
+		subPanel_btns.setLayout(new BoxLayout(subPanel_btns, BoxLayout.X_AXIS));
+		subPanel_btns.add(Box.createHorizontalStrut(100));
+		(new BasicButton("Confirm", subPanel_btns)).addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(courier != null){
+					orderDetail.close();
+				}else{
+					try {
+						courier = (Courier) MyFoodora.getInstance().getService().selectUser(ordercourier.getComboSelected());
+					} catch (NameNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if(courier != null){
+						order.setCourier(courier);
+						orderDetail.close();
+						manager.getMessageBoard().addMessage(new Message(manager.getUsername(), "You have assigned the order " + order.getName() + "to the courier " + courier.getUsername()));
+						msgBoard.refresh();
+						refreshOrderList();
+					}
+				}
+				
+			}
+		});
+		(new BasicButton("Back", subPanel_btns)).addActionListener(new ActionListener() {
+					
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				orderDetail.close();
+			}
+		});
+		subPanel_btns.add(Box.createHorizontalStrut(100));
+		panel_content.add(subPanel_btns);
+
+		return orderDetail;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -688,41 +858,33 @@ public class ManagerGUI extends BasicFrameWithTabs{
 
 		// for tab page "user"
 		if(e.getSource()==restaurantList.getButton("Detail")){
-			ManagerGUI.this.setFocusable(false);
 			ChildFrame userDetail = createUserDetailChildFrame(restaurantList.getSelectedValue().split(" - ")[0]);
-			userDetail.setAlwaysOnTop(true);
-		}else if(e.getSource()==restaurantList.getButton("Add new")){
-			ManagerGUI.this.setFocusable(false);
+		}else if(e.getSource()==restaurantList.getButton("Add new")){;
 			ChildFrame addUser = createAddUserChildFrame("RESTAURANT");
-			addUser.setAlwaysOnTop(true);
-		}else if(e.getSource()==courierList.getButton("Detail")){
-			ManagerGUI.this.setFocusable(false);
+		}else if(e.getSource()==courierList.getButton("Detail")){;
 			ChildFrame userDetail = createUserDetailChildFrame(courierList.getSelectedValue().split(" - ")[0]);
-			userDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==courierList.getButton("Add new")){
-			ManagerGUI.this.setFocusable(false);
 			ChildFrame addUser = createAddUserChildFrame("COURIER");
-			addUser.setAlwaysOnTop(true);
 		}else if(e.getSource()==customerList.getButton("Detail")){
-			ManagerGUI.this.setFocusable(false);
 			ChildFrame userDetail = createUserDetailChildFrame(customerList.getSelectedValue());
-			userDetail.setAlwaysOnTop(true);
 		}else if(e.getSource()==customerList.getButton("Add new")){
-			ManagerGUI.this.setFocusable(false);
 			ChildFrame addUser = createAddUserChildFrame("CUSTOMER");
-			addUser.setAlwaysOnTop(true);
+		}else if(e.getSource()==assignedOrderList.getButton("Detail")){;
+			ChildFrame orderDetail = createOrderDetailChildFrame(assignedOrderList.getSelectedValue());
+		}else if(e.getSource()==unassignedOrderList.getButton("Detail")){;
+			ChildFrame orderDetail = createOrderDetailChildFrame(unassignedOrderList.getSelectedValue());
 		}
 	}
 	
 	
-	/**
-	 * Refresh user lists.
-	 *
-	 * @param sortingType the sorting type
-	 */
 	public void refreshUserLists(String sortingType){
 		restaurantList.refresh(SystemData.getUsernamesFromUsers(restaurants, sortingType));
 		customerList.refresh(SystemData.getUsernamesFromUsers(customers, sortingType));
 		courierList.refresh(SystemData.getUsernamesFromUsers(couriers, sortingType));
+	}
+	
+	public void refreshOrderList(){
+		assignedOrderList.refresh(SystemData.getAssignedOrderNames());
+		unassignedOrderList.refresh(SystemData.getUnassignedOrderNames());
 	}
 }

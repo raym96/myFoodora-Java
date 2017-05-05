@@ -34,79 +34,36 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
-/**
- * The Class LoginIn.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public class LoginIn extends BasicFrameSimplePage implements ItemListener{
-	
-	/** The Constant serialVersionUID. */
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** The rbtn user type. */
 	private MyRadioButton rbtn_userType;
-	
-	/** The rbtn contact. */
 	private MyRadioButton rbtn_contact;
-	
-	/** The rbtn notify. */
 	private MyRadioButton rbtn_notify;
-	
-	/** The rbtn duty. */
 	private MyRadioButton rbtn_duty;
-	
-	/** The username field. */
 	private TextFieldWithLabel usernameField;
-	
-	/** The password field. */
 	private PsdFieldWithLabel passwordField;
-	
-	/** The confirm password field. */
 	private PsdFieldWithLabel confirm_passwordField;
-	
-	/** The firstname field. */
 	private TextFieldWithLabel firstnameField;
-	
-	/** The lastname field. */
 	private TextFieldWithLabel lastnameField;
-	
-	/** The name field. */
 	private TextFieldWithLabel nameField;
-	
-	/** The position. */
 	private TextFieldWithLabel position;
-	
-	/** The contact field. */
 	private TextFieldWithLabel contactField;
 	
-	/** The Ok button. */
 	private JButton OkButton;
-	
-	/** The Cancel button. */
 	private JButton CancelButton;
 	
-	/** The sub panel name. */
 	private JPanel subPanel_name;
-	
-	/** The sub panel option. */
 	private JPanel subPanel_option;
-	
-	/** The login in panel. */
 	private JPanel loginInPanel;
 	
-	/** The user. */
 	private User user;
-	
-	/** The notified. */
 	private boolean notified = false;
-	
-	/** The duty. */
 	private boolean duty = false;
 
-	/**
-	 * Instantiates a new login in.
-	 */
 	public LoginIn() {
 		super("login in");
 
@@ -116,9 +73,6 @@ public class LoginIn extends BasicFrameSimplePage implements ItemListener{
 		placeComponents();
 	}
 	
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#placeComponents()
-	 */
 	@Override
 	public void placeComponents() {
 
@@ -185,9 +139,6 @@ public class LoginIn extends BasicFrameSimplePage implements ItemListener{
 		rbtn_contact.getButton("Email").doClick();
 	}
 
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrameSimplePage#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -209,9 +160,6 @@ public class LoginIn extends BasicFrameSimplePage implements ItemListener{
 		}
 	}
 	
-	/**
-	 * Login in.
-	 */
 	public void loginIn(){
 		
 		if(rbtn_userType.getGroup().getSelection()==rbtn_userType.getButton("Customer")) {
@@ -249,9 +197,6 @@ public class LoginIn extends BasicFrameSimplePage implements ItemListener{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
-	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getSource()==rbtn_userType.getButton("Customer")){

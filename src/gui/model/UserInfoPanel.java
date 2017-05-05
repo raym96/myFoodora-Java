@@ -1,5 +1,6 @@
 package gui.model;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import javax.swing.text.GapContent;
 import exceptions.NameNotFoundException;
 import gui.Login;
 import system.AddressPoint;
+import system.Message;
 import user.model.Courier;
 import user.model.Customer;
 import user.model.Manager;
@@ -22,60 +24,26 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
-/**
- * The Class UserInfoPanel.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public class UserInfoPanel extends JPanel{
 	
-	/** The user. */
 	private User user;
 	
-	/** The gap usual. */
 	private final int gap_usual = 50;
-	
-	/** The gap. */
 	private final int gap = 15;
-	
-	/** The gap btn. */
 	private final int gap_btn = 40;
 	
-	/** The header. */
-	private JLabel header;
-	
-	/** The id field. */
+	private JPanel header;
 	private JLabel idField;
-	
-	/** The username field. */
 	private JLabel usernameField;
-	
-	/** The name field. */
 	private TextFieldWithLabel nameField;
-	
-	/** The position field. */
 	private TextFieldWithLabel positionField;
-	
-	/** The email field. */
 	private TextFieldWithLabel emailField;
-	
-	/** The phone field. */
 	private TextFieldWithLabel phoneField;
-	
-	/** The active field. */
 	private JLabel activeField;
-	
-	/** The option field. */
 	private MyRadioButton optionField;
 	
-	/** The super container. */
 	private Container superContainer;
 
-	/**
-	 * Instantiates a new user info panel.
-	 *
-	 * @param username the username
-	 */
 	public UserInfoPanel(String username) {
 		super();
 
@@ -89,20 +57,11 @@ public class UserInfoPanel extends JPanel{
 		placeComponents();
 	}
 
-	/**
-	 * Instantiates a new user info panel.
-	 *
-	 * @param username the username
-	 * @param c the c
-	 */
 	public UserInfoPanel(String username, Container c) {
 		this(username);
 		c.add(this);
 	}
 	
-	/**
-	 * Place components.
-	 */
 	public void placeComponents(){
 		String name = null;
 		String position = "";
@@ -125,8 +84,7 @@ public class UserInfoPanel extends JPanel{
 		this.add(Box.createVerticalStrut(gap_usual));
 		
 		// header
-		header = new JLabel("User infromation: " + user.getUsername());
-		header.setFont(new Font("Arial", Font.ITALIC, 25));
+		header = new MyLabel("User infromation: " + user.getUsername(), new Font("Arial", Font.ITALIC, 25), Color.BLACK).generateMyLabelPanel(50);
 		this.add(header);
 		this.add(Box.createVerticalStrut(gap_usual));
 		
@@ -172,9 +130,19 @@ public class UserInfoPanel extends JPanel{
 		// option
 		if(user instanceof Customer){
 			optionField = new MyRadioButton("agree to be notified", this, new String[] {"yes", "no"});
+			if(((Customer)user).isNotified()){
+				optionField.getButton("yes").setSelected(true);
+			}else{
+				optionField.getButton("no").setSelected(true);
+			}
 			this.add(Box.createVerticalStrut(gap));
 		}else if(user instanceof Courier){
 			optionField = new MyRadioButton("duty status", this, new String[] {"on", "off"});
+			if(((Courier)user).isOn_duty()){
+				optionField.getButton("on").setSelected(true);
+			}else{
+				optionField.getButton("off").setSelected(true);
+			}
 			this.add(Box.createVerticalStrut(gap));
 		}
 		
@@ -202,6 +170,8 @@ public class UserInfoPanel extends JPanel{
 				}
 				MyFoodora.getInstance().removeUser(user);
 				MyFoodora.getInstance().addUser(new_user);
+				user.getMessageBoard().addMessage(new Message(user.getUsername(), "You have modified personal information."));
+				
 			}
 		});
 		subPanel_btn.add(Box.createHorizontalStrut(gap_btn));

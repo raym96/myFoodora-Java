@@ -1,7 +1,9 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,59 +36,47 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.MyFoodoraService;
 
-/**
- * The Class Login.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public class Login extends BasicFrameSimplePage {
 	
-	/** The Constant serialVersionUID. */
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** The login up button. */
 	private BasicButton loginUpButton;
-	
-	/** The login in button. */
 	private BasicButton loginInButton;
-	
-	/** The username field. */
 	private TextFieldWithLabel usernameField;
-	
-	/** The password field. */
 	private PsdFieldWithLabel passwordField;
 	
-	/** The user. */
 	private User user;
 
-	/**
-	 * Instantiates a new login.
-	 */
 	public Login() {
-		super("login");
+		super("Login - MyFoodora");
 
 		placeComponents();
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#placeComponents()
-	 */
 	@Override
 	public void placeComponents() {
 		
-		headerLabel.setText("Welcome to MyFoodora!");
-		statusLabel.setText("login in or login up");
+		headerLabel.setText(null);
 		
-//		controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
+		statusLabel.setText(null);
+		
 		JPanel loginPanel = new JPanel();
 		controlPanel.add(loginPanel);
-//		loginPanel.setBounds(controlPanel.getWidth()/4, controlPanel.getHeight()/4, controlPanel.getWidth()*3/4, controlPanel.getHeight()/2);
 		loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
 		
 		final int gap = 50;
 		
-		loginPanel.add(Box.createVerticalStrut(3*gap));
+		loginPanel.add(Box.createVerticalStrut(2*gap));
+		
+		JLabel head = new JLabel("Welcome to MyFoodora");
+		head.setFont(new Font("Arial", Font.ITALIC, 20));
+		head.setForeground(Color.BLUE);
+		loginPanel.add(head);
+		loginPanel.add(Box.createVerticalStrut(2*gap));
 		
 		// username
 		usernameField = new TextFieldWithLabel("username: ", "user not exists !", loginPanel);
@@ -95,11 +85,11 @@ public class Login extends BasicFrameSimplePage {
 		
 		// password
 		passwordField = new PsdFieldWithLabel("password: ", "password wrong !", loginPanel);
-		
 		loginPanel.add(Box.createVerticalStrut(gap));
 		
 		JPanel btnPanel = new JPanel();
 		btnPanel.setLayout(new BoxLayout(btnPanel, BoxLayout.X_AXIS));
+		btnPanel.add(Box.createHorizontalStrut(100));
 		// button for login up
 		loginUpButton = new BasicButton("login up");
 		loginUpButton.addActionListener(this);
@@ -115,25 +105,38 @@ public class Login extends BasicFrameSimplePage {
 		
 		loginPanel.add(Box.createVerticalStrut(100));
 		
-		JLabel indicate = new JLabel("accounts for test : ");
+		Font font = new Font("Arial", Font.ITALIC, 12);
+		Color color = Color.gray;
+		JLabel indicate = new JLabel("Tips: accounts for test : ");
+		indicate.setFont(font);
+		indicate.setForeground(color);
 		loginPanel.add(indicate);
 		loginPanel.add(Box.createVerticalStrut(10));
+		
 		JLabel manager = new JLabel("Manager: username = ceo, password = 123456789");
+		manager.setFont(font);
+		manager.setForeground(color);
 		loginPanel.add(manager);
 		loginPanel.add(Box.createVerticalStrut(10));
+		
 		JLabel courier = new JLabel("Courier: username = bobama, password = password");
+		courier.setFont(font);
+		courier.setForeground(color);
 		loginPanel.add(courier);
 		loginPanel.add(Box.createVerticalStrut(10));
+		
 		JLabel customer = new JLabel("Customer: username = emacron, password = password");
+		customer.setFont(font);
+		customer.setForeground(color);
 		loginPanel.add(customer);
 		loginPanel.add(Box.createVerticalStrut(10));
+		
 		JLabel restaurant = new JLabel("Restaurant: username = french, password = password");
+		restaurant.setFont(font);
+		restaurant.setForeground(color);
 		loginPanel.add(restaurant);
 	}
 
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrameSimplePage#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
@@ -148,9 +151,6 @@ public class Login extends BasicFrameSimplePage {
 		}
 	}
 
-	/**
-	 * Deal login up.
-	 */
 	public void dealLoginUp(){
 		String username = usernameField.getTextFieldContent();
 		String password = passwordField.getPsdFieldContent();
@@ -160,6 +160,7 @@ public class Login extends BasicFrameSimplePage {
 		
 		try{
 			user = foodoraService.selectUser(username);	
+			usernameField.hideIllegal();
 			foodoraService.login(username,password);
 
 			this.dispose();

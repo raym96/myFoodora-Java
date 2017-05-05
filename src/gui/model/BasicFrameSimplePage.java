@@ -19,20 +19,10 @@ import javax.swing.SwingUtilities;
 
 import sun.java2d.pipe.SpanClipRenderer;
 
-/**
- * The Class BasicFrameSimplePage.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public abstract class BasicFrameSimplePage extends BasicFrame implements ActionListener{
 	
-	/** The header label. */
 	protected JLabel headerLabel;
-	
-	/** The status label. */
 	protected JLabel statusLabel;
-	
-	/** The control panel. */
 	protected JPanel controlPanel;
 	
 //	public static final int Border_layout = 1;
@@ -40,19 +30,11 @@ public abstract class BasicFrameSimplePage extends BasicFrame implements ActionL
 //	public static final int GridBag_layout = 3;
 	
 
-	/**
- * Instantiates a new basic frame simple page.
- *
- * @param title the title
- */
-public BasicFrameSimplePage(String title) {
+	public BasicFrameSimplePage(String title) {
 		super(title);
 		this.setBoxLayout();
 	}
 	
-	/**
-	 * Sets the box layout.
-	 */
 	public void setBoxLayout(){
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -75,20 +57,12 @@ public BasicFrameSimplePage(String title) {
 	}
 	
 
-	/* (non-Javadoc)
-	 * @see gui.model.BasicFrame#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 		
 	}
 	
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
 	public static void main(String[] args) {
 		
 		SwingUtilities.invokeLater(new Runnable() {

@@ -1,15 +1,22 @@
 package gui.model;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Date;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -20,51 +27,27 @@ import com.sun.glass.ui.MenuBar;
 
 import gui.Login;
 
-/**
- * The Class BasicFrame.
- * @author He Xiaoan
- * @author Ji Raymond
- */
 public abstract class BasicFrame extends JFrame implements ActionListener{
 
-	/** The Constant serialVersionUID. */
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** The Constant width. */
 	public static final int width = 1200;
-	
-	/** The Constant height. */
 	public static final int height = 900;
-	
-	/** The Constant x. */
 	public static final int x = 380;
-	
-	/** The Constant y. */
 	public static final int y = 100;
 	
-	/** The menu bar. */
 	protected JMenuBar menuBar;
 	
-	/**
-	 * Instantiates a new basic frame.
-	 *
-	 * @param title the title
-	 */
 	public BasicFrame(String title){
 		super();
 		prepareGUI(title);
 	}
 	
-	/**
-	 * Place components.
-	 */
 	public abstract void placeComponents();
 
-	/**
-	 * Prepare GUI.
-	 *
-	 * @param title the title
-	 */
 	public void prepareGUI(String title){
 		
 		beautyEyeSetting();
@@ -85,9 +68,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 //	    this.setMinimumSize(new Dimension(width, height));
 	}
 	
-	/**
-	 * Beauty eye setting.
-	 */
 	public void beautyEyeSetting(){
 		
 		try{
@@ -100,9 +80,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		}
 	}
 	
-	/**
-	 * Edits the menu bar.
-	 */
 	public void editMenuBar(){
 		JMenu menu_ope = new JMenu("Operations");
 		JMenu menu_other = new JMenu("Other");
@@ -117,9 +94,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		menu_other.add(new JMenuItem("About"));		
 	}
 	
-	/**
-	 * Bind menu item action listeners.
-	 */
 	public final void bindMenuItemActionListeners(){
 		for(int i=0; i<menuBar.getMenuCount(); i++){
 			JMenu menu = menuBar.getMenu(i);
@@ -129,9 +103,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object eventSource = e.getSource();
@@ -148,15 +119,53 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 			}else if(eventSource==menuBar.getMenu(menuBar.getMenuCount()-1).getItem(0)){
 
 			}else if(eventSource==menuBar.getMenu(menuBar.getMenuCount()-1).getItem(1)){
+				ChildFrame helpFrame = new ChildFrame("About", this);
+				Font font = new Font("Arial", Font.ITALIC, 16);
+				
+				JPanel panel_content = new JPanel();
+				helpFrame.controlPanel.add(panel_content);
+				panel_content.setLayout(new BoxLayout(panel_content, BoxLayout.Y_AXIS));
+				panel_content.add(Box.createVerticalStrut(100));
+				
+				JPanel subPanel = new JPanel();
+				panel_content.add(subPanel);
+				panel_content.add(Box.createVerticalStrut(80));
+				subPanel.setLayout(new BoxLayout(subPanel, BoxLayout.X_AXIS));
+				
+				JLabel title = new JLabel("Declaration");
+				title.setFont(new Font("Arial", Font.BOLD, 25));
+				subPanel.add(Box.createHorizontalStrut(300));
+				subPanel.add(title);
+				
+				JLabel author = new JLabel("Author : He Xiaoan, Ji Raymond");
+				author.setFont(font);
+				author.setForeground(Color.GRAY);
+				panel_content.add(author);
+				panel_content.add(Box.createVerticalStrut(30));
+				
+				JLabel date = new JLabel("Date : Fri May 05 17:01:46 CEST 2017");
+				date.setFont(font);
+				date.setForeground(Color.GRAY);
+				panel_content.add(date);
+				panel_content.add(Box.createVerticalStrut(30));
+				
+				JLabel version = new JLabel("version : 1.0");
+				version.setFont(font);
+				version.setForeground(Color.GRAY);
+				panel_content.add(version);
+				panel_content.add(Box.createVerticalStrut(30));
+				
+				JLabel declaration = new JLabel("This booking system MyFoodora is made for the project of IS1220HB");
+				declaration.setFont(font);
+				declaration.setForeground(Color.GRAY);
+				panel_content.add(declaration);
+				
+				System.out.println(new Date());
+						
 			}
 		}
 	}
 
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
 	public static void main(String[] args) {
 		
 		
