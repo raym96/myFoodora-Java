@@ -119,6 +119,38 @@ public class Courier extends User{
 	}
 	
 	/**
+	 * Gets the deliveried order.
+	 *
+	 * @param orderId the order id
+	 * @return the deliveried order
+	 */
+	public Order getDeliveriedOrderById(String orderId){
+		Order order = null;
+		for (Order o : this.getDeliveredOrders()){
+			if (o.getOrderID().equalsIgnoreCase(orderId)){
+				order = o;
+			}
+		}
+		return order;
+	}
+	
+	/**
+	 * Gets the waiting order.
+	 *
+	 * @param orderId the order id
+	 * @return the waiting order
+	 */
+	public Order getWaitingOrderById(String orderId){
+		Order order = null;
+		for (Order o : this.getWaitingOrders()){
+			if (o.getOrderID().equalsIgnoreCase(orderId)){
+				order = o;
+			}
+		}
+		return order;
+	}
+	
+	/**
 	 * Adds the waiting order.
 	 *
 	 * @param order the order
