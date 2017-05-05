@@ -86,6 +86,21 @@ public class History{
 	}
 	
 	/**
+	 * Gets the order.
+	 *
+	 * @param orderId the order id
+	 * @return the order
+	 */
+	public Order getOrderById(String orderId){
+		for (Order order:orders){
+			if (order.getOrderID().equalsIgnoreCase(orderId)){
+				return order;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Gets the orders between 2 dates
 	 *
 	 * @param stringDate1 the string date 1
