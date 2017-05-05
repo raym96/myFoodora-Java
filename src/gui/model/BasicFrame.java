@@ -20,27 +20,51 @@ import com.sun.glass.ui.MenuBar;
 
 import gui.Login;
 
+/**
+ * The Class BasicFrame.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public abstract class BasicFrame extends JFrame implements ActionListener{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The Constant width. */
 	public static final int width = 1200;
+	
+	/** The Constant height. */
 	public static final int height = 900;
+	
+	/** The Constant x. */
 	public static final int x = 380;
+	
+	/** The Constant y. */
 	public static final int y = 100;
 	
+	/** The menu bar. */
 	protected JMenuBar menuBar;
 	
+	/**
+	 * Instantiates a new basic frame.
+	 *
+	 * @param title the title
+	 */
 	public BasicFrame(String title){
 		super();
 		prepareGUI(title);
 	}
 	
+	/**
+	 * Place components.
+	 */
 	public abstract void placeComponents();
 
+	/**
+	 * Prepare GUI.
+	 *
+	 * @param title the title
+	 */
 	public void prepareGUI(String title){
 		
 		beautyEyeSetting();
@@ -61,6 +85,9 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 //	    this.setMinimumSize(new Dimension(width, height));
 	}
 	
+	/**
+	 * Beauty eye setting.
+	 */
 	public void beautyEyeSetting(){
 		
 		try{
@@ -73,6 +100,9 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Edits the menu bar.
+	 */
 	public void editMenuBar(){
 		JMenu menu_ope = new JMenu("Operations");
 		JMenu menu_other = new JMenu("Other");
@@ -87,6 +117,9 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		menu_other.add(new JMenuItem("About"));		
 	}
 	
+	/**
+	 * Bind menu item action listeners.
+	 */
 	public final void bindMenuItemActionListeners(){
 		for(int i=0; i<menuBar.getMenuCount(); i++){
 			JMenu menu = menuBar.getMenu(i);
@@ -96,6 +129,9 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object eventSource = e.getSource();
@@ -116,6 +152,11 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		}
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		

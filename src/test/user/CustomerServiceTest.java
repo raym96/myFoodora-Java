@@ -5,6 +5,7 @@ package test.user;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -12,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clui.InitialScenario;
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import policies.LotteryCard;
 import policies.PointCard;
@@ -64,10 +66,10 @@ public class CustomerServiceTest {
 		myfoodora = MyFoodora.getInstance();
 		myfoodora_service = MyFoodora.getInstance().getService();
 		
-		customer = (Customer)myfoodora_service.selectUser("customer_1");
+		customer = (Customer)myfoodora_service.selectUser("emacron");
 		customer_service = customer.getService();
-		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
-		restaurant2 = (Restaurant)myfoodora_service.selectUser("restaurant_2");
+		restaurant = (Restaurant)myfoodora_service.selectUser("french");
+		restaurant2 = (Restaurant)myfoodora_service.selectUser("chinese");
 	}
 
 
@@ -75,45 +77,45 @@ public class CustomerServiceTest {
 
 	/**
 	 * Test pay.
+	 *
+	 * @throws NameNotFoundException the name not found exception
+	 * @throws NameAlreadyExistsException the name already exists exception
+	 * @throws ParseException the parse exception
 	 */
 	@Test
-	public void testPay() {
+	public void testPay() throws NameNotFoundException, NameAlreadyExistsException, ParseException {
 		System.out.println("------testPay------");
-		Dish dish = restaurant.getMenu().getDishes().get(0);
-		Meal meal = restaurant.getMealMenu().getMeals().get(0);
-		Meal specialmeal = restaurant.getSpecialmealmenu().getMeals().get(0);
-		customer_service.commandAlaCarte(restaurant, dish.getDishName());
-		customer_service.commandRegularMeal(restaurant, meal.getName(), "Half-meal");
-		customer_service.commandSpecialMeal(restaurant, specialmeal.getName());
-		
+		customer_service.createOrder("french", "myorder");
+		customer_service.addItem2Order( "myorder","choucroute");
+	
 		System.out.println(customer.getShoppingCart());
-		customer_service.endOrder();
+		customer_service.endOrder("myorder","01/01/2000");
 	}
 
 	/**
 	 * Test register card.
-	 * @throws NameNotFoundException 
+	 *
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	@Test
 	public void testRegisterCard() throws NameNotFoundException {
 		System.out.println("------testRegisterCard------");
-		customer_service.registerCard("PointCard");
+		customer_service.registerCard("Point");
 		assertTrue(customer.getCard() instanceof PointCard);
-		customer_service.registerCard("LotteryCard");
+		customer_service.registerCard("Lottery");
 		assertTrue(customer.getCard() instanceof LotteryCard);
-		
-		customer_service.registerCard("UnexistantCard");
-		
+				
 	}
 
 	/**
 	 * Test unregister card.
-	 * @throws NameNotFoundException 
+	 *
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	@Test
 	public void testUnregisterCard() throws NameNotFoundException {
 		System.out.println("------testUnregisterCard------");
-		customer_service.registerCard("PointCard");
+		customer_service.registerCard("Point");
 		customer_service.unregisterCard();
 		assertTrue(customer.getCard() instanceof StandardCard);
 	}

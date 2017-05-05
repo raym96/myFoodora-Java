@@ -96,7 +96,7 @@ public class HalfMealTest {
 	 * Test add dish.
 	 */
 	@Test
-	public void testAddDish() {
+	public void testaddDish() {
 		try {
 			hm1.addDish(menu.getDishes().get(0));
 		} catch (DishTypeErrorException e) {

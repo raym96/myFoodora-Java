@@ -57,37 +57,84 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.RestaurantService;
 
+/**
+ * The Class RestaurantGUI.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class RestaurantGUI extends BasicFrameWithTabs{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The restaurant. */
 	private Restaurant restaurant;
+	
+	/** The service. */
 	private RestaurantService service;
+	
+	/** The menu. */
 	private Menu menu;
+	
+	/** The meal menu. */
 	private MealMenu mealMenu;
+	
+	/** The specialmeal menu. */
 	private MealMenu specialmealMenu;
+	
+	/** The dish. */
 	private Dish dish;
+	
+	/** The meal. */
 	private Meal meal;
+	
+	/** The specialmeal. */
 	private Meal specialmeal;
 	
+	/** The panel menu. */
 	private JPanel panel_menu;
+	
+	/** The panel performance. */
 	private JPanel panel_performance;
+	
+	/** The panel setting. */
 	private JPanel panel_setting;
+	
+	/** The panel info. */
 	private JPanel panel_info;
+	
+	/** The panel message board. */
 	private JPanel panel_messageBoard;
+	
+	/** The msg board. */
 	private MsgBoardPanel msgBoard;
 	
+	/** The dish list. */
 	private MyListWithButtons dishList;
+	
+	/** The meal list. */
 	private MyListWithButtons mealList;
+	
+	/** The specialmeal list. */
 	private MyListWithButtons specialmealList;
+	
+	/** The dish catetory. */
 	private MyRadioButton dishCatetory;
+	
+	/** The dish combo. */
 	private MyComboBox dishCombo;
+	
+	/** The meal combo. */
 	private MyComboBox mealCombo;
+	
+	/** The specialmeal combo. */
 	private MyComboBox specialmealCombo;
 	
+	/**
+	 * Instantiates a new restaurant GUI.
+	 *
+	 * @param user the user
+	 */
 	public RestaurantGUI(User user) {
 		super("restaurant");
 
@@ -102,6 +149,9 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		placeComponents();
 	}
 
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#placeComponents()
+	 */
 	@Override
 	public void placeComponents() {
 
@@ -124,6 +174,9 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		layoutTabMsgBoard();
 	}
 
+	/**
+	 * Layout tab menu.
+	 */
 	public void layoutTabMenu(){
 		panel_menu.removeAll();
 		panel_menu.setLayout(new BoxLayout(panel_menu, BoxLayout.Y_AXIS));
@@ -148,10 +201,16 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		
 	}
 	
+	/**
+	 * Layout tab performance.
+	 */
 	public void layoutTabPerformance(){
 		
 	}
 	
+	/**
+	 * Layout tab setting.
+	 */
 	public void layoutTabSetting(){
 		
 		panel_setting.removeAll();
@@ -210,16 +269,29 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		});
 	}
 
+	/**
+	 * Layout tab info.
+	 */
 	public void layoutTabInfo(){
 		panel_info.removeAll();
 		new UserInfoPanel(restaurant.getUsername(), panel_info);
 	}
 	
+	/**
+	 * Layout tab msg board.
+	 */
 	public void layoutTabMsgBoard(){
 		panel_messageBoard.removeAll();
 		msgBoard = new MsgBoardPanel(restaurant, panel_messageBoard);
 	}
 	
+	/**
+	 * Creates the item detail child frame.
+	 *
+	 * @param name the name
+	 * @param itemType the item type
+	 * @return the child frame
+	 */
 	public ChildFrame createItemDetailChildFrame(String name, String itemType){
 		
 		ChildFrame itemDetail = new ChildFrame(name + " information");
@@ -392,6 +464,12 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		return itemDetail;
 	}
 
+	/**
+	 * Creates the add item child frame.
+	 *
+	 * @param itemType the item type
+	 * @return the child frame
+	 */
 	public ChildFrame createAddItemChildFrame(String itemType){
 		ChildFrame addItem = new ChildFrame("add new item");
 		JPanel panel = new JPanel();
@@ -526,6 +604,9 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		return addItem;
 	}
 	
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrameWithTabs#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -635,6 +716,11 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		}
 	}
 	
+	/**
+	 * Refresh menu.
+	 *
+	 * @param sortingType the sorting type
+	 */
 	public void refreshMenu(String sortingType){
 		dishList.refresh(SystemData.getDishnamesFromRestaurant(restaurant, sortingType));
 		mealList.refresh(SystemData.getMealnamesFromRestaurant(restaurant));

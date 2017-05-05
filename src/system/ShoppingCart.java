@@ -142,6 +142,9 @@ public class ShoppingCart {
 		return "\nSHOPPINGCART : \n\n" + str +"TOTAL PRICE = "+getTotalPrice()+" euros";
 	}
 	
+	/**
+	 * Display.
+	 */
 	public void display() {
 		String str = "";
 		for (Order order:orders){

@@ -83,7 +83,7 @@ public class CourierTest {
 		Order1 = new Order(c, r,"myorder"); ;
 		Order1.addItem(fm1);
 		Order1.setCourier(cr);
-		Order2 = new Order(c, r,  "myorder") ;
+		Order2 = new Order(c, r,  "myorder2") ;
 		Order2.addItem(fm2);
 		Order2.setCourier(cr);
 
@@ -102,14 +102,12 @@ public class CourierTest {
 	 *
 	 * @throws NameNotFoundException the order not found exception
 	 */
-	@Test(expected = NameNotFoundException.class)
+	@Test
 	public void testRefuseWaitingOrder() throws NameNotFoundException{
 		
 		testAddWaitingOrder();
 		courier.refuseWaitingOrder(Order1.getName());
 		assertFalse(courier.getWaitingOrders().contains(Order1));
-		
-		courier.refuseWaitingOrder(Order1.getName());
 	}
 
 	/**
@@ -117,15 +115,13 @@ public class CourierTest {
 	 *
 	 * @throws NameNotFoundException the order not found exception
 	 */
-	@Test(expected = NameNotFoundException.class)
+	@Test
 	public void acceptWaitingOrder() throws NameNotFoundException{
 		
 		testAddWaitingOrder();
 		courier.acceptWaitingOrder(Order2.getName());
 		assertFalse(courier.getWaitingOrders().contains(Order2));
 		assertTrue(courier.getDeliveredOrders().contains(Order2));
-		
-		courier.acceptWaitingOrder(Order2.getName());
 	}
 	
 	/**

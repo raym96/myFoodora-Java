@@ -110,7 +110,8 @@ public class HistoryTest {
 
 	/**
 	 * Test get order between.
-	 * @throws ParseException 
+	 *
+	 * @throws ParseException the parse exception
 	 */
 	@Test
 	public void testGetOrderBetween() throws ParseException {

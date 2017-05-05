@@ -26,6 +26,8 @@ import user.service.impl.MyFoodoraServiceImpl;
 
 /**
  * The Class CommandProcessor.
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class CommandProcessor{
 
@@ -42,6 +44,9 @@ public class CommandProcessor{
  	String[] arguments;
 	 
  	
+	/**
+	 * Start.
+	 */
 	public void start(){
  		System.out.println("Welcome to MyFoodora. Please login/register before executing any command."
 				+ " For more information, enter \"help\".");
@@ -351,8 +356,9 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * logout <>
-	 * @throws PermissionException 
+	 * logout <>.
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	private void logout() throws PermissionException {
 		if (user == null) throw new PermissionException("user");
@@ -465,7 +471,8 @@ public class CommandProcessor{
 
 	/**
 	 * unregister <>.
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	private void unregister() throws PermissionException {
 		if (user == null) throw new PermissionException("user");
@@ -482,24 +489,37 @@ public class CommandProcessor{
 	}
 	
 	
+	/**
+	 * Show restaurant menus.
+	 */
 	private void showRestaurantMenus() {
 		MyFoodora.getInstance().getService().showRestaurantMenus();
 	}
 	
 	
 	
+	/**
+	 * Show all messages.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showAllMessages() throws PermissionException {
 		if (user == null) throw new PermissionException("user");
 		user.getMessageBoard().displayAllmsgs();
 	}
 
+	/**
+	 * Show new messages.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showNewMessages() throws PermissionException {
 		if (user == null) throw new PermissionException("user");
 		user.getMessageBoard().displayUnreadMessages();
 	}
 
 	/**
-	 * displayinfo<>
+	 * displayinfo<>.
 	 *
 	 * @throws PermissionException the permission exception
 	 */
@@ -521,7 +541,7 @@ public class CommandProcessor{
 	
 	
 	/**
-	 * registerManager "firstname" "lastname" "username" "password"
+	 * registerManager "firstname" "lastname" "username" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
@@ -581,7 +601,7 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * registerCourier "firstname" "lastname" "username" "address" "password"
+	 * registerCourier "firstname" "lastname" "username" "address" "password".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
@@ -621,7 +641,7 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * setMarkUpPercentage "markup_percentage"
+	 * setMarkUpPercentage "markup_percentage".
 	 *
 	 * @throws PermissionException the permission exception
 	 * @throws SyntaxErrorException the syntax error exception
@@ -637,7 +657,7 @@ public class CommandProcessor{
 	}
 	
 	/**
-	 * setDeliveryCost "delivery_cost"
+	 * setDeliveryCost "delivery_cost".
 	 *
 	 * @throws PermissionException the permission exception
 	 * @throws SyntaxErrorException the syntax error exception
@@ -653,7 +673,7 @@ public class CommandProcessor{
 	}
 	
 	/**
-	 * setServiceFee "setservice_fee"
+	 * setServiceFee "setservice_fee".
 	 *
 	 * @throws PermissionException the permission exception
 	 * @throws SyntaxErrorException the syntax error exception
@@ -812,7 +832,7 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * showAverageIncomePerCustomer <>
+	 * showAverageIncomePerCustomer <>.
 	 *
 	 * @throws PermissionException the permission exception
 	 */
@@ -857,7 +877,8 @@ public class CommandProcessor{
 
 	/**
 	 * showUsers "".
-	 * @throws PermissionException 
+	 *
+	 * @throws PermissionException the permission exception
 	 */
 	private void showUsers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("manager");
@@ -884,7 +905,7 @@ public class CommandProcessor{
 	 * showMenuItem "restaurant-name".
 	 *
 	 * @throws PermissionException the permission exception
-	 * @throws SyntaxErrorException 
+	 * @throws SyntaxErrorException the syntax error exception
 	 */
 	private void showMenuItem() throws PermissionException, SyntaxErrorException {
 		if (arguments.length<1) throw new SyntaxErrorException(1);
@@ -899,16 +920,31 @@ public class CommandProcessor{
 		}
 	}
 
+	/**
+	 * Show active users.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showActiveUsers() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
 		MyFoodora.getInstance().getService().showActiveUsers();
 	}
 
+	/**
+	 * Show policies.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showPolicies() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
 		MyFoodora.getInstance().getService().showPolicies();
 	}
 
+	/**
+	 * Show system values.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showSystemValues() throws PermissionException {
 		if (!(user instanceof Manager)) throw new PermissionException("Manager");
 		MyFoodora.getInstance().getService().showSystemValues();
@@ -1167,12 +1203,22 @@ public class CommandProcessor{
 		restaurant.getService().showMenu();
 	}
 
+	/**
+	 * Show discount factor.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showDiscountFactor() throws PermissionException {
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
 		restaurant.getService().showDiscountFactors();
 	}
 	
+	/**
+	 * Show income.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showIncome() throws PermissionException{
 		if (!(user instanceof Restaurant)) throw new PermissionException("restaurant");
 		Restaurant restaurant = (Restaurant)user;
@@ -1247,7 +1293,7 @@ public class CommandProcessor{
 	}
 
 	/**
-	 * endOrder "orderName" "date" or endOrder "orderName"
+	 * endOrder "orderName" "date" or endOrder "orderName".
 	 *
 	 * @throws SyntaxErrorException the syntax error exception
 	 * @throws PermissionException the permission exception
@@ -1338,6 +1384,11 @@ public class CommandProcessor{
 
 
 	
+	/**
+	 * Show special offers.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showSpecialOffers() throws PermissionException {
 		if (!(user instanceof Customer)) throw new PermissionException("customer");
 		Customer customer = (Customer)user;
@@ -1442,6 +1493,11 @@ public class CommandProcessor{
 		courier.getService().refuseCall(orderName);
 	}
 
+	/**
+	 * Show waiting orders.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showWaitingOrders() throws PermissionException {
 		if (!(user instanceof Courier)) throw new PermissionException("courier");
 		Courier courier = (Courier)user;
@@ -1450,6 +1506,11 @@ public class CommandProcessor{
 
 
 
+	/**
+	 * Show count.
+	 *
+	 * @throws PermissionException the permission exception
+	 */
 	private void showCount() throws PermissionException {
 		// TODO Auto-generated method stub
 		if (!(user instanceof Courier)) throw new PermissionException("courier");

@@ -11,7 +11,6 @@ import org.junit.Test;
 import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import restaurant.HalfMeal;
-import restaurant.HalfMealFactory;
 import restaurant.MealMenu;
 import restaurant.Menu;
 import restaurant.SpecialMealFactory;
@@ -85,7 +84,7 @@ public class SpecialMealFactoryTest {
 	/**
 	 * Test create meal string exception.
 	 */
-	@Test(expected = NameNotFoundException.class)
+	@Test
 	public void testCreateMealStringException() {
 		
 		try {

@@ -18,7 +18,7 @@ public interface MessageBoardObserver{
 	/**
 	 * Update.
 	 *
-	 * @param o the o
+	 * @param message the message
 	 */
 	// method for updating the state of the Observer
 	public void update(Message message);
@@ -26,7 +26,7 @@ public interface MessageBoardObserver{
 	/**
 	 * Observe.
 	 *
-	 * @param obv the obv
+	 * @param messageBoard the message board
 	 */
 	public void observe(MessageBoard messageBoard);
 }

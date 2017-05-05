@@ -56,41 +56,82 @@ import user.service.ManagerService;
 import user.service.UserService;
 import user.view.UserView;
 
+/**
+ * The Class ManagerGUI.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class ManagerGUI extends BasicFrameWithTabs{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The manager. */
 	private Manager manager;
+	
+	/** The service. */
 	private ManagerService service;
+	
+	/** The user. */
 	private User user;;
 	
+	/** The panel user. */
 	private JPanel panel_user;
+	
+	/** The panel performance. */
 	private JPanel panel_performance;
+	
+	/** The panel setting. */
 	private JPanel panel_setting;
+	
+	/** The panel info. */
 	private JPanel panel_info;
+	
+	/** The panel message board. */
 	private JPanel panel_messageBoard;
+	
+	/** The msg board. */
 	private MsgBoardPanel msgBoard;
 	
 	
+	/** The rbtn notify. */
 	private MyRadioButton rbtn_notify;
+	
+	/** The rbtn duty. */
 	private MyRadioButton rbtn_duty;
 	
+	/** The my foodora. */
 	private MyFoodora myFoodora;
+	
+	/** The restaurants. */
 	private ArrayList<User> restaurants;
+	
+	/** The customers. */
 	private ArrayList<User> customers;
+	
+	/** The couriers. */
 	private ArrayList<User> couriers;
 
+	/** The restaurant list. */
 	private MyListWithButtons restaurantList;
+	
+	/** The courier list. */
 	private MyListWithButtons courierList;
+	
+	/** The customer list. */
 	private MyListWithButtons customerList;
 	
+	/** The myfoodora params. */
 	private HashMap<String, String> myfoodora_params;
 	
+	/** The starting date. */
 	private String startingDate = "01/01/2017";
 
+	/**
+	 * Instantiates a new manager GUI.
+	 *
+	 * @param user the user
+	 */
 	public ManagerGUI(User user) {
 		super("manager");
 
@@ -107,6 +148,9 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		placeComponents();
 	}
 
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#placeComponents()
+	 */
 	@Override
 	public void placeComponents() {
 
@@ -129,6 +173,9 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		layoutTabMsgBoard();
 	}
 	
+	/**
+	 * Layout tab user.
+	 */
 	public void layoutTabUser(){
 		panel_user.removeAll();
 		
@@ -153,6 +200,9 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		panel_user.add(Box.createVerticalStrut(gap_usual));
 	}
 
+	/**
+	 * Layout tab performance.
+	 */
 	public void layoutTabPerformance(){
 		
 		panel_performance.removeAll();
@@ -190,6 +240,9 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		subPanel_content.add(Box.createVerticalStrut(gap));
 	}
 	
+	/**
+	 * Layout tab setting.
+	 */
 	public void layoutTabSetting(){
 		
 		panel_setting.removeAll();
@@ -276,16 +329,28 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		});
 	}
 	
+	/**
+	 * Layout tab info.
+	 */
 	public void layoutTabInfo(){
 		panel_info.removeAll();
 		new UserInfoPanel(manager.getUsername(), panel_info);
 	}
 	
+	/**
+	 * Layout tab msg board.
+	 */
 	public void layoutTabMsgBoard(){
 		panel_messageBoard.removeAll();
 		msgBoard = new MsgBoardPanel(manager, panel_messageBoard);
 	}
 	
+	/**
+	 * Creates the user detail child frame.
+	 *
+	 * @param username the username
+	 * @return the child frame
+	 */
 	public ChildFrame createUserDetailChildFrame(String username){
 		user = null;
 		try {
@@ -497,6 +562,12 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		return userDetail;
 	}
 
+	/**
+	 * Creates the add user child frame.
+	 *
+	 * @param userType the user type
+	 * @return the child frame
+	 */
 	public ChildFrame createAddUserChildFrame(String userType){
 		ChildFrame addUser = new ChildFrame("add new user");
 		JPanel panel = new JPanel();
@@ -607,6 +678,9 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		return addUser;
 	}
 	
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrameWithTabs#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -641,6 +715,11 @@ public class ManagerGUI extends BasicFrameWithTabs{
 	}
 	
 	
+	/**
+	 * Refresh user lists.
+	 *
+	 * @param sortingType the sorting type
+	 */
 	public void refreshUserLists(String sortingType){
 		restaurantList.refresh(SystemData.getUsernamesFromUsers(restaurants, sortingType));
 		customerList.refresh(SystemData.getUsernamesFromUsers(customers, sortingType));

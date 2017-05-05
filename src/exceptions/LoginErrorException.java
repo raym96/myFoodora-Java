@@ -2,6 +2,8 @@ package exceptions;
 
 /**
  * The Class LoginErrorException.
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class LoginErrorException extends Exception {
 	

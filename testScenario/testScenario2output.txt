@@ -77,7 +77,7 @@ showHistory
 
 [COMMAND HISTORY]
 
-[Order <emacron> ID1044]
+[Order <emacron> ID1089]
 [10.09€] 
 A-la-carte <Nougat> 2.2
 A-la-carte <Nougat> 2.2
@@ -86,7 +86,7 @@ BY <emacron> Emmanuel Macron
 AT <japanese> JapaneseRestaurant
 ON 16/12/2016 DELIVERED BY <bobama>
 
-[Order <emacron> ID1045]
+[Order <emacron> ID1090]
 [37.99€] 
 Meal <Fm3> 16.14
 Meal <Hm3> 9.5
@@ -95,7 +95,7 @@ BY <emacron> Emmanuel Macron
 AT <korean> KoreanRestaurant
 ON 01/12/2016 DELIVERED BY <bobama>
 
-[Order <emacron> ID1046]
+[Order <emacron> ID1091]
 [17.05€] 
 Meal <Fm1> 14.25
 A-la-carte <Ravioli> 2.8
@@ -103,7 +103,7 @@ BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
 ON 12/11/2016 DELIVERED BY <hclinton>
 
-[Order <emacron> ID1047]
+[Order <emacron> ID1092]
 [24.7€] 
 Meal <Fm4> 12.35
 Meal <Fm3> 12.35
@@ -111,7 +111,7 @@ BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
 ON 26/10/2016 DELIVERED BY <hclinton>
 
-[Order <emacron> ID1048]
+[Order <emacron> ID1093]
 [35.14€] 
 Meal <Fm4> 13.3
 Meal <Hm4> 10.45
@@ -120,7 +120,7 @@ BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
 ON 18/02/2017 DELIVERED BY <dtrump>
 
-[Order <emacron> ID1049]
+[Order <emacron> ID1094]
 [25.9€] 
 Meal <Hm1> 10.45
 Meal <Fm1> 12.35
@@ -129,7 +129,7 @@ BY <emacron> Emmanuel Macron
 AT <korean> KoreanRestaurant
 ON 10/12/2016 DELIVERED BY <bobama>
 
-[Order <emacron> ID1050]
+[Order <emacron> ID1095]
 [46.15€] 
 Meal <Fm4> 12.35
 A-la-carte <Pork_ribs> 9.1
@@ -139,7 +139,7 @@ BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
 ON 03/03/2017 DELIVERED BY <hclinton>
 
-[Order <mlepen> ID1051]
+[Order <mlepen> ID1096]
 [25.8€] 
 A-la-carte <Tiramisu> 5.0
 A-la-carte <Salad> 6.3
@@ -149,7 +149,7 @@ BY <emacron> Emmanuel Macron
 AT <italian> ItalianRestaurant
 ON 07/03/2017 DELIVERED BY <bsanders>
 
-[Order <mlepen> ID1052]
+[Order <mlepen> ID1097]
 [11.5€] 
 A-la-carte <Maki> 4.3
 A-la-carte <Nougat> 2.2
@@ -158,7 +158,7 @@ BY <mlepen> Marine LePen
 AT <japanese> JapaneseRestaurant
 ON 06/03/2017 DELIVERED BY <bobama>
 
-[Order <mlepen> ID1053]
+[Order <mlepen> ID1098]
 [31.34€] 
 Meal <Hm1> 11.39
 Meal <Fm1> 9.5
@@ -167,7 +167,7 @@ BY <mlepen> Marine LePen
 AT <italian> ItalianRestaurant
 ON 11/03/2017 DELIVERED BY <bsanders>
 
-[Order <mlepen> ID1054]
+[Order <mlepen> ID1099]
 [22.0€] 
 A-la-carte <Canard_laque> 10.0
 A-la-carte <Canard_laque> 10.0
@@ -176,7 +176,7 @@ BY <mlepen> Marine LePen
 AT <chinese> ChineseRestaurant
 ON 19/10/2016 DELIVERED BY <hclinton>
 
-[Order <mlepen> ID1055]
+[Order <mlepen> ID1100]
 [39.89€] 
 Meal <Hm2> 10.45
 Meal <Fm4> 13.3
@@ -185,7 +185,7 @@ BY <mlepen> Marine LePen
 AT <italian> ItalianRestaurant
 ON 29/01/2017 DELIVERED BY <bsanders>
 
-[Order <mlepen> ID1056]
+[Order <mlepen> ID1101]
 [34.7€] 
 A-la-carte <Canard_laque> 10.0
 Meal <Fm3> 12.35
@@ -194,7 +194,7 @@ BY <mlepen> Marine LePen
 AT <chinese> ChineseRestaurant
 ON 25/04/2017 DELIVERED BY <hclinton>
 
-[Order <mlepen> ID1057]
+[Order <mlepen> ID1102]
 [21.84€] 
 Meal <Hm2> 8.54
 Meal <Fm4> 13.3
@@ -202,7 +202,7 @@ BY <mlepen> Marine LePen
 AT <french> FrenchRestaurant
 ON 02/03/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1058]
+[Order <ffillon> ID1103]
 [19.25€] 
 Meal <Fm1> 12.35
 A-la-carte <Bibimbap> 6.9
@@ -210,7 +210,7 @@ BY <mlepen> Marine LePen
 AT <korean> KoreanRestaurant
 ON 28/11/2016 DELIVERED BY <bobama>
 
-[Order <ffillon> ID1059]
+[Order <ffillon> ID1104]
 [23.74€] 
 Meal <Fm2> 11.39
 Meal <Fm1> 12.35
@@ -218,7 +218,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 26/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1060]
+[Order <ffillon> ID1105]
 [20.8€] 
 A-la-carte <Tiramisu> 5.0
 Meal <Fm1> 9.5
@@ -227,7 +227,7 @@ BY <ffillon> Francois Fillon
 AT <italian> ItalianRestaurant
 ON 13/12/2016 DELIVERED BY <bsanders>
 
-[Order <ffillon> ID1061]
+[Order <ffillon> ID1106]
 [14.73€] 
 A-la-carte <Lychee> 3.1
 A-la-carte <Lychee> 3.1
@@ -236,7 +236,7 @@ BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
 ON 22/02/2017 DELIVERED BY <bobama>
 
-[Order <ffillon> ID1062]
+[Order <ffillon> ID1107]
 [13.0€] 
 A-la-carte <Choucroute> 7.0
 A-la-carte <Chocolate> 3.5
@@ -245,7 +245,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 02/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1063]
+[Order <ffillon> ID1108]
 [29.84€] 
 Meal <Hm3> 11.39
 A-la-carte <Foie-gras> 5.5
@@ -255,7 +255,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 12/01/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1064]
+[Order <jlmelenchon> ID1109]
 [28.84€] 
 A-la-carte <Macha> 5.8
 A-la-carte <Bibimbap> 6.9
@@ -264,7 +264,7 @@ BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
 ON 05/02/2017 DELIVERED BY <bobama>
 
-[Order <jlmelenchon> ID1065]
+[Order <jlmelenchon> ID1110]
 [31.99€] 
 Meal <Hm1> 9.5
 Meal <Hm2> 8.54
@@ -274,7 +274,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 16/03/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1066]
+[Order <jlmelenchon> ID1111]
 [31.65€] 
 A-la-carte <Chocolate> 3.5
 Meal <Fm1> 12.35
@@ -284,7 +284,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 06/03/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1067]
+[Order <jlmelenchon> ID1112]
 [27.35€] 
 A-la-carte <Sushi> 5.0
 A-la-carte <Japanese_salad> 2.4
@@ -294,7 +294,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <japanese> JapaneseRestaurant
 ON 04/01/2017 DELIVERED BY <bobama>
 
-[Order <jlmelenchon> ID1068]
+[Order <jlmelenchon> ID1113]
 [16.45€] 
 A-la-carte <Nougat> 3.0
 Meal <Hm3> 10.45
@@ -303,7 +303,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <chinese> ChineseRestaurant
 ON 07/04/2017 DELIVERED BY <hclinton>
 
-[Order <jlmelenchon> ID1069]
+[Order <jlmelenchon> ID1114]
 [34.2€] 
 Meal <Fm1> 12.35
 Meal <Hm1> 9.5
@@ -312,7 +312,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 08/01/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1070]
+[Order <jlmelenchon> ID1115]
 [34.39€] 
 A-la-carte <Macha> 5.8
 Meal <Fm2> 10.45
@@ -322,7 +322,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <korean> KoreanRestaurant
 ON 24/02/2017 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1071]
+[Order <bhamon> ID1116]
 [16.14€] 
 Meal <Fm3> 8.54
 Meal <Fm4> 7.6
@@ -330,7 +330,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <japanese> JapaneseRestaurant
 ON 15/10/2016 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1072]
+[Order <bhamon> ID1117]
 [6.5€] 
 A-la-carte <Japanese_soup> 3.5
 A-la-carte <Lychee> 3.0
@@ -338,7 +338,7 @@ BY <bhamon> Benoit Hamon
 AT <japanese> JapaneseRestaurant
 ON 24/02/2017 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1073]
+[Order <bhamon> ID1118]
 [26.88€] 
 A-la-carte <Nougat> 2.2
 Meal <Hm4> 5.69
@@ -348,7 +348,7 @@ BY <bhamon> Benoit Hamon
 AT <japanese> JapaneseRestaurant
 ON 24/11/2016 DELIVERED BY <bobama>
 
-[Order <bhamon> ID1074]
+[Order <bhamon> ID1119]
 [35.15€] 
 Meal <Fm1> 12.35
 Meal <Fm1> 12.35
@@ -357,7 +357,7 @@ BY <bhamon> Benoit Hamon
 AT <french> FrenchRestaurant
 ON 23/12/2016 DELIVERED BY <dtrump>
 
-[Order <bhamon> ID1075]
+[Order <bhamon> ID1120]
 [20.89€] 
 Meal <Hm2> 8.54
 Meal <Fm1> 12.35
@@ -365,7 +365,7 @@ BY <bhamon> Benoit Hamon
 AT <korean> KoreanRestaurant
 ON 27/12/2016 DELIVERED BY <bobama>
 
-[Order <ndupont> ID1076]
+[Order <ndupont> ID1121]
 [24.94€] 
 Meal <Hm4> 6.65
 A-la-carte <Pizza> 6.3
@@ -375,7 +375,7 @@ BY <bhamon> Benoit Hamon
 AT <italian> ItalianRestaurant
 ON 23/02/2017 DELIVERED BY <bsanders>
 
-[Order <ndupont> ID1077]
+[Order <ndupont> ID1122]
 [18.3€] 
 Meal <Hm2> 6.65
 Meal <Hm2> 6.65
@@ -384,7 +384,7 @@ BY <ndupont> Nicolas Dupont
 AT <japanese> JapaneseRestaurant
 ON 11/02/2017 DELIVERED BY <bobama>
 
-[Order <ndupont> ID1078]
+[Order <ndupont> ID1123]
 [19.95€] 
 Meal <Hm1> 9.5
 Meal <Hm4> 10.45
@@ -392,7 +392,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 11/03/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1079]
+[Order <ndupont> ID1124]
 [21.85€] 
 Meal <Hm1> 9.5
 Meal <Fm1> 12.35
@@ -400,7 +400,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 18/01/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1080]
+[Order <ndupont> ID1125]
 [13.0€] 
 A-la-carte <Chocolate> 3.5
 Meal <Hm1> 9.5
@@ -408,7 +408,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 14/12/2016 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1081]
+[Order <ndupont> ID1126]
 [13.29€] 
 Meal <Hm4> 5.69
 Meal <Fm4> 7.6
@@ -416,7 +416,7 @@ BY <ndupont> Nicolas Dupont
 AT <japanese> JapaneseRestaurant
 ON 19/02/2017 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1082]
+[Order <ppoutou> ID1127]
 [19.84€] 
 Meal <Hm2> 8.54
 A-la-carte <Noodles> 4.4
@@ -425,7 +425,7 @@ BY <ndupont> Nicolas Dupont
 AT <korean> KoreanRestaurant
 ON 29/10/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1083]
+[Order <ppoutou> ID1128]
 [30.88€] 
 Meal <Fm2> 9.5
 Meal <Fm1> 10.45
@@ -435,7 +435,7 @@ BY <ppoutou> Philippe Poutou
 AT <japanese> JapaneseRestaurant
 ON 11/11/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1084]
+[Order <ppoutou> ID1129]
 [34.43€] 
 Meal <Hm1> 11.39
 A-la-carte <Tiramisu> 5.0
@@ -445,7 +445,7 @@ BY <ppoutou> Philippe Poutou
 AT <italian> ItalianRestaurant
 ON 29/01/2017 DELIVERED BY <bsanders>
 
-[Order <ppoutou> ID1085]
+[Order <ppoutou> ID1130]
 [6.4€] 
 A-la-carte <Soja> 2.0
 A-la-carte <Noodles> 4.4
@@ -453,7 +453,7 @@ BY <ppoutou> Philippe Poutou
 AT <korean> KoreanRestaurant
 ON 29/11/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1086]
+[Order <ppoutou> ID1131]
 [37.03€] 
 Meal <Hm4> 12.35
 Meal <Fm3> 16.14
@@ -462,7 +462,7 @@ BY <ppoutou> Philippe Poutou
 AT <korean> KoreanRestaurant
 ON 31/10/2016 DELIVERED BY <bobama>
 
-[Order <ppoutou> ID1087]
+[Order <ppoutou> ID1132]
 [36.34€] 
 Meal <Fm3> 10.45
 Meal <Hm2> 10.45
@@ -746,49 +746,49 @@ showshoppingcart
 
 SHOPPINGCART : 
 
-[Order <myorder> ID1132]
+[Order <myorder> ID1177]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 04/05/2017
+ON 05/05/2017
 
-[Order <myorder2> ID1133]
+[Order <myorder2> ID1178]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 04/05/2017
+ON 05/05/2017
 
 TOTAL PRICE = 25.49 euros
 
 
 
 endorder myorder
-[Order <myorder> ID1132]
+[Order <myorder> ID1177]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 04/05/2017
+ON 05/05/2017
 you earned 1.1 points on your point card for this order.
 Trump Donald <dtrump> has been assigned to the delivery task.
-Order <myorder> finalised on 04/05/2017 and you paid for it.
+Order <myorder> finalised on 05/05/2017 and you paid for it.
 
 endorder myorder2
-[Order <myorder2> ID1133]
+[Order <myorder2> ID1178]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 04/05/2017
+ON 05/05/2017
 you earned 1.44 points on your point card for this order.
 Clinton Hillary <hclinton> has been assigned to the delivery task.
-Order <myorder2> finalised on 04/05/2017 and you paid for it.
+Order <myorder2> finalised on 05/05/2017 and you paid for it.
 
 showpoints
 Balance of points = 2.54
@@ -799,33 +799,33 @@ Goodbye <emacron>. We hope to see you again on MyFoodora.
 
 
 login dtrump password
+Welcome on MyFoodora, user <dtrump>. 
 You have new waiting delivery tasks.
-[Order <myorder> ID1132]
+[Order <myorder> ID1177]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 04/05/2017
-Welcome on MyFoodora, user <dtrump>. 
+ON 05/05/2017
 Please enter a command. Enter "help" to get the list of available commands.
 
 showWaiting
 You have new waiting delivery tasks.
-[Order <myorder> ID1132]
+[Order <myorder> ID1177]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 04/05/2017
+ON 05/05/2017
 
 acceptcall myorder
 courier Trump Donald <Trump> accepts to take the order.
 
 showhistory
 List of delivered orders by Trump:
-[Order <emacron> ID1092]
+[Order <emacron> ID1137]
 [35.14€] 
 Meal <Fm4> 13.3
 Meal <Hm4> 10.45
@@ -834,7 +834,7 @@ BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
 ON 18/02/2017 DELIVERED BY <dtrump>
 
-[Order <mlepen> ID1101]
+[Order <mlepen> ID1146]
 [21.84€] 
 Meal <Hm2> 8.54
 Meal <Fm4> 13.3
@@ -842,7 +842,7 @@ BY <mlepen> Marine LePen
 AT <french> FrenchRestaurant
 ON 02/03/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1103]
+[Order <ffillon> ID1148]
 [23.74€] 
 Meal <Fm2> 11.39
 Meal <Fm1> 12.35
@@ -850,7 +850,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 26/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1106]
+[Order <ffillon> ID1151]
 [13.0€] 
 A-la-carte <Choucroute> 7.0
 A-la-carte <Chocolate> 3.5
@@ -859,7 +859,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 02/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1107]
+[Order <ffillon> ID1152]
 [29.84€] 
 Meal <Hm3> 11.39
 A-la-carte <Foie-gras> 5.5
@@ -869,7 +869,7 @@ BY <ffillon> Francois Fillon
 AT <french> FrenchRestaurant
 ON 12/01/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1109]
+[Order <jlmelenchon> ID1154]
 [31.99€] 
 Meal <Hm1> 9.5
 Meal <Hm2> 8.54
@@ -879,7 +879,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 16/03/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1110]
+[Order <jlmelenchon> ID1155]
 [31.65€] 
 A-la-carte <Chocolate> 3.5
 Meal <Fm1> 12.35
@@ -889,7 +889,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 06/03/2017 DELIVERED BY <dtrump>
 
-[Order <jlmelenchon> ID1113]
+[Order <jlmelenchon> ID1158]
 [34.2€] 
 Meal <Fm1> 12.35
 Meal <Hm1> 9.5
@@ -898,7 +898,7 @@ BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
 ON 08/01/2017 DELIVERED BY <dtrump>
 
-[Order <bhamon> ID1118]
+[Order <bhamon> ID1163]
 [35.15€] 
 Meal <Fm1> 12.35
 Meal <Fm1> 12.35
@@ -907,7 +907,7 @@ BY <bhamon> Benoit Hamon
 AT <french> FrenchRestaurant
 ON 23/12/2016 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1122]
+[Order <ndupont> ID1167]
 [19.95€] 
 Meal <Hm1> 9.5
 Meal <Hm4> 10.45
@@ -915,7 +915,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 11/03/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1123]
+[Order <ndupont> ID1168]
 [21.85€] 
 Meal <Hm1> 9.5
 Meal <Fm1> 12.35
@@ -923,7 +923,7 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 18/01/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1124]
+[Order <ndupont> ID1169]
 [13.0€] 
 A-la-carte <Chocolate> 3.5
 Meal <Hm1> 9.5
@@ -931,13 +931,13 @@ BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
 ON 14/12/2016 DELIVERED BY <dtrump>
 
-[Order <myorder> ID1132]
+[Order <myorder> ID1177]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 04/05/2017 DELIVERED BY <dtrump>
+ON 05/05/2017 DELIVERED BY <dtrump>
 
 
 showCount
@@ -958,26 +958,26 @@ Goodbye <dtrump>. We hope to see you again on MyFoodora.
 
 
 login hclinton password
+Welcome on MyFoodora, user <hclinton>. 
 You have new waiting delivery tasks.
-[Order <myorder2> ID1133]
+[Order <myorder2> ID1178]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 04/05/2017
-Welcome on MyFoodora, user <hclinton>. 
+ON 05/05/2017
 Please enter a command. Enter "help" to get the list of available commands.
 
 showWaiting
 You have new waiting delivery tasks.
-[Order <myorder2> ID1133]
+[Order <myorder2> ID1178]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 04/05/2017
+ON 05/05/2017
 
 refusecall myorder2
 courier <Clinton> refuses to take the order. A new courier is being assigned.
@@ -989,15 +989,15 @@ Goodbye <hclinton>. We hope to see you again on MyFoodora.
 
 
 login bobama password
+Welcome on MyFoodora, user <bobama>. 
 You have new waiting delivery tasks.
-[Order <myorder2> ID1133]
+[Order <myorder2> ID1178]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 04/05/2017
-Welcome on MyFoodora, user <bobama>. 
+ON 05/05/2017
 Please enter a command. Enter "help" to get the list of available commands.
 
 acceptCall myorder2
@@ -1134,7 +1134,7 @@ You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 showNewMessages
-04/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
+05/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
 
 
 
@@ -1154,14 +1154,14 @@ addItem2Order hotpot specialorder
 Item <hotpot> added to the order <specialorder>.
 
 endorder specialorder
-[Order <specialorder> ID1178]
+[Order <specialorder> ID1223]
 [7.2€] 
 Meal <Hotpot> 7.2
 BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
-ON 04/05/2017
+ON 05/05/2017
 Obama Barack <bobama> has been assigned to the delivery task.
-Order <specialorder> finalised on 04/05/2017 and you paid for it.
+Order <specialorder> finalised on 05/05/2017 and you paid for it.
 
 logout
 Goodbye <ffillon>. We hope to see you again on MyFoodora.
@@ -1258,26 +1258,4 @@ Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
 [Special Offers]
 
 ----------------------------------------------------------------------------------------------------------------
-
-help
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-					HELP
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Please find below the list of available commands:
-
-login <username> <password> : login with your username & password.
-
-register <> : register on the MyFoodora system. Follow the steps.
-
-runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
-
-help <>: display the list of available CLUI commands with an indication of their syntax.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-login hclinton password
-You have no waiting delivery tasks.
-Welcome on MyFoodora, user <hclinton>. 
-Please enter a command. Enter "help" to get the list of available commands.
 

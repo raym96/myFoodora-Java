@@ -28,7 +28,7 @@ public interface RestaurantService extends UserService{
 	 * @param dishCategory the dish category
 	 * @param foodCategory the food category
 	 * @param unitPrice the unit price
-	 * @throws NameAlreadyExistsException 
+	 * @throws NameAlreadyExistsException the name already exists exception
 	 */
 	public void addDish(String dishName, String dishCategory, String foodCategory, double unitPrice) throws NameAlreadyExistsException;
 
@@ -72,7 +72,7 @@ public interface RestaurantService extends UserService{
 	 * Removes a dish from the restaurant menu	 *.
 	 *
 	 * @param dishName the dish name
-	 * @throws NameNotFoundException 
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	public void removeDish(String dishName) throws NameNotFoundException;
 	
@@ -126,7 +126,7 @@ public interface RestaurantService extends UserService{
 	 * Removes a meal-of-the-week and places it in the regular meal-menu.
 	 *
 	 * @param mealName the meal name
-	 * @throws NameNotFoundException 
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	public void removeSpecialOffer(String mealName) throws NameNotFoundException;
 
@@ -174,23 +174,47 @@ public interface RestaurantService extends UserService{
 	 */
 	public void addToHistory(Order order);
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showInfo()
+	 */
 	public void showInfo();
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showHistory()
+	 */
 	public void showHistory();
 	
 
+	/**
+	 * Show dishes.
+	 */
 	public void showDishes() ;
 
 
+	/**
+	 * Show meals.
+	 */
 	public void showMeals() ;
 
+	/**
+	 * Show discount factors.
+	 */
 	public void showDiscountFactors();
 	
+	/**
+	 * Show special offers.
+	 */
 	public void showSpecialOffers();
 	
+	/**
+	 * Show total income.
+	 */
 	public void showTotalIncome();
 	
 
+	/**
+	 * Show menu.
+	 */
 	public void showMenu();
 
 	

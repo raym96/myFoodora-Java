@@ -22,6 +22,7 @@ public class MessageBoard{
 	/** The owner. */
 	private User owner = null;
 	
+	/** The has unread messages. */
 	private Boolean hasUnreadMessages;
 
 	/**
@@ -84,6 +85,9 @@ public class MessageBoard{
 		hasUnreadMessages = false;
 	}
 	
+	/**
+	 * Display unread messages.
+	 */
 	public void displayUnreadMessages(){
 		if (hasUnreadMessages == false){
 			System.out.println("There are no unread messages.");
@@ -99,6 +103,11 @@ public class MessageBoard{
 	}
 	
 
+	/**
+	 * Gets the checks if has unread messages.
+	 *
+	 * @return the checks if has unread messages
+	 */
 	public boolean getHasUnreadMessages() {
 		// TODO Auto-generated method stub
 		return hasUnreadMessages;

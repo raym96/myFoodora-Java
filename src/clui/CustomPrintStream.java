@@ -3,8 +3,10 @@ package clui;
 import java.io.*;
 
 /**
- * The Class PersonalStream, allows to preserve the console output, 
+ * The Class CustomPrintStream, allows to preserve the console output, 
  * and write to a file while also having it displayed on the console.
+ * @author He Xiaoan
+ * @author Ji Raymond
  * 
  */
 public class CustomPrintStream extends PrintStream {

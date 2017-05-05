@@ -21,22 +21,50 @@ import javax.swing.ListSelectionModel;
 
 import restaurant.Dish;
 
+/**
+ * The Class MyListWithButtons.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class MyListWithButtons extends JPanel{
 
+	/** The sub panel list. */
 	private JPanel subPanel_list;
+	
+	/** The sub panel btns. */
 	private JPanel subPanel_btns;
+	
+	/** The list. */
 	private JList<String> list;
+	
+	/** The List scroll pane. */
 	private JScrollPane ListScrollPane;
+	
+	/** The datamodel. */
 	private DefaultListModel<String> datamodel;
 	
+	/** The btns. */
 	private ArrayList<BasicButton> btns;
+	
+	/** The gap btns. */
 	private int gap_btns = 5;
 	
+	/** The single selection. */
 	public final int SINGLE_SELECTION = ListSelectionModel.SINGLE_SELECTION;
+	
+	/** The multiplel selection. */
 	public final int MULTIPLEL_SELECTION = ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 	
+	/** The Constant item_suffix. */
 	public static final String item_suffix = "                   ";
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param btnsStr the btns str
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, String[] btnsStr) {
 		super();
 		
@@ -79,10 +107,21 @@ public class MyListWithButtons extends JPanel{
 		}
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data) {
 		this(labeltext, data, new String[] {});
 	}
 	
+	/**
+	 * Refresh.
+	 *
+	 * @param data the data
+	 */
 	public void refresh(ArrayList<String> data){
 		datamodel = new DefaultListModel<String>();
 		for(String str : data){
@@ -92,15 +131,35 @@ public class MyListWithButtons extends JPanel{
 		this.validate();
 	}
 
+	/**
+	 * Gets the list.
+	 *
+	 * @return the list
+	 */
 	public JList<String> getList() {
 		return list;
 	}
 
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param x the x
+	 * @param y the y
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, int x, int y){
 		this(labeltext, data);
 		this.setLocation(x, y);
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param selection_style the selection style
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, int selection_style){
 		this(labeltext, data);
 		if(selection_style==this.SINGLE_SELECTION){
@@ -111,36 +170,93 @@ public class MyListWithButtons extends JPanel{
 		}
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param c the c
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, Container c){
 		this(labeltext, data);
 		c.add(this);
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param c the c
+	 * @param btnsStr the btns str
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, Container c, String[] btnsStr){
 		this(labeltext, data, btnsStr);
 		c.add(this);
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param selection_style the selection style
+	 * @param c the c
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, int selection_style, Container c){
 		this(labeltext, data, selection_style);
 		c.add(this);
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param selection_style the selection style
+	 * @param x the x
+	 * @param y the y
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, int selection_style, int x, int y){
 		this(labeltext, data, selection_style);
 		this.setLocation(x, y);
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param c the c
+	 * @param x the x
+	 * @param y the y
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, Container c, int x, int y){
 		this(labeltext, data, c);
 		this.setLocation(x, y);
 	}
 	
+	/**
+	 * Instantiates a new my list with buttons.
+	 *
+	 * @param labeltext the labeltext
+	 * @param data the data
+	 * @param selection_style the selection style
+	 * @param c the c
+	 * @param x the x
+	 * @param y the y
+	 */
 	public MyListWithButtons(String labeltext, ArrayList<String> data, int selection_style, Container c, int x, int y){
 		this(labeltext, data, selection_style, c);
 		this.setLocation(x, y);
 	}
 
+	/**
+	 * Gets the button.
+	 *
+	 * @param btnStr the btn str
+	 * @return the button
+	 */
 	public BasicButton getButton(String btnStr){
 		for(BasicButton btn : btns){
 			if(btnStr.equalsIgnoreCase(btn.getText())){
@@ -150,20 +266,40 @@ public class MyListWithButtons extends JPanel{
 		return null;
 	}
 	
+	/**
+	 * Bind action listener.
+	 *
+	 * @param listenr the listenr
+	 */
 	public void bindActionListener(ActionListener listenr){
 		for(BasicButton b : btns){
 			b.addActionListener(listenr);
 		}
 	}
 	
+	/**
+	 * Gets the selected value.
+	 *
+	 * @return the selected value
+	 */
 	public String getSelectedValue(){
 		return list.getSelectedValue().trim();
 	}
 	
+	/**
+	 * Sets the gap btns.
+	 *
+	 * @param gap_btns the new gap btns
+	 */
 	public void setGap_btns(int gap_btns) {
 		this.gap_btns = gap_btns;
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add("A");

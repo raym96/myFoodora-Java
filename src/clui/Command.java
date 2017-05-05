@@ -2,6 +2,9 @@ package clui;
 
 /**
  * The Class Command.
+ * 
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class Command {
 	

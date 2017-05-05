@@ -34,10 +34,17 @@ public interface SpecialOfferBoard{
 	
 	/**
 	 * Notify all observers.
+	 *
+	 * @param meal the meal
 	 */
 	// notify all observers of a change of state of this observable
 	public void notifyAllSpecialObservers(Meal meal);
 
+	/**
+	 * Gets the special offers.
+	 *
+	 * @return the special offers
+	 */
 	public ArrayList<Meal> getSpecialOffers();
 		
 }

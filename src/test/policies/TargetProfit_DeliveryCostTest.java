@@ -44,7 +44,8 @@ public class TargetProfit_DeliveryCostTest {
 	
 	/**
 	 * Test meet target profit.
-	 * @throws ParseException 
+	 *
+	 * @throws ParseException the parse exception
 	 */
 	@Test
 	public void testMeetTargetProfit() throws ParseException {

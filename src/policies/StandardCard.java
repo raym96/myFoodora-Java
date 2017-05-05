@@ -37,6 +37,9 @@ public class StandardCard extends FidelityCard {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "standard fidelity card";

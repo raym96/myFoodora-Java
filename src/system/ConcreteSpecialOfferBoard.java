@@ -75,16 +75,27 @@ public class ConcreteSpecialOfferBoard implements SpecialOfferBoard{
 	}
 
 	
+	/**
+	 * Gets the observers.
+	 *
+	 * @return the observers
+	 */
 	public ArrayList<SpecialOfferObserver> getObservers() {
 		return observers;
 	}
 
 
+	/* (non-Javadoc)
+	 * @see system.SpecialOfferBoard#getSpecialOffers()
+	 */
 	public ArrayList<Meal> getSpecialOffers() {
 		// TODO Auto-generated method stub
 		return specialoffers;
 	}
 
+	/* (non-Javadoc)
+	 * @see system.SpecialOfferBoard#notifyAllSpecialObservers(restaurant.Meal)
+	 */
 	@Override
 	public void notifyAllSpecialObservers(Meal meal) {
 		if (this.changed){

@@ -36,6 +36,9 @@ public class FastestDeliveryPolicy implements DeliveryPolicy {
 		return assignedcourier;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "FairOccupationDeliveryPolicy : the courier with the least number of completed delivery is chosen.";

@@ -39,6 +39,9 @@ public final class MainDish extends Dish {
 		return visitor.visit(this);
 	}
 	
+	/* (non-Javadoc)
+	 * @see restaurant.Dish#toString()
+	 */
 	public String toString() {
 		return "MainDish <"+ dishName +"> " + dishType+ " " + price + " euros ";
 	}

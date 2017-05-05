@@ -74,7 +74,7 @@ public class MenuTest {
 	 * Test add dish.
 	 */
 	@Test
-	public void testAddDish() {
+	public void testaddDish() {
 		MainDish m = new MainDish("Pork ribs", "standard", 9.1);
 		Starter s = new Starter("Japanese soup", "gluten-free", 3.5);
 		Dessert d = new Dessert("Nougat", "gluten-free", 2.2);

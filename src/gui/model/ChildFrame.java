@@ -7,18 +7,36 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+/**
+ * The Class ChildFrame.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class ChildFrame extends BasicFrame{
 
+	/** The control panel. */
 	public  JPanel controlPanel;
+	
+	/** The Ok button. */
 	private BasicButton OkButton;
+	
+	/** The Cancel button. */
 	private BasicButton CancelButton;
 	
+	/**
+	 * Instantiates a new child frame.
+	 *
+	 * @param title the title
+	 */
 	public ChildFrame(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
 		placeComponents();
 	}
 	
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#prepareGUI(java.lang.String)
+	 */
 	@Override
 	public void prepareGUI(String title) {
 		// TODO Auto-generated method stub
@@ -33,6 +51,9 @@ public class ChildFrame extends BasicFrame{
 	    this.setVisible(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#placeComponents()
+	 */
 	@Override
 	public void placeComponents() {
 		// TODO Auto-generated method stub

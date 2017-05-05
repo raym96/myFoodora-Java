@@ -15,7 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import initialization.InitialScenarioOld;
+import clui.InitialScenario;
+import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.FairOccupationDeliveryPolicy;
 import policies.FastestDeliveryPolicy;
@@ -104,12 +105,14 @@ public class MyFoodoraServiceTest {
 
 	/**
 	 * Test parse.
+	 *
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	@Test
-	public void testParse() {
+	public void testParse() throws NameNotFoundException {
 		System.out.println("-----testParse-----");
-		Customer customer = (Customer)myfoodora_service.selectUser("customer_1");
-		Restaurant restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
+		Customer customer = (Customer)myfoodora_service.selectUser("emacron");
+		Restaurant restaurant = (Restaurant)myfoodora_service.selectUser("french");
 		Meal meal = restaurant.getMealMenu().getMeals().get(0);
 		Order order = new Order(customer,restaurant,"myorder");
 		order.addItem(meal);
@@ -139,62 +142,8 @@ public class MyFoodoraServiceTest {
 		
 	}
 
-	/**
-	 * Test notify all.
-	 */
-	@Test
-	public void testNotifyAll() {
-		System.out.println("-----testNotifyAll-----");
-		Restaurant r = (Restaurant)myfoodora_service.selectUser("restaurant_1");
-		Meal supermeal = new HalfMeal("supertest",r.getMenu().getStarters().get(0),r.getMenu().getMaindishes().get(0));
-		
-		//customer c agrees to be notified
-		Customer c = (Customer)myfoodora_service.selectUser("customer_1");
-		c.getService().giveConsensusBeNotifiedSpecialOffers();
-		
-		myfoodora_service.notifyAll(supermeal);
-		
-		//verify that the new special offer appears on the board of customer c
-		assertTrue(c.getSpecialoffers().contains(supermeal));
-	}
 
-	/**
-	 * Test get total income.
-	 *
-	 * @throws ParseException the parse exception
-	 */
-	@Test
-	public void testGetTotalIncome() throws ParseException {
-		//Starting date for calculating the income/profit
-		System.out.println("-----testGetTotalIncome-----");
-		System.out.println(myfoodora.getHistory());
-		System.out.println(myfoodora_service.getTotalIncome(startingdate, new Date()));
-	}
 
-	/**
-	 * Test get total profit.
-	 *
-	 * @throws ParseException the parse exception
-	 */
-	@Test
-	public void testGetTotalProfit() throws ParseException {
-		//Starting date for calculating the income/profit
-		System.out.println("-----testGetTotalProfit-----");
-		System.out.println(myfoodora.getHistory());
-		System.out.println(myfoodora_service.getTotalProfit(startingdate, new Date()));
-	}
-
-	/**
-	 * Test get average income per customer.
-	 *
-	 * @throws ParseException the parse exception
-	 */
-	@Test
-	public void testGetAverageIncomePerCustomer() throws ParseException {
-		System.out.println("-----testGetAverageIncomePerCustomer-----");
-		System.out.println(myfoodora.getHistory());
-		System.out.println(myfoodora_service.getAverageIncomePerCustomer(startingdate, new Date()));
-	}
 
 	/**
 	 * Test apply target profit policy.
@@ -221,11 +170,13 @@ public class MyFoodoraServiceTest {
 
 	/**
 	 * Test select user.
+	 *
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	@Test
-	public void testSelectUser() {
+	public void testSelectUser() throws NameNotFoundException {
 		System.out.println("-----testSelectUser-----");
-		Customer c = new Customer("","","test",new AddressPoint(0,0),"","");
+		Customer c = new Customer("","","test",new AddressPoint(0,0),"password");
 		myfoodora.addUser(c);
 		User user = myfoodora_service.selectUser("test");
 		assertEquals(c,user);
@@ -243,23 +194,4 @@ public class MyFoodoraServiceTest {
 			}
 		}
 	}
-
-	/**
-	 * Test ask agree 2 customers.
-	 */
-	@Test
-	public void testAskAgree2customers() {
-		System.out.println("-----testAskAgree2customers-----");
-		myfoodora_service.askAgree2customers("Do you agree ?");
-	}
-
-	/**
-	 * Test get history.
-	 */
-	@Test
-	public void testGetHistory() {
-		System.out.println("-----testGetHistory-----");
-		System.out.println(myfoodora_service.getHistory());
-	}
-
 }

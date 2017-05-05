@@ -64,6 +64,11 @@ public abstract class User implements MessageBoardObserver{
 		this.logStatus = false;
 	}
 	
+	/**
+	 * Gets the service.
+	 *
+	 * @return the service
+	 */
 	public abstract UserService getService();
 
 	/**
@@ -94,11 +99,17 @@ public abstract class User implements MessageBoardObserver{
 		notified = false;
 	}
 
+	/* (non-Javadoc)
+	 * @see system.MessageBoardObserver#observe(system.MessageBoard)
+	 */
 	@Override
 	public void observe(MessageBoard messageboard){
 		this.messageBoard.displayAllmsgs();
 	}
 
+	/* (non-Javadoc)
+	 * @see system.MessageBoardObserver#update(system.Message)
+	 */
 	@Override
 	public void update(Message message){
 		this.messageBoard.addMessage(message);
@@ -125,18 +136,38 @@ public abstract class User implements MessageBoardObserver{
 	}
 	
 
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets the email.
+	 *
+	 * @param email the new email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Gets the phone.
+	 *
+	 * @return the phone
+	 */
 	public String getPhone() {
 		return phone;
 	}
 
+	/**
+	 * Sets the phone.
+	 *
+	 * @param phone the new phone
+	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
@@ -162,7 +193,7 @@ public abstract class User implements MessageBoardObserver{
 	/**
 	 * Sets the password.
 	 *
-	 * @param the password
+	 * @param password the new password
 	 */
 	public void setPassword(String password){
 		this.password = password;

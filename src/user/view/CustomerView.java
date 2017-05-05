@@ -10,6 +10,11 @@ import user.model.MyFoodora;
 import user.service.MyFoodoraService;
 import user.service.impl.MyFoodoraServiceImpl;
 
+/**
+ * The Class CustomerView.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CustomerView implements UserView{
 	/** The customer. */
 	private Customer customer;
@@ -24,6 +29,9 @@ public class CustomerView implements UserView{
 		this.customer = customer;
 	}
 
+	/* (non-Javadoc)
+	 * @see user.view.UserView#showInfo()
+	 */
 	public void showInfo(){
 		String output = "";
 		output+="<Customer> "+customer.getUsername()+"; fullname = "+customer.getSurname()+" "+customer.getName().toUpperCase()+"; address="+customer.getAddress();
@@ -44,6 +52,9 @@ public class CustomerView implements UserView{
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.view.UserView#showHistory()
+	 */
 	public void showHistory(){
 		History history = new History();
 		for (Order order:MyFoodora.getInstance().getHistory().getOrders()){
@@ -55,10 +66,16 @@ public class CustomerView implements UserView{
 	}
 
 
+	/**
+	 * Show shopping cart.
+	 */
 	public void showShoppingCart(){
 		customer.getShoppingCart().display();
 	}
 	
+	/**
+	 * Show points.
+	 */
 	public void showPoints(){
 		if (customer.getCard() instanceof PointCard){
 			System.out.println("Balance of points = "+((PointCard)customer.getCard()).getPoints());
@@ -68,6 +85,9 @@ public class CustomerView implements UserView{
 		}
 	}
 	
+	/**
+	 * Show special offers.
+	 */
 	public void showSpecialOffers(){
 		System.out.println("Special offers :");
 		for (Meal meal : customer.getSpecialoffers()){

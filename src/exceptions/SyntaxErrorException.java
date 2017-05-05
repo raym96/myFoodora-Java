@@ -2,17 +2,30 @@ package exceptions;
 
 /**
  * The Class SyntaxErrorException.
+ * Thrown when a CLUI command is not recognized / has missing arguments.
+ * 
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class SyntaxErrorException extends Exception {
 	/** The Constant serialVersionUID. */
 	public static final long serialVersionUID = 1L;
 	
+	/** The size argument. */
 	int sizeArgument;
 
+	/**
+	 * Instantiates a new syntax error exception.
+	 */
 	public SyntaxErrorException(){
 		sizeArgument = 0;
 	}
 	
+	/**
+	 * Instantiates a new syntax error exception.
+	 *
+	 * @param sizeArgument the size argument
+	 */
 	public SyntaxErrorException(int sizeArgument){
 		this.sizeArgument = sizeArgument;
 	}

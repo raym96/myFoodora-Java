@@ -61,6 +61,9 @@ public class LotteryCard extends FidelityCard {
 		LotteryCard.probability = probability;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "point fidelity card";

@@ -6,6 +6,7 @@ package test.user;
 import static org.junit.Assert.*;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,8 +14,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import clui.InitialScenario;
 import exceptions.NameNotFoundException;
-import initialization.InitialScenarioOld;
 import policies.FastestDeliveryPolicy;
 import system.AddressPoint;
 import user.model.Courier;
@@ -39,7 +40,10 @@ public class ManagerServiceTest {
 	ManagerService manager_service;
 	
 	/** The startingdate. */
-	static Date startingdate;
+	static String startingdate;
+	
+	/** The newdate. */
+	static String newdate;
 	
 	/**
 	 * Sets the up before.
@@ -50,13 +54,13 @@ public class ManagerServiceTest {
 	public void setUpBefore() throws Exception {
 		InitialScenario.load("my_foodora.ini");;
 		
-		manager = new Manager("test","test","test");
+		manager = new Manager("test","test","test","password");
 		manager_service = manager.getService();
 		
 		
-		String s = "2016.01.01";
-		DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-		startingdate = format.parse(s);
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		startingdate = "01/01/2016";
+		newdate = format.format(new Date());
 	}
 
 
@@ -75,9 +79,11 @@ public class ManagerServiceTest {
 
 	/**
 	 * Test remove user.
+	 *
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	@Test
-	public void testRemoveUser() {
+	public void testRemoveUser() throws NameNotFoundException {
 		System.out.println("-----testRemoveUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 		
@@ -85,7 +91,7 @@ public class ManagerServiceTest {
 		assertTrue(MyFoodora.getInstance().getUsers().contains(user_test));
 
 		//verify that the user is no more in the user list of myfoodora
-		manager_service.removeUser(user_test);
+		manager_service.removeUser(user_test.getUsername());
 		assertFalse(MyFoodora.getInstance().getUsers().contains(user_test));
 	}
 
@@ -163,33 +169,39 @@ public class ManagerServiceTest {
 
 	/**
 	 * Test get total income.
+	 *
+	 * @throws ParseException the parse exception
 	 */
 	@Test
-	public void testGetTotalIncome() {
+	public void testGetTotalIncome() throws ParseException {
 		System.out.println("-----testGetTotalIncom-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.getTotalIncome(startingdate, new Date()));
+		System.out.println(manager_service.getTotalIncome(startingdate, newdate));
 		
 	}
 
 	/**
 	 * Test get total profit.
+	 *
+	 * @throws ParseException the parse exception
 	 */
 	@Test
-	public void testGetTotalProfit() {
+	public void testGetTotalProfit() throws ParseException {
 		System.out.println("-----testGetTotalProfit-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.getTotalProfit(startingdate, new Date()));
+		System.out.println(manager_service.getTotalProfit(startingdate, newdate));
 	}
 
 	/**
 	 * Test get average income per customer.
+	 *
+	 * @throws ParseException the parse exception
 	 */
 	@Test
-	public void testGetAverageIncomePerCustomer() {
+	public void testGetAverageIncomePerCustomer() throws ParseException {
 		System.out.println("-----testGetAverageIncomePerCustomer-----");
 		System.out.println(MyFoodora.getInstance().getHistory());
-		System.out.println(manager_service.getAverageIncomePerCustomer(startingdate, new Date()));
+		System.out.println(manager_service.getAverageIncomePerCustomer(startingdate, newdate));
 	}
 
 	/**
@@ -264,28 +276,13 @@ public class ManagerServiceTest {
 	@Test
 	public void testSetDeliveryPolicy() {
 		System.out.println("-----testSetDeliveryPolicy-----");
-		manager_service.setDeliveryPolicy(new FastestDeliveryPolicy());
+		manager_service.setDeliveryPolicy("fast");
 		
 		assertTrue(MyFoodora.getInstance().getDeliverypolicy() instanceof FastestDeliveryPolicy);
 	}
 
-	/**
-	 * Test display users.
-	 */
-	@Test
-	public void testDisplayUsers() {
-		System.out.println("------testDisplayUsers-----");
-		manager_service.displayUsers();
-	}
 
-	/**
-	 * Test display active users.
-	 */
-	@Test
-	public void testDisplayActiveUsers() {
-		System.out.println("------testDisplayActiveUsers-----");
-		manager_service.displayActiveUsers();
-	}
+
 
 	/**
 	 * Test select user.
@@ -304,14 +301,6 @@ public class ManagerServiceTest {
 		assertEquals(user,user_test);
 	}
 
-	/**
-	 * Test display users of assigned type.
-	 */
-	@Test
-	public void testDisplayUsersOfAssignedType() {
-		System.out.println("-----DisplayUsersOfAssignedType-----");
-		System.out.println("example : m.displayUsersOfAssignedType(restaurant)");
-		manager_service.displayUsersOfAssignedType("Restaurant");
-	}
+	
 
 }

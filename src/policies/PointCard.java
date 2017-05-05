@@ -65,6 +65,9 @@ public class PointCard extends FidelityCard {
 		return balance;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "point fidelity card";

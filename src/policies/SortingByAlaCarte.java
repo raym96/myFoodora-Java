@@ -46,9 +46,10 @@ public class SortingByAlaCarte extends SortingByCriteria {
 		for (Order order:history){
 			for (Item item: order.getItems()){
 				if (item instanceof Dish){
+					
 					Dish dish = (Dish)item;
-
 					map.put(dish, map.get(dish)+1);
+					
 				}
 			}
 		}

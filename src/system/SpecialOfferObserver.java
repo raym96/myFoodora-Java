@@ -16,5 +16,13 @@ import restaurant.Meal;
  * @author Ji Raymond
  */
 public interface SpecialOfferObserver{
+	
+	/**
+	 * This method is called when information about an SpecialOffer
+	 * which was previously requested using an asynchronous
+	 * interface becomes available.
+	 *
+	 * @param meal the meal
+	 */
 	public void updateNewOffer(Meal meal);
 }

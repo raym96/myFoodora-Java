@@ -9,6 +9,8 @@ import user.model.MyFoodora;
 
 /**
  * The Class InitialScenario.
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class InitialScenario {
 	

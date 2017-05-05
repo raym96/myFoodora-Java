@@ -22,26 +22,60 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
+/**
+ * The Class UserInfoPanel.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class UserInfoPanel extends JPanel{
 	
+	/** The user. */
 	private User user;
 	
+	/** The gap usual. */
 	private final int gap_usual = 50;
+	
+	/** The gap. */
 	private final int gap = 15;
+	
+	/** The gap btn. */
 	private final int gap_btn = 40;
 	
+	/** The header. */
 	private JLabel header;
+	
+	/** The id field. */
 	private JLabel idField;
+	
+	/** The username field. */
 	private JLabel usernameField;
+	
+	/** The name field. */
 	private TextFieldWithLabel nameField;
+	
+	/** The position field. */
 	private TextFieldWithLabel positionField;
+	
+	/** The email field. */
 	private TextFieldWithLabel emailField;
+	
+	/** The phone field. */
 	private TextFieldWithLabel phoneField;
+	
+	/** The active field. */
 	private JLabel activeField;
+	
+	/** The option field. */
 	private MyRadioButton optionField;
 	
+	/** The super container. */
 	private Container superContainer;
 
+	/**
+	 * Instantiates a new user info panel.
+	 *
+	 * @param username the username
+	 */
 	public UserInfoPanel(String username) {
 		super();
 
@@ -55,11 +89,20 @@ public class UserInfoPanel extends JPanel{
 		placeComponents();
 	}
 
+	/**
+	 * Instantiates a new user info panel.
+	 *
+	 * @param username the username
+	 * @param c the c
+	 */
 	public UserInfoPanel(String username, Container c) {
 		this(username);
 		c.add(this);
 	}
 	
+	/**
+	 * Place components.
+	 */
 	public void placeComponents(){
 		String name = null;
 		String position = "";

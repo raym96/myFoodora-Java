@@ -26,6 +26,7 @@ public class CourierServiceImpl implements CourierService {
 	/** The courier. */
 	private Courier courier;
 	
+	/** The courier view. */
 	private CourierView courierView;
 	
 	/**
@@ -124,18 +125,34 @@ public class CourierServiceImpl implements CourierService {
 		MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers); //a new courier is assigned
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#showInfo()
+	 */
+	@Override
 	public void showInfo(){
 		courierView.showInfo();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#showCount()
+	 */
+	@Override
 	public void showCount(){
 		courierView.showCount();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#showHistory()
+	 */
+	@Override
 	public void showHistory(){
 		courierView.showHistory();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CourierService#showWaitingOrders()
+	 */
+	@Override
 	public void showWaitingOrders(){
 		courierView.showWaitingOrders();	
 	}

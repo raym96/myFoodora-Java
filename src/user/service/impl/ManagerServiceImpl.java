@@ -45,6 +45,7 @@ public class ManagerServiceImpl implements ManagerService {
 	/** The manager. */
 	private Manager manager;
 	
+	/** The manager view. */
 	private ManagerView managerView;
 	
 	/** The myfoodora service. */
@@ -269,10 +270,18 @@ public class ManagerServiceImpl implements ManagerService {
 		customer.getService().registerCard(cardType);
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.ManagerService#showInfo()
+	 */
+	@Override
 	public void showInfo(){
 		managerView.showInfo();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.ManagerService#showHistory()
+	 */
+	@Override
 	public void showHistory(){
 		managerView.showHistory();
 	}

@@ -43,7 +43,7 @@ public class MyFoodora {
 	/** The delivery cost. */
 	private double delivery_cost;	
 	
-	/** The current target profit **/
+	/**  The current target profit *. */
 	private double targetprofit;
 	
 	/** The targetprofitpolicy. */
@@ -59,6 +59,7 @@ public class MyFoodora {
 	//Singleton Pattern
 	private static MyFoodora instance = null;
 	
+	/** The myfoodora service. */
 	private MyFoodoraService myfoodoraService; 
 	
 	
@@ -426,6 +427,12 @@ public class MyFoodora {
 		return availablecouriers;
 	}
 	
+	/**
+	 * Checks if has user.
+	 *
+	 * @param username the username
+	 * @return true, if successful
+	 */
 	public boolean hasUser(String username){
 		for (User user : users){
 			if (user.getUsername().equalsIgnoreCase(username)){
@@ -491,12 +498,22 @@ public class MyFoodora {
 	}
 
 
+	/**
+	 * Register.
+	 *
+	 * @param user the user
+	 */
 	public synchronized void register(User user) {
 		// TODO Auto-generated method stub
 		users.add(user);
 	}
 
 
+	/**
+	 * Unregister.
+	 *
+	 * @param user the user
+	 */
 	public synchronized void unregister(User user) {
 		// TODO Auto-generated method stub
 		users.remove(user);

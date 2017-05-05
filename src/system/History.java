@@ -101,7 +101,7 @@ public class History{
 	}
 	
 	/**
-	 * Gets the orders between 2 dates
+	 * Gets the orders between 2 dates.
 	 *
 	 * @param stringDate1 the string date 1
 	 * @param stringDate2 the string date 2
@@ -152,6 +152,9 @@ public class History{
 		return str;
 	}
 	
+	/**
+	 * Display.
+	 */
 	public void display(){
 		String str = "\n[COMMAND HISTORY]\n\n";
 		for (Order order:orders){

@@ -25,8 +25,8 @@ public interface CustomerService extends UserService{
 	 *
 	 * @param restaurantName the restaurant name
 	 * @param orderName the order name
-	 * @throws NameAlreadyExistsException 
-	 * @throws NameNotFoundException 
+	 * @throws NameAlreadyExistsException the name already exists exception
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	void createOrder(String restaurantName, String orderName) throws NameAlreadyExistsException, NameNotFoundException;
 
@@ -40,7 +40,7 @@ public interface CustomerService extends UserService{
 	void addItem2Order(String orderName, String itemName) throws NameNotFoundException;
 
 	/**
-	 * end the order and pay for it at a given date
+	 * end the order and pay for it at a given date.
 	 *
 	 * @param orderName the order name
 	 * @param date the date
@@ -53,7 +53,7 @@ public interface CustomerService extends UserService{
 	 * register to a fidelity card plan. Possible entries "Point" for pointcard, "Lottery" for lottery card
 	 *
 	 * @param cardType the card type
-	 * @throws NameNotFoundException 
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	public void registerCard(String cardType) throws NameNotFoundException;
 	
@@ -74,14 +74,29 @@ public interface CustomerService extends UserService{
 	 */
 	public void removeConsensusBeNotifiedSpecialOffers();
 
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showInfo()
+	 */
 	public void showInfo();
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showHistory()
+	 */
 	public void showHistory();
 
+	/**
+	 * Show shopping cart.
+	 */
 	public void showShoppingCart();
 	
+	/**
+	 * Show points.
+	 */
 	public void showPoints();
 	
+	/**
+	 * Show special offers.
+	 */
 	public void showSpecialOffers();
 
 

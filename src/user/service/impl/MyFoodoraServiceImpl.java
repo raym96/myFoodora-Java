@@ -36,10 +36,13 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/** The myfoodora. */
 	private MyFoodora myfoodora;
 	
+	/** The myfoodora view. */
 	private MyFoodoraView myfoodoraView;
 	
 	/**
 	 * Instantiates a new my foodora service impl.
+	 *
+	 * @param myfoodora the myfoodora
 	 */
 	public MyFoodoraServiceImpl(MyFoodora myfoodora) {
 		super();
@@ -97,8 +100,6 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	 *  if the courier accepts the order, a message will display and the operation is over.
 	 * 	//if the courier declines the order, a new parse(order, availablecouriers) will be launched.
 	 * 	//for more information check the code in CourierServiceImpl.java *
-	 *
-	 * @param specialoffer the specialoffer
 	 */
 
 	// 3. notifying users that gave consensus to receive special others notifcations, of a new
@@ -224,6 +225,10 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 		throw new LoginErrorException();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.MyFoodoraService#showUsersOfAssignedType(java.lang.String)
+	 */
+	@Override
 	public void showUsersOfAssignedType(String userType){
 		myfoodoraView.showUsersOfAssignedType(userType);
 	}
@@ -231,6 +236,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/**
 	 * Display users.
 	 */
+	@Override
 	public void showUsers(){
 		myfoodoraView.showUsers();
 	}
@@ -238,6 +244,7 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/**
 	 * Display active users.
 	 */
+	@Override
 	public void showActiveUsers(){
 		myfoodoraView.showActiveUsers();
 	}
@@ -245,19 +252,32 @@ public class MyFoodoraServiceImpl implements MyFoodoraService{
 	/**
 	 * Display menus of all restaurants.
 	 */
+	@Override
 	public void showRestaurantMenus() {
 		myfoodoraView.showRestaurantMenus();
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.MyFoodoraService#showHistory()
+	 */
+	@Override
 	public void showHistory(){
 		myfoodoraView.showHistory();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.MyFoodoraService#showSystemValues()
+	 */
+	@Override
 	public void showSystemValues(){
 		myfoodoraView.showSystemValues();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.MyFoodoraService#showPolicies()
+	 */
+	@Override
 	public void showPolicies(){
 		myfoodoraView.showPolicies();
 	}

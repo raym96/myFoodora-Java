@@ -39,7 +39,7 @@ public interface CourierService extends UserService {
 	/**
 	 * Change position.
 	 *
-	 * @param newPoint the new address
+	 * @param positionString the position string
 	 */
 	public void changePosition(String positionString);
 	
@@ -57,12 +57,24 @@ public interface CourierService extends UserService {
 	 */
 	public void refuseCall(String orderName);
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showInfo()
+	 */
 	public void showInfo();
 	
+	/**
+	 * Show count.
+	 */
 	public void showCount();
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showHistory()
+	 */
 	public void showHistory();
 	
+	/**
+	 * Show waiting orders.
+	 */
 	public void showWaitingOrders();
 
 }

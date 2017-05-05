@@ -56,8 +56,6 @@ public interface MyFoodoraService {
 	/**
 	 * notifying users that gave consensus to receive special offers notifcations, of a new
 	 * 	 special offer set by a restaurant.
-	 *
-	 * @param specialoffer the specialoffer
 	 */
 
 	public void notifyAllObservers();
@@ -106,7 +104,7 @@ public interface MyFoodoraService {
 	 *
 	 * @param username the username
 	 * @return the user
-	 * @throws NameNotFoundException 
+	 * @throws NameNotFoundException the name not found exception
 	 */
 
 	public User selectUser(String username) throws NameNotFoundException;
@@ -128,6 +126,11 @@ public interface MyFoodoraService {
 	 */
 	public void login(String username, String password) throws LoginErrorException;
 	
+	/**
+	 * Show users of assigned type.
+	 *
+	 * @param userType the user type
+	 */
 	public void showUsersOfAssignedType(String userType);
 	
 	/**
@@ -145,9 +148,18 @@ public interface MyFoodoraService {
 	public void showRestaurantMenus();
 	
 
+	/**
+	 * Show history.
+	 */
 	public void showHistory();
 	
+	/**
+	 * Show system values.
+	 */
 	public void showSystemValues();
 	
+	/**
+	 * Show policies.
+	 */
 	public void showPolicies();
 }

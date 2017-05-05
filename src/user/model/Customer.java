@@ -43,6 +43,7 @@ public class Customer extends User implements SpecialOfferObserver{
 	/** The agree to be notified specialoffers. */
 	private Boolean agreeToBeNotifiedSpecialoffers;
 	
+	/** The special offer board. */
 	private SpecialOfferBoard specialOfferBoard;
 
 	/** The shoppingcart. */
@@ -54,8 +55,8 @@ public class Customer extends User implements SpecialOfferObserver{
 	/**
 	 * Instantiates a new customer.
 	 *
-	 * @param lastName the last name
 	 * @param firstName the first name
+	 * @param lastName the last name
 	 * @param username the username
 	 * @param address the address
 	 * @param password the password
@@ -223,6 +224,9 @@ public class Customer extends User implements SpecialOfferObserver{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see system.SpecialOfferObserver#updateNewOffer(restaurant.Meal)
+	 */
 	@Override
 	public void updateNewOffer(Meal meal) {
 		// TODO Auto-generated method stub

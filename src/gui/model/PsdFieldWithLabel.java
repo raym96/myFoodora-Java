@@ -18,21 +18,49 @@ import javax.swing.SwingUtilities;
 
 import gui.Login;
 
+/**
+ * 
+ * The Class PsdFieldWithLabel.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class PsdFieldWithLabel extends JPanel{
 
+	/** The label. */
 	private JLabel label;
+	
+	/** The pas field. */
 	private JPasswordField pasField;
+	
+	/** The illegal. */
 	private JLabel illegal;
 	
+	/** The label width. */
 	private int label_width = 150;
+	
+	/** The label height. */
 	private int label_height = 25;
+	
+	/** The textfield width. */
 	private int textfield_width = 120;
+	
+	/** The textfield height. */
 	private int textfield_height = 25;
 	
+	/** The locate x. */
 	private final int locate_x = 0;
+	
+	/** The locate y. */
 	private final int locate_y = 0;
+	
+	/** The gap. */
 	private final int gap = 20;
 	
+	/**
+	 * Instantiates a new psd field with label.
+	 *
+	 * @param labeltext the labeltext
+	 */
 	public PsdFieldWithLabel(String labeltext) {
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -61,67 +89,146 @@ public class PsdFieldWithLabel extends JPanel{
 //		illegal.setLocation(x+label_width+gap+textfield_width+gap, y);
 //	}
 	
-	public PsdFieldWithLabel(String labeltext, String illegalText) {
+	/**
+ * Instantiates a new psd field with label.
+ *
+ * @param labeltext the labeltext
+ * @param illegalText the illegal text
+ */
+public PsdFieldWithLabel(String labeltext, String illegalText) {
 		this(labeltext);
 		this.setIllegal(illegalText);
 	}
 	
+	/**
+	 * Instantiates a new psd field with label.
+	 *
+	 * @param labeltext the labeltext
+	 * @param illegalText the illegal text
+	 * @param c the c
+	 */
 	public PsdFieldWithLabel(String labeltext, String illegalText, Container c) {
 		this(labeltext, illegalText);
 		c.add(this);
 	}
 	
+	/**
+	 * Instantiates a new psd field with label.
+	 *
+	 * @param labeltext the labeltext
+	 * @param illegalText the illegal text
+	 * @param c the c
+	 * @param x the x
+	 * @param y the y
+	 */
 	public PsdFieldWithLabel(String labeltext, String illegalText, Container c, int x, int y) {
 		this(labeltext, illegalText, c);
 //		changeLocation(x, y);
 		this.setLocation(x, y);
 	}
 	
+	/**
+	 * Instantiates a new psd field with label.
+	 *
+	 * @param labeltext the labeltext
+	 * @param x the x
+	 * @param y the y
+	 */
 	public PsdFieldWithLabel(String labeltext,  int x, int y) {
 		this(labeltext);
 //		changeLocation(x, y);
 		this.setLocation(x, y);
 	}
 	
+	/**
+	 * Instantiates a new psd field with label.
+	 *
+	 * @param labeltext the labeltext
+	 * @param c the c
+	 */
 	public PsdFieldWithLabel(String labeltext, Container c) {
 		this(labeltext);
 		c.add(this);
 	}
 		
+	/**
+	 * Instantiates a new psd field with label.
+	 *
+	 * @param labeltext the labeltext
+	 * @param c the c
+	 * @param x the x
+	 * @param y the y
+	 */
 	public PsdFieldWithLabel(String labeltext, Container c, int x, int y) {
 		this(labeltext, c);
 //		changeLocation(x, y);
 		this.setLocation(x, y);
 	}
 
+	/**
+	 * Gets the psd field content.
+	 *
+	 * @return the psd field content
+	 */
 	public String getPsdFieldContent(){
 		return String.valueOf(pasField.getPassword());
 	}
 	
+	/**
+	 * Sets the psd field content.
+	 *
+	 * @param text the new psd field content
+	 */
 	public void setPsdFieldContent(String text){
 		pasField.setText(text);
 	}
 	
+	/**
+	 * Gets the label.
+	 *
+	 * @return the label
+	 */
 	public JLabel getLabel(){
 		return this.label;
 	}
 
+	/**
+	 * Gets the psd field.
+	 *
+	 * @return the psd field
+	 */
 	public JPasswordField getPsdField() {
 		return pasField;
 	}
 	
+	/**
+	 * Sets the illegal.
+	 *
+	 * @param illegalText the new illegal
+	 */
 	public void setIllegal(String illegalText){
 		illegal.setText("* " + illegalText);
 	}
 	
+	/**
+	 * Show illegal.
+	 */
 	public void showIllegal(){
 		illegal.setVisible(true);
 	}
 	
+	/**
+	 * Hide illegal.
+	 */
 	public void hideIllegal(){
 		illegal.setVisible(false);
 	}
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		SwingUtilities.invokeLater(new Runnable() {

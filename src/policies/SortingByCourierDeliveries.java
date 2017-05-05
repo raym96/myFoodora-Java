@@ -11,6 +11,9 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
+/**
+ * The Class SortingByCourierDeliveries.
+ */
 public class SortingByCourierDeliveries extends SortingByCriteria {
 	/**
 	 * Instantiates a new sorting by restaurant.

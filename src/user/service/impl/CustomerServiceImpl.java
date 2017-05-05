@@ -40,6 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 	/** The customer. */
 	private Customer customer;
 	
+	/** The customer view. */
 	private CustomerView customerView;
 	
 	/** The m. */
@@ -173,24 +174,43 @@ public class CustomerServiceImpl implements CustomerService {
 		MyFoodora.getInstance().removeSpecialOfferObserver(customer);
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#showInfo()
+	 */
+	@Override
 	public void showInfo(){
 		customerView.showInfo();
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#showHistory()
+	 */
 	public void showHistory(){
 		customerView.showHistory();
 	}
 
 
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#showShoppingCart()
+	 */
+	@Override
 	public void showShoppingCart(){
 		customerView.showShoppingCart();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#showPoints()
+	 */
+	@Override
 	public void showPoints(){
 		customerView.showPoints();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.CustomerService#showSpecialOffers()
+	 */
+	@Override
 	public void showSpecialOffers(){
 		customerView.showSpecialOffers();
 	}

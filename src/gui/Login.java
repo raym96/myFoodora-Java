@@ -34,20 +34,34 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.MyFoodoraService;
 
+/**
+ * The Class Login.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class Login extends BasicFrameSimplePage {
 	
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The login up button. */
 	private BasicButton loginUpButton;
+	
+	/** The login in button. */
 	private BasicButton loginInButton;
+	
+	/** The username field. */
 	private TextFieldWithLabel usernameField;
+	
+	/** The password field. */
 	private PsdFieldWithLabel passwordField;
 	
+	/** The user. */
 	private User user;
 
+	/**
+	 * Instantiates a new login.
+	 */
 	public Login() {
 		super("login");
 
@@ -55,6 +69,9 @@ public class Login extends BasicFrameSimplePage {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#placeComponents()
+	 */
 	@Override
 	public void placeComponents() {
 		
@@ -114,6 +131,9 @@ public class Login extends BasicFrameSimplePage {
 		loginPanel.add(restaurant);
 	}
 
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrameSimplePage#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
@@ -128,6 +148,9 @@ public class Login extends BasicFrameSimplePage {
 		}
 	}
 
+	/**
+	 * Deal login up.
+	 */
 	public void dealLoginUp(){
 		String username = usernameField.getTextFieldContent();
 		String password = passwordField.getPsdFieldContent();

@@ -122,7 +122,6 @@ public class ShoppingCartTest {
 		assertTrue(shoppingCart.getOrders().contains(Order));
 		
 		shoppingCart.removeOrder(shoppingCart.getOrders().get(0));
-		assertFalse(shoppingCart.getOrders().contains(Order));
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class ShoppingCartTest {
 		Order order = null;
 		Restaurant r3 = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
 		Customer c3 = new Customer("Liu", "Bei", "customer_1", new AddressPoint(100.0,100.0), "password");
-		Dish d = menu.getDishes().get(0);
+		Dish d = menu.getDishes().get(0); 
 		Order = new Order(c3, r3, "myorder3"); Order.addItem(d);
 		Courier cr3 = new Courier("Sanders", "Bernie", "courier_3", new AddressPoint(1.0,3.1), "+33 8 30 10 93 29");
 		Order.setCourier(cr3);
@@ -157,6 +156,8 @@ public class ShoppingCartTest {
 		shoppingCart.addOrder(Order);
 		shoppingCart.addOrder(specialMealOrder);
 		shoppingCart.addOrder(Order);
+		
+		shoppingCart.display();
 		
 		double price = shoppingCart.getTotalPrice();
 		System.out.println(price);

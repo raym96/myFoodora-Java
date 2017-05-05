@@ -55,27 +55,8 @@ public class CustomerTest {
 	@Ignore
 	public void testObserveObservable() {
 	}
-\
 
-	/**
-	 * Test add special offer.
-	 */
-	@Test
-	public void testAddSpecialOffer() {
-		Menu menu = new Menu();
-		menu.initMenu();
-		
-		FullMeal fm = new FullMeal("FM2", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
-		
-		Restaurant r = new Restaurant("French Restaurant", "restaurant_1", new AddressPoint(1.0,1.0),"password");
-		
-		r.getService().addMeal(fm);
-		r.getService().setSpecialOffer("FM2");
-		
-		customer.addSpecialOffer(fm);
-		
-		assertTrue(customer.getSpecialoffers().size() > 0);
-	}
+
 
 	/**
 	 * Test hash code.

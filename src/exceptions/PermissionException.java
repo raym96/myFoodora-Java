@@ -2,6 +2,10 @@ package exceptions;
 
 /**
  * The Class PermissionException.
+ * Thrown when a user of CLUI tries to use a command without the right permission.
+ * 
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class PermissionException extends Exception {
 	/** The Constant serialVersionUID. */

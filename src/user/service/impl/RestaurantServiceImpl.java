@@ -39,6 +39,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	/** The restaurant. */
 	private  Restaurant restaurant;
 	
+	/** The r. */
 	private RestaurantView r;
 	
 	/**
@@ -332,40 +333,72 @@ public class RestaurantServiceImpl implements RestaurantService {
 		restaurant.addToHistory(order);
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showInfo()
+	 */
+	@Override
 	public void showInfo(){
 		r.showInfo();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showHistory()
+	 */
+	@Override
 	public void showHistory(){
 		r.showHistory();
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showDishes()
+	 */
+	@Override
 	public void showDishes() {
 		// TODO Auto-generated method stub
 		r.showDishes();
 	}
 
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showMeals()
+	 */
+	@Override
 	public void showMeals() {
 		// TODO Auto-generated method stub
 		r.showMeals();
 	}
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showDiscountFactors()
+	 */
+	@Override
 	public void showDiscountFactors(){
 		r.showDiscountFactors();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showSpecialOffers()
+	 */
+	@Override
 	public void showSpecialOffers(){
 		// TODO Auto-generated method stub
 		r.showSpecialOffers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showTotalIncome()
+	 */
+	@Override
 	public void showTotalIncome(){
 		r.showTotalIncome();
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see user.service.RestaurantService#showMenu()
+	 */
+	@Override
 	public void showMenu(){
 		r.showMenu();
 	}

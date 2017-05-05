@@ -28,20 +28,37 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
+/**
+ * The Class SystemData.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class SystemData {
 
+	/** The starting date. */
 	private static String startingDate = "01/01/2017";
 
+	/**
+	 * Instantiates a new system data.
+	 */
 	public SystemData() {
 		super();
 
 	}
 
+	/**
+	 * Initial my foodora.
+	 */
 	public static void initialMyFoodora(){
 		MyFoodora.reset();
 		InitialScenario.load("my_foodora.ini");
 	}
 	
+	/**
+	 * Update params.
+	 *
+	 * @return the hash map
+	 */
 	public static synchronized HashMap<String, String> updateParams(){
 		HashMap<String, String> myfoodora_params = new HashMap<String, String>();
 		myfoodora_params.put("targetProfit", String.valueOf(MyFoodora.getInstance().getTargetprofit()));
@@ -77,6 +94,13 @@ public class SystemData {
 		return myfoodora_params;
 	}
 	
+	/**
+	 * Gets the usernames from users.
+	 *
+	 * @param users the users
+	 * @param sorttype the sorttype
+	 * @return the usernames from users
+	 */
 	public static synchronized ArrayList<String> getUsernamesFromUsers(ArrayList<User> users, String sorttype){
 		
 		ArrayList<String> usernames = new ArrayList<String>();
@@ -113,11 +137,24 @@ public class SystemData {
 		return usernames;
 	}
 	
+	/**
+	 * Gets the usernames from users.
+	 *
+	 * @param users the users
+	 * @return the usernames from users
+	 */
 	public static synchronized ArrayList<String> getUsernamesFromUsers(ArrayList<User> users){
 		
 		return getUsernamesFromUsers(users, "");
 	}
 	
+	/**
+	 * Gets the dishnames from restaurant.
+	 *
+	 * @param r the r
+	 * @param sorttype the sorttype
+	 * @return the dishnames from restaurant
+	 */
 	public static synchronized ArrayList<String> getDishnamesFromRestaurant(Restaurant r, String sorttype){
 		ArrayList<String> dishnames = new ArrayList<String>();
 		
@@ -158,6 +195,13 @@ public class SystemData {
 		return dishnames;
 	}
 	
+	/**
+	 * Gets the dishnames from restaurant by category.
+	 *
+	 * @param r the r
+	 * @param dishCategory the dish category
+	 * @return the dishnames from restaurant by category
+	 */
 	public static synchronized ArrayList<String> getDishnamesFromRestaurantByCategory(Restaurant r, String dishCategory){
 		ArrayList<String> dishnames = new ArrayList<String>();
 		for(Dish d : r.getMenu().getDishes()){
@@ -172,6 +216,12 @@ public class SystemData {
 		return dishnames;
 	}
 	
+	/**
+	 * Gets the mealnames from restaurant.
+	 *
+	 * @param r the r
+	 * @return the mealnames from restaurant
+	 */
 	public static synchronized ArrayList<String> getMealnamesFromRestaurant(Restaurant r){
 		ArrayList<String> mealnames = new ArrayList<String>();
 		for(Meal m : r.getMealMenu().getMeals()){
@@ -180,6 +230,12 @@ public class SystemData {
 		return mealnames;
 	}
 	
+	/**
+	 * Gets the specialmealnames from restaurant.
+	 *
+	 * @param r the r
+	 * @return the specialmealnames from restaurant
+	 */
 	public static synchronized ArrayList<String> getSpecialmealnamesFromRestaurant(Restaurant r){
 		ArrayList<String> mealnames = new ArrayList<String>();
 		for(Meal m : r.getSpecialmealmenu().getMeals()){
@@ -188,6 +244,12 @@ public class SystemData {
 		return mealnames;
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws NameNotFoundException the name not found exception
+	 */
 	public static void main(String[] args) throws NameNotFoundException {
 		
 		SystemData.initialMyFoodora();

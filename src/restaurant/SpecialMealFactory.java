@@ -46,4 +46,23 @@ public class SpecialMealFactory {
 		throw new NameNotFoundException(mealName);
 	}
 
+	/**
+	 * Gets the mealmenu.
+	 *
+	 * @return the mealmenu
+	 */
+	public MealMenu getMealmenu() {
+		return mealmenu;
+	}
+
+	/**
+	 * Sets the mealmenu.
+	 *
+	 * @param mealmenu the new mealmenu
+	 */
+	public void setMealmenu(MealMenu mealmenu) {
+		this.mealmenu = mealmenu;
+	}
+	
+	
 }

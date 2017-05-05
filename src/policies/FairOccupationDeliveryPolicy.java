@@ -40,6 +40,9 @@ public class FairOccupationDeliveryPolicy implements DeliveryPolicy {
 		return assignedcourier;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "FairOccupationDeliveryPolicy : the courier which has the shortest distance to cover to retrieve the order from the chosen restaurant and delivering it to the customer is chosen.";

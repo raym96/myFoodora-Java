@@ -25,6 +25,7 @@ public class Message {
 	/** The poster. */
 	private String poster; //message poster's name
 	
+	/** The has been read. */
 	private Boolean hasBeenRead;
 	
 	/**
@@ -65,10 +66,20 @@ public class Message {
 		return dateString + ", "+poster+": "+msgContent;
 	}
 
+	/**
+	 * Checks if has been read.
+	 *
+	 * @return the boolean
+	 */
 	public Boolean hasBeenRead() {
 		return hasBeenRead;
 	}
 
+	/**
+	 * Sets the checks if has been read.
+	 *
+	 * @param read the new checks if has been read
+	 */
 	public void setHasBeenRead(Boolean read) {
 		this.hasBeenRead = read;
 	}

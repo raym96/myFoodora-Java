@@ -96,7 +96,7 @@ public class FullMealTest {
 	 * Test add dish.
 	 */
 	@Test
-	public void testAddDish() {
+	public void testaddDish() {
 		try {
 			fm1.addDish(menu.getDishes().get(0));
 		} catch (DishTypeErrorException e) {

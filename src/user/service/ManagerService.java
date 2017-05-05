@@ -33,8 +33,8 @@ public interface ManagerService extends UserService{
 	/**
 	 * Removes any kind of user from the system.
 	 *
-	 * @param user the user
-	 * @throws NameNotFoundException 
+	 * @param username the username
+	 * @throws NameNotFoundException the name not found exception
 	 */
 	public void removeUser(String username) throws NameNotFoundException;
 	
@@ -159,6 +159,13 @@ public interface ManagerService extends UserService{
 	
 	// ##. extra tool method
 
+	/**
+	 * Select user.
+	 *
+	 * @param username the username
+	 * @return the user
+	 * @throws NameNotFoundException the name not found exception
+	 */
 	public User selectUser(String username) throws NameNotFoundException;
 	
 	/**
@@ -170,7 +177,13 @@ public interface ManagerService extends UserService{
 	 */
 	public void associateCard(String username, String cardType) throws NameNotFoundException;
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showInfo()
+	 */
 	public void showInfo();
 	
+	/* (non-Javadoc)
+	 * @see user.service.UserService#showHistory()
+	 */
 	public void showHistory();
 }

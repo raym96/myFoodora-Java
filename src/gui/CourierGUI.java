@@ -24,21 +24,39 @@ import user.model.MyFoodora;
 import user.model.User;
 import user.service.CourierService;
 
+/**
+ * The Class CourierGUI.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CourierGUI extends BasicFrameWithTabs{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The courier. */
 	private Courier courier;
+	
+	/** The service. */
 	private CourierService service;
 	
+	/** The panel function. */
 	private JPanel panel_function;
+	
+	/** The panel info. */
 	private JPanel panel_info;
+	
+	/** The panel message board. */
 	private JPanel panel_messageBoard;
+	
+	/** The msg board. */
 	private MsgBoardPanel msgBoard;
 
+	/**
+	 * Instantiates a new courier GUI.
+	 *
+	 * @param user the user
+	 */
 	public CourierGUI(User user) {
 		super("courier");
 
@@ -50,6 +68,9 @@ public class CourierGUI extends BasicFrameWithTabs{
 		placeComponents();
 	}
 
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#placeComponents()
+	 */
 	@Override
 	public void placeComponents() {
 		// TODO Auto-generated method stub
@@ -67,15 +88,24 @@ public class CourierGUI extends BasicFrameWithTabs{
 		
 	}
 	
+	/**
+	 * Layout tab function.
+	 */
 	public void layoutTabFunction(){
 		
 	}
 	
+	/**
+	 * Layout tab info.
+	 */
 	public void layoutTabInfo(){
 		panel_info.removeAll();
 		new UserInfoPanel(courier.getUsername(), panel_info);
 	}
 	
+	/**
+	 * Layout tab msg board.
+	 */
 	public void layoutTabMsgBoard(){
 		panel_messageBoard.removeAll();
 		msgBoard = new MsgBoardPanel(courier, panel_messageBoard);

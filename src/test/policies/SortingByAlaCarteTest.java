@@ -127,9 +127,10 @@ public class SortingByAlaCarteTest {
 	 */
 	@Test
 	public void testSortByValues() {
-		HashMap<Restaurant, Integer> result = sortingByAlaCarte.sortByValues(map);
-		System.out.println("---testSortByValues()---");
-		System.out.println(result);
+//		HashMap<Restaurant, Integer> result = sortingByAlaCarte.sortByValues(map);
+//		System.out.println("---testSortByValues()---");
+//		System.out.println(result);
+		sortingByAlaCarte.displayAscending(history);
 	}
 
 	/**

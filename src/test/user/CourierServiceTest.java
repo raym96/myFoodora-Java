@@ -71,8 +71,8 @@ public class CourierServiceTest {
 		myfoodora = MyFoodora.getInstance();
 		myfoodora_service = MyFoodora.getInstance().getService();
 
-		customer = (Customer)myfoodora_service.selectUser("customer_1");
-		restaurant = (Restaurant)myfoodora_service.selectUser("restaurant_1");
+		customer = (Customer)myfoodora_service.selectUser("emacron");
+		restaurant = (Restaurant)myfoodora_service.selectUser("french");
 		meal = restaurant.getMealMenu().getMeals().get(0);
 		order = new Order(customer,restaurant,"myorder");
 		order.addItem(meal);
@@ -162,9 +162,9 @@ public class CourierServiceTest {
 		assertEquals(courier_test.getCount(),delivery_count+1);
 		
 		//verify that the order has been added to the histories
-		MyFoodora.getInstance().getView().showHistory();
+		MyFoodora.getInstance().getService().showHistory();
 		System.out.println("History of "+order.getRestaurant().getName());
-		order.getRestaurant().getView().showHistory();
+		order.getRestaurant().getService().showHistory();
 	}
 
 	/**

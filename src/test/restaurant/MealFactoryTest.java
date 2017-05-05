@@ -11,8 +11,9 @@ import org.junit.Test;
 import exceptions.NameNotFoundException;
 import exceptions.NameAlreadyExistsException;
 import restaurant.FullMeal;
-import restaurant.FullMealFactory;
+import restaurant.MealFactory;
 import restaurant.HalfMeal;
+import restaurant.Meal;
 import restaurant.MealMenu;
 import restaurant.Menu;
 import system.AddressPoint;
@@ -20,11 +21,11 @@ import user.model.Restaurant;
 
 
 /**
- * The Class FullMealFactoryTest.
+ * The Class MealFactoryTest.
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public class FullMealFactoryTest {
+public class MealFactoryTest {
 
 	/** The menu. */
 	private static Menu menu = new Menu();
@@ -35,14 +36,14 @@ public class FullMealFactoryTest {
 	/** The meal menu. */
 	private static MealMenu mealMenu = new MealMenu(restaurant);
 	
-	/** The full meal factory. */
-	private static FullMealFactory fullMealFactory = null;
+	/** The  meal factory. */
+	private static MealFactory mealFactory = null;
 	
 	/**
-	 * Test full meal factory.
+	 * Test  meal factory.
 	 */
 	@BeforeClass
-	public static void testFullMealFactory() {
+	public static void testMealFactory() {
 		
 		menu.initMenu();
 		FullMeal fm1 = new FullMeal("FM1", menu.getStarters().get(0), menu.getMaindishes().get(0), menu.getDesserts().get(0));
@@ -56,10 +57,10 @@ public class FullMealFactoryTest {
 			e.printStackTrace();
 		}
 
-		fullMealFactory = new FullMealFactory(mealMenu);
+		mealFactory = new MealFactory(mealMenu);
 		
-		assertNotNull(fullMealFactory);
-		assertEquals(mealMenu, fullMealFactory.getMealmenu());
+		assertNotNull(mealFactory);
+		assertEquals(mealMenu, mealFactory.getMealmenu());
 	}
 
 	/**
@@ -68,10 +69,10 @@ public class FullMealFactoryTest {
 	@Test
 	public void testCreateMealString() {
 		
-		FullMeal fm = (FullMeal) fullMealFactory.getMealmenu().getMeals().get(0);
+		Meal fm = (FullMeal) mealFactory.getMealmenu().getMeals().get(0);
 		
 		try {
-			FullMeal fm_create = fullMealFactory.createMeal(fm.getName());
+			Meal fm_create = mealFactory.createMeal(fm.getName());
 			assertEquals(fm, fm_create);
 			
 		} catch (NameNotFoundException e) {
@@ -83,12 +84,12 @@ public class FullMealFactoryTest {
 	/**
 	 * Test create meal string exception.
 	 */
-	@Test(expected = NameNotFoundException.class)
+	@Test
 	public void testCreateMealStringException() {
 		
 		try {
 
-			FullMeal fm_not_exist = fullMealFactory.createMeal("aaaaa");
+			Meal fm_not_exist = mealFactory.createMeal("aaaaa");
 			assertNull(fm_not_exist);
 			
 		} catch (NameNotFoundException e) {

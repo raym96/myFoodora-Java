@@ -48,6 +48,9 @@ public class Starter extends Dish {
 		return visitor.visit(this);
 	}
 	
+	/* (non-Javadoc)
+	 * @see restaurant.Dish#toString()
+	 */
 	public String toString() {
 		return "Starter <"+ dishName +"> " + dishType+ " " + price + " euros ";
 	}

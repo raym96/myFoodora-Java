@@ -54,7 +54,7 @@ public class Courier extends User{
 	/**
 	 * Instantiates a new courier.
 	 *
-	 * @param lastname the name
+	 * @param firstname the firstname
 	 * @param lastname the surname
 	 * @param username the username
 	 * @param position the position
@@ -175,7 +175,8 @@ public class Courier extends User{
 	/**
 	 * Sets the position.
 	 *
-	 * @param the position
+	 * @param position the position
+	 * @return the position
 	 */
 	public void getPosition(AddressPoint position){
 		this.position = position;

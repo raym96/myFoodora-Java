@@ -7,6 +7,8 @@ import user.model.MyFoodora;
 
 /**
  * The Class CLUI.
+ * @author He Xiaoan
+ * @author Ji Raymond
  */
 public class CLUI {
 

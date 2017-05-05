@@ -3,6 +3,11 @@ package user.view;
 import system.Order;
 import user.model.Courier;
 
+/**
+ * The Class CourierView.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CourierView implements UserView{
 	
 	/** The courier. */
@@ -18,6 +23,9 @@ public class CourierView implements UserView{
 		this.courier = courier;
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.view.UserView#showInfo()
+	 */
 	public void showInfo(){
 		String output = "";
 		output+="<Courier> "+courier.getUsername()+"; fullname = "+courier.getSurname()+" "+courier.getName().toUpperCase()+"; position="+courier.getPosition();
@@ -36,10 +44,16 @@ public class CourierView implements UserView{
 		System.out.println(output);
 	}
 	
+	/**
+	 * Show count.
+	 */
 	public void showCount(){
 		System.out.println(courier.getName()+ "'s total delivery count = " + courier.getCount());
 	}
 	
+	/* (non-Javadoc)
+	 * @see user.view.UserView#showHistory()
+	 */
 	public void showHistory(){
 		System.out.println("List of delivered orders by "+courier.getName()+":");
 		for (Order order: courier.getDeliveredOrders()){
@@ -47,6 +61,9 @@ public class CourierView implements UserView{
 		}
 	}
 	
+	/**
+	 * Show waiting orders.
+	 */
 	public void showWaitingOrders(){
 		if (courier.getWaitingOrders().size()==0){
 			System.out.println("You have no waiting delivery tasks.");

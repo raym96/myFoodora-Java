@@ -33,25 +33,51 @@ import user.model.Restaurant;
 import user.model.User;
 import user.service.CustomerService;
 
+/**
+ * The Class CustomerGUI.
+ * @author He Xiaoan
+ * @author Ji Raymond
+ */
 public class CustomerGUI extends BasicFrameWithTabs{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The customer. */
 	private Customer customer;
+	
+	/** The service. */
 	private CustomerService service;
+	
+	/** The restaurants. */
 	private ArrayList<User> restaurants;
+	
+	/** The r selected. */
 	private Restaurant r_selected;
+	
+	/** The orders. */
 	private ArrayList<Order> orders;
+	
+	/** The order. */
 	private Order order;
 	
+	/** The panel function. */
 	private JPanel panel_function;
+	
+	/** The panel info. */
 	private JPanel panel_info;
+	
+	/** The panel message board. */
 	private JPanel panel_messageBoard;
+	
+	/** The msg board. */
 	private MsgBoardPanel msgBoard;
 	
+	/**
+	 * Instantiates a new customer GUI.
+	 *
+	 * @param user the user
+	 */
 	public CustomerGUI(User user) {
 		super("customer");
 		
@@ -63,6 +89,9 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		placeComponents();
 	}
 
+	/* (non-Javadoc)
+	 * @see gui.model.BasicFrame#placeComponents()
+	 */
 	@Override
 	public void placeComponents() {
 		// TODO Auto-generated method stub
@@ -80,15 +109,24 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		
 	}
 	
+	/**
+	 * Layout tab function.
+	 */
 	public void layoutTabFunction(){
 		
 	}
 	
+	/**
+	 * Layout tab info.
+	 */
 	public void layoutTabInfo(){
 		panel_info.removeAll();
 		new UserInfoPanel(customer.getUsername(), panel_info);
 	}
 	
+	/**
+	 * Layout tab msg board.
+	 */
 	public void layoutTabMsgBoard(){
 		panel_messageBoard.removeAll();
 		msgBoard = new MsgBoardPanel(customer, panel_messageBoard);
@@ -233,7 +271,13 @@ public class CustomerGUI extends BasicFrameWithTabs{
 //		});
 //	}
 
-	public void addItem2Order(String itemName, Order order){
+	/**
+ * Adds the item 2 order.
+ *
+ * @param itemName the item name
+ * @param order the order
+ */
+public void addItem2Order(String itemName, Order order){
 		
 		Menu menu = order.getRestaurant().getMenu();
 		MealMenu mealmenu = order.getRestaurant().getMealMenu();
@@ -252,6 +296,12 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		order.addItem(item);
 	}
 	
+	/**
+	 * Removes the item from order.
+	 *
+	 * @param itemName the item name
+	 * @param order the order
+	 */
 	public void removeItemFromOrder(String itemName, Order order){
 		Menu menu = order.getRestaurant().getMenu();
 		MealMenu mealmenu = order.getRestaurant().getMealMenu();
@@ -270,6 +320,12 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		order.removeItem(item);
 	}
 	
+	/**
+	 * Gets the itemnames from order.
+	 *
+	 * @param order the order
+	 * @return the itemnames from order
+	 */
 	public ArrayList<String> getItemnamesFromOrder(Order order){
 		ArrayList<String> itemnames = new ArrayList<String>();
 		for(Item item : order.getItems()){
@@ -282,6 +338,13 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		return itemnames;
 	}
 	
+	/**
+	 * Gets the itemnames from restaurant.
+	 *
+	 * @param restaurantName the restaurant name
+	 * @param type the type
+	 * @return the itemnames from restaurant
+	 */
 	public ArrayList<String> getItemnamesFromRestaurant(String restaurantName, String type){
 		ArrayList<String> itemnames = new ArrayList<String>();
 		try {

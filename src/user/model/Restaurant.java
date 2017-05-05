@@ -51,6 +51,7 @@ public class Restaurant extends User{
 	/** The history. */
 	private History history;
 	
+	/** The income. */
 	private double income;
 	
 	/** The restaurant service. */

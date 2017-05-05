@@ -193,8 +193,6 @@ public class Order {
 	
 	/**
 	 * clears the item.
-	 *
-	 * @param 
 	 */
 	public void clearItem(){
 		items = new ArrayList<Item>();
