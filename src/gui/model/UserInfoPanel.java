@@ -15,6 +15,9 @@ import javax.swing.text.GapContent;
 
 import exceptions.NameNotFoundException;
 import gui.Login;
+import policies.LotteryCard;
+import policies.PointCard;
+import policies.StandardCard;
 import system.AddressPoint;
 import system.Message;
 import user.model.Courier;
@@ -41,6 +44,7 @@ public class UserInfoPanel extends JPanel{
 	private TextFieldWithLabel phoneField;
 	private JLabel activeField;
 	private MyRadioButton optionField;
+	private MyRadioButton rbtn_fidelitycard;
 	
 	private Container superContainer;
 
@@ -136,6 +140,16 @@ public class UserInfoPanel extends JPanel{
 				optionField.getButton("no").setSelected(true);
 			}
 			this.add(Box.createVerticalStrut(gap));
+			// fidelitycard
+			rbtn_fidelitycard = new MyRadioButton("Fidelity card", this, new String[] {"Standard Card", "Lottery Card", "Point Card"});
+			if(((Customer)user).getCard() instanceof StandardCard ){
+				rbtn_fidelitycard.getButton("Standard Card").setSelected(true);
+			}else if(((Customer)user).getCard() instanceof LotteryCard){
+				rbtn_fidelitycard.getButton("Lottery Card").setSelected(true);
+			}else if(((Customer)user).getCard() instanceof PointCard){
+				rbtn_fidelitycard.getButton("Point Card").setSelected(true);
+			}
+			
 		}else if(user instanceof Courier){
 			optionField = new MyRadioButton("duty status", this, new String[] {"on", "off"});
 			if(((Courier)user).isOn_duty()){
@@ -164,6 +178,13 @@ public class UserInfoPanel extends JPanel{
 				}else if(new_user instanceof Customer){
 					((Customer)new_user).setFullName(nameField.getTextFieldContent());
 					((Customer)new_user).setAddress(new AddressPoint(positionField.getTextFieldContent()));
+					if(rbtn_fidelitycard.getButton("Standard Card").isSelected()){
+						((Customer)new_user).setCard(new StandardCard((Customer)new_user));
+					}else if(rbtn_fidelitycard.getButton("Lottery Card").isSelected()){
+						((Customer)new_user).setCard(new LotteryCard((Customer)new_user));
+					}else if(rbtn_fidelitycard.getButton("Point Card").isSelected()){
+						((Customer)new_user).setCard(new PointCard((Customer)new_user));
+					}
 				}else if(new_user instanceof Courier){
 					((Courier)new_user).setFullName(nameField.getTextFieldContent());
 					((Courier)new_user).setPosition(new AddressPoint(positionField.getTextFieldContent()));

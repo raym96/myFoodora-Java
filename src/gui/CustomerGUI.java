@@ -194,9 +194,9 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		panel_content.add(Box.createVerticalStrut(gap));
 		subPanel_meals.setLayout(new BoxLayout(subPanel_meals, BoxLayout.X_AXIS));
 		subPanel_meals.add(Box.createHorizontalStrut(70));	
-		mealList = new MyListWithButtons("Meals", SystemData.getMealnamesFromRestaurantWithPrice(restaurant), subPanel_meals, new String[] {"Add to shopping cart"});
+		mealList = new MyListWithButtons("Meals", SystemData.getMealnamesFromRestaurantWithDishesWithPrice(restaurant), subPanel_meals, new String[] {"Add to shopping cart"});
 		mealList.bindActionListener(this);
-		specialmealList = new MyListWithButtons("Special meals", SystemData.getSpecialmealnamesFromRestaurantWithPrice(restaurant), subPanel_meals, new String[] {"Add to shopping cart"});
+		specialmealList = new MyListWithButtons("Special meals", SystemData.getSpecialmealnamesFromRestaurantWithDishesWithPrice(restaurant), subPanel_meals, new String[] {"Add to shopping cart"});
 		specialmealList.bindActionListener(this);
 		subPanel_meals.add(Box.createHorizontalStrut(70));	
 		
@@ -309,36 +309,36 @@ public class CustomerGUI extends BasicFrameWithTabs{
 			String selected = starterList.getSelectedValue();
 			itemnames.add(selected);
 			items.add(restaurant.getMenu().getDish(selected.split(" - ")[0]));
-			totalPrice += Double.valueOf(selected.split(" - ")[1].split(" ")[0]);
+			totalPrice += Double.valueOf(selected.split(" - ")[selected.split(" - ").length-1].split(" ")[0]);
 		}else if(e.getSource()==mainList.getButton("Add to shopping cart")){
 			String selected = mainList.getSelectedValue();
 			itemnames.add(selected);
 			items.add(restaurant.getMenu().getDish(selected.split(" - ")[0]));
-			totalPrice += Double.valueOf(selected.split(" - ")[1].split(" ")[0]);
+			totalPrice += Double.valueOf(selected.split(" - ")[selected.split(" - ").length-1].split(" ")[0]);
 		}else if(e.getSource()==dessertList.getButton("Add to shopping cart")){
 			String selected = dessertList.getSelectedValue();
 			itemnames.add(selected);
 			items.add(restaurant.getMenu().getDish(selected.split(" - ")[0]));
-			totalPrice += Double.valueOf(selected.split(" - ")[1].split(" ")[0]);
+			totalPrice += Double.valueOf(selected.split(" - ")[selected.split(" - ").length-1].split(" ")[0]);
 		}else if(e.getSource()==mealList.getButton("Add to shopping cart")){
 			String selected = mealList.getSelectedValue();
 			itemnames.add(selected);
 			Meal m = restaurant.getMealMenu().getMeal(selected.split(" - ")[0]);
 			m.setRestaurant(restaurant);
 			items.add(m);
-			totalPrice += Double.valueOf(selected.split(" - ")[1].split(" ")[0]);
+			totalPrice += Double.valueOf(selected.split(" - ")[selected.split(" - ").length-1].split(" ")[0]);
 		}else if(e.getSource()==specialmealList.getButton("Add to shopping cart")){
 			String selected = specialmealList.getSelectedValue();
 			itemnames.add(selected);
 			Meal m = restaurant.getSpecialmealmenu().getMeal(selected.split(" - ")[0]);
 			m.setRestaurant(restaurant);
 			items.add(m);
-			totalPrice += Double.valueOf(selected.split(" - ")[1].split(" ")[0]);
+			totalPrice += Double.valueOf(selected.split(" - ")[selected.split(" - ").length-1].split(" ")[0]);
 		}else if(e.getSource()==shoppingCart.getButton("Remove")){
 			String selected = shoppingCart.getSelectedValue();
 			itemnames.remove(selected);
 			items.remove(restaurant.getMealMenu().getMeal(selected.split(" - ")[0]));
-			totalPrice -= Double.valueOf(selected.split(" - ")[1].split(" ")[0]);
+			totalPrice -= Double.valueOf(selected.split(" - ")[selected.split(" - ").length-1].split(" ")[0]);
 		}else if(e.getSource()==shoppingCart.getButton("Clear")){
 			itemnames.clear();
 			items.clear();

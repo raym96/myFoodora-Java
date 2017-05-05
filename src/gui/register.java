@@ -27,6 +27,9 @@ import gui.model.BasicFrameSimplePage;
 import gui.model.MyRadioButton;
 import gui.model.PsdFieldWithLabel;
 import gui.model.TextFieldWithLabel;
+import policies.LotteryCard;
+import policies.PointCard;
+import policies.StandardCard;
 import system.AddressPoint;
 import user.model.Courier;
 import user.model.Customer;
@@ -44,6 +47,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 	private MyRadioButton rbtn_contact;
 	private MyRadioButton rbtn_notify;
 	private MyRadioButton rbtn_duty;
+	private MyRadioButton rbtn_fidelitycard;
 	private TextFieldWithLabel usernameField;
 	private PsdFieldWithLabel passwordField;
 	private PsdFieldWithLabel confirm_passwordField;
@@ -63,12 +67,13 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 	private User user;
 	private boolean notified = false;
 	private boolean duty = false;
+	private String cardType;
 
 	public register() {
-		super("login in");
+		super("Register");
 
-		headerLabel.setText("Login up");
-		statusLabel.setText("login in as a restaurant, a customer or a courier ");
+		headerLabel.setText(null);
+		statusLabel.setText(null);
 		
 		placeComponents();
 	}
@@ -81,7 +86,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 		controlPanel.add(loginInPanel);
 		
 		loginInPanel.setLayout(new BoxLayout(loginInPanel, BoxLayout.Y_AXIS));
-		int gap = 20;
+		int gap = this.getHeight()/40;
 		
 		// 1. choose user type
 		rbtn_userType = new MyRadioButton("You want to register an acount of which type ? ", loginInPanel, new String[] {"Customer", "Restaurant", "Courier"});
@@ -169,6 +174,13 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 					new AddressPoint(position.getTextFieldContent()), 
 					passwordField.getPsdFieldContent());
 			((Customer)user).setActived(notified);
+			if(cardType.equalsIgnoreCase("Standard")){
+				((Customer)user).setCard(new StandardCard((Customer)user));
+			}else if(cardType.equalsIgnoreCase("Lottery")){
+				((Customer)user).setCard(new LotteryCard((Customer)user));
+			}else if(cardType.equalsIgnoreCase("Point")){
+				((Customer)user).setCard(new PointCard((Customer)user));
+			}
 		}else if(rbtn_userType.getGroup().getSelection()==rbtn_userType.getButton("Courier")){
 			user = new Courier(firstnameField.getTextFieldContent(), 
 					lastnameField.getTextFieldContent(), 
@@ -191,7 +203,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 		
 		if(user!=null){
 			MyFoodora.getInstance().addUser(user);
-			JOptionPane.showMessageDialog(this, "login in successful", "Information", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "register successful", "Information", JOptionPane.INFORMATION_MESSAGE);
 		}else{
 			JOptionPane.showMessageDialog(this, "Information incomplete", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -206,10 +218,17 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 			firstnameField = new TextFieldWithLabel("firstname: ", subPanel_name);
 			lastnameField = new TextFieldWithLabel("lastname: ", subPanel_name);
 			
+			subPanel_option.setLayout(new GridLayout(2,1));
+			
 			// agree/refuse to be notified
 			rbtn_notify = new MyRadioButton("Do you agree to be notified about the special offer ? It's no by default.", subPanel_option, new String[] {"yes", "no"});
 			rbtn_notify.bindItemListener(this);
 			rbtn_notify.getButton("no").doClick();
+			
+			// fidelitycard
+			rbtn_fidelitycard = new MyRadioButton("Choose a type of fidelity card", subPanel_option, new String[] {"Standard Card", "Lottery Card", "Point Card"});
+			rbtn_fidelitycard.bindItemListener(this);
+			rbtn_fidelitycard.getButton("Standard Card").doClick();
 			
 		}else if(e.getSource()==rbtn_userType.getButton("Courier")){
 			subPanel_name.removeAll();
@@ -241,6 +260,12 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 			duty = true;		
 		}else if(e.getSource()==rbtn_duty.getButton("off")){
 			duty = false;		
+		}else if(e.getSource()==rbtn_fidelitycard.getButton("Standard Card")){
+			cardType = "Standard";		
+		}else if(e.getSource()==rbtn_fidelitycard.getButton("Lottery Card")){
+			cardType = "Lottery";		
+		}else if(e.getSource()==rbtn_fidelitycard.getButton("Point Card")){
+			cardType = "Point";			
 		}
 		
 		controlPanel.validate();

@@ -238,6 +238,23 @@ public class SystemData {
 		return mealnames;
 	}
 	
+	public static synchronized ArrayList<String> getMealnamesFromRestaurantWithDishesWithPrice(Restaurant r){
+		ArrayList<String> mealnames = new ArrayList<String>();
+		for(Meal m : r.getMealMenu().getMeals()){
+			m.setRestaurant(r);
+			String str = m.getName() + " - [";
+			for(Dish d : m.getDishes()){
+				str += d.getDishName();
+				str += ",";
+			}
+			str = str.substring(0, str.length()-1) + "]";
+			str += " - " + m.accept(new ConcreteShoppingCartVisitor()) + Monetary_unit;
+			
+			mealnames.add(str);
+		}
+		return mealnames;
+	}
+	
 	public static synchronized ArrayList<String> getSpecialmealnamesFromRestaurant(Restaurant r){
 		ArrayList<String> mealnames = new ArrayList<String>();
 		for(Meal m : r.getSpecialmealmenu().getMeals()){
@@ -251,6 +268,23 @@ public class SystemData {
 		for(Meal m : r.getSpecialmealmenu().getMeals()){
 			m.setRestaurant(r);
 			mealnames.add(m.getName() + " - " + m.accept(new ConcreteShoppingCartVisitor()) + Monetary_unit);
+		}
+		return mealnames;
+	}
+	
+	public static synchronized ArrayList<String> getSpecialmealnamesFromRestaurantWithDishesWithPrice(Restaurant r){
+		ArrayList<String> mealnames = new ArrayList<String>();
+		for(Meal m : r.getSpecialmealmenu().getMeals()){
+			m.setRestaurant(r);
+			String str = m.getName() + " - [";
+			for(Dish d : m.getDishes()){
+				str += d.getDishName();
+				str += ",";
+			}
+			str = str.substring(0, str.length()-1) + "]";
+			str += " - " + m.accept(new ConcreteShoppingCartVisitor()) + Monetary_unit;
+			
+			mealnames.add(str);
 		}
 		return mealnames;
 	}
