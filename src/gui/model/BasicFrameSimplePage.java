@@ -45,12 +45,12 @@ public abstract class BasicFrameSimplePage extends BasicFrame implements ActionL
 		headerLabel.setLocation(50, 0);
 		mainPanel.add(headerLabel);
 		
-		mainPanel.add(Box.createVerticalStrut(50));
+		mainPanel.add(Box.createVerticalStrut(30));
 		
 		controlPanel = new JPanel();
 		mainPanel.add(controlPanel);
 		
-		mainPanel.add(Box.createVerticalStrut(50));
+		mainPanel.add(Box.createVerticalStrut(30));
 		
 		statusLabel = new JLabel("status");
 		mainPanel.add(statusLabel);

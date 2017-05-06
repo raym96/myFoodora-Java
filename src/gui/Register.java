@@ -37,7 +37,7 @@ import user.model.MyFoodora;
 import user.model.Restaurant;
 import user.model.User;
 
-public class register extends BasicFrameSimplePage implements ItemListener{
+public class Register extends BasicFrameSimplePage implements ItemListener{
 	/**
 	 * 
 	 */
@@ -69,7 +69,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 	private boolean duty = false;
 	private String cardType;
 
-	public register() {
+	public Register() {
 		super("Register");
 
 		headerLabel.setText(null);
@@ -86,7 +86,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 		controlPanel.add(loginInPanel);
 		
 		loginInPanel.setLayout(new BoxLayout(loginInPanel, BoxLayout.Y_AXIS));
-		int gap = this.getHeight()/40;
+		int gap = this.getHeight()/90;
 		
 		// 1. choose user type
 		rbtn_userType = new MyRadioButton("You want to register an acount of which type ? ", loginInPanel, new String[] {"Customer", "Restaurant", "Courier"});
@@ -173,7 +173,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 					usernameField.getTextFieldContent(), 
 					new AddressPoint(position.getTextFieldContent()), 
 					passwordField.getPsdFieldContent());
-			((Customer)user).setActived(notified);
+			((Customer)user).setActivated(notified);
 			if(cardType.equalsIgnoreCase("Standard")){
 				((Customer)user).setCard(new StandardCard((Customer)user));
 			}else if(cardType.equalsIgnoreCase("Lottery")){
@@ -203,7 +203,7 @@ public class register extends BasicFrameSimplePage implements ItemListener{
 		
 		if(user!=null){
 			MyFoodora.getInstance().addUser(user);
-			JOptionPane.showMessageDialog(this, "register successful", "Information", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "account successfully registered", "Information", JOptionPane.INFORMATION_MESSAGE);
 		}else{
 			JOptionPane.showMessageDialog(this, "Information incomplete", "Error", JOptionPane.ERROR_MESSAGE);
 		}

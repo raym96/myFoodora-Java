@@ -6,6 +6,7 @@ package user.service;
 import java.text.ParseException;
 import java.util.Date;
 
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.TargetProfitPolicy;
@@ -27,8 +28,9 @@ public interface ManagerService extends UserService{
 	 * Adds any kind of user to the system.
 	 *
 	 * @param user the user
+	 * @throws NameAlreadyExistsException 
 	 */
-	public void addUser(User user);
+	public void addUser(User user) throws NameAlreadyExistsException;
 	
 	/**
 	 * Removes any kind of user from the system.

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import policies.DeliveryPolicy;
 import policies.FairOccupationDeliveryPolicy;
@@ -66,7 +67,8 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// 1. add/remove any kind of user (restaurant, customers and/or couriers) to/from the system.
 	@Override
-	public void addUser(User user){
+	public void addUser(User user) throws NameAlreadyExistsException{
+		if (MyFoodora.getInstance().hasUser(user.getUsername())) throw new NameAlreadyExistsException(user.getUsername());
 		MyFoodora.getInstance().register(user);
 	}
 	

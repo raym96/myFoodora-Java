@@ -555,8 +555,13 @@ public class CommandProcessor{
 		String userName = arguments[2];
 		String password = arguments[3];
 		Manager manager = (Manager)user;
-		manager.getService().addUser(new Manager(firstname,lastname,userName,password));
-		System.out.println("Manager <"+userName+"> has been registered on myfoodora.");
+		try {
+			manager.getService().addUser(new Manager(firstname,lastname,userName,password));
+			System.out.println("Manager <"+userName+"> has been registered on myfoodora.");
+		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printError();
+		}
 	}
 	
 	/**
@@ -575,8 +580,13 @@ public class CommandProcessor{
 		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[1]));
 		String password = arguments[3];
 		Manager manager = (Manager)user;
-		manager.getService().addUser(new Restaurant(name,userName,address,password));
-		System.out.println("Restaurant <"+userName+"> has been registered on myfoodora.");
+		try {
+			manager.getService().addUser(new Restaurant(name,userName,address,password));
+			System.out.println("Restaurant <"+userName+"> has been registered on myfoodora.");
+		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printError();
+		}
 	}
 	
 	/**
@@ -596,8 +606,12 @@ public class CommandProcessor{
 		AddressPoint address = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[0]));
 		String password = arguments[4];
 		Manager manager = (Manager)user;
-		manager.getService().addUser(new Customer(firstName,lastName,userName,address,password));
-		System.out.println("Customer <"+userName+"> has been registered on myfoodora.");
+		try {
+			manager.getService().addUser(new Customer(firstName,lastName,userName,address,password));
+			System.out.println("Customer <"+userName+"> has been registered on myfoodora.");		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printError();
+		}
 	}
 
 	/**
@@ -617,8 +631,13 @@ public class CommandProcessor{
 		AddressPoint position = new AddressPoint(Double.parseDouble(parts[0]),Double.parseDouble(parts[1]));
 		String password = arguments[4];
 		Manager manager = (Manager)user;
-		manager.getService().addUser(new Courier(firstName,lastName,userName,position,password));
-		System.out.println("Courier <"+userName+"> has been registered on myfoodora.");
+		try {
+			manager.getService().addUser(new Courier(firstName,lastName,userName,position,password));
+			System.out.println("Courier <"+userName+"> has been registered on myfoodora.");
+		} catch (NameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printError();
+		}
 	}
 
 	/**

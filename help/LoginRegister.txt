@@ -12,4 +12,16 @@ runTest <testScenario-file> : execute the list of CLUI commands contained in the
 
 help <>: display the list of available CLUI commands with an indication of their syntax.
 
+
+
+Account example:
+
+Manager : username = ceo; password = 123456789;
+
+Customer : username = emacron; password = password;
+
+Courier : username = dtrump; password = password;
+
+Restaurant : username = restaurant; password = password;
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

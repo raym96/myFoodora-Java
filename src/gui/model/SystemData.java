@@ -109,7 +109,7 @@ public class SystemData {
 				sortedCourier = sortingcriteria.sortByValuesReversed(sortingcriteria.countOccurence(history));
 			}
 			for (Entry<Courier, Integer> entry : sortedCourier.entrySet()) {
-				usernames.add(entry.getKey().getUsername() + " - " + entry.getValue() + " deliveried orders");     
+				usernames.add(entry.getKey().getUsername() + " - " + entry.getValue() + " delivered orders");     
 		    }
 		}else if(users.get(0) instanceof Customer){
 			for(User user : users){
@@ -165,7 +165,7 @@ public class SystemData {
 			sortedDish = sortingcriteria.sortByValuesReversed(map);
 		}
 		for (Entry<Dish, Integer> entry : sortedDish.entrySet()) {
-			dishnames.add(entry.getKey().getDishName() + " - " + entry.getValue() + " orderd");     
+			dishnames.add(entry.getKey().getDishName() + " - " + entry.getValue() + " shipped orders");     
 	    }
 		
 		return dishnames;
@@ -302,7 +302,7 @@ public class SystemData {
 		return ordernames;
 	}
 	
-	public static synchronized ArrayList<String> getDeliveriedOrderNamesByCourier(Courier courier){
+	public static synchronized ArrayList<String> getdeliveredOrderNamesByCourier(Courier courier){
 		ArrayList<String> ordernames = new ArrayList<String>();
 		
 		for(Order order : courier.getDeliveredOrders()){

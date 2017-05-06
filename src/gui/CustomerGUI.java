@@ -118,18 +118,18 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		panel_order.add(panel_content);
 		panel_content.setLayout(new BoxLayout(panel_content, BoxLayout.Y_AXIS));
 		
-		panel_content.add(Box.createVerticalStrut(300));
+		panel_content.add(Box.createVerticalStrut(150));
 		
 		JPanel subp = new JPanel();
 		panel_content.add(subp);
 		
 		subp.setLayout(new BoxLayout(subp, BoxLayout.X_AXIS));
 		
-		MyComboBox restaurant_chosen = new MyComboBox("Please enter a restaurant to order your dish/meal¡¡: ", subp, SystemData.getUsernamesFromUsers(restaurants, "desc"));
+		MyComboBox restaurant_chosen = new MyComboBox("Please select a restaurant to order your dish/meal: ", subp, SystemData.getUsernamesFromUsers(restaurants, "desc"));
 		
 		subp.add(Box.createHorizontalStrut(30));
 			
-		BasicButton enter = new BasicButton("Enter", subp);
+		BasicButton enter = new BasicButton("Select", subp);
 		enter.addActionListener(new ActionListener() {
 			
 			@Override
@@ -172,7 +172,7 @@ public class CustomerGUI extends BasicFrameWithTabs{
 		final int gap = 10;
 		
 		panel_content.add(Box.createVerticalStrut(20));
-		JLabel welcome = new JLabel("Dear " + customer.getUsername() + ", welcome to " + restaurant.getUsername());
+		JLabel welcome = new JLabel("Dear <" + customer.getUsername() + ">, welcome to " + restaurant.getUsername());
 		panel_content.add(Box.createVerticalStrut(gap));
 		
 		JPanel subPanel_dishes = new JPanel();
@@ -225,11 +225,11 @@ public class CustomerGUI extends BasicFrameWithTabs{
 					order.addItem(item);
 				}
 				createPayFrame(restaurantDetail, totalPrice);
-				JOptionPane.showMessageDialog(restaurantDetail, "Submit successful !");
+				JOptionPane.showMessageDialog(restaurantDetail, "Successfully submitted !");
 				ArrayList<Courier> availablecouriers = MyFoodora.getInstance().getAvailableCouriers();
 				MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers);
 //				MyFoodora.getInstance().getHistory().addOrder(order);		
-				customer.getMessageBoard().addMessage(new Message(customer.getUsername(), "You have submit an order : " + order.toString()));
+				customer.getMessageBoard().addMessage(new Message(customer.getUsername(), "You have submitted an order : " + order.toString()));
 				msgBoard.refresh();
 				items.clear();
 				itemnames.clear();
@@ -282,7 +282,7 @@ public class CustomerGUI extends BasicFrameWithTabs{
 				// TODO Auto-generated method stub
 				
 				balance -= totalPrice;
-				JOptionPane.showMessageDialog(payFrame, "Pay successful !");
+				JOptionPane.showMessageDialog(payFrame, "Payment successful !");
 				payFrame.close();
 			}
 		});

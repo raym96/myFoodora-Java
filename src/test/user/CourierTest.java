@@ -88,8 +88,6 @@ public class CourierTest {
 		Order2.setCourier(cr);
 
 		
-		courier.setWaitingOrders(new ArrayList<Order>());
-		
 		courier.addWaitingOrder(Order1);
 		courier.addWaitingOrder(Order2);
 		

@@ -15,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clui.InitialScenario;
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import policies.FastestDeliveryPolicy;
 import system.AddressPoint;
@@ -66,9 +67,10 @@ public class ManagerServiceTest {
 
 	/**
 	 * Test add user.
+	 * @throws NameAlreadyExistsException 
 	 */
 	@Test
-	public void testAddUser() {
+	public void testAddUser() throws NameAlreadyExistsException {
 		System.out.println("-----testAddUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 		manager_service.addUser(user_test);
@@ -81,9 +83,10 @@ public class ManagerServiceTest {
 	 * Test remove user.
 	 *
 	 * @throws NameNotFoundException the name not found exception
+	 * @throws NameAlreadyExistsException 
 	 */
 	@Test
-	public void testRemoveUser() throws NameNotFoundException {
+	public void testRemoveUser() throws NameNotFoundException, NameAlreadyExistsException {
 		System.out.println("-----testRemoveUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 		
@@ -99,9 +102,10 @@ public class ManagerServiceTest {
 	 * Test activate user.
 	 *
 	 * @throws NameNotFoundException the user not found exception
+	 * @throws NameAlreadyExistsException 
 	 */
 	@Test
-	public void testActivateUser() throws NameNotFoundException {
+	public void testActivateUser() throws NameNotFoundException, NameAlreadyExistsException {
 		System.out.println("-----testActivateUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 
@@ -117,9 +121,10 @@ public class ManagerServiceTest {
 	 * Test disactivate user.
 	 *
 	 * @throws NameNotFoundException the user not found exception
+	 * @throws NameAlreadyExistsException 
 	 */
 	@Test
-	public void testDisactivateUser() throws NameNotFoundException{
+	public void testDisactivateUser() throws NameNotFoundException, NameAlreadyExistsException{
 		System.out.println("-----testDisactivateUser-----");
 		Courier user_test = new Courier("test","test","courier_test", new AddressPoint(0,0),"+06 00 00 00 00");
 
@@ -288,9 +293,10 @@ public class ManagerServiceTest {
 	 * Test select user.
 	 *
 	 * @throws NameNotFoundException the user not found exception
+	 * @throws NameAlreadyExistsException 
 	 */
 	@Test
-	public void testSelectUser() throws NameNotFoundException{
+	public void testSelectUser() throws NameNotFoundException, NameAlreadyExistsException{
 		System.out.println("------testSelectUser-----");
 	
 		Courier user_test = new Courier("test","test","user_test", new AddressPoint(0,0),"+06 00 00 00 00");

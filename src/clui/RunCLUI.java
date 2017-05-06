@@ -10,7 +10,7 @@ import user.model.MyFoodora;
  * @author He Xiaoan
  * @author Ji Raymond
  */
-public class CLUI {
+public class RunCLUI {
 
 	/**
 	 * The main method.

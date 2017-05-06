@@ -68,7 +68,7 @@ public class Login extends BasicFrameSimplePage {
 		controlPanel.add(loginPanel);
 		loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
 		
-		final int gap = 50;
+		final int gap = 10;
 		
 		loginPanel.add(Box.createVerticalStrut(2*gap));
 		
@@ -79,12 +79,12 @@ public class Login extends BasicFrameSimplePage {
 		loginPanel.add(Box.createVerticalStrut(2*gap));
 		
 		// username
-		usernameField = new TextFieldWithLabel("username: ", "user not exists !", loginPanel);
+		usernameField = new TextFieldWithLabel("username: ", "user does not exist !", loginPanel);
 		
 		loginPanel.add(Box.createVerticalStrut(gap));
 		
 		// password
-		passwordField = new PsdFieldWithLabel("password: ", "password wrong !", loginPanel);
+		passwordField = new PsdFieldWithLabel("password: ", "wrong password !", loginPanel);
 		loginPanel.add(Box.createVerticalStrut(gap));
 		
 		JPanel btnPanel = new JPanel();
@@ -147,7 +147,7 @@ public class Login extends BasicFrameSimplePage {
 		else if(e.getSource()==loginInButton){
 //			System.out.println("login in");
 			this.dispose();
-			new register();
+			new Register();
 		}
 	}
 

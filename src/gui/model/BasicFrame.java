@@ -88,7 +88,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 		menuBar.add(menu_ope);
 		menuBar.add(menu_other);
 	    
-		menu_ope.add(new JMenuItem("Change login"));
 		menu_ope.add(new JMenuItem("Logout"));
 		menu_ope.add(new JMenuItem("Exit"));
 	    

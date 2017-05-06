@@ -86,7 +86,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 	private MyListWithButtons dishList;
 	private MyListWithButtons mealList;
 	private MyListWithButtons specialmealList;
-	private MyRadioButton dishCatetory;
+	private MyRadioButton dishCategory;
 	private MyComboBox dishCombo;
 	private MyComboBox mealCombo;
 	private MyComboBox specialmealCombo;
@@ -143,7 +143,7 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		
 		
 		subPanel_lists.add(Box.createHorizontalStrut(gap_lists));
-		dishList = new MyListWithButtons("dishes (sorting by order)", SystemData.getDishnamesFromRestaurant(restaurant, "desc"), subPanel_lists, new String[] {"Detail", "Add new", "Remove"});
+		dishList = new MyListWithButtons("dishes (sorted by shipped orders)", SystemData.getDishnamesFromRestaurant(restaurant, "desc"), subPanel_lists, new String[] {"Detail", "Add new", "Remove"});
 		dishList.bindActionListener(this);
 		mealList = new MyListWithButtons("meals", SystemData.getMealnamesFromRestaurant(restaurant), subPanel_lists, new String[] {"Detail", "Add new", "Add as special meal", "Remove"});
 		mealList.bindActionListener(this);
@@ -350,15 +350,15 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 			priceField.setTextFieldContent(String.valueOf(dish.getPrice()));
 			rbtn_type.getButton(dish.getDishType()).setSelected(true);
 			
-			dishCatetory = new MyRadioButton("Catetory", subPanel_option, new String[] {"Starter", "Main", "Dessert"});
+			dishCategory = new MyRadioButton("Category", subPanel_option, new String[] {"Starter", "Main", "Dessert"});
 			if(dish instanceof Starter){
-				dishCatetory.getButton("Starter").setSelected(true);
+				dishCategory.getButton("Starter").setSelected(true);
 			}else if(dish instanceof MainDish){
-				dishCatetory.getButton("Main").setSelected(true);
+				dishCategory.getButton("Main").setSelected(true);
 			}else if(dish instanceof Dessert){
-				dishCatetory.getButton("Dessert").setSelected(true);
+				dishCategory.getButton("Dessert").setSelected(true);
 			}
-			dishCatetory.setRBtnEnable(false);
+			dishCategory.setRBtnEnable(false);
 			
 		}else if(itemType.equalsIgnoreCase("meal")){
 			meal = restaurant.getMealMenu().getMeal(name);
@@ -466,11 +466,11 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 						type = "gluten-free";
 					}
 					
-					if(dishCatetory.getButton("Starter").isSelected()){
+					if(dishCategory.getButton("Starter").isSelected()){
 						dish = new Starter(nameField.getTextFieldContent(), type, Double.valueOf(priceField.getTextFieldContent()));
-					}else if(dishCatetory.getButton("Main").isSelected()){
+					}else if(dishCategory.getButton("Main").isSelected()){
 						dish = new MainDish(nameField.getTextFieldContent(), type, Double.valueOf(priceField.getTextFieldContent()));
-					}else if(dishCatetory.getButton("Dessert").isSelected()){
+					}else if(dishCategory.getButton("Dessert").isSelected()){
 						dish = new Dessert(nameField.getTextFieldContent(), type, Double.valueOf(priceField.getTextFieldContent()));
 					}
 					if(dish != null){
@@ -538,8 +538,8 @@ public class RestaurantGUI extends BasicFrameWithTabs{
 		
 		if(itemType.equalsIgnoreCase("dish")){
 
-			dishCatetory = new MyRadioButton("Catetory", subPanel_option, new String[] {"Starter", "Main", "Dessert"});
-			dishCatetory.getButton("Starter").setSelected(true);
+			dishCategory = new MyRadioButton("Category", subPanel_option, new String[] {"Starter", "Main", "Dessert"});
+			dishCategory.getButton("Starter").setSelected(true);
 			
 		}else if(itemType.equalsIgnoreCase("meal")){
 			subPanel_option.setLayout(new BoxLayout(subPanel_option, BoxLayout.X_AXIS));

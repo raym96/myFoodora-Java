@@ -1,4 +1,5 @@
 login emacron password
+showmessages
 registerCard point
 showRestaurantMenus
 

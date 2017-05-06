@@ -31,9 +31,9 @@ public class UserInfoPanel extends JPanel{
 	
 	private User user;
 	
-	private final int gap_usual = 50;
-	private final int gap = 15;
-	private final int gap_btn = 40;
+	private final int gap_usual = 30;
+	private final int gap = 10;
+	private final int gap_btn = 30;
 	
 	private JPanel header;
 	private JLabel idField;
@@ -126,7 +126,7 @@ public class UserInfoPanel extends JPanel{
 		
 		// active
 		if(!(user instanceof Manager)){
-			activeField = new JLabel("actived: " + user.isActivated());
+			activeField = new JLabel("activated: " + user.isActivated());
 			this.add(activeField);
 			this.add(Box.createVerticalStrut(gap));	
 		}

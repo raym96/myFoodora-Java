@@ -83,14 +83,6 @@ public class Courier extends User{
 		return courierService;
 	}
 
-	/**
-	 * Sets the waiting orders.
-	 *
-	 * @param waitingOrders the new waiting orders
-	 */
-	public void setWaitingOrders(ArrayList<Order> waitingOrders) {
-		this.waitingOrders = waitingOrders;
-	}
 	
 	/**
 	 * Gets the waiting orders.
@@ -124,7 +116,7 @@ public class Courier extends User{
 	 * @param orderId the order id
 	 * @return the deliveried order
 	 */
-	public Order getDeliveriedOrderById(String orderId){
+	public Order getDeliveredOrderById(String orderId){
 		Order order = null;
 		for (Order o : this.getDeliveredOrders()){
 			if (o.getOrderID().equalsIgnoreCase(orderId)){
@@ -160,16 +152,6 @@ public class Courier extends User{
 	}
 
 	/**
-	 * Refuse waiting order.
-	 *
-	 * @param orderName the order name
-	 */
-	public void refuseWaitingOrder(String orderName){
-		Order order = getWaitingOrder(orderName);
-		waitingOrders.remove(order);
-	}
-	
-	/**
 	 * Accept waiting order.
 	 *
 	 * @param orderName the order name
@@ -183,6 +165,17 @@ public class Courier extends User{
 		this.setCount(count+1);
 	}
 
+
+	/**
+	 * Refuse waiting order.
+	 *
+	 * @param orderName the order name
+	 */
+	public void refuseWaitingOrder(String orderName){
+		Order order = getWaitingOrder(orderName);
+		waitingOrders.remove(order);
+	}
+	
 	/**
 	 * Gets the delivered orders.
 	 *
@@ -204,16 +197,17 @@ public class Courier extends User{
 		return position;
 	}
 	
+	
 	/**
 	 * Sets the position.
 	 *
-	 * @param position the position
-	 * @return the position
+	 * @param a the new position
 	 */
-	public void getPosition(AddressPoint position){
-		this.position = position;
+	public void setPosition(AddressPoint a){
+		position = a;
 	}
-	
+
+
 	/**
 	 * Gets the count.
 	 *
@@ -252,15 +246,6 @@ public class Courier extends User{
 	}
 	
 	/**
-	 * Sets the position.
-	 *
-	 * @param a the new position
-	 */
-	public void setPosition(AddressPoint a){
-		position = a;
-	}
-
-	/**
 	 * Gets the name.
 	 *
 	 * @return the name
@@ -298,14 +283,6 @@ public class Courier extends User{
 		this.name = name.split(" ")[1];
 	}
 
-	/**
-	 * Gets the phone.
-	 *
-	 * @return the phone
-	 */
-	public String getPhone() {
-		return phone;
-	}
 
 	/* (non-Javadoc)
 	 * @see user.model.User#toString()

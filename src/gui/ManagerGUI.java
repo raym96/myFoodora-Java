@@ -26,6 +26,7 @@ import javax.swing.plaf.basic.BasicScrollPaneUI.HSBChangeListener;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
+import exceptions.NameAlreadyExistsException;
 import exceptions.NameNotFoundException;
 import gui.model.BasicButton;
 import gui.model.BasicFrameWithTabs;
@@ -166,7 +167,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		customerList.bindActionListener(this);
 		subPanel_lists.add(Box.createHorizontalStrut(gap_lists));
 		
-		JPanel label_orderManagement = new MyLabel("History", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
+		JPanel label_orderManagement = new MyLabel("MyFoodora order history", new Font("Arial", Font.ITALIC, 20), Color.BLACK).generateMyLabelPanel(50);
 		panel_user.add(label_orderManagement);
 		panel_user.add(Box.createVerticalStrut(10));
 		
@@ -573,7 +574,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 						manager.getMessageBoard().addMessage(new Message(manager.getUsername(), "You have deleted the user : " + username));
 						msgBoard.refresh();
 					}else{
-						JOptionPane.showMessageDialog(userDetail, "This user has order, you can't delete it.");
+						JOptionPane.showMessageDialog(userDetail, "This user has a waiting order, you can't delete it.");
 					}
 					
 				}
@@ -714,7 +715,12 @@ public class ManagerGUI extends BasicFrameWithTabs{
 				
 				
 				if(user != null){
-					service.addUser(user);
+					try {
+						service.addUser(user);
+					} catch (NameAlreadyExistsException e1) {
+						// TODO Auto-generated catch block
+						e1.printError();
+					}
 					refreshUserLists("desc");
 					JOptionPane.showMessageDialog(addUser, "Add successful !");
 					manager.getMessageBoard().addMessage(new Message(manager.getUsername(), "You have added a new user : " + user.getUsername()));
@@ -740,7 +746,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 			rbtn_duty = new MyRadioButton("duty status", subPanel_option, new String[] {"on", "off"});
 			rbtn_duty.getButton("off").setSelected(true);
 		}else if(userType.equalsIgnoreCase("CUSTOMER")){
-			rbtn_notify = new MyRadioButton("agree to be notified", subPanel_option, new String[] {"yes", "no"});
+			rbtn_notify = new MyRadioButton("special offer notification", subPanel_option, new String[] {"on", "off"});
 			rbtn_notify.getButton("no").setSelected(true);
 		}
 	

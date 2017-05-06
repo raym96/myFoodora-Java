@@ -55,7 +55,7 @@ public class CourierGUI extends BasicFrameWithTabs{
 	private JPanel panel_messageBoard;
 	private MsgBoardPanel msgBoard;
 	
-	private MyListWithButtons deliveriedOrderList;
+	private MyListWithButtons deliveredOrderList;
 	private MyListWithButtons waitingOrderList;
 
 	public CourierGUI(User user) {
@@ -101,8 +101,8 @@ public class CourierGUI extends BasicFrameWithTabs{
 		final int gap_x = 80;
 		subPanel.add(Box.createHorizontalStrut(gap_x));
 		
-		deliveriedOrderList = new MyListWithButtons("deliveried orders :", SystemData.getDeliveriedOrderNamesByCourier(courier), subPanel_orders, new String[] {"Detail"});
-		deliveriedOrderList.bindActionListener(this);
+		deliveredOrderList = new MyListWithButtons("delivered orders :", SystemData.getdeliveredOrderNamesByCourier(courier), subPanel_orders, new String[] {"Detail"});
+		deliveredOrderList.bindActionListener(this);
 		
 		waitingOrderList = new MyListWithButtons("waiting orders :", SystemData.getWaitingOrderNamesByCourier(courier), subPanel_orders, new String[] {"Detail"});
 		waitingOrderList.bindActionListener(this);
@@ -123,8 +123,8 @@ public class CourierGUI extends BasicFrameWithTabs{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		super.actionPerformed(e);
-		if(e.getSource()==deliveriedOrderList.getButton("Detail")){
-			ChildFrame orderDetail = createOrderDetailChildFrame(deliveriedOrderList.getSelectedValue(), "deliveried");
+		if(e.getSource()==deliveredOrderList.getButton("Detail")){
+			ChildFrame orderDetail = createOrderDetailChildFrame(deliveredOrderList.getSelectedValue(), "delivered");
 		}else if(e.getSource()==waitingOrderList.getButton("Detail")){
 			ChildFrame orderDetail = createOrderDetailChildFrame(waitingOrderList.getSelectedValue(), "waiting");
 		}
@@ -135,8 +135,8 @@ public class CourierGUI extends BasicFrameWithTabs{
 		if(selected==null){
 			return null;
 		}
-		if(type.equalsIgnoreCase("deliveried")){
-			order = courier.getDeliveriedOrderById(selected.split(" - ")[1]);
+		if(type.equalsIgnoreCase("delivered")){
+			order = courier.getDeliveredOrderById(selected.split(" - ")[1]);
 		}else if(type.equalsIgnoreCase("waiting")) {
 			order = courier.getWaitingOrderById(selected.split(" - ")[1]);
 		}
@@ -173,7 +173,7 @@ public class CourierGUI extends BasicFrameWithTabs{
 		panel_content.add(ordercourier);
 		panel_content.add(Box.createVerticalStrut(gap));
 		
-		String content = null;
+		String content = "";
 		for(Item item : order.getItems()){
 			if (item instanceof Dish){
 				content+="A-la-carte <";
@@ -242,7 +242,7 @@ public class CourierGUI extends BasicFrameWithTabs{
 	}
 
 	public void refreshOrderList(){
-		deliveriedOrderList.refresh(SystemData.getDeliveriedOrderNamesByCourier(courier));
+		deliveredOrderList.refresh(SystemData.getdeliveredOrderNamesByCourier(courier));
 		waitingOrderList.refresh(SystemData.getWaitingOrderNamesByCourier(courier));
 	}
 }
