@@ -112,9 +112,6 @@ public abstract class BasicFrame extends JFrame implements ActionListener{
 				new Login();
 			}else if(eventSource==menuBar.getMenu(0).getItem(1)){
 				this.dispose();
-				new Login();
-			}else if(eventSource==menuBar.getMenu(0).getItem(2)){
-				this.dispose();
 				System.exit(0);
 			}else if(eventSource==menuBar.getMenu(menuBar.getMenuCount()-1).getItem(0)){
 				ChildFrame helpFrame = new ChildFrame("About", this);
