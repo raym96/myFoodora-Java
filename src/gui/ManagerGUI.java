@@ -428,16 +428,15 @@ public class ManagerGUI extends BasicFrameWithTabs{
 					
 					AddressPoint address = null;
 					try{
-						address = new AddressPoint(positionField.getTextFieldContent());
-					} catch (Exception e3) {
-						e3.printStackTrace();
-					}
-					if(address!=null){
 						positionField.hideIllegal();
-						restaurant.setAddress(address);
-					}else{
+						address = new AddressPoint(positionField.getTextFieldContent());
+					}catch (Exception e1) {
+						// TODO: handle exception
 						positionField.showIllegal();
+						positionField.setTextFieldContent(null);
+						return;
 					}
+					
 							
 					restaurant.setPassword(psdField.getTextFieldContent());
 					restaurant.setEmail(emailField.getTextFieldContent());

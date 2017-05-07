@@ -174,10 +174,34 @@ public class UserInfoPanel extends JPanel{
 					((Manager)new_user).setName(nameField.getTextFieldContent().split(" ")[1]);
 				}else if(new_user instanceof Restaurant){
 					((Restaurant)new_user).setName(nameField.getTextFieldContent());
-					((Restaurant)new_user).setAddress(new AddressPoint(positionField.getTextFieldContent()));
+					
+					AddressPoint address = null;
+					try{
+						positionField.hideIllegal();
+						address = new AddressPoint(positionField.getTextFieldContent());
+					}catch (Exception e1) {
+						// TODO: handle exception
+						positionField.showIllegal();
+						positionField.setTextFieldContent(null);
+						return;
+					}
+					
+					((Restaurant)new_user).setAddress(address);
 				}else if(new_user instanceof Customer){
 					((Customer)new_user).setFullName(nameField.getTextFieldContent());
-					((Customer)new_user).setAddress(new AddressPoint(positionField.getTextFieldContent()));
+					
+					AddressPoint address = null;
+					try{
+						positionField.hideIllegal();
+						address = new AddressPoint(positionField.getTextFieldContent());
+					}catch (Exception e1) {
+						// TODO: handle exception
+						positionField.showIllegal();
+						positionField.setTextFieldContent(null);
+						return;
+					}
+					
+					((Customer)new_user).setAddress(address);
 					if(rbtn_fidelitycard.getButton("Standard Card").isSelected()){
 						((Customer)new_user).setCard(new StandardCard((Customer)new_user));
 					}else if(rbtn_fidelitycard.getButton("Lottery Card").isSelected()){
@@ -187,12 +211,23 @@ public class UserInfoPanel extends JPanel{
 					}
 				}else if(new_user instanceof Courier){
 					((Courier)new_user).setFullName(nameField.getTextFieldContent());
-					((Courier)new_user).setPosition(new AddressPoint(positionField.getTextFieldContent()));
+					
+					AddressPoint address = null;
+					try{
+						positionField.hideIllegal();
+						address = new AddressPoint(positionField.getTextFieldContent());
+					}catch (Exception e1) {
+						// TODO: handle exception
+						positionField.showIllegal();
+						positionField.setTextFieldContent(null);
+						return;
+					}
+					
+					((Courier)new_user).setPosition(address);
 				}
 				MyFoodora.getInstance().removeUser(user);
 				MyFoodora.getInstance().addUser(new_user);
 				user.getMessageBoard().addMessage(new Message(user.getUsername(), "You have modified personal information."));
-				
 			}
 		});
 		subPanel_btn.add(Box.createHorizontalStrut(gap_btn));

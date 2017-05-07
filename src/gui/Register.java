@@ -111,7 +111,7 @@ public class Register extends BasicFrameSimplePage implements ItemListener{
 		loginInPanel.add(Box.createVerticalStrut(gap));
 		
 		// 6. address/position
-		position = new TextFieldWithLabel("address/position: ", "address format wrong !", loginInPanel);
+		position = new TextFieldWithLabel("address/position: ", "address format wrong ! e.g 8.9,7.0", loginInPanel);
 		loginInPanel.add(Box.createVerticalStrut(gap));
 		
 		// 7. contact
@@ -148,15 +148,8 @@ public class Register extends BasicFrameSimplePage implements ItemListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==OkButton){
-			String username = usernameField.getTextFieldContent();
-			if(MyFoodora.getInstance().hasUser(username)){
-				usernameField.showIllegal();
-				usernameField.setTextFieldContent(null);;
-			}
-			if(!passwordField.getPsdFieldContent().equalsIgnoreCase(confirm_passwordField.getPsdFieldContent())){
-				confirm_passwordField.showIllegal();
-				confirm_passwordField.setPsdFieldContent(null);
-			}
+			
+			
 			
 			loginIn();
 		}
@@ -166,12 +159,36 @@ public class Register extends BasicFrameSimplePage implements ItemListener{
 	}
 	
 	public void loginIn(){
+		if(MyFoodora.getInstance().hasUser(usernameField.getTextFieldContent())){
+			usernameField.showIllegal();
+			usernameField.setTextFieldContent(null);
+			return ;
+		}else{
+			usernameField.hideIllegal();
+		}
+		if(!passwordField.getPsdFieldContent().equalsIgnoreCase(confirm_passwordField.getPsdFieldContent())){
+			confirm_passwordField.showIllegal();
+			confirm_passwordField.setPsdFieldContent(null);
+			return ;
+		}else{
+			confirm_passwordField.hideIllegal();
+		}
+		AddressPoint address = null;
+		try{
+			position.hideIllegal();
+			address = new AddressPoint(position.getTextFieldContent());
+		}catch (Exception e) {
+			// TODO: handle exception
+			position.showIllegal();
+			position.setTextFieldContent(null);
+			return;
+		}
 		
-		if(rbtn_userType.getGroup().getSelection()==rbtn_userType.getButton("Customer")) {
+		if(rbtn_userType.getButton("Customer").isSelected()) {
 			user = new Customer(firstnameField.getTextFieldContent(), 
 					lastnameField.getTextFieldContent(), 
 					usernameField.getTextFieldContent(), 
-					new AddressPoint(position.getTextFieldContent()), 
+					address, 
 					passwordField.getPsdFieldContent());
 			((Customer)user).setActivated(notified);
 			if(cardType.equalsIgnoreCase("Standard")){
@@ -181,29 +198,31 @@ public class Register extends BasicFrameSimplePage implements ItemListener{
 			}else if(cardType.equalsIgnoreCase("Point")){
 				((Customer)user).setCard(new PointCard((Customer)user));
 			}
-		}else if(rbtn_userType.getGroup().getSelection()==rbtn_userType.getButton("Courier")){
+		}else if(rbtn_userType.getButton("Courier").isSelected()){
 			user = new Courier(firstnameField.getTextFieldContent(), 
 					lastnameField.getTextFieldContent(), 
 					usernameField.getTextFieldContent(),  
-					new AddressPoint(position.getTextFieldContent()), 
+					address, 
 					passwordField.getPsdFieldContent());
 			((Courier)user).setOn_duty(duty);
-		}else if(rbtn_userType.getGroup().getSelection()==rbtn_userType.getButton("Restaurant")){
+		}else if(rbtn_userType.getButton("Restaurant").isSelected()){
 			user = new Restaurant(nameField.getTextFieldContent(), 
 					usernameField.getTextFieldContent(), 
-					new AddressPoint(position.getTextFieldContent()), 
+					address, 
 					passwordField.getPsdFieldContent());
 		}
 		
-		if(rbtn_contact.getGroup().getSelection()==rbtn_contact.getButton("Email")){
+		if(rbtn_contact.getButton("Email").isSelected()){
 			user.setEmail(contactField.getTextFieldContent());
-		}else if(rbtn_contact.getGroup().getSelection()==rbtn_contact.getButton("Phone")){
+		}else if(rbtn_contact.getButton("Phone").isSelected()){
 			user.setPhone(contactField.getTextFieldContent());
 		}
 		
 		if(user!=null){
 			MyFoodora.getInstance().addUser(user);
 			JOptionPane.showMessageDialog(this, "account successfully registered", "Information", JOptionPane.INFORMATION_MESSAGE);
+			this.dispose();
+			new Login();
 		}else{
 			JOptionPane.showMessageDialog(this, "Information incomplete", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -252,19 +271,19 @@ public class Register extends BasicFrameSimplePage implements ItemListener{
 			contactField.getLabel().setText("Email: ");
 		}else if(e.getSource()==rbtn_contact.getButton("Phone")){
 			contactField.getLabel().setText("Phone: ");
-		}else if(e.getSource()==rbtn_notify.getButton("yes")){
+		}else if(rbtn_notify != null && e.getSource()==rbtn_notify.getButton("yes")){
 			notified = true;		
-		}else if(e.getSource()==rbtn_notify.getButton("no")){
+		}else if(rbtn_notify != null && e.getSource()==rbtn_notify.getButton("no")){
 			notified = false;	
-		}else if(e.getSource()==rbtn_duty.getButton("on")){
+		}else if(rbtn_notify != null && rbtn_duty != null && e.getSource()==rbtn_duty.getButton("on")){
 			duty = true;		
-		}else if(e.getSource()==rbtn_duty.getButton("off")){
+		}else if(rbtn_duty != null && e.getSource()==rbtn_duty.getButton("off")){
 			duty = false;		
-		}else if(e.getSource()==rbtn_fidelitycard.getButton("Standard Card")){
+		}else if(rbtn_fidelitycard != null &&  e.getSource()==rbtn_fidelitycard.getButton("Standard Card")){
 			cardType = "Standard";		
-		}else if(e.getSource()==rbtn_fidelitycard.getButton("Lottery Card")){
+		}else if(rbtn_fidelitycard != null &&  e.getSource()==rbtn_fidelitycard.getButton("Lottery Card")){
 			cardType = "Lottery";		
-		}else if(e.getSource()==rbtn_fidelitycard.getButton("Point Card")){
+		}else if(rbtn_fidelitycard != null &&  e.getSource()==rbtn_fidelitycard.getButton("Point Card")){
 			cardType = "Point";			
 		}
 		
