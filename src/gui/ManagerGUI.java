@@ -307,9 +307,19 @@ public class ManagerGUI extends BasicFrameWithTabs{
 				deliveryCostField.setTextFieldContent(String.valueOf(myFoodora.getDelivery_cost()));
 				
 				if(rbtn_deliveryPolicy.getButton("fair-occupation").isSelected()){
-					service.setDeliveryPolicy("fair");
+					try {
+						service.setDeliveryPolicy("fair");
+					} catch (NameNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}else if(rbtn_deliveryPolicy.getButton("fastest").isSelected()){
-					service.setDeliveryPolicy("fastest");
+					try {
+						service.setDeliveryPolicy("fastest");
+					} catch (NameNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				myfoodora_params = SystemData.updateParams();
@@ -786,7 +796,7 @@ public class ManagerGUI extends BasicFrameWithTabs{
 		panel_content.add(Box.createVerticalStrut(gap));
 		
 		if(courier != null){
-			JLabel ordercourier= new JLabel("courier : " + order.getCourier().getName());
+			JLabel ordercourier= new JLabel("courier : " + order.getCourier().getFirstname());
 			panel_content.add(ordercourier);
 			panel_content.add(Box.createVerticalStrut(gap));
 		}else{

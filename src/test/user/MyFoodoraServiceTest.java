@@ -119,7 +119,7 @@ public class MyFoodoraServiceTest {
 		
 		System.out.println("restaurant position = " + restaurant.getAddress());
 		for (Courier c : myfoodora.getAvailableCouriers()){
-			System.out.println("Courier <"+c.getName()+"> position ="+c.getPosition()+" has count: " + c.getCount());
+			System.out.println("Courier <"+c.getFirstname()+"> position ="+c.getPosition()+" has count: " + c.getCount());
 		}
 		
 		//Should give the order to courier_1

@@ -241,13 +241,16 @@ public class ManagerServiceImpl implements ManagerService {
 	 */
 	// is assigned to deliver an order placed by a customer
 	@Override
-	public void setDeliveryPolicy(String deliverypolicy) {
+	public void setDeliveryPolicy(String deliverypolicy) throws NameNotFoundException {
 		// TODO Auto-generated method stub
 		if (deliverypolicy.equalsIgnoreCase("fair")){
 			MyFoodora.getInstance().setDeliveryPolicy(new FairOccupationDeliveryPolicy());
 		}
-		if (deliverypolicy.equalsIgnoreCase("fastest")){
+		else if (deliverypolicy.equalsIgnoreCase("fastest")){
 			MyFoodora.getInstance().setDeliveryPolicy(new FastestDeliveryPolicy());
+		}
+		else {
+			throw new NameNotFoundException(deliverypolicy);
 		}
 	}
 	

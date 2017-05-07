@@ -49,7 +49,7 @@ public class SortingByCourierDeliveries extends SortingByCriteria {
 		HashMap map = countOccurence(h);
 		Map<Courier,Integer> newMap = sortByValues(map);
 	    for (Entry<Courier, Integer> entry : newMap.entrySet()) {
-            System.out.println("Courier <" + entry.getKey().getName()+">"
+            System.out.println("Courier <" + entry.getKey().getFirstname()+">"
 				+ "; number of delivered orders: " + entry.getValue());
 	    }
 	}
@@ -64,7 +64,7 @@ public class SortingByCourierDeliveries extends SortingByCriteria {
 		HashMap map = countOccurence(h);
 		Map<Courier,Integer> newMap = sortByValuesReversed(map);
 	    for (Entry<Courier, Integer> entry : newMap.entrySet()) {
-            System.out.println("Courier <" + entry.getKey().getName()+">"
+            System.out.println("Courier <" + entry.getKey().getFirstname()+">"
 				+ "; number of delivered orders: " + entry.getValue());
 	    }
 	}

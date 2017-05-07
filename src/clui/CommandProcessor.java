@@ -343,7 +343,10 @@ public class CommandProcessor{
 				System.out.println("You have new messages.");
 			}
 			if (user instanceof Courier){
-				((Courier)user).getService().showWaitingOrders();
+				Courier courier = (Courier)user;
+				if (courier.getWaitingOrders().size()!=0){
+					System.out.println("You have new waiting delivery tasks.");
+				}
 			}
 			System.out.println("Please enter a command. Enter \"help\" "
 					+ "to get the list of available commands.");
@@ -401,8 +404,8 @@ public class CommandProcessor{
 		String password = scan.nextLine();
 		
 	
-		System.out.println("Please enter your address (x,y): \n"
-				+"address = ");
+		System.out.println("Please enter your address/position: example 2.0,1.5 \n"
+				+"address/position = ");
 		String addressString = scan.nextLine();
 		AddressPoint address = new AddressPoint(addressString);
 		
@@ -718,8 +721,12 @@ public class CommandProcessor{
 
 		String deliveryPolicy = arguments[0];
 		Manager manager = (Manager)user;
-		manager.getService().setDeliveryPolicy(deliveryPolicy);
-		System.out.println("Delivery policy set as "+deliveryPolicy + " policy.");
+		try {
+			manager.getService().setDeliveryPolicy(deliveryPolicy);
+			System.out.println("Delivery policy set as "+deliveryPolicy + " policy.");
+		} catch (NameNotFoundException e) {
+			e.printError();
+		}
 	}
 
 	/**
@@ -1493,7 +1500,7 @@ public class CommandProcessor{
 		String orderName = arguments[0];
 		Courier courier = (Courier)user;
 		courier.getService().acceptCall(orderName);
-		System.out.println("courier "+courier.getFullName()+" <"+courier.getName()+"> accepts to take the order.");
+		System.out.println("courier "+courier.getFullName()+" <"+courier.getUsername()+"> accepts to take the order.");
 	}
 	
 	/**
@@ -1508,7 +1515,7 @@ public class CommandProcessor{
 
 		String orderName = arguments[0];
 		Courier courier = (Courier)user;
-		System.out.println("courier <"+courier.getName()+"> refuses to take the order. A new courier is being assigned.");
+		System.out.println("courier <"+courier.getUsername()+"> refuses to take the order. A new courier is being assigned.");
 		courier.getService().refuseCall(orderName);
 	}
 

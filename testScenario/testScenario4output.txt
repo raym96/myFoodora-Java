@@ -58,6 +58,7 @@ Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 
 [Special Offers]
 Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+
 Welcome on MyFoodora, user <korean>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
@@ -106,6 +107,7 @@ Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
 Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros
 
+
 logout
 Goodbye <korean>. We hope to see you again on MyFoodora.
 
@@ -123,7 +125,7 @@ You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 showNewMessages
-05/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
 
 
 
@@ -143,14 +145,14 @@ addItem2Order hotpot specialorder
 Item <hotpot> added to the order <specialorder>.
 
 endorder specialorder
-[Order <specialorder> ID1223]
+[Order <specialorder> ID1186]
 [7.2€] 
 Meal <Hotpot> 7.2
 BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
-ON 05/05/2017
-Obama Barack <bobama> has been assigned to the delivery task.
-Order <specialorder> finalised on 05/05/2017 and you paid for it.
+ON 07/05/2017
+Barack OBAMA <bobama> has been assigned to the delivery task.
+Order <specialorder> finalised on 07/05/2017 and you paid for it.
 
 logout
 Goodbye <ffillon>. We hope to see you again on MyFoodora.
@@ -184,6 +186,7 @@ Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
 [Special Offers]
 Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+
 Welcome on MyFoodora, user <french>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
@@ -214,6 +217,7 @@ Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
 [Special Offers]
 Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+
 
 removeFromSpecialOffer I_love_paris
 Meal <I_love_paris> removed from the list of special-offers of <FrenchRestaurant>.
@@ -246,5 +250,45 @@ Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
 
 [Special Offers]
 
+
 ----------------------------------------------------------------------------------------------------------------
 
+help
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands:
+
+login <username> <password> : login with your username & password.
+
+register <> : register on the MyFoodora system. Follow the steps.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+
+
+Account example:
+
+Manager : username = ceo; password = 123456789;
+
+Customer : username = emacron; password = password;
+
+Courier : username = dtrump; password = password;
+
+Restaurant : username = restaurant; password = password;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+register
+You want to register an acount of which type ? 
+1. restaurant   2. customer  3. courier
+Please choose your username : 
+username = 
+Please choose your password : 
+password = 
+Please enter your address (x,y): 
+address = 
+Enter your firstname

@@ -18,6 +18,14 @@ Welcome on MyFoodora, user <emacron>.
 You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
+showmessages
+-- MessageBoard of emacron --
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros by FrenchRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros by ChineseRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros by JapaneseRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros by KoreanRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros by ItalianRestaurant
+
 registerCard point
 You subscribed to a new fidelity plan. Fidelity card set as <point> card.
 
@@ -49,6 +57,7 @@ Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 [Special Offers]
 Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
 
+
 -----[CHINESERESTAURANT username <chinese>]-----
 
 [Menu]
@@ -74,6 +83,7 @@ Full-meal <Fm4> [Ravioli, Pork_ribs, Lychees] type standard 12.35 euros
 
 [Special Offers]
 Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros
+
 
 -----[JAPANESERESTAURANT username <japanese>]-----
 
@@ -101,6 +111,7 @@ Full-meal <Fm4> [Japanese_salad, Maki, Nougat] type standard 7.6 euros
 [Special Offers]
 Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros
 
+
 -----[KOREANRESTAURANT username <korean>]-----
 
 [Menu]
@@ -126,6 +137,7 @@ Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 
 [Special Offers]
 Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+
 
 -----[ITALIANRESTAURANT username <italian>]-----
 
@@ -155,6 +167,7 @@ Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros
 
 
 
+
 createOrder french myorder
 Order <myorder> added to your shopping cart.
 
@@ -177,49 +190,49 @@ showshoppingcart
 
 SHOPPINGCART : 
 
-[Order <myorder> ID1177]
+[Order <myorder> ID1138]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 05/05/2017
+ON 07/05/2017
 
-[Order <myorder2> ID1178]
+[Order <myorder2> ID1139]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 05/05/2017
+ON 07/05/2017
 
 TOTAL PRICE = 25.49 euros
 
 
 
 endorder myorder
-[Order <myorder> ID1177]
+[Order <myorder> ID1138]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 05/05/2017
+ON 07/05/2017
 you earned 1.1 points on your point card for this order.
-Trump Donald <dtrump> has been assigned to the delivery task.
-Order <myorder> finalised on 05/05/2017 and you paid for it.
+Donald TRUMP <dtrump> has been assigned to the delivery task.
+Order <myorder> finalised on 07/05/2017 and you paid for it.
 
 endorder myorder2
-[Order <myorder2> ID1178]
+[Order <myorder2> ID1139]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 05/05/2017
+ON 07/05/2017
 you earned 1.44 points on your point card for this order.
-Clinton Hillary <hclinton> has been assigned to the delivery task.
-Order <myorder2> finalised on 05/05/2017 and you paid for it.
+Hillary CLINTON <hclinton> has been assigned to the delivery task.
+Order <myorder2> finalised on 07/05/2017 and you paid for it.
 
 showpoints
 Balance of points = 2.54
@@ -232,147 +245,130 @@ Goodbye <emacron>. We hope to see you again on MyFoodora.
 login dtrump password
 Welcome on MyFoodora, user <dtrump>. 
 You have new waiting delivery tasks.
-[Order <myorder> ID1177]
-[11.04€] 
-A-la-carte <Snail> 2.5
-Meal <Hm2> 8.54
-BY <emacron> Emmanuel Macron
-AT <french> FrenchRestaurant
-ON 05/05/2017
 Please enter a command. Enter "help" to get the list of available commands.
 
 showWaiting
 You have new waiting delivery tasks.
-[Order <myorder> ID1177]
+[Order <myorder> ID1138]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 05/05/2017
+ON 07/05/2017
 
 acceptcall myorder
-courier Trump Donald <Trump> accepts to take the order.
+courier Donald TRUMP <dtrump> accepts to take the order.
 
 showhistory
 List of delivered orders by Trump:
-[Order <emacron> ID1137]
-[35.14€] 
+[Order <emacron> ID1093]
+[51.59€] 
+A-la-carte <Steak> 9.8
+Meal <Fm3> 15.2
 Meal <Fm4> 13.3
-Meal <Hm4> 10.45
-Meal <Hm3> 11.39
+Meal <Fm4> 13.3
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 18/02/2017 DELIVERED BY <dtrump>
+ON 09/12/2016 DELIVERED BY <dtrump>
 
-[Order <mlepen> ID1146]
-[21.84€] 
-Meal <Hm2> 8.54
-Meal <Fm4> 13.3
-BY <mlepen> Marine LePen
+[Order <emacron> ID1097]
+[26.7€] 
+Meal <Fm3> 15.2
+Meal <Hm1> 9.5
+A-la-carte <Ice-cream> 2.0
+BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 02/03/2017 DELIVERED BY <dtrump>
+ON 21/04/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1148]
-[23.74€] 
+[Order <ffillon> ID1107]
+[13.5€] 
+A-la-carte <Ice-cream> 2.0
+A-la-carte <Ice-cream> 2.0
+Meal <Hm1> 9.5
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 01/02/2017 DELIVERED BY <dtrump>
+
+[Order <ffillon> ID1109]
+[17.07€] 
+Meal <Hm2> 8.54
+Meal <Hm2> 8.54
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 28/10/2016 DELIVERED BY <dtrump>
+
+[Order <jlmelenchon> ID1117]
+[21.19€] 
+A-la-carte <Steak> 9.8
 Meal <Fm2> 11.39
-Meal <Fm1> 12.35
-BY <ffillon> Francois Fillon
+BY <jlmelenchon> JeanLuc Melenchon
 AT <french> FrenchRestaurant
-ON 26/04/2017 DELIVERED BY <dtrump>
+ON 14/01/2017 DELIVERED BY <dtrump>
 
-[Order <ffillon> ID1151]
-[13.0€] 
-A-la-carte <Choucroute> 7.0
-A-la-carte <Chocolate> 3.5
-A-la-carte <Snail> 2.5
-BY <ffillon> Francois Fillon
-AT <french> FrenchRestaurant
-ON 02/04/2017 DELIVERED BY <dtrump>
-
-[Order <ffillon> ID1152]
-[29.84€] 
-Meal <Hm3> 11.39
-A-la-carte <Foie-gras> 5.5
-Meal <Hm4> 10.45
-A-la-carte <Snail> 2.5
-BY <ffillon> Francois Fillon
-AT <french> FrenchRestaurant
-ON 12/01/2017 DELIVERED BY <dtrump>
-
-[Order <jlmelenchon> ID1154]
-[31.99€] 
-Meal <Hm1> 9.5
+[Order <bhamon> ID1119]
+[24.39€] 
 Meal <Hm2> 8.54
 A-la-carte <Chocolate> 3.5
-Meal <Hm4> 10.45
-BY <jlmelenchon> JeanLuc Melenchon
-AT <french> FrenchRestaurant
-ON 16/03/2017 DELIVERED BY <dtrump>
-
-[Order <jlmelenchon> ID1155]
-[31.65€] 
-A-la-carte <Chocolate> 3.5
 Meal <Fm1> 12.35
-Meal <Fm4> 13.3
-A-la-carte <Snail> 2.5
-BY <jlmelenchon> JeanLuc Melenchon
-AT <french> FrenchRestaurant
-ON 06/03/2017 DELIVERED BY <dtrump>
-
-[Order <jlmelenchon> ID1158]
-[34.2€] 
-Meal <Fm1> 12.35
-Meal <Hm1> 9.5
-Meal <Fm1> 12.35
-BY <jlmelenchon> JeanLuc Melenchon
-AT <french> FrenchRestaurant
-ON 08/01/2017 DELIVERED BY <dtrump>
-
-[Order <bhamon> ID1163]
-[35.15€] 
-Meal <Fm1> 12.35
-Meal <Fm1> 12.35
-Meal <Hm4> 10.45
 BY <bhamon> Benoit Hamon
 AT <french> FrenchRestaurant
-ON 23/12/2016 DELIVERED BY <dtrump>
+ON 04/05/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1167]
-[19.95€] 
+[Order <bhamon> ID1123]
+[24.7€] 
+Meal <Fm3> 15.2
 Meal <Hm1> 9.5
-Meal <Hm4> 10.45
+BY <bhamon> Benoit Hamon
+AT <french> FrenchRestaurant
+ON 15/04/2017 DELIVERED BY <dtrump>
+
+[Order <bhamon> ID1124]
+[9.0€] 
+A-la-carte <Choucroute> 7.0
+A-la-carte <Ice-cream> 2.0
+BY <bhamon> Benoit Hamon
+AT <french> FrenchRestaurant
+ON 24/02/2017 DELIVERED BY <dtrump>
+
+[Order <ndupont> ID1130]
+[31.69€] 
+A-la-carte <Choucroute> 7.0
+Meal <Fm4> 13.3
+Meal <Fm2> 11.39
 BY <ndupont> Nicolas Dupont
 AT <french> FrenchRestaurant
-ON 11/03/2017 DELIVERED BY <dtrump>
+ON 10/12/2016 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1168]
-[21.85€] 
+[Order <ppoutou> ID1133]
+[28.58€] 
 Meal <Hm1> 9.5
-Meal <Fm1> 12.35
-BY <ndupont> Nicolas Dupont
+Meal <Hm2> 8.54
+A-la-carte <Ice-cream> 2.0
+Meal <Hm2> 8.54
+BY <ppoutou> Philippe Poutou
 AT <french> FrenchRestaurant
-ON 18/01/2017 DELIVERED BY <dtrump>
+ON 23/03/2017 DELIVERED BY <dtrump>
 
-[Order <ndupont> ID1169]
-[13.0€] 
-A-la-carte <Chocolate> 3.5
-Meal <Hm1> 9.5
-BY <ndupont> Nicolas Dupont
+[Order <ppoutou> ID1134]
+[18.39€] 
+A-la-carte <Choucroute> 7.0
+Meal <Fm2> 11.39
+BY <ppoutou> Philippe Poutou
 AT <french> FrenchRestaurant
-ON 14/12/2016 DELIVERED BY <dtrump>
+ON 05/02/2017 DELIVERED BY <dtrump>
 
-[Order <myorder> ID1177]
+[Order <myorder> ID1138]
 [11.04€] 
 A-la-carte <Snail> 2.5
 Meal <Hm2> 8.54
 BY <emacron> Emmanuel Macron
 AT <french> FrenchRestaurant
-ON 05/05/2017 DELIVERED BY <dtrump>
+ON 07/05/2017 DELIVERED BY <dtrump>
 
 
 showCount
-Trump's total delivery count = 13
+Trump's total delivery count = 12
 
 changeposition 4.4,5.0
 Position updated.
@@ -391,28 +387,21 @@ Goodbye <dtrump>. We hope to see you again on MyFoodora.
 login hclinton password
 Welcome on MyFoodora, user <hclinton>. 
 You have new waiting delivery tasks.
-[Order <myorder2> ID1178]
-[14.45€] 
-A-la-carte <Nem> 2.1
-Meal <Fm4> 12.35
-BY <emacron> Emmanuel Macron
-AT <chinese> ChineseRestaurant
-ON 05/05/2017
 Please enter a command. Enter "help" to get the list of available commands.
 
 showWaiting
 You have new waiting delivery tasks.
-[Order <myorder2> ID1178]
+[Order <myorder2> ID1139]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 05/05/2017
+ON 07/05/2017
 
 refusecall myorder2
-courier <Clinton> refuses to take the order. A new courier is being assigned.
-Obama Barack <bobama> has been assigned to the delivery task.
+courier <hclinton> refuses to take the order. A new courier is being assigned.
+Barack OBAMA <bobama> has been assigned to the delivery task.
 
 logout
 Goodbye <hclinton>. We hope to see you again on MyFoodora.
@@ -422,17 +411,20 @@ Goodbye <hclinton>. We hope to see you again on MyFoodora.
 login bobama password
 Welcome on MyFoodora, user <bobama>. 
 You have new waiting delivery tasks.
-[Order <myorder2> ID1178]
+Please enter a command. Enter "help" to get the list of available commands.
+
+showWaiting
+You have new waiting delivery tasks.
+[Order <myorder2> ID1139]
 [14.45€] 
 A-la-carte <Nem> 2.1
 Meal <Fm4> 12.35
 BY <emacron> Emmanuel Macron
 AT <chinese> ChineseRestaurant
-ON 05/05/2017
-Please enter a command. Enter "help" to get the list of available commands.
+ON 07/05/2017
 
 acceptCall myorder2
-courier Obama Barack <Obama> accepts to take the order.
+courier Barack OBAMA <bobama> accepts to take the order.
 
 logout
 Goodbye <bobama>. We hope to see you again on MyFoodora.
@@ -500,6 +492,7 @@ Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 
 [Special Offers]
 Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+
 Welcome on MyFoodora, user <korean>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
@@ -548,6 +541,7 @@ Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
 Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
 Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros
 
+
 logout
 Goodbye <korean>. We hope to see you again on MyFoodora.
 
@@ -565,7 +559,7 @@ You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 showNewMessages
-05/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <Hotpot> [Bibimbap, Soja] type standard 7.2 euros by KoreanRestaurant
 
 
 
@@ -585,14 +579,14 @@ addItem2Order hotpot specialorder
 Item <hotpot> added to the order <specialorder>.
 
 endorder specialorder
-[Order <specialorder> ID1223]
+[Order <specialorder> ID1186]
 [7.2€] 
 Meal <Hotpot> 7.2
 BY <ffillon> Francois Fillon
 AT <korean> KoreanRestaurant
-ON 05/05/2017
-Obama Barack <bobama> has been assigned to the delivery task.
-Order <specialorder> finalised on 05/05/2017 and you paid for it.
+ON 07/05/2017
+Barack OBAMA <bobama> has been assigned to the delivery task.
+Order <specialorder> finalised on 07/05/2017 and you paid for it.
 
 logout
 Goodbye <ffillon>. We hope to see you again on MyFoodora.
@@ -626,6 +620,7 @@ Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
 [Special Offers]
 Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+
 Welcome on MyFoodora, user <french>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
@@ -656,6 +651,7 @@ Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
 [Special Offers]
 Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
+
 
 removeFromSpecialOffer I_love_paris
 Meal <I_love_paris> removed from the list of special-offers of <FrenchRestaurant>.
@@ -688,5 +684,45 @@ Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
 
 [Special Offers]
 
+
 ----------------------------------------------------------------------------------------------------------------
 
+help
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					HELP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please find below the list of available commands:
+
+login <username> <password> : login with your username & password.
+
+register <> : register on the MyFoodora system. Follow the steps.
+
+runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
+
+help <>: display the list of available CLUI commands with an indication of their syntax.
+
+
+
+Account example:
+
+Manager : username = ceo; password = 123456789;
+
+Customer : username = emacron; password = password;
+
+Courier : username = dtrump; password = password;
+
+Restaurant : username = restaurant; password = password;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+register
+You want to register an acount of which type ? 
+1. restaurant   2. customer  3. courier
+Please choose your username : 
+username = 
+Please choose your password : 
+password = 
+Please enter your address (x,y): 
+address = 
+Enter your firstname

@@ -95,6 +95,7 @@ public class RestaurantView implements UserView{
 		showDishes();
 		showMeals();
 		showSpecialOffers();
+		System.out.println();
 	}
 
 }

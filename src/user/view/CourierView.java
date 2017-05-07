@@ -28,7 +28,7 @@ public class CourierView implements UserView{
 	 */
 	public void showInfo(){
 		String output = "";
-		output+="<Courier> "+courier.getUsername()+"; fullname = "+courier.getSurname()+" "+courier.getName().toUpperCase()+"; position="+courier.getPosition();
+		output+="<Courier> "+courier.getUsername()+"; fullname = "+courier.getFirstname()+" "+courier.getLastname().toUpperCase()+"; position="+courier.getPosition();
 		if (courier.getEmail() !=null){
 			output+="; email = "+courier.getEmail();
 		}
@@ -48,14 +48,14 @@ public class CourierView implements UserView{
 	 * Show count.
 	 */
 	public void showCount(){
-		System.out.println(courier.getName()+ "'s total delivery count = " + courier.getCount());
+		System.out.println(courier.getLastname()+ "'s total delivery count = " + courier.getCount());
 	}
 	
 	/* (non-Javadoc)
 	 * @see user.view.UserView#showHistory()
 	 */
 	public void showHistory(){
-		System.out.println("List of delivered orders by "+courier.getName()+":");
+		System.out.println("List of delivered orders by "+courier.getLastname()+":");
 		for (Order order: courier.getDeliveredOrders()){
 			System.out.println(order+"\n");
 		}

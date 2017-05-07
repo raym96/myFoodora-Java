@@ -69,6 +69,7 @@ Desserts:
 [Meal menu]
 
 [Special Offers]
+
 Welcome on MyFoodora, user <bantony>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
@@ -138,6 +139,7 @@ Dessert <Potatoes> gluten-free 2.0 euros
 [Special Offers]
 Full-meal <Ba01> [Salad, Vegetables, Potatoes] type standard 9.0 euros
 
+
 logout
 Goodbye <bantony>. We hope to see you again on MyFoodora.
 
@@ -167,25 +169,25 @@ showshoppingcart
 
 SHOPPINGCART : 
 
-[Order <myorder> ID1133]
+[Order <myorder> ID1092]
 [11.99€] 
 A-la-carte <Pizza> 6.3
 Meal <Hm3> 5.69
 BY <hbiausser> herve biausser
 AT <italian> ItalianRestaurant
-ON 06/05/2017
+ON 07/05/2017
 
 TOTAL PRICE = 11.99 euros
 
 endorder myorder 24/04/2017
-[Order <myorder> ID1133]
+[Order <myorder> ID1092]
 [11.99€] 
 A-la-carte <Pizza> 6.3
 Meal <Hm3> 5.69
 BY <hbiausser> herve biausser
 AT <italian> ItalianRestaurant
-ON 06/05/2017
-Sanders Bernie <bsanders> has been assigned to the delivery task.
+ON 07/05/2017
+Bernie SANDERS <bsanders> has been assigned to the delivery task.
 Order <myorder> finalised on 24/04/2017 and you paid for it.
 
 logout
@@ -193,149 +195,184 @@ Goodbye <hbiausser>. We hope to see you again on MyFoodora.
 
 ----------------------------------------------------------------------------------------------------------------
 
-login ceo password
-LOGIN ERROR: Wrong username/password. Please try again.
+runtest testScenario2.txt
 
+-----------------------------------------------------------------------------------
+Loading initial setup <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+                                   TESTSCENARIO2.TXT                                    
+----------------------------------------------------------------------------------------------------------------
 login ceo 123456789
 Welcome on MyFoodora, user <ceo>. 
 Please enter a command. Enter "help" to get the list of available commands.
 
-logout
-Goodbye <ceo>. We hope to see you again on MyFoodora.
-
-help
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-					HELP
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Please find below the list of available commands:
-
-login <username> <password> : login with your username & password.
-
-register <> : register on the MyFoodora system. Follow the steps.
-
-runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
-
-help <>: display the list of available CLUI commands with an indication of their syntax.
 
 
+removeUser mlepen
+User account <mlepen> deleted. User removed from MyFoodora.
 
-Account examples for tests :
+showUsers
 
-Manager : username = ceo; password = 123456789;
+[USERS]
+<Manager> ceo; fullname = raymond JI
+<Manager> deputy; fullname = Xiaoan HE
+<Customer> emacron; fullname = Emmanuel MACRON; address=1.0,1.0; agrees to be notified of special offers; has a standard fidelity card
+<Customer> ffillon; fullname = Francois FILLON; address=3.0,3.0; will not be notified of special offers; has a standard fidelity card
+<Customer> jlmelenchon; fullname = JeanLuc MELENCHON; address=1.0,1.0; will not be notified of special offers; has a standard fidelity card
+<Customer> bhamon; fullname = Benoit HAMON; address=-4.0,-4.0; will not be notified of special offers; has a standard fidelity card
+<Customer> ndupont; fullname = Nicolas DUPONT; address=0.0,0.0; will not be notified of special offers; has a standard fidelity card
+<Customer> ppoutou; fullname = Philippe POUTOU; address=-7.5,-7.5; will not be notified of special offers; has a standard fidelity card
+<Courier> dtrump; fullname = Donald TRUMP; position=2.0,2.0; is on-duty.
+<Courier> hclinton; fullname = Hillary CLINTON; position=-2.0,2.0; is on-duty.
+<Courier> bsanders; fullname = Bernie SANDERS; position=2.0,-2.0; is on-duty.
+<Courier> bobama; fullname = Barack OBAMA; position=-2.0,-2.0; is on-duty.
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
 
-Customer : username = emacron; password = password;
+showUsers courier
+[COURIER]
+<Courier> dtrump; fullname = Donald TRUMP; position=2.0,2.0
+<Courier> hclinton; fullname = Hillary CLINTON; position=-2.0,2.0
+<Courier> bsanders; fullname = Bernie SANDERS; position=2.0,-2.0
+<Courier> bobama; fullname = Barack OBAMA; position=-2.0,-2.0
 
-Courier : username = dtrump; password = password;
+showMenuItem chinese
 
-Restaurant : username = restaurant; password = password;
+-----[CHINESERESTAURANT username <chinese>]-----
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[Menu]
+Starters:
+Starter <Nem> gluten-free 2.1 euros 
+Starter <Ravioli> vegetarian 2.8 euros 
+Main-dishes:
+MainDish <Canard_laque> standard 10.0 euros 
+MainDish <Pork_ribs> standard 9.1 euros 
+Desserts:
+Dessert <Lychees> gluten-free 2.0 euros 
+Dessert <Nougat> gluten-free 3.0 euros 
 
-login ceo 123456789
-Welcome on MyFoodora, user <ceo>. 
-Please enter a command. Enter "help" to get the list of available commands.
+[Meal menu]
+Half-meal <Hm1> [Canard_laque, Nougat] type standard 12.35 euros
+Half-meal <Hm2> [Pork_ribs, Nougat] type standard 11.39 euros
+Half-meal <Hm3> [Pork_ribs, Lychees] type standard 10.45 euros
+Half-meal <Hm4> [Ravioli, Pork_ribs] type standard 10.45 euros
+Full-meal <Fm1> [Nem, Canard_laque, Nougat] type standard 14.25 euros
+Full-meal <Fm2> [Ravioli, Canard_laque, Lychees] type standard 13.3 euros
+Full-meal <Fm3> [Nem, Pork_ribs, Lychees] type standard 12.35 euros
+Full-meal <Fm4> [Ravioli, Pork_ribs, Lychees] type standard 12.35 euros
 
-help
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-					HELP - MANAGER
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Please find below the list of available commands for a MANAGER:
-
-registerRestaurant <name> <username> <address> <password> : add a restaurant of given name, address, username and password to the system. <username> must be unique.
-<address> is given as a bi-dimensional coordinate, example 1.0,2.5
-
-registerCustomer <firstName> <lastName> <username> <address> <password> : add a client to the system. By default each newly registered customer will not receive notification for special-offers.
-<username> must be unique.
-<address> is given as a bi-dimensional coordinate, example 1.0,2.5
-
-registerCourier <firstName> <lastName> <username> <position> <password> : add a courier to the system. By default each newly registered courier is on-duty.
-<username> must be unique.
-<address> is given as a bi-dimensional coordinate, example 1.0,2.5
-
-registerManager <firstName> <lastName> <username> : add a manager to the system. <username> must be unique.
-
-removeUser <username> : delete the account of the user from the system.
-
-setDeliveryPolicy <deliveryPolicyName>: set the delivery policy of the system to that passed as argument. <deliveryPolicyName> = fastest/fair for respectively FastestDelivery/FairOccupationDelivery
-
-setProfitPolicy <profitPolicyName> : set the profit policy of the system to that passed as argument. <profitPolicyName> = delivery_cost/markup_percentage/service_fee
-
-setServiceFee <service_fee> : change the service fee of the system to the value passed as argument.
-
-setMarkupPercentage <markup_percentage> : change the mark-up percentage of the system to the value passed as argument.
-
-setDeliveryCost <delivery_cost> : change the delivery cost of the system to the value passed as argument.
-
-associateCard <userName> <cardType> : associate a fidelity card to a user with given name. 
-<cardType> = point/lottery for respectively PointCard/LotteryCard.
-
-showCourierDeliveries <sortingOrder> : display the list of couriers sorted in given order w.r.t. the number of completed deliveries.
-<sortingOrder> = asc/desc. If empty, display in decreasing order.
-
-showRestaurantTop <sortingOrder> : display the list of restaurant sorted in given order w.r.t. the number of delivered orders.
-<sortingOrder> = asc/desc. If empty, display in decreasing order.
-
-applyProfitPolicy <> : determining either the service-fee and/or markup percentage and/or the deliverycost so to meet a target-profit and set the new value.
-
-showCustomers <> : display the list of customers.
-
-showMenuItem <restaurant-username> : display the menu of a given restaurant with its username.
-
-showTotalProfit<> : show the total profit of the system since creation.
-
-showTotalProfit <startDate> <endDate> : show the total profit of the system within a time interval.
-dateformat "dd/MM/yyyy", example 01/01/2017
-
-showTotalIncome<> : show the total income of the system since creation.
-
-showTotalIncome <startDate> <endDate> : show the total income of the system within a time interval.
-dateformat "dd/MM/yyyy", example 01/01/2017
-
-showAverageIncome<> : show the average income per customer of the system since creation.
-
-showAverageIncome <startDate> <endDate> : show the average income per customer of the system within a time interval.
-dateformat "dd/MM/yyyy", example 01/01/2017
-
-showUsers <userType> : show users of the given type.
-<userType> = customer/manager/restaurant/courier. 
-
-showUsers <> : show all users.
-
-showActiveUsers <>: show all active users.
-
-showPolicies <>: show the delivery policy and the target profit policy of the system.
-
-showSystemValues <>: show the delivery cost, service fee and mark-up percentage of the system.
-
-showMessages <>:  show messages of your message board.
-
-showNewMessages <>: show unread messages of your message board.
-
-showInfo <> : show your general personal info.
-
-showRestaurantMenus <> : show all restaurants with their menu.
-
-showHistory <> : show history of all commands passed at MyFoodora since creation.
-
-unregister <> : delete your account.
-
-logout <> : log out.
-
-runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
-
-help <>: display the list of available CLUI commands with an indication of their syntax.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[Special Offers]
+Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros
 
 
-showmessages
-There are no messages yet.
 
-logout
-Goodbye <ceo>. We hope to see you again on MyFoodora.
 
+setDeliveryPolicy fair
+Delivery policy set as fair policy.
+
+showPolicies
+Delivery policy = FairOccupationDeliveryPolicy : the courier with the least number of completed delivery is chosen.
+Target profit policy = targetProfit DeliveryCost: based on the last month total income (i.e. number of completed orders), and given a service fee value, and a markup percentage value compute the delivery cost value to meet a given target profit.
+
+
+
+showtotalincome
+Total income : 792.46 euros.
+
+showtotalprofit
+Total profit : 94.746 euros.
+
+showaverageincome
+Average income per customer : 113.208 euros.
+
+
+
+showtotalincome 07/04/2017 07/05/2017
+Total income between 07/04/2017 and 07/05/2017: 235.85 euros.
+
+showtotalprofit 07/04/2017 07/05/2017
+Total profit between 07/04/2017 and 07/05/2017: 27.584 euros.
+
+showaverageincome 07/04/2017 07/05/2017
+Average income per customer between 07/04/2017 and 07/05/2017: 47.17 euros.
+
+
+
+showSystemvalues
+Delivery cost = 0.5
+Mark up percentage = 0.1
+Service fee = 1.0
+
+setdeliverycost 1.5
+Delivery cost updated
+
+showSystemvalues
+Delivery cost = 1.5
+Mark up percentage = 0.1
+Service fee = 1.0
+
+setProfitpolicy Service_fee
+Target profit policy set as Service_fee policy.
+
+applyprofitpolicy 15
+The target profit policy has been applied, system values updated to meet a profit of 15.0 euros.
+Delivery cost = 1.5
+Mark up percentage = 0.1
+Service fee = 0.4268749999999999
+
+showtotalprofit 07/04/2017 07/05/2017
+Total profit between 07/04/2017 and 07/05/2017: 15.0 euros.
+
+
+
+showrestauranttop desc
+Displaying restaurants sorted w.r.t the number of shipped orders 
+Restaurant <FrenchRestaurant>; number of orders: 11
+Restaurant <KoreanRestaurant>; number of orders: 10
+Restaurant <ChineseRestaurant>; number of orders: 10
+Restaurant <ItalianRestaurant>; number of orders: 9
+Restaurant <JapaneseRestaurant>; number of orders: 6
+
+showrestauranttop asc
+Displaying restaurants sorted w.r.t the number of shipped orders (ascending order)
+Restaurant <JapaneseRestaurant>; number of orders: 6
+Restaurant <ItalianRestaurant>; number of orders: 9
+Restaurant <ChineseRestaurant>; number of orders: 10
+Restaurant <KoreanRestaurant>; number of orders: 10
+Restaurant <FrenchRestaurant>; number of orders: 11
+
+showcourierdeliveries desc
+Displaying couriers sorted w.r.t the number of delivered orders 
+Courier <Barack>; number of delivered orders: 16
+Courier <Donald>; number of delivered orders: 11
+Courier <Hillary>; number of delivered orders: 10
+Courier <Bernie>; number of delivered orders: 9
+
+showcourierdeliveries asc
+Displaying couriers sorted w.r.t the number of delivered orders (ascending order)
+Courier <Bernie>; number of delivered orders: 9
+Courier <Hillary>; number of delivered orders: 10
+Courier <Donald>; number of delivered orders: 11
+Courier <Barack>; number of delivered orders: 16
+
+----------------------------------------------------------------------------------------------------------------
+
+runtest testScenario3.txt
+
+-----------------------------------------------------------------------------------
+Loading initial setup <my_foodora.ini>
+The initial file <my_foodora.ini> successfully loaded into the system.
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+                                   TESTSCENARIO3.TXT                                    
+----------------------------------------------------------------------------------------------------------------
 login emacron password
 [RESTAURANT]
 <Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
@@ -343,144 +380,420 @@ login emacron password
 <Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
 <Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
 <Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-<Restaurant> bantony; name = BonheurdAntony; address=3.0,3.0
 Welcome on MyFoodora, user <emacron>. 
 You have new messages.
 Please enter a command. Enter "help" to get the list of available commands.
 
 showmessages
 -- MessageBoard of emacron --
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros by FrenchRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros by ChineseRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros by JapaneseRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros by KoreanRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros by ItalianRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Full-meal <Ba01> [Salad, Vegetables, Potatoes] type standard 9.0 euros by BonheurdAntony
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros by FrenchRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros by ChineseRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros by JapaneseRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros by KoreanRestaurant
+07/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros by ItalianRestaurant
 
------------------------------------------------------------------------------
+registerCard point
+You subscribed to a new fidelity plan. Fidelity card set as <point> card.
 
-login ceo 123456789
-Welcome on MyFoodora, user <ceo>. 
-Please enter a command. Enter "help" to get the list of available commands.
+showRestaurantMenus
 
-help
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-					HELP - MANAGER
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----[FRENCHRESTAURANT username <french>]-----
 
-Please find below the list of available commands for a MANAGER:
+[Menu]
+Starters:
+Starter <Snail> vegetarian 2.5 euros 
+Starter <Foie-gras> standard 5.5 euros 
+Main-dishes:
+MainDish <Steak> standard 9.8 euros 
+MainDish <Choucroute> vegetarian 7.0 euros 
+Desserts:
+Dessert <Ice-cream> gluten-free 2.0 euros 
+Dessert <Chocolate> standard 3.5 euros 
 
-registerRestaurant <name> <username> <address> <password> : add a restaurant of given name, address, username and password to the system. <username> must be unique.
-<address> is given as a bi-dimensional coordinate, example 1.0,2.5
+[Meal menu]
+Half-meal <Hm1> [Choucroute, Chocolate] type standard 9.5 euros
+Half-meal <Hm2> [Snail, Choucroute] type standard 8.54 euros
+Half-meal <Hm3> [Steak, Chocolate] type standard 11.39 euros
+Half-meal <Hm4> [Snail, Steak] type standard 10.45 euros
+Full-meal <Fm1> [Snail, Steak, Ice-cream] type standard 12.35 euros
+Full-meal <Fm2> [Snail, Choucroute, Chocolate] type standard 11.39 euros
+Full-meal <Fm3> [Foie-gras, Steak, Ice-cream] type standard 15.2 euros
+Full-meal <Fm4> [Foie-gras, Choucroute, Ice-cream] type standard 13.3 euros
 
-registerCustomer <firstName> <lastName> <username> <address> <password> : add a client to the system. By default each newly registered customer will not receive notification for special-offers.
-<username> must be unique.
-<address> is given as a bi-dimensional coordinate, example 1.0,2.5
-
-registerCourier <firstName> <lastName> <username> <position> <password> : add a courier to the system. By default each newly registered courier is on-duty.
-<username> must be unique.
-<address> is given as a bi-dimensional coordinate, example 1.0,2.5
-
-registerManager <firstName> <lastName> <username> : add a manager to the system. <username> must be unique.
-
-removeUser <username> : delete the account of the user from the system.
-
-setDeliveryPolicy <deliveryPolicyName>: set the delivery policy of the system to that passed as argument. <deliveryPolicyName> = fastest/fair for respectively FastestDelivery/FairOccupationDelivery
-
-setProfitPolicy <profitPolicyName> : set the profit policy of the system to that passed as argument. <profitPolicyName> = delivery_cost/markup_percentage/service_fee
-
-setServiceFee <service_fee> : change the service fee of the system to the value passed as argument.
-
-setMarkupPercentage <markup_percentage> : change the mark-up percentage of the system to the value passed as argument.
-
-setDeliveryCost <delivery_cost> : change the delivery cost of the system to the value passed as argument.
-
-associateCard <userName> <cardType> : associate a fidelity card to a user with given name. 
-<cardType> = point/lottery for respectively PointCard/LotteryCard.
-
-showCourierDeliveries <sortingOrder> : display the list of couriers sorted in given order w.r.t. the number of completed deliveries.
-<sortingOrder> = asc/desc. If empty, display in decreasing order.
-
-showRestaurantTop <sortingOrder> : display the list of restaurant sorted in given order w.r.t. the number of delivered orders.
-<sortingOrder> = asc/desc. If empty, display in decreasing order.
-
-applyProfitPolicy <> : determining either the service-fee and/or markup percentage and/or the deliverycost so to meet a target-profit and set the new value.
-
-showCustomers <> : display the list of customers.
-
-showMenuItem <restaurant-username> : display the menu of a given restaurant with its username.
-
-showTotalProfit<> : show the total profit of the system since creation.
-
-showTotalProfit <startDate> <endDate> : show the total profit of the system within a time interval.
-dateformat "dd/MM/yyyy", example 01/01/2017
-
-showTotalIncome<> : show the total income of the system since creation.
-
-showTotalIncome <startDate> <endDate> : show the total income of the system within a time interval.
-dateformat "dd/MM/yyyy", example 01/01/2017
-
-showAverageIncome<> : show the average income per customer of the system since creation.
-
-showAverageIncome <startDate> <endDate> : show the average income per customer of the system within a time interval.
-dateformat "dd/MM/yyyy", example 01/01/2017
-
-showUsers <userType> : show users of the given type.
-<userType> = customer/manager/restaurant/courier. 
-
-showUsers <> : show all users.
-
-showActiveUsers <>: show all active users.
-
-showPolicies <>: show the delivery policy and the target profit policy of the system.
-
-showSystemValues <>: show the delivery cost, service fee and mark-up percentage of the system.
-
-showMessages <>:  show messages of your message board.
-
-showNewMessages <>: show unread messages of your message board.
-
-showInfo <> : show your general personal info.
-
-showRestaurantMenus <> : show all restaurants with their menu.
-
-showHistory <> : show history of all commands passed at MyFoodora since creation.
-
-unregister <> : delete your account.
-
-logout <> : log out.
-
-runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
-
-help <>: display the list of available CLUI commands with an indication of their syntax.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[Special Offers]
+Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros
 
 
-showmessages
-There are no messages yet.
+-----[CHINESERESTAURANT username <chinese>]-----
+
+[Menu]
+Starters:
+Starter <Nem> gluten-free 2.1 euros 
+Starter <Ravioli> vegetarian 2.8 euros 
+Main-dishes:
+MainDish <Canard_laque> standard 10.0 euros 
+MainDish <Pork_ribs> standard 9.1 euros 
+Desserts:
+Dessert <Lychees> gluten-free 2.0 euros 
+Dessert <Nougat> gluten-free 3.0 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Canard_laque, Nougat] type standard 12.35 euros
+Half-meal <Hm2> [Pork_ribs, Nougat] type standard 11.39 euros
+Half-meal <Hm3> [Pork_ribs, Lychees] type standard 10.45 euros
+Half-meal <Hm4> [Ravioli, Pork_ribs] type standard 10.45 euros
+Full-meal <Fm1> [Nem, Canard_laque, Nougat] type standard 14.25 euros
+Full-meal <Fm2> [Ravioli, Canard_laque, Lychees] type standard 13.3 euros
+Full-meal <Fm3> [Nem, Pork_ribs, Lychees] type standard 12.35 euros
+Full-meal <Fm4> [Ravioli, Pork_ribs, Lychees] type standard 12.35 euros
+
+[Special Offers]
+Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros
+
+
+-----[JAPANESERESTAURANT username <japanese>]-----
+
+[Menu]
+Starters:
+Starter <Japanese_soup> gluten-free 3.5 euros 
+Starter <Japanese_salad> vegetarian 2.4 euros 
+Main-dishes:
+MainDish <Sushi> gluten-free 5.0 euros 
+MainDish <Maki> gluten-free 4.3 euros 
+Desserts:
+Dessert <Nougat> gluten-free 2.2 euros 
+Dessert <Lychee> vegetarian 3.0 euros 
+
+[Meal menu]
+Half-meal <Hm4> [Maki, Nougat] type standard 5.69 euros
+Half-meal <Hm1> [Maki, Lychee] type standard 6.65 euros
+Half-meal <Hm2> [Japanese_salad, Sushi] type standard 6.65 euros
+Half-meal <Hm3> [Japanese_salad, Maki] type standard 5.69 euros
+Full-meal <Fm1> [Japanese_soup, Sushi, Lychee] type standard 10.45 euros
+Full-meal <Fm2> [Japanese_salad, Sushi, Lychee] type standard 9.5 euros
+Full-meal <Fm3> [Japanese_soup, Maki, Nougat] type standard 8.54 euros
+Full-meal <Fm4> [Japanese_salad, Maki, Nougat] type standard 7.6 euros
+
+[Special Offers]
+Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros
+
+
+-----[KOREANRESTAURANT username <korean>]-----
+
+[Menu]
+Starters:
+Starter <Noodles> gluten-free 4.4 euros 
+Starter <Soja> vegetarian 2.0 euros 
+Main-dishes:
+MainDish <Bibimbap> standard 6.9 euros 
+MainDish <Barbecue> standard 10.5 euros 
+Desserts:
+Dessert <Lychee> vegetarian 3.1 euros 
+Dessert <Macha> standard 5.8 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Bibimbap, Macha] type standard 10.45 euros
+Half-meal <Hm2> [Bibimbap, Lychee] type standard 8.54 euros
+Half-meal <Hm3> [Noodles, Bibimbap] type standard 9.5 euros
+Half-meal <Hm4> [Barbecue, Lychee] type standard 12.35 euros
+Full-meal <Fm1> [Noodles, Bibimbap, Lychee] type standard 12.35 euros
+Full-meal <Fm2> [Soja, Bibimbap, Lychee] type standard 10.45 euros
+Full-meal <Fm3> [Noodles, Barbecue, Lychee] type standard 16.14 euros
+Full-meal <Fm4> [Soja, Barbecue, Macha] type standard 16.14 euros
+
+[Special Offers]
+Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros
+
+
+-----[ITALIANRESTAURANT username <italian>]-----
+
+[Menu]
+Starters:
+Starter <Olive> gluten-free 1.0 euros 
+Starter <Salad> vegetarian 6.3 euros 
+Main-dishes:
+MainDish <Pizza> standard 6.3 euros 
+MainDish <Spaghetti> standard 5.9 euros 
+Desserts:
+Dessert <Ice-cream> standard 3.3 euros 
+Dessert <Tiramisu> vegetarian 5.0 euros 
+
+[Meal menu]
+Half-meal <Hm1> [Salad, Pizza] type standard 11.39 euros
+Half-meal <Hm2> [Salad, Spaghetti] type standard 10.45 euros
+Half-meal <Hm3> [Olive, Spaghetti] type standard 5.69 euros
+Half-meal <Hm4> [Olive, Pizza] type standard 6.65 euros
+Full-meal <Fm1> [Olive, Pizza, Ice-cream] type standard 9.5 euros
+Full-meal <Fm2> [Salad, Pizza, Tiramisu] type standard 16.14 euros
+Full-meal <Fm3> [Olive, Spaghetti, Tiramisu] type standard 10.45 euros
+Full-meal <Fm4> [Salad, Spaghetti, Ice-cream] type standard 13.3 euros
+
+[Special Offers]
+Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros
+
+
+
+
+createOrder french myorder
+Order <myorder> added to your shopping cart.
+
+addItem2Order Snail myorder
+Item <Snail> added to the order <myorder>.
+
+addItem2Order hm2 myorder
+Item <hm2> added to the order <myorder>.
+
+createOrder chinese myorder2
+Order <myorder2> added to your shopping cart.
+
+addItem2Order Nem myorder2
+Item <Nem> added to the order <myorder2>.
+
+addItem2Order fm4 myorder2
+Item <fm4> added to the order <myorder2>.
+
+showshoppingcart
+
+SHOPPINGCART : 
+
+[Order <myorder> ID1185]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 07/05/2017
+
+[Order <myorder2> ID1186]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 07/05/2017
+
+TOTAL PRICE = 25.49 euros
+
+
+
+endorder myorder
+[Order <myorder> ID1185]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 07/05/2017
+you earned 1.1 points on your point card for this order.
+Donald TRUMP <dtrump> has been assigned to the delivery task.
+Order <myorder> finalised on 07/05/2017 and you paid for it.
+
+endorder myorder2
+[Order <myorder2> ID1186]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 07/05/2017
+you earned 1.44 points on your point card for this order.
+Hillary CLINTON <hclinton> has been assigned to the delivery task.
+Order <myorder2> finalised on 07/05/2017 and you paid for it.
+
+showpoints
+Balance of points = 2.54
 
 logout
-Goodbye <ceo>. We hope to see you again on MyFoodora.
+Goodbye <emacron>. We hope to see you again on MyFoodora.
 
-login emacron password
-[RESTAURANT]
-<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
-<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
-<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
-<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
-<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
-<Restaurant> bantony; name = BonheurdAntony; address=3.0,3.0
-Welcome on MyFoodora, user <emacron>. 
-You have new messages.
+
+
+login dtrump password
+Welcome on MyFoodora, user <dtrump>. 
+You have new waiting delivery tasks.
 Please enter a command. Enter "help" to get the list of available commands.
 
-showmessages
--- MessageBoard of emacron --
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 10.8 euros by FrenchRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_beijing> [Pork_ribs, Lychees] type standard 9.9 euros by ChineseRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_tokyo> [Sushi, Lychee] type standard 7.2 euros by JapaneseRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_kim-jung-un> [Barbecue, Macha] type standard 13.5 euros by KoreanRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Half-meal <I_love_roma> [Pizza, Tiramisu] type standard 9.9 euros by ItalianRestaurant
-06/05/2017, SYSTEM: There is a new special-offer : Full-meal <Ba01> [Salad, Vegetables, Potatoes] type standard 9.0 euros by BonheurdAntony
+showWaiting
+You have new waiting delivery tasks.
+[Order <myorder> ID1185]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 07/05/2017
+
+acceptcall myorder
+courier Donald TRUMP <dtrump> accepts to take the order.
+
+showhistory
+List of delivered orders by Donald:
+[Order <emacron> ID1140]
+[51.59€] 
+A-la-carte <Steak> 9.8
+Meal <Fm3> 15.2
+Meal <Fm4> 13.3
+Meal <Fm4> 13.3
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 09/12/2016 DELIVERED BY <dtrump>
+
+[Order <emacron> ID1144]
+[26.7€] 
+Meal <Fm3> 15.2
+Meal <Hm1> 9.5
+A-la-carte <Ice-cream> 2.0
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 21/04/2017 DELIVERED BY <dtrump>
+
+[Order <ffillon> ID1154]
+[13.5€] 
+A-la-carte <Ice-cream> 2.0
+A-la-carte <Ice-cream> 2.0
+Meal <Hm1> 9.5
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 01/02/2017 DELIVERED BY <dtrump>
+
+[Order <ffillon> ID1156]
+[17.07€] 
+Meal <Hm2> 8.54
+Meal <Hm2> 8.54
+BY <ffillon> Francois Fillon
+AT <french> FrenchRestaurant
+ON 28/10/2016 DELIVERED BY <dtrump>
+
+[Order <jlmelenchon> ID1164]
+[21.19€] 
+A-la-carte <Steak> 9.8
+Meal <Fm2> 11.39
+BY <jlmelenchon> JeanLuc Melenchon
+AT <french> FrenchRestaurant
+ON 14/01/2017 DELIVERED BY <dtrump>
+
+[Order <bhamon> ID1166]
+[24.39€] 
+Meal <Hm2> 8.54
+A-la-carte <Chocolate> 3.5
+Meal <Fm1> 12.35
+BY <bhamon> Benoit Hamon
+AT <french> FrenchRestaurant
+ON 04/05/2017 DELIVERED BY <dtrump>
+
+[Order <bhamon> ID1170]
+[24.7€] 
+Meal <Fm3> 15.2
+Meal <Hm1> 9.5
+BY <bhamon> Benoit Hamon
+AT <french> FrenchRestaurant
+ON 15/04/2017 DELIVERED BY <dtrump>
+
+[Order <bhamon> ID1171]
+[9.0€] 
+A-la-carte <Choucroute> 7.0
+A-la-carte <Ice-cream> 2.0
+BY <bhamon> Benoit Hamon
+AT <french> FrenchRestaurant
+ON 24/02/2017 DELIVERED BY <dtrump>
+
+[Order <ndupont> ID1177]
+[31.69€] 
+A-la-carte <Choucroute> 7.0
+Meal <Fm4> 13.3
+Meal <Fm2> 11.39
+BY <ndupont> Nicolas Dupont
+AT <french> FrenchRestaurant
+ON 10/12/2016 DELIVERED BY <dtrump>
+
+[Order <ppoutou> ID1180]
+[28.58€] 
+Meal <Hm1> 9.5
+Meal <Hm2> 8.54
+A-la-carte <Ice-cream> 2.0
+Meal <Hm2> 8.54
+BY <ppoutou> Philippe Poutou
+AT <french> FrenchRestaurant
+ON 23/03/2017 DELIVERED BY <dtrump>
+
+[Order <ppoutou> ID1181]
+[18.39€] 
+A-la-carte <Choucroute> 7.0
+Meal <Fm2> 11.39
+BY <ppoutou> Philippe Poutou
+AT <french> FrenchRestaurant
+ON 05/02/2017 DELIVERED BY <dtrump>
+
+[Order <myorder> ID1185]
+[11.04€] 
+A-la-carte <Snail> 2.5
+Meal <Hm2> 8.54
+BY <emacron> Emmanuel Macron
+AT <french> FrenchRestaurant
+ON 07/05/2017 DELIVERED BY <dtrump>
+
+
+showCount
+Donald's total delivery count = 12
+
+changeposition 4.4,5.0
+Position updated.
+
+setOffDuty
+Current state set as off-duty.
+
+showinfo
+<Courier> dtrump; fullname = Donald TRUMP; position=4.4,5.0; is off-duty
+
+logout
+Goodbye <dtrump>. We hope to see you again on MyFoodora.
+
+
+
+login hclinton password
+Welcome on MyFoodora, user <hclinton>. 
+You have new waiting delivery tasks.
+Please enter a command. Enter "help" to get the list of available commands.
+
+showWaiting
+You have new waiting delivery tasks.
+[Order <myorder2> ID1186]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 07/05/2017
+
+refusecall myorder2
+courier <hclinton> refuses to take the order. A new courier is being assigned.
+Barack OBAMA <bobama> has been assigned to the delivery task.
+
+logout
+Goodbye <hclinton>. We hope to see you again on MyFoodora.
+
+
+
+login bobama password
+Welcome on MyFoodora, user <bobama>. 
+You have new waiting delivery tasks.
+Please enter a command. Enter "help" to get the list of available commands.
+
+showWaiting
+You have new waiting delivery tasks.
+[Order <myorder2> ID1186]
+[14.45€] 
+A-la-carte <Nem> 2.1
+Meal <Fm4> 12.35
+BY <emacron> Emmanuel Macron
+AT <chinese> ChineseRestaurant
+ON 07/05/2017
+
+acceptCall myorder2
+courier Barack OBAMA <bobama> accepts to take the order.
+
+logout
+Goodbye <bobama>. We hope to see you again on MyFoodora.
+
+----------------------------------------------------------------------------------------------------------------
 

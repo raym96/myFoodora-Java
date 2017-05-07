@@ -155,8 +155,9 @@ public interface ManagerService extends UserService{
 	 * is assigned to deliver an order placed by a customer.
 	 *
 	 * @param deliveryPolicy the new delivery policy
+	 * @throws NameNotFoundException 
 	 */
-	public void setDeliveryPolicy(String deliveryPolicy); 
+	public void setDeliveryPolicy(String deliveryPolicy) throws NameNotFoundException; 
 	
 	
 	// ##. extra tool method

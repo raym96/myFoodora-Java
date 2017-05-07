@@ -118,10 +118,7 @@ public class CourierServiceImpl implements CourierService {
 		
 		// new message appears on message board of customer
 		Customer c = order.getCustomer();
-//		c.update(new Message("courier "+courier.getName()+" <"+courier.getUsername()+"> refused to take the order. "
-//				+ "Another courier is being assigned."));
-	
-		//A new courier is assigned to the delivery-task
+
 		MyFoodora.getInstance().getService().findDeliverer(order, availablecouriers); //a new courier is assigned
 	}
 	

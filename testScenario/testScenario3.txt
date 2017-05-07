@@ -32,5 +32,6 @@ refusecall myorder2
 logout
 
 login bobama password
+showWaiting
 acceptCall myorder2
 logout

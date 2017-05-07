@@ -24,10 +24,10 @@ import user.view.CourierView;
 public class Courier extends User{
 
 	/** The surname. */
-	private String surname;
+	private String lastname;
 	
 	/** The name. */
-	private String name;
+	private String firstname;
 	
 	/** The position. */
 	private AddressPoint position;
@@ -62,8 +62,8 @@ public class Courier extends User{
 	 */
 	public Courier(String firstname, String lastname, String username, AddressPoint position, String password) {
 		super(username,password);
-		this.name = lastname;
-		this.surname = firstname;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.position = position;
 		this.on_duty = true;
 		this.deliveredOrders = new ArrayList<Order>();
@@ -250,8 +250,8 @@ public class Courier extends User{
 	 *
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getFirstname() {
+		return firstname;
 	}
 
 	/**
@@ -259,8 +259,8 @@ public class Courier extends User{
 	 *
 	 * @return the surname
 	 */
-	public String getSurname() {
-		return surname;
+	public String getLastname() {
+		return lastname;
 	}
 	
 	/**
@@ -269,7 +269,7 @@ public class Courier extends User{
 	 * @return the full name
 	 */
 	public String getFullName(){
-		return name+" "+surname;
+		return firstname+" "+lastname.toUpperCase();
 	}
 	
 	/**
@@ -279,8 +279,8 @@ public class Courier extends User{
 	 */
 	public void setFullName(String name) {
 		// TODO Auto-generated method stub
-		this.surname = name.split(" ")[0];
-		this.name = name.split(" ")[1];
+		this.firstname = name.split(" ")[0];
+		this.lastname = name.split(" ")[1];
 	}
 
 
@@ -289,7 +289,7 @@ public class Courier extends User{
 	 */
 	@Override
 	public String toString() {
-		return  "<Courier> "+username+"; fullname = "+surname+" "+name.toUpperCase()+"; position="+position;
+		return  "<Courier> "+username+"; fullname = "+firstname+" "+lastname.toUpperCase()+"; position="+position;
 	}
 	
 	

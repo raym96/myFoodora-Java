@@ -23,6 +23,9 @@ public abstract class User implements MessageBoardObserver{
 	/** The id. */
 	protected String ID;
 	
+	/** The user count to generate unique id. */
+	private static int usercount;
+	
 	/** The username. */
 	protected String username;
 	
@@ -55,13 +58,15 @@ public abstract class User implements MessageBoardObserver{
 	 */
 	public User(String username, String password) {
 		super();
-		this.ID = UUID.randomUUID().toString();
 		this.username = username;
 		this.password = password;
 		this.activated = true; //activated by default
 		this.notified = false;
 		this.messageBoard = new MessageBoard(this);
 		this.logStatus = false;
+		
+		this.ID = "IS1220U"+String.valueOf(usercount);
+		usercount++;
 	}
 	
 	/**

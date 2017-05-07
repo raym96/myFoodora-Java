@@ -255,7 +255,7 @@ public class ManagerServiceTest {
 		System.out.println("-----testBestCourier-----");
 		for (User u :MyFoodora.getInstance().getUsersOfAssignedType("COURIER")){
 			Courier c = (Courier)u;
-			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
+			System.out.println("Courier <"+c.getFirstname()+"> + has count: " + c.getCount());
 		}
 		
 		manager_service.showCourierDesc();
@@ -269,7 +269,7 @@ public class ManagerServiceTest {
 		System.out.println("-----testWorstCourier-----");
 		for (User u :MyFoodora.getInstance().getUsersOfAssignedType("COURIER")){
 			Courier c = (Courier)u;
-			System.out.println("Courier <"+c.getName()+"> + has count: " + c.getCount());
+			System.out.println("Courier <"+c.getFirstname()+"> + has count: " + c.getCount());
 		}
 		
 		manager_service.showCourierAsc();
@@ -277,9 +277,10 @@ public class ManagerServiceTest {
 
 	/**
 	 * Test set delivery policy.
+	 * @throws NameNotFoundException 
 	 */
 	@Test
-	public void testSetDeliveryPolicy() {
+	public void testSetDeliveryPolicy() throws NameNotFoundException {
 		System.out.println("-----testSetDeliveryPolicy-----");
 		manager_service.setDeliveryPolicy("fast");
 		
