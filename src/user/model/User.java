@@ -24,7 +24,7 @@ public abstract class User implements MessageBoardObserver{
 	protected String ID;
 	
 	/** The user count to generate unique id. */
-	private static int usercount;
+	private static int usercount = 1000;
 	
 	/** The username. */
 	protected String username;
@@ -65,7 +65,7 @@ public abstract class User implements MessageBoardObserver{
 		this.messageBoard = new MessageBoard(this);
 		this.logStatus = false;
 		
-		this.ID = "IS1220U"+String.valueOf(usercount);
+		this.ID = "MFDA"+String.valueOf(usercount);
 		usercount++;
 	}
 	

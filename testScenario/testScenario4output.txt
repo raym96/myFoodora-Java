@@ -145,7 +145,7 @@ addItem2Order hotpot specialorder
 Item <hotpot> added to the order <specialorder>.
 
 endorder specialorder
-[Order <specialorder> ID1186]
+[Order <specialorder> ID1233]
 [7.2€] 
 Meal <Hotpot> 7.2
 BY <ffillon> Francois Fillon
@@ -253,42 +253,29 @@ Half-meal <I_love_paris> [Foie-gras, Choucroute] type standard 11.39 euros
 
 ----------------------------------------------------------------------------------------------------------------
 
-help
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-					HELP
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+login ceo 123456789
+Welcome on MyFoodora, user <ceo>. 
+Please enter a command. Enter "help" to get the list of available commands.
 
-Please find below the list of available commands:
+showusers
 
-login <username> <password> : login with your username & password.
+[USERS]
+<Manager> ceo; fullname = raymond JI
+<Manager> deputy; fullname = Xiaoan HE
+<Customer> emacron; fullname = Emmanuel MACRON; address=1.0,1.0; agrees to be notified of special offers; has a standard fidelity card
+<Customer> mlepen; fullname = Marine LEPEN; address=0.5,0.5; agrees to be notified of special offers; has a standard fidelity card
+<Customer> ffillon; fullname = Francois FILLON; address=3.0,3.0; agrees to be notified of special offers; has a point fidelity card
+<Customer> jlmelenchon; fullname = JeanLuc MELENCHON; address=1.0,1.0; will not be notified of special offers; has a standard fidelity card
+<Customer> bhamon; fullname = Benoit HAMON; address=-4.0,-4.0; will not be notified of special offers; has a standard fidelity card
+<Customer> ndupont; fullname = Nicolas DUPONT; address=0.0,0.0; will not be notified of special offers; has a standard fidelity card
+<Customer> ppoutou; fullname = Philippe POUTOU; address=-7.5,-7.5; will not be notified of special offers; has a standard fidelity card
+<Courier> dtrump; fullname = Donald TRUMP; position=2.0,2.0; is on-duty.
+<Courier> hclinton; fullname = Hillary CLINTON; position=-2.0,2.0; is on-duty.
+<Courier> bsanders; fullname = Bernie SANDERS; position=2.0,-2.0; is on-duty.
+<Courier> bobama; fullname = Barack OBAMA; position=-2.0,-2.0; is on-duty.
+<Restaurant> french; name = FrenchRestaurant; address=5.0,3.5
+<Restaurant> chinese; name = ChineseRestaurant; address=-2.0,3.0
+<Restaurant> japanese; name = JapaneseRestaurant; address=-2.0,-5.0
+<Restaurant> korean; name = KoreanRestaurant; address=-1.0,-2.0
+<Restaurant> italian; name = ItalianRestaurant; address=1.5,-3.0
 
-register <> : register on the MyFoodora system. Follow the steps.
-
-runTest <testScenario-file> : execute the list of CLUI commands contained in the testScenario file passed as argument. Example : runTest testScenario1.txt
-
-help <>: display the list of available CLUI commands with an indication of their syntax.
-
-
-
-Account example:
-
-Manager : username = ceo; password = 123456789;
-
-Customer : username = emacron; password = password;
-
-Courier : username = dtrump; password = password;
-
-Restaurant : username = restaurant; password = password;
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-register
-You want to register an acount of which type ? 
-1. restaurant   2. customer  3. courier
-Please choose your username : 
-username = 
-Please choose your password : 
-password = 
-Please enter your address (x,y): 
-address = 
-Enter your firstname
